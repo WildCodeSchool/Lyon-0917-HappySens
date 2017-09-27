@@ -15,7 +15,11 @@
 </head>
 <body>
 
-<h1>JE SUIS MATERIALIZE</h1>
+<?php include "public/includes/jumbotron.php"; ?>
+
+
+
+
     
 
 <!--Import jQuery before materialize.js-->
