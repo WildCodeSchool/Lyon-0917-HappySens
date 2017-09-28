@@ -1,3 +1,43 @@
+* {
+  box-sizing: border-box; }
 
+body {
+  overflow-x: hidden;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
+
+main {
+  flex: 1 0 auto; }
+
+.Work {
+  width: 100vw;
+  height: 100vh;
+  background-color: lightgrey; }
+
+.page-footer {
+  margin-bottom: -25px; }
+
+.scrollToTop {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  padding: 10px;
+  font-size: 25px;
+  text-align: center;
+  color: white;
+  box-shadow: 1px 2px rgba(0, 0, 0, 0.3);
+  z-index: 99999;
+  -webkit-transition: all ease-in 0.2s;
+  transition: all ease-in 0.2s;
+  position: fixed;
+  cursor: pointer;
+  bottom: 2.5em;
+  right: 20px;
+  display: none; }
+
+.scrollToTop:hover {
+  -webkit-transition: all ease-in 0.2s;
+  transition: all ease-in 0.2s; }
 
 /*# sourceMappingURL=style.css.map */
