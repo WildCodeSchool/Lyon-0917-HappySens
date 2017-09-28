@@ -8,8 +8,11 @@
 <body>
 <main class="col s12">
     <?php require './public/includes/navbar.php'; ?>
-    <section class="Work">
 
+    <!--  Jumbotron  -->
+    <?php require './public/includes/jumbotron.php'; ?>
+    <section class="Work">
+        <?php require './public/includes/cardCategories.php'; ?>
     </section>
 
     

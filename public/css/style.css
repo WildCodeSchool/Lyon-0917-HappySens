@@ -13,13 +13,42 @@ main {
 .Work {
   width: 100vw;
   height: 100vh;
-  background-color: lightgrey; }
+  background-color: ghostwhite; }
+
+.btn {
+  background-color: darkorange; }
+
+.btn:hover {
+  background-color: orange; }
+
+.nav ul a {
+  color: blue; }
+
+.nav a {
+  color: blue; }
 
 .parallax-container {
-  background-image: url("http://lorempixel.com/output/animals-q-c-1920-600-9.jpg");
-  background-size: contain;
+  height: 55vh;
+  background-image: url("http://www.journalistspages.com/wp-content/uploads/2017/06/journalists-pages-37.jpg");
+  background-size: cover;
   background-attachment: fixed;
-  background-position: top center; }
+  background-position: 75%; }
+
+.headerTitle {
+  padding-right: 55px;
+  border-radius: 5px;
+  top: 55vh;
+  transform: translatey(55%);
+  text-align: left;
+  text-shadow: 0 1px 2px black; }
+  .headerTitle h5 {
+    margin-right: 10px; }
+
+.card {
+  margin-top: 2rem; }
+
+.cardTitle {
+  font-size: 2.5em; }
 
 .page-footer {
   margin-bottom: -25px; }
