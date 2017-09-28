@@ -7,14 +7,13 @@
 </head>
 <body>
 <main class="col s12">
-    <?php include "public/includes/navbar.php"?>
+    
+  <?php require './public/includes/navbar.php'; ?>
+  <?php require "public/includes/jumbotron.php"; ?>
 
-<?php include "public/includes/jumbotron.php"; ?>
-    <section class="Work">
+  <section class="Work">
 
     </section>
-
-
 
     
     <!--  include button scroll to top  -->

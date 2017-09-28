@@ -11,7 +11,6 @@
 
         </div>
     </div>
-    <div class="parallax"><img src="http://lorempixel.com/output/animals-q-c-1920-600-9.jpg" alt="placeholder"></div>
 
 </div>
 
