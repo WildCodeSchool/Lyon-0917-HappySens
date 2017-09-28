@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <!--  include Head  -->
     <?php require './public/includes/head.php'; ?>
 </head>
@@ -8,10 +9,14 @@
 <main class="col s12">
     <h1>JE SUIS MATERIALIZE</h1>
 
+<?php include "public/includes/jumbotron.php"; ?>
     <section class="Work">
 
     </section>
 
+
+
+    
     <!--  include button scroll to top  -->
     <?php require './public/includes/goToTop.php'; ?>
 
