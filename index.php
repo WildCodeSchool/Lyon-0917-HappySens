@@ -7,7 +7,7 @@
 </head>
 <body>
 <main class="col s12">
-    <h1>JE SUIS MATERIALIZE</h1>
+    <?php include "public/includes/navbar.php"?>
 
 <?php include "public/includes/jumbotron.php"; ?>
     <section class="Work">
