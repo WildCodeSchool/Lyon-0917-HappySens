@@ -1,14 +1,12 @@
 <div id="index-banner" class="parallax-container">
     <div class="section no-pad-bot">
-        <div class="container">
-            <br><br>
-            <h1 class="header center teal-text orange-text">Bienvenue sur Happy Sens</h1>
-            <div class="row center">
-                <h5 class="header col s12 orange-text">Ici le slogon ou une phrase d'accroche !!!</h5>
+        <div class="col s12">
+            <div class="headerTitle left" id="headerTitle">
+                <h1 class="header left amber-text">Bienvenue sur Happy Sens</h1>
+                <div class="row">
+                    <h5 class="header left white-text">Ici le slogan ou une phrase d'accroche !!!</h5>
+                </div>
             </div>
-
-            <br><br>
-
         </div>
     </div>
 
