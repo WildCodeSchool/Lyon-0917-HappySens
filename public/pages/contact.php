@@ -23,9 +23,8 @@
         </div>
 
 
-
          <?php include "../includes/formContact.php"; ?>
-     </div>
+         </div>
 
 
 

@@ -27,16 +27,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s12">
-                <select>
+
+                <label for="choose">Objet du message </label>
+                <select class="browser-default" id="choose">
                     <option value="" disabled selected>Votre choix</option>
                     <option value="1">Option 1</option>
                     <option value="2">Option 2</option>
                     <option value="3">Option 3</option>
                 </select>
-                <label>Objet du message </label>
+
                 <br>
-            </div>
+
         </div>
 
         <div class="row">
