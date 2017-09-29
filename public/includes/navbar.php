@@ -1,6 +1,6 @@
 <div class="navbar-fixed">
     <nav>
-        <div class="nav-wrapper white darken-3 z-depth-3">
+        <div class="nav-wrapper white darken-3 blue-text z-depth-3">
             <a href="index.php" class="brand-logo">Logo</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
