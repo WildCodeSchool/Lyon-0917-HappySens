@@ -43,7 +43,7 @@ session_start();
         <div class="input-field col s12 m6">
             <i class="material-icons prefix">phone</i>
             <input id="phone" type="tel" class="validate" name="phone"
-                   value="<?php echo isset($_SESSION['errors']['phone']) ? "" : $_SESSION['inputs']['phone']?>" required>
+                   value="<?php echo isset($_SESSION['errors']['phone']) ? "" : $_SESSION['inputs']['phone']?>" pattern="/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/" required>
             <label for="phone" data-error="<?php echo isset($_SESSION['errors']['phone']) ? $_SESSION['errors']['phone'] : "" ?>" data-success="right">Téléphone</label>
             <p class="invalid"><?php echo isset($_SESSION['errors']['phone']) ? $_SESSION['errors']['phone'] : "" ?></p>
         </div>
