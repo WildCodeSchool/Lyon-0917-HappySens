@@ -18,7 +18,7 @@
 
         </section>
     <!--   Emplacement require Fantasia      -->
-
+        <?php require './public/includes/howItWorks.php'; ?>
     </section>
 
 <section class="log">
