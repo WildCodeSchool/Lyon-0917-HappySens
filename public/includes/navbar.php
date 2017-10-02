@@ -9,7 +9,7 @@
                 <li><a href="/public/pages/employe.php">Salariés</a></li>
                 <li><a href="/public/pages/happy_coach.php">Happy coachs</a></li>
                 <li><a href="/public/pages/contact.php">Nous contacter</a></li>
-                <li><a class="waves-effect waves-light btn">Connexion<i class="material-icons right">person</i></a></li>
+                <li><a href="#" class="waves-effect waves-light btn">Connexion<i class="material-icons right">person</i></a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li><a href="/index.php">Accueil</a></li>
@@ -17,7 +17,7 @@
                 <li><a href="/public/pages/employe.php">Salariés</a></li>
                 <li><a href="/public/pages/happy_coach.php">Happy coachs</a></li>
                 <li><a href="/public/pages/contact.php">Nous contacter</a></li>
-                <li><a href="/public/pages/log_user.php" class="waves-effect waves-light btn-large">Se Connecter</a></li>
+                <li><a href="#" class="waves-effect waves-light btn">Connexion<i class="material-icons right">person</i></a></li>
             </ul>
         </div>
     </nav>
