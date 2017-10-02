@@ -7,14 +7,13 @@
 </head>
 <body>
 <main class="col s12">
-    <h1>JE SUIS MATERIALIZE</h1>
+    <?php require './public/includes/navbar.php'; ?>
 
-<?php include "public/includes/jumbotron.php"; ?>
+    <!--  Jumbotron  -->
+    <?php require './public/includes/jumbotron.php'; ?>
     <section class="Work">
-
+        <?php require './public/includes/cardCategories.php'; ?>
     </section>
-
-
 
     
     <!--  include button scroll to top  -->
