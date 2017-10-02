@@ -13,6 +13,12 @@
     <?php require './public/includes/jumbotron.php'; ?>
     <section class="Work">
         <?php require './public/includes/cardCategories.php'; ?>
+
+        <section class="Rachid col s12">
+
+        </section>
+    <!--   Emplacement require Fantasia      -->
+
     </section>
 
 <section class="log">
@@ -20,12 +26,15 @@
 </section>
 
 
-
     <!--  include button scroll to top  -->
     <?php require './public/includes/goToTop.php'; ?>
 
     <!--  include footer  -->
     <div class="row" id="footer">
+        <!--  include icons engagement  -->
+        <?php require './public/includes/iconsEngagement.php'; ?>
+
+        <!--  include footer  -->
         <?php require './public/includes/footer.php'; ?>
     </div>
 </main>
