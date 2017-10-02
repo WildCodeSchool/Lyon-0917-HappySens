@@ -21,6 +21,10 @@
 
     </section>
 
+<section class="log">
+    <?php require './public/includes/modalLog.php'; ?>
+</section>
+
 
     <!--  include button scroll to top  -->
     <?php require './public/includes/goToTop.php'; ?>
@@ -34,7 +38,8 @@
         <?php require './public/includes/footer.php'; ?>
     </div>
 </main>
-    <!--  includes all required Javascript files -->
-    <?php require './public/includes/script.php'; ?>
+<!--  includes all required Javascript files -->
+<?php require './public/includes/script.php'; ?>
+
 </body>
 </html>
