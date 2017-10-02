@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" href="public/css/style.css">
-    <title>HappySens</title>
 
+    <!--  include Head  -->
+    <?php require './public/includes/head.php'; ?>
 </head>
 <body>
+<main class="col s12">
+    <?php require './public/includes/navbar.php'; ?>
 
-<h1>JE SUIS MATERIALIZE</h1>
+    <!--  Jumbotron  -->
+    <?php require './public/includes/jumbotron.php'; ?>
+    <section class="Work">
+        <?php require './public/includes/cardCategories.php'; ?>
+    </section>
+
     
+    <!--  include button scroll to top  -->
+    <?php require './public/includes/goToTop.php'; ?>
 
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script type="text/javascript" src="public/script/app.js"></script>
+    <!--  include footer  -->
+    <div class="row" id="footer">
+        <?php require './public/includes/footer.php'; ?>
+    </div>
+</main>
+    <!--  includes all required Javascript files -->
+    <?php require './public/includes/script.php'; ?>
 </body>
 </html>
