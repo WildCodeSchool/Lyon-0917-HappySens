@@ -14,7 +14,7 @@
                     <li><a class="grey-text text-lighten-3" href="#!">HappyCoach</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">FAQ</a></li>
                     <li><a class="grey-text text-lighten-3" href="#!">Connexion</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Nous contactez</a></li>
+                    <li><a class="grey-text text-lighten-3" href="pages/contact.php">Nous contactez</a></li>
                 </ul>
             </div>
         </div>

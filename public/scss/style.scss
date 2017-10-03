@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 // Config display
 * { box-sizing: border-box; }
 
@@ -11,49 +14,41 @@ body {
 main {
   flex: 1 0 auto;
 }
-//llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
-.Work {
-  width: 100%;
-  min-height: 100vh;
-  background-color: ghostwhite;
-}
-
-.Rachid {
-  height: 50vh;
-  background-color: rgba(black, 0.3);
-}
-//llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
-
 // Navbar
-.btn {
-  background-color: darkorange;
-}
-.btn:hover {
-  background-color: orange;
-}
-.nav ul a {
-  color: inherit;
-}
-.nav a {
-  color: inherit;
+.linkNav {
+  font-size: 1.5em;
+  font-family: 'Patrick Hand', cursive;
 }
 
 // Jumbotron
-.parallax-container {
-  height: 55vh;
-  background-image: url("http://www.journalistspages.com/wp-content/uploads/2017/06/journalists-pages-37.jpg");
+.parallax-container-home {
+  height: 95vh;
+  background-image: linear-gradient(rgba(white, 0.1),rgba(white, 0.1)), url("http://dariusforoux.com/wp-content/uploads/2015/12/manontop.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 3em;
+}
+.parallax-container-others {
+  height: 50vh;
+  background-image: url("http://dariusforoux.com/wp-content/uploads/2015/12/manontop.jpg");
   background-size: cover;
   background-attachment: fixed;
-  background-position: 75%;
+  background-position: 50% 3em;
 }
 .headerTitle {
   padding-left: 55px;
   border-radius: 5px;
   top: 55vh;
   transform: translatey(55%);
-  text-shadow: 0 1px 2px black;
+  text-shadow: 0 1px 2px grey;
+  h1 {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 6em;
+  }
   h5 {
     margin-right: 10px;
+    font-family: 'Montserrat', sans-serif;
   }
 }
 
@@ -63,10 +58,13 @@ main {
 }
 
 .cardTitle {
-  font-size: 2.5em;
-
+  font-size: 3em;
+  font-family: 'Patrick Hand', cursive;
 }
-
+.textCard {
+  font-size: 1.2em;
+  font-family: 'Montserrat', sans-serif;
+}
 // Icons engagement
 .containerIcons {
   margin-bottom: -2rem;
@@ -78,6 +76,11 @@ main {
   justify-content: space-around;
 }
 
+// Modal
+.modal {
+  top: 50vh;
+  transform: translatey(-50%);
+}
 
 // Footer
 .page-footer {

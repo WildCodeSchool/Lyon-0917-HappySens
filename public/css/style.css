@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Patrick+Hand");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 * {
   box-sizing: border-box; }
 
@@ -10,48 +12,48 @@ body {
 main {
   flex: 1 0 auto; }
 
-.Work {
-  width: 100%;
-  min-height: 100vh;
-  background-color: ghostwhite; }
+.linkNav {
+  font-size: 1.5em;
+  font-family: 'Patrick Hand', cursive; }
 
-.Rachid {
+.parallax-container-home {
+  height: 95vh;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url("http://dariusforoux.com/wp-content/uploads/2015/12/manontop.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 3em; }
+
+.parallax-container-others {
   height: 50vh;
-  background-color: rgba(0, 0, 0, 0.3); }
-
-.btn {
-  background-color: darkorange; }
-
-.btn:hover {
-  background-color: orange; }
-
-.nav ul a {
-  color: inherit; }
-
-.nav a {
-  color: inherit; }
-
-.parallax-container {
-  height: 55vh;
-  background-image: url("http://www.journalistspages.com/wp-content/uploads/2017/06/journalists-pages-37.jpg");
+  background-image: url("http://dariusforoux.com/wp-content/uploads/2015/12/manontop.jpg");
   background-size: cover;
   background-attachment: fixed;
-  background-position: 75%; }
+  background-position: 50% 3em; }
 
 .headerTitle {
   padding-left: 55px;
   border-radius: 5px;
   top: 55vh;
   transform: translatey(55%);
-  text-shadow: 0 1px 2px black; }
+  text-shadow: 0 1px 2px grey; }
+  .headerTitle h1 {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 6em; }
   .headerTitle h5 {
-    margin-right: 10px; }
+    margin-right: 10px;
+    font-family: 'Montserrat', sans-serif; }
 
 .card {
   margin-top: 2rem; }
 
 .cardTitle {
-  font-size: 2.5em; }
+  font-size: 3em;
+  font-family: 'Patrick Hand', cursive; }
+
+.textCard {
+  font-size: 1.2em;
+  font-family: 'Montserrat', sans-serif; }
 
 .containerIcons {
   margin-bottom: -2rem; }
@@ -61,6 +63,10 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
+
+.modal {
+  top: 50vh;
+  transform: translatey(-50%); }
 
 .page-footer {
   margin-bottom: -25px; }
@@ -86,5 +92,3 @@ main {
     transition: all ease-in 0.2s; }
 
 /*# sourceMappingURL=style.css.map */
-/* General styles for the modal */
-

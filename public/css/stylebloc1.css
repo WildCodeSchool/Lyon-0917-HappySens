@@ -1,12 +1,12 @@
 .para1 {
-    border: 3px #fe7f2a groove;
     border-radius: 5px;
     min-height: 40vh;
-    padding: 10px;
     margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    padding: 10px 50px;
 }
 .para2 {
-    border: 3px #fe7f2a groove;
     border-radius: 5px;
     height: 40vh;
     padding: 10px;

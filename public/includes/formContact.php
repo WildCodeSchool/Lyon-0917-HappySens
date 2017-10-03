@@ -8,15 +8,7 @@ session_start();
 <form method="post"  action="../includes/validFormContact.php" class="col s6">
     <div class="row">
         <div class="col s12 ">
-            <?php if (!empty($_POST)): ?>
-                <?php if (array_key_exists('errors', $_SESSION)): ?>
-                    <p class="text-red">Le formulaire n'a pas été envoyée : </p>
-                    <?= implode('<br>', $_SESSION['errors']); ?>
-                 <?php else: ?>
-                     <p class="text-green">Le formulaire a été envoyé avec succés.<br>
-                         Nous vous recontacterons le plus rapidement possible</p>
-                <?php endif; ?>
-            <?php endif; ?>
+            <!--    Verification envoi du message    -->
         </div>
     </div>
     <div class="row">

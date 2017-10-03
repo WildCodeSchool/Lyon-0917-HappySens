@@ -4,6 +4,8 @@
 
     <!--  include Head  -->
     <?php require './public/includes/head.php'; ?>
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/stylebloc1.css">
 </head>
 <body>
 <main class="col s12">
@@ -15,10 +17,10 @@
         <?php require './public/includes/cardCategories.php'; ?>
 
         <section class="Rachid col s12">
-
+            <?php require './public/includes/bloc1Concept.php'; ?>
         </section>
     <!--   Emplacement require Fantasia      -->
-        <?php require './public/includes/howItWorks.php'; ?>
+            <?php  require './public/includes/howItWorks.php'; ?>
     </section>
 
 <section class="log">
