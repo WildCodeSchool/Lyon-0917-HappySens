@@ -19,6 +19,10 @@
         <section class="Rachid col s12">
             <?php require './public/includes/bloc1Concept.php'; ?>
         </section>
+
+        <section class="Rachid col s12">
+            <?php require './public/includes/shemaTexte.php'; ?>
+        </section>
     <!--   Emplacement require Fantasia      -->
             <?php  require './public/includes/howItWorks.php'; ?>
     </section>
