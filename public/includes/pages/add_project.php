@@ -4,7 +4,7 @@
 
     <!--  include Head  -->
     <?php include '../public/includes/head.php'; ?>
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <main class="col s12">
@@ -24,15 +24,12 @@
         </div>
     </div>
 
-    <section class="Contact">
-        <div class="row">
-            <?php include "../public/includes/textContact.php"; ?>
-            <?php include "../public/includes/formContact.php"; ?>
-        </div>
-    </section>
-
     <section class="log">
         <?php require '../public/includes/modalLog.php'; ?>
+    </section>
+
+    <section class="createProjet">
+
     </section>
 
     <!--  include button scroll to top  -->

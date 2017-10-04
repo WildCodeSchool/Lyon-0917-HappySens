@@ -15,16 +15,16 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="password" type="password" class="validate">
-                            <label for="password">Password</label>
+                            <label for="password">Mot de passe</label>
                         </div>
                     </div>
                     <p>
                         <input type="checkbox" id="stayConnect"/>
-                        <label for="stayConnect">Rester connecté</label>
+                        <label for="stayConnect">Souhaitez vous rester connecté ? </label>
                     </p>
                     <div class="row">
                         <div class="input-field col s12">
-                            <a href="#">mot de passe oublié?</a>
+                            <a href="#">Vous avez oublié votre mot de passe?</a>
                         </div>
                     </div>
                 </div>

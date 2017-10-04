@@ -52,14 +52,12 @@ if ($_POST['choose'] == 'choose') {
 if (!empty($errors)) { // si erreur on renvoie vers la page précédente
     $_SESSION['errors'] = $errors;//on stocke les erreurs
     $_SESSION['inputs'] = $_POST;
-
-
-    var_dump($errors);
+    header('Location: ../?page=contact');
 
 } else {
-    $_SESSION['inputs'] = $_POST;
+    $_SESSION['success'] = 1;
+    header('Location: ../?page=contact');
 }
-header('Location: ../pages/contact.php');
 
 
 

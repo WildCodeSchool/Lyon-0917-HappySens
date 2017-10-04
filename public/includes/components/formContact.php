@@ -5,10 +5,22 @@ session_start();
 
 
 
-<form method="post"  action="../includes/validFormContact.php" class="col s6">
+<form method="post" action="./src/validFormContact.php" class="col s6">
     <div class="row">
         <div class="col s12 ">
             <!--    Verification envoi du message    -->
+            <?php if(array_key_exists('errors',$_SESSION)): ?>
+                <div class="red center-align">
+                    <?= implode('<br>', $_SESSION['errors']); ?>
+                </div>
+            <?php endif; ?>
+            <?php if(array_key_exists('success',$_SESSION)): ?>
+                <div>
+                    <p class="teal lighten-2 class center-align">Votre email à bien été transmis !<br>
+                        Vous allez-être redirigé sur la page d'accueil</p>
+                    <meta http-equiv="Refresh" content="2; url=./" />
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="row">
@@ -30,14 +42,13 @@ session_start();
             <i class="material-icons prefix">email</i>
             <input id="email" type="email" class="validate" name="email"
                    value="<?php echo isset($_SESSION['errors']['email']) ? "" : $_SESSION['inputs']['email']?>" required>
-            <label for="email" data-error="<?php echo $_SESSION['errors']['email'] ?>" data-success="right">Email</label>
+            <label for="email">Email</label>
         </div>
         <div class="input-field col s12 m6">
             <i class="material-icons prefix">phone</i>
             <input id="phone" type="tel" class="validate" name="phone"
                    value="<?php echo isset($_SESSION['errors']['phone']) ? "" : $_SESSION['inputs']['phone']?>" required>
-            <label for="phone" data-error="<?php echo isset($_SESSION['errors']['phone']) ? $_SESSION['errors']['phone'] : "" ?>" data-success="right">Téléphone</label>
-            <p class="invalid"><?php echo isset($_SESSION['errors']['phone']) ? $_SESSION['errors']['phone'] : "" ?></p>
+            <label for="phone">Téléphone</label>
         </div>
     </div>
 

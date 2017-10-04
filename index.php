@@ -3,11 +3,10 @@
 <head>
 
     <!--  include Head  -->
-    <?php require './public/includes/head.php'; ?>
-    <link rel="stylesheet" href="public/css/style.css">
-    <link rel="stylesheet" href="public/css/stylebloc1.css">
+    <?php require 'public/includes/structure/head.php'; ?>
 </head>
 <body>
+<<<<<<< HEAD
 <main class="col s12">
     <?php require './public/includes/navbar.php'; ?>
 
@@ -25,27 +24,33 @@
         </section>
     <!--   Emplacement require Fantasia      -->
             <?php  require './public/includes/howItWorks.php'; ?>
+=======
+<header id="header">
+    <?php require 'public/includes/components/navbar.php'; ?>
+    <!--    Modals for connection    -->
+    <section class="log">
+        <?php require 'public/includes/components/modalLog.php'; ?>
+>>>>>>> 6bec0b6265202c0d4af7e751251db1dacfe15823
     </section>
 
-<section class="log">
-    <?php require './public/includes/modalLog.php'; ?>
-</section>
+</header>
+<main class="col s12" id="main">
+    <!--  rooting files  -->
+    <?php require 'src/rooter.php'; ?>
 
-
-    <!--  include button scroll to top  -->
-    <?php require './public/includes/goToTop.php'; ?>
+    <!--  include button scroll to top !!! Don't move this link !!! -->
+    <?php require 'public/includes/components/goToTop.php'; ?>
+</main>
+<!--  include footer  -->
+<div class="s12" id="footer">
+    <!--  include icons engagement  -->
+    <?php require 'public/includes/components/iconsEngagement.php'; ?>
 
     <!--  include footer  -->
-    <div class="row" id="footer">
-        <!--  include icons engagement  -->
-        <?php require './public/includes/iconsEngagement.php'; ?>
-
-        <!--  include footer  -->
-        <?php require './public/includes/footer.php'; ?>
-    </div>
-</main>
+    <?php require 'public/includes/structure/footer.php'; ?>
+</div>
 <!--  includes all required Javascript files -->
-<?php require './public/includes/script.php'; ?>
+<?php require 'public/includes/structure/script.php'; ?>
 
 </body>
 </html>
