@@ -5,7 +5,7 @@ session_start();
 
 
 
-<form method="post"  action="../includes/validFormContact.php" class="col s6">
+<form method="post" action="../../../src/validFormContact.php" class="col s6">
     <div class="row">
         <div class="col s12 ">
             <!--    Verification envoi du message    -->
