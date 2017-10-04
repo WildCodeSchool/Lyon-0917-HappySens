@@ -10,12 +10,7 @@
                 <div class="para2">
                     <div class="imageDescriptions">
                     </div>
-<<<<<<< HEAD:public/includes/bloc1Concept.php
-                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively. I am similar to what is called a panel in otherframeworks.</p>
-                    <a href="#">Pour plus d'info :</a>
-=======
                     <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require                        little markup to use effectively. I am similar to what is called a panel in otherframeworks.</p>
->>>>>>> 6bec0b6265202c0d4af7e751251db1dacfe15823:public/includes/components/bloc1Concept.php
                 </div>
                 <a href="#">Pour plus d'info :</a>
             </div>
