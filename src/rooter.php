@@ -41,6 +41,9 @@ switch ($display) {
     case 'profilPrestataire':
         $link = "profil_prestataire.php";
         break;
+    case 'inscriptions':
+        $link = "inscription.php";
+        break;
     default:
         $link = "contact.php";
         break;
