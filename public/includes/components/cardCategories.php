@@ -10,7 +10,7 @@
                     </ul>
                 </div>
                 <div class="card-action">
-                    <a href="#"><span class="waves-effect waves-light btn blue-text text-darken-3 white">Inscription</span></a>
+                    <a href="?page=inscriptions"><span class="waves-effect waves-light btn blue-text text-darken-3 white">Inscription</span></a>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                     </ul>
                 </div>
                 <div class="card-action">
-                    <a href="#"><span class="waves-effect  waves-light btn blue-text text-darken-3 white">Contact</span></a>
+                    <a href="?page=contact"><span class="waves-effect  waves-light btn blue-text text-darken-3 white">Contact</span></a>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     </ul>
                 </div>
                 <div class="card-action">
-                    <a href="#"><span class="waves-effect  waves-light btn blue-text text-darken-3 white">Inscription</span></a>
+                    <a href="?page=inscriptions"><span class="waves-effect  waves-light btn blue-text text-darken-3 white">Inscription</span></a>
                 </div>
             </div>
         </div>
