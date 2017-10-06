@@ -13,6 +13,10 @@ body {
 main {
   flex: 1 0 auto;
 }
+// Form
+.Contact {
+  padding: 70px 20px;
+}
 
 // Navbar
 .linkNav {
@@ -30,30 +34,57 @@ main {
 }
 
 // Jumbotron
-.parallax-container-home {
-  min-height: 95vh;
-  background-image: linear-gradient(rgba(white, 0.1),rgba(white, 0.1)), url("http://dariusforoux.com/wp-content/uploads/2015/12/manontop.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 50% 3em;
-}
-.headerTitle {
-  padding-left: 55px;
-  border-radius: 5px;
-  top: 55vh;
-  transform: translatey(55%);
-  text-shadow: 0 1px 2px grey;
-  h1 {
-    font-family: 'Patrick Hand SC', cursive;
-    font-size: 7em;
+  // Home
+  .parallax-container-home {
+    min-height: 95vh;
+    background-image: linear-gradient(rgba(white, 0.1),rgba(white, 0.1)), url("http://dariusforoux.com/wp-content/uploads/2015/12/manontop.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 3em;
+    overflow-y: hidden;
   }
-  h5 {
-    margin-left: 10px;
-    font-size: 2em;
-    font-family: 'Montserrat', sans-serif;
+  .headerTitleHome {
+    padding-left: 55px;
+    border-radius: 5px;
+    top: 55vh;
+    transform: translatey(55%);
+    text-shadow: 0 1px 2px grey;
+    h1 {
+      font-family: 'Patrick Hand SC', cursive;
+      font-size: 7em;
+    }
+    h5 {
+      margin-left: 10px;
+      font-size: 2em;
+      font-family: 'Montserrat', sans-serif;
+    }
   }
-}
+  // Others
+  .parallax-container-others {
+    min-height: 40vh;
+    background-image: linear-gradient(rgba(white, 0.1),rgba(white, 0.1)), url("http://dariusforoux.com/wp-content/uploads/2015/12/manontop.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 4em;
+  }
+  .headerTitleOthers {
+    padding-left: 55px;
+    border-radius: 5px;
+    top: 30vh;
+    transform: translatey(30%);
+    text-shadow: 0 1px 2px grey;
+    h1 {
+      font-family: 'Patrick Hand SC', cursive;
+      font-size: 5em;
+    }
+    h5 {
+      margin-left: 10px;
+      font-size: 1.2em;
+      font-family: 'Montserrat', sans-serif;
+    }
+  }
 // Button goDown
 .goDown {
 }
@@ -91,13 +122,13 @@ main {
 }
 .para2 {
   border-radius: 5px;
-  height: 40vh;
+  min-height: 40vh;
   padding: 10px;
   margin: auto;
 }
 .imageDescriptions {
   width: 100%;
-  height: 50%;
+  height: 200px;
   margin-bottom: 50px;
   background-image: url("https://img1.nousdeux.fr/var/nousdeux/storage/images/article/des-loisirs-creatifs-pour-tous-les-ages-539/2088-1-fre-FR/Des-loisirs-creatifs-pour-tous-les-ages_width1024.jpg");
   background-size: cover;
@@ -123,6 +154,11 @@ main {
 // Footer
 .page-footer {
   margin-bottom: -25px;
+}
+
+// Entreprise
+.titleSchemaEntr {
+  padding-bottom: 90px;
 }
 
 // Button scroll to top
