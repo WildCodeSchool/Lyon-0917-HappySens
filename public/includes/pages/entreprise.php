@@ -1,5 +1,5 @@
 <!--  Jumbotron  -->
-<?php require 'public/includes/components/jumbotron.php'; ?>
+<?php require 'public/includes/components/jumbotronOthers.php'; ?>
 
 <section class="generalContainer" id="concept">
     <?php require 'public/includes/components/bloc1Concept.php'; ?>

@@ -1,10 +1,3 @@
-<?php
-session_start();
-
-?>
-
-
-
 <form method="post" action="./src/validFormContact.php" class="col s6">
     <div class="row">
         <div class="col s12 ">
@@ -57,7 +50,7 @@ session_start();
         <div class="input-field col s6">
             <i class="material-icons prefix">domain</i>
             <input id="company_name" type="text" class="validate"  name="company_name"
-                   value="<?php echo isset($_SESSION['inputs']['company_name']) ? $_SESSION['inputs']['company_name'] : ""; ?>" required>
+                   value="<?php echo isset($_SESSION['inputs']['company_name']) ? $_SESSION['inputs']['company_name'] : ""; ?>">
             <label for="company_name">Entreprise</label>
         </div>
 
@@ -105,3 +98,4 @@ session_start();
 unset($_SESSION['inputs']);
 unset($_SESSION['success']);
 unset($_SESSION['errors']);
+?>

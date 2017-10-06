@@ -1,5 +1,5 @@
 <!--  Jumbotron  -->
-<?php require 'public/includes/components/jumbotron.php'; ?>
+<?php require 'public/includes/components/jumbotronHome.php'; ?>
 
 <section class="generalContainer" id="cardCategories">
     <?php require 'public/includes/components/cardCategories.php'; ?>
