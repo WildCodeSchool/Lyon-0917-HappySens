@@ -17,8 +17,6 @@
     </section>
 
 </header>
-<main class="col s12">
-
 
 <main class="col s12" id="main">
     <!--  rooting files  -->
