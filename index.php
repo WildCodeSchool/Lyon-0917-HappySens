@@ -1,27 +1,42 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" href="public/css/style.css">
-    <title>HappySens</title>
 
+    <!--  include Head  -->
+    <?php require 'public/includes/structure/head.php'; ?>
 </head>
 <body>
+<header id="header">
+    <?php require 'public/includes/components/navbar.php'; ?>
+    <!--    Modals for connection    -->
+    <section class="log">
+        <?php require 'public/includes/components/modalLog.php'; ?>
+    </section>
 
-<h1>JE SUIS MATERIALIZE</h1>
-    
+</header>
+<main class="col s12">
 
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script type="text/javascript" src="public/script/app.js"></script>
+
+<main class="col s12" id="main">
+    <!--  rooting files  -->
+    <?php require 'src/rooter.php'; ?>
+
+    <!--  include button scroll to top !!! Don't move this link !!! -->
+    <?php require 'public/includes/components/goToTop.php'; ?>
+</main>
+<!--  include footer  -->
+<div class="s12" id="footer">
+    <!--  include icons engagement  -->
+    <?php require 'public/includes/components/iconsEngagement.php'; ?>
+
+    <!--  include footer  -->
+    <?php require 'public/includes/structure/footer.php'; ?>
+</div>
+<!--  includes all required Javascript files -->
+<?php require 'public/includes/structure/script.php'; ?>
+
 </body>
 </html>
