@@ -2,7 +2,7 @@
 <div id="modal1" class="modal">
     <div class="modal-content">
         <h4 class="blue-text text-darken-3">Se connecter à votre compte</h4>
-
+        <a href="#!" class="modal-action modal-close waves-effect waves-green"><i class="material-icons right">close</i></a>
         <form action="" method="post">
             <div class="row">
                 <div class="col s12">
