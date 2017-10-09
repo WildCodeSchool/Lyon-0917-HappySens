@@ -1,0 +1,59 @@
+// Jumbotron
+// Home
+.parallax-container-home {
+  min-height: 95vh;
+  background-image: linear-gradient(rgba(white, 0.1),rgba(white, 0.1)), url("http://dariusforoux.com/wp-content/uploads/2015/12/manontop.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 3em;
+  overflow-y: hidden;
+}
+.headerTitleHome {
+  padding-left: 55px;
+  border-radius: 5px;
+  top: 55vh;
+  transform: translatey(55%);
+  text-shadow: 0 1px 2px grey;
+  h1 {
+    font-family: 'Patrick Hand SC', cursive;
+    font-size: 7em;
+  }
+  h5 {
+    margin-left: 10px;
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+// blocConcept1
+.bloc1 {
+  line-height: 2.8em;
+  text-align: center;
+  h3 {
+    font-family: "Patrick Hand SC", cursive;
+    font-size: 4em;
+    margin-bottom: 50px;
+  }
+}
+.para1 {
+  border-radius: 5px;
+  min-height: 40vh;
+  margin: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3em;
+  padding: 10px 50px;
+}
+.para2 {
+  border-radius: 5px;
+  min-height: 40vh;
+  padding: 10px;
+  margin: auto;
+}
+.imageDescriptions {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 50px;
+  background-image: url("https://img1.nousdeux.fr/var/nousdeux/storage/images/article/des-loisirs-creatifs-pour-tous-les-ages-539/2088-1-fre-FR/Des-loisirs-creatifs-pour-tous-les-ages_width1024.jpg");
+  background-size: cover;
+}
