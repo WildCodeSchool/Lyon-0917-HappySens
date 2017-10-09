@@ -27,7 +27,7 @@ switch ($display) {
         $link = "add_project.php";
         break;
     case 'recapProject':
-        $link = "recap_projet_entreprise.php";
+        $link = "recap_projet.php";
         break;
     case 'profilEmploye':
         $link = "profil_employe.php";
@@ -37,9 +37,6 @@ switch ($display) {
         break;
     case 'profilHappy':
         $link = "profil_happyCoach.php";
-        break;
-    case 'profilPrestataire':
-        $link = "profil_prestataire.php";
         break;
     case 'inscriptions':
         $link = "inscription.php";
