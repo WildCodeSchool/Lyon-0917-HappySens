@@ -1,0 +1,30 @@
+{
+    "name": "project/happy_sens",
+    "description": "This is the first real project",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Banb4n",
+            "email": "alban.such@gmail.com"
+        },
+        {
+            "name": "ManuelBriand",
+            "email": "manuel.briand354@gmail.com"
+        },
+        {
+            "name": "aurelie-feyzin",
+            "email": "gramusset.a@gmail.com"
+        },
+        {
+            "name": "BALLOTI",
+            "email": "rballoti@hotmail.fr"
+        },
+        {
+            "name": "fantasiag",
+            "email": "fantasia.g1994@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.4"
+    }
+}
