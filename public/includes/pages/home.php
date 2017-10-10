@@ -8,6 +8,8 @@
     <?php require 'public/includes/components/bloc1Concept.php'; ?>
 </section>
 <section id="howItWorks">
-    <!--   Emplacement require Fantasia      -->
     <?php  require 'public/includes/components/howItWorks.php'; ?>
+</section>
+<section class="generalContainer" id="exampleProjectHome">
+    <?php  require 'public/includes/components/blocExampleProjectsHome.php'; ?>
 </section>

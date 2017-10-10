@@ -164,4 +164,8 @@ main {
   background-image: url("https://img1.nousdeux.fr/var/nousdeux/storage/images/article/des-loisirs-creatifs-pour-tous-les-ages-539/2088-1-fre-FR/Des-loisirs-creatifs-pour-tous-les-ages_width1024.jpg");
   background-size: cover; }
 
+.vignettesHome {
+  max-height: 150px;
+  max-width: 150px; }
+
 /*# sourceMappingURL=style.css.map */
