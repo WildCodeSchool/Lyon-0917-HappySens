@@ -3,12 +3,12 @@
         <span class="cardTitle pink-text darken-2-text">Voici quelques idées de thémes pour votre Projets :</span>
         <div class="row">
             <!--  This require import the datas array  -->
-            <?php require "src/datasHomeProject.php";?>
+            <?php require "src/data/datasHomeProject.php";?>
 
-            <!--  And now we can display the value  -->
+            <!--  And now we can generate the cards with the values  -->
             <?php foreach ($datasHomeBottom as $datas): ?>
                 <div class="col s12 m6 l4">
-                    <div class="card horizontal <?php echo $datas['color']; ?>">
+                    <div class="card horizontal <?php echo $datas['color']; ?> hoverable">
                         <div class="card-image">
                             <img src="<?php echo $datas['img']; ?>" class="img-responsive vignettesHome">
                         </div>

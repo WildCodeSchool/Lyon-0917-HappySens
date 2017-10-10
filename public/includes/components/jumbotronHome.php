@@ -7,7 +7,7 @@
                     <h5 class="header center white-text">Libérez les passions et donnez du sens au travail</h5>
                 </div>
                 <div id="goDown" class="goDown">
-                    <a class="btn btn-floating btn-large pulse blue darken-2" href="#cardCategories"><i class="material-icons">expand_more</i></a>
+                    <a class="btn btn-floating btn-large pulse pink darken-2" href="#cardCategories"><i class="material-icons">expand_more</i></a>
                 </div>
             </div>
         </div>
