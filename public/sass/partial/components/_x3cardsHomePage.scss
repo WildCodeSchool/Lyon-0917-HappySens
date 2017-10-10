@@ -10,3 +10,16 @@
   font-size: 1.2em;
   font-family: 'Montserrat', sans-serif;
 }
+
+#cardEmploye {
+  background-image: linear-gradient(to top, rgba(249,168,37, 0.9), rgba(249,168,37, 0.6)), url("../images/happisens-happyjob.jpg");
+  background-color: rgb(249, 168, 37);
+}
+#cardEntreprise {
+  background-image: linear-gradient(to top, rgba(2,136,209, 0.9), rgba(2,136,209, 0.6)), url("../images/happysens-love.jpg");
+  background-color: rgb(2,136,209);
+}
+#cardHappy {
+  background-image: linear-gradient(to top, rgba(194,24,91, 0.7), rgba(194,24,91, 0.6)), url("../images/happysens-sport.jpg");
+  background-color: rgb(194,24,91);
+}
