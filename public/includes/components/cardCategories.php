@@ -1,46 +1,25 @@
 <div class="valign-wrapper">
     <div class="row">
+        <!--  This require import the datas array  -->
+        <?php require "src/data/dataCardsCategoriesHome.php";?>
+
+        <!--  And now we can generate the cards with the values  -->
+        <?php foreach($datasCardsCategories as $data): ?>
         <div class="col s12 l4">
-            <div class="card yellow darken-3 center hoverable">
+            <div class="card center hoverable" id="<?php echo $data['id']; ?>">
                 <div class="card-content white-text">
-                    <span class="cardTitle">Employé </span>
+                    <span class="cardTitle"><?php echo $data['target']; ?></span>
                     <ul class="textCard">
-                        <li>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</li>
+                        <li>
+                            <?php echo $data['content']; ?>
+                        </li>
                     </ul>
                 </div>
                 <div class="card-action">
-                    <a href="?page=inscriptions"><span class="waves-effect waves-light btn blue-text text-darken-3 white">Inscription</span></a>
+                    <a href="<?php echo $data['link']; ?>"><span class="waves-effect waves-light btn blue-text text-darken-3 white">Je découvre HAPPY SENS</span></a>
                 </div>
             </div>
         </div>
-        <div class="col s12 l4">
-            <div class="card light-blue darken-2 center hoverable">
-                <div class="card-content white-text">
-                    <span class="cardTitle">Entreprise</span>
-                    <ul class="textCard">
-                        <li>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</li>
-                    </ul>
-                </div>
-                <div class="card-action">
-                    <a href="?page=contact"><span class="waves-effect  waves-light btn blue-text text-darken-3 white">Contact</span></a>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 l4">
-            <div class="card pink darken-2 center hoverable">
-                <div class="card-content white-text center">
-                    <span class="cardTitle">HappyCoach</span>
-                    <ul class="textCard">
-                        <li>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</li>
-                    </ul>
-                </div>
-                <div class="card-action">
-                    <a href="?page=inscriptions"><span class="waves-effect  waves-light btn blue-text text-darken-3 white">Inscription</span></a>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>
