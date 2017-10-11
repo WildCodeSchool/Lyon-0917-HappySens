@@ -5,6 +5,7 @@ if (isset($_GET['page'])) {
 } else {
     $display = "home";
 }
+
 // Check case match with the case in URI
 switch ($display) {
     case 'home':
