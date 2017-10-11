@@ -101,6 +101,21 @@ main {
   font-size: 1.2em;
   font-family: 'Montserrat', sans-serif; }
 
+.PC_bCompany table {
+  width: 80%;
+  margin-left: 2vh; }
+
+.PC_bCompany th {
+  width: 30%;
+  padding-left: 2vh; }
+
+.PC_bCompany td {
+  padding-left: 2vh; }
+
+.PC_bSlogan p {
+  margin: 2vh 0;
+  padding: 2vh 0; }
+
 /*****************    Vues    ****************************/
 .page-footer {
   margin-bottom: -25px; }
@@ -160,4 +175,8 @@ main {
   background-image: url("https://img1.nousdeux.fr/var/nousdeux/storage/images/article/des-loisirs-creatifs-pour-tous-les-ages-539/2088-1-fre-FR/Des-loisirs-creatifs-pour-tous-les-ages_width1024.jpg");
   background-size: cover; }
 
-/*# sourceMappingURL=style.css.map */
+.PC_blockCompany h1, .PC_blockEmployee h1, .PC_blockProject h1, .PC_blockTalents h1 {
+  font-size: 2.5em; }
+
+.PC_blockCompany h2, .PC_blockEmployee h2, .PC_blockProject h2, .PC_blockTalents h2 {
+  font-size: 1.5em; }

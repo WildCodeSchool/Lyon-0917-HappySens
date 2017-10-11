@@ -42,7 +42,7 @@ switch ($display) {
         $link = "inscription.php";
         break;
     default:
-        $link = "contact.php";
+        $link = "home.php";
         break;
 }
 require "public/includes/pages/$link";
