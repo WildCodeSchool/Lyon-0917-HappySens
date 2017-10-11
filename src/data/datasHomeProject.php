@@ -14,7 +14,7 @@ $datasHomeBottom = [
         "link" => "?page=home",
     ],
     2 => [
-        "titre" => "Sport",
+        "titre" => "Beaux Arts",
         "img" => "public/images/happysens-peinture.jpg",
         "color" => "pink darken-2",
         "link" => "?page=home",
