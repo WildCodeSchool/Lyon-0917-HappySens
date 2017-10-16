@@ -1,6 +1,6 @@
 <div class="row">
     <h1> Logo de l'entreprise</h1>
-    <div class="col s12 m6 PC_bCompany">
+    <div class="col s12 m6 PC_bCompany center-align">
 
         <table>
             <tbody>
@@ -30,7 +30,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col s12 m6 PC_bSlogan">
+    <div class="col s12 m6 center-align PC_bSlogan">
         <p class="valign-wrapper">Le bonheur au travail c'est pour nous .......................................</p>
         <p class="valign-wrapper">Les enjeux collectifs de la qualité de Vie au Travail : </p>
         <p class="valign-wrapper ">Les 3 critéres à remplir pour un Happy projet validé : </p>

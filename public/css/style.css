@@ -113,21 +113,6 @@ main {
   background-image: linear-gradient(to top, rgba(194, 24, 91, 0.7), rgba(194, 24, 91, 0.6)), url("../images/happysens-sport.jpg");
   background-color: #c2185b; }
 
-.PC_bCompany table {
-  width: 80%;
-  margin-left: 2vh; }
-
-.PC_bCompany th {
-  width: 30%;
-  padding-left: 2vh; }
-
-.PC_bCompany td {
-  padding-left: 2vh; }
-
-.PC_bSlogan p {
-  margin: 2vh 0;
-  padding: 2vh 0; }
-
 /*****************    Vues    ****************************/
 .parallax-container-home {
   min-height: 95vh;
@@ -187,3 +172,12 @@ main {
 
 .PC_blockCompany h2, .PC_blockEmployee h2, .PC_blockProject h2, .PC_blockTalents h2 {
   font-size: 1.5em; }
+
+.PC_blockCompany {
+  background: linear-gradient(to top, #0288d1, rgba(2, 136, 209, 0.8));
+  color: white; }
+
+.PC_blockEmployee {
+  background-image: linear-gradient(to top, rgba(249, 168, 37, 0.9), rgba(249, 168, 37, 0.6)), url("../images/happysens-salaries.jpg");
+  background-color: #f9a825;
+  color: white; }

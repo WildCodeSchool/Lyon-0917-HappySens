@@ -1,5 +1,6 @@
 <div class="row">
-    <h1> Les Happy Talents </h1>
+
+    <h1 class="center-align"> Les Happy Talents </h1>
 
 
 </div>
