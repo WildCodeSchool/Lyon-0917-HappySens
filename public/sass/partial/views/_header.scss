@@ -3,10 +3,9 @@
 .parallax-container-home {
   min-height: 95vh;
   background-image: linear-gradient(rgba(orange, 0.6),rgba(orange, 0.7)), url("../images/happysens-accueil.jpg");
-  background-size: cover;
+  //background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
   overflow-y: hidden;
 }
 .headerTitleHome {

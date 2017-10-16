@@ -1,12 +1,10 @@
 <!--  Jumbotron  -->
-<?php require 'public/includes/components/jumbotronOthers.php'; ?>Salarié
+<?php require 'public/includes/components/jumbotronOthers.php'; ?>
 
 <section class="generalContainer" id="concept">
-    <?php require 'public/includes/components/bloc1Concept.php'; ?>
+    <?php require 'public/includes/components/explainEmploye.php'; ?>
 </section>
-<div class="divider"></div>
 <section id="howItWorks">
     <!--   Emplacement require Fantasia      -->
     <?php  require 'public/includes/components/employe_exemples.php'; ?>
 </section>
-<div class="divider"></div>

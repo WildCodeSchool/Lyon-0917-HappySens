@@ -13,6 +13,7 @@
                         Vous allez-être redirigé sur la page d'accueil</p>
                     <meta http-equiv="Refresh" content="2; url=./" />
                 </div>
+
             <?php endif; ?>
         </div>
     </div>

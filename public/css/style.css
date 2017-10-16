@@ -16,7 +16,7 @@ main {
 
 .generalContainer {
   min-height: 40vh;
-  padding: 100px 20px; }
+  padding: 80px 20px; }
 
 /***************    Variables   *************************/
 /******************   Mixins   ***********************/
@@ -68,23 +68,41 @@ main {
   flex-wrap: wrap;
   justify-content: space-around; }
 
-.parallax-container-others {
+#contentEntreprise {
   min-height: 40vh;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url("http://dariusforoux.com/wp-content/uploads/2015/12/manontop.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 50% 4em; }
+  background-position: bottom; }
+
+#contentEmploye {
+  min-height: 40vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15)), url("../images/happysens-love.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom; }
+
+#contentHappy {
+  min-height: 40vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/happysens-sport.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom; }
 
 .headerTitleOthers {
   padding-left: 55px;
   border-radius: 5px;
-  top: 30vh;
-  transform: translatey(30%);
-  text-shadow: 0 1px 2px grey; }
+  top: 25vh;
+  transform: translatey(-70%);
+  position: relative;
+  text-shadow: 0 1px 2px black; }
   .headerTitleOthers h1 {
     font-family: 'Patrick Hand SC', cursive;
-    font-size: 5em; }
+    font-size: 4em;
+    letter-spacing: 1px; }
   .headerTitleOthers h5 {
     margin-left: 10px;
     font-size: 1.2em;
@@ -106,21 +124,41 @@ main {
   background-color: #f9a825; }
 
 #cardEntreprise {
-  background-image: linear-gradient(to top, rgba(2, 136, 209, 0.9), rgba(2, 136, 209, 0.6)), url("../images/happysens-love.jpg");
+  background-image: linear-gradient(to top, rgba(2, 136, 209, 0.7), rgba(2, 136, 209, 0.5)), url("../images/happysens-love.jpg");
   background-color: #0288d1; }
 
 #cardHappy {
   background-image: linear-gradient(to top, rgba(194, 24, 91, 0.7), rgba(194, 24, 91, 0.6)), url("../images/happysens-sport.jpg");
   background-color: #c2185b; }
 
+.titleDetailsEntreprise {
+  font-size: 4em;
+  font-family: "Patrick Hand SC", cursive;
+  margin-bottom: 30px; }
+
+.detailsInfosEntreprise {
+  width: 100vw;
+  margin-left: -20px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85)), url("../images/happysens-succes.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 60px 20px; }
+  .detailsInfosEntreprise ul {
+    color: white;
+    padding-left: 5%; }
+    .detailsInfosEntreprise ul li {
+      font-family: 'Montserrat', sans-serif;
+      list-style-type: circle;
+      font-size: 1.5em;
+      margin-bottom: 10px; }
+
 /*****************    Vues    ****************************/
 .parallax-container-home {
   min-height: 95vh;
   background-image: linear-gradient(rgba(255, 165, 0, 0.6), rgba(255, 165, 0, 0.7)), url("../images/happysens-accueil.jpg");
-  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
   overflow-y: hidden; }
 
 .headerTitleHome {
@@ -144,8 +182,62 @@ main {
 .page-footer {
   margin-bottom: -25px; }
 
-.titleSchemaEntr {
-  padding-bottom: 90px; }
+.containerIntroEntreprise {
+  width: 100%;
+  padding: 50px 25px;
+  color: white;
+  background-color: rgba(25, 118, 210, 0.9);
+  border-radius: 5px; }
+
+.introEntreprise {
+  font-size: 3em;
+  text-align: center;
+  letter-spacing: 2px;
+  font-family: "Patrick Hand SC", cursive; }
+
+.afterIntroEntreprise {
+  font-size: 2.5em;
+  text-align: center;
+  letter-spacing: 2px;
+  font-family: "Patrick Hand SC", cursive; }
+
+.blocExplainEntreprise h3 {
+  font-size: 4em;
+  font-family: "Patrick Hand SC", cursive; }
+.blocExplainEntreprise .containExplainEntreprise {
+  padding: 50px 40px 0 40px;
+  text-align: left; }
+  .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
+    font-weight: bold;
+    font-family: "Patrick Hand SC", cursive;
+    font-size: 2.2em; }
+  .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
+    border-radius: 5px;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    padding: 30px 10px;
+    text-align: left; }
+
+.containerTalentsEntreprise {
+  text-align: center;
+  padding-top: 30px; }
+  .containerTalentsEntreprise .containsTalents {
+    padding: 5px 0 20px 0; }
+    .containerTalentsEntreprise .containsTalents p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2em; }
+      .containerTalentsEntreprise .containsTalents p span {
+        font-weight: bold; }
+  .containerTalentsEntreprise .titleTalents {
+    font-size: 3em;
+    font-family: "Patrick Hand SC", cursive;
+    margin-bottom: 30px; }
+
+.titleEndEntreprise {
+  font-size: 3em;
+  font-family: "Patrick Hand SC", cursive;
+  margin-bottom: 30px; }
 
 .bloc1 {
   line-height: 2.8em;
