@@ -2,8 +2,12 @@
     <div class="row">
         <div class="container">
             <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <h5 class="white-text">Retrouvez-nous sur les réseaux sociaux</h5>
+                <ul class="followUs">
+                    <li class="grey-text text-lighten-3"><i class="fa fa-facebook-square fa-2x hoverable"></i></li>
+                    <li class="grey-text text-lighten-3"><i class="fa fa-twitter-square fa-2x hoverable"></i></li>
+                    <li class="grey-text text-lighten-3"><i class="fa fa-linkedin-square fa-2x hoverable"></i></li>
+                </ul>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
@@ -20,7 +24,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container">
-            <a class="grey-text text-lighten-4 left" href="./">©  Copyrights <?php echo date(Y); ?></a>
+            <a class="grey-text text-lighten-4 left" href="./">© Copyrights <span class="amber-text text-darken-2"><b>HappySens</b></span> <?php echo date(Y); ?> - All rights reserved</a>
             <a class="grey-text text-lighten-4 right" href="?page=mention">Mentions Légales</a>
         </div>
     </div>

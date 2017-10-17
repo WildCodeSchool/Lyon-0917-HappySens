@@ -1,4 +1,72 @@
 // Entreprise
-.titleSchemaEntr {
-  padding-bottom: 90px;
+.containerIntroEntreprise {
+  width: 100%;
+  padding: 50px 25px;
+  color: white;
+  background-color: rgba(#1976D2, 0.9);
+  border-radius: 5px;
+}
+
+.introEntreprise {
+  font-size: 3em;
+  text-align: center;
+  letter-spacing: 2px;
+  font-family: "Patrick Hand SC", cursive;
+}
+.afterIntroEntreprise {
+  font-size: 2.5em;
+  text-align: center;
+  letter-spacing: 2px;
+  font-family: "Patrick Hand SC", cursive;
+}
+
+.blocExplainEntreprise {
+  h3 {
+    font-size: 4em;
+    font-family: "Patrick Hand SC", cursive;
+  }
+  .containExplainEntreprise {
+    padding: 50px 40px 0 40px;
+    text-align: left;
+    .titleExplainEntreprise {
+      font-weight: bold;
+      font-family: "Patrick Hand SC", cursive;
+      font-size: 2.2em;
+    }
+    .detailsExplainEntreprise {
+      border-radius: 5px;
+      margin: auto;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3em;
+      padding: 30px 10px;
+      text-align: left;
+    }
+  }
+}
+
+// TalentsEntreprise
+.containerTalentsEntreprise {
+  text-align: center;
+  padding-top: 30px;
+  .containsTalents {
+    padding: 5px 0 20px 0;
+    p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2em;
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+  .titleTalents {
+    font-size: 3em;
+    font-family: "Patrick Hand SC", cursive;
+    margin-bottom: 30px;
+  }
+}
+
+.titleEndEntreprise {
+  font-size: 3em;
+  font-family: "Patrick Hand SC", cursive;
+  margin-bottom: 30px;
 }
