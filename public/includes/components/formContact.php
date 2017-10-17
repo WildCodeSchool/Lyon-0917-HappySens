@@ -56,7 +56,7 @@
 
         <div class="col s12 m6">
         <label for="choose">Objet du message </label>
-        <select class="browser-default" id="choose" name="choose" required>
+        <select id="choose" name="choose" required>
             <option value="" disabled selected>Votre choix</option>
             <option value="1"
                 <?php echo ((($_SESSION['inputs']['choose']) AND ($_SESSION['inputs']['choose']) === '1') ? "selected" : ""); ?>>Option 1</option>

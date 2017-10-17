@@ -1,6 +1,6 @@
 <div class="row">
     <h1 class="center-align"> Les Happy projets </h1>
-    <div class="col s12 m4 PC_bProjectInProgress">
+    <div class="col s12 l6 xl4 PC_bProjectInProgress">
         <h2 class="center-align"> En cours</h2>
         <div class="row">
             <div class="col s12 m6">
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-    <div class="col s12 m4 PC_bProjectStandBy">
+    <div class="col s12 l6 xl4 PC_bProjectStandBy">
         <h2 class="center-align"> En attente</h2>
         <div class="row">
             <div class="col s12 m6">
@@ -79,7 +79,7 @@
         </div>
 
     </div>
-    <div class="col s12 m4 PC_bProjectFinish">
+    <div class="col s12 l6 xl4 PC_bProjectFinish">
         <h2 class="center-align"> En terminé</h2>
         <div class="row">
             <div class="col s12 m6">
