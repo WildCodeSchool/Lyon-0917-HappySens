@@ -1,0 +1,24 @@
+ .PC_blockCompany, .PC_blockEmployee, .PC_blockProject, .PC_blockTalents{
+   h1 {
+     font-size: 2.5em;
+   }
+   h2 {
+     font-size: 1.5em;
+   }
+
+
+ }
+
+  .PC_blockCompany {
+    background: linear-gradient(to top, rgb(2,136,209), rgba(2,136,209, 0.8));
+    color: white;
+
+  }
+
+ .PC_blockEmployee {
+ background-image: linear-gradient(to top, rgba(249,168,37, 0.9), rgba(249,168,37, 0.6)), url("../images/happysens-salaries.jpg");
+ background-color: rgb(249, 168, 37);
+   color: white;
+ }
+
+
