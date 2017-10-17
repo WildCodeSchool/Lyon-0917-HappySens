@@ -3,7 +3,7 @@
 $datasHomeBottom = [
     0 => [
         "titre" => "Détente",
-        "img" => "public/images/happysens-zen.jpg",
+        "img" => "public/images/happysens-zen2.jpg",
         "color" => "pink darken-2",
         "link" => "?page=home",
     ],
@@ -40,6 +40,18 @@ $datasHomeBottom = [
     6 => [
         "titre" => "Musique",
         "img" => "public/images/happysens-musique.jpg",
+        "color" => "pink darken-2",
+        "link" => "?page=home",
+    ],
+    7 => [
+        "titre" => "Haute-montagne",
+        "img" => "public/images/happysens-montagne.jpg",
+        "color" => "pink darken-2",
+        "link" => "?page=home",
+    ],
+    8 => [
+        "titre" => "Cinéma",
+        "img" => "public/images/happysens-cinema.jpg",
         "color" => "pink darken-2",
         "link" => "?page=home",
     ],

@@ -16,7 +16,7 @@ main {
 
 .generalContainer {
   min-height: 40vh;
-  padding: 100px 20px; }
+  padding: 80px 20px; }
 
 /***************    Variables   *************************/
 /******************   Mixins   ***********************/
@@ -167,6 +167,11 @@ main {
   max-height: 150px;
   max-width: 150px; }
 
+.titleProfilEmploye {
+  font-family: "Patrick Hand SC", cursive; }
+
+p, span {
+  font-family: "Montserrat", sans-serif; }
 .PC_blockCompany h1, .PC_blockEmployee h1, .PC_blockProject h1, .PC_blockTalents h1 {
   font-size: 2.5em; }
 
