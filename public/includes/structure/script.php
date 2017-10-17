@@ -5,4 +5,4 @@
 <script type="text/javascript" src="public/script/app.js"></script>
 <script type="text/javascript" src="public/script/scrollTop.js"></script>
 <script type="text/javascript" src="public/script/modal.js"></script>
-
+<script type="text/javascript" src="public/script/datepicker.js"></script>

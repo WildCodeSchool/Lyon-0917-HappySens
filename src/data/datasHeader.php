@@ -14,8 +14,8 @@ $datasHeaderOthers = [
         "id" => "contentEmploye",
     ],
     "happy" => [
-        "title" => "titre happyCoach",
-        "text" => "Bien-être authentique, performance collective et engagement durable",
+        "title" => "Une communauté de spécialistes au service du bonheur en entreprise",
+        "text" => "",
         "color" => "pink-text text-darken-2",
         "id" => "contentHappy",
     ],
