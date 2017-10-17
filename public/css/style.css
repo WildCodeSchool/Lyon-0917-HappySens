@@ -69,7 +69,7 @@ main {
   justify-content: space-around; }
 
 #contentEntreprise {
-  min-height: 40vh;
+  min-height: 45vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -77,7 +77,7 @@ main {
   background-position: bottom; }
 
 #contentEmploye {
-  min-height: 40vh;
+  min-height: 45vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.15)), url("../images/happysens-love.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -85,7 +85,7 @@ main {
   background-position: bottom; }
 
 #contentHappy {
-  min-height: 40vh;
+  min-height: 45vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/happysens-sport.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -139,7 +139,7 @@ main {
 .detailsInfosEntreprise {
   width: 100vw;
   margin-left: -20px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85)), url("../images/happysens-succes.jpg");
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.85)), url("../images/happysens-succes.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -152,6 +152,11 @@ main {
       list-style-type: circle;
       font-size: 1.5em;
       margin-bottom: 10px; }
+
+.cardExempleProjet {
+  padding: 40px 20px; }
+  .cardExempleProjet .cardContent {
+    padding: 50px 20px; }
 
 /*****************    Vues    ****************************/
 .parallax-container-home {
@@ -181,6 +186,39 @@ main {
 
 .page-footer {
   margin-bottom: -25px; }
+
+.containExplainEmploye {
+  padding: 40px 40px 0 40px;
+  text-align: left; }
+  .containExplainEmploye .detailsExplainEmploye {
+    border-radius: 5px;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    padding: 30px 10px;
+    text-align: left; }
+  .containExplainEmploye ul {
+    padding-left: 5%; }
+    .containExplainEmploye ul li {
+      font-family: 'Montserrat', sans-serif;
+      list-style-type: disc;
+      font-size: 1.5em;
+      margin-bottom: 20px; }
+
+.titleExplainEmploye {
+  font-weight: bold;
+  font-family: "Patrick Hand SC", cursive;
+  font-size: 2.2em;
+  margin-bottom: 35px; }
+
+.containerPicsEmploye {
+  padding: 50px 15px 0;
+  margin-top: 50px;
+  text-align: center; }
+  .containerPicsEmploye .typeExplainEmploye {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5em;
+    padding: 20px; }
 
 .containerIntroEntreprise {
   width: 100%;
