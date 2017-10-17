@@ -1,6 +1,6 @@
 <div class="col s12 m6">
     <div class="center">
-        <span class="cardTitle pink-text darken-2-text">Voici quelques idées de thémes pour votre Projets :</span>
+        <span class="cardTitle pink-text darken-2-text">Voici quelques idées de thémes pour vos Projets :</span>
         <div class="row">
             <!--  This require import the datas array  -->
             <?php require "src/data/datasHomeProject.php";?>
