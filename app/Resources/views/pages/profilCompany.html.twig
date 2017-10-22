@@ -1,1 +1,25 @@
+{% extends 'base.html.twig' %}
+
 {% block title %}Entreprise{% endblock %}
+
+
+{% block navbar %}
+    {{ include('partials/components/navbarIn.html.twig') }}
+{% endblock %}
+
+{% block content %}
+    <section class="PC_blockCompany">
+        {{ include('partials/components/PC_blockCompany.html.twig') }}
+    </section>
+       <section class="PC_blockProject">
+        {{ include('partials/components/PC_blockProject.html.twig') }}
+    </section>
+       <section class="PC_blockEmployee">
+        {{ include('partials/components/PC_blockEmployee.html.twig') }}
+    </section>
+       <section class="PC_blockTalents">
+        {{ include('partials/components/PC_blockTalents.html.twig') }}
+    </section>
+
+
+{% endblock %}
