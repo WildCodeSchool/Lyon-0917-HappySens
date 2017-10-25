@@ -1,56 +1,58 @@
 <!-- Modal Structure -->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <div class="row">
-            <div class="col s6"><h4 class="blue-text text-darken-3">Se connecter à votre compte</h4>
-            </div>
-            <div class="col s1 offset-s5"><a href="#!" class="modal-action modal-close waves-effect waves-green"><i class="material-icons right">cancel</i></a>
-            </div>
-        </div>
-        <form action="" method="post">
+<div class="row">
+    <div id="modal1" class="modal col s4 offset-s4">
+        <div class="modal-content">
             <div class="row">
-                <div class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="password" type="password" class="validate">
-                            <label for="password">Mot de passe</label>
-                        </div>
-                    </div>
-                    <p>
-                        <input type="checkbox" id="stayConnect"/>
-                        <label for="stayConnect">Souhaitez vous rester connecté ? </label>
-                    </p>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <a href="#">Vous avez oublié votre mot de passe?</a>
-                        </div>
-                    </div>
+                <div class="col s6"><h5 class="blue-text text-darken-3">Se connecter à votre compte</h5>
                 </div>
-                <div class="col s12">
-                    <div class="row">
-                        <div class="input-field">
-<!--                            <button class="btn waves-effect waves-light amber darken-2" type="submit" name="action">-->
-<!--                                Connexion-->
-<!--                                <i class="material-icons right">send</i>-->
-<!--                            </button>-->
-                            <a href="{{ path('profilEmploye') }}" class="btn waves-effect waves-light amber darken-2">
-                                Connexion
-                                <i class="material-icons right">send</i>
-                            </a>
-                            <a class="waves-effect waves-light btn pink" href="{{ path('inscription') }}">
-                                <i class="material-icons right">person_add</i>
-                                Inscription
-                            </a>
-                        </div>
-                    </div>
+                <div class="col s1 offset-s5"><a href="#!" class="modal-action modal-close waves-effect waves-green"><i class="material-icons right">cancel</i></a>
                 </div>
             </div>
-        </form>
+            <form action="" method="post">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password" type="password" class="validate">
+                                <label for="password">Mot de passe</label>
+                            </div>
+                        </div>
+                        <p class="center">
+                            <input type="checkbox" id="stayConnect"/>
+                            <label for="stayConnect">Souhaitez vous rester connecté ? </label>
+                        </p>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                Vous avez oublié votre <a href="#">mot de passe?</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="input-field">
+    <!--                            <button class="btn waves-effect waves-light amber darken-2" type="submit" name="action">-->
+    <!--                                Connexion-->
+    <!--                                <i class="material-icons right">send</i>-->
+    <!--                            </button>-->
+                                <a href="{{ path('profilEmploye') }}" class="btn waves-effect waves-light amber darken-2">
+                                    Connexion
+                                    <i class="material-icons right">send</i>
+                                </a>
+                                <a class="waves-effect waves-light btn pink" href="{{ path('inscription') }}">
+                                    <i class="material-icons right">person_add</i>
+                                    Inscription
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

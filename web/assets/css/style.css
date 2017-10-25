@@ -8,14 +8,15 @@ body {
   overflow-x: hidden;
   display: flex;
   min-height: 100vh;
-  flex-direction: column; }
+  flex-direction: column;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8); }
 
 main {
   flex: 1 0 auto; }
 
 .generalContainer {
   min-height: 40vh;
-  padding: 80px 20px; }
+  padding: 70px 20px; }
 
 .requireInput {
   color: red;
@@ -36,16 +37,24 @@ main {
 .linkNav {
   font-size: 1.5em;
   font-family: 'Patrick Hand SC', cursive;
-  font-weight: bold; }
+  font-weight: bold;
+  color: white; }
+
+.notifications {
+  min-width: 250px;
+  margin-top: 65px; }
 
 .linkTopColor {
   color: white;
-  font-weight: bold; }
+  font-weight: bold;
+  transition: all 0.5s ease-out; }
   .linkTopColor .linkTopColor:hover {
     color: deepskyblue; }
 
 .linkFixedColor {
-  color: blue;
+  color: dodgerblue;
+  transition: all 0.5s ease-out;
+  font-size: 1.6em;
   font-weight: inherit; }
   .linkFixedColor .linkFixedColor:hover {
     color: deepskyblue; }
@@ -54,12 +63,14 @@ main {
   z-index: 990; }
 
 .navbarTop {
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: none; }
+  background-color: rgba(211, 211, 211, 0.05);
+  box-shadow: none;
+  transition: all 0.5s ease-out; }
 
 .navbarFixed {
   background-color: white;
-  box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.7); }
+  box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.7);
+  transition: all 0.5s ease-out; }
 
 nav {
   background-color: inherit;
@@ -69,6 +80,7 @@ nav {
   padding-left: 25px; }
 
 .modal {
+  overflow: hidden;
   top: 50vh;
   transform: translatey(-50%); }
 
@@ -200,18 +212,19 @@ nav {
 .parallax-container-home {
   min-height: 101vh;
   background-image: linear-gradient(rgba(255, 165, 0, 0.5), rgba(255, 165, 0, 0.4)), url("../images/happysens-accueil.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow-y: hidden;
-  margin-top: -70px; }
+  margin-top: -85px; }
 
 .headerTitleHome {
   margin: auto;
   padding-left: 55px;
   border-radius: 5px;
-  top: 30vh;
+  top: 45vh;
   position: relative;
-  transform: translatey(-30%);
+  transform: translatey(-45%);
   text-shadow: 0 1px 2px black; }
   .headerTitleHome h1 {
     font-family: 'Patrick Hand SC', cursive;
@@ -317,18 +330,27 @@ nav {
   margin-bottom: 30px; }
 
 .bloc1 {
-  line-height: 2.8em;
-  text-align: center; }
+  line-height: 2.3em; }
   .bloc1 h3 {
     font-family: "Patrick Hand SC", cursive;
     font-size: 4em;
-    margin-bottom: 50px; }
+    text-align: center; }
+
+.presentation {
+  padding: 30px 0; }
+
+.headerPresentation {
+  margin-top: 15px;
+  font-size: 1.8em;
+  font-family: "Patrick Hand SC", cursive;
+  background: linear-gradient(75deg, rgba(255, 69, 0, 0.7), rgba(255, 160, 0, 0.7) 98%);
+  color: white; }
 
 .para1 {
   border-radius: 5px;
   margin: auto;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.3em;
+  font-size: 1.1em;
   padding: 30px 10px;
   text-align: justify; }
 
@@ -338,6 +360,9 @@ nav {
 
 .titleProfilEmploye {
   font-family: "Patrick Hand SC", cursive; }
+
+.containerStarTalents {
+  padding-top: 25px; }
 
 p, span {
   font-family: "Montserrat", sans-serif; }

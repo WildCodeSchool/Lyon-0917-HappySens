@@ -1,22 +1,33 @@
 // blocConcept1
 .bloc1 {
-  line-height: 2.8em;
-  text-align: center;
+  line-height: 2.3em;
   h3 {
     font-family: "Patrick Hand SC", cursive;
     font-size: 4em;
-    margin-bottom: 50px;
+    text-align: center;
   }
 }
+
+.presentation {
+  padding: 30px 0;
+}
+
+.headerPresentation {
+  margin-top: 15px;
+  font-size: 1.8em;
+  font-family: "Patrick Hand SC", cursive;
+  background: linear-gradient(75deg, rgba(orangered, 0.7), rgba(#FFA000, 0.7) 98%);
+  color: white;
+}
+
 .para1 {
   border-radius: 5px;
   margin: auto;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.3em;
+  font-size: 1.1em;
   padding: 30px 10px;
   text-align: justify;
 }
-
 
 .vignettesHome {
   max-height: 150px;

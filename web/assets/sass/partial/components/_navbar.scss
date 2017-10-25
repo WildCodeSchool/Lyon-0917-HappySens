@@ -3,16 +3,24 @@
   font-size: 1.5em;
   font-family: 'Patrick Hand SC', cursive;
   font-weight: bold;
+  color: white;
+}
+.notifications {
+  min-width: 250px;
+  margin-top: 65px;
 }
 .linkTopColor {
   color: white;
   font-weight: bold;
+  transition: all 0.5s ease-out;
   .linkTopColor:hover {
     color: deepskyblue;
   }
 }
 .linkFixedColor {
-  color: blue;
+  color: dodgerblue;
+  transition: all 0.5s ease-out;
+  font-size: 1.6em;
   font-weight: inherit;
   .linkFixedColor:hover {
     color: deepskyblue;
@@ -23,12 +31,15 @@
 }
 
 .navbarTop {
-  background-color: rgba(white, 0);
+  background-color: rgba(lightgrey, 0.05);
   box-shadow: none;
+  transition: all 0.5s ease-out;
+
 }
 .navbarFixed {
   background-color: rgba(white, 1);
   box-shadow: 2px 1px 5px rgba(black, 0.7);
+  transition: all 0.5s ease-out;
 }
 
 nav {
