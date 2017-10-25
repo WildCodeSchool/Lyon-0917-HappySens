@@ -2,3 +2,9 @@
 .page-footer {
   margin-bottom: -25px;
 }
+
+ul.followUs {
+  display: flex;
+  //width: 100%;
+  justify-content: space-between;
+}

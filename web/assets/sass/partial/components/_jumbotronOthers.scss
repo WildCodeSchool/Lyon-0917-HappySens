@@ -26,6 +26,15 @@
   background-position: bottom;
   margin-top: -80px;
 }
+#contentCGV {
+  min-height: 50vh;
+  background-image: linear-gradient(rgba(orange, 0.5),rgba(orange, 0.4)), url("../images/happysens-accueil.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  margin-top: -80px;
+}
 .headerTitleOthers {
   padding-left: 55px;
   border-radius: 5px;

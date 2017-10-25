@@ -130,6 +130,15 @@ nav {
   background-position: bottom;
   margin-top: -80px; }
 
+#contentCGV {
+  min-height: 50vh;
+  background-image: linear-gradient(rgba(255, 165, 0, 0.5), rgba(255, 165, 0, 0.4)), url("../images/happysens-accueil.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  margin-top: -80px; }
+
 .headerTitleOthers {
   padding-left: 55px;
   border-radius: 5px;
@@ -226,6 +235,10 @@ nav {
 .page-footer {
   margin-bottom: -25px; }
 
+ul.followUs {
+  display: flex;
+  justify-content: space-between; }
+
 .containExplainEmploye {
   padding: 40px 40px 0 40px;
   text-align: left; }
@@ -281,6 +294,7 @@ nav {
 .blocExplainEntreprise h3 {
   font-size: 4em;
   font-family: "Patrick Hand SC", cursive; }
+
 .blocExplainEntreprise .containExplainEntreprise {
   padding: 50px 40px 0 40px;
   text-align: left; }
@@ -336,10 +350,25 @@ nav {
   max-height: 150px;
   max-width: 150px; }
 
+.cgv {
+  margin-top: 10px; }
+  .cgv h1 {
+    font-size: 2.2em; }
+  .cgv h2 {
+    font-size: 1.8em; }
+  .cgv p {
+    font-size: 1.2em; }
+  .cgv ul {
+    list-style: disc; }
+  .cgv li {
+    font-size: 1.3em;
+    line-height: 1.4em; }
+  .cgv ul.inline li {
+    display: inline;
+    margin: 0.5em; }
+
 .titleProfilEmploye {
   font-family: "Patrick Hand SC", cursive; }
 
 p, span {
   font-family: "Montserrat", sans-serif; }
-
-/*# sourceMappingURL=style.css.map */
