@@ -221,7 +221,7 @@ nav {
 /*****************    Vues    ****************************/
 .parallax-container-home {
   min-height: 101vh;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil.jpg");
+  background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -247,14 +247,15 @@ nav {
 
 .btnHome {
   text-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
-  margin-top: 10px; }
+  margin-top: 10px;
+  font-size: 0.85em; }
 
 .goDown {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
   justify-content: space-around;
-  width: 50vw; }
+  width: 45vw; }
 
 .page-footer {
   margin-bottom: -25px; }
@@ -415,6 +416,11 @@ ul.followUs {
     font-weight: bold; }
   .infosEmploye tr {
     font-weight: lighter; }
+
+.tabs-content.carousel {
+  min-height: 150vh !important;
+  padding: 25px 5px;
+  margin-bottom: 25px; }
 
 p, span {
   font-family: "Montserrat", sans-serif; }

@@ -2,7 +2,7 @@
 // Home
 .parallax-container-home {
   min-height: 101vh;
-  background-image: radial-gradient(rgba(black, 0.4),rgba(black, 0.3)), url("../images/happysens-accueil.jpg");
+  background-image: radial-gradient(rgba(black, 0.15),rgba(black, 0.3)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -31,11 +31,12 @@
 .btnHome {
   text-shadow: 0 0 0 rgba(black, 0.4);
   margin-top: 10px;
+  font-size: 0.85em;
 }
 .goDown {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
   justify-content: space-around;
-  width: 50vw;
+  width: 45vw;
 }
