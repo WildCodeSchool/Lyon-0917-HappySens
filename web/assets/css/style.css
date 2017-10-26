@@ -8,8 +8,7 @@ body {
   overflow-x: hidden;
   display: flex;
   min-height: 100vh;
-  flex-direction: column;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8); }
+  flex-direction: column; }
 
 main {
   flex: 1 0 auto; }
@@ -343,9 +342,10 @@ ul.followUs {
   font-family: "Patrick Hand SC", cursive;
   margin-bottom: 30px; }
 
-.bloc1 {
-  line-height: 2.3em; }
-  .bloc1 h3 {
+.sliderBloc {
+  line-height: 2.3em;
+  padding: 30px 10px; }
+  .sliderBloc h3 {
     font-family: "Patrick Hand SC", cursive;
     font-size: 4em;
     text-align: center; }
@@ -353,20 +353,29 @@ ul.followUs {
 .presentation {
   padding: 30px 0; }
 
-.headerPresentation {
-  margin-top: 15px;
-  font-size: 1.8em;
-  font-family: "Patrick Hand SC", cursive;
-  background: linear-gradient(75deg, rgba(255, 69, 0, 0.7), rgba(255, 160, 0, 0.7) 98%);
-  color: white; }
-
-.para1 {
-  border-radius: 5px;
-  margin: auto;
+.sliderHeader {
+  font-size: 1em;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.1em;
-  padding: 30px 10px;
   text-align: justify; }
+
+.sliderParagraph {
+  font-size: 1.2em;
+  font-family: 'Montserrat', sans-serif;
+  text-align: justify; }
+
+.slider {
+  margin: 35px 0; }
+
+.sliderParagraph {
+  margin-top: 65px; }
+
+.slider .slides {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); }
+
+.slider .indicators .indicator-item.active {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+  border: 3px solid #E0E0E0;
+  background-color: #FFA000; }
 
 .vignettesHome {
   max-height: 150px;
