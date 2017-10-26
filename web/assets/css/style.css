@@ -8,8 +8,7 @@ body {
   overflow-x: hidden;
   display: flex;
   min-height: 100vh;
-  flex-direction: column;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8); }
+  flex-direction: column; }
 
 main {
   flex: 1 0 auto; }
@@ -145,6 +144,15 @@ nav {
 #contentCGV {
   min-height: 50vh;
   background-image: linear-gradient(rgba(255, 165, 0, 0.5), rgba(255, 165, 0, 0.4)), url("../images/happysens-accueil.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  margin-top: -80px; }
+
+#contentContact {
+  min-height: 50vh;
+  background-image: linear-gradient(rgba(255, 165, 0, 0), rgba(255, 165, 0, 0)), url("../images/happysens-time.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
