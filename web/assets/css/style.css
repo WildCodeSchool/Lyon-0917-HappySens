@@ -8,8 +8,7 @@ body {
   overflow-x: hidden;
   display: flex;
   min-height: 100vh;
-  flex-direction: column;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8); }
+  flex-direction: column; }
 
 main {
   flex: 1 0 auto; }
@@ -398,13 +397,7 @@ ul.followUs {
 p, span {
   font-family: "Montserrat", sans-serif; }
 
-.PC_blockCompany h1, .PC_blockEmployee h1, .PC_blockProject h1, .PC_blockTalents h1 {
-  font-size: 2.5em; }
-
-.PC_blockCompany h2, .PC_blockEmployee h2, .PC_blockProject h2, .PC_blockTalents h2 {
-  font-size: 1.5em; }
-
-.PC_blockCompany {
+.PC_blockCompany .card-reveal {
   background: linear-gradient(to top, #0288d1, rgba(2, 136, 209, 0.8));
   color: white; }
 
