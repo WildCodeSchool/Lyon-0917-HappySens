@@ -3,54 +3,106 @@
 {% block title %}Inscriptions{% endblock %}
 
 {% block content %}
+
+    <div id="contentInscription" class="parallax-container-others">
+        <div class="section no-pad-bot">
+            <div class="col s12">
+                <div class="headerTitleOthers left" id="headerTitle">
+                    <h1 class="header left amber-text text-darken-2">Inscription</h1>
+                    <div class="row">
+                        <h5 class="header left white-text">Libérez les passions et donnez du sens au travail</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <form action="" method="post" class="generalContainer">
             <div class="row">
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input id="firstname" name="firstname" type="text" class="validate">
-                        <label for="firstname"><span class="requireInput">* </span>Votre Prénom</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="lastname" name="lastname" type="text" class="validate">
-                        <label for="lastname"><span class="requireInput">* </span>Votre Nom</label>
-                    </div>
+                <div class="col s6">
+                <h5 class="titleInscription pink-text text-darken-2">Prenom :</h5>
                 </div>
-                <div class="row">
-                    <div class="input-field col s6">
+                <div class="col s6">
+                <h5 class="titleInscription pink-text text-darken-2">Nom :</h5>
+                </div>
+
+                <div class="input-field col s6">
+                    <input id="firstname" name="firstname" type="text" class="validate">
+                    <label for="firstname"><span class="requireInput">* </span>Votre Prénom</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="lastname" name="lastname" type="text" class="validate">
+                    <label for="lastname"><span class="requireInput">* </span>Votre Nom</label>
+                </div>
+                <div class="col s12">
+                <h5 class="titleInscription pink-text text-darken-2">Ville :</h5>
+                </div>
+                    <div class="input-field col s12">
                         <input id="city" name="city" type="text" class="validate">
                         <label for="city"><span class="requireInput">* </span>Votre ville</label>
                     </div>
-                    <div class="input-field col s6">
-                        <input id="lastname" name="lastname" type="text" class="validate">
-                        <label for="lastname"><span class="requireInput">* </span>Votre numero de tel</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input id="company" name="company" type="text" class="validate">
-                        <label for="company"><span class="requireInput">* </span>Entreprise</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="jobs" name="jobs" type="text" class="validate">
-                        <label for="jobs"><span class="requireInput">* </span>Votre poste</label>
-                    </div>
-                </div>
-                <div class="row">
 
+
+                <div class="col s6">
+                <h5 class="titleInscription pink-text text-darken-2">Entreprise :</h5>
                 </div>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <input id="email" type="email" class="validate">
-                        <label for="email"><span class="requireInput">* </span>Email</label>
-                    </div>
-                    <div class="input-field col s6">
-                        <input id="password" type="password" class="validate">
-                        <label for="password"><span class="requireInput">* </span>Mot de passe</label>
-                    </div>
+                <div class="col s6">
+                <h5 class="titleInscription pink-text text-darken-2">Poste :</h5>
+                </div>
+                <div class="input-field col s6">
+                    <select class="icons">
+                        <option value="" disabled selected>Sélectionner votre entreprise</option>
+                        <option value="" data-icon="{{ asset('assets/images/happysens-coach.jpeg') }}" class="circle">
+                            Entreprise 1
+                        </option>
+                        <option value="" data-icon="{{ asset('assets/images/happysens-love.jpg') }}" class="circle">
+                            Entreprise 2
+                        </option>
+                        <option value="" data-icon="{{ asset('assets/images/happysens-cuisine.jpg') }}" class="circle">
+                            Entreprise 3
+                        </option>
+                    </select>
+                    <label for="entreprise"><span class="requireInput">* </span>Entreprise</label>
                 </div>
 
-                <div class="row">
+
+                <div class="input-field col s6">
+                    <input id="jobs" name="jobs" type="text" class="validate">
+                    <label for="jobs"><span class="requireInput">* </span>Votre poste</label>
+                </div>
+                <div class="col s6">
+                <h5 class="titleInscription pink-text text-darken-2">Numero  :</h5>
+                </div>
+                <div class="col s6">
+                <h5 class="titleInscription pink-text text-darken-2">Email :</h5>
+                </div>
+                <div class="input-field col s6">
+                    <input id="lastname" name="lastname" type="text" class="validate">
+                    <label for="lastname"><span class="requireInput">* </span>Votre numero de tel</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <input id="email" type="email" class="validate">
+                    <label for="email"><span class="requireInput">* </span>Votre email</label>
+                </div>
+                <div class="col s6">
+                <h5 class="titleInscription pink-text text-darken-2">Mot de passe :</h5>
+                </div>
+                <div class="col s6">
+                <h5 class="titleInscription pink-text text-darken-2">Confirmation :</h5>
+                </div>
+                <div class="input-field col s6">
+                    <input id="password" type="password" class="validate">
+                    <label for="password"><span class="requireInput">* </span>Mot de passe</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="password" type="password" class="validate">
+                    <label for="password"><span class="requireInput">* </span>Confirmation mot de passe</label>
+                </div>
+
+
+                <div class="col s12">
                     <p><span class="requireInput">* </span> Champs requis</p>
                 </div>
 
