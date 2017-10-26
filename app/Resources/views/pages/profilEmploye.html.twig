@@ -18,20 +18,49 @@
                     <img class="activator" src="{{ asset('assets/images/happysens-love.jpg') }}">
                 </div>
                 <div class="card-content">
-                    <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light amber darken-2 right"><i class="material-icons">info_outline</i></a>
                     <span class="card-title activator grey-text text-darken-4">John Doe</span>
-                    <p><a href="#"> [  Logo  ] #Entreprise</a></p>
+                    <p><a href="{{ path('profilCompany') }}"> [  Logo  ] #NomCompany</a></p>
+                    <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light amber darken-2 right"><i class="material-icons">info_outline</i></a>
                 </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">John Doe<i class="material-icons right">close</i></span>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                <div class="card-reveal amber darken-2">
+                    <span class="card-title white-text">John Doe<i class="material-icons right">close</i></span>
+                    <div class="col s6 m6 l4 center-align">
+                        <table class="infosEmploye">
+                            <tbody>
+                                <tr>
+                                    <th>Entreprise :</th>
+                                    <td>HappySens</td>
+                                </tr>
+                                <tr>
+                                    <th>Fonction :</th>
+                                    <td>CEO</td>
+                                </tr>
+                                <tr>
+                                    <th>Age :</th>
+                                    <td>25 ans</td>
+                                </tr>
+                                <tr>
+                                    <th>Lieu de travail :</th>
+                                    <td>69002 Lyon</td>
+                                </tr>
+                                <tr>
+                                    <th>Mail :</th>
+                                    <td>example@example.com</td>
+                                </tr>
+                                <tr>
+                                    <th>Tel :</th>
+                                    <td>06 01 02 03 04 </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col s4">
                 <div class="row">
-                    <div class="card-panel blue darken-2">
+                    <div class="card-panel amber darken-2">
                       <span class="white-text">
                           <b>Au travail je me sens Happy quand ... </b><br/>
                           il y a des frites à la cantine.
@@ -104,7 +133,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h5 class="light-blue-text text-darken-2">Mes projets en cours :</h5>
+                    <h5 class="light-blue-text text-darken-2">Mes projets terminé :</h5>
                 </div>
                 <ul class="collection">
                     <li class="collection-item avatar">
@@ -134,43 +163,6 @@
                     <li class="collection-item avatar">
                         <i class="material-icons circle green">insert_chart</i>
                         <span class="title">Mission humanitaire</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                </ul>
-                <div>
-                    <h5 class="light-blue-text text-darken-2">Mes projets Terminé :</h5>
-                </div>
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                        <img src="{{ asset('assets/images/happysens-accueil.jpg') }}" alt="" class="circle">
-                        <span class="title">Title</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle">folder</i>
-                        <span class="title">Title</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle green">insert_chart</i>
-                        <span class="title">Title</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle red">play_arrow</i>
-                        <span class="title">Title</span>
                         <p>First Line <br>
                             Second Line
                         </p>

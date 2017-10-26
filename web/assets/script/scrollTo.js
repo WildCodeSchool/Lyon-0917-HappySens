@@ -7,4 +7,5 @@ $(document).ready(function() {
         }, speed);
         return false;
     });
+    $('')
 });
