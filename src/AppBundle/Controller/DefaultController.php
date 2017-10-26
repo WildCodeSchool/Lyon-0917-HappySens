@@ -53,6 +53,15 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
+    /**
+     * @Route("cgv", name="cgv")
+     */
+    public function cgvAction(Request $request)
+    {
+        return $this->render('pages/cgv.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
     // Inscription
     /**
      * @Route("inscription", name="inscription")
