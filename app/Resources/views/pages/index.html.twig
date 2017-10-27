@@ -6,12 +6,13 @@
         <div class="section no-pad-bot">
             <div class="col s12">
                 <div class="headerTitleHome center" id="headerTitle">
-                    <h1 class="header center pink-text text-darken-2">Bienvenue sur Happy Sens</h1>
+                    <h1 class="header center amber-text text-darken-2">Bienvenue sur Happy Sens</h1>
                     <div class="row">
                         <h5 class="header center white-text">Libérez les passions et donnez du sens au travail</h5>
                     </div>
                     <div id="goDown" class="goDown">
-                        <a class="btn btn-floating btn-large pulse pink darken-2" href="#cardCategories"><i class="material-icons">expand_more</i></a>
+                        <a href="#cardCategories" class="btnHome waves-effect waves-light btn white pink-text text-darken-2 hoverable"><i class="material-icons left">public</i>Découvrez HappySens</a>
+                        <a onclick="$('#modal1').modal('open');" class="btnHome waves-effect waves-light btn white blue-text text-darken-2 hoverable"><i class="material-icons left">exit_to_app</i>Accédez à votre espace</a>
                     </div>
                 </div>
             </div>
@@ -105,11 +106,11 @@
     </section>
 
     <section class="generalContainer" id="exampleProjectHome">
-        <div class="col s12">
+        <div class="container">
             <div class="center">
                 <span class="cardTitle pink-text darken-2-text">Voici quelques idées de thémes pour vos Projets :</span>
                 <div class="row">
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
                                 <img src="{{ asset('assets/images/happysens-peinture.jpg') }}" class="img-responsive vignettesHome">
@@ -124,14 +125,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
-                                <img src="{{ asset('assets/images/happysens-sport.jpg') }}" class="img-responsive vignettesHome">
+                                <img src="{{ asset('assets/images/happysens-yoga.jpg') }}" class="img-responsive vignettesHome">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-title">
-                                    <p class="header white-text">Sport</p>
+                                    <p class="header white-text">Yoga</p>
                                 </div>
                                 <div class="card-action">
                                     <a href="" class="amber-text">Plus de détails</a>
@@ -139,7 +140,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
                                 <img src="{{ asset('assets/images/happysens-cuisine.jpg') }}" class="img-responsive vignettesHome">
@@ -154,24 +155,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m6 l4">
-                        <div class="card horizontal pink darken-2 hoverable">
-                            <div class="card-image">
-                                <img src="{{ asset('assets/images/happysens-potager.jpg') }}" class="img-responsive vignettesHome">
-                            </div>
-                            <div class="card-stacked">
-                                <div class="card-title">
-                                    <p class="header white-text">Nature</p>
-                                </div>
-                                <div class="card-action">
-                                    <a href="" class="amber-text">Plus de détails</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
                                 <img src="{{ asset('assets/images/happysens-zen2.jpg') }}" class="img-responsive vignettesHome">
@@ -186,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
                                 <img src="{{ asset('assets/images/happysens-humanitaire.jpg') }}" class="img-responsive vignettesHome">
@@ -194,6 +178,21 @@
                             <div class="card-stacked">
                                 <div class="card-title">
                                     <p class="header white-text">Humanitaire</p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="" class="amber-text">Plus de détails</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <div class="card horizontal pink darken-2 hoverable">
+                            <div class="card-image">
+                                <img src="{{ asset('assets/images/happysens-sport.jpg') }}" class="img-responsive vignettesHome">
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-title">
+                                    <p class="header white-text">Sport</p>
                                 </div>
                                 <div class="card-action">
                                     <a href="" class="amber-text">Plus de détails</a>
