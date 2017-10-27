@@ -5,8 +5,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
-  margin-top: -80px;
+  background-position: 0 -200px;
+  margin-top: -90px;
 }
 #contentEmploye {
   min-height: 50vh;
@@ -15,7 +15,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom;
-  margin-top: -80px;
+  margin-top: -90px;
 }
 #contentHappy {
   min-height: 50vh;
@@ -24,11 +24,20 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom;
-  margin-top: -80px;
+  margin-top: -90px;
 }
 #contentCGV {
   min-height: 50vh;
   background-image: linear-gradient(rgba(orange, 0.5),rgba(orange, 0.4)), url("../images/happysens-accueil.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  margin-top: -90px;
+}
+#contentInscription {
+  min-height: 50vh;
+  background-image: linear-gradient(rgba(black, 0.3),rgba(black, 0.2)), url("../images/happysens-love.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -45,7 +54,6 @@
   margin-top: -80px;
 }
 .headerTitleOthers {
-  padding-left: 55px;
   border-radius: 5px;
   top: 30vh;
   transform: translatey(-70%);
@@ -53,12 +61,12 @@
   text-shadow: 0 1px 2px black;
   h1 {
     font-family: 'Patrick Hand SC', cursive;
-    font-size: 4em;
+    font-size: 3.5em;
     letter-spacing: 1px;
   }
   h5 {
     margin-left: 10px;
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-family: 'Montserrat', sans-serif;
   }
 }

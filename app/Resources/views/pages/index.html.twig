@@ -6,12 +6,13 @@
         <div class="section no-pad-bot">
             <div class="col s12">
                 <div class="headerTitleHome center" id="headerTitle">
-                    <h1 class="header center pink-text text-darken-2">Bienvenue sur Happy Sens</h1>
+                    <h1 class="header center amber-text text-darken-2">Bienvenue sur Happy Sens</h1>
                     <div class="row">
                         <h5 class="header center white-text">Libérez les passions et donnez du sens au travail</h5>
                     </div>
                     <div id="goDown" class="goDown">
-                        <a class="btn btn-floating btn-large pulse pink darken-2" href="#cardCategories"><i class="material-icons">expand_more</i></a>
+                        <a href="#cardCategories" class="btnHome waves-effect waves-light btn white pink-text text-darken-2 hoverable"><i class="material-icons left">public</i>Découvrez HappySens</a>
+                        <a onclick="$('#modal1').modal('open');" class="btnHome waves-effect waves-light btn white blue-text text-darken-2 hoverable"><i class="material-icons left">exit_to_app</i>Accédez à votre espace</a>
                     </div>
                 </div>
             </div>
@@ -68,43 +69,36 @@
     <section class="generalContainer" id="concept">
         <div class="row">
             <div class="container">
-                <div class="bloc1">
+                <div class="sliderBloc">
                     <h3 class="center amber-text text-darken-2">Le bonheur au travail pour les salariés, porté par les salariés</h3>
-
-                    <ul class="collapsible popout presentation" data-collapsible="accordion">
-                        <li>
-                            <div class="collapsible-header headerPresentation active"><i class="material-icons">filter_drama</i><b>HAPPY SENS renverse les codes </b></div>
-                            <div class="collapsible-body"><span class="para1"><b>HAPPY SENS renverse les codes</b> et place les collaborateurs au cœur des projets bien-être et bonheur dans l’entreprise. Plutôt que de déployer des solutions « venant d’en haut » qui ne font pas toujours l’unanimité, la plateforme permet à chaque salarié d’être force de proposition et pleinement acteur de leur épanouissement au travail.</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header headerPresentation"><i class="material-icons">place</i><b>Un audit « Passionnément Humain » </b></div>
-                            <div class="collapsible-body"><span class="para1"><b>Un audit « Passionnément Humain » </b>est proposé avant chaque lancement pour avoir une cartographie des talents et passions des collaborateurs ainsi que leur ressenti (anonyme)</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header headerPresentation"><i class="material-icons">whatshot</i><b>Une réunion de lancement</b></div>
-                            <div class="collapsible-body"><span class="para1"><b>Une réunion de lancement</b> pour présentation à l’ensemble des collaborateurs du concept, de la plateforme et un appel aux premiers projets.</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header headerPresentation"><i class="material-icons">whatshot</i><b>Chaque salarié peut revêtir la casquette de Chief Happiness Officer</b></div>
-                            <div class="collapsible-body"><span class="para1"><b>Chaque salarié peut revêtir la casquette de Chief Happiness Officer</b> et fédérer une équipe autour d’un projet qu’il a choisi ou imaginé.  Comédie musicale, Pièce de théâtre, Ascension du Mont-Blanc, Exposition de peintures ou encore Création d’un potager permaculture, … Tous les projets seront soumis au vote et à la validation d’un Happy Comité.</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header headerPresentation"><i class="material-icons">whatshot</i><b>CHO, Supporter, Ambassadeur, libre à chacun de choisir son rôle</b></div>
-                            <div class="collapsible-body"><span class="para1"><b>CHO, Supporter, Ambassadeur, libre à chacun de choisir son rôle</b> et de s’épanouir tout en s’investissant pour le collectif.</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header headerPresentation"><i class="material-icons">whatshot</i><b>Un Happy Coach référent attribué à chaque projet</b></div>
-                            <div class="collapsible-body"><span class="para1"><b>Un Happy Coach référent attribué à chaque projet</b>. La force d’HAPPY SENS c’est aussi la mise en relation entre Porteur de projet « bonheur » et Coach Expert. Un accompagnement sur-mesure déployé tout au long du processus pour permettre le succès du projet, un suivi continu par un Coach RH, Bien-être, expert Agile et autre spécialité spécifique et utile au projet.</span></div>
-                        </li>
-                        <li>
-                            <div class="collapsible-header headerPresentation"><i class="material-icons">whatshot</i><b>Une source riche et authentique de sujets de communication interne et externe à déployer en continu.</b></div>
-                            <div class="collapsible-body"><span class="para1"><b>Une source riche et authentique de sujets de communication interne et externe à déployer en continu.</b> Au volontariat, création et animation d’un comité Ambassadeurs. Rédaction de contenu (animation d’un blog), Reportages internes, Vidéo (Web TV), Réseaux sociaux, …</span></div>
-                        </li>
-                    </ul>
+                    <div class="slider">
+                        <ul class="slides">
+                            <li class="amber darken-2">
+                                <div class="caption left-align sliderParagraph"><span class="sliderHeader"><b>HAPPY SENS renverse les codes</b></span> et place les collaborateurs au cœur des projets bien-être et bonheur dans l’entreprise. Plutôt que de déployer des solutions « venant d’en haut » qui ne font pas toujours l’unanimité, la plateforme permet à chaque salarié d’être force de proposition et pleinement acteur de leur épanouissement au travail.</div>
+                            </li>
+                            <li class="pink darken-2">
+                                <div class="caption right-align sliderParagraph"><span class="sliderHeader"><b>Un audit « Passionnément Humain »</b></span> est proposé avant chaque lancement pour avoir une cartographie des talents et passions des collaborateurs ainsi que leur ressenti (anonyme)</div>
+                            </li>
+                            <li class="blue darken-3">
+                                <div class="caption left-align sliderParagraph"><span class="sliderHeader"><b>Une réunion de lancement</b></span> pour présentation à l’ensemble des collaborateurs du concept, de la plateforme et un appel aux premiers projets.</div>
+                            </li>
+                            <li class="amber darken-2">
+                                <div class="caption right-align sliderParagraph"><span class="sliderHeader"><b>Chaque salarié peut revêtir la casquette de Chief Happiness Officer</b></span> et fédérer une équipe autour d’un projet qu’il a choisi ou imaginé.  Comédie musicale, Pièce de théâtre, Ascension du Mont-Blanc, Exposition de peintures ou encore Création d’un potager permaculture, … Tous les projets seront soumis au vote et à la validation d’un Happy Comité.</div>
+                            </li>
+                            <li class="blue darken-3">
+                                <div class="caption left-align sliderParagraph"><span class="sliderHeader"><b>CHO, Supporter, Ambassadeur, libre à chacun de choisir son rôle</b></span> et de s’épanouir tout en s’investissant pour le collectif.</div>
+                            </li>
+                            <li class="pink darken-2">
+                                <div class="caption right-align sliderParagraph"><span class="sliderHeader"><b>Un Happy Coach référent attribué à chaque projet.</b></span> La force d’HAPPY SENS c’est aussi la mise en relation entre Porteur de projet « bonheur » et Coach Expert. Un accompagnement sur-mesure déployé tout au long du processus pour permettre le succès du projet, un suivi continu par un Coach RH, Bien-être, expert Agile et autre spécialité spécifique et utile au projet.</div>
+                            </li>
+                            <li class="amber darken-2">
+                                <div class="caption left-align sliderParagraph"><span class="sliderHeader"><b>Une source riche et authentique de sujets de communication interne et externe à déployer en continu.</b></span> Au volontariat, création et animation d’un comité Ambassadeurs. Rédaction de contenu (animation d’un blog), Reportages internes, Vidéo (Web TV), Réseaux sociaux, …</div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-
     </section>
 
     <section id="howItWorks">
@@ -112,11 +106,11 @@
     </section>
 
     <section class="generalContainer" id="exampleProjectHome">
-        <div class="col s12">
+        <div class="container">
             <div class="center">
                 <span class="cardTitle pink-text darken-2-text">Voici quelques idées de thémes pour vos Projets :</span>
                 <div class="row">
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
                                 <img src="{{ asset('assets/images/happysens-peinture.jpg') }}" class="img-responsive vignettesHome">
@@ -131,14 +125,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
-                                <img src="{{ asset('assets/images/happysens-sport.jpg') }}" class="img-responsive vignettesHome">
+                                <img src="{{ asset('assets/images/happysens-yoga.jpg') }}" class="img-responsive vignettesHome">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-title">
-                                    <p class="header white-text">Sport</p>
+                                    <p class="header white-text">Yoga</p>
                                 </div>
                                 <div class="card-action">
                                     <a href="" class="amber-text">Plus de détails</a>
@@ -146,7 +140,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
                                 <img src="{{ asset('assets/images/happysens-cuisine.jpg') }}" class="img-responsive vignettesHome">
@@ -161,24 +155,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m6 l4">
-                        <div class="card horizontal pink darken-2 hoverable">
-                            <div class="card-image">
-                                <img src="{{ asset('assets/images/happysens-potager.jpg') }}" class="img-responsive vignettesHome">
-                            </div>
-                            <div class="card-stacked">
-                                <div class="card-title">
-                                    <p class="header white-text">Nature</p>
-                                </div>
-                                <div class="card-action">
-                                    <a href="" class="amber-text">Plus de détails</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
                                 <img src="{{ asset('assets/images/happysens-zen2.jpg') }}" class="img-responsive vignettesHome">
@@ -193,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col s12 m6 l4">
+                    <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
                                 <img src="{{ asset('assets/images/happysens-humanitaire.jpg') }}" class="img-responsive vignettesHome">
@@ -208,9 +185,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col s12 m6">
+                        <div class="card horizontal pink darken-2 hoverable">
+                            <div class="card-image">
+                                <img src="{{ asset('assets/images/happysens-sport.jpg') }}" class="img-responsive vignettesHome">
+                            </div>
+                            <div class="card-stacked">
+                                <div class="card-title">
+                                    <p class="header white-text">Sport</p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="" class="amber-text">Plus de détails</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/script/slide.js') }}"></script>
 {% endblock %}
 

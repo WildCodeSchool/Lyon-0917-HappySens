@@ -5,6 +5,26 @@
   padding-top: 25px;
 }
 
+.card .card-reveal {
+  padding: 25px;
+}
+
+.infosEmploye {
+  padding-top: 20px;
+  td {
+    color: white;
+    font-weight: bold;
+  }
+  tr {
+    font-weight: lighter;
+  }
+}
+.tabs-content.carousel {
+  min-height: 150vh !important;
+  padding: 25px 5px;
+  margin-bottom: 25px;
+}
+
 p, span{
   font-family: "Montserrat", sans-serif;
 }
