@@ -160,7 +160,7 @@ nav {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom;
-  margin-top: -80px; }
+  margin-top: -90px; }
 
 #contentContact {
   min-height: 50vh;
@@ -169,7 +169,7 @@ nav {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom;
-  margin-top: -80px; }
+  margin-top: -90px; }
 
 .headerTitleOthers {
   border-radius: 5px;
@@ -458,7 +458,7 @@ ul.followUs {
 p, span {
   font-family: "Montserrat", sans-serif; }
 
-.PC_blockCompany {
+.PC_blockCompany .card-reveal {
   background: linear-gradient(to top, #0288d1, rgba(2, 136, 209, 0.8));
   color: white; }
 

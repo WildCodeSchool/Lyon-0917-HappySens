@@ -5,7 +5,7 @@ $(document).ready(function(){
     });
     // Next slide
     $('#next').slider('next');
-// Previous slide
+    // Previous slide
     $('#prev').slider('prev');
 
     $()
