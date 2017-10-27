@@ -153,6 +153,15 @@ nav {
   background-position: bottom;
   margin-top: -90px; }
 
+#contentInscription {
+  min-height: 50vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("../images/happysens-love.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  margin-top: -80px; }
+
 .headerTitleOthers {
   border-radius: 5px;
   top: 30vh;
@@ -409,6 +418,11 @@ ul.followUs {
   .cgv ul.inline li {
     display: inline;
     margin: 0.5em; }
+
+.titleInscription {
+  font-weight: bold;
+  font-family: "Montserrat", cursive;
+  font-size: 1.5em; }
 
 .titleProfilEmploye {
   font-family: "Patrick Hand SC", cursive; }

@@ -35,6 +35,15 @@
   background-position: bottom;
   margin-top: -90px;
 }
+#contentInscription {
+  min-height: 50vh;
+  background-image: linear-gradient(rgba(black, 0.3),rgba(black, 0.2)), url("../images/happysens-love.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  margin-top: -80px;
+}
 .headerTitleOthers {
   border-radius: 5px;
   top: 30vh;
