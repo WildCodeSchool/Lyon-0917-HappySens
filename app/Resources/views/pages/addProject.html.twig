@@ -13,21 +13,22 @@
                     <h2>Proposez votre happy projet</h2>
                     <div class="input-field col s3">
                         <input id="project_name" type="text" class="validate">
-                        <label for="project_name">Nom de votre projet</label>
+                        <label for="project_name"><span class="requireInput">* </span>Nom de votre projet</label>
                     </div>
                     <div class="input-field col s3">
                         <input id="project_location" type="text" class="validate">
-                        <label for="project_location">Lieu de votre projet</label>
+                        <label for="project_location"><span class="requireInput">* </span>Lieu de votre projet</label>
                     </div>
                     <div class="input-field col s3">
                         <input id="start_date" type="text" class="datepicker">
-                        <label for="start_date">Date de démarrage</label>
+                        <label for="start_date"><span class="requireInput">* </span>Date de démarrage</label>
                     </div>
                     <div class="input-field col s3">
                         <input id="end_date" type="text" class="datepicker">
-                        <label for="end_date">Date de fin</label>
+                        <label for="end_date"><span class="requireInput">* </span>Date de fin</label>
                     </div>
                     <div class="input-field col s6">
+                        <span class="requireInput">* </span>
                         <label for="theme"></label>
                         <select class="icons" id="theme" name="theme" multiple>
                             <option value="" disabled selected>Thématique</option>
@@ -82,6 +83,7 @@
                         </select>
                     </div>
                     <div class="input-field col s6">
+                        <span class="requireInput">* </span>
                         <label for="language"></label>
                         <select id="language" name="language" multiple>
                             <option value="" disabled selected>Langues parlées (1 obligatoire, 4 optionnelles)</option>
@@ -101,15 +103,15 @@
                     </div>
                     <div class="input-field col s12">
                         <textarea id="textarea1" class="materialize-textarea"></textarea>
-                        <label for="textarea1">Ecrire votre présentation du projet</label>
+                        <label for="textarea1"><span class="requireInput">* </span>Ecrire votre présentation du projet</label>
                     </div>
                     <div class="input-field col s6">
                         <textarea id="textarea1" class="materialize-textarea"></textarea>
-                        <label for="textarea1">3 avantages pour votre employeur</label>
+                        <label for="textarea1"><span class="requireInput">* </span>3 avantages pour votre employeur</label>
                     </div>
                     <div class="input-field col s6">
                         <textarea id="textarea1" class="materialize-textarea"></textarea>
-                        <label for="textarea1">3 avantages pour le groupe de votre projet</label>
+                        <label for="textarea1"><span class="requireInput">* </span>3 avantages pour le groupe de votre projet</label>
                     </div>
                     <div class="file-field input-field col s6">
                         <div class="btn">Image
@@ -124,8 +126,8 @@
                 </div>
                 <div class="col s6">
                     <div class="center">
-                        <a class="waves-effect waves-light btn">Retour</a>
-                        <a class="waves-effect waves-light btn">Envoyer</a>
+                        <a href="{{ path('profilEmploye') }}" class="waves-effect waves-light btn">Retour</a>
+                        <button type="submit" class="waves-effect waves-light btn">Envoyer</button>
                     </div>
                 </div>
             </form>

@@ -40,7 +40,14 @@ main {
   color: white; }
 
 .enterIn {
-  background-color: rgba(0, 0, 0, 0.1); }
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid #FFA000;
+  color: #FFA000;
+  font-weight: bold; }
+  .enterIn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid #C2185B;
+    color: #C2185B; }
 
 .notifications {
   min-width: 250px;

@@ -1,8 +1,8 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper white">
-            <a href="#" class="brand-logo center"><span class="pink-text text-darken-2">Happy Sens</span></a>
-            <ul class="right hide-on-med-and-down">
+            <a href="{{ path('homepage') }}" class="brand-logo center"><span class="pink-text text-darken-2">Happy Sens</span></a>
+            <ul class="right">
                 <li><a href="{{ path('addProject') }}"><span class="blue-text text-darken-3 linkNav"><i class="material-icons light-blue-text text-darken-2">add</i></span></a></li>
                 <li><a href=""><span class="blue-text text-darken-3 linkNav"></span></a></li>
                 <li>
@@ -11,10 +11,10 @@
                         <span class="new badge red"></span>
                     </a>
                     <ul id="dropdownNotif" class="dropdown-content notifications">
-                        <li class=""><a class="grey-text text-darken-3" href="#!">Bienvenue sur happySens</a></li>
-                        <li><a class="grey-text text-darken-3" href="#!">Déposer votre premier projet</a></li>
+                        <li class=""><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
+                        <li><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
                         <li class="divider"></li>
-                        <li><a class="blue-text text-darken-2" href="{{ path('listingNotifications') }}">Voir toutes les notifications</a></li>
+                        <li><a class="blue-text text-darken-2" href="{{ path('listingNotifications') }}">Voir toutes vos notifications</a></li>
                     </ul>
                 </li>
                 <li><a href="../../../"><span class="blue-text text-darken-3 linkNav"><i class="material-icons light-blue-text text-darken-2">home</i></span></a></li>
@@ -23,29 +23,33 @@
                 <li>
                     <div class="user-view">
                         <div class="background">
-                            <img src="{{ asset('assets/images/happysens-love.jpg') }}">
+                            <img src="{{ asset('assets/images/happysens-time.jpg') }}">
                         </div>
-                        <a href="#!user"><img class="circle" src="https://www.publicationsports.com/vProd/asset/image/component/ps/ps_single_login/user_logo.png"></a>
-                        <div class="amber">
-                            <a href="#!name"><span class="black-text name">John Doe</span></a>
-                            <a href="#!email"><span class="black-text email">jdandturk@gmail.com</span></a>
-                            <a href="#!company"><span class="black-text company">#Entreprise</span></a>
+                        <a href="{{ path('profilEmploye') }}"><img class="circle" src="https://www.publicationsports.com/vProd/asset/image/component/ps/ps_single_login/user_logo.png"></a>
+                        <div>
+                            <span class="white-text name">John Doe</span>
+                            <span class="white-text email">jdandturk@gmail.com</span>
                         </div>
                     </div>
                 </li>
-                <li><a class="subheader blue-text text-darken-2">Informations perso</a></li>
-                <li><a class="waves-effect" href="#!">25 ans</a></li>
-                <li><a class="waves-effect">Lyon</a></li>
-                <li><a class="waves-effect">john.doe@gmail.com</a></li>
-                <li><a class="waves-effect">06 57 89 56 25</a></li>
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">tab</i>Tous les projets :</a></li>
+                <li><a class="waves-effect" href="#!"><i class="material-icons">create_new_folder</i>Nouveau projet</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder_shared</i>Vos projets en cours</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder_special</i>Les projets suivis</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder</i>Vos projets terminé</a></li>
                 <li><div class="divider"></div></li>
-                <li><a class="subheader blue-text text-darken-2">Fonction</a></li>
-                <li><a class="waves-effect" href="#!">HappyOfficer</a></li>
+
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">assignment</i>Fonction :</a></li>
+                <li><a class="waves-effect" href="#!"><i class="material-icons">assignment_ind</i>@role.user</a></li>
                 <li><div class="divider"></div></li>
-                <li><a class="subheader blue-text text-darken-2">Follow me</a></li>
-                <li><a class="waves-effect">Facebook</a></li>
-                <li><a class="waves-effect">LinkedIn</a></li>
-                <li><a class="waves-effect">Twitter</a></li>
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">store</i>Entreprise :</a></li>
+                <li><a class="waves-effect" href="{{ path('company') }}"><i class="material-icons">domain</i>@name.entreprise</a></li>
+                <li><div class="divider"></div></li>
+
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">link</i>Liens pratiques :</a></li>
+                <li><a href="" class="waves-effect"><i class="material-icons">message</i>Blog</a></li>
+                <li><a class="waves-effect"><i class="material-icons">create</i>Modifier votre profil</a></li>
+                <li><a href="{{ path('homepage') }}" class="waves-effect"><i class="material-icons">home</i>Acceuil</a></li>
             </ul>
             <a href="#" data-activates="slide-out" class="button"><i class="medium material-icons light-blue-text text-darken-2">account_circle</i></a>
         </div>
