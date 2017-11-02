@@ -449,16 +449,19 @@ ul.followUs {
 .containerStarTalents {
   padding-top: 25px; }
 
+.card .card-content {
+  padding-top: 40px; }
+
 .card .card-reveal {
   padding: 25px; }
 
 .infosEmploye {
   padding-top: 20px; }
+  .infosEmploye th {
+    color: grey; }
   .infosEmploye td {
-    color: white;
+    color: black;
     font-weight: bold; }
-  .infosEmploye tr {
-    font-weight: lighter; }
 
 .tabs-content.carousel {
   min-height: 150vh !important;
@@ -467,6 +470,42 @@ ul.followUs {
 
 p, span {
   font-family: "Montserrat", sans-serif; }
+
+.card-profile-image {
+  position: absolute;
+  margin-top: -75px;
+  margin-left: 25px;
+  z-index: 2;
+  cursor: pointer;
+  width: 150px;
+  height: 150px; }
+
+.mini-company {
+  position: absolute;
+  margin-top: -230px;
+  margin-left: 25px;
+  z-index: 2;
+  cursor: pointer;
+  text-align: left; }
+  .mini-company .chip {
+    font-size: 1em;
+    color: #0288D1; }
+
+.chipStatus {
+  position: absolute;
+  margin-top: -220px;
+  z-index: 2;
+  margin-left: 20px; }
+
+.chip.validate {
+  background-color: rgba(34, 139, 34, 0.8);
+  color: white; }
+.chip.inProgress {
+  background-color: rgba(255, 165, 0, 0.8);
+  color: white; }
+.chip.end {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white; }
 
 .PC_blockCompany .card-reveal {
   background: linear-gradient(to top, #0288d1, rgba(2, 136, 209, 0.8));

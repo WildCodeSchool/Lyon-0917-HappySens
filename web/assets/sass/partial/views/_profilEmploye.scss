@@ -5,19 +5,24 @@
   padding-top: 25px;
 }
 
+.card .card-content {
+  padding-top: 40px;
+}
+
 .card .card-reveal {
   padding: 25px;
 }
 
 .infosEmploye {
   padding-top: 20px;
+  th {
+    color: grey;
+  }
   td {
-    color: white;
+    color: black;
     font-weight: bold;
   }
-  tr {
-    font-weight: lighter;
-  }
+
 }
 .tabs-content.carousel {
   min-height: 150vh !important;
@@ -27,4 +32,47 @@
 
 p, span{
   font-family: "Montserrat", sans-serif;
+}
+
+.card-profile-image {
+  position: absolute;
+  margin-top: -75px;
+  margin-left: 25px;
+  z-index: 2;
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+}
+.mini-company {
+  position: absolute;
+  margin-top: -230px;
+  margin-left: 25px;
+  z-index: 2;
+  cursor: pointer;
+  text-align: left;
+  .chip {
+    font-size: 1em;
+    color: $blueColor;
+  }
+}
+
+.chipStatus {
+  position: absolute;
+  margin-top: -220px;
+  z-index: 2;
+  margin-left: 20px;
+}
+.chip {
+  &.validate {
+    background-color: rgba(forestgreen, 0.8);
+    color: white;
+  }
+  &.inProgress {
+    background-color: rgba(orange, 0.8);
+    color: white;
+  }
+  &.end {
+    background-color: rgba(red, 0.8);
+    color: white;
+  }
 }
