@@ -1,0 +1,20 @@
+.chipStatus {
+  position: absolute;
+  margin-top: -220px;
+  z-index: 2;
+  margin-left: 20px;
+}
+.chip {
+  &.validate {
+    background-color: rgba(forestgreen, 0.8);
+    color: white;
+  }
+  &.inProgress {
+    background-color: rgba(orange, 0.8);
+    color: white;
+  }
+  &.end {
+    background-color: rgba(red, 0.8);
+    color: white;
+  }
+}

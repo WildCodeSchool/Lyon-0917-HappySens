@@ -25,7 +25,6 @@
 
 }
 .tabs-content.carousel {
-  min-height: 150vh !important;
   padding: 25px 5px;
   margin-bottom: 25px;
 }
@@ -56,23 +55,19 @@ p, span{
   }
 }
 
-.chipStatus {
-  position: absolute;
-  margin-top: -220px;
-  z-index: 2;
-  margin-left: 20px;
+.detailsProject {
+  font-size: 0.7em;
+  font-weight: lighter;
 }
-.chip {
-  &.validate {
-    background-color: rgba(forestgreen, 0.8);
-    color: white;
+.revealProject {
+  .row {
+    padding: 20px 5px;
   }
-  &.inProgress {
-    background-color: rgba(orange, 0.8);
-    color: white;
+  p {
+    padding: 0 10px;
   }
-  &.end {
-    background-color: rgba(red, 0.8);
-    color: white;
+  .footerReveal {
+    padding: 15px 5px;
+    margin-top: 10px;
   }
 }

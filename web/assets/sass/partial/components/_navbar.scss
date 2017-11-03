@@ -6,14 +6,11 @@
   color: white;
 }
 .enterIn {
-  background-color: rgba(white, 0.15);
-  border: 1px solid $amberColor;
-  color: $amberColor;
-  font-weight: bold;
+  background-color: $blueColor;
   &:hover {
-    background-color: rgba(black, 0.1);
-    border: 1px solid $pinkColor;
+    background-color: rgba($blueColor, 0.85);
     color: $pinkColor;
+    border-color: $pinkColor;
   }
 }
 .notifications {

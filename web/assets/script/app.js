@@ -5,7 +5,7 @@ $(document).ready(function() {
     $('ul.tabs').tabs({
         swipeable: true
     });
-    $('.tabs-content').css("min-height", "50vh");
+    $('.tabs-content').css("min-height", "1050px");
     $('.datepicker').pickadate({
         today: 'Today',
         clear: 'Clear',

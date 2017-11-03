@@ -40,14 +40,11 @@ main {
   color: white; }
 
 .enterIn {
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid #FFA000;
-  color: #FFA000;
-  font-weight: bold; }
+  background-color: #0288D1; }
   .enterIn:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    border: 1px solid #C2185B;
-    color: #C2185B; }
+    background-color: rgba(2, 136, 209, 0.85);
+    color: #C2185B;
+    border-color: #C2185B; }
 
 .notifications {
   min-width: 250px;
@@ -153,7 +150,7 @@ nav {
 
 #contentCGV {
   min-height: 50vh;
-  background-image: linear-gradient(rgba(255, 165, 0, 0.5), rgba(255, 165, 0, 0.4)), url("../images/happysens-accueil.jpg");
+  background-image: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -183,7 +180,7 @@ nav {
   top: 30vh;
   transform: translatey(-70%);
   position: relative;
-  text-shadow: 0 1px 2px black; }
+  text-shadow: 0 0 1px black; }
   .headerTitleOthers h1 {
     font-family: 'Patrick Hand SC', cursive;
     font-size: 3.5em;
@@ -245,6 +242,22 @@ nav {
   padding: 40px 20px; }
   .cardExempleProjet .cardContent {
     padding: 50px 20px; }
+
+.chipStatus {
+  position: absolute;
+  margin-top: -220px;
+  z-index: 2;
+  margin-left: 20px; }
+
+.chip.validate {
+  background-color: rgba(34, 139, 34, 0.8);
+  color: white; }
+.chip.inProgress {
+  background-color: rgba(255, 165, 0, 0.8);
+  color: white; }
+.chip.end {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white; }
 
 /*****************    Vues    ****************************/
 .parallax-container-home {
@@ -464,7 +477,6 @@ ul.followUs {
     font-weight: bold; }
 
 .tabs-content.carousel {
-  min-height: 150vh !important;
   padding: 25px 5px;
   margin-bottom: 25px; }
 
@@ -491,21 +503,17 @@ p, span {
     font-size: 1em;
     color: #0288D1; }
 
-.chipStatus {
-  position: absolute;
-  margin-top: -220px;
-  z-index: 2;
-  margin-left: 20px; }
+.detailsProject {
+  font-size: 0.7em;
+  font-weight: lighter; }
 
-.chip.validate {
-  background-color: rgba(34, 139, 34, 0.8);
-  color: white; }
-.chip.inProgress {
-  background-color: rgba(255, 165, 0, 0.8);
-  color: white; }
-.chip.end {
-  background-color: rgba(255, 0, 0, 0.8);
-  color: white; }
+.revealProject .row {
+  padding: 20px 5px; }
+.revealProject p {
+  padding: 0 10px; }
+.revealProject .footerReveal {
+  padding: 15px 5px;
+  margin-top: 10px; }
 
 .PC_blockCompany .card-reveal {
   background: linear-gradient(to top, #0288d1, rgba(2, 136, 209, 0.8));

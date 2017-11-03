@@ -28,7 +28,7 @@
 }
 #contentCGV {
   min-height: 50vh;
-  background-image: linear-gradient(rgba(orange, 0.5),rgba(orange, 0.4)), url("../images/happysens-accueil.jpg");
+  background-image: radial-gradient(rgba(black, 0.5),rgba(black, 0.4)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -58,7 +58,7 @@
   top: 30vh;
   transform: translatey(-70%);
   position: relative;
-  text-shadow: 0 1px 2px black;
+  text-shadow: 0 0 1px black;
   h1 {
     font-family: 'Patrick Hand SC', cursive;
     font-size: 3.5em;
