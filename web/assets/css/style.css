@@ -34,10 +34,20 @@ main {
   font-size: 1.1em; }
 
 .linkNav {
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-family: 'Patrick Hand SC', cursive;
   font-weight: bold;
   color: white; }
+
+.enterIn {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid #FFA000;
+  color: #FFA000;
+  font-weight: bold; }
+  .enterIn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid #C2185B;
+    color: #C2185B; }
 
 .notifications {
   min-width: 250px;
@@ -46,14 +56,14 @@ main {
 .linkTopColor {
   color: white;
   font-weight: bold;
-  transition: all 0.5s ease-out; }
+  transition: all 0.3s ease; }
   .linkTopColor .linkTopColor:hover {
     color: deepskyblue; }
 
 .linkFixedColor {
   color: dodgerblue;
-  transition: all 0.5s ease-out;
-  font-size: 1.6em;
+  transition: all 0.3s ease;
+  font-size: 1.3em;
   font-weight: inherit; }
   .linkFixedColor .linkFixedColor:hover {
     color: deepskyblue; }
@@ -62,14 +72,14 @@ main {
   z-index: 990; }
 
 .navbarTop {
-  background-color: rgba(211, 211, 211, 0.05);
+  background-color: transparent;
   box-shadow: none;
-  transition: all 0.5s ease-out; }
+  transition: all 0.3s ease; }
 
 .navbarFixed {
   background-color: white;
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.7);
-  transition: all 0.5s ease-out; }
+  transition: all 0.2s ease; }
 
 nav {
   background-color: inherit;
@@ -79,9 +89,9 @@ nav {
   padding-left: 25px; }
 
 .modal {
-  overflow: hidden;
   top: 50vh;
-  transform: translatey(-50%); }
+  transform: translatey(-50%);
+  min-height: 50vh; }
 
 .scrollToTop {
   height: 50px;
@@ -120,8 +130,8 @@ nav {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
-  margin-top: -80px; }
+  background-position: 0 -200px;
+  margin-top: -90px; }
 
 #contentEmploye {
   min-height: 50vh;
@@ -130,7 +140,7 @@ nav {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom;
-  margin-top: -80px; }
+  margin-top: -90px; }
 
 #contentHappy {
   min-height: 50vh;
@@ -139,7 +149,7 @@ nav {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom;
-  margin-top: -80px; }
+  margin-top: -90px; }
 
 #contentCGV {
   min-height: 50vh;
@@ -148,7 +158,16 @@ nav {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom;
-  margin-top: -80px; }
+  margin-top: -90px; }
+
+#contentInscription {
+  min-height: 50vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("../images/happysens-love.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  margin-top: -90px; }
 
 #contentContact {
   min-height: 50vh;
@@ -157,10 +176,9 @@ nav {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom;
-  margin-top: -80px; }
+  margin-top: -90px; }
 
 .headerTitleOthers {
-  padding-left: 55px;
   border-radius: 5px;
   top: 30vh;
   transform: translatey(-70%);
@@ -168,12 +186,15 @@ nav {
   text-shadow: 0 1px 2px black; }
   .headerTitleOthers h1 {
     font-family: 'Patrick Hand SC', cursive;
-    font-size: 4em;
+    font-size: 3.5em;
     letter-spacing: 1px; }
   .headerTitleOthers h5 {
     margin-left: 10px;
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-family: 'Montserrat', sans-serif; }
+
+.test {
+  height: 30px; }
 
 .card {
   margin-top: 2rem; }
@@ -206,7 +227,7 @@ nav {
 .detailsInfosEntreprise {
   width: 100vw;
   margin-left: -20px;
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.85)), url("../images/happysens-succes.jpg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/happysens-succes.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -228,30 +249,41 @@ nav {
 /*****************    Vues    ****************************/
 .parallax-container-home {
   min-height: 101vh;
-  background-image: linear-gradient(rgba(255, 165, 0, 0.5), rgba(255, 165, 0, 0.4)), url("../images/happysens-accueil.jpg");
+  background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow-y: hidden;
-  margin-top: -85px; }
+  margin-top: -90px; }
 
 .headerTitleHome {
   margin: auto;
-  padding-left: 55px;
   border-radius: 5px;
-  top: 45vh;
+  top: 40vh;
   position: relative;
-  transform: translatey(-45%);
+  transform: translatey(-40%);
   text-shadow: 0 1px 2px black; }
   .headerTitleHome h1 {
     font-family: 'Patrick Hand SC', cursive;
-    font-size: 8em; }
+    font-size: 5.5em; }
   .headerTitleHome h5 {
-    margin-left: 10px;
-    font-size: 2.5em;
-    margin-top: 55px;
-    margin-bottom: 55px;
+    margin-left: 20px;
+    font-size: 1.6em;
+    margin-top: 35px;
+    margin-bottom: 35px;
     font-family: 'Montserrat', sans-serif; }
+
+.btnHome {
+  text-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
+  margin-top: 10px;
+  font-size: 0.85em; }
+
+.goDown {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: space-around;
+  width: 45vw; }
 
 .page-footer {
   margin-bottom: -25px; }
@@ -315,7 +347,6 @@ ul.followUs {
 .blocExplainEntreprise h3 {
   font-size: 4em;
   font-family: "Patrick Hand SC", cursive; }
-
 .blocExplainEntreprise .containExplainEntreprise {
   padding: 50px 40px 0 40px;
   text-align: left; }
@@ -351,9 +382,10 @@ ul.followUs {
   font-family: "Patrick Hand SC", cursive;
   margin-bottom: 30px; }
 
-.bloc1 {
-  line-height: 2.3em; }
-  .bloc1 h3 {
+.sliderBloc {
+  line-height: 2.3em;
+  padding: 30px 10px; }
+  .sliderBloc h3 {
     font-family: "Patrick Hand SC", cursive;
     font-size: 4em;
     text-align: center; }
@@ -361,20 +393,29 @@ ul.followUs {
 .presentation {
   padding: 30px 0; }
 
-.headerPresentation {
-  margin-top: 15px;
-  font-size: 1.8em;
-  font-family: "Patrick Hand SC", cursive;
-  background: linear-gradient(75deg, rgba(255, 69, 0, 0.7), rgba(255, 160, 0, 0.7) 98%);
-  color: white; }
-
-.para1 {
-  border-radius: 5px;
-  margin: auto;
+.sliderHeader {
+  font-size: 1em;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.1em;
-  padding: 30px 10px;
   text-align: justify; }
+
+.sliderParagraph {
+  font-size: 1.2em;
+  font-family: 'Montserrat', sans-serif;
+  text-align: justify; }
+
+.slider {
+  margin: 35px 0; }
+
+.sliderParagraph {
+  margin-top: 65px; }
+
+.slider .slides {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.7); }
+
+.slider .indicators .indicator-item.active {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+  border: 3px solid #E0E0E0;
+  background-color: #FFA000; }
 
 .vignettesHome {
   max-height: 150px;
@@ -397,22 +438,37 @@ ul.followUs {
     display: inline;
     margin: 0.5em; }
 
+.titleInscription {
+  font-weight: bold;
+  font-family: "Montserrat", cursive;
+  font-size: 1.5em; }
+
 .titleProfilEmploye {
   font-family: "Patrick Hand SC", cursive; }
 
 .containerStarTalents {
   padding-top: 25px; }
 
+.card .card-reveal {
+  padding: 25px; }
+
+.infosEmploye {
+  padding-top: 20px; }
+  .infosEmploye td {
+    color: white;
+    font-weight: bold; }
+  .infosEmploye tr {
+    font-weight: lighter; }
+
+.tabs-content.carousel {
+  min-height: 150vh !important;
+  padding: 25px 5px;
+  margin-bottom: 25px; }
+
 p, span {
   font-family: "Montserrat", sans-serif; }
 
-.PC_blockCompany h1, .PC_blockEmployee h1, .PC_blockProject h1, .PC_blockTalents h1 {
-  font-size: 2.5em; }
-
-.PC_blockCompany h2, .PC_blockEmployee h2, .PC_blockProject h2, .PC_blockTalents h2 {
-  font-size: 1.5em; }
-
-.PC_blockCompany {
+.PC_blockCompany .card-reveal {
   background: linear-gradient(to top, #0288d1, rgba(2, 136, 209, 0.8));
   color: white; }
 
@@ -420,3 +476,5 @@ p, span {
   background-image: linear-gradient(to top, rgba(249, 168, 37, 0.9), rgba(249, 168, 37, 0.6)), url("../images/happysens-salaries.jpg");
   background-color: #f9a825;
   color: white; }
+
+/*# sourceMappingURL=style.css.map */

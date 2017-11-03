@@ -8,233 +8,61 @@
 
 {% block content %}
     <div class="row">
-        <div class="col s10 offset-s1">
-    {#<div class="row">#}
-        {#<h1 class="titleProfilEmploye header center light-blue-text text-darken-2">Le bonheur au travail commence par un projet qui fait sens !</h1>#}
-    {#</div>#}
-        <div class="row">
-            <div class="card medium headerProfil">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="{{ asset('assets/images/happysens-love.jpg') }}">
-                </div>
-                <div class="card-content">
-                    <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light amber darken-2 right"><i class="material-icons">info_outline</i></a>
-                    <span class="card-title activator grey-text text-darken-4">John Doe</span>
-                    <p><a href="#"> [  Logo  ] #Entreprise</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">John Doe<i class="material-icons right">close</i></span>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s4">
-                <div class="row">
-                    <div class="card-panel blue darken-2">
-                      <span class="white-text">
-                          <b>Au travail je me sens Happy quand ... </b><br/>
-                          il y a des frites à la cantine.
-                      </span>
+        <div class="col s12 m10 offset-m1">
+        {#<div class="row">#}
+            {#<h1 class="titleProfilEmploye header center light-blue-text text-darken-2">Le bonheur au travail commence par un projet qui fait sens !</h1>#}
+        {#</div>#}
+            {# header #}
+            <div class="row">
+                <div class="card medium headerProfil">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="{{ asset('assets/images/happysens-love.jpg') }}">
                     </div>
-                    <div>
-                        <h5 class="light-blue-text text-darken-2">Mes passions et talents cachés :</h5>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">John Doe</span>
+                        <p><a href="{{ path('profilCompany') }}"> [  Logo  ] #NomCompany</a></p>
+                        <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light amber darken-2 right"><i class="material-icons">info_outline</i></a>
                     </div>
-                    <ul class="collection">
-                        <li class="collection-item">
-                            <div class="row">
-                                <span class="col s5">Sport</span>
-                                <div class="col s7">
-                                    <i class="material-icons right amber-text text-darken-2">star_half</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="collection-item">
-                            <div class="row">
-                                <span class="col s5">Chant</span>
-                                <div class="col s7">
-                                    <i class="material-icons right amber-text text-darken-2">star_border</i>
-                                    <i class="material-icons right amber-text text-darken-2">star_border</i>
-                                    <i class="material-icons right amber-text text-darken-2">star_border</i>
-                                    <i class="material-icons right amber-text text-darken-2">star_half</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="collection-item">
-                            <div class="row">
-                                <span class="col s5">Yoga</span>
-                                <div class="col s7">
-                                    <i class="material-icons right amber-text text-darken-2">star_half</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="collection-item">
-                            <div class="row">
-                                <span class="col s5">Cuisine</span>
-                                <div class="col s7">
-                                    <i class="material-icons right amber-text text-darken-2">star_border</i>
-                                    <i class="material-icons right amber-text text-darken-2">star_border</i>
-                                    <i class="material-icons right amber-text text-darken-2">star_half</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="collection-item">
-                            <div class="row">
-                                <span class="col s5">Photographie</span>
-                                <div class="col s7">
-                                    <i class="material-icons right amber-text text-darken-2">star_border</i>
-                                    <i class="material-icons right amber-text text-darken-2">star_border</i>
-                                    <i class="material-icons right amber-text text-darken-2">star_border</i>
-                                    <i class="material-icons right amber-text text-darken-2">star_half</i>
-                                    <i class="material-icons right amber-text text-darken-2">star</i>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="light-blue-text text-darken-2">Mes projets en cours :</h5>
-                </div>
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                        <img src="{{ asset('assets/images/happysens-accueil.jpg') }}" alt="" class="circle">
-                        <span class="title">Organisation d'un concert</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle green">insert_chart</i>
-                        <span class="title">Cours de fitness</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle green">insert_chart</i>
-                        <span class="title">Cours de yoga</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle green">insert_chart</i>
-                        <span class="title">Mission humanitaire</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                </ul>
-                <div>
-                    <h5 class="light-blue-text text-darken-2">Mes projets Terminé :</h5>
-                </div>
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                        <img src="{{ asset('assets/images/happysens-accueil.jpg') }}" alt="" class="circle">
-                        <span class="title">Title</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle">folder</i>
-                        <span class="title">Title</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle green">insert_chart</i>
-                        <span class="title">Title</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                    <li class="collection-item avatar">
-                        <i class="material-icons circle red">play_arrow</i>
-                        <span class="title">Title</span>
-                        <p>First Line <br>
-                            Second Line
-                        </p>
-                        <a href="#!" class="secondary-content"><i class="material-icons">pageview</i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col s8">
-                <div class="row">
-                    <div class="col s12 PC_bProjectInProgress">
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="card medium">
-                                    <div class="card-image waves-effect waves-block waves-light">
-                                        <img class="activator" src="{{ asset('assets/images/happysens-musique.jpg') }}">
-                                    </div>
-                                    <div class="card-content">
-                                         <span class="card-title activator grey-text text-darken-4">Organisation d'un concert<i class="material-icons right blue-text text-darken-2">info</i></span>
-                                         <p><a href="#">Détails</a></p>
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">Titre du projet<i class="material-icons right">close</i></span>
-                                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12">
-                                <div class="card small">
-                                    <div class="card-image waves-effect waves-block waves-light">
-                                        <img class="activator" src="{{ asset('assets/images/happysens-sport.jpg') }}">
-                                    </div>
-                                    <div class="card-content">
-                                        <span class="card-title activator grey-text text-darken-4">Cours de fitness<i class="material-icons right blue-text text-darken-2">info</i></span>
-                                        <p><a href="#">Détails</a></p>
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">Titre du projet<i class="material-icons right">close</i></span>
-                                        <p>Here is some more information about this product that is only revealed once clicked
-                                            on.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12">
-                                <div class="card small">
-                                    <div class="card-image waves-effect waves-block waves-light">
-                                        <img class="activator" src="{{ asset('assets/images/happysens-humanitaire.jpg   ') }}">
-                                    </div>
-                                    <div class="card-content">
-                                        <span class="card-title activator grey-text text-darken-4">Mission humanitaire<i class="material-icons right blue-text text-darken-2">info</i></span>
-                                        <p><a href="#">Détails</a></p>
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">Titre du projet<i class="material-icons right">close</i></span>
-                                        <p>Here is some more information about this product that is only revealed once clicked
-                                            on.</p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="card-reveal amber darken-2">
+                        <span class="card-title white-text">John Doe<i class="material-icons right">close</i></span>
+                        <div class="col s6 m6 l4 center-align">
+                            <table class="infosEmploye">
+                                <tbody>
+                                    <tr>
+                                        <th>Entreprise :</th>
+                                        <td>HappySens</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fonction :</th>
+                                        <td>CEO</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Age :</th>
+                                        <td>25 ans</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Lieu de travail :</th>
+                                        <td>69002 Lyon</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mail :</th>
+                                        <td>example@example.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tel :</th>
+                                        <td>06 01 02 03 04 </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
+            {# For mobile and tablet #}
+            {{ include('partials/components/mobileProfilEmploye.html.twig') }}
+            {# For desktop #}
+            {{ include('partials/components/largeProfilEmploye.html.twig') }}
         </div>
-    </div>
     </div>
 {% endblock %}
 
