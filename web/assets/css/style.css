@@ -178,6 +178,15 @@ nav {
   background-position: bottom;
   margin-top: -90px; }
 
+#contentAddProject {
+  min-height: 50vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("../images/happysens-sport.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+  margin-top: -90px; }
+
 .headerTitleOthers {
   border-radius: 5px;
   top: 30vh;
@@ -347,6 +356,7 @@ ul.followUs {
 .blocExplainEntreprise h3 {
   font-size: 4em;
   font-family: "Patrick Hand SC", cursive; }
+
 .blocExplainEntreprise .containExplainEntreprise {
   padding: 50px 40px 0 40px;
   text-align: left; }
@@ -476,5 +486,3 @@ p, span {
   background-image: linear-gradient(to top, rgba(249, 168, 37, 0.9), rgba(249, 168, 37, 0.6)), url("../images/happysens-salaries.jpg");
   background-color: #f9a825;
   color: white; }
-
-/*# sourceMappingURL=style.css.map */
