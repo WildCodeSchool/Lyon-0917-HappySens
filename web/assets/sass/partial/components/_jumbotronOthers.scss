@@ -1,11 +1,11 @@
 // Others
 #contentEntreprise {
   min-height: 50vh;
-  background-image: linear-gradient(rgba(black, 0.5),rgba(black, 0.3)), url("../images/happywork.jpg");
+  background-image: linear-gradient(to top, rgba(black, 0.1),rgba(black, 0.3)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 0 -200px;
+  background-position: center -240px;
   margin-top: -90px;
 }
 #contentEmploye {
@@ -14,16 +14,16 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  background-position: center -300px;
   margin-top: -90px;
 }
 #contentHappy {
   min-height: 50vh;
-  background-image: linear-gradient(rgba(black, 0.5),rgba(black, 0.3)), url("../images/happysens-sport.jpg");
+  background-image: linear-gradient(rgba(black, 0.1),rgba(black, 0.1)), url("../images/happysens-coach.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  background-position: center -300px;
   margin-top: -90px;
 }
 #contentCGV {
@@ -32,7 +32,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  background-position: center -240px;
   margin-top: -90px;
 }
 #contentInscription {
@@ -41,16 +41,16 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  background-position: center -240px;
   margin-top: -90px;
 }
 #contentContact {
   min-height: 50vh;
-  background-image: linear-gradient(rgba(orange, 0),rgba(orange, 0)), url("../images/happysens-time.jpg");
+  background-image: linear-gradient(rgba(black, 0.1),rgba(black, 0.1)), url("../images/happysens-time.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  background-position: center -370px;
   margin-top: -90px;
 }
 .headerTitleOthers {
@@ -58,19 +58,15 @@
   top: 30vh;
   transform: translatey(-70%);
   position: relative;
-  text-shadow: 0 0 1px black;
   h1 {
-    font-family: 'Patrick Hand SC', cursive;
+    font-family: $textFont;
     font-size: 3.5em;
     letter-spacing: 1px;
   }
   h5 {
     margin-left: 10px;
     font-size: 1.5em;
-    font-family: 'Montserrat', sans-serif;
+    font-family: $titleFont;
   }
 }
 
-.test {
-  height: 30px;
-}

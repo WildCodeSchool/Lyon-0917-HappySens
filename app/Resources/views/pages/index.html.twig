@@ -6,7 +6,7 @@
         <div class="section no-pad-bot">
             <div class="col s12">
                 <div class="headerTitleHome center" id="headerTitle">
-                    <h1 class="header center amber-text text-darken-2">Bienvenue sur Happy Sens</h1>
+                    <h1 class="header center white-text text-darken-2">Bienvenue sur <img src="{{ asset('assets/images/logo.png') }}" alt="" width="250px"></h1>
                     <div class="row">
                         <h5 class="header center white-text">Libérez les passions et donnez du sens au travail</h5>
                     </div>
@@ -24,12 +24,13 @@
             <div class="row">
                 <div class="col s12 l4">
                     <div class="card center hoverable" id="cardEmploye">
-                        <div class="card-content white-text">
-                            <span class="cardTitle">Employé</span>
-                            <ul class="textCard">
-                                <li>
-                                    Libérez vos passions et pilotez le bonheur au travail dans votre entreprise. Reconnectez-vous à vos rêves et partagez -les avec vos collègues.                                </li>
-                            </ul>
+                        <div class="card-content">
+                            <div class="bgCardsIndex">
+                                <span class="cardTitle">Employé</span>
+                                <div class="textCard">
+                                    <p>Libérez vos passions et pilotez le bonheur au travail dans votre entreprise. Reconnectez-vous à vos rêves et partagez -les avec vos collègues.</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-action">
                             <a href="{{ path('employe') }}"><span class="waves-effect waves-light btn blue-text text-darken-3 white">Je découvre HAPPY SENS</span></a>
@@ -38,11 +39,13 @@
                 </div>
                 <div class="col s12 l4">
                     <div class="card center hoverable" id="cardEntreprise">
-                        <div class="card-content white-text">
-                            <span class="cardTitle">Entreprise</span>
-                            <ul class="textCard">
-                                <li>
-                                    Remobilisez, fidélisez, valorisez, responsabilisez vos salariés en déployant une expérience collaborateur inédite et inoubliable grâce à HappySens.                            </ul>
+                        <div class="card-content">
+                            <div class="bgCardsIndex">
+                                <span class="cardTitle">Entreprise</span>
+                                <div class="textCard">
+                                    <p>Remobilisez, fidélisez, valorisez, responsabilisez vos salariés en déployant une expérience collaborateur inédite et inoubliable grâce à HappySens.</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-action">
                             <a href="{{ path('company') }}"><span class="waves-effect waves-light btn blue-text text-darken-3 white">Je découvre HAPPY SENS</span></a>
@@ -51,11 +54,13 @@
                 </div>
                 <div class="col s12 l4">
                     <div class="card center hoverable" id="cardHappy">
-                        <div class="card-content white-text">
-                            <span class="cardTitle">HappyCoach</span>
-                            <ul class="textCard">
-                                <li>
-                                    Vos spécialités et expertises, inscrites durablement au service du bonheur en entreprise. Accompagnez des équipes passionnées dans la réalisation de leurs Projets.                            </ul>
+                        <div class="card-content">
+                            <div class="bgCardsIndex">
+                                <span class="cardTitle">HappyCoach</span>
+                                <div class="textCard">
+                                    <p>Vos spécialités et expertises, inscrites durablement au service du bonheur en entreprise. Accompagnez des équipes passionnées dans la réalisation de leurs Projets.</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-action">
                             <a href="{{ path('happyCoach') }}"><span class="waves-effect waves-light btn blue-text text-darken-3 white">Je découvre HAPPY SENS</span></a>
@@ -71,10 +76,6 @@
             <div class="container">
                 <div class="sliderBloc">
                     <h3 class="center amber-text text-darken-2">Le bonheur au travail pour les salariés, porté par les salariés</h3>
-                    <div class="">
-                        <a href="#next">Next</a>
-                        <a href="#prev">prev</a>
-                    </div>
                     <div class="slider">
                         <ul class="slides">
                             <li class="amber darken-2">
@@ -112,7 +113,7 @@
     <section class="generalContainer" id="exampleProjectHome">
         <div class="container">
             <div class="center">
-                <span class="cardTitle pink-text darken-2-text">Voici quelques idées de thémes pour vos Projets :</span>
+                <span class="cardTitle amber-text text-darken-3">Voici quelques idées de thémes pour vos Projets :</span>
                 <div class="row">
                     <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
@@ -210,7 +211,4 @@
     </section>
 {% endblock %}
 
-{% block javascripts %}
-    <script src="{{ asset('assets/script/slide.js') }}"></script>
-{% endblock %}
 

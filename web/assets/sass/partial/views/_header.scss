@@ -15,17 +15,19 @@
   top: 40vh;
   position: relative;
   transform: translatey(-40%);
-  text-shadow: 0 1px 2px black;
   h1 {
-    font-family: 'Patrick Hand SC', cursive;
+    font-family: $textFont;
     font-size: 5.5em;
+    img {
+      margin-bottom: -40px;
+    }
   }
   h5 {
     margin-left: 20px;
-    font-size: 1.6em;
+    font-size: 2em;
     margin-top: 35px;
     margin-bottom: 35px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: $titleFont;
   }
 }
 .btnHome {

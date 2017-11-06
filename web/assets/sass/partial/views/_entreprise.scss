@@ -23,7 +23,7 @@
 .blocExplainEntreprise {
   h3 {
     font-size: 4em;
-    font-family: "Patrick Hand SC", cursive;
+    font-family: $textFont;
   }
   .containExplainEntreprise {
     padding: 50px 40px 0 40px;
@@ -36,7 +36,7 @@
     .detailsExplainEntreprise {
       border-radius: 5px;
       margin: auto;
-      font-family: 'Montserrat', sans-serif;
+      font-family: $textFont;
       font-size: 1.3em;
       padding: 30px 10px;
       text-align: left;
@@ -51,7 +51,7 @@
   .containsTalents {
     padding: 5px 0 20px 0;
     p {
-      font-family: 'Montserrat', sans-serif;
+      font-family: $titleFont;
       font-size: 1.2em;
       span {
         font-weight: bold;

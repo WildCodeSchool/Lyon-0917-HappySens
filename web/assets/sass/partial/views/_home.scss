@@ -3,8 +3,8 @@
   line-height: 2.3em;
   padding: 30px 10px;
   h3 {
-    font-family: "Patrick Hand SC", cursive;
-    font-size: 4em;
+    font-family: $textFont;
+    font-size: 3.5em;
     text-align: center;
   }
 }
@@ -15,14 +15,17 @@
 
 .sliderHeader {
   font-size: 1em;
-  font-family: 'Montserrat', sans-serif;
+  font-family: $textFont;
   text-align: justify;
+  font-weight: bold;
+
 }
 
 .sliderParagraph {
   font-size: 1.2em;
-  font-family: 'Montserrat', sans-serif;
   text-align: justify;
+  font-weight: inherit;
+
 }
 
 .slider {

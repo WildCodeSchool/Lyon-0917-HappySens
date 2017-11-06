@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('Favicon.ico') }}" />
     </head>
     <body>
     {% block body %}
@@ -21,15 +21,14 @@
         </header>
         <main class="col s12" id="main">
             <!--  include button scroll to top !!! Don't move this link !!! -->
-            <div class="scrollToTop waves-effect waves-light amber darken-4 z-depth-2" aria-hidden="true" title="Retour haut de page.">
+            <div class="scrollToTop waves-effect waves-light amber darken-3 z-depth-2" aria-hidden="true" title="Retour haut de page.">
                 <i class="material-icons">keyboard_capslock</i>
             </div>
             {% block content %}{% endblock %}
         </main>
         <div class="col s12" id="footer">
             {% block footer %}
-                {% include 'partials/components/iconsBar.html.twig' %}
-                {% include 'partials/frame/footer.html.twig' %}
+                {{ include(':partials/frame:footer.html.twig') }}
             {% endblock %}
         </div>
 
@@ -39,6 +38,7 @@
         <script src="{{ asset('assets/script/scrollTop.js') }}"></script>
         <script src="{{ asset('assets/script/scrollTo.js') }}"></script>
         <script src="{{ asset('assets/script/switchNav.js') }}"></script>
+        <script src="{{ asset('assets/script/tabs.js') }}"></script>
         {% block javascripts %}{% endblock %}
     {% endblock %}
     </body>
