@@ -1,8 +1,9 @@
 .chipStatus {
   position: absolute;
-  margin-top: -220px;
+  top: 20px;
   z-index: 2;
-  margin-left: 20px; }
+  margin-left: 20px;
+  left: 0; }
 
 .chip.validate {
   background-color: rgba(34, 139, 34, 0.8);

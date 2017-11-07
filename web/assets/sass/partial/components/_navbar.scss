@@ -5,10 +5,14 @@
   color: white;
 }
 .enterIn {
-  background-color: $blueColor;
+  background-color: #252f3d;
+  color: white;
   &:hover {
-    background-color: rgba($blueColor, 0.85);
-    color: lightgrey;
+    background-color: rgba(#252f3d, 0.9);
+    color: $amberColor;
+  }
+  &:active {
+    background-color: #252f3d ;
   }
 }
 .notifications {
@@ -24,7 +28,7 @@
   }
 }
 .linkFixedColor {
-  color: $blueColor;
+  color: #252f3d;
   transition: all 0.3s ease;
   .linkFixedColor:hover {
     color: deepskyblue;

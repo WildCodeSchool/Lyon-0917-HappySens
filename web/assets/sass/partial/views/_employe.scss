@@ -1,13 +1,15 @@
 .containExplainEmploye {
-  padding: 40px 40px 0 40px;
-  text-align: left;
+  margin: 50px 0;
+  i {
+    color: $pinkColor;
+  }
   .detailsExplainEmploye {
     border-radius: 5px;
     margin: auto;
-    font-family: $textFont;
+    font-family: $titleFont;
     font-size: 1.3em;
     padding: 30px 10px;
-    text-align: left;
+    text-align: center;
   }
   ul {
     padding-left: 5%;
@@ -20,9 +22,9 @@
   }
 }
 .titleExplainEmploye {
-  font-weight: bold;
   font-family: $textFont;
-  font-size: 2.2em;
+  color: $amberColor;
+  font-size: 3em;
   margin-bottom: 35px;
 }
 .containerPicsEmploye {
@@ -30,8 +32,28 @@
   margin-top: 50px;
   text-align: center;
   .typeExplainEmploye {
-    font-family: "Montserrat", sans-serif;
+    font-family: $titleFont;
     font-size: 1.5em;
     padding: 20px;
+  }
+}
+
+.detailsInfosEmploye {
+  width: 100vw;
+  margin-left: -20px;
+  background-image: linear-gradient(to top, rgba(black, 0.8),rgba(black , 0.7)), url("../images/happysens-salaries.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 60px 20px;
+  ul {
+    color: white;
+    padding-left: 5%;
+    li {
+      font-family: $titleFont;
+      list-style-type: circle;
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
   }
 }

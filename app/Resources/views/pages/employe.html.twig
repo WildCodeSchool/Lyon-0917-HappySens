@@ -24,109 +24,119 @@
     <div class="row">
         <div class="center">
             <div class="container">
-                <span class="cardTitle pink-text darken-2-text">Exemple de projet </span>
-                <ul class="cardContent">
-                    <li class="card medium col s10 offset-s1 m6">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ asset('assets/images/happysens-musique.jpg') }}">
-                        </div>
-                        <div class="chip chipStatus inProgress">
-                            <span><i class="fa fa-clock-o"></i> </span>
-                            <span>En attente</span>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-title activator grey-text text-darken-4">
-                                Organisation d'un concert
-                                <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
+                <h3 class="title amber-text text-darken-2">Exemple de projet </h3>
+                <div class="row">
+                    <ul class="cardContent">
+                        <li class="card medium col s10 offset-s1 m6">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="{{ asset('assets/images/happysens-streetdance.jpg') }}">
                             </div>
-                            <div>
-                                <a href="{{ path('profilEmploye') }}">
-                                    <div class="chip">
-                                        <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                        <span class="black-text">@name.employe</span>
+                            <div class="chip chipStatus inProgress left">
+                                <span><i class="fa fa-clock-o"></i> </span>
+                                <span>En attente</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="card-title activator grey-text text-darken-4">
+                                        <p class="left">Cours de danse </p>
+                                        <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="right">
-                                <a href="#!">15 <i class="fa fa-heart"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">
-                                    Organisation d'un concert
-                                    <i class="material-icons right">close</i>
-                                </span>
-                            <div class="row">
-                                <div>
-                                    <a href="{{ path('profilEmploye') }}">
-                                        <div class="chip left">
-                                            <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                            <span class="black-text">@name.employe</span>
-                                        </div>
-                                    </a>
                                 </div>
-                                <div class="chip inProgress right">
-                                    <span><i class="fa fa-clock-o"></i> </span>
-                                    <span>En attente</span>
-                                </div>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?</p>
-                            <div class="right">
-                                <a href="#!">15 <i class="fa fa-heart"></i></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="card medium col s10 offset-s1 m6">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ asset('assets/images/happysens-montagne.jpg') }}">
-                        </div>
-                        <div class="chip chipStatus inProgress">
-                            <span><i class="fa fa-clock-o"></i> </span>
-                            <span>En attente</span>
-                        </div>
-                        <div class="card-content">
-                            <div class="card-title activator grey-text text-darken-4">
-                                Ascension du mont-blanc
-                                <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
-                            </div>
-                            <div>
-                                <a href="{{ path('profilEmploye') }}">
-                                    <div class="chip">
-                                        <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                        <span class="black-text">@name.employe</span>
+                                <div class="row">
+                                    <div class="left">
+                                        <a href="{{ path('profilEmploye') }}">
+                                            <div class="chip">
+                                                <img src="https://randomuser.me/api/portraits/med/women/13.jpg" alt="Logo company"> <!-- notice the "circle" class -->
+                                                <span class="black-text">@name.employe</span>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="right">
-                                <a href="#!">15 <i class="fa fa-heart"></i></a>
-                            </div>
-                        </div>
-                        <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">
-                                    Ascension du Mont-blanc
-                                    <i class="material-icons right">close</i>
-                                </span>
-                            <div class="row">
-                                <div>
-                                    <a href="{{ path('profilEmploye') }}">
-                                        <div class="chip left">
-                                            <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                            <span class="black-text">@name.employe</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="chip inProgress right">
-                                    <span><i class="fa fa-clock-o"></i> </span>
-                                    <span>En attente</span>
+                                    <div class="right">
+                                        <a href="#!">15 <i class="fa fa-heart"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?</p>
-                            <div class="right">
-                                <a href="#!">15 <i class="fa fa-heart"></i></a>
+                            <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">
+                                        Cours de danse
+                                        <i class="material-icons right">close</i>
+                                    </span>
+                                <div class="row">
+                                    <div>
+                                        <a href="{{ path('profilEmploye') }}">
+                                            <div class="chip left">
+                                                <img src="https://randomuser.me/api/portraits/med/women/13.jpg" alt="Logo company"> <!-- notice the "circle" class -->
+                                                <span class="black-text">@name.employe</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="chip inProgress right">
+                                        <span><i class="fa fa-clock-o"></i> </span>
+                                        <span>En attente</span>
+                                    </div>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?</p>
+                                <div class="right">
+                                    <a href="#!">15 <i class="fa fa-heart"></i></a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                        <li class="card medium col s10 offset-s1 m6">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="{{ asset('assets/images/happysens-cuisine.jpg') }}">
+                            </div>
+                            <div class="chip chipStatus validate left">
+                                <span><i class="fa fa-check-circle-o"></i></span>
+                                <span>En cours</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="card-title activator grey-text text-darken-4">
+                                        <p class="left">Cours de cuisine</p>
+                                        <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="left">
+                                        <a href="{{ path('profilEmploye') }}">
+                                            <div class="chip">
+                                                <img src="https://randomuser.me/api/portraits/med/men/23.jpg" alt="Logo"> <!-- notice the "circle" class -->
+                                                <span class="black-text">@name.employe</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="right">
+                                        <a href="#!">25 <i class="fa fa-heart"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-reveal">
+                                    <span class="card-title grey-text text-darken-4">
+                                        Cours de cuisine
+                                        <i class="material-icons right">close</i>
+                                    </span>
+                                <div class="row">
+                                    <div>
+                                        <a href="{{ path('profilEmploye') }}">
+                                            <div class="chip left">
+                                                <img src="https://randomuser.me/api/portraits/med/men/23.jpg" alt="Logo company"> <!-- notice the "circle" class -->
+                                                <span class="black-text">@name.employe</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="chip validate right">
+                                        <span><i class="fa fa-check-circle-o"></i> </span>
+                                        <span>En cours</span>
+                                    </div>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?</p>
+                                <div class="right">
+                                    <a href="#!">25 <i class="fa fa-heart"></i></a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

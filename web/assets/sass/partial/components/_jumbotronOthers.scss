@@ -5,7 +5,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center -240px;
+  background-position: center -200px;
   margin-top: -90px;
 }
 #contentEmploye {
@@ -14,7 +14,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center -300px;
+  background-position: center;
   margin-top: -90px;
 }
 #contentHappy {
@@ -67,6 +67,9 @@
     margin-left: 10px;
     font-size: 1.5em;
     font-family: $titleFont;
+  }
+  img {
+    margin-bottom: -30px;
   }
 }
 

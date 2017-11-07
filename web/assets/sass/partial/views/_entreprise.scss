@@ -1,49 +1,36 @@
 // Entreprise
 .containerIntroEntreprise {
-  width: 100%;
-  padding: 50px 25px;
-  color: white;
-  background-color: rgba(#1976D2, 0.9);
+  color: $blueColor;
   border-radius: 5px;
-}
-
-.introEntreprise {
-  font-size: 3em;
   text-align: center;
   letter-spacing: 2px;
-  font-family: "Patrick Hand SC", cursive;
-}
-.afterIntroEntreprise {
-  font-size: 2.5em;
-  text-align: center;
-  letter-spacing: 2px;
-  font-family: "Patrick Hand SC", cursive;
+  font-family: $textFont;
 }
 
 .blocExplainEntreprise {
   h3 {
-    font-size: 4em;
+    font-size: 3em;
     font-family: $textFont;
   }
   .containExplainEntreprise {
-    padding: 50px 40px 0 40px;
+    padding: 30px 15px;
     text-align: left;
     .titleExplainEntreprise {
-      font-weight: bold;
-      font-family: "Patrick Hand SC", cursive;
-      font-size: 2.2em;
+      font-family: $titleFont;
     }
     .detailsExplainEntreprise {
+      padding: 10px 0;
       border-radius: 5px;
       margin: auto;
       font-family: $textFont;
       font-size: 1.3em;
-      padding: 30px 10px;
-      text-align: left;
+      text-align: justify;
     }
   }
 }
-
+.titleSecond {
+  font-family: $textFont;
+}
 // TalentsEntreprise
 .containerTalentsEntreprise {
   text-align: center;
@@ -52,7 +39,7 @@
     padding: 5px 0 20px 0;
     p {
       font-family: $titleFont;
-      font-size: 1.2em;
+      font-size: 1.5em;
       span {
         font-weight: bold;
       }
@@ -66,7 +53,13 @@
 }
 
 .titleEndEntreprise {
-  font-size: 3em;
-  font-family: "Patrick Hand SC", cursive;
-  margin-bottom: 30px;
+  font-size: 1.8em;
+  font-family: $textFont;
+  text-align: left;
+  margin: 10px;
+  border-left: 4px solid $pinkColor;
+}
+.sign {
+  right: 0;
+  font-size: 0.7em;
 }
