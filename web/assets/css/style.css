@@ -347,6 +347,7 @@ ul.followUs {
 .blocExplainEntreprise h3 {
   font-size: 4em;
   font-family: "Patrick Hand SC", cursive; }
+
 .blocExplainEntreprise .containExplainEntreprise {
   padding: 50px 40px 0 40px;
   text-align: left; }
@@ -443,6 +444,12 @@ ul.followUs {
   font-family: "Montserrat", cursive;
   font-size: 1.5em; }
 
+.hidden {
+  display: none; }
+
+.active {
+  display: block; }
+
 .titleProfilEmploye {
   font-family: "Patrick Hand SC", cursive; }
 
@@ -476,5 +483,3 @@ p, span {
   background-image: linear-gradient(to top, rgba(249, 168, 37, 0.9), rgba(249, 168, 37, 0.6)), url("../images/happysens-salaries.jpg");
   background-color: #f9a825;
   color: white; }
-
-/*# sourceMappingURL=style.css.map */

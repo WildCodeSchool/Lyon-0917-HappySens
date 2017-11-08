@@ -129,5 +129,13 @@ class DefaultController extends Controller
         ]);
     }
     // Traitement Form connection / contact / profils / inscriptions / projets
-    
+    /**
+     * @Route("profilAdmin", name="profilAdmin")
+     */
+    public function profilAdminAction(Request $request)
+    {
+        return $this->render('pages/profilAdmin.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
 }
