@@ -176,7 +176,7 @@ nav {
   text-align: center;
   color: white;
   z-index: 99999;
-  -webkit-transition: all ease-in 0.2s;
+  -webkit-transition: all ease-in 0.2s;128
   transition: all ease-in 0.2s;
   position: fixed;
   cursor: pointer;
@@ -250,6 +250,15 @@ nav {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center -370px;
+  margin-top: -90px; }
+
+#contentAddProject {
+  min-height: 50vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("../images/happysens-sport.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
   margin-top: -90px; }
 
 .headerTitleOthers {
@@ -706,5 +715,3 @@ ul.followUs {
   background-image: linear-gradient(to top, rgba(249, 168, 37, 0.9), rgba(249, 168, 37, 0.6)), url("../images/happysens-salaries.jpg");
   background-color: #f9a825;
   color: white; }
-
-/*# sourceMappingURL=style.css.map */
