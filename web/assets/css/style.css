@@ -1,6 +1,81 @@
+/***************    Variables   *************************/
+/******************   Mixins   ***********************/
+/******************   Fonts   ***********************/
+@import url("https://fonts.googleapis.com/css?family=Roboto:500");
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+/*****************    Queries   ****************************/
+@media all and (max-width: 800px) {
+  .headerTitleHome {
+    padding: 0 20px !important; }
+    .headerTitleHome h1 {
+      font-size: 3.5em !important; }
+    .headerTitleHome img {
+      width: 150px !important;
+      margin-bottom: -30px !important; }
+    .headerTitleHome h5 {
+      font-size: 1.5em !important; }
+
+  .blocExplainEntreprise h3 {
+    font-size: 2.2em !important; }
+  .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
+    font-size: 1.2em !important; }
+
+  .generalContainer {
+    padding: 50px 20px !important; }
+
+  .title {
+    font-size: 2em !important; }
+
+  .scrollToTop {
+    display: none !important; }
+
+  .headerTitleOthers {
+    top: 35vh !important; }
+    .headerTitleOthers h1 {
+      font-size: 2em !important; }
+    .headerTitleOthers h5 {
+      font-size: 1.2em !important; }
+
+  .titleSecond {
+    font-size: 1.5em !important; }
+
+  .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
+    font-size: 1.5em !important; }
+
+  .titleDetailsEntreprise {
+    font-size: 2em !important; }
+
+  .cardTitle {
+    font-size: 1.8em !important; }
+
+  .detailsInfosEntreprise {
+    font-size: 0.8em !important; }
+
+  .detailsInfosEmploye {
+    font-size: 0.8em !important; }
+
+  .detailsInfosHappy {
+    font-size: 0.8em !important; }
+
+  .containerTalentsEntreprise .containsTalents p {
+    font-size: 1em !important; }
+
+  .titleEndEntreprise {
+    font-size: 1.1em !important; }
+
+  .containExplainEmploye .detailsExplainEmploye {
+    font-size: 1em !important; }
+
+  .titleExplainEmploye {
+    font-size: 2em !important; }
+
+  .typeExplainEmploye {
+    font-size: 1em !important; }
+
+  #contentEntreprise, #contentHappy, #contentCGV, #contentInscription, #contentContact {
+    background-position: center !important;
+    top: 25vh !important; } }
 /*******************    CONFIG   ***************************/
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
-@import url("https://fonts.googleapis.com/css?family=Patrick+Hand+SC");
 * {
   box-sizing: border-box; }
 
@@ -21,10 +96,11 @@ main {
   color: red;
   font-weight: bold; }
 
-/***************    Variables   *************************/
-/******************   Mixins   ***********************/
-/******************   Fonts   ***********************/
-/*****************    Queries   ****************************/
+.title {
+  font-family: "Quicksand", sans-serif;
+  font-size: 3.5em;
+  text-align: center; }
+
 /*************    Composant   ****************************/
 .Contact {
   padding: 8% 20px; }
@@ -34,20 +110,23 @@ main {
   font-size: 1.1em; }
 
 .linkNav {
-  font-size: 1.3em;
-  font-family: 'Patrick Hand SC', cursive;
+  font-family: "Quicksand", sans-serif;
   font-weight: bold;
   color: white; }
 
+.linkNavSide {
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  color: #252f3d; }
+
 .enterIn {
-  background-color: rgba(255, 255, 255, 0.15);
-  border: 1px solid #FFA000;
-  color: #FFA000;
-  font-weight: bold; }
+  background-color: #252f3d;
+  color: white; }
   .enterIn:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    border: 1px solid #C2185B;
-    color: #C2185B; }
+    background-color: rgba(37, 47, 61, 0.9);
+    color: #FFA000; }
+  .enterIn:active {
+    background-color: #252f3d; }
 
 .notifications {
   min-width: 250px;
@@ -61,10 +140,8 @@ main {
     color: deepskyblue; }
 
 .linkFixedColor {
-  color: dodgerblue;
-  transition: all 0.3s ease;
-  font-size: 1.3em;
-  font-weight: inherit; }
+  color: #252f3d;
+  transition: all 0.3s ease; }
   .linkFixedColor .linkFixedColor:hover {
     color: deepskyblue; }
 
@@ -85,9 +162,6 @@ nav {
   background-color: inherit;
   box-shadow: none; }
 
-.nav-wrapper {
-  padding-left: 25px; }
-
 .modal {
   top: 50vh;
   transform: translatey(-50%);
@@ -102,14 +176,14 @@ nav {
   text-align: center;
   color: white;
   z-index: 99999;
-  -webkit-transition: all ease-in 0.2s;
+  -webkit-transition: all ease-in 0.2s;128
   transition: all ease-in 0.2s;
   position: fixed;
   cursor: pointer;
   bottom: 2.5em;
   right: 20px;
   display: none;
-  opacity: 0.5; }
+  opacity: 0.7; }
   .scrollToTop:hover {
     -webkit-transition: all ease-in 0.2s;
     transition: all ease-in 0.2s;
@@ -125,57 +199,57 @@ nav {
   justify-content: space-around; }
 
 #contentEntreprise {
-  min-height: 50vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("../images/happywork.jpg");
+  min-height: 55vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 0 -200px;
+  background-position: center -200px;
   margin-top: -90px; }
 
 #contentEmploye {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("../images/happysens-love.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  background-position: center;
   margin-top: -90px; }
 
 #contentHappy {
-  min-height: 50vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("../images/happysens-sport.jpg");
+  min-height: 55vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../images/happysens-coach.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  background-position: center -300px;
   margin-top: -90px; }
 
 #contentCGV {
-  min-height: 50vh;
-  background-image: linear-gradient(rgba(255, 165, 0, 0.5), rgba(255, 165, 0, 0.4)), url("../images/happysens-accueil.jpg");
+  min-height: 55vh;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  background-position: center -240px;
   margin-top: -90px; }
 
 #contentInscription {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("../images/happysens-love.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  background-position: center -240px;
   margin-top: -90px; }
 
 #contentContact {
-  min-height: 50vh;
-  background-image: linear-gradient(rgba(255, 165, 0, 0), rgba(255, 165, 0, 0)), url("../images/happysens-time.jpg");
+  min-height: 55vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../images/happysens-time.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
+  background-position: center -370px;
   margin-top: -90px; }
 
 #contentAddProject {
@@ -189,54 +263,65 @@ nav {
 
 .headerTitleOthers {
   border-radius: 5px;
-  top: 30vh;
+  top: 32vh;
   transform: translatey(-70%);
-  position: relative;
-  text-shadow: 0 1px 2px black; }
+  position: relative; }
   .headerTitleOthers h1 {
-    font-family: 'Patrick Hand SC', cursive;
+    font-family: "Quicksand", sans-serif;
     font-size: 3.5em;
     letter-spacing: 1px; }
   .headerTitleOthers h5 {
     margin-left: 10px;
     font-size: 1.5em;
-    font-family: 'Montserrat', sans-serif; }
-
-.test {
-  height: 30px; }
+    font-family: "Roboto", sans-serif; }
+  .headerTitleOthers img {
+    margin-bottom: -30px; }
 
 .card {
-  margin-top: 2rem; }
+  margin-top: 2.5rem; }
 
 .cardTitle {
-  font-size: 3em;
-  font-family: 'Patrick Hand SC', cursive; }
+  font-size: 2.2em;
+  font-family: "Quicksand", sans-serif;
+  text-align: center;
+  color: #0288D1; }
 
 .textCard {
   font-size: 1.2em;
-  font-family: 'Montserrat', sans-serif; }
+  font-family: "Roboto", sans-serif; }
+
+.bgCardsIndex {
+  color: white;
+  border-radius: 10px;
+  padding: 5px 0 20px 0; }
 
 #cardEmploye {
-  background-image: linear-gradient(to top, rgba(249, 168, 37, 0.9), rgba(249, 168, 37, 0.6)), url("../images/happisens-happyjob.jpg");
+  background-image: linear-gradient(to top, rgba(249, 168, 37, 0.3), rgba(249, 168, 37, 0.2)), url("../images/happisens-happyjob.jpg");
   background-color: #f9a825; }
+  #cardEmploye .bgCardsIndex {
+    background-color: rgba(255, 160, 0, 0.55); }
 
 #cardEntreprise {
-  background-image: linear-gradient(to top, rgba(2, 136, 209, 0.7), rgba(2, 136, 209, 0.5)), url("../images/happysens-love.jpg");
+  background-image: linear-gradient(to top, rgba(2, 136, 209, 0.3), rgba(2, 136, 209, 0.2)), url("../images/happysens-love.jpg");
   background-color: #0288d1; }
+  #cardEntreprise .bgCardsIndex {
+    background-color: rgba(2, 136, 209, 0.55); }
 
 #cardHappy {
-  background-image: linear-gradient(to top, rgba(194, 24, 91, 0.7), rgba(194, 24, 91, 0.6)), url("../images/happysens-sport.jpg");
+  background-image: linear-gradient(to top, rgba(194, 24, 91, 0.3), rgba(194, 24, 91, 0.2)), url("../images/happysens-sport.jpg");
   background-color: #c2185b; }
+  #cardHappy .bgCardsIndex {
+    background-color: rgba(194, 24, 91, 0.55); }
 
 .titleDetailsEntreprise {
-  font-size: 4em;
-  font-family: "Patrick Hand SC", cursive;
+  font-size: 3em;
+  font-family: "Quicksand", sans-serif;
   margin-bottom: 30px; }
 
 .detailsInfosEntreprise {
   width: 100vw;
   margin-left: -20px;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/happysens-succes.jpg");
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url("../images/happysens-succes.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -245,9 +330,9 @@ nav {
     color: white;
     padding-left: 5%; }
     .detailsInfosEntreprise ul li {
-      font-family: 'Montserrat', sans-serif;
+      font-family: "Roboto", sans-serif;
       list-style-type: circle;
-      font-size: 1.5em;
+      font-size: 1.3em;
       margin-bottom: 10px; }
 
 .cardExempleProjet {
@@ -255,9 +340,63 @@ nav {
   .cardExempleProjet .cardContent {
     padding: 50px 20px; }
 
+.chipStatus {
+  position: absolute;
+  top: 20px;
+  z-index: 2;
+  margin-left: 20px;
+  left: 0; }
+
+.chip.validate {
+  background-color: rgba(34, 139, 34, 0.8);
+  color: white; }
+.chip.inProgress {
+  background-color: rgba(255, 165, 0, 0.8);
+  color: white; }
+.chip.end {
+  background-color: rgba(255, 0, 0, 0.8);
+  color: white; }
+
+ul.switch {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center; }
+
+ul.switch li {
+  margin-bottom: 20px;
+  padding: 0;
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden; }
+
+ul.switch li a {
+  text-decoration: none;
+  display: block;
+  font-size: 1.5em;
+  padding: 0 20px;
+  color: black;
+  min-width: 150px;
+  text-align: center;
+  font-family: "Quicksand", sans-serif; }
+
+ul.switch li.active, ul.switch li.active a:hover {
+  background-color: rgba(173, 216, 230, 0.1);
+  border-bottom: 2px solid blue; }
+
+.switch_container {
+  border-top: none;
+  clear: both;
+  width: 100%;
+  min-height: 50vh;
+  padding: 10px; }
+
 /*****************    Vues    ****************************/
 .parallax-container-home {
-  min-height: 101vh;
+  min-height: 103vh;
   background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -270,17 +409,19 @@ nav {
   border-radius: 5px;
   top: 40vh;
   position: relative;
-  transform: translatey(-40%);
-  text-shadow: 0 1px 2px black; }
+  transform: translatey(-40%); }
   .headerTitleHome h1 {
-    font-family: 'Patrick Hand SC', cursive;
+    font-family: "Quicksand", sans-serif;
     font-size: 5.5em; }
+    .headerTitleHome h1 img {
+      margin-bottom: -40px;
+      width: 250px; }
   .headerTitleHome h5 {
     margin-left: 20px;
-    font-size: 1.6em;
+    font-size: 2em;
     margin-top: 35px;
     margin-bottom: 35px;
-    font-family: 'Montserrat', sans-serif; }
+    font-family: "Roboto", sans-serif; }
 
 .btnHome {
   text-shadow: 0 0 0 rgba(0, 0, 0, 0.4);
@@ -295,22 +436,24 @@ nav {
   width: 45vw; }
 
 .page-footer {
-  margin-bottom: -25px; }
+  margin-bottom: -25px;
+  background-color: #252f3d; }
 
 ul.followUs {
   display: flex;
   justify-content: space-between; }
 
 .containExplainEmploye {
-  padding: 40px 40px 0 40px;
-  text-align: left; }
+  margin: 50px 0; }
+  .containExplainEmploye i {
+    color: #C2185B; }
   .containExplainEmploye .detailsExplainEmploye {
     border-radius: 5px;
     margin: auto;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 1.3em;
     padding: 30px 10px;
-    text-align: left; }
+    text-align: center; }
   .containExplainEmploye ul {
     padding-left: 5%; }
     .containExplainEmploye ul li {
@@ -320,9 +463,9 @@ ul.followUs {
       margin-bottom: 20px; }
 
 .titleExplainEmploye {
-  font-weight: bold;
-  font-family: "Patrick Hand SC", cursive;
-  font-size: 2.2em;
+  font-family: "Quicksand", sans-serif;
+  color: #FFA000;
+  font-size: 3em;
   margin-bottom: 35px; }
 
 .containerPicsEmploye {
@@ -330,47 +473,52 @@ ul.followUs {
   margin-top: 50px;
   text-align: center; }
   .containerPicsEmploye .typeExplainEmploye {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 1.5em;
     padding: 20px; }
 
+.detailsInfosEmploye {
+  width: 100vw;
+  margin-left: -20px;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url("../images/happysens-salaries.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 60px 20px; }
+  .detailsInfosEmploye ul {
+    color: white;
+    padding-left: 5%; }
+    .detailsInfosEmploye ul li {
+      font-family: "Roboto", sans-serif;
+      list-style-type: circle;
+      font-size: 1.3em;
+      margin-bottom: 10px; }
+
 .containerIntroEntreprise {
-  width: 100%;
-  padding: 50px 25px;
-  color: white;
-  background-color: rgba(25, 118, 210, 0.9);
-  border-radius: 5px; }
-
-.introEntreprise {
-  font-size: 3em;
+  color: #0288D1;
+  border-radius: 5px;
   text-align: center;
   letter-spacing: 2px;
-  font-family: "Patrick Hand SC", cursive; }
-
-.afterIntroEntreprise {
-  font-size: 2.5em;
-  text-align: center;
-  letter-spacing: 2px;
-  font-family: "Patrick Hand SC", cursive; }
+  font-family: "Quicksand", sans-serif; }
 
 .blocExplainEntreprise h3 {
-  font-size: 4em;
-  font-family: "Patrick Hand SC", cursive; }
-
+  font-size: 3em;
+  font-family: "Quicksand", sans-serif; }
 .blocExplainEntreprise .containExplainEntreprise {
-  padding: 50px 40px 0 40px;
+  padding: 30px 15px;
   text-align: left; }
   .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
-    font-weight: bold;
-    font-family: "Patrick Hand SC", cursive;
-    font-size: 2.2em; }
+    font-family: "Roboto", sans-serif; }
   .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
+    padding: 10px 0;
     border-radius: 5px;
     margin: auto;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-size: 1.3em;
-    padding: 30px 10px;
-    text-align: left; }
+    text-align: justify; }
+
+.titleSecond {
+  font-family: "Quicksand", sans-serif; }
 
 .containerTalentsEntreprise {
   text-align: center;
@@ -378,8 +526,8 @@ ul.followUs {
   .containerTalentsEntreprise .containsTalents {
     padding: 5px 0 20px 0; }
     .containerTalentsEntreprise .containsTalents p {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.2em; }
+      font-family: "Roboto", sans-serif;
+      font-size: 1.5em; }
       .containerTalentsEntreprise .containsTalents p span {
         font-weight: bold; }
   .containerTalentsEntreprise .titleTalents {
@@ -388,16 +536,65 @@ ul.followUs {
     margin-bottom: 30px; }
 
 .titleEndEntreprise {
-  font-size: 3em;
-  font-family: "Patrick Hand SC", cursive;
-  margin-bottom: 30px; }
+  font-size: 1.8em;
+  font-family: "Quicksand", sans-serif;
+  text-align: left;
+  margin: 10px;
+  border-left: 4px solid #C2185B; }
+
+.sign {
+  right: 0;
+  font-size: 0.7em; }
+
+.titleExplainHappy {
+  font-family: "Quicksand", sans-serif;
+  color: #FFA000;
+  font-size: 2em;
+  margin-bottom: 35px;
+  text-align: center;
+  padding: 5px 20px; }
+
+.detailsInfosHappy {
+  width: 100vw;
+  margin-left: -20px;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url("../images/happysens-montagne.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 60px 20px; }
+  .detailsInfosHappy ul {
+    color: white;
+    padding-left: 5%; }
+    .detailsInfosHappy ul li {
+      font-family: "Roboto", sans-serif;
+      list-style-type: circle;
+      font-size: 1.3em;
+      margin-bottom: 10px; }
+
+.input-field label {
+  color: dimgrey; }
+
+.input-field input:focus + label {
+  color: #FFA000; }
+
+.input-field input:focus {
+  border-bottom: 1px solid #FFA000;
+  box-shadow: 0 1px 0 0 #000; }
+
+.input-field input.valid {
+  border-bottom: 1px solid forestgreen;
+  box-shadow: 0 1px 0 0 #000; }
+
+.input-field input.invalid {
+  border-bottom: 1px solid red;
+  box-shadow: 0 1px 0 0 #000; }
 
 .sliderBloc {
   line-height: 2.3em;
   padding: 30px 10px; }
   .sliderBloc h3 {
-    font-family: "Patrick Hand SC", cursive;
-    font-size: 4em;
+    font-family: "Quicksand", sans-serif;
+    font-size: 3.5em;
     text-align: center; }
 
 .presentation {
@@ -405,13 +602,14 @@ ul.followUs {
 
 .sliderHeader {
   font-size: 1em;
-  font-family: 'Montserrat', sans-serif;
-  text-align: justify; }
+  font-family: "Quicksand", sans-serif;
+  text-align: justify;
+  font-weight: bold; }
 
 .sliderParagraph {
   font-size: 1.2em;
-  font-family: 'Montserrat', sans-serif;
-  text-align: justify; }
+  text-align: justify;
+  font-weight: inherit; }
 
 .slider {
   margin: 35px 0; }
@@ -450,7 +648,7 @@ ul.followUs {
 
 .titleInscription {
   font-weight: bold;
-  font-family: "Montserrat", cursive;
+  font-family: "Quicksand", sans-serif;
   font-size: 1.5em; }
 
 .titleProfilEmploye {
@@ -459,24 +657,55 @@ ul.followUs {
 .containerStarTalents {
   padding-top: 25px; }
 
+.card .card-content {
+  padding-top: 40px; }
+
 .card .card-reveal {
   padding: 25px; }
 
 .infosEmploye {
   padding-top: 20px; }
+  .infosEmploye th {
+    color: grey; }
   .infosEmploye td {
-    color: white;
+    color: black;
     font-weight: bold; }
-  .infosEmploye tr {
-    font-weight: lighter; }
 
 .tabs-content.carousel {
-  min-height: 150vh !important;
   padding: 25px 5px;
   margin-bottom: 25px; }
 
-p, span {
-  font-family: "Montserrat", sans-serif; }
+.card-profile-image {
+  position: absolute;
+  margin-top: -75px;
+  margin-left: 25px;
+  z-index: 2;
+  cursor: pointer;
+  width: 150px;
+  height: 150px; }
+
+.mini-company {
+  position: absolute;
+  margin-top: -230px;
+  margin-left: 25px;
+  z-index: 2;
+  cursor: pointer;
+  text-align: left; }
+  .mini-company .chip {
+    font-size: 1em;
+    color: #0288D1; }
+
+.detailsProject {
+  font-size: 0.7em;
+  font-weight: lighter; }
+
+.revealProject .row {
+  padding: 20px 5px; }
+.revealProject p {
+  padding: 0 10px; }
+.revealProject .footerReveal {
+  padding: 15px 5px;
+  margin-top: 10px; }
 
 .PC_blockCompany .card-reveal {
   background: linear-gradient(to top, #0288d1, rgba(2, 136, 209, 0.8));
