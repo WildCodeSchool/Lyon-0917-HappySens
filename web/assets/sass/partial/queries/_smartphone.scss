@@ -1,0 +1,82 @@
+@media all and (max-width: 800px)
+{
+  .headerTitleHome {
+    padding: 0 20px !important;
+    h1 {
+      font-size: 3.5em !important;
+    }
+    img {
+      width: 150px !important;
+      margin-bottom: -30px !important;
+    }
+    h5 {
+      font-size: 1.5em !important;
+    }
+  }
+  .blocExplainEntreprise {
+    h3 {
+      font-size: 2.2em !important;
+    }
+    .containExplainEntreprise .detailsExplainEntreprise {
+      font-size: 1.2em !important;
+    }
+  }
+  .generalContainer {
+    padding: 50px 20px !important;
+  }
+  .title {
+    font-size: 2em !important;
+  }
+  .scrollToTop {
+    display: none !important;
+  }
+  .headerTitleOthers {
+    top: 35vh !important;
+    h1 {
+      font-size: 2em !important;
+    }
+    h5 {
+      font-size: 1.2em !important;
+    }
+  }
+  .titleSecond {
+    font-size: 1.5em !important;
+  }
+  .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
+    font-size: 1.5em !important;
+  }
+  .titleDetailsEntreprise {
+    font-size: 2em !important;
+  }
+  .cardTitle {
+    font-size: 1.8em !important;
+  }
+  .detailsInfosEntreprise {
+    font-size: 0.8em !important;
+  }
+  .detailsInfosEmploye {
+    font-size: 0.8em !important;
+  }
+  .detailsInfosHappy {
+    font-size: 0.8em !important;
+  }
+  .containerTalentsEntreprise .containsTalents p {
+    font-size: 1em !important;
+  }
+  .titleEndEntreprise {
+    font-size: 1.1em !important ;
+  }
+  .containExplainEmploye .detailsExplainEmploye {
+    font-size: 1em !important;
+  }
+  .titleExplainEmploye {
+    font-size: 2em !important;
+  }
+  .typeExplainEmploye {
+    font-size: 1em !important;
+  }
+  #contentEntreprise, #contentHappy, #contentCGV, #contentInscription, #contentContact {
+    background-position: center !important;
+    top: 25vh !important;
+  }
+}
