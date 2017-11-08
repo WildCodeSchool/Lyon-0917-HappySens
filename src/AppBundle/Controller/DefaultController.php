@@ -119,6 +119,25 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
+    /**
+     * @Route("inscriptionCompany", name="inscriptionCompany")
+     */
+    public function inscriptionCompanyAction(Request $request)
+    {
+        return $this->render('pages/inscriptionCompany.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
+    /**
+     * @Route("inscriptionHappyCoach", name="inscriptionHappyCoach")
+     */
+    public function inscriptionHappyCoachAction(Request $request)
+    {
+        return $this->render('pages/inscriptionHappyCoach.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
+
     // Traitement Form connection / contact / profils / inscriptions / projets
     
 }

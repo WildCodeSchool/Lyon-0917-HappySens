@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscriptions{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <form action="" method="post" class="generalContainer">
+            <div class="row">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="firstname" name="firstname" type="text" class="validate">
+                        <label for="firstname"><span class="requireInput">* </span>Votre Prénom</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="lastname" name="lastname" type="text" class="validate">
+                        <label for="lastname"><span class="requireInput">* </span>Votre Nom</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="city" name="city" type="text" class="validate">
+                        <label for="city"><span class="requireInput">* </span>Votre ville</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="lastname" name="lastname" type="text" class="validate">
+                        <label for="lastname"><span class="requireInput">* </span>Votre numero de tel</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="company" name="company" type="text" class="validate">
+                        <label for="company"><span class="requireInput">* </span>Entreprise</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="jobs" name="jobs" type="text" class="validate">
+                        <label for="jobs"><span class="requireInput">* </span>Votre poste</label>
+                    </div>
+                </div>
+                <div class="row">
+
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="email" type="email" class="validate">
+                        <label for="email"><span class="requireInput">* </span>Email</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="password" type="password" class="validate">
+                        <label for="password"><span class="requireInput">* </span>Mot de passe</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <p><span class="requireInput">* </span> Champs requis</p>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="input-field right">
+                    <a href="{{ path('profilEmploye') }}" class="btn waves-effect waves-light amber darken-2">
+                        Continuer
+                        <i class="material-icons right">send</i>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
