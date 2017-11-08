@@ -1,7 +1,7 @@
 // Others
 #contentEntreprise {
-  min-height: 50vh;
-  background-image: linear-gradient(to top, rgba(black, 0.1),rgba(black, 0.3)), url("../images/happywork.jpg");
+  min-height: 55vh;
+  background-image: linear-gradient(rgba(black, 0.4),rgba(black, 0.3)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -9,7 +9,7 @@
   margin-top: -90px;
 }
 #contentEmploye {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(black, 0.5),rgba(black, 0.3)), url("../images/happysens-love.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -18,7 +18,7 @@
   margin-top: -90px;
 }
 #contentHappy {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(black, 0.1),rgba(black, 0.1)), url("../images/happysens-coach.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -27,7 +27,7 @@
   margin-top: -90px;
 }
 #contentCGV {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: radial-gradient(rgba(black, 0.5),rgba(black, 0.4)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -36,7 +36,7 @@
   margin-top: -90px;
 }
 #contentInscription {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(black, 0.3),rgba(black, 0.2)), url("../images/happysens-love.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -45,7 +45,7 @@
   margin-top: -90px;
 }
 #contentContact {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(black, 0.1),rgba(black, 0.1)), url("../images/happysens-time.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -55,7 +55,7 @@
 }
 .headerTitleOthers {
   border-radius: 5px;
-  top: 30vh;
+  top: 32vh;
   transform: translatey(-70%);
   position: relative;
   h1 {

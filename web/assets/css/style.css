@@ -1,6 +1,81 @@
-/*******************    CONFIG   ***************************/
+/***************    Variables   *************************/
+/******************   Mixins   ***********************/
+/******************   Fonts   ***********************/
 @import url("https://fonts.googleapis.com/css?family=Roboto:500");
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
+/*****************    Queries   ****************************/
+@media all and (max-width: 800px) {
+  .headerTitleHome {
+    padding: 0 20px !important; }
+    .headerTitleHome h1 {
+      font-size: 3.5em !important; }
+    .headerTitleHome img {
+      width: 150px !important;
+      margin-bottom: -30px !important; }
+    .headerTitleHome h5 {
+      font-size: 1.5em !important; }
+
+  .blocExplainEntreprise h3 {
+    font-size: 2.2em !important; }
+  .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
+    font-size: 1.2em !important; }
+
+  .generalContainer {
+    padding: 50px 20px !important; }
+
+  .title {
+    font-size: 2em !important; }
+
+  .scrollToTop {
+    display: none !important; }
+
+  .headerTitleOthers {
+    top: 35vh !important; }
+    .headerTitleOthers h1 {
+      font-size: 2em !important; }
+    .headerTitleOthers h5 {
+      font-size: 1.2em !important; }
+
+  .titleSecond {
+    font-size: 1.5em !important; }
+
+  .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
+    font-size: 1.5em !important; }
+
+  .titleDetailsEntreprise {
+    font-size: 2em !important; }
+
+  .cardTitle {
+    font-size: 1.8em !important; }
+
+  .detailsInfosEntreprise {
+    font-size: 0.8em !important; }
+
+  .detailsInfosEmploye {
+    font-size: 0.8em !important; }
+
+  .detailsInfosHappy {
+    font-size: 0.8em !important; }
+
+  .containerTalentsEntreprise .containsTalents p {
+    font-size: 1em !important; }
+
+  .titleEndEntreprise {
+    font-size: 1.1em !important; }
+
+  .containExplainEmploye .detailsExplainEmploye {
+    font-size: 1em !important; }
+
+  .titleExplainEmploye {
+    font-size: 2em !important; }
+
+  .typeExplainEmploye {
+    font-size: 1em !important; }
+
+  #contentEntreprise, #contentHappy, #contentCGV, #contentInscription, #contentContact {
+    background-position: center !important;
+    top: 25vh !important; } }
+/*******************    CONFIG   ***************************/
 * {
   box-sizing: border-box; }
 
@@ -26,10 +101,6 @@ main {
   font-size: 3.5em;
   text-align: center; }
 
-/***************    Variables   *************************/
-/******************   Mixins   ***********************/
-/******************   Fonts   ***********************/
-/*****************    Queries   ****************************/
 /*************    Composant   ****************************/
 .Contact {
   padding: 8% 20px; }
@@ -42,6 +113,11 @@ main {
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
   color: white; }
+
+.linkNavSide {
+  font-family: "Quicksand", sans-serif;
+  font-weight: bold;
+  color: #252f3d; }
 
 .enterIn {
   background-color: #252f3d;
@@ -86,9 +162,6 @@ nav {
   background-color: inherit;
   box-shadow: none; }
 
-.nav-wrapper {
-  padding-left: 25px; }
-
 .modal {
   top: 50vh;
   transform: translatey(-50%);
@@ -126,8 +199,8 @@ nav {
   justify-content: space-around; }
 
 #contentEntreprise {
-  min-height: 50vh;
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url("../images/happywork.jpg");
+  min-height: 55vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -135,7 +208,7 @@ nav {
   margin-top: -90px; }
 
 #contentEmploye {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("../images/happysens-love.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -144,7 +217,7 @@ nav {
   margin-top: -90px; }
 
 #contentHappy {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../images/happysens-coach.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -153,7 +226,7 @@ nav {
   margin-top: -90px; }
 
 #contentCGV {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -162,7 +235,7 @@ nav {
   margin-top: -90px; }
 
 #contentInscription {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("../images/happysens-love.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -171,7 +244,7 @@ nav {
   margin-top: -90px; }
 
 #contentContact {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../images/happysens-time.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -181,7 +254,7 @@ nav {
 
 .headerTitleOthers {
   border-radius: 5px;
-  top: 30vh;
+  top: 32vh;
   transform: translatey(-70%);
   position: relative; }
   .headerTitleOthers h1 {
@@ -314,7 +387,7 @@ ul.switch li.active, ul.switch li.active a:hover {
 
 /*****************    Vues    ****************************/
 .parallax-container-home {
-  min-height: 101vh;
+  min-height: 103vh;
   background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -332,7 +405,8 @@ ul.switch li.active, ul.switch li.active a:hover {
     font-family: "Quicksand", sans-serif;
     font-size: 5.5em; }
     .headerTitleHome h1 img {
-      margin-bottom: -40px; }
+      margin-bottom: -40px;
+      width: 250px; }
   .headerTitleHome h5 {
     margin-left: 20px;
     font-size: 2em;
@@ -488,6 +562,24 @@ ul.followUs {
       font-size: 1.3em;
       margin-bottom: 10px; }
 
+.input-field label {
+  color: dimgrey; }
+
+.input-field input:focus + label {
+  color: #FFA000; }
+
+.input-field input:focus {
+  border-bottom: 1px solid #FFA000;
+  box-shadow: 0 1px 0 0 #000; }
+
+.input-field input.valid {
+  border-bottom: 1px solid forestgreen;
+  box-shadow: 0 1px 0 0 #000; }
+
+.input-field input.invalid {
+  border-bottom: 1px solid red;
+  box-shadow: 0 1px 0 0 #000; }
+
 .sliderBloc {
   line-height: 2.3em;
   padding: 30px 10px; }
@@ -547,7 +639,7 @@ ul.followUs {
 
 .titleInscription {
   font-weight: bold;
-  font-family: "Montserrat", cursive;
+  font-family: "Quicksand", sans-serif;
   font-size: 1.5em; }
 
 .titleProfilEmploye {
