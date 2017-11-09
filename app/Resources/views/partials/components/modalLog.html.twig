@@ -1,13 +1,11 @@
 <!-- Modal Structure -->
 <div class="row">
-    <div id="modal1" class="modal col s10 offset-s1 col m6 offset-m3 col l4 offset-l4">
+    <div id="modal1" class="modal">
+        <div class="col s12"><a class="modal-action modal-close right iClose"><i class="fa fa-times-circle-o fa-2x"></i></a></div>
         <div class="modal-content">
-            <div class="row">
-                <div class="col s10"><h5 class="blue-text text-darken-3 flow-text">Se connecter à votre compte</h5>
+                <div class="left">
+                    <h5 class="blue-text text-darken-3 titleSecond">Se connecter à votre compte</h5>
                 </div>
-                <div class="col s1 offset-1"><a href="#!" class="modal-action modal-close waves-effect waves-green"><i class="material-icons right">cancel</i></a>
-                </div>
-            </div>
             <form action="" method="post">
                 <div class="row">
                     <div class="col s12">
@@ -23,11 +21,14 @@
                                 <label for="password">Mot de passe</label>
                             </div>
                         </div>
-                        <div class="center">
-                            <input type="checkbox" id="stayConnect"/>
-                            <label for="stayConnect">Souhaitez vous rester connecté ? </label>
+                        <div class="row">
+                            <input type="checkbox" name="filled-in-box" class="filled-in" id="filled-in-box"/>
+                            <label for="filled-in-box">Souhaitez vous rester connecté ? </label>
                         </div>
                         <div class="row">
+                            <div class="input-field col s12 center">
+                                Vous souhaitez vous inscrire en tant que <a href="{{ path('contact') }}">entreprise </a>, <a href="{{ path('inscription') }}">salarié </a> ou <a href="{{ path('contact') }}">happyCoach </a>.
+                            </div>
                             <div class="input-field col s12 center">
                                 Vous avez oublié votre <a href="#">mot de passe?</a>
                             </div>
@@ -43,10 +44,6 @@
                                 <a href="{{ path('profilEmploye') }}" class="btn waves-effect waves-light amber darken-2">
                                     Connexion
                                     <i class="material-icons right">send</i>
-                                </a>
-                                <a class="waves-effect waves-light btn pink" href="{{ path('inscription') }}">
-                                    <i class="material-icons right">person_add</i>
-                                    Inscription
                                 </a>
                             </div>
                         </div>

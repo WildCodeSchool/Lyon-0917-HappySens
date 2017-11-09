@@ -1,11 +1,16 @@
-<div class="col s12 PC_bProjectInProgress">
-    <h5 class="light-blue-text text-darken-2 center">Les Happy Projets</h5>
-    <div id="PC_ProjetAttente" class="col s12">
+<div class="PC_bProjectInProgress">
+    <div class="hideMobile">
+        <h5 class="center titleSecond">Les Happy Projets</h5>
+    </div>
+    <div id="PC_ProjetAttente">
         <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ asset('assets/images/happysens-cuisine.jpg') }}">
             </div>
-            {{ include('partials/components/In/chipStatus/inProgress.html.twig') }}
+            <div class="chip inProgress chipStatus">
+                <span><i class="fa fa-clock-o"></i></span>
+                <span> En attente</span>
+            </div>
             <div class="card-content">
                 <div class="card-title activator grey-text text-darken-4">
                     Cours de cuisine
@@ -37,58 +42,10 @@
                             </div>
                         </a>
                     </div>
-                    {{ include('partials/components/In/chipStatus/inProgress.html.twig') }}
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eum id illo laudantium non odit, placeat praesentium quaerat ratione voluptates. Adipisci corporis dolore dolores explicabo incidunt itaque labore natus veniam.</p>
-                <div class="footerReveal">
-                    <div class="left">
-                        <a href="{{ path('viewProject') }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
-                    </div>
-                    <div class="right">
-                        <a href="#!">15 <i class="fa fa-heart"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card medium">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="{{ asset('assets/images/happysens-cuisine.jpg') }}">
-            </div>
-            {{ include('partials/components/In/chipStatus/inProgress.html.twig') }}
-            <div class="card-content">
-                <div class="card-title activator grey-text text-darken-4">
-                    Cours de cuisine
-                    <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
-                </div>
-                <div>
-                    <a href="{{ path('profilEmploye') }}">
-                        <div class="chip">
-                            <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                            <span class="black-text">@name.employe</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="right">
-                    <a href="#!">15 <i class="fa fa-heart"></i></a>
-                </div>
-            </div>
-            <div class="card-reveal revealProject">
-                <span class="card-title grey-text text-darken-4">
-                    Cours de cuisine
-                    <i class="material-icons right">close</i>
-                </span>
-                <div class="row">
-                    <div>
-                        <a href="{{ path('profilEmploye') }}">
-                            <div class="chip left">
-                                <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                <span class="black-text">@name.employe</span>
-                            </div>
-                        </a>
-                    </div>
-                    {{ include('partials/components/In/chipStatus/inProgress.html.twig') }}
-                </div>
+                    <div class="chip inProgress right">
+                        <span><i class="fa fa-clock-o"></i></span>
+                        <span> En attente</span>
+                    </div>                </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eum id illo laudantium non odit, placeat praesentium quaerat ratione voluptates. Adipisci corporis dolore dolores explicabo incidunt itaque labore natus veniam.</p>
                 <div class="footerReveal">
@@ -109,7 +66,10 @@
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ asset('assets/images/happysens-montagne.jpg') }}">
             </div>
-            {{ include('partials/components/In/chipStatus/validate.html.twig') }}
+            <div class="chip validate chipStatus">
+                <span><i class="fa fa-clock-o"></i></span>
+                <span>En cours</span>
+            </div>
             <div class="card-content">
                 <div class="card-title activator grey-text text-darken-4">
                     Ascension du mont-blanc
@@ -124,7 +84,7 @@
                     </a>
                 </div>
                 <div class="right">
-                    <a href="#!">152 <i class="fa fa-heart"></i></a>
+                    <a href="#!">45 <i class="fa fa-heart"></i></a>
                 </div>
             </div>
             <div class="card-reveal revealProject">
@@ -142,7 +102,10 @@
                         </a>
                     </div>
                     <div>
-                        {{ include('partials/components/In/chipStatus/validate.html.twig') }}
+                        <div class="chip validate right">
+                            <span><i class="fa fa-clock-o"></i></span>
+                            <span>En cours</span>
+                        </div>
                     </div>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?
@@ -152,7 +115,7 @@
                         <a href="{{ path('viewProject') }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
                     </div>
                     <div class="right">
-                        <a href="#!">15 <i class="fa fa-heart"></i></a>
+                        <a href="#!">45 <i class="fa fa-heart"></i></a>
                     </div>
                 </div>
             </div>
@@ -161,7 +124,10 @@
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ asset('assets/images/happysens-potager.jpg') }}">
             </div>
-            {{ include('partials/components/In/chipStatus/end.html.twig') }}
+            <div class="chip end chipStatus">
+                <span><i class="fa fa-clock-o"></i></span>
+                <span>Terminé</span>
+            </div>
             <div class="card-content">
                 <div class="card-title activator grey-text text-darken-4">
                     Création d'un potager
@@ -176,7 +142,7 @@
                     </a>
                 </div>
                 <div class="right">
-                    <a href="#!">152 <i class="fa fa-heart"></i></a>
+                    <a href="#!">25 <i class="fa fa-heart"></i></a>
                 </div>
             </div>
             <div class="card-reveal revealProject">
@@ -194,7 +160,10 @@
                         </a>
                     </div>
                     <div>
-                    {{ include('partials/components/In/chipStatus/end.html.twig') }}
+                        <div class="chip end right">
+                            <span><i class="fa fa-clock-o"></i></span>
+                            <span>Terminé</span>
+                        </div>
                     </div>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?
@@ -204,7 +173,7 @@
                         <a href="{{ path('viewProject') }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
                     </div>
                     <div class="right">
-                        <a href="#!">15 <i class="fa fa-heart"></i></a>
+                        <a href="#!">25 <i class="fa fa-heart"></i></a>
                     </div>
                 </div>
             </div>
