@@ -4,6 +4,10 @@
 
 {% block content %}
 
+
+
+
+
     <div id="contentInscription" class="parallax-container-others">
         <div class="section no-pad-bot">
             <div class="col s12">
@@ -18,7 +22,7 @@
     </div>
 
     <div class="container">
-        <form action="" method="post" class="generalContainer">
+        {{ form_start(form) }}
             <div class="row">
                 <div class="col s6">
                     <h5 class="titleInscription pink-text text-darken-2">Nom de l'entreprise:</h5>
@@ -27,19 +31,19 @@
                     <h5 class="titleInscription pink-text text-darken-2">Activité :</h5>
                 </div>
                 <div class="input-field col s6">
-                    <input id="firstname" name="firstname" type="text" class="validate">
-                    <label for="firstname"><span class="requireInput">* </span>Entreprise</label>
+                    {{ form_widget(form.nameCompany) }}
+                    <label for="nameCompany"><span class="requireInput">* </span>Entreprise</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="lastname" name="lastname" type="text" class="validate">
-                    <label for="lastname"><span class="requireInput">* </span>Activité </label>
+                    {{ form_widget(form.activity) }}
+                    <label for="activity"><span class="requireInput">* </span>Activité </label>
                 </div>
                 <div class="col s12">
                     <h5 class="titleInscription pink-text text-darken-2">Adresse :</h5>
                 </div>
                 <div class="input-field col s12">
-                    <input id="city" name="city" type="text" class="validate">
-                    <label for="city"><span class="requireInput">* </span>Adresse de l'entreprise</label>
+                    {{ form_widget(form.address) }}
+                    <label for="address"><span class="requireInput">* </span>Adresse de l'entreprise</label>
                 </div>
                 <div class="col s6">
                     <h5 class="titleInscription pink-text text-darken-2">Date de création :</h5>
@@ -48,12 +52,12 @@
                     <h5 class="titleInscription pink-text text-darken-2">Lieu des sites :</h5>
                 </div>
                 <div class="input-field col s6">
-                    <input id="jobs" name="jobs" type="text" class="validate">
-                    <label for="entreprise"><span class="requireInput">* </span>Date de création</label>
+                    {{ form_widget(form.createDate, {'attr': {'class': 'datepicker'}}) }}
+                    <label for="createDate"><span class="requireInput">* </span>Date de création</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="jobs" name="jobs" type="text" class="validate">
-                    <label for="jobs">Lieu des sites</label>
+                    {{ form_widget(form.location) }}
+                    <label for="location">Lieu des sites</label>
                 </div>
                 <div class="col s6">
                     <h5 class="titleInscription pink-text text-darken-2">Effectif :</h5>
@@ -62,12 +66,12 @@
                     <h5 class="titleInscription pink-text text-darken-2">Référent HappySens :</h5>
                 </div>
                 <div class="input-field col s6">
-                    <input id="jobs" name="jobs" type="text" class="validate">
-                    <label for="entreprise"><span class="requireInput">* </span>Effectif</label>
+                    {{ form_widget(form.nbPeople) }}
+                    <label for="nbpeople"><span class="requireInput">* </span>Effectif</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="jobs" name="jobs" type="text" class="validate">
-                    <label for="jobs"><span class="requireInput">* </span>Votre nom</label>
+                    {{ form_widget(form.contactHappySens) }}
+                    <label for="contactHappySens"><span class="requireInput">* </span>Votre nom</label>
                 </div>
                 <div class="col s6">
                     <h5 class="titleInscription pink-text text-darken-2">Téléphone référent HappySens :</h5>
@@ -76,12 +80,12 @@
                     <h5 class="titleInscription pink-text text-darken-2">Emails référent HappySens :</h5>
                 </div>
                 <div class="input-field col s6">
-                    <input id="lastname" name="lastname" type="text" class="validate">
-                    <label for="lastname"><span class="requireInput">* </span>Numéro de téléphone</label>
+                    {{ form_widget(form.phoneHappySens) }}
+                    <label for="phoneHappySens"><span class="requireInput">* </span>Numéro de téléphone</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="email" type="email" class="validate">
-                    <label for="email"><span class="requireInput">* </span>Emails</label>
+                    {{ form_widget(form.emailHappySens) }}
+                    <label for="emailHappySens"><span class="requireInput">* </span>Emails</label>
                 </div>
                 <div class="col s6">
                     <h5 class="titleInscription pink-text text-darken-2">Mot de passe :</h5>
@@ -90,12 +94,12 @@
                     <h5 class="titleInscription pink-text text-darken-2">Confirmation :</h5>
                 </div>
                 <div class="input-field col s6">
-                    <input id="password" type="password" class="validate">
+                    {{ form_widget(form.password) }}
                     <label for="password"><span class="requireInput">* </span>Mot de passe</label>
                 </div>
                 <div class="input-field col s6">
-                    <input id="password" type="password" class="validate">
-                    <label for="password"><span class="requireInput">* </span>Confirmation mot de passe</label>
+                    {{ form_widget(form.confirmationPassword) }}
+                    <label for="confirmationPassword"><span class="requireInput">* </span>Confirmation mot de passe</label>
                 </div>
                 <div class="col s12">
                     <p><span class="requireInput">* </span> Champs requis</p>
@@ -109,6 +113,10 @@
                     </a>
                 </div>
             </div>
-        </form>
+        {{ form_end(form) }}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/script/app.js') }}"></script>
 {% endblock %}

@@ -64,16 +64,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
-    // InscriptionCompany
-    /**
-     * @Route("inscriptionCompany", name="inscriptionCompany")
-     */
-    public function inscriptionCompanyAction(Request $request)
-    {
-        return $this->render('pages/inscriptionCompany.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
+
     // InscriptionCompany2
     /**
      * @Route("inscriptionCompany2", name="inscriptionCompany2")
