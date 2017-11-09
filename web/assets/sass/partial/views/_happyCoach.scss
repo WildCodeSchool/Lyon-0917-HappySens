@@ -1,0 +1,28 @@
+.titleExplainHappy {
+  font-family: $textFont;
+  color: $amberColor;
+  font-size: 2em;
+  margin-bottom: 35px;
+  text-align: center;
+  padding: 5px 20px;
+}
+
+.detailsInfosHappy {
+  width: 100vw;
+  margin-left: -20px;
+  background-image: linear-gradient(to top, rgba(black, 0.6),rgba(black , 0.5)), url("../images/happysens-montagne.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 60px 20px;
+  ul {
+    color: white;
+    padding-left: 5%;
+    li {
+      font-family: $titleFont;
+      list-style-type: circle;
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+  }
+}

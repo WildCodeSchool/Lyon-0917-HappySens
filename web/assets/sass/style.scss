@@ -1,6 +1,3 @@
-/*******************    CONFIG   ***************************/
-@import 'partial/config/general';
-
 /***************    Variables   *************************/
 @import 'partial/config/variables';
 
@@ -15,18 +12,22 @@
 @import "partial/queries/tablet";
 @import "partial/queries/smartphone";
 
+/*******************    CONFIG   ***************************/
+@import 'partial/config/general';
+
 /*************    Composant   ****************************/
 @import "partial/components/buttons";
 @import "partial/components/formContact";
 @import "partial/components/navbar";
-@import "partial/components/navbarIn";
-@import "partial/components/modal";
+ @import "partial/components/modal";
 @import "partial/components/goToTop";
 @import "partial/components/iconsBar";
 @import "partial/components/jumbotronOthers";
 @import "partial/components/x3cardsHomePage";
 @import "partial/components/shemaTexteEntreprise";
 @import "partial/components/cardExempleProjet";
+@import "partial/components/In/chipStatus/chip";
+@import "partial/components/tabs";
 
 /*****************    Vues    ****************************/
 @import "partial/views/header";

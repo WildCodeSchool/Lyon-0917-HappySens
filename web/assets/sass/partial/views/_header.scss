@@ -1,7 +1,7 @@
 // Jumbotron
 // Home
 .parallax-container-home {
-  min-height: 101vh;
+  min-height: 103vh;
   background-image: radial-gradient(rgba(black, 0.15),rgba(black, 0.3)), url("../images/happysens-accueil.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -15,17 +15,20 @@
   top: 40vh;
   position: relative;
   transform: translatey(-40%);
-  text-shadow: 0 1px 2px black;
   h1 {
-    font-family: 'Patrick Hand SC', cursive;
+    font-family: $textFont;
     font-size: 5.5em;
+    img {
+      margin-bottom: -40px;
+      width: 250px;
+    }
   }
   h5 {
     margin-left: 20px;
-    font-size: 1.6em;
+    font-size: 2em;
     margin-top: 35px;
     margin-bottom: 35px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: $titleFont;
   }
 }
 .btnHome {
