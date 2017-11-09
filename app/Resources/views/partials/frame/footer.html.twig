@@ -1,0 +1,32 @@
+<footer class="page-footer">
+    <div class="row">
+        <div class="container">
+            <div class="col l4 s12">
+                <h5 class="white-text center">Nos réseaux sociaux</h5>
+                <ul class="followUs">
+                    <li class="grey-text text-lighten-3"><i class="fa fa-facebook-square fa-2x hoverable"></i></li>
+                    <li class="grey-text text-lighten-3"><i class="fa fa-twitter-square fa-2x hoverable"></i></li>
+                    <li class="grey-text text-lighten-3"><i class="fa fa-linkedin-square fa-2x hoverable"></i></li>
+                </ul>
+            </div>
+            <div class="col l4 offset-l4 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="{{ path('homepage') }}">Home</a></li>
+                    <li><a class="grey-text text-lighten-3" href="{{ path('employe') }}">Employé</a></li>
+                    <li><a class="grey-text text-lighten-3" href="{{ path('company') }}">Entreprise</a></li>
+                    <li><a class="grey-text text-lighten-3" href="{{ path('happyCoach') }}">HappyCoach</a></li>
+                    <li><a class="grey-text text-lighten-3" href="{{ path('contact') }}">Nous contactez</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <a class="grey-text text-lighten-4 left" href="./">© Copyrights <span class="amber-text text-darken-2"><b>HappySens</b></span> <?php echo date(Y); ?> - All rights reserved</a>
+            <a class="grey-text text-lighten-4 right" href="{{ path('cgv') }}">Mentions Légales</a>
+        </div>
+    </div>
+</footer>
+
+

@@ -1,0 +1,65 @@
+// Entreprise
+.containerIntroEntreprise {
+  color: $blueColor;
+  border-radius: 5px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-family: $textFont;
+}
+
+.blocExplainEntreprise {
+  h3 {
+    font-size: 3em;
+    font-family: $textFont;
+  }
+  .containExplainEntreprise {
+    padding: 30px 15px;
+    text-align: left;
+    .titleExplainEntreprise {
+      font-family: $titleFont;
+    }
+    .detailsExplainEntreprise {
+      padding: 10px 0;
+      border-radius: 5px;
+      margin: auto;
+      font-family: $textFont;
+      font-size: 1.3em;
+      text-align: justify;
+    }
+  }
+}
+.titleSecond {
+  font-family: $textFont;
+}
+// TalentsEntreprise
+.containerTalentsEntreprise {
+  text-align: center;
+  padding-top: 30px;
+  .containsTalents {
+    padding: 5px 0 20px 0;
+    p {
+      font-family: $titleFont;
+      font-size: 1.5em;
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+  .titleTalents {
+    font-size: 3em;
+    font-family: "Patrick Hand SC", cursive;
+    margin-bottom: 30px;
+  }
+}
+
+.titleEndEntreprise {
+  font-size: 1.8em;
+  font-family: $textFont;
+  text-align: left;
+  margin: 10px;
+  border-left: 4px solid $pinkColor;
+}
+.sign {
+  right: 0;
+  font-size: 0.7em;
+}
