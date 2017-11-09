@@ -22,12 +22,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <input type="checkbox" name="filled-in-box" class="filled-in" id="filled-in-box"/>
-                            <label for="filled-in-box">Souhaitez vous rester connecté ? </label>
+                            <div class="stayConnected">
+                                <input type="checkbox" name="filled-in-box" class="filled-in" id="filled-in-box"/>
+                                <label for="filled-in-box">Souhaitez vous rester connecté ? </label>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s12 center">
-                                Vous souhaitez vous inscrire en tant que <a href="{{ path('contact') }}">entreprise </a>, <a href="{{ path('inscription') }}">salarié </a> ou <a href="{{ path('contact') }}">happyCoach </a>.
+                            <div class="input-field center">
+                                <a class="newUser"><i class="fa fa-user-plus"></i> Cliquez ici pour vous inscrire</a>
                             </div>
                             <div class="input-field col s12 center">
                                 Vous avez oublié votre <a href="#">mot de passe?</a>

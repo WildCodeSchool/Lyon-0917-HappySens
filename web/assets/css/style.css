@@ -200,6 +200,17 @@ nav {
   top: 45vh;
   transform: translatey(-45%);
   margin: auto; }
+  .modal-content a {
+    color: #0288D1; }
+    .modal-content a:hover {
+      color: #4dabe6;
+      cursor: pointer; }
+
+.newUser {
+  text-align: center; }
+
+.stayConnected {
+  margin-left: 10px; }
 
 .scrollToTop {
   height: 50px;
