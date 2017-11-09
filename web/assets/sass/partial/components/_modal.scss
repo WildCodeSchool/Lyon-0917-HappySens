@@ -1,6 +1,18 @@
 // Modal
 .modal {
-  top: 50vh;
-  transform: translatey(-50%);
-  min-height: 50vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  margin-top: -90px;
+  background-color: rgba(white, 0.92);
+  padding: 20px 20px;
+  .iClose {
+    color: $darkColor;
+  }
+}
+.modal-content {
+  width: 50em;
+  position: relative;
+  top: 45vh;
+  transform: translatey(-45%);
+  margin: auto;
 }

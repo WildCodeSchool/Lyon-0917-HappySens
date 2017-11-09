@@ -3,7 +3,6 @@ $(document).ready(function() {
         evoNavbar();
     })
 });
-
 function evoNavbar() {
     $window = $(window);
     $window.scroll(function() {

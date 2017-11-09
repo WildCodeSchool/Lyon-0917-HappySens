@@ -1,5 +1,6 @@
 @media all and (max-width: 800px)
 {
+  /* Out */
   .headerTitleHome {
     padding: 0 20px !important;
     h1 {
@@ -78,5 +79,22 @@
   #contentEntreprise, #contentHappy, #contentCGV, #contentInscription, #contentContact {
     background-position: center !important;
     top: 25vh !important;
+  }
+  .modal {
+    margin-top: -90px !important;
+  }
+  .modal-content {
+    width: 20em !important;
+  }
+
+  /* IN */
+  .card-profile-image {
+    margin-top: -55px !important;
+    img {
+      width: 100px;
+    }
+  }
+  .hideMobile {
+    display: none;
   }
 }
