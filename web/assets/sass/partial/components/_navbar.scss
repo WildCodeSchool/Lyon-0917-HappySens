@@ -1,9 +1,24 @@
 // Navbar
 .linkNav {
-  font-size: 1.5em;
-  font-family: 'Patrick Hand SC', cursive;
+  font-family: $textFont;
   font-weight: bold;
   color: white;
+}
+.linkNavSide {
+  font-family: $textFont;
+  font-weight: bold;
+  color: #252f3d;
+}
+.enterIn {
+  background-color: #252f3d;
+  color: white;
+  &:hover {
+    background-color: rgba(#252f3d, 0.9);
+    color: $amberColor;
+  }
+  &:active {
+    background-color: #252f3d ;
+  }
 }
 .notifications {
   min-width: 250px;
@@ -12,16 +27,14 @@
 .linkTopColor {
   color: white;
   font-weight: bold;
-  transition: all 0.5s ease-out;
+  transition: all 0.3s ease;
   .linkTopColor:hover {
     color: deepskyblue;
   }
 }
 .linkFixedColor {
-  color: dodgerblue;
-  transition: all 0.5s ease-out;
-  font-size: 1.6em;
-  font-weight: inherit;
+  color: #252f3d;
+  transition: all 0.3s ease;
   .linkFixedColor:hover {
     color: deepskyblue;
   }
@@ -31,15 +44,15 @@
 }
 
 .navbarTop {
-  background-color: rgba(lightgrey, 0.05);
+  background-color: transparent;
   box-shadow: none;
-  transition: all 0.5s ease-out;
-
+  transition: all 0.3s ease;
 }
+
 .navbarFixed {
   background-color: rgba(white, 1);
   box-shadow: 2px 1px 5px rgba(black, 0.7);
-  transition: all 0.5s ease-out;
+  transition: all 0.2s ease;
 }
 
 nav {

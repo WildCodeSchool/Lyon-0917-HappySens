@@ -6,8 +6,6 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  text-shadow: 0 1px 1px rgba(black, 0.8);
-
 }
 main {
   flex: 1 0 auto;
@@ -22,4 +20,10 @@ main {
 .requireInput {
   color: red;
   font-weight: bold;
+}
+
+.title {
+  font-family: "Quicksand", sans-serif;
+  font-size: 3.5em;
+  text-align: center;
 }

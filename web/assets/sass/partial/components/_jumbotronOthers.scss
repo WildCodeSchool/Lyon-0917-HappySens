@@ -1,55 +1,84 @@
 // Others
 #contentEntreprise {
-  min-height: 50vh;
-  background-image: linear-gradient(rgba(black, 0.5),rgba(black, 0.3)), url("../images/happywork.jpg");
+  min-height: 55vh;
+  background-image: linear-gradient(rgba(black, 0.4),rgba(black, 0.3)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
-  margin-top: -80px;
+  background-position: center -200px;
+  margin-top: -90px;
 }
 #contentEmploye {
-  min-height: 50vh;
+  min-height: 55vh;
   background-image: linear-gradient(rgba(black, 0.5),rgba(black, 0.3)), url("../images/happysens-love.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: bottom;
-  margin-top: -80px;
+  background-position: center;
+  margin-top: -90px;
 }
 #contentHappy {
+  min-height: 55vh;
+  background-image: linear-gradient(rgba(black, 0.1),rgba(black, 0.1)), url("../images/happysens-coach.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center -300px;
+  margin-top: -90px;
+}
+#contentCGV {
+  min-height: 55vh;
+  background-image: radial-gradient(rgba(black, 0.5),rgba(black, 0.4)), url("../images/happysens-accueil.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center -240px;
+  margin-top: -90px;
+}
+#contentInscription {
+  min-height: 55vh;
+  background-image: linear-gradient(rgba(black, 0.3),rgba(black, 0.2)), url("../images/happysens-love.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center -240px;
+  margin-top: -90px;
+}
+#contentContact {
+  min-height: 55vh;
+  background-image: linear-gradient(rgba(black, 0.1),rgba(black, 0.1)), url("../images/happysens-time.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center -370px;
+  margin-top: -90px;
+}
+#contentAddProject {
   min-height: 50vh;
   background-image: linear-gradient(rgba(black, 0.5),rgba(black, 0.3)), url("../images/happysens-sport.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom;
-  margin-top: -80px;
-}
-#contentCGV {
-  min-height: 50vh;
-  background-image: linear-gradient(rgba(orange, 0.5),rgba(orange, 0.4)), url("../images/happysens-accueil.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: bottom;
-  margin-top: -80px;
+  margin-top: -90px;
 }
 .headerTitleOthers {
-  padding-left: 55px;
   border-radius: 5px;
-  top: 30vh;
+  top: 32vh;
   transform: translatey(-70%);
   position: relative;
-  text-shadow: 0 1px 2px black;
   h1 {
-    font-family: 'Patrick Hand SC', cursive;
-    font-size: 4em;
+    font-family: $textFont;
+    font-size: 3.5em;
     letter-spacing: 1px;
   }
   h5 {
     margin-left: 10px;
-    font-size: 1.2em;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    font-family: $titleFont;
+  }
+  img {
+    margin-bottom: -30px;
   }
 }
+

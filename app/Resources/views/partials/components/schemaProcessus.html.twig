@@ -1,10 +1,11 @@
 <section class="containHowItWorks">
     <div class="row bloc_2">
-        <div class="col s12">
-            <div class="container center">
-                <span class="cardTitle amber-text text-darken-3">Comment ça marche ?</span>
+        <!-- view for desktop only -->
+        <div class="col s12 hide-on-small-only">
+            <div class="container center-align">
+                <h3 class="title amber-text text-darken-3">Comment ça marche ?</h3>
                 <br>
-                <div class="row">
+                <div class="row" data-aos="slide-left">
                     <div class="col s2 offset-s2">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
@@ -13,7 +14,7 @@
                                     cartographie des talents cachés
                                     + Présentation de la plateforme HappySens</span>
                                 </div>
-                                <div class="collapsible-header blue darken-3"><span class="white-text">Présentation</span>
+                                <div class="collapsible-header blue darken-3 center-align"><span class="white-text">Présentation</span>
                                 </div>
 
                             </li>
@@ -47,9 +48,9 @@
                             </li>
                         </ul>
                     </div>
-                <div class="col s12">
-                <img class= "responsive-img" src="{{ asset('assets/images/1.png') }}" style="min-width: 95%; max-height: 900px;" alt="schema process">
-                </div>
+                    <div class="col s12">
+                        <img class= "responsive-img" src="{{ asset('assets/images/1.png') }}" style="min-width: 95%; max-height: 900px;" alt="schema process">
+                    </div>
                     <div class="col s2">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
@@ -64,7 +65,7 @@
                     <div class="col s2 offset-s2">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
-                            <div class="collapsible-header amber darken-3"><span class="white-text">Inscription</span></div>
+                                <div class="collapsible-header amber darken-3"><span class="white-text">Inscription</span></div>
                                 <div class="collapsible-body"><span>
                                     Inscription individuelle et sécurisée sur la
                                     plateforme. Création du profil,
@@ -88,8 +89,8 @@
                     </div>
                 </div>
                 <br>
-                <div class="row">
-                <img class= "responsive-img" src="{{ asset('assets/images/2.png') }}" style="min-width: 95%; max-height: 900px;" alt="schema process">
+                <div class="row" data-aos="slide-right">
+                    <img class= "responsive-img" src="{{ asset('assets/images/2.png') }}" style="min-width: 95%; max-height: 900px;" alt="schema process">
                     <div class="col s2">
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
@@ -141,7 +142,104 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- view for mobile only -->
+        <div class="col s12 show-on-small-only hide-on-med-and-up">
+            <div class="container center-align">
+                <span class="cardTitle amber-text text-darken-3">Comment ça marche ?</span>
+                <br>
+                <div class="row" data-aos="zoom-in">
+                    <div class="col s4">
+                        <div class="row">
+                            <div class="col s12 colSchema">
+                                <a class="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal2">1</a>
+                                <!-- Modal Structure -->
+                                <div id="modal2" class="modal">
+                                    <div class="modal-content">
+                                        <p>Réunion de lancement: Restitution de la
+                                            cartographie des talents cachés
+                                            + Présentation de la plateforme HappySens</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col s12 colSchema">
+                                <a class="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal2">3</a>
+                                <!-- Modal Structure -->
+                                <div id="modal2" class="modal">
+                                    <div class="modal-content">
+                                        <p>Réunion de lancement: Restitution de la
+                                            cartographie des talents cachés
+                                            + Présentation de la plateforme HappySens</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col s12 colSchema">
+                                <a class="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal2">5</a>
+                                <!-- Modal Structure -->
+                                <div id="modal2" class="modal">
+                                    <div class="modal-content">
+                                        <p>Réunion de lancement: Restitution de la
+                                            cartographie des talents cachés
+                                            + Présentation de la plateforme HappySens</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s4">
+                        <img class= "responsive-img" src="{{ asset('assets/images/1-vert.png') }}" style="min-width: 95%; max-height: 900px;" alt="schema process">
+                    </div>
+                    <div class="col s4">
+
+                        <div class="row" data-aos="">
+                            <div class="col s12 colSchema">
+                                <a class="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal2">2</a>
+                                <!-- Modal Structure -->
+                                <div id="modal2" class="modal">
+                                    <div class="modal-content">
+                                        <p>Réunion de lancement: Restitution de la
+                                            cartographie des talents cachés
+                                            + Présentation de la plateforme HappySens</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 colSchema">
+                                <a class="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal2">4</a>
+                                <!-- Modal Structure -->
+                                <div id="modal2" class="modal">
+                                    <div class="modal-content">
+                                        <p>Réunion de lancement: Restitution de la
+                                            cartographie des talents cachés
+                                            + Présentation de la plateforme HappySens</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 colSchema">
+                                <a class="btn-floating btn waves-effect waves-light red modal-trigger" href="#modal2">6</a>
+                                <!-- Modal Structure -->
+                                <div id="modal2" class="modal">
+                                    <div class="modal-content">
+                                        <p>Réunion de lancement: Restitution de la
+                                            cartographie des talents cachés
+                                            + Présentation de la plateforme HappySens</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col s4 offset-s4">
+                            <img class= "responsive-img" src="{{ asset('assets/images/2-vert.png') }}" style="min-width: 95%; max-height: 900px;" alt="schema process">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>

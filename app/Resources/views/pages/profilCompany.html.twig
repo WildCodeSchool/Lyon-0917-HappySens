@@ -8,18 +8,38 @@
 {% endblock %}
 
 {% block content %}
-    <section class="PC_blockCompany">
-        {{ include('partials/components/PC_blockCompany.html.twig') }}
-    </section>
-       <section class="PC_blockProject">
-        {{ include('partials/components/PC_blockProject.html.twig') }}
-    </section>
-       <section class="PC_blockEmployee">
-        {{ include('partials/components/PC_blockEmployee.html.twig') }}
-    </section>
-       <section class="PC_blockTalents">
-        {{ include('partials/components/PC_blockTalents.html.twig') }}
-    </section>
+<div class="row">
+    <div class="col m10 offset-m1 s12">
+        <div class="row">
+         <!--***************************Company*******************************************-->
+            <section class="PC_blockCompany">
+                 {{ include('partials/components/PC_blockCompany.html.twig') }}
+             </section>
+        <div class="row">
+            <div class="col s12 m4">
+                <!--***************************Happy Talents*******************************************-->
+                <section class="PC_blockTalents">
+                    {{ include('partials/components/PC_blockTalents.html.twig') }}
+                </section>
+                <!--***************************** Happy Salarié ************************************************-->
+                <section class="PC_blockEmployee">
 
+                    {{ include('partials/components/PC_blockEmployee.html.twig') }}
+                </section>
+            </div>
+            <!--********************************************* Project************************************************-->
+            <div class="col s12 m8">
+                <div class="row">
+                    <section class="PC_blockProject">
+                        {{ include('partials/components/PC_blockProject.html.twig') }}
+                    </section>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
 
+{% block javascripts %}
+    <script src="{{ asset('assets/script/tabs.js') }}"></script>
 {% endblock %}
