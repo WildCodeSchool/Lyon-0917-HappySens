@@ -1,7 +1,11 @@
 <div id="target">
     <nav>
         <div class="nav-wrapper light-blue-text">
-            <a href="./" class="brand-logo center" title="Accueil"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="100px"></a>
+            {% if app.request.attributes.get('_route') == 'homepage' %}
+                <a href="./" class="brand-logo hide logoOut center" title="Accueil"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="100px"></a>
+            {% else %}
+                <a href="./" class="brand-logo center" title="Accueil"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="100px"></a>
+            {% endif %}
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="large material-icons">menu</i></a>
             <ul class="left hide-on-med-and-down">
                 <li class="waves-effect waves-light"><a href="{{ path('homepage') }}"><span class="linkNav">Accueil</span></a></li>

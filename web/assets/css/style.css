@@ -117,6 +117,9 @@ main {
   font-size: 3.5em;
   text-align: center; }
 
+.hide {
+  display: none; }
+
 /*************    Composant   ****************************/
 .Contact {
   padding: 20px; }
@@ -442,11 +445,13 @@ ul.switch li.active, ul.switch li.active {
   margin-top: -90px; }
 
 .headerTitleHome {
+  opacity: 1;
   margin: auto;
   border-radius: 5px;
   top: 40vh;
   position: relative;
-  transform: translatey(-40%); }
+  transform: translatey(-40%);
+  transition: all 500ms ease-out; }
   .headerTitleHome h1 {
     font-family: "Quicksand", sans-serif;
     font-size: 5.5em; }
