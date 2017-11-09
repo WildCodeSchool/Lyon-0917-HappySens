@@ -8,7 +8,7 @@
                 </div>
             <form action="" method="post">
                 <div class="row">
-                    <div class="col s12">
+                    <div class="col s12" id="password">
                         <div class="row">
                             <div class="input-field col s12">
                                 <input id="email" type="email" class="validate">
@@ -30,17 +30,13 @@
                                 Vous souhaitez vous inscrire en tant que <a href="{{ path('contact') }}">entreprise </a>, <a href="{{ path('inscription') }}">salarié </a> ou <a href="{{ path('contact') }}">happyCoach </a>.
                             </div>
                             <div class="input-field col s12 center">
-                                Vous avez oublié votre <a href="#">mot de passe?</a>
+                                Vous avez oublié votre <a href="#" onclick="missingPassword()">mot de passe?</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col s12">
+                    <div class="col s12" id="btnConnexion">
                         <div class="row">
                             <div class="input-field center">
-    <!--                            <button class="btn waves-effect waves-light amber darken-2" type="submit" name="action">-->
-    <!--                                Connexion-->
-    <!--                                <i class="material-icons right">send</i>-->
-    <!--                            </button>-->
                                 <a href="{{ path('profilEmploye') }}" class="btn waves-effect waves-light amber darken-2">
                                     Connexion
                                     <i class="material-icons right">send</i>
@@ -48,8 +44,34 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row hidden" id="hiddenMissingPassword">
+                        <div class="input-field col s12 center">
+                            Vous avez perdu votre mot de passe ? Pas de panique, nous allons vous aider à le récupérer.
+                            Saisissez votre adresse e-mail ci-dessous, et vous recevrez, sous peu, à cette même adresse,
+                            un lien vous permettant de choisir un nouveau mot de passe.
+                        </div>
+                        <div class="input-field col s12 center">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="col s12">
+                            <div class="row">
+                            <div class="input-field center">
+                                <div class="input-field col s6 center-align">
+                                    <a href="#" onclick="findPassword()" class="btn waves-effect waves-light amber darken-2">Annuler
+                                        <i class="material-icons left">reply</i>
+                                    <a>
+                                </div>
+                                <div class="input-field col s6 center-align">
+                                    <a href="{{ path('profilEmploye') }}" class="btn waves-effect waves-light blue darken-2">
+                                        Envoyer
+                                        <i class="material-icons right">send</i>
+                                    </a>
+                            </div>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
