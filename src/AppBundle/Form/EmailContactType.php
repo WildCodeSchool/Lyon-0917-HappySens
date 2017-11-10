@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form;
 
-namespace AppBundle\Form;
 use AppBundle\Entity\EmailContact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -33,19 +32,12 @@ class EmailContactType extends AbstractType
                 ],
             ])
             ->add('message', TextareaType::class);
-
     }
-
-
-
-
+    
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => EmailContact::class,
         ]);
-
-
     }
-
 }
