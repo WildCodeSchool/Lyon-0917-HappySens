@@ -1,0 +1,52 @@
+// blocConcept1
+.sliderBloc {
+  line-height: 2.3em;
+  padding: 30px 10px;
+  h3 {
+    font-family: $textFont;
+    font-size: 3.5em;
+    text-align: center;
+  }
+}
+
+.presentation {
+  padding: 30px 0;
+}
+
+.sliderHeader {
+  font-size: 1em;
+  font-family: $textFont;
+  text-align: justify;
+  font-weight: bold;
+
+}
+
+.sliderParagraph {
+  font-size: 1.2em;
+  text-align: justify;
+  font-weight: inherit;
+
+}
+
+.slider {
+  margin: 35px 0;
+}
+
+.sliderParagraph {
+  margin-top: 65px;
+}
+
+.slider .slides {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+}
+
+.slider .indicators .indicator-item.active {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+  border: 3px solid #E0E0E0;
+  background-color: #FFA000;
+}
+
+.vignettesHome {
+  max-height: 150px;
+  max-width: 150px;
+}

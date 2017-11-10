@@ -1,0 +1,39 @@
+// Modal
+.modal {
+  min-width: 100vw;
+  min-height: 100vh;
+  margin-top: -90px;
+  background-color: rgba(white, 0.92);
+  padding: 20px 20px;
+  .iClose {
+    color: $darkColor;
+  }
+  .hidden{
+    display: none;
+  }
+}
+.modal-content {
+  width: 50em;
+  position: relative;
+  top: 45vh;
+  transform: translatey(-45%);
+  margin: auto;
+  a {
+    color: $blueColor;
+    &:hover {
+      color: #4dabe6;
+      cursor: pointer;
+    }
+  }
+  a.btn {
+    color: white;
+  }
+}
+.newUser {
+  text-align: center;
+}
+.stayConnected {
+  margin-left: 10px;
+}
+
+

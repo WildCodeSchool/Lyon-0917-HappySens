@@ -1,0 +1,59 @@
+// Navbar
+.linkNav {
+  font-family: $textFont;
+  font-weight: bold;
+  color: white;
+}
+.linkNavSide {
+  font-family: $textFont;
+  font-weight: bold;
+  color: #252f3d;
+}
+.enterIn {
+  background-color: #252f3d;
+  color: white;
+  &:hover {
+    background-color: rgba(#252f3d, 0.9);
+    color: $amberColor;
+  }
+  &:active {
+    background-color: #252f3d ;
+  }
+}
+.notifications {
+  min-width: 250px;
+  margin-top: 65px;
+}
+.linkTopColor {
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.linkFixedColor {
+  color: #252f3d;
+  transition: all 0.3s ease;
+  .linkFixedColor:hover {
+    color: deepskyblue;
+  }
+}
+#sidenav-overlay {
+  z-index: 990;
+}
+
+.navbarTop {
+  background-color: transparent;
+  box-shadow: none;
+  transition: all 0.3s ease;
+}
+.navbarFixed {
+  background-color: rgba(white, 1);
+  box-shadow: 2px 1px 5px rgba(black, 0.7);
+  transition: all 0.2s ease;
+}
+.button-collapse {
+  color: $darkColor;
+}
+nav {
+  background-color: inherit;
+  box-shadow: none;
+}

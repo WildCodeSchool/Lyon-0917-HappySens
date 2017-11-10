@@ -1,0 +1,55 @@
+/***************    Variables   *************************/
+@import 'partial/config/variables';
+
+/******************   Mixins   ***********************/
+@import "partial/config/mixins";
+
+/******************   Fonts   ***********************/
+@import "partial/config/fonts";
+
+/*****************    Queries   ****************************/
+@import "partial/queries/tablet";
+@import "partial/queries/smartphone";
+
+/*******************    CONFIG   ***************************/
+@import 'partial/config/general';
+
+/*************    Composant   ****************************/
+@import "partial/components/buttons";
+@import "partial/components/formContact";
+@import "partial/components/navbar";
+ @import "partial/components/modal";
+@import "partial/components/goToTop";
+@import "partial/components/iconsBar";
+@import "partial/components/jumbotronOthers";
+@import "partial/components/x3cardsHomePage";
+@import "partial/components/shemaTexteEntreprise";
+@import "partial/components/cardExempleProjet";
+@import "partial/components/In/chipStatus/chip";
+@import "partial/components/tabs";
+
+/*****************    Vues    ****************************/
+@import "partial/views/header";
+@import "partial/views/footer";
+@import "partial/views/employe";
+@import "partial/views/entreprise";
+@import "partial/views/happyCoach";
+@import "partial/views/contact";
+@import "partial/views/home";
+@import "partial/views/cgv";
+@import "partial/views/inscription";
+@import "partial/views/logUser";
+@import "partial/views/profilEmploye";
+@import "partial/views/profilEntreprise";
+@import "partial/views/profilHappyCoach";
+@import "partial/views/recapProjet";
+@import "partial/views/addProject";
+@import "partial/views/listingNotifications";
+
+
+
+
+
+
+
+
