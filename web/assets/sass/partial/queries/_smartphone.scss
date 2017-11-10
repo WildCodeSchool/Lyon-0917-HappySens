@@ -79,4 +79,23 @@
     background-position: center !important;
     top: 25vh !important;
   }
+  .titleShema{
+    font-size: 1.3em !important;
+    text-align: left !important;
+  }
+  .textSchema{
+    font-size: 1em !important;
+    text-align: left !important;
+  }
+  .largeScreen {
+    display: none !important;
+  }
+  .mobile {
+    display: block !important;
+  }
+  .etapeOne{
+    font-family: $textFont;
+    font-size: 1.5em;
+    text-align: left;
+  }
 }
