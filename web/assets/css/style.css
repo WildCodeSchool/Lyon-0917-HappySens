@@ -741,6 +741,10 @@ ul.followUs {
   padding: 15px 5px;
   margin-top: 10px; }
 
+.toast {
+  background-color: #0288D1 !important;
+  font-size: large !important; }
+
 .PC_blockCompany .card-reveal {
   background: linear-gradient(to top, #0288d1, rgba(2, 136, 209, 0.8));
   color: white; }
