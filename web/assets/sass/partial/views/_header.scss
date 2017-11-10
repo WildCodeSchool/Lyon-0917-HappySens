@@ -10,11 +10,14 @@
   margin-top: -90px;
 }
 .headerTitleHome {
+  opacity: 1;
   margin: auto;
   border-radius: 5px;
   top: 40vh;
   position: relative;
   transform: translatey(-40%);
+  transition: all 500ms ease-out;
+
   h1 {
     font-family: $textFont;
     font-size: 5.5em;

@@ -1,16 +1,14 @@
 <!-- Modal Structure -->
 <div class="row">
-    <div id="modal1" class="modal col s10 offset-s1 col m6 offset-m3 col l4 offset-l4">
+    <div id="modal1" class="modal">
+        <div class="col s12"><a class="modal-action modal-close right iClose"><i class="fa fa-times-circle-o fa-2x"></i></a></div>
         <div class="modal-content">
-            <div class="row">
-                <div class="col s10"><h5 class="blue-text text-darken-3 flow-text">Se connecter à votre compte</h5>
+                <div class="left">
+                    <h5 class="blue-text text-darken-3 titleSecond">Se connecter à votre compte</h5>
                 </div>
-                <div class="col s1 offset-1"><a href="#!" class="modal-action modal-close waves-effect waves-green"><i class="material-icons right">cancel</i></a>
-                </div>
-            </div>
             <form action="" method="post">
                 <div class="row">
-                    <div class="col s12">
+                    <div class="col s12" id="password">
                         <div class="row">
                             <div class="input-field col s12">
                                 <input id="email" type="email" class="validate">
@@ -23,36 +21,57 @@
                                 <label for="password">Mot de passe</label>
                             </div>
                         </div>
-                        <div class="center">
-                            <input type="checkbox" id="stayConnect"/>
-                            <label for="stayConnect">Souhaitez vous rester connecté ? </label>
+                        <div class="row">
+                            <div class="stayConnected">
+                                <input type="checkbox" name="filled-in-box" class="filled-in" id="filled-in-box"/>
+                                <label for="filled-in-box">Souhaitez vous rester connecté ? </label>
+                            </div>
                         </div>
                         <div class="row">
+                            <div class="input-field center">
+                                <a class="newUser"><i class="fa fa-user-plus"></i> Cliquez ici pour vous inscrire</a>
+                            </div>
                             <div class="input-field col s12 center">
-                                Vous avez oublié votre <a href="#">mot de passe?</a>
+                                Vous avez oublié votre <a href="#" onclick="missingPassword()">mot de passe?</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col s12">
+                    <div class="col s12" id="btnConnexion">
                         <div class="row">
                             <div class="input-field center">
-    <!--                            <button class="btn waves-effect waves-light amber darken-2" type="submit" name="action">-->
-    <!--                                Connexion-->
-    <!--                                <i class="material-icons right">send</i>-->
-    <!--                            </button>-->
                                 <a href="{{ path('profilEmploye') }}" class="btn waves-effect waves-light amber darken-2">
                                     Connexion
                                     <i class="material-icons right">send</i>
                                 </a>
-                                <a class="waves-effect waves-light btn pink" href="{{ path('inscription') }}">
-                                    <i class="material-icons right">person_add</i>
-                                    Inscription
-                                </a>
                             </div>
                         </div>
+                    </div>
+                    <div class="row hidden" id="hiddenMissingPassword">
+                        <div class="input-field col s12 center">
+                            Vous avez perdu votre mot de passe ? Pas de panique, nous allons vous aider à le récupérer.
+                            Saisissez votre adresse e-mail ci-dessous, et vous recevrez, sous peu, à cette même adresse,
+                            un lien vous permettant de choisir un nouveau mot de passe.
+                        </div>
+                        <div class="input-field col s12 center">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="col s12">
+                            <div class="row">
+                            <div class="input-field center">
+                                <div class="input-field col s12 center">
+                                    <a href="#" onclick="findPassword()" class="btn-flat waves-effect waves-light">Annuler
+                                        <i class="material-icons left">reply</i>
+                                    </a>
+                                    <a href="{{ path('profilEmploye') }}" class="btn waves-effect waves-light blue darken-2">
+                                        Envoyer
+                                        <i class="material-icons right">send</i>
+                                    </a>
+                            </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+

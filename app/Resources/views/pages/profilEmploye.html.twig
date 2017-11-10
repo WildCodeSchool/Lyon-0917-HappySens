@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Employe{% endblock %}
+{% block title %}@name.user{% endblock %}
 
 {% block navbar %}
     {{ include('partials/components/navbarIn.html.twig') }}
@@ -12,38 +12,32 @@
         {#<div class="row">#}
             {#<h1 class="titleProfilEmploye header center light-blue-text text-darken-2">Le bonheur au travail commence par un projet qui fait sens !</h1>#}
         {#</div>#}
-            {# header #}
             <div class="row">
                 <div class="card medium headerProfil">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="{{ asset('assets/images/happysens-time.jpg') }}" height="300px">
                     </div>
-                    <div class="mini-company col s12">
-                        <a href="{{ path('profilCompany') }}">
-                            <div class="chip    ">
-                                <img src="http://logok.org/wp-content/uploads/2014/03/Nike-logo-+-wordmark.png" alt="Logo company"> <!-- notice the "circle" class -->
-                                <span>@name.company</span>
-                            </div>
-                        </a>
-                    </div>
                     <div class="card-profile-image">
                         <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="profile image" class="circle z-depth-3 activator">
                     </div>
+                    <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light pink darken-2 right hoverable"><i class="material material-icons">info_outline</i></a>
+
                     <div class="card-content">
-                        <div class="row">
-                            <div class="col s5 offset-s1 l4 center">
+                        <div class="myInfosEmploye">
+                            <div id="name">
                                 <span class="card-title activator grey-text text-darken-4">@name.employe</span>
-                                <p>@poste.company</p>
-                            </div>
-                            <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light amber darken-2 right"><i class="fa fa-user-circle-o"></i></a>
-                            <div class="col s6 center">
-                                <span class="card-title activator grey-text text-darken-4">@count.projects</span>
-                                <p>Total projets</p>
+                                <div class="mini-company">
+                                    <a href="{{ path('profilCompany') }}">
+                                        <div class="chip  waves-effect waves-light">
+                                            <img src="http://philaecom.fr/wp-content/uploads/2016/10/philacomdigitalemini.png" alt="Logo company"> <!-- notice the "circle" class -->
+                                            <span>@name.company</span>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="card-reveal">
-                        <div>
                             <h5 class="amber-text">
                                 John Doe
                                 <i class="material-icons right black-text card-title">close</i>
@@ -90,4 +84,8 @@
             {{ include('partials/components/mobileProfilEmploye.html.twig') }}
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/script/toast.js') }}"></script>
 {% endblock %}

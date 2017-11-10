@@ -1,9 +1,12 @@
-
 <div id="target">
     <nav>
         <div class="nav-wrapper light-blue-text">
-            <a href="./" class="brand-logo center" title="Accueil"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="100px"></a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse blue-text text-darken-3"><i class="large material-icons">menu</i></a>
+            {% if app.request.attributes.get('_route') == 'homepage' %}
+                <a href="./" class="brand-logo hide logoOut center" title="Accueil"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="100px"></a>
+            {% else %}
+                <a href="./" class="brand-logo center" title="Accueil"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="100px"></a>
+            {% endif %}
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="large material-icons">menu</i></a>
             <ul class="left hide-on-med-and-down">
                 <li class="waves-effect waves-light"><a href="{{ path('homepage') }}"><span class="linkNav">Accueil</span></a></li>
                 <li class="waves-effect waves-light"><a href="{{ path('company') }}"><span class="linkNav">Entreprises</span></a></li>
@@ -13,7 +16,7 @@
             <ul class="right hide-on-med-and-down">
                 <li class="waves-effect waves-light"><a href="{{ path('contact') }}"><span class="linkNav">Contact</span></a></li>
                 <li class="waves-effect waves-light"><a href="https://happiness-time.fr/" target="_blank"><span class="waves-effect waves-light linkNav">Blog</span></a></li>
-                <li><a class="waves-effect waves-light enterIn hoverable btn" onclick="$('#modal1').modal('open');" title="Connectez vous à votre profil"><i class="material-icons left">exit_to_app</i>Login</a></li>
+                <li><a class="waves-effect waves-light enterIn hoverable btn" onclick="$('#modal1').modal('open');" title="Connectez vous à votre profil"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li><a href="{{ path('homepage') }}"><span class="linkNavSide">Accueil</span></a></li>
@@ -23,7 +26,7 @@
                 <li><a href="https://happiness-time.fr/" target="_blank"><span class="linkNavSide">Blog</span></a></li>
                 <li><a href="{{ path('contact') }}"><span class="linkNavSide">Contact</span></a></li>
                 <li class="divider"></li>
-                <li><a class="waves-effect waves-light enterIn hoverable btn" onclick="$('#modal1').modal('open');" title="Connectez vous à votre profil"><i class="material-icons left">exit_to_app</i>Login</a></li>
+                <li><a class="waves-effect waves-light enterIn hoverable btn" onclick="$('#modal1').modal('open');" title="Connectez vous à votre profil"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
                 <li><a href="./" class="brand-logo center"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="150px" class="linkNav"></a></li>
             </ul>
         </div>

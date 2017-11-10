@@ -9,6 +9,13 @@
   padding-top: 40px;
 }
 
+.myInfosEmploye {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+  margin-left: 25px;
+}
+
 .card .card-reveal {
   padding: 25px;
 }
@@ -37,17 +44,19 @@
   cursor: pointer;
   width: 150px;
   height: 150px;
+  img {
+    max-height: 150px;
+    max-width: 130px;
+    background-color: #fff;
+  }
 }
 .mini-company {
-  position: absolute;
-  margin-top: -230px;
-  margin-left: 25px;
-  z-index: 2;
   cursor: pointer;
   text-align: left;
   .chip {
     font-size: 1em;
-    color: $blueColor;
+    background-color: $blueColor;
+    color: white;
   }
 }
 
@@ -66,4 +75,9 @@
     padding: 15px 5px;
     margin-top: 10px;
   }
+}
+
+.toast {
+  background-color: $blueColor !important;
+  font-size: large !important;
 }
