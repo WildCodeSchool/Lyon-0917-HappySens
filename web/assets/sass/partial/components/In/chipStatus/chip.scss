@@ -7,6 +7,9 @@
 }
 
 .chip {
+  img {
+    background-color: #fff;
+  }
   &.validate {
     background-color: rgba(forestgreen, 0.8);
     color: white;

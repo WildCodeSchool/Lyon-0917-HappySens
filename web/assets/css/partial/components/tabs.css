@@ -8,11 +8,11 @@ Error: Undefined variable: "$textFont".
 23:   min-width: 150px;
 24:   text-align: center;
 25:   font-family: $textFont;
-26: }
-27: 
-28: ul.switch li.active, ul.switch li.active a:hover  {
-29:   background-color: rgba(lightblue, 0.1);
-30:   border-bottom: 2px solid blue;
+26:   &:hover {
+27:     background-color: rgba(lightgrey, 0.2);
+28:   }
+29:   &:focus {
+30:     color: $amberColor;
 
 Backtrace:
 sass/partial/components/tabs.scss:25
@@ -69,4 +69,4 @@ sass/partial/components/tabs.scss:25
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$textFont\".\A         on line 25 of sass/partial/components/tabs.scss\A \A 20:   font-size: 1.5em;\A 21:   padding: 0 20px;\A 22:   color: black;\A 23:   min-width: 150px;\A 24:   text-align: center;\A 25:   font-family: $textFont;\A 26: }\A 27: \A 28: ul.switch li.active, ul.switch li.active a:hover  {\A 29:   background-color: rgba(lightblue, 0.1);\A 30:   border-bottom: 2px solid blue;"; }
+  content: "Error: Undefined variable: \"$textFont\".\A         on line 25 of sass/partial/components/tabs.scss\A \A 20:   font-size: 1.5em;\A 21:   padding: 0 20px;\A 22:   color: black;\A 23:   min-width: 150px;\A 24:   text-align: center;\A 25:   font-family: $textFont;\A 26:   &:hover {\A 27:     background-color: rgba(lightgrey, 0.2);\A 28:   }\A 29:   &:focus {\A 30:     color: $amberColor;"; }

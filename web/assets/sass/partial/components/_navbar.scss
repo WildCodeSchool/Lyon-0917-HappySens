@@ -28,9 +28,6 @@
   color: white;
   font-weight: bold;
   transition: all 0.3s ease;
-  .linkTopColor:hover {
-    color: deepskyblue;
-  }
 }
 .linkFixedColor {
   color: #252f3d;
@@ -48,13 +45,14 @@
   box-shadow: none;
   transition: all 0.3s ease;
 }
-
 .navbarFixed {
   background-color: rgba(white, 1);
   box-shadow: 2px 1px 5px rgba(black, 0.7);
   transition: all 0.2s ease;
 }
-
+.button-collapse {
+  color: $darkColor;
+}
 nav {
   background-color: inherit;
   box-shadow: none;
