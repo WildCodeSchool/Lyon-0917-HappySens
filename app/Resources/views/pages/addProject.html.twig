@@ -86,31 +86,23 @@
                             votre projet</label>
                     </div>
                 </div>
-                <div class="file-field input-field col s6">
+                <div class="file-field input-field col s12 m6">
                     <div class="btn blue darken-3">Image
                         <input type="file">
                     </div>
-                    
-                    <div class="file-field input-field col s12 m6">
-                        <div class="btn blue darken-3">Image
-                            <input type="file">
-                        </div>
-
-                    <div class="file-path-wrapper">
-                        <label for="image_project"></label>
-                        {{ form_widget(form.uploadPicture, { 'attr': {'class': 'file-path'} }) }}
-                    </div>
+                    <label for="image_project"></label>
+                    {{ form_widget(form.uploadPicture, { 'attr': {'class': 'file-path-wrapper'} }) }}
                 </div>
             </div>
-                <div class="col s12 m6">
-                    <div class="center">
-                        <a href="{{ path('profilEmploye') }}" class="waves-effect waves-light btn amber darken-3">Retour</a>
-                        <button type="submit" class="waves-effect waves-light btn pink darken-2">Envoyer</button>
-                    </div>
-                </div>
-            </div>
-            {{ form_end(form) }}
         </div>
+        <div class="col s12 m6">
+            <div class="center">
+                <a href="{{ path('profilEmploye') }}"
+                   class="waves-effect waves-light btn amber darken-3">Retour</a>
+                <button type="submit" class="waves-effect waves-light btn pink darken-2">Envoyer</button>
+            </div>
+        </div>
+        {{ form_end(form) }}
     </section>
 {% endblock %}
 
