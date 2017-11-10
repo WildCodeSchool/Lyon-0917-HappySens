@@ -8,6 +8,9 @@
   .iClose {
     color: $darkColor;
   }
+  .hidden{
+    display: none;
+  }
 }
 .modal-content {
   width: 50em;
@@ -16,3 +19,5 @@
   transform: translatey(-45%);
   margin: auto;
 }
+
+
