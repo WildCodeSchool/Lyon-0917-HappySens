@@ -44,15 +44,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
-    /**
-     * @Route("contact", name="contact")
-     */
-    public function contactAction(Request $request)
-    {
-        return $this->render('pages/contact.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
+
     /**
      * @Route("cgv", name="cgv")
      */
@@ -62,26 +54,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
-    // Inscription
-    /**
-     * @Route("inscription", name="inscription")
-     */
-    public function inscriptionAction(Request $request)
-    {
-        return $this->render('pages/inscription.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
-    // Project
-    /**
-     * @Route("addProject", name="addProject")
-     */
-    public function addProjectAction(Request $request)
-    {
-        return $this->render('pages/addProject.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
+
     /**
      * @Route("viewProject", name="viewProject")
      */
@@ -129,5 +102,13 @@ class DefaultController extends Controller
         ]);
     }
     // Traitement Form connection / contact / profils / inscriptions / projets
-    
+    /**
+     * @Route("profilAdmin", name="profilAdmin")
+     */
+    public function profilAdminAction(Request $request)
+    {
+        return $this->render('pages/profilAdmin.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
 }
