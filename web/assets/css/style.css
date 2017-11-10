@@ -787,4 +787,7 @@ ul.followUs {
   background-color: #f9a825;
   color: white; }
 
+.detailsProjectExplain, .dateProject {
+  padding-left: 20px; }
+
 /*# sourceMappingURL=style.css.map */
