@@ -22,7 +22,7 @@ class EmailContact
 
 
     /**
-     * @var number
+     * @var string
      */
     private $phone;
 
@@ -94,10 +94,10 @@ class EmailContact
     }
 
     /**
-     * @param number $phone
+     * @param string $phone
      * @return EmailContact
      */
-    public function setPhone(number $phone): EmailContact
+    public function setPhone(string $phone): EmailContact
     {
         $this->phone = $phone;
         return $this;
