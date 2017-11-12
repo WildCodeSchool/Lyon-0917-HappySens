@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form;
 
-
 use AppBundle\Entity\Company;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -38,7 +37,6 @@ class InscriptionCompanyType extends AbstractType
             ->add('emailHappySens')
             ->add('password', PasswordType::class)
             ->add('confirmationPassword', PasswordType::class);
-
     }
 
     public function configureOptions(OptionsResolver $resolver)

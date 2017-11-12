@@ -18,28 +18,28 @@
     </div>
 
     <div class="container">
-        <form action="" method="post" class="generalContainer">
+        {{ form_start(form) }}
             <div class="row">
                 <div class="col s12">
                     <h5 class="titleInscription pink-text text-darken-2">Slogan : Le bonheur au travail c'est pour nous :</h5>
                 </div>
                 <div class="input-field col s12">
-                    <input id="city" name="city" type="text" class="validate">
-                    <label for="city"><span class="requireInput">* </span>A compléter...</label>
+                    {{ form_widget(form.slogan) }}
+                    <label for="slogan"><span class="requireInput">* </span>A compléter...</label>
                 </div>
                 <div class="col s12">
                     <h5 class="titleInscription pink-text text-darken-2">Les enjeux collectifs de la Qualité de Vie au Travail :</h5>
                 </div>
                 <div class="input-field col s12">
-                    <input id="city" name="city" type="text" class="validate">
-                    <label for="city"><span class="requireInput">* </span>A compléter...</label>
+                    {{ form_widget(form.issues) }}
+                    <label for="issues"><span class="requireInput">* </span>A compléter...</label>
                 </div>
                 <div class="col s12">
                     <h5 class="titleInscription pink-text text-darken-2">Les 3 critères à remplir pour un Happy projet validé :</h5>
                 </div>
                 <div class="input-field col s12">
-                    <input id="city" name="city" type="text" class="validate">
-                    <label for="city"><span class="requireInput">* </span>A compléter</label>
+                    {{ form_widget(form.criteria) }}
+                    <label for="criteria"><span class="requireInput">* </span>A compléter...</label>
                 </div>
                 <div class="col s12">
                     <p><span class="requireInput">* </span> Champs requis</p>
@@ -53,6 +53,7 @@
                     </a>
                 </div>
             </div>
-        </form>
+        {{ form_end(form) }}
     </div>
 {% endblock %}
+

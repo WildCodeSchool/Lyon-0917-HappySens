@@ -52,6 +52,18 @@ class Company
      * @var string
      */
     private $confirmationPassword;
+    /**
+     * @var string
+     */
+    private $slogan;
+    /**
+     * @var string
+     */
+    private $issues;
+    /**
+     * @var string
+     */
+    private $criteria;
 
 
     public function getNameCompany()
@@ -240,4 +252,54 @@ class Company
         return $this;
     }
 
+
+    public function getSlogan()
+    {
+        return $this->slogan;
+    }
+
+    /**
+     * @param string $slogan
+     * @return Company
+     */
+    public function setSlogan(string $slogan): Company
+    {
+        $this->slogan = $slogan;
+
+        return $this;
+    }
+
+
+    public function getIssues()
+    {
+        return $this->issues;
+    }
+
+    /**
+     * @param string $issues
+     * @return Company
+     */
+    public function setIssues(string $issues): Company
+    {
+        $this->issues = $issues;
+
+        return $this;
+    }
+
+
+    public function getCriteria()
+    {
+        return $this->criteria;
+    }
+
+    /**
+     * @param string $criteria
+     * @return Company
+     */
+    public function setCriteria(string $criteria): Company
+    {
+        $this->criteria = $criteria;
+
+        return $this;
+    }
 }

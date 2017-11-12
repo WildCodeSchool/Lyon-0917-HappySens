@@ -65,29 +65,6 @@ class DefaultController extends Controller
         ]);
     }
 
-    // InscriptionCompany2
-    /**
-     * @Route("inscriptionCompany2", name="inscriptionCompany2")
-     */
-    public function inscriptionCompany2Action(Request $request)
-    {
-        return $this->render(
-            'pages/inscriptionCompany2.html.twig',
-            [
-                'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-            ]
-        );
-    }
-    // InscriptionHappyCoach
-    /**
-     * @Route("inscriptionHappyCoach", name="inscriptionHappyCoach")
-     */
-    public function inscriptionHappyCoachAction(Request $request)
-    {
-    return $this->render('pages/inscriptionHappyCoach.html.twig', [
-        'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-    ]);
-    }
     // Project
     /**
      * @Route("addProject", name="addProject")
