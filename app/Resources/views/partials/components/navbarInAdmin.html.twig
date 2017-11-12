@@ -1,0 +1,61 @@
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper white">
+            <a href="{{ path('homepage') }}" class="brand-logo center"><span class="pink-text text-darken-2">Happy Sens</span></a>
+            <ul class="right">
+
+                <li><a href=""><span class="blue-text text-darken-3 linkNav"></span></a></li>
+                <li>
+                    <a class="dropdown-button"  style="display: flex;" href="#!" data-activates="dropdownNotif">
+                        <i class="material-icons light-blue-text text-darken-2">notifications</i>
+                        <span class="new badge red"></span>
+                    </a>
+                    <ul id="dropdownNotif" class="dropdown-content notifications">
+                        <li class=""><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
+                        <li><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
+                        <li class="divider"></li>
+                        <li><a class="blue-text text-darken-2" href="{{ path('listingNotifications') }}">Voir toutes vos notifications</a></li>
+                    </ul>
+                </li>
+                <li><a href="../../../"><span class="blue-text text-darken-3 linkNav"><i class="material-icons light-blue-text text-darken-2">home</i></span></a></li>
+            </ul>
+
+
+
+            <ul id="slide-out" class="side-nav">
+                <li>
+                    <div class="user-view">
+                        <div class="background">
+                            <img src="{{ asset('assets/images/happysens-time.jpg') }}">
+                        </div>
+                        {#<a href="{{ path('profilEmploye') }}"><img class="circle" src="https://www.publicationsports.com/vProd/asset/image/component/ps/ps_single_login/user_logo.png"></a>#}
+                        <div>
+                            <span class="white-text name">John Doe</span>
+                            <span class="white-text email">jdandturk@gmail.com</span>
+                        </div>
+                    </div>
+                </li>
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">business</i>Entreprises</a></li>
+
+                <li><a class="waves-effect" href="#companyAdmin" onClick="visible(1);"><i class="material-icons">wc</i>Liste entreprises</a></li>
+                <li><div class="divider"></div></li>
+
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">wb_sunny</i>Projets</a></li>
+
+                <li><a class="waves-effect" href="#projectOnAdmin" onclick="visible(2);"><i class="material-icons">build</i>Projets en cours</a></li>
+                <li><a class="waves-effect" href="#projectGoAdmin" onclick="visible(3);"><i class="material-icons">directions_run</i>Projets validés</a></li>
+                <li><a class="waves-effect" href="#projectOffAdmin" onclick="visible(4);"><i class="material-icons">cake</i>Projets terminés</a></li>
+                <li><div class="divider"></div></li>
+
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">face</i>Happy Coach</a></li>
+
+                <li><a class="waves-effect" href="#happycoachAdmin" onclick="visible(5);"><i class="material-icons">nature_people</i>Liste Happy Coach</a></li>
+                <li><div class="divider"></div></li>
+
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">link</i>Liens pratiques :</a></li>
+                <li><a href="{{ path('homepage') }}" class="waves-effect"><i class="material-icons">home</i>Accueil</a></li>
+            </ul>
+            <a href="#" data-activates="slide-out" class="button"><i class="medium material-icons light-blue-text text-darken-2">account_circle</i></a>
+        </div>
+    </nav>
+</div>

@@ -18,6 +18,22 @@
   top: 45vh;
   transform: translatey(-45%);
   margin: auto;
+  a {
+    color: $blueColor;
+    &:hover {
+      color: #4dabe6;
+      cursor: pointer;
+    }
+  }
+  a.btn {
+    color: white;
+  }
+}
+.newUser {
+  text-align: center;
+}
+.stayConnected {
+  margin-left: 10px;
 }
 
 
