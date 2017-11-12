@@ -83,6 +83,9 @@
   .modal-content {
     width: 20em !important; }
 
+  .brand-logo {
+    margin-top: 1px !important; }
+
   /* IN */
   .card-profile-image {
     margin-top: -55px !important; }
@@ -150,6 +153,9 @@ main {
   .enterIn:active {
     background-color: #252f3d; }
 
+.brand-logo {
+  margin-top: 5px; }
+
 .notifications {
   min-width: 250px;
   margin-top: 65px; }
@@ -172,14 +178,15 @@ main {
   background-color: transparent;
   box-shadow: none;
   transition: all 0.3s ease; }
+  .navbarTop .button-collapse {
+    color: white; }
 
 .navbarFixed {
   background-color: white;
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.7);
   transition: all 0.2s ease; }
-
-.button-collapse {
-  color: #252F3D; }
+  .navbarFixed .button-collapse {
+    color: #252F3D; }
 
 nav {
   background-color: inherit;
@@ -249,7 +256,7 @@ nav {
 
 #contentEntreprise {
   min-height: 55vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../images/happywork.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -271,7 +278,7 @@ nav {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center -150px;
+  background-position: center -250px;
   margin-top: -90px; }
 
 #contentCGV {
@@ -318,7 +325,8 @@ nav {
   .headerTitleOthers h1 {
     font-family: "Quicksand", sans-serif;
     font-size: 3.5em;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    color: #FFA000; }
   .headerTitleOthers h5 {
     margin-left: 10px;
     font-size: 1.5em;
@@ -787,7 +795,27 @@ ul.followUs {
   background-color: #f9a825;
   color: white; }
 
+.headerDetailsProject {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url("../images/happysens-salaries.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 30vh;
+  max-height: 400px;
+  padding: 20px;
+  border-radius: 2px; }
+
 .detailsProjectExplain, .dateProject {
   padding-left: 20px; }
+
+.containList {
+  padding-left: 7px; }
+
+.inline-team-list {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .inline-team-list li {
+    margin-right: 5px; }
 
 /*# sourceMappingURL=style.css.map */
