@@ -1,5 +1,6 @@
-@media all and (max-width: 800px)
+@media all and (max-width: 900px)
 {
+  /* Out */
   .headerTitleHome {
     padding: 0 20px !important;
     h1 {
@@ -79,6 +80,7 @@
     background-position: center !important;
     top: 25vh !important;
   }
+
   .titleShema{
     font-size: 1.3em !important;
     text-align: left !important;
@@ -97,5 +99,7 @@
     font-family: $textFont;
     font-size: 1.5em;
     text-align: left;
+
+
   }
 }

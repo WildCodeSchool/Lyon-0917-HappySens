@@ -1,5 +1,5 @@
 ul.switch {
-  margin: 0;
+  margin-bottom: 40px;
   padding: 0;
   list-style: none;
   height: 40px;
@@ -23,16 +23,21 @@ ul.switch li a {
   min-width: 150px;
   text-align: center;
   font-family: $textFont;
+  &:hover {
+    background-color: rgba(lightgrey, 0.2);
+  }
+  &:focus {
+    color: $amberColor;
+  }
 }
-
-ul.switch li.active, ul.switch li.active a:hover  {
-  background-color: rgba(lightblue, 0.1);
-  border-bottom: 2px solid blue;
+ul.switch li.active, ul.switch li.active  {
+  background-color: rgba(lightgrey, 0.2);
+  border-bottom: 2px solid $amberColor;
+  color: $amberColor;
 }
 .switch_container {
   border-top: none;
   clear: both;
   width: 100%;
   min-height: 50vh;
-  padding: 10px;
 }

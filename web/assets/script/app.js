@@ -6,7 +6,7 @@ $(document).ready(function() {
         today: 'Today',
         clear: 'Clear',
         close: 'Ok',
-        closeOnSelect: true // Close upon selecting a date,
+        closeOnSelect: true
     });
     $('.slider').slider({
         interval: 2700,
@@ -15,4 +15,3 @@ $(document).ready(function() {
     $('.collapsible').collapsible();
     $(".button").sideNav();
 });
-
