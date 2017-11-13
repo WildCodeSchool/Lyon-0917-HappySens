@@ -80,21 +80,26 @@
     background-position: center !important;
     top: 25vh !important;
   }
-  .modal {
-    margin-top: -90px !important;
-  }
-  .modal-content {
-    width: 20em !important;
-  }
 
-  /* IN */
-  .card-profile-image {
-    margin-top: -55px !important;
-    img {
-      width: 100px;
-    }
+  .titleShema{
+    font-size: 1.3em !important;
+    text-align: left !important;
   }
-  .hideMobile {
-    display: none;
+  .textSchema{
+    font-size: 1em !important;
+    text-align: left !important;
+  }
+  .largeScreen {
+    display: none !important;
+  }
+  .mobile {
+    display: block !important;
+  }
+  .etapeOne{
+    font-family: $textFont;
+    font-size: 1.5em;
+    text-align: left;
+
+
   }
 }
