@@ -1,0 +1,22 @@
+.titleShema{
+  font-family: $textFont;
+  font-size: 2em;
+  text-align: left;
+}
+.textSchema{
+  font-family: $textFont;
+  font-size: 1.1em;
+  text-align: left;
+}
+
+.mobile {
+  display: none;
+}
+
+.largeScreen {
+  display: block;
+}
+
+.test {
+  padding-right: 10px;
+}

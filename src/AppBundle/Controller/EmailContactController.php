@@ -35,7 +35,7 @@ class EmailContactController extends Controller
                     ]),
                     'text/html'
                 );
-            //$mailer->send($message);
+            $mailer->send($message);
 
             $this->addFlash(
                 'contact',

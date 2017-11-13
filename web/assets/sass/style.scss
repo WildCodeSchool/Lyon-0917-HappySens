@@ -18,7 +18,7 @@
 @import "partial/components/buttons";
 @import "partial/components/formContact";
 @import "partial/components/navbar";
- @import "partial/components/modal";
+@import "partial/components/modal";
 @import "partial/components/goToTop";
 @import "partial/components/iconsBar";
 @import "partial/components/jumbotronOthers";
@@ -27,7 +27,7 @@
 @import "partial/components/cardExempleProjet";
 @import "partial/components/In/chipStatus/chip";
 @import "partial/components/tabs";
-
+@import "partial/components/schemaAccueil";
 /*****************    Vues    ****************************/
 @import "partial/views/header";
 @import "partial/views/footer";
@@ -39,15 +39,13 @@
 @import "partial/views/cgv";
 @import "partial/views/inscription";
 @import "partial/views/logUser";
+@import "partial/views/profilAdmin";
 @import "partial/views/profilEmploye";
 @import "partial/views/profilEntreprise";
 @import "partial/views/profilHappyCoach";
 @import "partial/views/recapProjet";
 @import "partial/views/addProject";
 @import "partial/views/listingNotifications";
-
-
-
 
 
 

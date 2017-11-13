@@ -1,4 +1,4 @@
-@media all and (max-width: 800px)
+@media all and (max-width: 900px)
 {
   /* Out */
   .headerTitleHome {
@@ -80,11 +80,17 @@
     background-position: center !important;
     top: 25vh !important;
   }
-  .modal {
-    margin-top: -90px !important;
+
+  .titleShema{
+    font-size: 1.3em !important;
+    text-align: left !important;
   }
-  .modal-content {
-    width: 20em !important;
+  .textSchema{
+    font-size: 1em !important;
+    text-align: left !important;
+  }
+  .brand-logo {
+    margin-top: 1px !important;
   }
 
   /* IN */
@@ -92,9 +98,18 @@
     margin-top: -55px !important;
     img {
       width: 100px;
-    }
+   }
+  .largeScreen {
+    display: none !important;
   }
-  .hideMobile {
-    display: none;
+  .mobile {
+    display: block !important;
+  }
+  .etapeOne{
+    font-family: $textFont;
+    font-size: 1.5em;
+    text-align: left;
+
+
   }
 }

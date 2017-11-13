@@ -1,0 +1,26 @@
+.headerDetailsProject {
+  background: linear-gradient(to top, rgba(black, 0.3), rgba(black, 0.1)), url("../images/happysens-salaries.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 30vh;
+  max-height: 400px;
+  padding: 20px;
+  border-radius: 2px  ;
+}
+
+.detailsProjectExplain, .dateProject {
+  padding-left: 20px;
+}
+.containList {
+  padding-left: 7px;
+}
+.inline-team-list {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  li {
+    margin-right: 5px;
+  }
+}
+
