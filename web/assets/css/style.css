@@ -412,6 +412,9 @@ ul.switch li.active, ul.switch li.active a:hover {
 .largeScreen {
   display: block; }
 
+.test {
+  padding-right: 10px; }
+
 /*****************    Vues    ****************************/
 .parallax-container-home {
   min-height: 103vh;
