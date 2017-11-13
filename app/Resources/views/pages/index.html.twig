@@ -5,19 +5,32 @@
     <div id="index-banner" class="parallax-container-home">
         <div class="section no-pad-bot">
             <div class="col s12">
+                {% for message in app.flashes('contact') %}
+                <div class="row flash-notice" id="flashNoticeContact">
+                    <div class="card col s6 m4 l3 xl2 light-green lighten-1 black-text">
+                        <div class="row right">
+                            <a href="#" onclick="hideContactFlash()"><i class="fa fa-times-circle-o fa-2x black-text"></i></a>
+                        </div>
+                        <div class="row center valign-wrapper">
+                                <p>{{ message }}</p>
+                        </div>
+                    </div>
+                </div>
+                    {% endfor %}
                 <div class="headerTitleHome center" id="headerTitle">
-                    <h1 class="header center white-text text-darken-2">Bienvenue sur <img src="{{ asset('assets/images/logo.png') }}" alt=""></h1>
+                    <h1 class="header center white-text text-darken-2">Bienvenue sur <img
+                                src="{{ asset('assets/images/logo.png') }}" alt=""></h1>
                     <div class="row">
                         <h5 class="header center white-text">Libérez les passions et donnez du sens au travail</h5>
                     </div>
                     <div id="goDown" class="goDown">
-                        <a href="#cardCategories" class="enterIn waves-effect waves-light btn hoverable"><i class="material-icons left">public</i>Découvrez HappySens</a>
+                        <a href="#cardCategories" class="enterIn waves-effect waves-light btn hoverable"><i
+                                    class="material-icons left">public</i>Découvrez HappySens</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <section class="generalContainer" id="cardCategories">
         <div class="valign-wrapper">
             <div class="row">
@@ -221,4 +234,7 @@
     </section>
 {% endblock %}
 
+ {% block javascripts %}
+     <script src="{{ asset('assets/script/flashAction.js') }}"></script>
+ {% endblock %}
 

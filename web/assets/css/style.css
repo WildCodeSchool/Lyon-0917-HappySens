@@ -96,6 +96,9 @@ main {
   font-size: 3.5em;
   text-align: center; }
 
+.hide {
+  display: none; }
+
 /*************    Composant   ****************************/
 .Contact {
   padding: 20px; }
@@ -611,6 +614,9 @@ ul.followUs {
   border-bottom: 1px solid red;
   box-shadow: 0 1px 0 0 #000; }
 
+.error {
+  color: red; }
+
 .sliderBloc {
   line-height: 2.3em;
   padding: 30px 10px; }
@@ -618,6 +624,17 @@ ul.followUs {
     font-family: "Quicksand", sans-serif;
     font-size: 3.5em;
     text-align: center; }
+
+#flashNoticeContact {
+  opacity: 0.6; }
+  #flashNoticeContact .card {
+    position: fixed;
+    left: 10px;
+    top: 40px;
+    margin-left: 10px;
+    border-radius: 2px;
+    padding: 10px 10px 0 10px;
+    margin-bottom: 0; }
 
 .presentation {
   padding: 30px 0; }

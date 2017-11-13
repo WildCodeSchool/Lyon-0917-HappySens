@@ -9,6 +9,19 @@
   }
 }
 
+#flashNoticeContact{
+  opacity:0.6;
+  .card {
+    position: fixed;
+    left: 10px;
+    top: 40px;
+    margin-left: 10px;
+    border-radius: 2px;
+    padding: 10px 10px 0 10px;
+    margin-bottom: 0;
+  }
+}
+
 .presentation {
   padding: 30px 0;
 }
@@ -50,3 +63,4 @@
   max-height: 150px;
   max-width: 150px;
 }
+
