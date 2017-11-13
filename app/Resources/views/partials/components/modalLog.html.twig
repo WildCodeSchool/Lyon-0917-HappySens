@@ -1,11 +1,12 @@
 <!-- Modal Structure -->
 <div class="row">
     <div id="modal1" class="modal">
-        <div class="col s12"><a class="modal-action modal-close right iClose"><i class="fa fa-times-circle-o fa-2x"></i></a></div>
+        <div class="col s12"><a class="modal-action modal-close right iClose"><i class="fa fa-times-circle-o fa-2x"></i></a>
+        </div>
         <div class="modal-content">
-                <div class="left">
-                    <h5 class="blue-text text-darken-3 titleSecond">Se connecter à votre compte</h5>
-                </div>
+            <div class="left">
+                <h5 class="blue-text text-darken-3 titleSecond">Se connecter à votre compte</h5>
+            </div>
             <form action="" method="post">
                 <div class="row">
                     <div class="col s12" id="password">
@@ -29,7 +30,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field center">
-                                <a class="newUser"><i class="fa fa-user-plus"></i> Cliquez ici pour vous inscrire</a>
+                                <a class="newUser" href="#" onclick="newSalary()"><i class="fa fa-user-plus"></i> Salarié d'une entreprise partenaire : cliquez ici pour vous inscrire</a>
                             </div>
                             <div class="input-field col s12 center">
                                 Vous avez oublié votre <a href="#" onclick="missingPassword()">mot de passe?</a>
@@ -39,7 +40,8 @@
                     <div class="col s12" id="btnConnexion">
                         <div class="row">
                             <div class="input-field center">
-                                <a href="{{ path('profilEmploye') }}" class="btn waves-effect waves-light amber darken-2">
+                                <a href="{{ path('profilEmploye') }}"
+                                   class="btn waves-effect waves-light amber darken-2">
                                     Connexion
                                     <i class="material-icons right">send</i>
                                 </a>
@@ -65,6 +67,34 @@
                                         <a href="#" onclick="findPassword()" class="btn-flat waves-effect waves-light">Annuler
                                             <i class="material-icons left">reply</i>
                                         </a>
+                                        <a href="#" onclick="findPassword()" class="btn waves-effect waves-light blue darken-2">
+                                            Envoyer
+                                            <i class="material-icons right">send</i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row hidden" id="hiddenNewSalary">
+                        <div class="input-field col s12 center">
+                            ( Si vous n'avez pas d'identifiants de 1ere connexion demandez-les à votre entreprise )
+                        </div>
+                        <div class="input-field col s12 center">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Identifiant</label>
+                        </div>
+                        <div class="input-field col s12 center">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Mot de passe</label>
+                        </div>
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="input-field center">
+                                    <div class="input-field col s12 center">
+                                        <a href="#" onclick="findPassword()" class="btn-flat waves-effect waves-light">Annuler
+                                            <i class="material-icons left">reply</i>
+                                        </a>
                                         <a href="{{ path('profilEmploye') }}" class="btn waves-effect waves-light blue darken-2">
                                             Envoyer
                                             <i class="material-icons right">send</i>
@@ -79,4 +109,3 @@
         </div>
     </div>
 </div>
-

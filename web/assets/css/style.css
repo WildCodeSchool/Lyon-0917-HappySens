@@ -15,82 +15,78 @@
       margin-bottom: -30px !important; }
     .headerTitleHome h5 {
       font-size: 1.5em !important; }
-
   .blocExplainEntreprise h3 {
     font-size: 2.2em !important; }
   .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
     font-size: 1.2em !important; }
-
   .generalContainer {
     padding: 50px 20px !important; }
-
   .title {
     font-size: 2em !important; }
-
   .scrollToTop {
     display: none !important; }
-
   .headerTitleOthers {
     top: 35vh !important; }
     .headerTitleOthers h1 {
       font-size: 2em !important; }
     .headerTitleOthers h5 {
       font-size: 1.2em !important; }
-
   .titleSecond {
     font-size: 1.5em !important; }
-
   .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
     font-size: 1.5em !important; }
-
   .titleDetailsEntreprise {
     font-size: 2em !important; }
-
   .cardTitle {
     font-size: 1.8em !important; }
-
   .detailsInfosEntreprise {
     font-size: 0.8em !important; }
-
   .detailsInfosEmploye {
     font-size: 0.8em !important; }
-
   .detailsInfosHappy {
     font-size: 0.8em !important; }
-
   .containerTalentsEntreprise .containsTalents p {
     font-size: 1em !important; }
-
   .titleEndEntreprise {
     font-size: 1.1em !important; }
-
   .containExplainEmploye .detailsExplainEmploye {
     font-size: 1em !important; }
-
   .titleExplainEmploye {
     font-size: 2em !important; }
-
   .typeExplainEmploye {
     font-size: 1em !important; }
-
   #contentEntreprise, #contentHappy, #contentCGV, #contentInscription, #contentContact {
     background-position: center !important;
     top: 25vh !important; }
-
   .modal {
     margin-top: -90px !important; }
 
   .modal-content {
     width: 20em !important; }
 
+  .brand-logo {
+    margin-top: 1px !important; }
+
   /* IN */
   .card-profile-image {
     margin-top: -55px !important; }
     .card-profile-image img {
       width: 100px; }
+  .titleShema {
+    font-size: 1.3em !important;
+    text-align: left !important; }
+  .textSchema {
+    font-size: 1em !important;
+    text-align: left !important; }
+  .largeScreen {
+    display: none !important; }
+  .mobile {
+    display: block !important; }
+  .etapeOne {
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.5em;
+    text-align: left; } }
 
-  .hideMobile {
-    display: none; } }
 /*******************    CONFIG   ***************************/
 * {
   box-sizing: border-box; }
@@ -150,6 +146,9 @@ main {
   .enterIn:active {
     background-color: #252f3d; }
 
+.brand-logo {
+  margin-top: 5px; }
+
 .notifications {
   min-width: 250px;
   margin-top: 65px; }
@@ -172,14 +171,15 @@ main {
   background-color: transparent;
   box-shadow: none;
   transition: all 0.3s ease; }
+  .navbarTop .button-collapse {
+    color: white; }
 
 .navbarFixed {
   background-color: white;
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.7);
   transition: all 0.2s ease; }
-
-.button-collapse {
-  color: #252F3D; }
+  .navbarFixed .button-collapse {
+    color: #252F3D; }
 
 nav {
   background-color: inherit;
@@ -249,7 +249,7 @@ nav {
 
 #contentEntreprise {
   min-height: 55vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../images/happywork.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -271,7 +271,7 @@ nav {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center -150px;
+  background-position: center -250px;
   margin-top: -90px; }
 
 #contentCGV {
@@ -318,7 +318,8 @@ nav {
   .headerTitleOthers h1 {
     font-family: "Quicksand", sans-serif;
     font-size: 3.5em;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    color: #FFA000; }
   .headerTitleOthers h5 {
     margin-left: 10px;
     font-size: 1.5em;
@@ -401,9 +402,11 @@ nav {
 .chip.validate {
   background-color: rgba(34, 139, 34, 0.8);
   color: white; }
+
 .chip.inProgress {
   background-color: rgba(255, 165, 0, 0.8);
   color: white; }
+
 .chip.end {
   background-color: rgba(255, 0, 0, 0.8);
   color: white; }
@@ -448,6 +451,22 @@ ul.switch li.active, ul.switch li.active {
   clear: both;
   width: 100%;
   min-height: 50vh; }
+
+.titleShema {
+  font-family: "Quicksand", sans-serif;
+  font-size: 2em;
+  text-align: left; }
+
+.textSchema {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.1em;
+  text-align: left; }
+
+.mobile {
+  display: none; }
+
+.largeScreen {
+  display: block; }
 
 /*****************    Vues    ****************************/
 .parallax-container-home {
@@ -561,6 +580,7 @@ ul.followUs {
 .blocExplainEntreprise h3 {
   font-size: 3em;
   font-family: "Quicksand", sans-serif; }
+
 .blocExplainEntreprise .containExplainEntreprise {
   padding: 30px 15px;
   text-align: left; }
@@ -768,8 +788,10 @@ ul.followUs {
 
 .revealProject .row {
   padding: 20px 5px; }
+
 .revealProject p {
   padding: 0 10px; }
+
 .revealProject .footerReveal {
   padding: 15px 5px;
   margin-top: 10px; }
@@ -787,7 +809,27 @@ ul.followUs {
   background-color: #f9a825;
   color: white; }
 
+.headerDetailsProject {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url("../images/happysens-salaries.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 30vh;
+  max-height: 400px;
+  padding: 20px;
+  border-radius: 2px; }
+
 .detailsProjectExplain, .dateProject {
   padding-left: 20px; }
+
+.containList {
+  padding-left: 7px; }
+
+.inline-team-list {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .inline-team-list li {
+    margin-right: 5px; }
 
 /*# sourceMappingURL=style.css.map */

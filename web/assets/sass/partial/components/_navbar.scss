@@ -20,6 +20,9 @@
     background-color: #252f3d ;
   }
 }
+.brand-logo {
+  margin-top: 5px;
+}
 .notifications {
   min-width: 250px;
   margin-top: 65px;
@@ -44,14 +47,17 @@
   background-color: transparent;
   box-shadow: none;
   transition: all 0.3s ease;
+  .button-collapse {
+    color: white;
+  }
 }
 .navbarFixed {
   background-color: rgba(white, 1);
   box-shadow: 2px 1px 5px rgba(black, 0.7);
   transition: all 0.2s ease;
-}
-.button-collapse {
-  color: $darkColor;
+  .button-collapse {
+    color: $darkColor;
+  }
 }
 nav {
   background-color: inherit;
