@@ -4,16 +4,30 @@
         <h5 class="titleInscription pink-text text-darken-2">Prenom :</h5>
         <div class="input-field col s12">
             <i class="material-icons prefix pink-text text-darken-2">account_circle</i>
-            {{ form_widget(form.firstName) }}
+            {% if (form_errors(form.firstName))  %}
+                {{ form_widget(form.firstName, {'attr': {'class': 'error'}}) }}
+            {% else %}
+                {{ form_widget(form.firstName) }}
+            {% endif %}
             <label for="firstName"><span class="requireInput">* </span>Prénom</label>
+            <div class="center error">
+                {{ form_errors(form.firstName) }}
+            </div>
         </div>
     </div>
     <div class="col s12 m6">
         <h5 class="titleInscription pink-text text-darken-2">Nom :</h5>
         <div class="input-field col s12">
             <i class="material-icons prefix pink-text text-darken-2">account_circle</i>
-            {{ form_widget(form.lastName) }}
+            {% if (form_errors(form.lastName))  %}
+                {{ form_widget(form.lastName, {'attr': {'class': 'error'}}) }}
+            {% else %}
+                {{ form_widget(form.lastName) }}
+            {% endif %}
             <label for="lastName"><span class="requireInput">* </span>Nom</label>
+            <div class="center error">
+                {{ form_errors(form.lastName) }}
+            </div>
         </div>
     </div>
 </div>
@@ -22,16 +36,30 @@
             <h5 class="titleInscription pink-text text-darken-2">Email :</h5>
             <div class="input-field col s12">
                 <i class="material-icons prefix pink-text text-darken-2">email</i>
-                {{ form_widget(form.email) }}
+                {% if (form_errors(form.email))  %}
+                    {{ form_widget(form.email, {'attr': {'class': 'error'}}) }}
+                {% else %}
+                    {{ form_widget(form.email) }}
+                {% endif %}
                 <label for="email"><span class="requireInput">* </span>Email</label>
+                <div class="center error">
+                    {{ form_errors(form.email) }}
+                </div>
             </div>
         </div>
         <div class="col s12 m6">
             <h5 class="titleInscription pink-text text-darken-2">Téléphone :</h5>
             <div class="input-field col s12">
                 <i class="material-icons prefix pink-text text-darken-2">phone</i>
-                {{ form_widget(form.phone) }}
+                {% if (form_errors(form.phone))  %}
+                    {{ form_widget(form.phone, {'attr': {'class': 'error'}}) }}
+                {% else %}
+                    {{ form_widget(form.phone) }}
+                {% endif %}
                 <label for="phone"><span class="requireInput">* </span>Téléphone</label>
+                <div class="center error">
+                    {{ form_errors(form.phone) }}
+                </div>
             </div>
         </div>
     </div>
@@ -40,28 +68,49 @@
             <h5 class="titleInscription pink-text text-darken-2">Entreprise :</h5>
             <div class="input-field col s12">
                 <i class="material-icons prefix pink-text text-darken-2">domain</i>
-                {{ form_widget(form.nameCompany) }}
+                {% if (form_errors(form.nameCompany))  %}
+                    {{ form_widget(form.nameCompany, {'attr': {'class': 'error'}}) }}
+                {% else %}
+                    {{ form_widget(form.nameCompany) }}
+                {% endif %}
                 <label for="company_name">Entreprise</label>
+                <div class="center error">
+                    {{ form_errors(form.nameCompany) }}
+                </div>
             </div>
         </div>
         <div class="col s12 m6">
-            <h5 class="titleInscription pink-text text-darken-2">Situation :</h5>
+            <h5 class="titleInscription pink-text text-darken-2">Situation : <span class="requireInput">* </span></h5>
             <div class="col s12">
                 <div class="input-field">
                     <i class="material-icons prefix pink-text text-darken-2">domain</i>
-                    {{ form_widget(form.status) }}
+                    {% if (form_errors(form.status))  %}
+                        {{ form_widget(form.status, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+                        {{ form_widget(form.status) }}
+                    {% endif %}
+                    <div class="center error">
+                        {{ form_errors(form.status) }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col s12">
+        <div class="col s12 ">
             <h5 class="titleInscription pink-text text-darken-2">Message :</h5>
         </div>
         <div class="input-field col s12">
             <i class="material-icons prefix pink-text text-darken-2">mode_edit</i>
-            {{ form_widget(form.message, { 'attr': {'class': 'materialize-textarea'} }) }}
+            {% if (form_errors(form.message))  %}
+                {{ form_widget(form.message, { 'attr': {'class': 'materialize-textarea error'} }) }}
+            {% else %}
+                {{ form_widget(form.message, { 'attr': {'class': 'materialize-textarea'} }) }}
+            {% endif %}
             <label for="content"><span class="requireInput">* </span>Votre message :</label>
+            <div class="error">
+                {{ form_errors(form.message) }}
+            </div>
         </div>
     </div>
     <div class="row">
@@ -70,14 +119,13 @@
     <div class="row">
         <div class="input-field col s6 center-align">
             <a href="/"  class="btn waves-effect waves-light amber darken-2">Annuler
-                <i class="material-icons left">reply</i></a>  
+                <i class="material-icons left">reply</i>
+             </a>
         </div>
         <div class="input-field col s6 center-align">
             <button class="btn waves-effect waves-light blue darken-2" type="submit" name="action">Envoyer
                 <i class="material-icons right">send</i>
             </button>
-
         </div>
     </div>
 {{ form_end(form) }}
-
