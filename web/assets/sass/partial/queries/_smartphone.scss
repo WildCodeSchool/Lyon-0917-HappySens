@@ -97,17 +97,17 @@
     img {
       width: 100px;
     }
-    .largeScreen {
-      display: none !important;
-    }
-    .mobile {
-      display: block !important;
-    }
     .etapeOne {
       font-family: $textFont;
       font-size: 1.5em;
       text-align: left;
     }
+  }
+  .largeScreen {
+    display: none !important;
+  }
+  .mobile {
+    display: block !important;
   }
   .modal-content {
     width: 25em !important;
