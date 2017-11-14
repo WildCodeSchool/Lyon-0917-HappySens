@@ -100,10 +100,10 @@
     .card-profile-image .etapeOne {
       font-family: "Quicksand", sans-serif;
       font-size: 1.5em;
-      text-align: left; } }
-.modal-content {
-  width: 25em !important; }
+      text-align: left; }
 
+  .modal-content {
+    width: 25em !important; } }
 /*******************    CONFIG   ***************************/
 * {
   box-sizing: border-box; }
