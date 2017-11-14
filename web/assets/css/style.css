@@ -93,17 +93,19 @@
     margin-top: -55px !important; }
     .card-profile-image img {
       width: 100px; }
-    .card-profile-image .largeScreen {
-      display: none !important; }
-    .card-profile-image .mobile {
-      display: block !important; }
     .card-profile-image .etapeOne {
       font-family: "Quicksand", sans-serif;
       font-size: 1.5em;
-      text-align: left; } }
-.modal-content {
-  width: 25em !important; }
+      text-align: left; }
 
+  .largeScreen {
+    display: none !important; }
+
+  .mobile {
+    display: block !important; }
+
+  .modal-content {
+    width: 25em !important; } }
 /*******************    CONFIG   ***************************/
 * {
   box-sizing: border-box; }
@@ -168,7 +170,7 @@ main {
 
 .notifications {
   min-width: 250px;
-  margin-top: 65px; }
+  margin-top: 60px; }
 
 .linkTopColor {
   color: white;
@@ -288,7 +290,7 @@ nav {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center -250px;
+  background-position: center;
   margin-top: -90px; }
 
 #contentCGV {
