@@ -15,27 +15,27 @@
 .bgCardsIndex {
   color: white;
   border-radius: 10px;
-  padding: 5px 0 20px 0;
+  padding: 5px 20px;
 }
 
 #cardEmploye {
   background-image: linear-gradient(to top, rgba(249,168,37, 0.3), rgba(249,168,37, 0.2)), url("../images/happisens-happyjob.jpg");
   background-color: rgb(249, 168, 37);
   .bgCardsIndex {
-    background-color: rgba($amberColor, 0.55);
+    background-color: rgba($amberColor, 0.65);
   }
 }
 #cardEntreprise {
   background-image: linear-gradient(to top, rgba(2,136,209, 0.3), rgba(2,136,209, 0.2)), url("../images/happysens-love.jpg");
   background-color: rgb(2,136,209);
   .bgCardsIndex {
-    background-color: rgba($blueColor, 0.55);
+    background-color: rgba($blueColor, 0.65);
   }
 }
 #cardHappy {
   background-image: linear-gradient(to top, rgba(194,24,91, 0.3), rgba(194,24,91, 0.2)), url("../images/happysens-sport.jpg");
   background-color: rgb(194,24,91);
   .bgCardsIndex {
-    background-color: rgba($pinkColor, 0.55);
+    background-color: rgba($pinkColor, 0.65);
   }
 }

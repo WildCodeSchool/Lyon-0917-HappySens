@@ -360,25 +360,25 @@ nav {
 .bgCardsIndex {
   color: white;
   border-radius: 10px;
-  padding: 5px 0 20px 0; }
+  padding: 5px 20px; }
 
 #cardEmploye {
   background-image: linear-gradient(to top, rgba(249, 168, 37, 0.3), rgba(249, 168, 37, 0.2)), url("../images/happisens-happyjob.jpg");
   background-color: #f9a825; }
   #cardEmploye .bgCardsIndex {
-    background-color: rgba(255, 160, 0, 0.55); }
+    background-color: rgba(255, 160, 0, 0.65); }
 
 #cardEntreprise {
   background-image: linear-gradient(to top, rgba(2, 136, 209, 0.3), rgba(2, 136, 209, 0.2)), url("../images/happysens-love.jpg");
   background-color: #0288d1; }
   #cardEntreprise .bgCardsIndex {
-    background-color: rgba(2, 136, 209, 0.55); }
+    background-color: rgba(2, 136, 209, 0.65); }
 
 #cardHappy {
   background-image: linear-gradient(to top, rgba(194, 24, 91, 0.3), rgba(194, 24, 91, 0.2)), url("../images/happysens-sport.jpg");
   background-color: #c2185b; }
   #cardHappy .bgCardsIndex {
-    background-color: rgba(194, 24, 91, 0.55); }
+    background-color: rgba(194, 24, 91, 0.65); }
 
 .titleDetailsEntreprise {
   font-size: 3em;
