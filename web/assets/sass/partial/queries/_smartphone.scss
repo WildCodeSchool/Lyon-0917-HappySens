@@ -1,5 +1,4 @@
-@media all and (max-width: 900px)
-{
+@media all and (max-width: 900px) {
   /* Out */
   .headerTitleHome {
     padding: 0 20px !important;
@@ -65,7 +64,7 @@
     font-size: 1em !important;
   }
   .titleEndEntreprise {
-    font-size: 1.1em !important ;
+    font-size: 1.1em !important;
   }
   .containExplainEmploye .detailsExplainEmploye {
     font-size: 1em !important;
@@ -81,11 +80,11 @@
     top: 25vh !important;
   }
 
-  .titleShema{
+  .titleShema {
     font-size: 1.3em !important;
     text-align: left !important;
   }
-  .textSchema{
+  .textSchema {
     font-size: 1em !important;
     text-align: left !important;
   }
@@ -98,18 +97,17 @@
     margin-top: -55px !important;
     img {
       width: 100px;
-   }
-  .largeScreen {
-    display: none !important;
-  }
-  .mobile {
-    display: block !important;
-  }
-  .etapeOne{
-    font-family: $textFont;
-    font-size: 1.5em;
-    text-align: left;
-
-
+    }
+    .largeScreen {
+      display: none !important;
+    }
+    .mobile {
+      display: block !important;
+    }
+    .etapeOne {
+      font-family: $textFont;
+      font-size: 1.5em;
+      text-align: left;
+    }
   }
 }
