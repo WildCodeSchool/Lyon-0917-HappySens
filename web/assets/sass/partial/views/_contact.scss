@@ -1,22 +1,3 @@
-.input-field label {
-  color: dimgrey;
-}
-.input-field input:focus + label {
-  color: $amberColor;
-}
-.input-field input:focus {
-  border-bottom: 1px solid $amberColor;
-  box-shadow: 0 1px 0 0 #000;
-}
-.input-field input.valid {
-  border-bottom: 1px solid forestgreen;
-  box-shadow: 0 1px 0 0 #000;
-}
-.input-field input.invalid {
-  border-bottom: 1px solid red;
-  box-shadow: 0 1px 0 0 #000;
-}
-
 .error {
   color: red;
 }
