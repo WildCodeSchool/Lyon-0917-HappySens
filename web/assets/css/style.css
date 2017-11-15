@@ -106,6 +106,9 @@
 
   .modal-content {
     width: 25em !important; } }
+@media all and (max-width: 600px) {
+  .imgMenu img {
+    margin: 10px 0 !important; } }
 /*******************    CONFIG   ***************************/
 * {
   box-sizing: border-box; }
@@ -152,9 +155,9 @@ main {
   color: white; }
 
 .linkNavSide {
-  font-family: "Quicksand", sans-serif;
-  font-weight: bold;
   color: #252f3d; }
+  .linkNavSide:hover {
+    color: #0288D1; }
 
 .enterIn {
   background-color: #252f3d;
@@ -199,6 +202,16 @@ main {
   transition: all 0.2s ease; }
   .navbarFixed .button-collapse {
     color: #252F3D; }
+
+.imgMenu {
+  display: flex; }
+  .imgMenu span {
+    margin-top: 1px;
+    margin-left: 5px; }
+  .imgMenu img {
+    margin-top: 16px;
+    height: 35px;
+    border: 1px solid #0288D1; }
 
 nav {
   background-color: inherit;

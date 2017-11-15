@@ -13,6 +13,7 @@ class EmailContactController extends Controller
     /**
      * @Route("/contact", name="contact")
      * @param Request $request
+     * @param \Swift_Mailer $mailer
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function contactAction(Request $request, \Swift_Mailer $mailer)
@@ -22,7 +23,7 @@ class EmailContactController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid()) {
             $message = (new \Swift_Message('Contact HappySens'))
-                ->setFrom('famar.wcslyon@gmail.com')
+                ->setFrom('%mailer_user%')
                 ->setTo($contact->getEmail())
                 ->setBody(
                     $this->renderView('partials/components/notificationsEmail/contact.html.twig'),
