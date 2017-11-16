@@ -31,12 +31,42 @@
                             </div>
                             <div class="row">
                                 <div class="input-field center">
-                                    <a class="newUser" href="#" onclick="newSalary()"><i class="fa fa-user-plus"></i>
-                                        Salarié d'une entreprise partenaire : cliquez ici pour vous inscrire</a>
+                                    <i class="fa fa-user-plus"></i> Salarié d'une entreprise partenaire : <a class="newUser" href="#" onclick="newSalary()"> cliquez ici pour vous inscrire</a>
                                 </div>
                                 <div class="input-field col s12 center">
                                     Vous avez oublié votre <a href="#" onclick="missingPassword()">mot de passe?</a>
                                 </div>
+            <div class="left">
+                <h5 class="blue-text text-darken-3 titleSecond">Se connecter à votre compte</h5>
+            </div>
+            <form action="" method="post">
+                <div class="row">
+                    <div class="col s12" id="password">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password" type="password" class="validate">
+                                <label for="password">Mot de passe</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="stayConnected">
+                                <input type="checkbox" name="filled-in-box" class="filled-in" id="filled-in-box"/>
+                                <label for="filled-in-box">Souhaitez vous rester connecté ? </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field center">
+                                <i class="fa fa-user-plus"></i> Salarié d'une entreprise partenaire : <a class="newUser" href="#" onclick="newSalary()"> cliquez ici pour vous inscrire</a>
+                            </div>
+                            <div class="input-field center">
+
+                            Vous avez oublié votre <a href="#" onclick="missingPassword()">mot de passe?</a>
                             </div>
                         </div>
                     </div>
@@ -73,7 +103,6 @@
                             <input id="email" type="email" class="validate">
                             <label for="email">Email</label>
                         </div>
-
                         <div class="col s12">
                             <div class="row">
                                 <div class="input-field center">
@@ -81,8 +110,7 @@
                                         <a href="#" onclick="findPassword()" class="btn-flat waves-effect waves-light">Annuler
                                             <i class="material-icons left">reply</i>
                                         </a>
-                                        <a href="#" onclick="findPassword()"
-                                           class="btn waves-effect waves-light blue darken-2">
+                                        <a href="#" onclick="findPassword()" class="btn waves-effect waves-light blue darken-2">
                                             Envoyer
                                             <i class="material-icons right">send</i>
                                         </a>
@@ -99,7 +127,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 center">
-                        ( Si vous n'avez pas d'identifiants de 1ere connexion demandez-les à votre entreprise )
+                        ( Si vous n'avez pas vos identifiants de 1ere connexion demandez-les à votre entreprise )
                     </div>
                     <form>
                         <div class="input-field col s12 center">
@@ -114,12 +142,10 @@
                             <div class="row">
                                 <div class="input-field center">
                                     <div class="input-field col s12 center">
-                                        <a href="#" onclick="findPassword()"
-                                           class="btn-flat waves-effect waves-light">Annuler
+                                        <a href="#" onclick="findPassword()" class="btn-flat waves-effect waves-light">Annuler
                                             <i class="material-icons left">reply</i>
                                         </a>
-                                        <a href="{{ path('profilEmploye') }}"
-                                           class="btn waves-effect waves-light blue darken-2">
+                                        <a href="{{ path('profilCompany') }}" class="btn waves-effect waves-light blue darken-2">
                                             Envoyer
                                             <i class="material-icons right">send</i>
                                         </a>
