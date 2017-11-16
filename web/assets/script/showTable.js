@@ -1,4 +1,4 @@
 function visible(value) {
-    $(".showTable").addClass("hidden");
-    $(".table-" + value).removeClass("hidden");
+    $(".showTable").addClass("hide");
+    $(".table-" + value).removeClass("hide");
 }
