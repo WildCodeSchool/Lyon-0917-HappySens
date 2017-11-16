@@ -5,9 +5,10 @@
   color: white;
 }
 .linkNavSide {
-  font-family: $textFont;
-  font-weight: bold;
   color: #252f3d;
+  &:hover {
+    color: $blueColor;
+  }
 }
 .enterIn {
   background-color: #252f3d;
@@ -57,6 +58,18 @@
   transition: all 0.2s ease;
   .button-collapse {
     color: $darkColor;
+  }
+}
+.imgMenu {
+  display: flex;
+  span {
+    margin-top: 1px;
+    margin-left: 5px;
+  }
+  img {
+    margin-top: 16px;
+    height: 35px;
+    border: 1px solid $blueColor;
   }
 }
 nav {

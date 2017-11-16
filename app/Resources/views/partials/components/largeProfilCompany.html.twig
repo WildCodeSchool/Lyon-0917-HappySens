@@ -4,16 +4,22 @@
         <div class="col s12 m6">
             <div class="row">
                 <div class="card-panel blue darken-2 titleSecond center">
-                      <span class="white-text"> Les enjeux collectifs de la qualité de Vie au Travail :
-                      </span>
+                      <div class="white-text"> Les enjeux collectifs de la qualité de Vie au Travail :
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio dolorum ex ipsum laboriosam natus quam repellat tempore vitae. Ad cupiditate eius ex laboriosam maiores maxime minima, odio repellat repellendus velit.</p>
+                      </div>
                 </div>
             </div>
         </div>
         <div class="col s12 m6">
             <div class="row">
                 <div class="card-panel blue darken-2 titleSecond center">
-                      <span class="white-text"> Les 3 critéres à remplir pour un Happy projet validé :
-                      </span>
+                      <div class="white-text"> Les 3 critéres à remplir pour un Happy projet validé :
+                          <ul>
+                              <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cum dolore dolores.</li>
+                              <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cum dolore dolores.</li>
+                              <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cum dolore dolores.</li>
+                          </ul>
+                      </div>
                 </div>
             </div>
         </div>
@@ -125,7 +131,7 @@
                 <div class="collection">
                     <div class="col l4 center-align">
                         <ul class="">
-                            <li><img class="circle responsive-img" src="http://lorempixel.com/100/100/people/1"
+                            <li><img class="circle responsive-img" src="https://randomuser.me/api/portraits/women/12.jpg"
                                      alt="Vignette photo"></li>
                             <li>Joe Do</li>
                             <li>humeur</li>
@@ -134,7 +140,7 @@
                     </div>
                     <div class="col l4  center-align">
                         <ul class="">
-                            <li><img class="circle responsive-img" src="http://lorempixel.com/100/100/people/2"
+                            <li><img class="circle responsive-img" src="https://randomuser.me/api/portraits/women/25.jpg"
                                      alt="Vignette photo"></li>
                             <li>Name</li>
                             <li>humeur</li>
@@ -143,7 +149,7 @@
                     </div>
                     <div class="col l4  center-align">
                         <ul>
-                            <li><img class="circle responsive-img" src="http://lorempixel.com/100/100/people/3"
+                            <li><img class="circle responsive-img" src="https://randomuser.me/api/portraits/men/15.jpg"
                                      alt="Vignette photo"></li>
                             <li>Name</li>
                             <li>humeur</li>
@@ -171,13 +177,11 @@
             </div>
             {% set numberSalary = 1 %}
             {% for salary in 1..8 %}
-
                 <div class="col l4">
                     {% for range in 1..3 %}
                         <div class="col l4  center-align">
                             <ul>
-                                <li><img class="circle responsive-img" src="http://lorempixel.com/100/100/people/{{numberSalary % 10}}"
-                                         alt="Vignette photo"></li>
+                                <li><img class="circle responsive-img" src="https://randomuser.me/api/portraits/{% if numberSalary % 2 == 0 %}women{% else %}men{% endif %}/{{numberSalary}}.jpg" alt="Vignette photo"></li>
                                 <li>Name</li>
                                 <li>humeur</li>
                                 <li>Ici le slogan de chaque salarié</li>
