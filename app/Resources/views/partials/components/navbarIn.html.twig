@@ -1,10 +1,10 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper white">
-            <a href="{{ path('homepage') }}" class="brand-logo center"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="90px"></a>
+            <a href="{{ path('homepage') }}" class="brand-logo center"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="90px" title="Acceuil"></a>
             <ul class="right">
-                <li><a href="{{ path('addProject') }}"><span class="linkNavSide"><i class="material-icons">add</i></span></a></li>
-                <li>
+                <li title="Créer un projet"><a href="{{ path('addProject') }}"><span class="linkNavSide"><i class="material-icons">add</i></span></a></li>
+                <li title="Vos notifications">
                     <a class="dropdown-button linkNavSide"  style="display: flex;" href="#!" data-activates="dropdownNotif">
                         <i class="material-icons">notifications</i>
                     </a>
@@ -17,9 +17,13 @@
                 </li>
             </ul>
             <ul class="left">
-                <li>
-                    <a href="#" data-activates="slide-out" class="button linkNavSide"><i class="medium material-icons">menu</i> </a>
-
+                <li title="Menu accès rapide">
+                    <a href="#" data-activates="slide-out" class="button linkNavSide ">
+                        <div class="imgMenu">
+                            <img class="circle responsive-img" src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Vignette photo">
+                            <span class="hide-on-small-only">@name.employe</span>
+                        </div>
+                    </a>
                 </li>
             </ul>
             <ul id="slide-out" class="side-nav">
