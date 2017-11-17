@@ -5,9 +5,10 @@
   color: white;
 }
 .linkNavSide {
-  font-family: $textFont;
-  font-weight: bold;
   color: #252f3d;
+  &:hover {
+    color: $blueColor;
+  }
 }
 .enterIn {
   background-color: #252f3d;
@@ -20,9 +21,12 @@
     background-color: #252f3d ;
   }
 }
+.brand-logo {
+  margin-top: 5px;
+}
 .notifications {
   min-width: 250px;
-  margin-top: 65px;
+  margin-top: 60px;
 }
 .linkTopColor {
   color: white;
@@ -44,14 +48,29 @@
   background-color: transparent;
   box-shadow: none;
   transition: all 0.3s ease;
+  .button-collapse {
+    color: white;
+  }
 }
 .navbarFixed {
-  background-color: rgba(white, 1);
+  background-color: rgba(white, 0.95);
   box-shadow: 2px 1px 5px rgba(black, 0.7);
   transition: all 0.2s ease;
+  .button-collapse {
+    color: $darkColor;
+  }
 }
-.button-collapse {
-  color: $darkColor;
+.imgMenu {
+  display: flex;
+  span {
+    margin-top: 1px;
+    margin-left: 5px;
+  }
+  img {
+    margin-top: 16px;
+    height: 35px;
+    border: 1px solid $blueColor;
+  }
 }
 nav {
   background-color: inherit;

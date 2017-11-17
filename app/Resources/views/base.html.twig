@@ -15,39 +15,36 @@
     </head>
     <body>
     {% block body %}
-        <header id="header">
-            {% block navbar %}
-                {{ include('partials/components/navbarOut.html.twig') }}
-                {{ include('partials/components/modalLog.html.twig') }}
-            {% endblock %}
-            {% block header %}{% endblock %}
-        </header>
-        <main class="col s12" id="main">
-            <!--  include button scroll to top !!! Don't move this link !!! -->
-            <div class="scrollToTop waves-effect waves-light amber darken-3 z-depth-2" aria-hidden="true" title="Retour haut de page.">
-                <i class="material-icons">keyboard_capslock</i>
-            </div>
-            {% block content %}{% endblock %}
-        </main>
-        <div class="col s12" id="footer">
-            {% block footer %}
-                {{ include(':partials/frame:footer.html.twig') }}
-            {% endblock %}
+    <header id="header">
+        {% block navbar %}
+            {{ include('partials/components/navbarOut.html.twig') }}
+            {{ include('partials/components/modalLog.html.twig') }}
+        {% endblock %}
+        {% block header %}{% endblock %}
+    </header>
+    <main class="col s12" id="main">
+        <!--  include button scroll to top !!! Don't move this link !!! -->
+        <div class="scrollToTop waves-effect waves-light amber darken-3 z-depth-2" aria-hidden="true" title="Retour haut de page.">
+            <i class="material-icons">keyboard_capslock</i>
         </div>
-        <script type="text/javascript">
-
-        </script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
-        <script src="{{ asset('assets/script/app.js') }}"></script>
-        <script src="{{ asset('assets/script/scrollTop.js') }}"></script>
-        <script src="{{ asset('assets/script/animateScroll.js') }}"></script>
-        <script src="{{ asset('assets/script/scrollTo.js') }}"></script>
-        <script src="{{ asset('assets/script/switchNav.js') }}"></script>
-        <script src="{{ asset('assets/script/tabs.js') }}"></script>
-        <script src="{{ asset('assets/script/missingPassword.js') }}"></script>
-        {% block javascripts %}{% endblock %}
+        {% block content %}{% endblock %}
+    </main>
+    <div class="col s12" id="footer">
+        {% block footer %}
+            {{ include(':partials/frame:footer.html.twig') }}
+        {% endblock %}
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
+    <script src="{{ asset('assets/script/app.js') }}"></script>
+    <script src="{{ asset('assets/script/scrollTop.js') }}"></script>
+    <script src="{{ asset('assets/script/animateScroll.js') }}"></script>
+    <script src="{{ asset('assets/script/scrollTo.js') }}"></script>
+    <script src="{{ asset('assets/script/switchNav.js') }}"></script>
+    <script src="{{ asset('assets/script/tabs.js') }}"></script>
+    <script src="{{ asset('assets/script/modalConnexion.js') }}"></script>
+    {% block javascripts %}{% endblock %}
     {% endblock %}
     </body>
 </html>

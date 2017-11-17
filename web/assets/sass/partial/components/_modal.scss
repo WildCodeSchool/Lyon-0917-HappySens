@@ -2,7 +2,7 @@
 .modal {
   min-width: 100vw;
   min-height: 100vh;
-  margin-top: -90px;
+  top: 0 !important;
   background-color: rgba(white, 0.92);
   padding: 20px 20px;
   .iClose {

@@ -1,5 +1,4 @@
-@media all and (max-width: 900px)
-{
+@media all and (max-width: 900px) {
   /* Out */
   .headerTitleHome {
     padding: 0 20px !important;
@@ -65,7 +64,7 @@
     font-size: 1em !important;
   }
   .titleEndEntreprise {
-    font-size: 1.1em !important ;
+    font-size: 1.1em !important;
   }
   .containExplainEmploye .detailsExplainEmploye {
     font-size: 1em !important;
@@ -80,21 +79,44 @@
     background-position: center !important;
     top: 25vh !important;
   }
-  .modal {
-    margin-top: -90px !important;
+  .titleShema {
+    font-size: 1.3em !important;
+    text-align: left !important;
   }
-  .modal-content {
-    width: 20em !important;
+  .textSchema {
+    font-size: 1em !important;
+    text-align: left !important;
   }
-
+  .brand-logo {
+    margin-top: 1px !important;
+  }
   /* IN */
   .card-profile-image {
     margin-top: -55px !important;
     img {
       width: 100px;
     }
+    .etapeOne {
+      font-family: $textFont;
+      font-size: 1.5em;
+      text-align: left;
+    }
   }
-  .hideMobile {
-    display: none;
+  .largeScreen {
+    display: none !important;
+  }
+  .mobile {
+    display: block !important;
+  }
+  .modal-content {
+    width: 25em !important;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .imgMenu {
+    img {
+      margin: 10px 0 !important;
+    }
   }
 }

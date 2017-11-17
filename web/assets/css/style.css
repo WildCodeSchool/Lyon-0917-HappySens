@@ -77,20 +77,38 @@
     background-position: center !important;
     top: 25vh !important; }
 
-  .modal {
-    margin-top: -90px !important; }
+  .titleShema {
+    font-size: 1.3em !important;
+    text-align: left !important; }
 
-  .modal-content {
-    width: 20em !important; }
+  .textSchema {
+    font-size: 1em !important;
+    text-align: left !important; }
+
+  .brand-logo {
+    margin-top: 1px !important; }
 
   /* IN */
   .card-profile-image {
     margin-top: -55px !important; }
     .card-profile-image img {
       width: 100px; }
+    .card-profile-image .etapeOne {
+      font-family: "Quicksand", sans-serif;
+      font-size: 1.5em;
+      text-align: left; }
 
-  .hideMobile {
-    display: none; } }
+  .largeScreen {
+    display: none !important; }
+
+  .mobile {
+    display: block !important; }
+
+  .modal-content {
+    width: 25em !important; } }
+@media all and (max-width: 600px) {
+  .imgMenu img {
+    margin: 10px 0 !important; } }
 /*******************    CONFIG   ***************************/
 * {
   box-sizing: border-box; }
@@ -137,9 +155,9 @@ main {
   color: white; }
 
 .linkNavSide {
-  font-family: "Quicksand", sans-serif;
-  font-weight: bold;
   color: #252f3d; }
+  .linkNavSide:hover {
+    color: #0288D1; }
 
 .enterIn {
   background-color: #252f3d;
@@ -150,9 +168,12 @@ main {
   .enterIn:active {
     background-color: #252f3d; }
 
+.brand-logo {
+  margin-top: 5px; }
+
 .notifications {
   min-width: 250px;
-  margin-top: 65px; }
+  margin-top: 60px; }
 
 .linkTopColor {
   color: white;
@@ -172,14 +193,25 @@ main {
   background-color: transparent;
   box-shadow: none;
   transition: all 0.3s ease; }
+  .navbarTop .button-collapse {
+    color: white; }
 
 .navbarFixed {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.7);
   transition: all 0.2s ease; }
+  .navbarFixed .button-collapse {
+    color: #252F3D; }
 
-.button-collapse {
-  color: #252F3D; }
+.imgMenu {
+  display: flex; }
+  .imgMenu span {
+    margin-top: 1px;
+    margin-left: 5px; }
+  .imgMenu img {
+    margin-top: 16px;
+    height: 35px;
+    border: 1px solid #0288D1; }
 
 nav {
   background-color: inherit;
@@ -188,7 +220,7 @@ nav {
 .modal {
   min-width: 100vw;
   min-height: 100vh;
-  margin-top: -90px;
+  top: 0 !important;
   background-color: rgba(255, 255, 255, 0.92);
   padding: 20px 20px; }
   .modal .iClose {
@@ -249,7 +281,7 @@ nav {
 
 #contentEntreprise {
   min-height: 55vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), url("../images/happywork.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -271,7 +303,7 @@ nav {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center -150px;
+  background-position: center;
   margin-top: -90px; }
 
 #contentCGV {
@@ -318,7 +350,8 @@ nav {
   .headerTitleOthers h1 {
     font-family: "Quicksand", sans-serif;
     font-size: 3.5em;
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    color: #FFA000; }
   .headerTitleOthers h5 {
     margin-left: 10px;
     font-size: 1.5em;
@@ -342,25 +375,25 @@ nav {
 .bgCardsIndex {
   color: white;
   border-radius: 10px;
-  padding: 5px 0 20px 0; }
+  padding: 5px 20px; }
 
 #cardEmploye {
   background-image: linear-gradient(to top, rgba(249, 168, 37, 0.3), rgba(249, 168, 37, 0.2)), url("../images/happisens-happyjob.jpg");
   background-color: #f9a825; }
   #cardEmploye .bgCardsIndex {
-    background-color: rgba(255, 160, 0, 0.55); }
+    background-color: rgba(255, 160, 0, 0.65); }
 
 #cardEntreprise {
   background-image: linear-gradient(to top, rgba(2, 136, 209, 0.3), rgba(2, 136, 209, 0.2)), url("../images/happysens-love.jpg");
   background-color: #0288d1; }
   #cardEntreprise .bgCardsIndex {
-    background-color: rgba(2, 136, 209, 0.55); }
+    background-color: rgba(2, 136, 209, 0.65); }
 
 #cardHappy {
   background-image: linear-gradient(to top, rgba(194, 24, 91, 0.3), rgba(194, 24, 91, 0.2)), url("../images/happysens-sport.jpg");
   background-color: #c2185b; }
   #cardHappy .bgCardsIndex {
-    background-color: rgba(194, 24, 91, 0.55); }
+    background-color: rgba(194, 24, 91, 0.65); }
 
 .titleDetailsEntreprise {
   font-size: 3em;
@@ -448,6 +481,25 @@ ul.switch li.active, ul.switch li.active {
   clear: both;
   width: 100%;
   min-height: 50vh; }
+
+.titleShema {
+  font-family: "Quicksand", sans-serif;
+  font-size: 2em;
+  text-align: left; }
+
+.textSchema {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.1em;
+  text-align: left; }
+
+.mobile {
+  display: none; }
+
+.largeScreen {
+  display: block; }
+
+.test {
+  padding-right: 10px; }
 
 /*****************    Vues    ****************************/
 .parallax-container-home {
@@ -628,23 +680,8 @@ ul.followUs {
       font-size: 1.3em;
       margin-bottom: 10px; }
 
-.input-field label {
-  color: dimgrey; }
-
-.input-field input:focus + label {
-  color: #FFA000; }
-
-.input-field input:focus {
-  border-bottom: 1px solid #FFA000;
-  box-shadow: 0 1px 0 0 #000; }
-
-.input-field input.valid {
-  border-bottom: 1px solid forestgreen;
-  box-shadow: 0 1px 0 0 #000; }
-
-.input-field input.invalid {
-  border-bottom: 1px solid red;
-  box-shadow: 0 1px 0 0 #000; }
+.error {
+  color: red; }
 
 .sliderBloc {
   line-height: 2.3em;
@@ -653,6 +690,17 @@ ul.followUs {
     font-family: "Quicksand", sans-serif;
     font-size: 3.5em;
     text-align: center; }
+
+#flashNoticeContact {
+  opacity: 0.6; }
+  #flashNoticeContact .card {
+    position: fixed;
+    left: 10px;
+    top: 40px;
+    margin-left: 10px;
+    border-radius: 2px;
+    padding: 10px 10px 0 10px;
+    margin-bottom: 0; }
 
 .presentation {
   padding: 30px 0; }
@@ -786,5 +834,28 @@ ul.followUs {
   background-image: linear-gradient(to top, rgba(249, 168, 37, 0.9), rgba(249, 168, 37, 0.6)), url("../images/happysens-salaries.jpg");
   background-color: #f9a825;
   color: white; }
+
+.headerDetailsProject {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url("../images/happysens-salaries.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 30vh;
+  max-height: 400px;
+  padding: 20px;
+  border-radius: 2px; }
+
+.detailsProjectExplain, .dateProject {
+  padding-left: 20px; }
+
+.containList {
+  padding-left: 7px; }
+
+.inline-team-list {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .inline-team-list li {
+    margin-right: 5px; }
 
 /*# sourceMappingURL=style.css.map */

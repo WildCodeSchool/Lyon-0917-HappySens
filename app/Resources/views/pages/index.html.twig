@@ -5,13 +5,25 @@
     <div id="index-banner" class="parallax-container-home">
         <div class="section no-pad-bot">
             <div class="col s12">
+                {% for message in app.flashes('contact') %}
+                <div class="row flash-notice" id="flashNoticeContact">
+                    <div class="card col s6 m4 l3 xl2 light-green lighten-1 black-text">
+                        <div class="row right">
+                            <a href="#" onclick="hideContactFlash()"><i class="fa fa-times-circle-o fa-2x black-text"></i></a>
+                        </div>
+                        <div class="row center valign-wrapper">
+                                <p>{{ message }}</p>
+                        </div>
+                    </div>
+                </div>
+                    {% endfor %}
                 <div class="headerTitleHome center" id="headerTitle">
-                    <h1 class="header center white-text text-darken-2">Bienvenue sur <img src="{{ asset('assets/images/logo.png') }}" alt="" id="logoHeader"></h1>
+                    <h1 class="header center white-text text-darken-2">Bienvenue sur <img src="{{ asset('assets/images/logo.png') }}" alt="logo HappySens" id="logoHeader"></h1>
                     <div class="row">
                         <h5 class="header center white-text">Libérez les passions et donnez du sens au travail</h5>
                     </div>
                     <div id="goDown" class="goDown">
-                        <a href="#cardCategories" class="enterIn waves-effect waves-light btn hoverable"><i class="material-icons left">public</i>Découvrez HappySens</a>
+                        <a href="#cardCategories" class="enterIn waves-effect waves-light btn hoverable">Découvrez HappySens</a>
                     </div>
                 </div>
             </div>
@@ -22,7 +34,7 @@
         <div class="valign-wrapper">
             <div class="row">
                 <div class="col s12 l4">
-                    <div class="card center hoverable" id="cardEmploye" data-aos="zoom-in-up">
+                    <div class="card center hoverable" id="cardEmploye" data-aos="zoom-in-down">
                         <div class="card-content">
                             <div class="bgCardsIndex">
                                 <span class="cardTitle white-text">Employé</span>
@@ -37,7 +49,7 @@
                     </div>
                 </div>
                 <div class="col s12 l4">
-                    <div class="card center hoverable" id="cardEntreprise" data-aos="zoom-in-up">
+                    <div class="card center hoverable" id="cardEntreprise" data-aos="zoom-in-down">
                         <div class="card-content">
                             <div class="bgCardsIndex">
                                 <span class="cardTitle white-text">Entreprise</span>
@@ -52,12 +64,12 @@
                     </div>
                 </div>
                 <div class="col s12 l4">
-                    <div class="card center hoverable" id="cardHappy"  data-aos="zoom-in-up">
+                    <div class="card center hoverable" id="cardHappy"  data-aos="zoom-in-down">
                         <div class="card-content">
                             <div class="bgCardsIndex">
                                 <span class="cardTitle white-text">HappyCoach</span>
                                 <div class="textCard">
-                                    <p>Vos spécialités et expertises, inscrites durablement au service du bonheur en entreprise. Accompagnez des équipes passionnées dans la réalisation de leurs Projets.</p>
+                                    <p>Vos spécialités et expertises, inscrites au service du bonheur en entreprise. Accompagnez des équipes passionnées dans la réalisation de leurs Projets.</p>
                                 </div>
                             </div>
                         </div>
@@ -128,29 +140,23 @@
                     <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
-                                <img src="{{ asset('assets/images/happysens-peinture.jpg') }}" class="img-responsive vignettesHome">
+                                <img src="{{ asset('assets/images/theme225_150/happysens-peinture.jpg') }}" class="img-responsive vignettesHome">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-title">
                                     <p class="header white-text">Arts</p>
                                 </div>
-                                <div class="card-action">
-                                    <a href="" class="amber-text">Plus de détails</a>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
-                                <img src="{{ asset('assets/images/happysens-yoga.jpg') }}" class="img-responsive vignettesHome">
+                                <img src="{{ asset('assets/images/theme225_150/happysens-potager.jpg') }}" class="img-responsive vignettesHome">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-title">
-                                    <p class="header white-text">Yoga</p>
-                                </div>
-                                <div class="card-action">
-                                    <a href="" class="amber-text">Plus de détails</a>
+                                    <p class="header white-text">Potager</p>
                                 </div>
                             </div>
                         </div>
@@ -158,59 +164,47 @@
                     <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
-                                <img src="{{ asset('assets/images/happysens-cuisine.jpg') }}" class="img-responsive vignettesHome">
+                                <img src="{{ asset('assets/images/theme225_150/happysens-cuisine.jpg') }}" class="img-responsive vignettesHome">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-title">
                                     <p class="header white-text">Cuisine</p>
                                 </div>
-                                <div class="card-action">
-                                    <a href="" class="amber-text">Plus de détails</a>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
-                                <img src="{{ asset('assets/images/happysens-zen2.jpg') }}" class="img-responsive vignettesHome">
+                                <img src="{{ asset('assets/images/theme225_150/happysens-zen2.jpg') }}" class="img-responsive vignettesHome">
                             </div>
-                            <div class="card-stacked">
+                            <div class="card-stacked valign-wrapper">
                                 <div class="card-title">
                                     <p class="header white-text">Détente</p>
                                 </div>
-                                <div class="card-action">
-                                    <a href="" class="amber-text">Plus de détails</a>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
-                                <img src="{{ asset('assets/images/happysens-humanitaire.jpg') }}" class="img-responsive vignettesHome">
+                                <img src="{{ asset('assets/images/theme225_150/happysens-humanitaire.jpg') }}" class="img-responsive vignettesHome">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-title">
                                     <p class="header white-text">Humanitaire</p>
                                 </div>
-                                <div class="card-action">
-                                    <a href="" class="amber-text">Plus de détails</a>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col s12 m6">
                         <div class="card horizontal pink darken-2 hoverable">
                             <div class="card-image">
-                                <img src="{{ asset('assets/images/happysens-sport.jpg') }}" class="img-responsive vignettesHome">
+                                <img src="{{ asset('assets/images/theme225_150/happysens-sport.jpg') }}" class="img-responsive vignettesHome">
                             </div>
                             <div class="card-stacked">
                                 <div class="card-title">
                                     <p class="header white-text">Sport</p>
-                                </div>
-                                <div class="card-action">
-                                    <a href="" class="amber-text">Plus de détails</a>
                                 </div>
                             </div>
                         </div>
@@ -220,5 +214,9 @@
         </div>
     </section>
 {% endblock %}
+
+ {% block javascripts %}
+     <script src="{{ asset('assets/script/flashAction.js') }}"></script>
+ {% endblock %}
 
 

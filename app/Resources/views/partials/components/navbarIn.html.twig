@@ -1,10 +1,10 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper white">
-            <a href="{{ path('homepage') }}" class="brand-logo center"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="100px"></a>
+            <a href="{{ path('homepage') }}" class="brand-logo center"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="90px" title="Acceuil"></a>
             <ul class="right">
-                <li><a href="{{ path('addProject') }}"><span class="linkNavSide"><i class="material-icons">add</i></span></a></li>
-                <li>
+                <li title="Créer un projet"><a href="{{ path('addProject') }}"><span class="linkNavSide"><i class="material-icons">add</i></span></a></li>
+                <li title="Vos notifications">
                     <a class="dropdown-button linkNavSide"  style="display: flex;" href="#!" data-activates="dropdownNotif">
                         <i class="material-icons">notifications</i>
                     </a>
@@ -17,9 +17,13 @@
                 </li>
             </ul>
             <ul class="left">
-                <li>
-                    <a href="#" data-activates="slide-out" class="button linkNavSide"><i class="medium material-icons">menu</i> </a>
-
+                <li title="Menu accès rapide">
+                    <a href="#" data-activates="slide-out" class="button linkNavSide ">
+                        <div class="imgMenu">
+                            <img class="circle responsive-img" src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Vignette photo">
+                            <span class="hide-on-small-only">@name.employe</span>
+                        </div>
+                    </a>
                 </li>
             </ul>
             <ul id="slide-out" class="side-nav">
@@ -40,11 +44,7 @@
                 <li><a class="waves-effect" href="{{ path('addProject') }}"><i class="material-icons">create_new_folder</i>Nouveau projet</a></li>
                 <li><a class="waves-effect"><i class="material-icons">folder_shared</i>Vos projets en cours</a></li>
                 <li><a class="waves-effect"><i class="material-icons">folder_special</i>Les projets suivis</a></li>
-                <li><a class="waves-effect"><i class="material-icons">folder</i>Vos projets terminé</a></li>
-                <li><div class="divider"></div></li>
-
-                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">assignment</i>HappyCoach :</a></li>
-                <li><a class="waves-effect" href="{{ path('profilHappyCoach') }}"><i class="material-icons">assignment_ind</i>@name.user</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder</i>Vos projets terminés</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">store</i>Entreprise :</a></li>
                 <li><a class="waves-effect" href="{{ path('profilCompany') }}"><i class="material-icons">domain</i>@name.entreprise</a></li>
@@ -53,7 +53,7 @@
                 <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">link</i>Liens pratiques :</a></li>
                 <li><a class="waves-effect"><i class="material-icons">create</i>Modifier votre profil</a></li>
                 <li><a href="https://happiness-time.fr/" target="_blank" class="waves-effect"><i class="material-icons">message</i>Blog</a></li>
-                <li><a href="{{ path('homepage') }}" class="waves-effect"><i class="material-icons">home</i>Acceuil</a></li>
+                <li><a href="{{ path('homepage') }}" class="waves-effect"><i class="material-icons">home</i>Accueil</a></li>
                 <li><a href="{{ path('contact') }}" class="waves-effect"><i class="material-icons">sms</i>Contact</a></li>
             </ul>
         </div>

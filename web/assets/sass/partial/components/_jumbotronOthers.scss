@@ -1,7 +1,7 @@
 // Others
 #contentEntreprise {
   min-height: 55vh;
-  background-image: linear-gradient(rgba(black, 0.4),rgba(black, 0.3)), url("../images/happywork.jpg");
+  background-image: linear-gradient(rgba(black, 0.1),rgba(black, 0.1)), url("../images/happywork.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -23,7 +23,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center -150px;
+  background-position: center;
   margin-top: -90px;
 }
 #contentCGV {
@@ -71,6 +71,7 @@
     font-family: $textFont;
     font-size: 3.5em;
     letter-spacing: 1px;
+    color: $amberColor;
   }
   h5 {
     margin-left: 10px;
