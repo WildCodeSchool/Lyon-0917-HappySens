@@ -1,10 +1,41 @@
 <!-- Modal Structure -->
 <div class="row">
     <div id="modal1" class="modal">
-        <div class="col s12">
-            <a class="modal-action modal-close right iClose"><i class="material-icons">close</i></a>
+        <div class="col s12"><a class="modal-action modal-close right iClose"><i class="fa fa-times-circle-o fa-2x"></i></a>
         </div>
         <div class="modal-content">
+            <div class="" id="password">
+                <div class="left">
+                    <h5 class="blue-text text-darken-3 titleSecond">Se connecter à votre compte</h5>
+                </div>
+                <form action="" method="post">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="email" type="email" class="validate">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="password" type="password" class="validate">
+                                    <label for="password">Mot de passe</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="stayConnected">
+                                    <input type="checkbox" name="filled-in-box" class="filled-in" id="filled-in-box"/>
+                                    <label for="filled-in-box">Souhaitez vous rester connecté ? </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field center">
+                                    <i class="fa fa-user-plus"></i> Salarié d'une entreprise partenaire : <a class="newUser" href="#" onclick="newSalary()"> cliquez ici pour vous inscrire</a>
+                                </div>
+                                <div class="input-field col s12 center">
+                                    Vous avez oublié votre <a href="#" onclick="missingPassword()">mot de passe?</a>
+                                </div>
             <div class="left">
                 <h5 class="blue-text text-darken-3 titleSecond">Se connecter à votre compte</h5>
             </div>
@@ -39,25 +70,35 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col s12" id="btnConnexion">
-                        <div class="row">
-                            <div class="input-field center">
-                                <a href="{{ path('profilCompany') }}"
-                                   class="btn waves-effect waves-light amber darken-2">
-                                    Connexion
-                                    <i class="material-icons right">send</i>
-                                </a>
-                            </div>
+                </form>
+                <div class="col s12" id="btnConnexion">
+                    <div class="row">
+                        <div class="input-field center">
+                            <a href="{{ path('profilEmploye') }}"
+                               class="btn waves-effect waves-light amber darken-2">
+                                Connexion
+                                <i class="material-icons right">send</i>
+                            </a>
                         </div>
                     </div>
-                    <div class="row hidden" id="hiddenMissingPassword">
-                        <div class="input-field col s12">
-                            <p>
-                                Vous avez perdu votre mot de passe ? Pas de panique, nous allons vous aider à le récupérer.
-                                Saisissez votre adresse e-mail ci-dessous, et vous recevrez, sous peu, à cette même adresse,
-                                un lien vous permettant de choisir un nouveau mot de passe.
-                            </p>
-                        </div>
+                </div>
+            </div>
+            <div class="hide" id="hiddenMissingPassword">
+                <div class="left">
+                    <h5 class="blue-text text-darken-3 titleSecond">Mot de passe oublié
+                    </h5>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <p>
+                            Vous avez perdu votre mot de passe ? Pas de panique, nous allons vous aider à le
+                            récupérer.
+                            Saisissez votre adresse e-mail ci-dessous, et vous recevrez, sous peu, à cette même
+                            adresse,
+                            un lien vous permettant de choisir un nouveau mot de passe.
+                        </p>
+                    </div>
+                    <form action="" method="post">
                         <div class="input-field col s12 center">
                             <input id="email" type="email" class="validate">
                             <label for="email">Email</label>
@@ -77,11 +118,18 @@
                                 </div>
                             </div>
                         </div>
+                    </form>
+                </div>
+            </div>
+            <div class="hide" id="hiddenNewSalary">
+                <div class="left">
+                    <h5 class="blue-text text-darken-3 titleSecond">1ere connexion salarié</h5>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        ( Si vous n'avez pas vos identifiants de 1ere connexion demandez-les à votre entreprise )
                     </div>
-                    <div class="row hidden" id="hiddenNewSalary">
-                        <div class="input-field col s12 center">
-                            ( Si vous n'avez pas d'identifiants de 1ere connexion demandez-les à votre entreprise )
-                        </div>
+                    <form>
                         <div class="input-field col s12 center">
                             <input id="email" type="email" class="validate">
                             <label for="email">Identifiant</label>
@@ -105,9 +153,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
