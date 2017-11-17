@@ -8,10 +8,6 @@ $(document).ready(function() {
         close: 'Ok',
         closeOnSelect: true
     });
-    $('.slider').slider({
-        interval: 2700,
-        transition: 700
-    });
     $('.collapsible').collapsible();
     $(".button").sideNav();
 

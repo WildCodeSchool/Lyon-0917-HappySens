@@ -90,18 +90,11 @@
   .brand-logo {
     margin-top: 1px !important;
   }
-
   /* IN */
   .card-profile-image {
     margin-top: -55px !important;
     img {
       width: 100px;
-    }
-    .largeScreen {
-      display: none !important;
-    }
-    .mobile {
-      display: block !important;
     }
     .etapeOne {
       font-family: $textFont;
@@ -109,8 +102,21 @@
       text-align: left;
     }
   }
+  .largeScreen {
+    display: none !important;
+  }
+  .mobile {
+    display: block !important;
+  }
   .modal-content {
     width: 25em !important;
   }
+}
 
+@media all and (max-width: 600px) {
+  .imgMenu {
+    img {
+      margin: 10px 0 !important;
+    }
+  }
 }
