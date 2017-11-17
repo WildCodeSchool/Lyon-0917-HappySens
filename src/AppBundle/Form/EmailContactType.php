@@ -22,8 +22,10 @@ class EmailContactType extends AbstractType
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
             ->add('email',EmailType::class)
-            ->add('phone')
-            ->add('nameCompany', TextType::class)
+            ->add('phone', TextType::class)
+            ->add('nameCompany', TextType::class, [
+                'required' => false
+            ])
             ->add('status', ChoiceType::class, [
                 'placeholder' => 'Votre choix',
                 'choices' => [
@@ -31,6 +33,8 @@ class EmailContactType extends AbstractType
                     'Entreprise' => 'company',
                     'Happy Coach' => 'happyCoach',
                 ],
+                'required'   => false,
+                'empty_data' => null
             ])
             ->add('message', TextareaType::class);
     }
