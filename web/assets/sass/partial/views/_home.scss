@@ -50,3 +50,15 @@
   max-height: 150px;
   max-width: 150px;
 }
+
+.containerPicsHome {
+  padding: 80px;
+  margin-top: 50px;
+  text-align: center;
+  background-color: #EDF1F2;
+  .typeExplainHome {
+    font-family: $titleFont;
+    font-size: 1.5em;
+    padding: 20px;
+  }
+}

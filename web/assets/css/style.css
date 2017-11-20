@@ -11,10 +11,19 @@
     .headerTitleHome h1 {
       font-size: 3.5em !important; }
     .headerTitleHome img {
-      width: 150px !important;
+      width: 250px !important;
       margin-bottom: -30px !important; }
     .headerTitleHome h5 {
       font-size: 1.5em !important; }
+
+  .parallax-container-home {
+    min-height: 103vh;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-y: hidden;
+    margin-top: -90px; }
 
   .blocExplainEntreprise h3 {
     font-size: 2.2em !important; }
@@ -108,7 +117,11 @@
     width: 25em !important; } }
 @media all and (max-width: 600px) {
   .imgMenu img {
-    margin: 10px 0 !important; } }
+    margin: 10px 0 !important; }
+
+  .headerTitleHome img {
+    width: 200px !important;
+    margin-bottom: -30px !important; } }
 /*******************    CONFIG   ***************************/
 * {
   box-sizing: border-box; }
@@ -504,10 +517,11 @@ ul.switch li.active, ul.switch li.active {
 /*****************    Vues    ****************************/
 .parallax-container-home {
   min-height: 103vh;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil.jpg");
+  background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: center;
   overflow-y: hidden;
   margin-top: -90px; }
 
@@ -524,7 +538,7 @@ ul.switch li.active, ul.switch li.active {
     font-size: 5.5em; }
     .headerTitleHome h1 img {
       margin-bottom: -40px;
-      width: 250px; }
+      width: 350px; }
   .headerTitleHome h5 {
     margin-left: 20px;
     font-size: 2em;
@@ -610,6 +624,9 @@ ul.followUs {
   letter-spacing: 2px;
   font-family: "Quicksand", sans-serif; }
 
+#exampleProjectHome {
+  background-color: #F7F2DF; }
+
 .blocExplainEntreprise h3 {
   font-size: 3em;
   font-family: "Quicksand", sans-serif; }
@@ -619,7 +636,7 @@ ul.followUs {
   .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
     font-family: "Roboto", sans-serif; }
   .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
-    padding: 10px 0;
+    padding: 10px 20px;
     border-radius: 5px;
     margin: auto;
     font-family: "Quicksand", sans-serif;
@@ -719,6 +736,16 @@ ul.followUs {
 .vignettesHome {
   max-height: 150px;
   max-width: 150px; }
+
+.containerPicsHome {
+  padding: 80px;
+  margin-top: 50px;
+  text-align: center;
+  background-color: #EDF1F2; }
+  .containerPicsHome .typeExplainHome {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.5em;
+    padding: 20px; }
 
 .cgv {
   margin-top: 10px; }

@@ -7,6 +7,10 @@
   font-family: $textFont;
 }
 
+#exampleProjectHome {
+  background-color:  #F7F2DF;
+}
+
 .blocExplainEntreprise {
   h3 {
     font-size: 3em;
@@ -19,7 +23,7 @@
       font-family: $titleFont;
     }
     .detailsExplainEntreprise {
-      padding: 10px 0;
+      padding: 10px 20px;
       border-radius: 5px;
       margin: auto;
       font-family: $textFont;
