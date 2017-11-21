@@ -73,9 +73,9 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="likePersonIdPerson", type="string", length=255)
+     * @ORM\Column(name="likeUserIdUser", type="string", length=255)
      */
-    private $likePersonIdPerson;
+    private $likeUserIdUser;
 
     /**
      * @var string
@@ -87,9 +87,9 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="teamPersonIdPerson", type="string", length=255)
+     * @ORM\Column(name="teamUserIdUser", type="string", length=255)
      */
-    private $teamPersonIdPerson;
+    private $teamUserIdUser;
 
     /**
      * @var string
@@ -278,27 +278,27 @@ class Project
     }
 
     /**
-     * Set likePersonIdPerson
+     * Set likeUserIdUser
      *
-     * @param string $likePersonIdPerson
+     * @param string $likeUserIdUser
      *
      * @return Project
      */
-    public function setLikePersonIdPerson($likePersonIdPerson)
+    public function setLikeUserIdUser($likeUserIdUser)
     {
-        $this->likePersonIdPerson = $likePersonIdPerson;
+        $this->likeUserIdUser = $likeUserIdUser;
 
         return $this;
     }
 
     /**
-     * Get likePersonIdPerson
+     * Get likeUserIdUser
      *
      * @return string
      */
-    public function getLikePersonIdPerson()
+    public function getLikeUserIdUser()
     {
-        return $this->likePersonIdPerson;
+        return $this->likeUserIdUser;
     }
 
     /**
@@ -326,27 +326,27 @@ class Project
     }
 
     /**
-     * Set teamPersonIdPerson
+     * Set teamUserIdUser
      *
-     * @param string $teamPersonIdPerson
+     * @param string $teamUserIdUser
      *
      * @return Project
      */
-    public function setTeamPersonIdPerson($teamPersonIdPerson)
+    public function setTeamUserIdUser($teamUserIdUser)
     {
-        $this->teamPersonIdPerson = $teamPersonIdPerson;
+        $this->teamUserIdUser = $teamUserIdUser;
 
         return $this;
     }
 
     /**
-     * Get teamPersonIdPerson
+     * Get teamUserIdUser
      *
      * @return string
      */
-    public function getTeamPersonIdPerson()
+    public function getTeamUserIdUser()
     {
-        return $this->teamPersonIdPerson;
+        return $this->teamUserIdUser;
     }
 
     /**
