@@ -8,7 +8,7 @@
 }
 
 #exampleProjectHome {
-  background-color:  #F7F2DF;
+  background-color:  #EDF1F2;
 }
 
 .blocExplainEntreprise {
@@ -17,16 +17,16 @@
     font-family: $textFont;
   }
   .containExplainEntreprise {
-    padding: 30px 15px;
+    padding: 20px 15px;
     text-align: left;
     .titleExplainEntreprise {
       font-family: $titleFont;
     }
     .detailsExplainEntreprise {
-      padding: 10px 20px;
+      padding: 10px 30px;
       border-radius: 5px;
       margin: auto;
-      font-family: $textFont;
+      font-family: $titleFont;
       font-size: 1.3em;
       text-align: justify;
     }

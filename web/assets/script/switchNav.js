@@ -6,7 +6,7 @@ $(document).ready(function() {
 function evoNavbar() {
     $window = $(window);
     $window.scroll(function() {
-        if ($window.scrollTop() > 100){
+        if ($window.scrollTop() > 50){
             $('.nav-wrapper').removeClass('navbarTop').addClass('navbarFixed');
             $('.linkNav').removeClass('linkTopColor').addClass('linkFixedColor');
             $('#target').addClass('navbar-fixed');

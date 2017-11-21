@@ -114,7 +114,10 @@
     display: block !important; }
 
   .modal-content {
-    width: 25em !important; } }
+    width: 25em !important; }
+
+  .detailsExplainEntreprise {
+    padding: 10px !important; } }
 @media all and (max-width: 600px) {
   .imgMenu img {
     margin: 10px 0 !important; }
@@ -625,21 +628,21 @@ ul.followUs {
   font-family: "Quicksand", sans-serif; }
 
 #exampleProjectHome {
-  background-color: #F7F2DF; }
+  background-color: #EDF1F2; }
 
 .blocExplainEntreprise h3 {
   font-size: 3em;
   font-family: "Quicksand", sans-serif; }
 .blocExplainEntreprise .containExplainEntreprise {
-  padding: 30px 15px;
+  padding: 20px 15px;
   text-align: left; }
   .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
     font-family: "Roboto", sans-serif; }
   .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
-    padding: 10px 20px;
+    padding: 10px 30px;
     border-radius: 5px;
     margin: auto;
-    font-family: "Quicksand", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 1.3em;
     text-align: justify; }
 
