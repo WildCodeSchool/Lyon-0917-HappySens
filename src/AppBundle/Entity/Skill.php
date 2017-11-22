@@ -24,9 +24,9 @@ class Skill
     /**
      * @var string
      *
-     * @ORM\Column(name="skill", type="string", length=100, unique=true)
+     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="skill")
      */
-    private $skill;
+    private $nameSkill;
 
 
     /**
@@ -40,27 +40,53 @@ class Skill
     }
 
     /**
-     * Set skill
+     * @return string
+     */
+    public function getNameSkill(): string
+    {
+        return $this->nameSkill;
+    }
+
+    /**
+     * @param string $nameSkill
+     * @return Skill
+     */
+    public function setNameSkill(string $nameSkill): Skill
+    {
+        $this->nameSkill = $nameSkill;
+        return $this;
+    }
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->nameSkill = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add nameSkill
      *
-     * @param string $skill
+     * @param \AppBundle\Entity\UserHasSkill $nameSkill
      *
      * @return Skill
      */
-    public function setSkill($skill)
+    public function addNameSkill(\AppBundle\Entity\UserHasSkill $nameSkill)
     {
-        $this->skill = $skill;
+        $this->nameSkill[] = $nameSkill;
 
         return $this;
     }
 
     /**
-     * Get skill
+     * Remove nameSkill
      *
-     * @return string
+     * @param \AppBundle\Entity\UserHasSkill $nameSkill
      */
-    public function getSkill()
+    public function removeNameSkill(\AppBundle\Entity\UserHasSkill $nameSkill)
     {
-        return $this->skill;
+        $this->nameSkill->removeElement($nameSkill);
     }
 }
-

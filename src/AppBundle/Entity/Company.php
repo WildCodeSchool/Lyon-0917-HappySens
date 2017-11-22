@@ -57,165 +57,166 @@ class Company
     private $quality;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="userIdUser", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="User", mappedBy="company")
      */
-    private $userIdUser;
-
+    private $users;
 
     /**
-     * Get id
-     *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set activity
-     *
-     * @param string $activity
-     *
+     * @param int $id
      * @return Company
      */
-    public function setActivity($activity)
+    public function setId(int $id): Company
     {
-        $this->activity = $activity;
-
+        $this->id = $id;
         return $this;
     }
 
     /**
-     * Get activity
-     *
      * @return string
      */
-    public function getActivity()
+    public function getActivity(): string
     {
         return $this->activity;
     }
 
     /**
-     * Set nbSalary
-     *
-     * @param integer $nbSalary
-     *
+     * @param string $activity
      * @return Company
      */
-    public function setNbSalary($nbSalary)
+    public function setActivity(string $activity): Company
     {
-        $this->nbSalary = $nbSalary;
-
+        $this->activity = $activity;
         return $this;
     }
 
     /**
-     * Get nbSalary
-     *
      * @return int
      */
-    public function getNbSalary()
+    public function getNbSalary(): int
     {
         return $this->nbSalary;
     }
 
     /**
-     * Set birthdate
-     *
-     * @param \DateTime $birthdate
-     *
+     * @param int $nbSalary
      * @return Company
      */
-    public function setBirthdate($birthdate)
+    public function setNbSalary(int $nbSalary): Company
     {
-        $this->birthdate = $birthdate;
-
+        $this->nbSalary = $nbSalary;
         return $this;
     }
 
     /**
-     * Get birthdate
-     *
      * @return \DateTime
      */
-    public function getBirthdate()
+    public function getBirthdate(): \DateTime
     {
         return $this->birthdate;
     }
 
     /**
-     * Set slogan
-     *
-     * @param string $slogan
-     *
+     * @param \DateTime $birthdate
      * @return Company
      */
-    public function setSlogan($slogan)
+    public function setBirthdate(\DateTime $birthdate): Company
     {
-        $this->slogan = $slogan;
-
+        $this->birthdate = $birthdate;
         return $this;
     }
 
     /**
-     * Get slogan
-     *
      * @return string
      */
-    public function getSlogan()
+    public function getSlogan(): string
     {
         return $this->slogan;
     }
 
     /**
-     * Set quality
-     *
-     * @param string $quality
-     *
+     * @param string $slogan
      * @return Company
      */
-    public function setQuality($quality)
+    public function setSlogan(string $slogan): Company
     {
-        $this->quality = $quality;
-
+        $this->slogan = $slogan;
         return $this;
     }
 
     /**
-     * Get quality
-     *
      * @return string
      */
-    public function getQuality()
+    public function getQuality(): string
     {
         return $this->quality;
     }
 
     /**
-     * Set userIdUser
+     * @param string $quality
+     * @return Company
+     */
+    public function setQuality(string $quality): Company
+    {
+        $this->quality = $quality;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param mixed $users
+     * @return Company
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+        return $this;
+    }
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user
      *
-     * @param string $userIdUser
+     * @param \AppBundle\Entity\User $user
      *
      * @return Company
      */
-    public function setUserIdUser($userIdUser)
+    public function addUser(\AppBundle\Entity\User $user)
     {
-        $this->userIdUser = $userIdUser;
+        $this->users[] = $user;
 
         return $this;
     }
 
     /**
-     * Get userIdUser
+     * Remove user
      *
-     * @return string
+     * @param \AppBundle\Entity\User $user
      */
-    public function getUserIdUser()
+    public function removeUser(\AppBundle\Entity\User $user)
     {
-        return $this->userIdUser;
+        $this->users->removeElement($user);
     }
 }
-

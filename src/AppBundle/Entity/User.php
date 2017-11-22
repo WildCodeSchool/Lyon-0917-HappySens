@@ -119,351 +119,474 @@ class User
      */
     private $nativeLanguage;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Company", inversedBy="users")
+     */
+    private $company;
 
     /**
-     * Get id
+     * @ORM\ManyToMany(targetEntity="Project", inversedBy="likeProjects")
+     * @ORM\JoinTable(name="like")
+     */
+    private $likes;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Project", mappedBy="teamProject")
+     * @ORM\JoinTable(name="team")
+     */
+    private $teams;
+
+    /**
      *
+     * @ORM\Column(name="language", type="string", length=255, nullable=true)
+     */
+    private $language;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UserHasSkill", inversedBy="users")
+     */
+    private $skills;
+
+
+    /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set firstName
-     *
-     * @param string $firstName
-     *
+     * @param int $id
      * @return User
      */
-    public function setFirstName($firstName)
+    public function setId(int $id): User
     {
-        $this->firstName = $firstName;
-
+        $this->id = $id;
         return $this;
     }
 
     /**
-     * Get firstName
-     *
      * @return string
      */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
 
     /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
+     * @param string $firstName
      * @return User
      */
-    public function setLastName($lastName)
+    public function setFirstName(string $firstName): User
     {
-        $this->lastName = $lastName;
-
+        $this->firstName = $firstName;
         return $this;
     }
 
     /**
-     * Get lastName
-     *
      * @return string
      */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->lastName;
     }
 
     /**
-     * Set phone
-     *
-     * @param string $phone
-     *
+     * @param string $lastName
      * @return User
      */
-    public function setPhone($phone)
+    public function setLastName(string $lastName): User
     {
-        $this->phone = $phone;
-
+        $this->lastName = $lastName;
         return $this;
     }
 
     /**
-     * Get phone
-     *
      * @return string
      */
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->phone;
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     *
+     * @param string $phone
      * @return User
      */
-    public function setEmail($email)
+    public function setPhone(string $phone): User
     {
-        $this->email = $email;
-
+        $this->phone = $phone;
         return $this;
     }
 
     /**
-     * Get email
-     *
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
     /**
-     * Set status
-     *
-     * @param integer $status
-     *
+     * @param string $email
      * @return User
      */
-    public function setStatus($status)
+    public function setEmail(string $email): User
     {
-        $this->status = $status;
-
+        $this->email = $email;
         return $this;
     }
 
     /**
-     * Get status
-     *
      * @return int
      */
-    public function getStatus()
+    public function getStatus(): int
     {
         return $this->status;
     }
 
     /**
-     * Set birthdate
-     *
-     * @param \DateTime $birthdate
-     *
+     * @param int $status
      * @return User
      */
-    public function setBirthdate($birthdate)
+    public function setStatus(int $status): User
     {
-        $this->birthdate = $birthdate;
-
+        $this->status = $status;
         return $this;
     }
 
     /**
-     * Get birthdate
-     *
      * @return \DateTime
      */
-    public function getBirthdate()
+    public function getBirthdate(): \DateTime
     {
         return $this->birthdate;
     }
 
     /**
-     * Set photo
-     *
-     * @param string $photo
-     *
+     * @param \DateTime $birthdate
      * @return User
      */
-    public function setPhoto($photo)
+    public function setBirthdate(\DateTime $birthdate): User
     {
-        $this->photo = $photo;
-
+        $this->birthdate = $birthdate;
         return $this;
     }
 
     /**
-     * Get photo
-     *
      * @return string
      */
-    public function getPhoto()
+    public function getPhoto(): string
     {
         return $this->photo;
     }
 
     /**
-     * Set biography
-     *
-     * @param string $biography
-     *
+     * @param string $photo
      * @return User
      */
-    public function setBiography($biography)
+    public function setPhoto(string $photo): User
     {
-        $this->biography = $biography;
-
+        $this->photo = $photo;
         return $this;
     }
 
     /**
-     * Get biography
-     *
      * @return string
      */
-    public function getBiography()
+    public function getBiography(): string
     {
         return $this->biography;
     }
 
     /**
-     * Set slogan
-     *
-     * @param string $slogan
-     *
+     * @param string $biography
      * @return User
      */
-    public function setSlogan($slogan)
+    public function setBiography(string $biography): User
     {
-        $this->slogan = $slogan;
-
+        $this->biography = $biography;
         return $this;
     }
 
     /**
-     * Get slogan
-     *
      * @return string
      */
-    public function getSlogan()
+    public function getSlogan(): string
     {
         return $this->slogan;
     }
 
     /**
-     * Set password
-     *
-     * @param string $password
-     *
+     * @param string $slogan
      * @return User
      */
-    public function setPassword($password)
+    public function setSlogan(string $slogan): User
     {
-        $this->password = $password;
-
+        $this->slogan = $slogan;
         return $this;
     }
 
     /**
-     * Get password
-     *
      * @return string
      */
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
 
     /**
-     * Set mood
-     *
-     * @param integer $mood
-     *
+     * @param string $password
      * @return User
      */
-    public function setMood($mood)
+    public function setPassword(string $password): User
     {
-        $this->mood = $mood;
-
+        $this->password = $password;
         return $this;
     }
 
     /**
-     * Get mood
-     *
      * @return int
      */
-    public function getMood()
+    public function getMood(): int
     {
         return $this->mood;
     }
 
     /**
-     * Set job
-     *
-     * @param string $job
-     *
+     * @param int $mood
      * @return User
      */
-    public function setJob($job)
+    public function setMood(int $mood): User
     {
-        $this->job = $job;
-
+        $this->mood = $mood;
         return $this;
     }
 
     /**
-     * Get job
-     *
      * @return string
      */
-    public function getJob()
+    public function getJob(): string
     {
         return $this->job;
     }
 
     /**
-     * Set workplace
-     *
-     * @param string $workplace
-     *
+     * @param string $job
      * @return User
      */
-    public function setWorkplace($workplace)
+    public function setJob(string $job): User
     {
-        $this->workplace = $workplace;
-
+        $this->job = $job;
         return $this;
     }
 
     /**
-     * Get workplace
-     *
      * @return string
      */
-    public function getWorkplace()
+    public function getWorkplace(): string
     {
         return $this->workplace;
     }
 
     /**
-     * Set nativeLanguage
-     *
+     * @param string $workplace
+     * @return User
+     */
+    public function setWorkplace(string $workplace): User
+    {
+        $this->workplace = $workplace;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNativeLanguage(): string
+    {
+        return $this->nativeLanguage;
+    }
+
+    /**
      * @param string $nativeLanguage
+     * @return User
+     */
+    public function setNativeLanguage(string $nativeLanguage): User
+    {
+        $this->nativeLanguage = $nativeLanguage;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param mixed $company
+     * @return User
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * @param mixed $likes
+     * @return User
+     */
+    public function setLikes($likes)
+    {
+        $this->likes = $likes;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * @param mixed $teams
+     * @return User
+     */
+    public function setTeams($teams)
+    {
+        $this->teams = $teams;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param mixed $language
+     * @return User
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    /**
+     * @param mixed $skills
+     * @return User
+     */
+    public function setSkills($skills)
+    {
+        $this->skills = $skills;
+        return $this;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->likes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->teams = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->skills = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add like
+     *
+     * @param \AppBundle\Entity\Project $like
      *
      * @return User
      */
-    public function setNativeLanguage($nativeLanguage)
+    public function addLike(\AppBundle\Entity\Project $like)
     {
-        $this->nativeLanguage = $nativeLanguage;
+        $this->likes[] = $like;
 
         return $this;
     }
 
     /**
-     * Get nativeLanguage
+     * Remove like
      *
-     * @return string
+     * @param \AppBundle\Entity\Project $like
      */
-    public function getNativeLanguage()
+    public function removeLike(\AppBundle\Entity\Project $like)
     {
-        return $this->nativeLanguage;
+        $this->likes->removeElement($like);
+    }
+
+    /**
+     * Add team
+     *
+     * @param \AppBundle\Entity\Project $team
+     *
+     * @return User
+     */
+    public function addTeam(\AppBundle\Entity\Project $team)
+    {
+        $this->teams[] = $team;
+
+        return $this;
+    }
+
+    /**
+     * Remove team
+     *
+     * @param \AppBundle\Entity\Project $team
+     */
+    public function removeTeam(\AppBundle\Entity\Project $team)
+    {
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Add skill
+     *
+     * @param \AppBundle\Entity\UserHasSkill $skill
+     *
+     * @return User
+     */
+    public function addSkill(\AppBundle\Entity\UserHasSkill $skill)
+    {
+        $this->skills[] = $skill;
+
+        return $this;
+    }
+
+    /**
+     * Remove skill
+     *
+     * @param \AppBundle\Entity\UserHasSkill $skill
+     */
+    public function removeSkill(\AppBundle\Entity\UserHasSkill $skill)
+    {
+        $this->skills->removeElement($skill);
     }
 }
-

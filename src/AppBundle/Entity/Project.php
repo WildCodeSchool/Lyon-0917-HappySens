@@ -71,306 +71,252 @@ class Project
     private $author;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="likeUserIdUser", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="likes")
+     * @ORM\JoinTable(name="like")
      */
-    private $likeUserIdUser;
+    private $likeProjects;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="likeProjectIdProject", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="teams")
+    * @ORM\JoinTable(name="team")
      */
-    private $likeProjectIdProject;
+    private $teamProject;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="teamUserIdUser", type="string", length=255)
-     */
-    private $teamUserIdUser;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="teamProjectIdProject", type="string", length=255)
-     */
-    private $teamProjectIdProject;
-
-
-    /**
-     * Get id
-     *
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
+     * @param int $id
      * @return Project
      */
-    public function setTitle($title)
+    public function setId(int $id): Project
     {
-        $this->title = $title;
-
+        $this->id = $id;
         return $this;
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * Set startingDate
-     *
-     * @param \DateTime $startingDate
-     *
+     * @param string $title
      * @return Project
      */
-    public function setStartingDate($startingDate)
+    public function setTitle(string $title): Project
     {
-        $this->startingDate = $startingDate;
-
+        $this->title = $title;
         return $this;
     }
 
     /**
-     * Get startingDate
-     *
      * @return \DateTime
      */
-    public function getStartingDate()
+    public function getStartingDate(): \DateTime
     {
         return $this->startingDate;
     }
 
     /**
-     * Set endDate
-     *
-     * @param \DateTime $endDate
-     *
+     * @param \DateTime $startingDate
      * @return Project
      */
-    public function setEndDate($endDate)
+    public function setStartingDate(\DateTime $startingDate): Project
     {
-        $this->endDate = $endDate;
-
+        $this->startingDate = $startingDate;
         return $this;
     }
 
     /**
-     * Get endDate
-     *
      * @return \DateTime
      */
-    public function getEndDate()
+    public function getEndDate(): \DateTime
     {
         return $this->endDate;
     }
 
     /**
-     * Set presentation
-     *
-     * @param string $presentation
-     *
+     * @param \DateTime $endDate
      * @return Project
      */
-    public function setPresentation($presentation)
+    public function setEndDate(\DateTime $endDate): Project
     {
-        $this->presentation = $presentation;
-
+        $this->endDate = $endDate;
         return $this;
     }
 
     /**
-     * Get presentation
-     *
      * @return string
      */
-    public function getPresentation()
+    public function getPresentation(): string
     {
         return $this->presentation;
     }
 
     /**
-     * Set profit
-     *
-     * @param string $profit
-     *
+     * @param string $presentation
      * @return Project
      */
-    public function setProfit($profit)
+    public function setPresentation(string $presentation): Project
     {
-        $this->profit = $profit;
-
+        $this->presentation = $presentation;
         return $this;
     }
 
     /**
-     * Get profit
-     *
      * @return string
      */
-    public function getProfit()
+    public function getProfit(): string
     {
         return $this->profit;
     }
 
     /**
-     * Set beneficeCompany
-     *
-     * @param string $beneficeCompany
-     *
+     * @param string $profit
      * @return Project
      */
-    public function setBeneficeCompany($beneficeCompany)
+    public function setProfit(string $profit): Project
     {
-        $this->beneficeCompany = $beneficeCompany;
-
+        $this->profit = $profit;
         return $this;
     }
 
     /**
-     * Get beneficeCompany
-     *
      * @return string
      */
-    public function getBeneficeCompany()
+    public function getBeneficeCompany(): string
     {
         return $this->beneficeCompany;
     }
 
     /**
-     * Set author
-     *
-     * @param string $author
-     *
+     * @param string $beneficeCompany
      * @return Project
      */
-    public function setAuthor($author)
+    public function setBeneficeCompany(string $beneficeCompany): Project
     {
-        $this->author = $author;
-
+        $this->beneficeCompany = $beneficeCompany;
         return $this;
     }
 
     /**
-     * Get author
-     *
      * @return string
      */
-    public function getAuthor()
+    public function getAuthor(): string
     {
         return $this->author;
     }
 
     /**
-     * Set likeUserIdUser
+     * @param string $author
+     * @return Project
+     */
+    public function setAuthor(string $author): Project
+    {
+        $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLikeProjects()
+    {
+        return $this->likeProjects;
+    }
+
+    /**
+     * @param mixed $likeProjects
+     * @return Project
+     */
+    public function setLikeProjects($likeProjects)
+    {
+        $this->likeProjects = $likeProjects;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTeamProject()
+    {
+        return $this->teamProject;
+    }
+
+    /**
+     * @param mixed $teamProject
+     * @return Project
+     */
+    public function setTeamProject($teamProject)
+    {
+        $this->teamProject = $teamProject;
+        return $this;
+    }
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->likeProjects = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->teamProject = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add likeProject
      *
-     * @param string $likeUserIdUser
+     * @param \AppBundle\Entity\User $likeProject
      *
      * @return Project
      */
-    public function setLikeUserIdUser($likeUserIdUser)
+    public function addLikeProject(\AppBundle\Entity\User $likeProject)
     {
-        $this->likeUserIdUser = $likeUserIdUser;
+        $this->likeProjects[] = $likeProject;
 
         return $this;
     }
 
     /**
-     * Get likeUserIdUser
+     * Remove likeProject
      *
-     * @return string
+     * @param \AppBundle\Entity\User $likeProject
      */
-    public function getLikeUserIdUser()
+    public function removeLikeProject(\AppBundle\Entity\User $likeProject)
     {
-        return $this->likeUserIdUser;
+        $this->likeProjects->removeElement($likeProject);
     }
 
     /**
-     * Set likeProjectIdProject
+     * Add teamProject
      *
-     * @param string $likeProjectIdProject
+     * @param \AppBundle\Entity\User $teamProject
      *
      * @return Project
      */
-    public function setLikeProjectIdProject($likeProjectIdProject)
+    public function addTeamProject(\AppBundle\Entity\User $teamProject)
     {
-        $this->likeProjectIdProject = $likeProjectIdProject;
+        $this->teamProject[] = $teamProject;
 
         return $this;
     }
 
     /**
-     * Get likeProjectIdProject
+     * Remove teamProject
      *
-     * @return string
+     * @param \AppBundle\Entity\User $teamProject
      */
-    public function getLikeProjectIdProject()
+    public function removeTeamProject(\AppBundle\Entity\User $teamProject)
     {
-        return $this->likeProjectIdProject;
-    }
-
-    /**
-     * Set teamUserIdUser
-     *
-     * @param string $teamUserIdUser
-     *
-     * @return Project
-     */
-    public function setTeamUserIdUser($teamUserIdUser)
-    {
-        $this->teamUserIdUser = $teamUserIdUser;
-
-        return $this;
-    }
-
-    /**
-     * Get teamUserIdUser
-     *
-     * @return string
-     */
-    public function getTeamUserIdUser()
-    {
-        return $this->teamUserIdUser;
-    }
-
-    /**
-     * Set teamProjectIdProject
-     *
-     * @param string $teamProjectIdProject
-     *
-     * @return Project
-     */
-    public function setTeamProjectIdProject($teamProjectIdProject)
-    {
-        $this->teamProjectIdProject = $teamProjectIdProject;
-
-        return $this;
-    }
-
-    /**
-     * Get teamProjectIdProject
-     *
-     * @return string
-     */
-    public function getTeamProjectIdProject()
-    {
-        return $this->teamProjectIdProject;
+        $this->teamProject->removeElement($teamProject);
     }
 }
-
