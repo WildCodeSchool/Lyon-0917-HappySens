@@ -115,6 +115,12 @@ main {
 .hide {
   display: none; }
 
+.changeBg1 {
+  background-color: #EDF1F2; }
+
+.changeBg2 {
+  background-color: #F7F2DF; }
+
 /*************    Composant   ****************************/
 .Contact {
   padding: 20px; }
@@ -636,15 +642,8 @@ ul.followUs {
   right: 0;
   font-size: 0.7em; }
 
-.specialContainer {
-  min-height: 40vh;
-  padding: 70px 20px;
-  background-color: #F7F2DF; }
-
-.entrepriseContainer {
-  min-height: 40vh;
-  padding: 70px 20px;
-  background-color: #EDF1F2; }
+#fullBlock img {
+  width: 100%; }
 
 .titleExplainHappy {
   font-family: "Quicksand", sans-serif;
