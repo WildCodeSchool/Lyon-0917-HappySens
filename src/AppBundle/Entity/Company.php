@@ -29,6 +29,13 @@ class Company
     private $activity;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=100)
+     */
+    private $name;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="nbSalary", type="integer", nullable=true)
@@ -36,9 +43,8 @@ class Company
     private $nbSalary;
 
     /**
-     * @var \DateTime
      *
-     * @ORM\Column(name="birthdate", type="datetime", nullable=true)
+     * @ORM\Column(name="birthdate", type="date", nullable=true)
      */
     private $birthdate;
 
@@ -61,132 +67,6 @@ class Company
      */
     private $users;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     * @return Company
-     */
-    public function setId(int $id): Company
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getActivity(): string
-    {
-        return $this->activity;
-    }
-
-    /**
-     * @param string $activity
-     * @return Company
-     */
-    public function setActivity(string $activity): Company
-    {
-        $this->activity = $activity;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getNbSalary(): int
-    {
-        return $this->nbSalary;
-    }
-
-    /**
-     * @param int $nbSalary
-     * @return Company
-     */
-    public function setNbSalary(int $nbSalary): Company
-    {
-        $this->nbSalary = $nbSalary;
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getBirthdate(): \DateTime
-    {
-        return $this->birthdate;
-    }
-
-    /**
-     * @param \DateTime $birthdate
-     * @return Company
-     */
-    public function setBirthdate(\DateTime $birthdate): Company
-    {
-        $this->birthdate = $birthdate;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSlogan(): string
-    {
-        return $this->slogan;
-    }
-
-    /**
-     * @param string $slogan
-     * @return Company
-     */
-    public function setSlogan(string $slogan): Company
-    {
-        $this->slogan = $slogan;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getQuality(): string
-    {
-        return $this->quality;
-    }
-
-    /**
-     * @param string $quality
-     * @return Company
-     */
-    public function setQuality(string $quality): Company
-    {
-        $this->quality = $quality;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
-     * @param mixed $users
-     * @return Company
-     */
-    public function setUsers($users)
-    {
-        $this->users = $users;
-        return $this;
-    }
-
 
     /**
      * Constructor
@@ -194,6 +74,160 @@ class Company
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set activity
+     *
+     * @param string $activity
+     *
+     * @return Company
+     */
+    public function setActivity($activity)
+    {
+        $this->activity = $activity;
+
+        return $this;
+    }
+
+    /**
+     * Get activity
+     *
+     * @return string
+     */
+    public function getActivity()
+    {
+        return $this->activity;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Company
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set nbSalary
+     *
+     * @param integer $nbSalary
+     *
+     * @return Company
+     */
+    public function setNbSalary($nbSalary)
+    {
+        $this->nbSalary = $nbSalary;
+
+        return $this;
+    }
+
+    /**
+     * Get nbSalary
+     *
+     * @return integer
+     */
+    public function getNbSalary()
+    {
+        return $this->nbSalary;
+    }
+
+    /**
+     * Set birthdate
+     *
+     * @param \DateTime $birthdate
+     *
+     * @return Company
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthdate
+     *
+     * @return \DateTime
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
+    }
+
+    /**
+     * Set slogan
+     *
+     * @param string $slogan
+     *
+     * @return Company
+     */
+    public function setSlogan($slogan)
+    {
+        $this->slogan = $slogan;
+
+        return $this;
+    }
+
+    /**
+     * Get slogan
+     *
+     * @return string
+     */
+    public function getSlogan()
+    {
+        return $this->slogan;
+    }
+
+    /**
+     * Set quality
+     *
+     * @param string $quality
+     *
+     * @return Company
+     */
+    public function setQuality($quality)
+    {
+        $this->quality = $quality;
+
+        return $this;
+    }
+
+    /**
+     * Get quality
+     *
+     * @return string
+     */
+    public function getQuality()
+    {
+        return $this->quality;
     }
 
     /**
@@ -218,5 +252,15 @@ class Company
     public function removeUser(\AppBundle\Entity\User $user)
     {
         $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }
