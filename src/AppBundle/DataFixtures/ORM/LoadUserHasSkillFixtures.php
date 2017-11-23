@@ -24,14 +24,16 @@ class LoadUserHasSkillFixtures extends Fixture implements FixtureInterface
         $faker = Faker\Factory::create("fr_FR");
         $userSkills = [];
 
-        for($i = 0; $i <= self::MAX; $i++) {
-            $userSkills[$i] = new UserHasSkill();
-            $userSkills[$i]->setSkill($this->getReference("skill-" . $i));
-            $userSkills[$i]->setUser($this->getReference("user-" . $i));
-            $userSkills[$i]->setLevel($faker->numberBetween($min = 1, $max = 5));
-            $manager->persist($userSkills[$i]);
+        for($j = 0; $j <= self::MAX; $j++) {
+            for ($i = 0; $i <= rand(1, 10); $i++) {
+                $userSkills[$i] = new UserHasSkill();
+                $userSkills[$i]->setSkill($this->getReference("skill-" . rand(1, 80)));
+                $userSkills[$i]->setUser($this->getReference("user-" . $j));
+                $userSkills[$i]->setLevel($faker->numberBetween($min = 1, $max = 5));
+                $manager->persist($userSkills[$i]);
+            }
+            $manager->flush();
         }
-        $manager->flush();
     }
 
     public function getDependencies()

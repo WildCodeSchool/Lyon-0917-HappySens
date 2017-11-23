@@ -12,24 +12,20 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserHasSkill
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="skills")
+     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="userskills")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, unique=false)
      */
-    private $users;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Skill", inversedBy="skill")
+     * @ORM\Id()
+     * @ORM\ManyToOne(targetEntity="Skill", inversedBy="userskills")
+     * @ORM\JoinColumn(name="skill_id", referencedColumnName="id", nullable=false, unique=false)
      */
-    private $skills;
+    private $skill;
 
     /**
      * @var int
@@ -45,55 +41,38 @@ class UserHasSkill
      */
     private $type;
 
+
     /**
-     * @return int
+     * @return mixed
      */
-    public function getId(): int
+    public function getUser()
     {
-        return $this->id;
+        return $this->user;
     }
 
     /**
-     * @param int $id
+     * @param mixed $user
      * @return UserHasSkill
      */
-    public function setId(int $id): UserHasSkill
+    public function setUser($user)
     {
-        $this->id = $id;
+        $this->user = $user;
         return $this;
     }
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getUsers(): string
-    {
-        return $this->users;
-    }
-
-    /**
-     * @param string $users
-     * @return UserHasSkill
-     */
-    public function setUsers(string $users): UserHasSkill
-    {
-        $this->users = $users;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSkill(): string
+    public function getSkill()
     {
         return $this->skill;
     }
 
     /**
-     * @param string $skill
+     * @param mixed $skill
      * @return UserHasSkill
      */
-    public function setSkill(string $skill): UserHasSkill
+    public function setSkill($skill)
     {
         $this->skill = $skill;
         return $this;
@@ -136,84 +115,4 @@ class UserHasSkill
     }
 
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->skill = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return UserHasSkill
-     */
-    public function addUser(\AppBundle\Entity\User $user)
-    {
-        $this->users[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param \AppBundle\Entity\User $user
-     */
-    public function removeUser(\AppBundle\Entity\User $user)
-    {
-        $this->users->removeElement($user);
-    }
-
-    /**
-     * Add skill
-     *
-     * @param \AppBundle\Entity\Skill $skill
-     *
-     * @return UserHasSkill
-     */
-    public function addSkill(\AppBundle\Entity\Skill $skill)
-    {
-        $this->skill[] = $skill;
-
-        return $this;
-    }
-
-    /**
-     * Remove skill
-     *
-     * @param \AppBundle\Entity\Skill $skill
-     */
-    public function removeSkill(\AppBundle\Entity\Skill $skill)
-    {
-        $this->skill->removeElement($skill);
-    }
-
-    /**
-     * Set skills
-     *
-     * @param \AppBundle\Entity\Skill $skills
-     *
-     * @return UserHasSkill
-     */
-    public function setSkills(\AppBundle\Entity\Skill $skills = null)
-    {
-        $this->skills = $skills;
-
-        return $this;
-    }
-
-    /**
-     * Get skills
-     *
-     * @return \AppBundle\Entity\Skill
-     */
-    public function getSkills()
-    {
-        return $this->skills;
-    }
 }

@@ -16,7 +16,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadSkillFixtures extends Fixture implements FixtureInterface
 {
-    const MAX = 14;
+    const MAX = 80;
 
     public function load(ObjectManager $manager) {
         $faker = Faker\Factory::create("fr_FR");

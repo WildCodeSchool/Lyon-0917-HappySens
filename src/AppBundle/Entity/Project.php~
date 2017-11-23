@@ -72,7 +72,7 @@ class Project
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="likes")
-     * @ORM\JoinTable(name="like")
+     * @ORM\JoinTable(name="likeProject")
      */
     private $likeProjects;
 
