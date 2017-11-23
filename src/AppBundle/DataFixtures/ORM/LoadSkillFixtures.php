@@ -16,17 +16,21 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadSkillFixtures extends Fixture implements FixtureInterface
 {
-    const MAX = 15;
+    const MAX = 14;
 
     public function load(ObjectManager $manager) {
         $faker = Faker\Factory::create("fr_FR");
-        $skill = [];
+        $skills = [];
 
         for($i = 0; $i <= self::MAX; $i++) {
-            $skill[$i] = new Skill();
-            $skill[$i]->setNameSkill($faker->word);
-            $manager->persist($skill[$i]);
+            $skills[$i] = new Skill();
+            $skills[$i]->setNameSkill($faker->word);
+            $manager->persist($skills[$i]);
+
+            $this->addReference("skill-" . $i, $skills[$i]);
         }
+
+
         $manager->flush();
     }
 }

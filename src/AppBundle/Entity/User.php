@@ -58,7 +58,7 @@ class User
 
     /**
      *
-     * @ORM\Column(name="birthdate", type="date", nullable=true)
+     * @ORM\Column(name="birthdate", type="datetime", nullable=true)
      */
     private $birthdate;
 
@@ -125,7 +125,7 @@ class User
 
     /**
      * @ORM\ManyToMany(targetEntity="Project", mappedBy="likeProjects")
-     * @ORM\JoinTable(name="like")
+     * @ORM\JoinTable(name="likeProject")
      */
     private $likes;
 
@@ -142,9 +142,9 @@ class User
     private $language;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="users")
+     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="user")
      */
-    private $skills;
+    private $userskills;
 
 
     /**
@@ -587,5 +587,44 @@ class User
     public function removeSkill(\AppBundle\Entity\UserHasSkill $skill)
     {
         $this->skills->removeElement($skill);
+    }
+
+    /**
+     * Add userskill
+     *
+     * @param \AppBundle\Entity\UserHasSkill $userskill
+     *
+     * @return User
+     */
+    public function addUserskill(\AppBundle\Entity\UserHasSkill $userskill)
+    {
+        $this->userskills[] = $userskill;
+
+        return $this;
+    }
+
+    /**
+     * Remove userskill
+     *
+     * @param \AppBundle\Entity\UserHasSkill $userskill
+     */
+    public function removeUserskill(\AppBundle\Entity\UserHasSkill $userskill)
+    {
+        $this->userskills->removeElement($userskill);
+    }
+
+    /**
+     * Get userskills
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserskills()
+    {
+        return $this->userskills;
+    }
+
+    public function __toString()
+    {
+        return $this->getFirstName() . " " . $this->getLastName();
     }
 }

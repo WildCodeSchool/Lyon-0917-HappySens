@@ -28,9 +28,9 @@ class Skill
     private $nameSkill;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="skills")
+     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="skill")
      */
-    private $skill;
+    private $userskills;
 
 
     /**
@@ -126,5 +126,39 @@ class Skill
     public function getSkill()
     {
         return $this->skill;
+    }
+
+    /**
+     * Add userskill
+     *
+     * @param \AppBundle\Entity\UserHasSkill $userskill
+     *
+     * @return Skill
+     */
+    public function addUserskill(\AppBundle\Entity\UserHasSkill $userskill)
+    {
+        $this->userskills[] = $userskill;
+
+        return $this;
+    }
+
+    /**
+     * Remove userskill
+     *
+     * @param \AppBundle\Entity\UserHasSkill $userskill
+     */
+    public function removeUserskill(\AppBundle\Entity\UserHasSkill $userskill)
+    {
+        $this->userskills->removeElement($userskill);
+    }
+
+    /**
+     * Get userskills
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserskills()
+    {
+        return $this->userskills;
     }
 }

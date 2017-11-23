@@ -26,12 +26,14 @@ class LoadCompanyFixtures extends Fixture implements FixtureInterface
             $company[$i] = new Company();
             $company[$i]->setActivity($faker->jobTitle);
             $company[$i]->setNbSalary($faker->numberBetween($min = 10, $max = 1000));
-            $company[$i]->setBirthdate($faker->date($format="AAAA-MM-JJ",$max="1999"));
+            $company[$i]->setBirthdate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()));
             $company[$i]->setSlogan($faker->sentence($nbWords = 8, $variableNbWords = true));
-            $company[$i]->setQuality($faker->sentences($nb = 3, $asText = false));
+            $company[$i]->setQuality($faker->sentence($nbWords = 20, $variableNbWords = true));
             $company[$i]->setName($faker->company);
             $manager->persist($company[$i]);
+
         }
+
         $manager->flush();
     }
 }

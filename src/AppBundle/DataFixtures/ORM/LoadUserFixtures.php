@@ -19,7 +19,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadUserFixtures extends Fixture implements FixtureInterface
 {
-    const MAX = 5;
+    const MAX = 10;
     public function load(ObjectManager $manager) {
 
 
@@ -33,7 +33,7 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                      ->setPhone($faker->phoneNumber)
                      ->setEmail($faker->email)
                      ->setStatus(rand(1,5))
-                     ->setBirthdate($faker->date($format="AAAA-MM-JJ",$max="1999"))
+                     ->setBirthdate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
                      ->setPhoto($faker->imageUrl("640", "480"))
                      ->setBiography($faker->realText($maxNbChars=255, 2))
                      ->setSlogan($faker->realText($maxNbChars=255, 2))
@@ -43,7 +43,10 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                      ->setWorkplace($faker->city)
                      ->setNativeLanguage("FR")
                      ->setLanguage($faker->randomElement($array=["Anglais", "Espagnol", "Russe", "Polonais", "Vietnamien", "Japonais"]));
+
             $manager->persist($user[$i]);
+            $this->addReference("user-" . $i, $user[$i]);
+
         }
         $manager->flush();
     }
@@ -52,7 +55,6 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
     {
         return array(
           LoadSkillFixtures::class,
-          LoadUserHasSkillFixtures::class,
           LoadCompanyFixtures::class,
         );
     }
