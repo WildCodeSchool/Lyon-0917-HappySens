@@ -103,7 +103,7 @@ class Project
     /**
      * @return string
      */
-    public function getTitle(): string
+    public function getTitle()
     {
         return $this->title;
     }
@@ -121,7 +121,7 @@ class Project
     /**
      * @return \DateTime
      */
-    public function getStartingDate(): \DateTime
+    public function getStartingDate()
     {
         return $this->startingDate;
     }
@@ -139,7 +139,7 @@ class Project
     /**
      * @return \DateTime
      */
-    public function getEndDate(): \DateTime
+    public function getEndDate()
     {
         return $this->endDate;
     }
@@ -157,7 +157,7 @@ class Project
     /**
      * @return string
      */
-    public function getPresentation(): string
+    public function getPresentation()
     {
         return $this->presentation;
     }
@@ -175,7 +175,7 @@ class Project
     /**
      * @return string
      */
-    public function getProfit(): string
+    public function getProfit()
     {
         return $this->profit;
     }
@@ -193,7 +193,7 @@ class Project
     /**
      * @return string
      */
-    public function getBeneficeCompany(): string
+    public function getBeneficeCompany()
     {
         return $this->beneficeCompany;
     }
@@ -211,7 +211,7 @@ class Project
     /**
      * @return string
      */
-    public function getAuthor(): string
+    public function getAuthor()
     {
         return $this->author;
     }
