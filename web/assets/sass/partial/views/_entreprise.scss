@@ -6,14 +6,14 @@
   letter-spacing: 2px;
   font-family: $textFont;
 }
-
-#exampleProjectHome {
-  background-color:  #EDF1F2;
-}
-
 .blocExplainEntreprise {
   h3 {
     font-size: 3em;
+    font-family: $textFont;
+    margin-bottom: 40px;
+  }
+  h4 {
+    margin: 40px 5px;
     font-family: $textFont;
   }
   .containExplainEntreprise {
@@ -27,7 +27,7 @@
       border-radius: 5px;
       margin: auto;
       font-family: $titleFont;
-      font-size: 1.3em;
+      font-size: 1.4em;
       text-align: justify;
     }
   }

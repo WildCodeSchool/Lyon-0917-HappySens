@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos notifications{% endblock %}
+
+{% block navbar %}
+    {{ include('partials/components/navbarIn.html.twig') }}
+{% endblock %}
+
+{% block content %}
+    <div class="container generalContainer">
+        <div class="row">
+            <h2 class="header left title">Le titre du listing</h2>
+            <ul class="col s12">
+                {% for i in 0..4 %}
+                    <li class="card medium">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{ asset('assets/images/happysens-cuisine.jpg') }}">
+                        </div>
+                        <div class="chip inProgress chipStatus">
+                            <span><i class="fa fa-clock-o"></i></span>
+                            <span> En attente</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-title activator grey-text text-darken-4">
+                                Cours de cuisine
+                                <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
+                            </div>
+                            <div>
+                                <a href="{{ path('profilEmploye') }}">
+                                    <div class="chip">
+                                        <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
+                                        <span class="black-text">@name.employe</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="right">
+                                <a href="#!" onclick="like()">15 <i class="fa fa-heart red-text"></i></a>
+                            </div>
+                        </div>
+                        <div class="card-reveal revealProject">
+                            <span class="card-title grey-text text-darken-4">
+                                Cours de cuisine
+                                <i class="material-icons right">close</i>
+                            </span>
+                            <div class="row">
+                                <div>
+                                    <a href="{{ path('profilEmploye') }}">
+                                        <div class="chip left">
+                                            <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
+                                            <span class="black-text">@name.employe</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="chip inProgress right">
+                                    <span><i class="fa fa-clock-o"></i></span>
+                                    <span> En attente</span>
+                                </div>                </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eum id illo laudantium non odit, placeat praesentium quaerat ratione voluptates. Adipisci corporis dolore dolores explicabo incidunt itaque labore natus veniam.</p>
+                            <div class="footerReveal">
+                                <div class="left">
+                                    <a href="{{ path('viewProject') }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
+                                </div>
+                                <div class="right">
+                                    <a href="#!" onclick="like()">15 <i class="fa fa-heart red-text"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+

@@ -111,4 +111,15 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
+
+    // Traitement Form connection / contact / profils / inscriptions / projets
+    /**
+     * @Route("test", name="listingTemplate")
+     */
+    public function testAction(Request $request)
+    {
+        return $this->render('pages/template/templates_listing.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
 }

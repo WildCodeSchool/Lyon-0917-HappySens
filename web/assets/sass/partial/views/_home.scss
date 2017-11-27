@@ -55,10 +55,36 @@
   padding: 80px;
   margin-top: 50px;
   text-align: center;
-  background-color: #EDF1F2;
   .typeExplainHome {
     font-family: $titleFont;
     font-size: 1.5em;
     padding: 20px;
+  }
+}
+
+.blocExplainIndex {
+  h3 {
+    font-size: 3em;
+    font-family: $textFont;
+    margin-bottom: 40px;
+  }
+  h5 {
+    margin: 50px 5px;
+    font-family: $textFont;
+    color: $blueColor;
+  }
+  .containExplainIndex {
+    margin-top: 50px;
+    i {
+      color: $pinkColor;
+    }
+    .detailsExplainIndex {
+      margin: auto 10px;
+      font-family: $titleFont;
+      font-size: 1.5em;
+      padding: 30px 10px;
+      text-align: center;
+      color: $blueColor;
+    }
   }
 }
