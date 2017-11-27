@@ -146,6 +146,23 @@ class User
      */
     private $userskills;
 
+    /**
+     *
+     * @ORM\Column(name="facebook", type="string",  length=100, nullable=true)
+     */
+    private $facebook;
+
+    /**
+     *
+     * @ORM\Column(name="twitter", type="string",  length=100, nullable=true)
+     */
+    private $twitter;
+    /**
+     *
+     * @ORM\Column(name="linkedin", type="string",  length=100, nullable=true)
+     */
+    private $linkedin;
+
 
     /**
      * @return int
@@ -622,6 +639,62 @@ class User
     {
         return $this->userskills;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param mixed $facebook
+     * @return User
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * @param mixed $twitter
+     * @return User
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLinkedin()
+    {
+        return $this->linkedin;
+    }
+
+    /**
+     * @param mixed $linkedin
+     * @return User
+     */
+    public function setLinkedin($linkedin)
+    {
+        $this->linkedin = $linkedin;
+        return $this;
+    }
+
+
 
     public function __toString()
     {

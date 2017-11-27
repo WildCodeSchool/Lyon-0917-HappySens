@@ -30,6 +30,10 @@ class LoadCompanyFixtures extends Fixture implements FixtureInterface
             $company[$i]->setSlogan($faker->sentence($nbWords = 8, $variableNbWords = true));
             $company[$i]->setQuality($faker->sentence($nbWords = 20, $variableNbWords = true));
             $company[$i]->setName($faker->company);
+            $company[$i]
+                ->setFacebook($faker->url)
+                ->setTwitter($faker->url)
+                ->setLinkedin($faker->url);
             $manager->persist($company[$i]);
 
         }

@@ -32,6 +32,10 @@ class LoadProjectFixtures extends Fixture implements FixtureInterface
             $project[$i]->setProfit($faker->sentence($nbWords = 20, $variableNbWords = true));
             $project[$i]->setBeneficeCompany($faker->sentence($nbWords = 30, $variableNbWords = true));
             $project[$i]->setAuthor($this->getReference("user-" . $i));
+            $project[$i]->setStatus(rand(1,3));
+            $project[$i]->setPhoto($faker->imageUrl("640", "480"));
+            $project[$i]->setLocation($faker->city);
+            $project[$i]->setTheme($faker->word);
             $manager->persist($project[$i]);
         }
         $manager->flush();

@@ -42,7 +42,12 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                      ->setJob($faker->jobTitle)
                      ->setWorkplace($faker->city)
                      ->setNativeLanguage("FR")
+                    ->setFacebook($faker->url)
+                    ->setTwitter($faker->url)
+                    ->setLinkedin($faker->url)
                      ->setLanguage($faker->randomElement($array=["Anglais", "Espagnol", "Russe", "Polonais", "Vietnamien", "Japonais"]));
+
+
 
             $manager->persist($user[$i]);
             $this->addReference("user-" . $i, $user[$i]);

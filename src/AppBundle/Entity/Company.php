@@ -63,6 +63,23 @@ class Company
     private $quality;
 
     /**
+     *
+     * @ORM\Column(name="facebook", type="string",  length=100, nullable=true)
+     */
+    private $facebook;
+
+    /**
+     *
+     * @ORM\Column(name="twitter", type="string",  length=100, nullable=true)
+     */
+    private $twitter;
+    /**
+     *
+     * @ORM\Column(name="linkedin", type="string",  length=100, nullable=true)
+     */
+    private $linkedin;
+
+    /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="company")
      */
     private $users;
@@ -263,4 +280,62 @@ class Company
     {
         return $this->users;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param mixed $facebook
+     * @return Company
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * @param mixed $twitter
+     * @return Company
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLinkedin()
+    {
+        return $this->linkedin;
+    }
+
+    /**
+     * @param mixed $linkedin
+     * @return Company
+     */
+    public function setLinkedin($linkedin)
+    {
+        $this->linkedin = $linkedin;
+        return $this;
+    }
+
+
+
+
 }
