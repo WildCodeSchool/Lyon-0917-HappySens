@@ -69,22 +69,29 @@
     margin-bottom: 40px;
   }
   h5 {
+    font-size: 1.5em;
     margin: 50px 5px;
     font-family: $textFont;
-    color: $blueColor;
+    color: $darkColor;
   }
   .containExplainIndex {
     margin-top: 50px;
     i {
-      color: $pinkColor;
+      color: white;
     }
     .detailsExplainIndex {
       margin: auto 10px;
-      font-family: $titleFont;
-      font-size: 1.5em;
+      font-family: $textFont;
+      font-size: 1.4em;
       padding: 30px 10px;
       text-align: center;
-      color: $blueColor;
+      color: $darkColor;
     }
   }
+}
+
+.titleTheme {
+  position: relative;
+  top: 25%;
+  transform: translatey(-25%);
 }
