@@ -963,4 +963,10 @@ ul.followUs {
   .inline-team-list li {
     margin-right: 5px; }
 
+.personPlus {
+  margin-top: 10px;
+  background-color: #0288D1; }
+  .personPlus:hover {
+    background-color: rgba(2, 136, 209, 0.8); }
+
 /*# sourceMappingURL=style.css.map */
