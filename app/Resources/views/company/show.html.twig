@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Company</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ company.id }}</td>
+            </tr>
+            <tr>
+                <th>Activity</th>
+                <td>{{ company.activity }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ company.name }}</td>
+            </tr>
+            <tr>
+                <th>Nbsalary</th>
+                <td>{{ company.nbSalary }}</td>
+            </tr>
+            <tr>
+                <th>Birthdate</th>
+                <td>{% if company.birthdate %}{{ company.birthdate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slogan</th>
+                <td>{{ company.slogan }}</td>
+            </tr>
+            <tr>
+                <th>Quality</th>
+                <td>{{ company.quality }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('newCompany_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('newCompany_edit', { 'id': company.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,19 +1,19 @@
 function missingPassword(){
-    $('#hiddenMissingPassword').removeClass('hidden');
-    $('#password').addClass('hidden');
-    $('#btnConnexion').addClass('hidden');
+    $('#hiddenMissingPassword').removeClass('hide');
+    $('#password').addClass('hide');
+    $('#btnConnexion').addClass('hide');
 }
 
 function findPassword(){
-    $('#hiddenMissingPassword').addClass('hidden');
-    $('#password').removeClass('hidden');
-    $('#btnConnexion').removeClass('hidden');
-    $('#hiddenNewSalary').addClass('hidden');
+    $('#hiddenMissingPassword').addClass('hide');
+    $('#password').removeClass('hide');
+    $('#btnConnexion').removeClass('hide');
+    $('#hiddenNewSalary').addClass('hide');
 }
 
 
 function newSalary(){
-    $('#hiddenNewSalary').removeClass('hidden');
-    $('#password').addClass('hidden');
-    $('#btnConnexion').addClass('hidden');
+    $('#hiddenNewSalary').removeClass('hide');
+    $('#password').addClass('hide');
+    $('#btnConnexion').addClass('hide');
 }
