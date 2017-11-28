@@ -157,7 +157,8 @@
                         </ul>
                     </div>
                     <div class="row">
-                        <span class="col s12 center" id="aShowAllSalaryLarge"><a onclick="showAllSalaryLarge()">Voir tous les Happy Salarié</a></span>
+                        <a class="waves-effect waves-light modal-trigger center" href="#modal2">Voir tous les happySalariés</a>
+                        {#<span class="col s12 center" id="aShowAllSalaryLarge"><a onclick="showAllSalaryLarge()">Voir tous les Happy Salarié</a></span>#}
                     </div>
                 </div>
             </div>
@@ -170,32 +171,34 @@
             </div>
         </div>
     </div>
-    <div class="l12 hide" id="allSalaryLarge">
+    <div class="col l12" id="allSalaryLarge">
         <div class="row">
-            <div>
-                <h5 class="titleSecond">Tous mes Happy Salarié : </h5>
-            </div>
             {% set numberSalary = 1 %}
-            {% for salary in 1..8 %}
-                <div class="col l4">
-                    {% for range in 1..3 %}
-                        <div class="col l4  center-align">
-                            <ul>
-                                <li><img class="circle responsive-img" src="https://randomuser.me/api/portraits/{% if numberSalary % 2 == 0 %}women{% else %}men{% endif %}/{{numberSalary}}.jpg" alt="Vignette photo"></li>
-                                <li>Name</li>
-                                <li>humeur</li>
-                                <li>Ici le slogan de chaque salarié</li>
-                            </ul>
-                        </div>
-                        {% set numberSalary = numberSalary + 1 %}
+            <!-- Modal Structure -->
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                    <div class="row">
+                        <h4 class="left">Tous les salariés</h4>
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right"><i class="material-icons">close</i></a>
+                    </div>
+                    <div class="row">
+                    {% for salary in 1..9 %}
+                            <div class="col l4 card center-align">
+                                <ul>
+                                    <li><img class="circle responsive-img" src="https://randomuser.me/api/portraits/{% if numberSalary % 2 == 0 %}women{% else %}men{% endif %}/{{numberSalary}}.jpg" alt="Vignette photo"></li>
+                                    <li>Name</li>
+                                    <li>humeur</li>
+                                    <li>Ici le slogan de chaque salarié</li>
+                                </ul>
+                            </div>
+                            {% set numberSalary = numberSalary + 1 %}
                     {% endfor %}
+                    </div>
+
                 </div>
-            {% endfor %}
+                <div class="modal-footer">
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <span class="col s12 center"><a onclick="hideAllSalaryLarge()">Retour</a></span>
-        </div>
-
     </div>
-
 </div>
