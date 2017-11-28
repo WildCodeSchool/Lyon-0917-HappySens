@@ -45,7 +45,7 @@ class EmailContactController extends Controller
 
             return $this->redirectToRoute('homepage');
         }
-        return $this->render('pages/contact.html.twig',[
+        return $this->render('pages/Out/contact.html.twig',[
             'form' => $form->createView(),
         ]);
 
