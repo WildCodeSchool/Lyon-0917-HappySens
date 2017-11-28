@@ -3,7 +3,7 @@
         <div class="nav-wrapper white">
             <a href="{{ path('homepage') }}" class="brand-logo center"><img src="{{ asset('assets/images/logo2.png') }}" alt="LOGO" width="90px" title="Acceuil"></a>
             <ul class="right">
-                <li title="Créer un projet"><a href="{{ path('addProject') }}"><span class="linkNavSide"><i class="material-icons">add</i></span></a></li>
+                <li title="Créer un projet"><a href="{{ path('project_new') }}"><span class="linkNavSide"><i class="material-icons">add</i></span></a></li>
                 <li title="Vos notifications">
                     <a class="dropdown-button linkNavSide"  style="display: flex;" href="#!" data-activates="dropdownNotif">
                         <i class="material-icons">notifications</i>
@@ -41,7 +41,7 @@
                     </div>
                 </li>
                 <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">tab</i>Tous les projets :</a></li>
-                <li><a class="waves-effect" href="{{ path('addProject') }}"><i class="material-icons">create_new_folder</i>Nouveau projet</a></li>
+                <li><a class="waves-effect" href="{{ path('project_new') }}"><i class="material-icons">create_new_folder</i>Nouveau projet</a></li>
                 <li><a class="waves-effect"><i class="material-icons">folder_shared</i>Vos projets en cours</a></li>
                 <li><a class="waves-effect"><i class="material-icons">folder_special</i>Les projets suivis</a></li>
                 <li><a class="waves-effect"><i class="material-icons">folder</i>Vos projets terminés</a></li>

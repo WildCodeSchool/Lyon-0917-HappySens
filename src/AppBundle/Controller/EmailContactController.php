@@ -26,10 +26,23 @@ class EmailContactController extends Controller
                 ->setFrom($contact->getEmail())
                 ->setTo('famar.wcslyon@gmail.com')
                 ->setBody(
-                    $this->renderView('partials/components/notificationsEmail/contact.html.twig'),
+                    $this->renderView('notificationsEmail/contact.html.twig', [
+                        'firstName' => $contact->getFirstName(),
+                        'lastName' => $contact->getLastName(),
+                        'phone' => $contact->getPhone(),
+                        'company' => $contact->getNameCompany(),
+                        'status' => $contact->getStatus(),
+                        'message' => $contact->getMessage()
+                    ]),
                     'text/html'
                 );
             $mailer->send($message);
+
+            $this->addFlash(
+                'contact',
+                'Merci, votre message a bien été envoyé.'
+            );
+
             return $this->redirectToRoute('homepage');
         }
         return $this->render('pages/contact.html.twig',[
