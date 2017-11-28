@@ -146,6 +146,7 @@ class User
      */
     private $userskills;
 
+
     /**
      *
      * @ORM\Column(name="facebook", type="string",  length=100, nullable=true)

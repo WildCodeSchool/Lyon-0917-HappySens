@@ -34,7 +34,7 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                      ->setEmail($faker->email)
                      ->setStatus(rand(1,5))
                      ->setBirthdate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()))
-                     ->setPhoto($faker->imageUrl("640", "480"))
+                     ->setPhoto($faker->imageUrl("150", "150"))
                      ->setBiography($faker->realText($maxNbChars=255, 2))
                      ->setSlogan($faker->realText($maxNbChars=255, 2))
                      ->setPassword($faker->password(8))

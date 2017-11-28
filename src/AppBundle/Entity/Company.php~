@@ -73,6 +73,7 @@ class Company
      * @ORM\Column(name="twitter", type="string",  length=100, nullable=true)
      */
     private $twitter;
+
     /**
      *
      * @ORM\Column(name="linkedin", type="string",  length=100, nullable=true)
@@ -80,9 +81,19 @@ class Company
     private $linkedin;
 
     /**
+     *
+     * @ORM\Column(name="logo", type="string",  length=255, nullable=true)
+     */
+    private $logo;
+
+    /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="company")
      */
     private $users;
+
+
+
+
 
 
     /**
@@ -335,7 +346,28 @@ class Company
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
 
+    /**
+     * @param mixed $logo
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+    }
+
+
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 
 
 }
