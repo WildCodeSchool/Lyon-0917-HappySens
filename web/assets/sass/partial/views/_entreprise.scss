@@ -6,24 +6,28 @@
   letter-spacing: 2px;
   font-family: $textFont;
 }
-
 .blocExplainEntreprise {
   h3 {
     font-size: 3em;
     font-family: $textFont;
+    margin-bottom: 40px;
+  }
+  h4 {
+    margin: 40px 5px;
+    font-family: $textFont;
   }
   .containExplainEntreprise {
-    padding: 30px 15px;
+    padding: 20px 15px;
     text-align: left;
     .titleExplainEntreprise {
       font-family: $titleFont;
     }
     .detailsExplainEntreprise {
-      padding: 10px 0;
+      padding: 10px 30px;
       border-radius: 5px;
       margin: auto;
-      font-family: $textFont;
-      font-size: 1.3em;
+      font-family: $titleFont;
+      font-size: 1.4em;
       text-align: justify;
     }
   }

@@ -10,5 +10,6 @@ $(document).ready(function() {
     });
     $('.collapsible').collapsible();
     $(".button").sideNav();
+    $('#modal2').modal();
 
 });

@@ -11,61 +11,89 @@
     .headerTitleHome h1 {
       font-size: 3.5em !important; }
     .headerTitleHome img {
-      width: 150px !important;
+      width: 250px !important;
       margin-bottom: -30px !important; }
     .headerTitleHome h5 {
       font-size: 1.5em !important; }
+
+  .parallax-container-home {
+    min-height: 103vh;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-y: hidden;
+    margin-top: -90px; }
+
   .blocExplainEntreprise h3 {
     font-size: 2.2em !important; }
   .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
     font-size: 1.2em !important; }
+
   .generalContainer {
     padding: 50px 20px !important; }
+
   .title {
     font-size: 2em !important; }
+
   .scrollToTop {
     display: none !important; }
+
   .headerTitleOthers {
     top: 35vh !important; }
     .headerTitleOthers h1 {
       font-size: 2em !important; }
     .headerTitleOthers h5 {
       font-size: 1.2em !important; }
+
   .titleSecond {
     font-size: 1.5em !important; }
+
   .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
     font-size: 1.5em !important; }
+
   .titleDetailsEntreprise {
     font-size: 2em !important; }
+
   .cardTitle {
     font-size: 1.8em !important; }
+
   .detailsInfosEntreprise {
     font-size: 0.8em !important; }
+
   .detailsInfosEmploye {
     font-size: 0.8em !important; }
+
   .detailsInfosHappy {
     font-size: 0.8em !important; }
+
   .containerTalentsEntreprise .containsTalents p {
     font-size: 1em !important; }
+
   .titleEndEntreprise {
     font-size: 1.1em !important; }
+
   .containExplainEmploye .detailsExplainEmploye {
     font-size: 1em !important; }
+
   .titleExplainEmploye {
     font-size: 2em !important; }
+
   .typeExplainEmploye {
     font-size: 1em !important; }
+
   #contentEntreprise, #contentHappy, #contentCGV, #contentInscription, #contentContact {
     background-position: center !important;
     top: 25vh !important; }
+
   .titleShema {
     font-size: 1.3em !important;
     text-align: left !important; }
+
   .textSchema {
     font-size: 1em !important;
     text-align: left !important; }
-  .brand-logo {
-    margin-top: 1px !important; }
+
   /* IN */
   .card-profile-image {
     margin-top: -55px !important; }
@@ -75,17 +103,31 @@
       font-family: "Quicksand", sans-serif;
       font-size: 1.5em;
       text-align: left; }
+
   .largeScreen {
     display: none !important; }
+
   .mobile {
     display: block !important; }
-  .modal-content {
-    width: 25em !important; } }
 
+  .modal-content {
+    width: 25em !important; }
+
+  .detailsExplainEntreprise {
+    padding: 10px !important; }
+
+  .brand-logo {
+    margin-top: 5px !important; } }
 @media all and (max-width: 600px) {
   .imgMenu img {
-    margin: 10px 0 !important; } }
+    margin: 10px 0 !important; }
 
+  .headerTitleHome img {
+    width: 200px !important;
+    margin-bottom: -30px !important; }
+
+  .brand-logo {
+    margin-top: 1px !important; } }
 /*******************    CONFIG   ***************************/
 * {
   box-sizing: border-box; }
@@ -200,29 +242,29 @@ nav {
   background-color: inherit;
   box-shadow: none; }
 
-.modal {
+.modalConnect {
   min-width: 100vw;
   min-height: 100vh;
   top: 0 !important;
   background-color: rgba(255, 255, 255, 0.92);
   padding: 20px 20px; }
-  .modal .iClose {
+  .modalConnect .iClose {
     color: #252F3D; }
-  .modal .hidden {
+  .modalConnect .hidden {
     display: none; }
 
-.modal-content {
+.modal-content-Connect {
   width: 50em;
   position: relative;
   top: 45vh;
   transform: translatey(-45%);
   margin: auto; }
-  .modal-content a {
+  .modal-content-Connect a {
     color: #0288D1; }
-    .modal-content a:hover {
+    .modal-content-Connect a:hover {
       color: #4dabe6;
       cursor: pointer; }
-  .modal-content a.btn {
+  .modal-content-Connect a.btn {
     color: white; }
 
 .newUser {
@@ -414,15 +456,12 @@ nav {
 
 .chip img {
   background-color: #fff; }
-
 .chip.validate {
   background-color: rgba(34, 139, 34, 0.8);
   color: white; }
-
 .chip.inProgress {
   background-color: rgba(255, 165, 0, 0.8);
   color: white; }
-
 .chip.end {
   background-color: rgba(255, 0, 0, 0.8);
   color: white; }
@@ -487,13 +526,62 @@ ul.switch li.active, ul.switch li.active {
 .test {
   padding-right: 10px; }
 
+.containerSchema {
+  margin-top: 20px; }
+
+.demo a {
+  bottom: 20px;
+  left: 50%;
+  z-index: 2;
+  display: inline-block;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  color: white;
+  font: normal 1.5em "Roboto", sans-serif;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: opacity .3s; }
+
+.demo a:hover {
+  opacity: .5; }
+
+#scrollBottom {
+  margin-left: -15px; }
+
+#scrollBottom a {
+  padding-top: 60px; }
+
+#scrollBottom a span {
+  position: absolute;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  margin-left: -40px;
+  margin-top: 20px;
+  border-left: 3px solid #0288D1;
+  border-bottom: 3px solid #0288D1;
+  border-bottom-left-radius: 5px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb04 2s infinite;
+  animation: sdb04 2s infinite;
+  box-sizing: border-box; }
+
+@-webkit-keyframes sdb04 {
+  0% {
+    -webkit-transform: rotate(-45deg) translate(0, 0); }
+  20% {
+    -webkit-transform: rotate(-45deg) translate(-10px, 10px); }
+  40% {
+    -webkit-transform: rotate(-45deg) translate(0, 0); } }
 /*****************    Vues    ****************************/
 .parallax-container-home {
   min-height: 103vh;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil.jpg");
+  background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: center;
   overflow-y: hidden;
   margin-top: -90px; }
 
@@ -510,7 +598,7 @@ ul.switch li.active, ul.switch li.active {
     font-size: 5.5em; }
     .headerTitleHome h1 img {
       margin-bottom: -40px;
-      width: 250px; }
+      width: 350px; }
   .headerTitleHome h5 {
     margin-left: 20px;
     font-size: 2em;
@@ -598,19 +686,22 @@ ul.followUs {
 
 .blocExplainEntreprise h3 {
   font-size: 3em;
+  font-family: "Quicksand", sans-serif;
+  margin-bottom: 40px; }
+.blocExplainEntreprise h4 {
+  margin: 40px 5px;
   font-family: "Quicksand", sans-serif; }
-
 .blocExplainEntreprise .containExplainEntreprise {
-  padding: 30px 15px;
+  padding: 20px 15px;
   text-align: left; }
   .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
     font-family: "Roboto", sans-serif; }
   .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
-    padding: 10px 0;
+    padding: 10px 30px;
     border-radius: 5px;
     margin: auto;
-    font-family: "Quicksand", sans-serif;
-    font-size: 1.3em;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.4em;
     text-align: justify; }
 
 .titleSecond {
@@ -642,9 +733,6 @@ ul.followUs {
   right: 0;
   font-size: 0.7em; }
 
-#fullBlock img {
-  width: 100%; }
-
 .titleExplainHappy {
   font-family: "Quicksand", sans-serif;
   color: #FFA000;
@@ -670,9 +758,6 @@ ul.followUs {
       font-size: 1.3em;
       margin-bottom: 10px; }
 
-.error {
-  color: red; }
-
 .sliderBloc {
   line-height: 2.3em;
   padding: 30px 10px; }
@@ -680,17 +765,6 @@ ul.followUs {
     font-family: "Quicksand", sans-serif;
     font-size: 3.5em;
     text-align: center; }
-
-#flashNoticeContact {
-  opacity: 0.6; }
-  #flashNoticeContact .card {
-    position: fixed;
-    left: 10px;
-    top: 40px;
-    margin-left: 10px;
-    border-radius: 2px;
-    padding: 10px 10px 0 10px;
-    margin-bottom: 0; }
 
 .presentation {
   padding: 30px 0; }
@@ -724,6 +798,41 @@ ul.followUs {
   max-height: 150px;
   max-width: 150px; }
 
+.containerPicsHome {
+  padding: 80px;
+  margin-top: 50px;
+  text-align: center; }
+  .containerPicsHome .typeExplainHome {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.5em;
+    padding: 20px; }
+
+.blocExplainIndex h3 {
+  font-size: 3em;
+  font-family: "Quicksand", sans-serif;
+  margin-bottom: 40px; }
+.blocExplainIndex h5 {
+  font-size: 1.5em;
+  margin: 50px 5px;
+  font-family: "Quicksand", sans-serif;
+  color: #252F3D; }
+.blocExplainIndex .containExplainIndex {
+  margin-top: 50px; }
+  .blocExplainIndex .containExplainIndex i {
+    color: white; }
+  .blocExplainIndex .containExplainIndex .detailsExplainIndex {
+    margin: auto 10px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.4em;
+    padding: 30px 10px;
+    text-align: center;
+    color: #252F3D; }
+
+.titleTheme {
+  position: relative;
+  top: 25%;
+  transform: translatey(-25%); }
+
 .cgv {
   margin-top: 10px; }
   .cgv h1 {
@@ -748,6 +857,12 @@ ul.followUs {
 
 .popout {
   font-family: "Quicksand", sans-serif; }
+
+.hidden {
+  display: none; }
+
+.active {
+  display: block; }
 
 .titleProfilEmploye {
   font-family: "Patrick Hand SC", cursive; }
@@ -806,10 +921,8 @@ ul.followUs {
 
 .revealProject .row {
   padding: 20px 5px; }
-
 .revealProject p {
   padding: 0 10px; }
-
 .revealProject .footerReveal {
   padding: 15px 5px;
   margin-top: 10px; }
@@ -849,3 +962,11 @@ ul.followUs {
   justify-content: center; }
   .inline-team-list li {
     margin-right: 5px; }
+
+.personPlus {
+  margin-top: 10px;
+  background-color: #0288D1; }
+  .personPlus:hover {
+    background-color: rgba(2, 136, 209, 0.8); }
+
+/*# sourceMappingURL=style.css.map */
