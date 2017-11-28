@@ -10,10 +10,3 @@ function findPassword(){
     $('#btnConnexion').removeClass('hide');
     $('#hiddenNewSalary').addClass('hide');
 }
-
-
-function newSalary(){
-    $('#hiddenNewSalary').removeClass('hide');
-    $('#password').addClass('hide');
-    $('#btnConnexion').addClass('hide');
-}
