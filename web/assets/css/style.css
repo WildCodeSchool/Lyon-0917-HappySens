@@ -242,29 +242,29 @@ nav {
   background-color: inherit;
   box-shadow: none; }
 
-.modal {
+.modalConnect {
   min-width: 100vw;
   min-height: 100vh;
   top: 0 !important;
   background-color: rgba(255, 255, 255, 0.92);
   padding: 20px 20px; }
-  .modal .iClose {
+  .modalConnect .iClose {
     color: #252F3D; }
-  .modal .hidden {
+  .modalConnect .hidden {
     display: none; }
 
-.modal-content {
+.modal-content-Connect {
   width: 50em;
   position: relative;
   top: 45vh;
   transform: translatey(-45%);
   margin: auto; }
-  .modal-content a {
+  .modal-content-Connect a {
     color: #0288D1; }
-    .modal-content a:hover {
+    .modal-content-Connect a:hover {
       color: #4dabe6;
       cursor: pointer; }
-  .modal-content a.btn {
+  .modal-content-Connect a.btn {
     color: white; }
 
 .newUser {
