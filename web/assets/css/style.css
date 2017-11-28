@@ -15,79 +15,57 @@
       margin-bottom: -30px !important; }
     .headerTitleHome h5 {
       font-size: 1.5em !important; }
-
   .blocExplainEntreprise h3 {
     font-size: 2.2em !important; }
   .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
     font-size: 1.2em !important; }
-
   .generalContainer {
     padding: 50px 20px !important; }
-
   .title {
     font-size: 2em !important; }
-
   .scrollToTop {
     display: none !important; }
-
   .headerTitleOthers {
     top: 35vh !important; }
     .headerTitleOthers h1 {
       font-size: 2em !important; }
     .headerTitleOthers h5 {
       font-size: 1.2em !important; }
-
   .titleSecond {
     font-size: 1.5em !important; }
-
   .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
     font-size: 1.5em !important; }
-
   .titleDetailsEntreprise {
     font-size: 2em !important; }
-
   .cardTitle {
     font-size: 1.8em !important; }
-
   .detailsInfosEntreprise {
     font-size: 0.8em !important; }
-
   .detailsInfosEmploye {
     font-size: 0.8em !important; }
-
   .detailsInfosHappy {
     font-size: 0.8em !important; }
-
   .containerTalentsEntreprise .containsTalents p {
     font-size: 1em !important; }
-
   .titleEndEntreprise {
     font-size: 1.1em !important; }
-
   .containExplainEmploye .detailsExplainEmploye {
     font-size: 1em !important; }
-
   .titleExplainEmploye {
     font-size: 2em !important; }
-
   .typeExplainEmploye {
     font-size: 1em !important; }
-
   #contentEntreprise, #contentHappy, #contentCGV, #contentInscription, #contentContact {
     background-position: center !important;
     top: 25vh !important; }
-
   .titleShema {
     font-size: 1.3em !important;
     text-align: left !important; }
-
   .textSchema {
     font-size: 1em !important;
     text-align: left !important; }
-
   .brand-logo {
     margin-top: 1px !important; }
-
   /* IN */
   .card-profile-image {
     margin-top: -55px !important; }
@@ -97,18 +75,17 @@
       font-family: "Quicksand", sans-serif;
       font-size: 1.5em;
       text-align: left; }
-
   .largeScreen {
     display: none !important; }
-
   .mobile {
     display: block !important; }
-
   .modal-content {
     width: 25em !important; } }
+
 @media all and (max-width: 600px) {
   .imgMenu img {
     margin: 10px 0 !important; } }
+
 /*******************    CONFIG   ***************************/
 * {
   box-sizing: border-box; }
@@ -137,6 +114,12 @@ main {
 
 .hide {
   display: none; }
+
+.changeBg1 {
+  background-color: #EDF1F2; }
+
+.changeBg2 {
+  background-color: #F7F2DF; }
 
 /*************    Composant   ****************************/
 .Contact {
@@ -431,12 +414,15 @@ nav {
 
 .chip img {
   background-color: #fff; }
+
 .chip.validate {
   background-color: rgba(34, 139, 34, 0.8);
   color: white; }
+
 .chip.inProgress {
   background-color: rgba(255, 165, 0, 0.8);
   color: white; }
+
 .chip.end {
   background-color: rgba(255, 0, 0, 0.8);
   color: white; }
@@ -613,6 +599,7 @@ ul.followUs {
 .blocExplainEntreprise h3 {
   font-size: 3em;
   font-family: "Quicksand", sans-serif; }
+
 .blocExplainEntreprise .containExplainEntreprise {
   padding: 30px 15px;
   text-align: left; }
@@ -654,6 +641,9 @@ ul.followUs {
 .sign {
   right: 0;
   font-size: 0.7em; }
+
+#fullBlock img {
+  width: 100%; }
 
 .titleExplainHappy {
   font-family: "Quicksand", sans-serif;
@@ -816,8 +806,10 @@ ul.followUs {
 
 .revealProject .row {
   padding: 20px 5px; }
+
 .revealProject p {
   padding: 0 10px; }
+
 .revealProject .footerReveal {
   padding: 15px 5px;
   margin-top: 10px; }
@@ -857,5 +849,3 @@ ul.followUs {
   justify-content: center; }
   .inline-team-list li {
     margin-right: 5px; }
-
-/*# sourceMappingURL=style.css.map */

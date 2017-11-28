@@ -10,4 +10,5 @@ $(document).ready(function() {
     });
     $('.collapsible').collapsible();
     $(".button").sideNav();
+
 });
