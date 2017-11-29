@@ -16,13 +16,13 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadCompanyFixtures extends Fixture implements FixtureInterface
 {
-    const MAX = 2;
+    const MAX = 5;
 
     public function load(ObjectManager $manager) {
         $faker = Faker\Factory::create("fr_FR");
         $company = [];
 
-        for($i = 0; $i <= self::MAX; $i++) {
+        for($i = 0; $i < self::MAX; $i++) {
             $company[$i] = new Company();
             $company[$i]->setActivity($faker->jobTitle);
             $company[$i]->setNbSalary($faker->numberBetween($min = 10, $max = 1000));
@@ -36,6 +36,7 @@ class LoadCompanyFixtures extends Fixture implements FixtureInterface
                 ->setTwitter($faker->url)
                 ->setLinkedin($faker->url);
             $manager->persist($company[$i]);
+            $this->addReference("company-" . $i, $company[$i]);
 
         }
 
