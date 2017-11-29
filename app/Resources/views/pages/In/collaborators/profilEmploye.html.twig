@@ -1,89 +1,175 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}@name.user{% endblock %}
+{% block title %}{{ user.firstName }} {{ user.lastName }}{% endblock %}
 
 {% block navbar %}
     {{ include('partials/components/navbarIn.html.twig') }}
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col s12 m10 offset-m1">
-        {#<div class="row">#}
-            {#<h1 class="titleProfilEmploye header center light-blue-text text-darken-2">Le bonheur au travail commence par un projet qui fait sens !</h1>#}
-        {#</div>#}
-            <div class="row">
-                <div class="card medium headerProfil">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ asset('assets/images/happysens-time.jpg') }}" height="300px">
-                    </div>
-                    <div class="card-profile-image">
-                        <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="profile image" class="circle z-depth-3 activator">
-                    </div>
-                    <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light pink darken-2 right hoverable"><i class="material material-icons">info_outline</i></a>
-
-                    <div class="card-content">
-                        <div class="myInfosEmploye">
-                            <div id="name">
-                                <span class="card-title activator grey-text text-darken-4">@name.employe</span>
-                                <div class="mini-company">
-                                    <a href="{{ path('profilCompany') }}">
-                                        <div class="chip  waves-effect waves-light">
-                                            <img src="http://philaecom.fr/wp-content/uploads/2016/10/philacomdigitalemini.png" alt="Logo company"> <!-- notice the "circle" class -->
-                                            <span>@name.company</span>
-                                        </div>
-                                    </a>
-                                </div>
+<div class="row">
+    <div class="col s12 m10 offset-m1">
+        <div class="row">
+            <div class="card medium headerProfil">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="{{ asset('assets/images/happysens-time.jpg') }}" height="300px">
+                </div>
+                <div class="card-profile-image">
+                    <img src="{{ user.photo }}" alt="profile image" class="circle z-depth-3 activator">
+                </div>
+                <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light pink darken-2 right hoverable"><i class="material material-icons">info_outline</i></a>
+                <div class="card-content">
+                    <div class="myInfosEmploye">
+                        <div id="name">
+                            <span class="card-title activator grey-text text-darken-4">{{ user.firstName }} {{ user.lastName }}</span>
+                            <div class="mini-company">
+                                <a href="{{ path('profilCompany') }}">
+                                    <div class="chip  waves-effect waves-light">
+                                        <img src="{{ user.company.logo }}" alt="Logo company"> <!-- notice the "circle" class -->
+                                        <span>{{ user.company.name }}</span>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="card-reveal">
-                            <h5 class="amber-text">
-                                John Doe
-                                <i class="material-icons right black-text card-title">close</i>
-                            </h5>
-                        <div class="infoPersoEmploye">
+                </div>
+                <div class="card-reveal">
+                    <h5 class="amber-text">
+                        {{ user.firstName }} {{ user.lastName }}
+                        <i class="material-icons right black-text card-title">close</i>
+                    </h5>
+                    <div class="infoPersoEmploye">
 
-                        </div>
-                        <div class="col s12 l8 center-align">
-                            <table class="infosEmploye">
-                                <tbody>
-                                    <tr>
-                                        <th>Entreprise :</th>
-                                        <td>HappySens</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Fonction :</th>
-                                        <td>CEO</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Age :</th>
-                                        <td>25 ans</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Lieu de travail :</th>
-                                        <td>69002 Lyon</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Mail :</th>
-                                        <td>example@example.com</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Tel :</th>
-                                        <td>06 01 02 03 04 </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    </div>
+                    <div class="col s12 l8 center-align">
+                        <table class="infosEmploye">
+                            <tbody>
+                            <tr>
+                                <th>Entreprise :</th>
+                                <td>{{ user.company.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Fonction :</th>
+                                <td>{{ user.job }}</td>
+                            </tr>
+                            <tr>
+                                <th>Age :</th>
+                                <td>{% if user.birthdate %}{{ "now"|date("Y-d-m")  - user.birthdate|date('Y-m-d') }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Lieu de travail :</th>
+                                <td>{{ user.workplace }}</td>
+                            </tr>
+                            <tr>
+                                <th>Mail :</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tel :</th>
+                                <td>{{ user.phone }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            {# For desktop #}
-            {{ include('partials/components/largeProfilEmploye.html.twig') }}
-            {# For mobile and tablet #}
-            {{ include('partials/components/mobileProfilEmploye.html.twig') }}
         </div>
+        {# For desktop #}
+        {{ include('user/largeProfilEmploye.html.twig') }}
+        {# For mobile and tablet #}
+        {{ include('user/mobileProfilEmploye.html.twig') }}
     </div>
+</div>
+
+
+
+
+
+
+    {#<h1>User</h1>#}
+
+    {#<table>#}
+        {#<tbody>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<td>{{ user.id }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Firstname</th>#}
+                {#<td></td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Lastname</th>#}
+                {#<td></td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Phone</th>#}
+                {#<td>{{ user.phone }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Email</th>#}
+                {#<td>{{ user.email }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Status</th>#}
+                {#<td>{{ user.status }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Birthdate</th>#}
+                {#<td>{% if user.birthdate %}{{ user.birthdate|date('Y-m-d H:i:s') }}{% endif %}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Photo</th>#}
+                {#<td>{{ user.photo }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Biography</th>#}
+                {#<td>{{ user.biography }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Slogan</th>#}
+                {#<td>{{ user.slogan }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Password</th>#}
+                {#<td>{{ user.password }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Mood</th>#}
+                {#<td>{{ user.mood }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Job</th>#}
+                {#<td>{{ user.job }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Workplace</th>#}
+                {#<td>{{ user.workplace }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Nativelanguage</th>#}
+                {#<td>{{ user.nativeLanguage }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Language</th>#}
+                {#<td>{{ user.language }}</td>#}
+            {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('newUser_index') }}">Back to the list</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#<a href="{{ path('newUser_edit', { 'id': user.id }) }}">Edit</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#{{ form_start(delete_form) }}#}
+                {#<input type="submit" value="Delete">#}
+            {#{{ form_end(delete_form) }}#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}
 
 {% block javascripts %}
