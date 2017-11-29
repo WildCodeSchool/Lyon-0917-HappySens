@@ -9,9 +9,6 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use Faker;
-use AppBundle\DataFixtures\ORM\LoadCompanyFixtures;
-use AppBundle\DataFixtures\ORM\LoadUserHasSkillFixtures;
-use AppBundle\DataFixtures\ORM\LoadSkillFixtures;
 use AppBundle\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;

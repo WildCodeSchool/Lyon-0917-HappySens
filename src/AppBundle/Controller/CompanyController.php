@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 class CompanyController extends Controller
 {
 
-
     /**
      * Finds and displays a company entity.
      *
@@ -30,8 +29,5 @@ class CompanyController extends Controller
             'company' => $company,
         ));
     }
-
-
-
 
 }
