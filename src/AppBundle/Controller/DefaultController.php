@@ -74,15 +74,15 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
-    /**
-     * @Route("profilCompany", name="profilCompany")
-     */
-    public function profilCompanyAction(Request $request)
-    {
-        return $this->render('pages/profilCompany.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
+//    /**
+//     * @Route("profilCompany", name="profilCompany")
+//     */
+//    public function profilCompanyAction(Request $request)
+//    {
+//        return $this->render('pages/profilCompany.html.twig', [
+//            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+//        ]);
+//    }
     /**
      * @Route("profilHappyCoach", name="profilHappyCoach")
      */
