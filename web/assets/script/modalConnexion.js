@@ -8,5 +8,4 @@ function findPassword(){
     $('#hiddenMissingPassword').addClass('hide');
     $('#password').removeClass('hide');
     $('#btnConnexion').removeClass('hide');
-    $('#hiddenNewSalary').addClass('hide');
 }
