@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{% block title %}Bienvenue{% endblock %} | HappySens</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
@@ -39,11 +40,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
     <script src="{{ asset('assets/script/app.js') }}"></script>
     <script src="{{ asset('assets/script/scrollTop.js') }}"></script>
+    <script src="{{ asset('assets/script/scrollBottom.js') }}"></script>
     <script src="{{ asset('assets/script/animateScroll.js') }}"></script>
     <script src="{{ asset('assets/script/scrollTo.js') }}"></script>
     <script src="{{ asset('assets/script/switchNav.js') }}"></script>
     <script src="{{ asset('assets/script/tabs.js') }}"></script>
     <script src="{{ asset('assets/script/modalConnexion.js') }}"></script>
+    <script src="{{ asset('assets/script/toast.js') }}"></script>
     {% block javascripts %}{% endblock %}
     {% endblock %}
     </body>

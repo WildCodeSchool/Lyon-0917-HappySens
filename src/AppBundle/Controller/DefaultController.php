@@ -13,7 +13,7 @@ class DefaultController extends Controller
      */
     public function homeAction(Request $request)
     {
-        return $this->render('pages/index.html.twig', [
+        return $this->render('pages/Out/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
@@ -22,16 +22,16 @@ class DefaultController extends Controller
      */
     public function companyAction(Request $request)
     {
-        return $this->render('pages/company.html.twig', [
+        return $this->render('pages/Out/company.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
     /**
-     * @Route("employe", name="employe")
+     * @Route("collaborators", name="collaborators")
      */
     public function employeAction(Request $request)
     {
-        return $this->render('pages/employe.html.twig', [
+        return $this->render('pages/Out/employe.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
@@ -40,7 +40,7 @@ class DefaultController extends Controller
      */
     public function happyAction(Request $request)
     {
-        return $this->render('pages/happyCoach.html.twig', [
+        return $this->render('pages/Out/happyCoach.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
@@ -50,7 +50,7 @@ class DefaultController extends Controller
      */
     public function cgvAction(Request $request)
     {
-        return $this->render('pages/cgv.html.twig', [
+        return $this->render('pages/Out/cgv.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
@@ -70,7 +70,7 @@ class DefaultController extends Controller
      */
     public function profilEmployeAction(Request $request)
     {
-        return $this->render('pages/profilEmploye.html.twig', [
+        return $this->render('pages/In/collaborators/profilEmploye.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
@@ -79,7 +79,7 @@ class DefaultController extends Controller
      */
     public function profilCompanyAction(Request $request)
     {
-        return $this->render('pages/profilCompany.html.twig', [
+        return $this->render('pages/In/company/profilCompany.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
@@ -88,7 +88,7 @@ class DefaultController extends Controller
      */
     public function profilHappyCoachAction(Request $request)
     {
-        return $this->render('pages/profilHappyCoach.html.twig', [
+        return $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
@@ -97,7 +97,7 @@ class DefaultController extends Controller
      */
     public function listingNotificationsAction(Request $request)
     {
-        return $this->render('pages/listingNotifications.html.twig', [
+        return $this->render('pages/In/notifications/listingNotifications.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
@@ -107,7 +107,18 @@ class DefaultController extends Controller
      */
     public function profilAdminAction(Request $request)
     {
-        return $this->render('pages/profilAdmin.html.twig', [
+        return $this->render('pages/In/Admin/profilAdmin.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
+
+    // Traitement Form connection / contact / profils / inscriptions / projets
+    /**
+     * @Route("test", name="listingTemplate")
+     */
+    public function testAction(Request $request)
+    {
+        return $this->render('pages/template/templates_listing.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }

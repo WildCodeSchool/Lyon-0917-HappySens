@@ -163,6 +163,13 @@ class User
      */
     private $linkedin;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
 
     /**
      * @return int
@@ -524,6 +531,8 @@ class User
         return $this;
     }
 
+
+
     /**
      * Constructor
      */
@@ -693,6 +702,23 @@ class User
         $this->linkedin = $linkedin;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getisActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
 
 
 

@@ -161,4 +161,9 @@ class Skill
     {
         return $this->userskills;
     }
+
+    public function __toString()
+    {
+        return $this->nameSkill;
+    }
 }

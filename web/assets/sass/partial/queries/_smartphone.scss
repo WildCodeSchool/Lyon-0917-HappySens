@@ -6,12 +6,21 @@
       font-size: 3.5em !important;
     }
     img {
-      width: 150px !important;
+      width: 250px !important;
       margin-bottom: -30px !important;
     }
     h5 {
       font-size: 1.5em !important;
     }
+  }
+  .parallax-container-home {
+    min-height: 103vh;
+    background-image: radial-gradient(rgba(black, 0.15),rgba(black, 0.3)), url("../images/happysens-accueil1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-y: hidden;
+    margin-top: -90px;
   }
   .blocExplainEntreprise {
     h3 {
@@ -87,9 +96,6 @@
     font-size: 1em !important;
     text-align: left !important;
   }
-  .brand-logo {
-    margin-top: 1px !important;
-  }
   /* IN */
   .card-profile-image {
     margin-top: -55px !important;
@@ -111,6 +117,12 @@
   .modal-content {
     width: 25em !important;
   }
+  .detailsExplainEntreprise {
+    padding: 10px !important;
+  }
+  .brand-logo {
+    margin-top: 5px !important;
+  }
 }
 
 @media all and (max-width: 600px) {
@@ -118,5 +130,14 @@
     img {
       margin: 10px 0 !important;
     }
+  }
+  .headerTitleHome {
+    img {
+      width: 200px !important;
+      margin-bottom: -30px !important;
+    }
+  }
+  .brand-logo {
+    margin-top: 1px !important;
   }
 }
