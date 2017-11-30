@@ -1,0 +1,8 @@
+{% for i in 1..user.mood %}
+    <i class="material-icons amber-text text-darken-2">star</i>
+{% endfor %}
+{% if user.mood != 5 %}
+    {% for i in 5..(user.mood+ 1) %}
+        <i class="material-icons  amber-text text-darken-2">star_border</i>
+    {% endfor %}
+{% endif %}
