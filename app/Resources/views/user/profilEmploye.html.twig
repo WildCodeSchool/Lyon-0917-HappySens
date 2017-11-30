@@ -23,7 +23,7 @@
                         <div id="name">
                             <span class="card-title activator grey-text text-darken-4">{{ user.firstName }} {{ user.lastName }}</span>
                             <div class="mini-company">
-                                <a href="{{ path('profilCompany') }}">
+                                <a href="/newCompany/{{user.company.id }}">
                                     <div class="chip  waves-effect waves-light">
                                         <img src="{{ user.company.logo }}" alt="Logo company"> <!-- notice the "circle" class -->
                                         <span>{{ user.company.name }}</span>
@@ -80,96 +80,6 @@
         {{ include('user/mobileProfilEmploye.html.twig') }}
     </div>
 </div>
-
-
-
-
-
-
-    {#<h1>User</h1>#}
-
-    {#<table>#}
-        {#<tbody>#}
-            {#<tr>#}
-                {#<th>Id</th>#}
-                {#<td>{{ user.id }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Firstname</th>#}
-                {#<td></td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Lastname</th>#}
-                {#<td></td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Phone</th>#}
-                {#<td>{{ user.phone }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Email</th>#}
-                {#<td>{{ user.email }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Status</th>#}
-                {#<td>{{ user.status }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Birthdate</th>#}
-                {#<td>{% if user.birthdate %}{{ user.birthdate|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Photo</th>#}
-                {#<td>{{ user.photo }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Biography</th>#}
-                {#<td>{{ user.biography }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Slogan</th>#}
-                {#<td>{{ user.slogan }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Password</th>#}
-                {#<td>{{ user.password }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Mood</th>#}
-                {#<td>{{ user.mood }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Job</th>#}
-                {#<td>{{ user.job }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Workplace</th>#}
-                {#<td>{{ user.workplace }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Nativelanguage</th>#}
-                {#<td>{{ user.nativeLanguage }}</td>#}
-            {#</tr>#}
-            {#<tr>#}
-                {#<th>Language</th>#}
-                {#<td>{{ user.language }}</td>#}
-            {#</tr>#}
-        {#</tbody>#}
-    {#</table>#}
-
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('newUser_index') }}">Back to the list</a>#}
-        {#</li>#}
-        {#<li>#}
-            {#<a href="{{ path('newUser_edit', { 'id': user.id }) }}">Edit</a>#}
-        {#</li>#}
-        {#<li>#}
-            {#{{ form_start(delete_form) }}#}
-                {#<input type="submit" value="Delete">#}
-            {#{{ form_end(delete_form) }}#}
-        {#</li>#}
-    {#</ul>#}
 {% endblock %}
 
 {% block javascripts %}
