@@ -362,8 +362,6 @@ class Company
         $this->logo = $logo;
     }
 
-
-
     public function __toString()
     {
         return $this->getLogo() . $this->getName();
