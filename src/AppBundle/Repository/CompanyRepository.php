@@ -10,4 +10,23 @@ namespace AppBundle\Repository;
  */
 class CompanyRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getSkillInCompagny($compangyId) {
+
+        $qb = $this
+            ->createQueryBuilder('c')
+            ->select([ '(avg(us.level)) as level', 'count(s.nameSkill) as nbSalary', 's.nameSkill as nameSkill'])
+            ->join('c.users', 'u')
+            ->join('u.userskills', 'us')
+            ->join('us.skill', 's')
+
+            ->orderBy('nbSalary', "desc")
+            ->addOrderBy('level', "desc")
+            ->setParameter('idCompany', $compangyId)
+            ->groupBy('s.nameSkill')
+            ->setMaxResults(5)
+             ->where('c.id=:idCompany')
+            ->getQuery();
+        return $qb->getResult();
+
+    }
 }

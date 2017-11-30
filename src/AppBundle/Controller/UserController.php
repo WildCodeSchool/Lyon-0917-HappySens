@@ -67,7 +67,7 @@ class UserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($user);
 
-        return $this->render('profilEmploye.html.twig', array(
+        return $this->render('user/profilEmploye.html.twig', array(
             'user' => $user,
             'delete_form' => $deleteForm->createView(),
         ));

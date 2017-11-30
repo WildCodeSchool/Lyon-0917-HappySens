@@ -66,10 +66,17 @@ class CompanyController extends Controller
     public function showAction(Company $company)
     {
         $deleteForm = $this->createDeleteForm($company);
+        $nbHappySalarie = count($company->getUsers());
+
+        $em = $this->getDoctrine()->getManager();
+        $skillInCompangy = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
+
 
         return $this->render('company/show.html.twig', array(
             'company' => $company,
             'delete_form' => $deleteForm->createView(),
+            'nbHappySalarie' => $nbHappySalarie,
+            'skillInCompany' => $skillInCompangy,
         ));
     }
 
