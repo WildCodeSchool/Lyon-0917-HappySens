@@ -36,7 +36,7 @@ security:
 
     access_control:
         - { path: ^/pages/Out, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/pages/In/editProfil, roles: ROLE_TEMPO }
+        - { path: ^/pages/In/tempo/editProfil, roles: ROLE_TEMPO }
         - { path: ^/pages/In/company, roles: ROLE_COMPANY }
         - { path: ^/pages/In/collaborators, roles: ROLE_EMPLOYE }
         - { path: ^/pages/In/happyCoach, roles: ROLE_HAPPYCOACH }

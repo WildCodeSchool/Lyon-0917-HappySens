@@ -64,25 +64,8 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
-    // Profil
-    /**
-     * @Route("profilEmploye", name="profilEmploye")
-     */
-    public function profilEmployeAction(Request $request)
-    {
-        return $this->render('pages/profilEmploye.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
-//    /**
-//     * @Route("profilCompany", name="profilCompany")
-//     */
-//    public function profilCompanyAction(Request $request)
-//    {
-//        return $this->render('pages/profilCompany.html.twig', [
-//            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-//        ]);
-//    }
+
+
     /**
      * @Route("profilHappyCoach", name="profilHappyCoach")
      */
@@ -101,16 +84,7 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
-    // Traitement Form connection / contact / profils / inscriptions / projets
-    /**
-     * @Route("profilAdmin", name="profilAdmin")
-     */
-    public function profilAdminAction(Request $request)
-    {
-        return $this->render('pages/profilAdmin.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
+
 
     // Traitement Form connection / contact / profils / inscriptions / projets
     /**
