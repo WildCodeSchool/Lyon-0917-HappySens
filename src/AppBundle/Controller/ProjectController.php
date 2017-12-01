@@ -71,9 +71,11 @@ class ProjectController extends Controller
     public function showAction(Project $project)
     {
         $deleteForm = $this->createDeleteForm($project);
+        $nbLikes = count($project->getLikeProjects());
 
         return $this->render('project/show.html.twig', array(
             'project' => $project,
+            'nbLike' => $nbLikes,
             'delete_form' => $deleteForm->createView(),
         ));
     }

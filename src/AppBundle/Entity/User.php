@@ -170,6 +170,11 @@ class User
      */
     private $isActive;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Project", mappedBy="author")
+     */
+    private $authorProject;
+
 
     /**
      * @return int
@@ -725,5 +730,29 @@ class User
     public function __toString()
     {
         return $this->getFirstName() . " " . $this->getLastName();
+    }
+
+    /**
+     * Set authorProject
+     *
+     * @param \AppBundle\Entity\Project $authorProject
+     *
+     * @return User
+     */
+    public function setAuthorProject(\AppBundle\Entity\Project $authorProject = null)
+    {
+        $this->authorProject = $authorProject;
+
+        return $this;
+    }
+
+    /**
+     * Get authorProject
+     *
+     * @return \AppBundle\Entity\Project
+     */
+    public function getAuthorProject()
+    {
+        return $this->authorProject;
     }
 }

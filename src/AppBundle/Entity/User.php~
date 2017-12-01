@@ -170,6 +170,11 @@ class User
      */
     private $isActive;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Project", mappedBy="author")
+     */
+    private $authorProject;
+
 
     /**
      * @return int

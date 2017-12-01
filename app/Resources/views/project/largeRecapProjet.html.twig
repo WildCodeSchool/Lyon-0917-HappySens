@@ -4,8 +4,8 @@
             <div class="row">
                 <ul class="collection">
                     <li class="collection-item avatar" id="userProject">
-                        <a href="{{ path('profilEmploye') }}">
-                            <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="" class="circle">
+                        <a href="/newUser/{{ project.author.id }}">
+                            <img src="{{ project.author.photo }}" alt="" class="circle">
                             <div class="black-text">
                                 <span class="titleSecond">Créer par : </span>
                                 <p>{{ project.author }}</p>
@@ -24,11 +24,11 @@
                         </a>
                     </li>
                     <li class="collection-item avatar">
-                        <a href="{{ path('profilCompany') }}">
-                            <img src="http://philaecom.fr/wp-content/uploads/2016/10/philacomdigitalemini.png" alt="" class="circle">
+                        <a href="/newCompany/{{ project.author.company.id }}">
+                            <img src="{{ project.author.company.logo }}" alt="" class="circle">
                             <div class="black-text">
                                 <span class="titleSecond">Entreprise :</span>
-                                <p></p>
+                                <p>{{ project.author.company }}</p>
                             </div>
                             <p class="secondary-content"><i class="material-icons blue-text text-darken-2">domain</i></p>
                         </a>
@@ -49,29 +49,10 @@
                     </li>
                     <li class="collection-item">
                         <div class="row">
-                            <p class="col l12 titleSecond">Sport</p>
-                            <div class="col l12">
-                                <i class="material-icons amber-text text-darken-2">star</i>
-                                <i class="material-icons  amber-text text-darken-2">star</i>
-                                <i class="material-icons  amber-text text-darken-2">star</i>
-                                <i class="material-icons  amber-text text-darken-2">star_half</i>
-                                <i class="material-icons  amber-text text-darken-2">star_border</i>
-                            </div>
+                            <p class="col s12 titleSecond">Thème</p>
+                            <p class="col l12 titleSecond">{{ project.theme.nameSkill }}</p>
                         </div>
                     </li>
-                    <li class="collection-item">
-                        <div class="row">
-                            <p class="col l12 titleSecond">Montagne</p>
-                            <div class="col l12">
-                                <i class="material-icons amber-text text-darken-2">star</i>
-                                <i class="material-icons  amber-text text-darken-2">star</i>
-                                <i class="material-icons  amber-text text-darken-2">star</i>
-                                <i class="material-icons  amber-text text-darken-2">star_border</i>
-                                <i class="material-icons  amber-text text-darken-2">star_border</i>
-                            </div>
-                        </div>
-                    </li>
-
                 </ul>
             </div>
         </div>
@@ -88,62 +69,22 @@
                     <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-calendar-check-o"></i></span> {{ project.startingDate|date('Y-m-d') }}</p>
                     <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-calendar-times-o"></i></span> {{ project.endDate|date('Y-m-d') }}</p>
                     <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-map-marker"></i></span> {{ project.location }}</p>
-                    <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {% for likeProject in project.likeProjects %}{{ likeProject.id }}{% endfor %}</p>
+                    <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ nbLike }}</p>
                 </div>
             </div>
             <div class="containList">
                 <h5 class="titleSecond amber-text text-darken-2">Equipe :</h5>
                 <ul class="inline-team-list">
+                    {% for user in project.teamProject %}
                     <li>
-                        <a href="{{ path('profilEmploye') }}">
+                        <a href="/newUser/{{ user.id }}">
                             <div class="chip">
-                                <img src="https://randomuser.me/api/portraits/med/men/78.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                {% for user in project.teamProject %}
+                                <img src="{{ user.photo }}" alt="Photo user"> <!-- notice the "circle" class -->
                                 <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
-                                {% endfor %}
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ path('profilEmploye') }}">
-                            <div class="chip">
-                                <img src="https://randomuser.me/api/portraits/med/women/1.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                {% for user in project.teamProject %}
-                                    <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
-                                {% endfor %}
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('profilEmploye') }}">
-                            <div class="chip">
-                                <img src="https://randomuser.me/api/portraits/med/women/45.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                {% for user in project.teamProject %}
-                                    <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
-                                {% endfor %}
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('profilEmploye') }}">
-                            <div class="chip">
-                                <img src="https://randomuser.me/api/portraits/med/men/16.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                {% for user in project.teamProject %}
-                                    <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
-                                {% endfor %}
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('profilEmploye') }}">
-                            <div class="chip">
-                                <img src="https://randomuser.me/api/portraits/med/men/65.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                {% for user in project.teamProject %}
-                                    <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
-                                {% endfor %}
-                            </div>
-                        </a>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="row">

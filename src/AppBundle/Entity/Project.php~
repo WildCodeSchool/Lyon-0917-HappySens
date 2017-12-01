@@ -64,13 +64,10 @@ class Project
     private $beneficeCompany;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="User", inversedBy="authorProject")
      */
     private $author;
-
-
+    
     /**
      * @var integer
      *
