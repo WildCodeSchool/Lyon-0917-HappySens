@@ -41,6 +41,11 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
+        $form->remove('author');
+        $form->remove('status');
+        $form->remove('photo');
+        $form->remove('likeProjects');
+        $form->remove('teamProject');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,6 +88,11 @@ class ProjectController extends Controller
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
+        $editForm->remove('author');
+        $editForm->remove('status');
+        $editForm->remove('photo');
+        $editForm->remove('likeProjects');
+        $editForm->remove('teamProject');
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -107,6 +117,11 @@ class ProjectController extends Controller
     public function deleteAction(Request $request, Project $project)
     {
         $form = $this->createDeleteForm($project);
+        $form->remove('author');
+        $form->remove('status');
+        $form->remove('photo');
+        $form->remove('likeProjects');
+        $form->remove('teamProject');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

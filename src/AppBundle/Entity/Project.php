@@ -94,14 +94,10 @@ class Project
     private $location;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="theme", type="string", length=100)
+     * @ORM\ManyToOne(targetEntity="Skill", inversedBy="projects")
      */
     private $theme;
-
-
-
+    
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="likes")
      * @ORM\JoinTable(name="likeProject")

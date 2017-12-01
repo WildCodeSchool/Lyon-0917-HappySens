@@ -14,7 +14,19 @@ class ProjectType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', TextType::class)->add('startingDate')->add('endDate')->add('presentation')->add('profit')->add('beneficeCompany')->add('author')->add('likeProjects')->add('teamProject');
+        $builder->add('title', TextType::class)
+                ->add('startingDate', TextType::class)
+                ->add('endDate', TextType::class)
+                ->add('presentation')
+                ->add('profit')
+                ->add('beneficeCompany')
+                ->add('author', TextType::class, ['mapped' => false])
+                ->add('status', TextType::class, ['mapped' => false])
+                ->add('photo', TextType::class, ['mapped' => false])
+                ->add('location')
+                ->add('theme')
+                ->add('likeProjects', TextType::class, ['mapped' => false])
+                ->add('teamProject', TextType::class, ['mapped' => false]);
     }
     
     /**

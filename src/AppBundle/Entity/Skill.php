@@ -34,6 +34,12 @@ class Skill
 
 
     /**
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="theme")
+     */
+    private $projects;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -165,5 +171,39 @@ class Skill
     public function __toString()
     {
         return $this->nameSkill;
+    }
+
+    /**
+     * Add project
+     *
+     * @param \AppBundle\Entity\Project $project
+     *
+     * @return Skill
+     */
+    public function addProject(\AppBundle\Entity\Project $project)
+    {
+        $this->projects[] = $project;
+
+        return $this;
+    }
+
+    /**
+     * Remove project
+     *
+     * @param \AppBundle\Entity\Project $project
+     */
+    public function removeProject(\AppBundle\Entity\Project $project)
+    {
+        $this->projects->removeElement($project);
+    }
+
+    /**
+     * Get projects
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
     }
 }
