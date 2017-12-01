@@ -29,15 +29,11 @@ class Project
     private $title;
 
     /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="startingDate", type="datetime")
      */
     private $startingDate;
 
     /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="endDate", type="datetime", nullable=true)
      */
     private $endDate;

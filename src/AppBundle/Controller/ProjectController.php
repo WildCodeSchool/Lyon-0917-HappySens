@@ -42,6 +42,7 @@ class ProjectController extends Controller
         $project = new Project();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
         $form->remove('author');
+        $form->remove('startingDate');
         $form->remove('status');
         $form->remove('photo');
         $form->remove('likeProjects');

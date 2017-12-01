@@ -3,9 +3,12 @@ $(document).ready(function() {
     $(".button-collapse").sideNav();
     $('#modal1').modal();
     $('.datepicker').pickadate({
-        today: 'Today',
-        clear: 'Clear',
         close: 'Ok',
+        monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+        weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+        today: 'aujourd\'hui',
+        clear: 'effacer',
+        formatSubmit: 'yyyy/mm/dd',
         closeOnSelect: true
     });
     $('.collapsible').collapsible();
