@@ -25,6 +25,7 @@ security:
             form_login:
                 login_path: login
                 check_path: login
+                success_handler: redirect.after.login
             logout:
                 path:   /logout
                 target: /

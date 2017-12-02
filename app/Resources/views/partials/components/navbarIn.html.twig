@@ -29,7 +29,7 @@
             <ul id="slide-out" class="side-nav">
                 <li>
                     <div class="user-view">
-                        <a href="{{ path('profilEmploye') }}" title="Voir votre profil">
+                        <a href="{{ path('UserProfil', { 'id': user.id }) }}" title="Voir votre profil">
                             <div class="background blue darken-2">
                             </div>
                             <img class="circle" src="https://www.publicationsports.com/vProd/asset/image/component/ps/ps_single_login/user_logo.png">
