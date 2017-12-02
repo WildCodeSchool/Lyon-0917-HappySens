@@ -60,7 +60,7 @@ class DefaultController extends Controller
      */
     public function recapProjectAction(Request $request)
     {
-        return $this->render('pages/viewProject.html.twig', [
+        return $this->render('project/viewProject.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
