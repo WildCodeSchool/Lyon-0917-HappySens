@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -47,9 +48,12 @@ class ProjectController extends Controller
         $form->remove('photo');
         $form->remove('likeProjects');
         $form->remove('teamProject');
+        $project->setStartingDate(DateTime::createFromFormat ('d/m/Y', date('d/m/Y') ));
+        $project->setStatus(1);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $project->setEndDate(DateTime::createFromFormat ('d/m/Y', $project->getEndDate() ));
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();

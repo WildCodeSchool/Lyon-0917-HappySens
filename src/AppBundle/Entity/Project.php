@@ -29,12 +29,12 @@ class Project
     private $title;
 
     /**
-     * @ORM\Column(name="startingDate", type="datetime")
+     * @ORM\Column(name="startingDate", type="date")
      */
     private $startingDate;
 
     /**
-     * @ORM\Column(name="endDate", type="datetime", nullable=true)
+     * @ORM\Column(name="endDate", type="date", nullable=true)
      */
     private $endDate;
 
@@ -75,7 +75,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="string", length=255)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo;
 
@@ -158,7 +158,7 @@ class Project
     }
 
     /**
-     * @return \DateTime
+     * @return mixed
      */
     public function getEndDate()
     {
@@ -166,10 +166,10 @@ class Project
     }
 
     /**
-     * @param \DateTime $endDate
+     * @param mixed $endDate
      * @return Project
      */
-    public function setEndDate(\DateTime $endDate): Project
+    public function setEndDate( $endDate)
     {
         $this->endDate = $endDate;
         return $this;

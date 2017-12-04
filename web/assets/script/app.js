@@ -8,7 +8,7 @@ $(document).ready(function() {
         weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
         today: 'aujourd\'hui',
         clear: 'effacer',
-        formatSubmit: 'yyyy/mm/dd',
+        format: 'dd/mm/yyyy',
         closeOnSelect: true
     });
     $('.collapsible').collapsible();
