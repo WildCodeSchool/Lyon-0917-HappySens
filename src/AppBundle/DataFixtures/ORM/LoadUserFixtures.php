@@ -29,8 +29,6 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
     ];
 
     public function load(ObjectManager $manager) {
-
-
         $faker = Faker\Factory::create("fr_FR");
         $user = [];
         $nbUser = 0;

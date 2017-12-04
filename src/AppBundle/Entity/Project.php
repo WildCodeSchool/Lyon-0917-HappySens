@@ -447,5 +447,9 @@ class Project
     }
 
 
+    public function __toString()
+    {
+        return $this->getTitle() . " " . $this->getAuthor();
+    }
 
 }

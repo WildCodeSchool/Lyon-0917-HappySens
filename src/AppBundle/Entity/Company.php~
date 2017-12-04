@@ -418,7 +418,11 @@ class Company
      */
     public function getLocation(): string
     {
+<<<<<<< HEAD
         return $this->location;
+=======
+        return $this->getLogo() . $this->getName();
+>>>>>>> devMaster
     }
 
     /**
