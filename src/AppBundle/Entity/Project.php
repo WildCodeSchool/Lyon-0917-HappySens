@@ -100,8 +100,6 @@ class Project
      */
     private $theme;
 
-
-
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="likes")
      * @ORM\JoinTable(name="likeProject")
