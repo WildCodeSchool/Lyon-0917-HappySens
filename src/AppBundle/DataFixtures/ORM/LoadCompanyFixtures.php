@@ -16,7 +16,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadCompanyFixtures extends Fixture implements FixtureInterface
 {
-    const MAX = 2;
+    const MAX = 5;
 
     public function load(ObjectManager $manager) {
         $faker = Faker\Factory::create("fr_FR");
@@ -35,6 +35,7 @@ class LoadCompanyFixtures extends Fixture implements FixtureInterface
                 ->setFacebook($faker->url)
                 ->setTwitter($faker->url)
                 ->setLinkedin($faker->url);
+            $this->addReference("company-" . $i, $company[$i]);
             $manager->persist($company[$i]);
 
         }

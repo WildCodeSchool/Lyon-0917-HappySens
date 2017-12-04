@@ -1,10 +1,5 @@
 // Modal
-.modalConnect {
-  min-width: 100vw;
-  min-height: 100vh;
-  top: 0 !important;
-  background-color: rgba(white, 0.92);
-  padding: 20px 20px;
+.loginConnect {
   .iClose {
     color: $darkColor;
   }
@@ -13,11 +8,6 @@
   }
 }
 .modal-content-Connect {
-  width: 50em;
-  position: relative;
-  top: 45vh;
-  transform: translatey(-45%);
-  margin: auto;
   a {
     color: $blueColor;
     &:hover {
