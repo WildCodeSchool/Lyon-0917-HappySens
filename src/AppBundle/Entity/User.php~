@@ -178,6 +178,14 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+<<<<<<< HEAD
+    /**
+     * @ORM\OneToOne(targetEntity="Project", mappedBy="author")
+     */
+    private $authorProject;
+
+=======
+>>>>>>> devMaster
 
     /**
      * @return int
@@ -717,7 +725,11 @@ class User implements UserInterface, \Serializable
 <<<<<<< HEAD
     public function getisActive()
 =======
+<<<<<<< HEAD
+    public function getisActive()
+=======
     public function getIsActive()
+>>>>>>> devMaster
 >>>>>>> devMaster
     {
         return $this->isActive;
@@ -732,6 +744,10 @@ class User implements UserInterface, \Serializable
     }
 
 <<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+>>>>>>> devMaster
 
 =======
     public function getUsername()
@@ -801,5 +817,29 @@ class User implements UserInterface, \Serializable
     public function __toString()
     {
         return $this->getFirstName() . " " . $this->getLastName();
+    }
+
+    /**
+     * Set authorProject
+     *
+     * @param \AppBundle\Entity\Project $authorProject
+     *
+     * @return User
+     */
+    public function setAuthorProject(\AppBundle\Entity\Project $authorProject = null)
+    {
+        $this->authorProject = $authorProject;
+
+        return $this;
+    }
+
+    /**
+     * Get authorProject
+     *
+     * @return \AppBundle\Entity\Project
+     */
+    public function getAuthorProject()
+    {
+        return $this->authorProject;
     }
 }

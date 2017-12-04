@@ -15,7 +15,7 @@
             <div class="">
                 <div class="chip validate">
                     <span><i class="fa fa-clock-o"></i></span>
-                    <span>En cours</span>
+                    <span>{{ project.status }}</span>
                 </div>
             </div>
             <div class="row">
@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    {{ include('partials/components/mobileRecapProjet.html.twig') }}
-    {{ include('partials/components/largeRecapProjet.html.twig') }}
+    {{ include('project/mobileRecapProjet.html.twig') }}
+    {{ include('project/largeRecapProjet.html.twig') }}
 </div>
 {% endblock %}

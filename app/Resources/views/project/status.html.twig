@@ -1,0 +1,16 @@
+    {% if project.status == 1 %}
+        <div class="chip inProgress">
+            <span><i class="fa fa-clock-o"></i></span>
+            <span>En attente</span>
+        </div>
+    {% elseif project.status == 2 %}
+        <div class="chip validate">
+            <span><i class="fa fa-clock-o"></i></span>
+            <span>En cours</span>
+        </div>
+    {% else %}
+        <div class="chip end">
+            <span><i class="fa fa-clock-o"></i></span>
+            <span>Terminé</span>
+        </div>
+    {% endif %}
