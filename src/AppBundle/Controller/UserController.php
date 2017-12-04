@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Company;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -19,6 +20,7 @@ class UserController extends Controller
      *
      * @Route("/user/{id}", name="UserProfil")
      * @Method("GET")
+     * @Security("user.getIsActive() == true")
      */
     public function showUserAction(User $user)
     {
@@ -33,6 +35,7 @@ class UserController extends Controller
      *
      * @Route("/company/{id}", name="CompanyProfil")
      * @Method("GET")
+     * @Security("user.getIsActive() == true")
      */
     public function showCompanyAction(Company $company)
     {
