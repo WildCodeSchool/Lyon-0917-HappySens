@@ -24,8 +24,7 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
         2 => 5,
         3 => 25,
         4 => 5,
-        5 => 4,
-        6 => 5
+        5 => 4
     ];
 
     public function load(ObjectManager $manager) {
@@ -44,7 +43,7 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                     ->setPhoto($faker->imageUrl("150", "150"))
                     ->setBiography($faker->realText($maxNbChars = 255, 2))
                     ->setSlogan($faker->realText($maxNbChars = 255, 2))
-                    ->setPassword('azerty1234')
+                    ->setPassword('$2y$13$A7/nsWsNOh4GaCeD4bAv3uL4uMZBPBWz1x00/MCh4d8/Xcs4SjamO')
                     ->setMood(rand(1, 5))
                     ->setJob($faker->jobTitle)
                     ->setWorkplace($faker->city)

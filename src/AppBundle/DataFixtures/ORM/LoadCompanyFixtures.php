@@ -40,7 +40,6 @@ class LoadCompanyFixtures extends Fixture implements FixtureInterface
                 ->setLinkedin($faker->url);
             $this->addReference("company-" . $i, $company[$i]);
             $manager->persist($company[$i]);
-            $this->addReference("company-" . $i, $company[$i]);
         }
 
         $manager->flush();
