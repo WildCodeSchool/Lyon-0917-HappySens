@@ -1,0 +1,106 @@
+<div class="row hide-on-med-and-down show-on-large">
+    <section class="blocDetailsProject">
+        <div class="col s12 l4">
+            <div class="row">
+                <ul class="collection">
+                    <li class="collection-item avatar" id="userProject">
+                        <a href="/newUser/{{ project.author.id }}">
+                            <img src="{{ project.author.photo }}" alt="" class="circle">
+                            <div class="black-text">
+                                <span class="titleSecond">Créer par : </span>
+                                <p>{{ project.author }}</p>
+                            </div>
+                            <p class="secondary-content"><i class="material-icons amber-text text-darken-2">person</i></p>
+                        </a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <a href="{{ path('profilHappyCoach') }}">
+                            <img src="https://randomuser.me/api/portraits/women/11.jpg" alt="" class="circle">
+                            <div class="black-text">
+                                <span class="titleSecond">HappyCoach référent :</span>
+                                <p>@name.happyCoach</p>
+                            </div>
+                            <p class="secondary-content"><i class="material-icons pink-text text-darken-2">group</i></p>
+                        </a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <a href="/newCompany/{{ project.author.company.id }}">
+                            <img src="{{ project.author.company.logo }}" alt="" class="circle">
+                            <div class="black-text">
+                                <span class="titleSecond">Entreprise :</span>
+                                <p>{{ project.author.company }}</p>
+                            </div>
+                            <p class="secondary-content"><i class="material-icons blue-text text-darken-2">domain</i></p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+                <ul class="collection">
+                    <li class="collection-item">
+                        <div class="row">
+                            <p class="col s12 titleSecond">Langues</p>
+                            <div class="col s12">
+                                <i class="fa fa-language fa-2x"></i>
+                                <i class="fa fa-language fa-2x"></i>
+                                <i class="fa fa-language fa-2x"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="collection-item">
+                        <div class="row">
+                            <p class="col s12 titleSecond">Thème</p>
+                            <p class="col l12 titleSecond">{{ project.theme.nameSkill }}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="blocExplainProject">
+        <div class="col s12 l8">
+            <div class="row">
+                <div class="right">
+                    <a href="#" onclick="joinProject()"  class="btn waves-effect waves-light personPlus" type="submit" name="action">Rejoindre
+                        <i class="material-icons right">person_add</i>
+                    </a>
+                </div>
+                <div class="dateProject left">
+                    <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-calendar-check-o"></i></span> {{ project.startingDate|date('Y-m-d') }}</p>
+                    <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-calendar-times-o"></i></span> {{ project.endDate|date('Y-m-d') }}</p>
+                    <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-map-marker"></i></span> {{ project.location }}</p>
+                    <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ nbLike }}</p>
+                </div>
+            </div>
+            <div class="containList">
+                <h5 class="titleSecond amber-text text-darken-2">Equipe :</h5>
+                <ul class="inline-team-list">
+                    {% for user in project.teamProject %}
+                    <li>
+                        <a href="/newUser/{{ user.id }}">
+                            <div class="chip">
+                                <img src="{{ user.photo }}" alt="Photo user"> <!-- notice the "circle" class -->
+                                <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
+                            </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="row">
+                <div class="detailsProjectExplain">
+                    <h5 class="titleSecond amber-text text-darken-2">Présentation :</h5>
+                    <p>{{ project.presentation }}</p>
+                </div>
+                <div class="detailsProjectExplain">
+                    <h5 class="titleSecond amber-text text-darken-2">Bénéfices collectifs :</h5>
+                    <p>{{ project.profit }}</p>
+                </div>
+                <div class="detailsProjectExplain">
+                    <h5 class="titleSecond amber-text text-darken-2">Bénéfices pour l'employeur :</h5>
+                    <p>{{ project.beneficeCompany }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

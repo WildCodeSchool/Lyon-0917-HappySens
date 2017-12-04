@@ -29,7 +29,7 @@ class EmailContactType extends AbstractType
             ->add('status', ChoiceType::class, [
                 'placeholder' => 'Votre choix',
                 'choices' => [
-                    'Salarié' => 'employe',
+                    'Salarié' => 'collaborators',
                     'Entreprise' => 'company',
                     'Happy Coach' => 'happyCoach',
                 ],

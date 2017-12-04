@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un projet{% endblock %}
+
+{% block navbar %}
+    {{ include('partials/components/navbarIn.html.twig') }}
+{% endblock %}
+{% block content %}
+<div id="contentAddProject" class="parallax-container-others">
+    <div class="section no-pad-bot">
+        <div class="col s12">
+            <div class="headerTitleOthers container" id="headerTitle">
+                <h1 class="header center amber-text text-darken-2">Proposez votre happy projet</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="createProjet generalContainer">
+    <div class="container">
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col s12 m6">
+                <h5 class="titleInscription pink-text text-darken-2">Nom :</h5>
+
+                <div class="input-field col s12">
+                    {{ form_widget(form.title) }}
+                    <label for="project_name"><span class="requireInput">* </span>Nom de votre projet</label>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <h5 class="titleInscription pink-text text-darken-2">Lieu :</h5>
+                <div class="input-field col s12">
+                    {{ form_widget(form.location) }}
+                    <label for="location"><span class="requireInput">* </span>Lieu de votre projet</label>
+                </div>
+            </div>
+            <div class="col s12">
+                <h5 class="titleInscription pink-text text-darken-2">Date :</h5>
+                <div class="input-field col s12 m6">
+                    {{ form_widget(form.endDate, {'attr': {'class': 'datepicker'}}) }}
+                    <label for="end_date"><span class="requireInput">* </span>Date de fin</label>
+                </div>
+            </div>
+            <div class="col s12 m6">
+                <h5 class="titleInscription pink-text text-darken-2">Thème :</h5>
+                <div class="input-field col s12">
+                    <span class="requireInput">* </span>
+                    {{ form_widget(form.theme) }}
+                    <label for="theme"></label>
+                </div>
+            </div>
+            {#<div class="col s12 m6">#}
+                {#<h5 class="titleInscription pink-text text-darken-2">Langues :</h5>#}
+                {#<div class="input-field col s12">#}
+                    {#<span class="requireInput">* </span>#}
+                    {#<label for="language"></label>#}
+                    {#{{ form_widget(form.languages) }}#}
+                {#</div>#}
+            {#</div>#}
+            <div class="col s12">
+                <h5 class="titleInscription pink-text text-darken-2">Présentation du projet :</h5>
+                <div class="input-field col s12">
+                    {{ form_widget(form.presentation, { 'attr': {'class': 'materialize-textarea'} }) }}
+                    <label for="description"><span class="requireInput">* </span>Ecrire votre présentation du
+                        projet</label>
+                </div>
+            </div>
+            <div class="col s12">
+                <h5 class="titleInscription pink-text text-darken-2">Les Avantages :</h5>
+                <div class="input-field col s12 m6">
+                    {{ form_widget(form.beneficeCompany, { 'attr': {'class': 'materialize-textarea'} }) }}
+                    <label for="advantagesCompany"><span class="requireInput">* </span>3 avantages pour votre
+                        employeur</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    {{ form_widget(form.profit, { 'attr': {'class': 'materialize-textarea'} }) }}
+                    <label for="advantagesGroup"><span class="requireInput">* </span>3 avantages pour le groupe de
+                        votre projet</label>
+                </div>
+            </div>
+            {#<div class="file-field input-field col s12 m6">#}
+                {#<div class="btn blue darken-3">Image#}
+                    {#<input type="file">#}
+                {#</div>#}
+                {#<label for="image_project"></label>#}
+                {#{{ form_widget(form.photo, { 'attr': {'class': 'file-path-wrapper'} }) }}#}
+            {#</div>#}
+        </div>
+    </div>
+    <div class="col s12 m6">
+        <div class="center">
+            <a href="{{ path('profilEmploye') }}"
+               class="waves-effect waves-light btn pink darken-3">Retour</a>
+            {{ form_widget(form) }}
+            <a class="waves-effect waves-light btn amber darken-2"><input type="submit" value="Envoyer" /></a>
+            {#<a href="{{ path('viewProject') }}" type="submit" class="waves-effect waves-light btn amber darken-2">Envoyer</a>#}
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('project_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

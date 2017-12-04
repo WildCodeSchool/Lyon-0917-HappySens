@@ -1,0 +1,90 @@
+<div class="row hide-on-med-and-down show-on-large">
+    {# Others #}
+    <div class="col s4">
+        <div class="row">
+            <div class="card-panel amber darken-2 white-text">
+                <h5 class="titleSecond">A propos de moi </h5>
+                <p>
+                    {{ user.biography }}
+                </p>
+            </div>
+            <div>
+            </div>
+            <ul class="collection">
+                <li class="collection-item">
+                    <div class="row valign-wrapper">
+                        <span class="center titleSecond">
+                            <b>Le bonheur au travail c'est ...</b>
+                            {{ user.slogan }}
+                        </span>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    <div class="row">
+                        <p class="col l12 titleSecond">Humeur</p>
+                        <div class="col l12">
+                            {% for i in 1..user.mood %}
+                                <i class="material-icons amber-text text-darken-2">star</i>
+                            {% endfor %}
+                            {% if user.mood != 5 %}
+                                {% for i in 5..(user.mood+ 1) %}
+                                    <i class="material-icons  amber-text text-darken-2">star_border</i>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    <div class="row">
+                        <p class="col l12 titleSecond">Langues</p>
+                        <div class="col l12">
+                            {{ user.nativeLanguage }}
+                            {{ user.language }}
+                        </div>
+                    </div>
+                </li>
+                <li class="collection-item">
+                    <div class="row">
+                        <p class="col l12 titleSecond">Suivez-moi </p>
+                        <div class="col l12">
+                            <a href="{{ user.facebook }}"><i
+                                        class="fa fa-facebook-square fa-2x blue-text text-darken-4"></i></a>
+                            <a href="{{ user.twitter }}"><i
+                                        class="fa fa-twitter-square fa-2x blue-text text-darken-1"></i></a>
+                            <a href="{{ user.linkedin }}"><i class="fa fa-linkedin fa-2x red-text"></i></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div>
+                <h5 class="titleSecond">Mes passions et talents cachés :</h5>
+            </div>
+            <ul class="collection">
+                <li class="collection-item">
+                    {% for skill in user.userskills %}
+                        <div class="row">
+                            <p class="col l12 titleSecond"> {{ skill.skill }}</p>
+                            <div class="col l12">
+                                {% for i in 1..skill.level %}
+                                    <i class="material-icons amber-text text-darken-2">star</i>
+                                {% endfor %}
+                                {% if skill.level != 5 %}
+                                    {% for i in 5..(skill.level+ 1) %}
+                                        <i class="material-icons  amber-text text-darken-2">star_border</i>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col s8">
+        <div class="row">
+            <section class="PC_blockProject">
+                {{ include('project/PC_blockProject.html.twig') }}
+            </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails projet{% endblock %}
+
+{% block navbar %}
+    {{ include('partials/components/navbarIn.html.twig') }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="headerDetailsProject">
+            <div class="">
+                <div class="chip validate">
+                    <span><i class="fa fa-clock-o"></i></span>
+                    <span>{{ project.status }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="title center">
+                    {#<p class="amber-text text-darken-2">{{ project.title }}</p>#}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ include('project/mobileRecapProjet.html.twig') }}
+    {{ include('project/largeRecapProjet.html.twig') }}
+</div>
+{% endblock %}

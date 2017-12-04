@@ -2,10 +2,11 @@
 // Home
 .parallax-container-home {
   min-height: 103vh;
-  background-image: radial-gradient(rgba(black, 0.15),rgba(black, 0.3)), url("../images/happysens-accueil.jpg");
+  background-image: radial-gradient(rgba(black, 0.15),rgba(black, 0.3)), url("../images/happysens-accueil1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: center;
   overflow-y: hidden;
   margin-top: -90px;
 }
@@ -17,13 +18,12 @@
   position: relative;
   transform: translatey(-40%);
   transition: all 500ms ease-out;
-
   h1 {
     font-family: $textFont;
     font-size: 5.5em;
     img {
       margin-bottom: -40px;
-      width: 250px;
+      width: 350px;
     }
   }
   h5 {

@@ -24,3 +24,10 @@
   }
 }
 
+.personPlus {
+  margin-top: 10px;
+  background-color: $blueColor;
+  &:hover {
+    background-color: rgba($blueColor, 0.8);
+  }
+}
