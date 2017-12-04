@@ -29,15 +29,11 @@ class Project
     private $title;
 
     /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="startingDate", type="datetime")
      */
     private $startingDate;
 
     /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="endDate", type="datetime", nullable=true)
      */
     private $endDate;
@@ -64,13 +60,10 @@ class Project
     private $beneficeCompany;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="User", inversedBy="authorProject")
      */
     private $author;
-
-
+    
     /**
      * @var integer
      *
@@ -94,6 +87,12 @@ class Project
     private $location;
 
     /**
+<<<<<<< HEAD
+     * @ORM\ManyToOne(targetEntity="Skill", inversedBy="projects")
+     */
+    private $theme;
+    
+=======
      *
      * @ORM\Column(name="language", type="string", length=255, nullable=true)
      */
@@ -106,6 +105,7 @@ class Project
      */
     private $theme;
 
+>>>>>>> devMaster
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="likes")
      * @ORM\JoinTable(name="likeProject")
