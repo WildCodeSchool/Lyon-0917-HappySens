@@ -10,18 +10,22 @@
             <ul class="left hide-on-med-and-down">
                 <li class="waves-effect waves-light"><a href="{{ path('homepage') }}"><span class="linkNav">Accueil</span></a></li>
                 <li class="waves-effect waves-light"><a href="{{ path('company') }}"><span class="linkNav">Entreprises</span></a></li>
-                <li class="waves-effect waves-light"><a href="{{ path('employe') }}"><span class="linkNav">Salariés</span></a></li>
+                <li class="waves-effect waves-light"><a href="{{ path('collaborators') }}"><span class="linkNav">Salariés</span></a></li>
                 <li class="waves-effect waves-light"><a href="{{ path('happyCoach') }}"><span class="linkNav">Happy coachs</span></a></li>
             </ul>
             <ul class="right hide-on-med-and-down">
                 <li class="waves-effect waves-light"><a href="{{ path('contact') }}"><span class="linkNav">Contact</span></a></li>
                 <li class="waves-effect waves-light"><a href="https://happiness-time.fr/" target="_blank"><span class="waves-effect waves-light linkNav">Blog</span></a></li>
-                <li><a class="waves-effect waves-light enterIn hoverable btn" onclick="$('#modal1').modal('open');" title="Connectez vous à votre profil"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
+                {% if app.user is not empty %}
+                    <li><a href="{{ path('logout') }}" class="waves-effect waves-light enterIn hoverable btn" title="Déconnexion"><i class="material-icons left">exit_to_app</i>Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{{ path('login') }}" class="waves-effect waves-light enterIn hoverable btn" onclick="$('#modal1').modal('open');" title="Connectez vous à votre profil"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
+                {% endif %}
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li><a href="{{ path('homepage') }}"><span class="linkNavSide">Accueil</span></a></li>
                 <li><a href="{{ path('company') }}"><span class="linkNavSide">Entreprise</span></a></li>
-                <li><a href="{{ path('employe') }}"><span class="linkNavSide">Employe</span></a></li>
+                <li><a href="{{ path('collaborators') }}"><span class="linkNavSide">Employe</span></a></li>
                 <li><a href="{{ path('happyCoach') }}"><span class="linkNavSide">HappyCoach</span></a></li>
                 <li><a href="https://happiness-time.fr/" target="_blank"><span class="linkNavSide">Blog</span></a></li>
                 <li><a href="{{ path('contact') }}"><span class="linkNavSide">Contact</span></a></li>
