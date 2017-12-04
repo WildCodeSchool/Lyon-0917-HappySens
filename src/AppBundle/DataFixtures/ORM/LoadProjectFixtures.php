@@ -36,6 +36,7 @@ class LoadProjectFixtures extends Fixture implements FixtureInterface
             $project[$i]->setPhoto($faker->imageUrl("640", "480"));
             $project[$i]->setLocation($faker->city);
             $project[$i]->setTheme($faker->word);
+            $project[$i]->setLanguage("Français");
             $manager->persist($project[$i]);
         }
         $manager->flush();

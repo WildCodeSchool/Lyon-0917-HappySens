@@ -87,10 +87,25 @@ class Project
     private $location;
 
     /**
+<<<<<<< HEAD
      * @ORM\ManyToOne(targetEntity="Skill", inversedBy="projects")
      */
     private $theme;
     
+=======
+     *
+     * @ORM\Column(name="language", type="string", length=255, nullable=true)
+     */
+    private $language;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="theme", type="string", length=100)
+     */
+    private $theme;
+
+>>>>>>> devMaster
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="likes")
      * @ORM\JoinTable(name="likeProject")
@@ -412,6 +427,25 @@ class Project
         $this->theme = $theme;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param mixed $language
+     * @return Project
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+        return $this;
+    }
+
 
 
 }

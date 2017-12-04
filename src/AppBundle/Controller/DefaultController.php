@@ -65,30 +65,13 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * @Route("profilEmploye", name="profilEmploye")
-     */
-    public function profilEmployeAction(Request $request)
-    {
-        return $this->render('pages/In/collaborators/profilEmploye.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
-    /**
-     * @Route("profilCompany", name="profilCompany")
-     */
-    public function profilCompanyAction(Request $request)
-    {
-        return $this->render('pages/In/company/profilCompany.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
+
     /**
      * @Route("profilHappyCoach", name="profilHappyCoach")
      */
     public function profilHappyCoachAction(Request $request)
     {
-        return $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', [
+        return $this->render('pages/profilHappyCoach.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
@@ -97,20 +80,11 @@ class DefaultController extends Controller
      */
     public function listingNotificationsAction(Request $request)
     {
-        return $this->render('pages/In/notifications/listingNotifications.html.twig', [
+        return $this->render('pages/listingNotifications.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
-    // Traitement Form connection / contact / profils / inscriptions / projets
-    /**
-     * @Route("profilAdmin", name="profilAdmin")
-     */
-    public function profilAdminAction(Request $request)
-    {
-        return $this->render('pages/In/Admin/profilAdmin.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
+
 
     // Traitement Form connection / contact / profils / inscriptions / projets
     /**

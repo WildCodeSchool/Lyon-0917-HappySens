@@ -3,134 +3,101 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Entity\Company;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
-/**
- * User controller.
- *
- * @Route("newUser")
- */
+
 class UserController extends Controller
 {
-    /**
-     * Lists all user entities.
-     *
-     * @Route("/", name="newUser_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository('AppBundle:User')->findAll();
-
-        return $this->render('user/index.html.twig', array(
-            'users' => $users,
-        ));
-    }
-
-    /**
-     * Creates a new user entity.
-     *
-     * @Route("/new", name="newUser_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $user = new User();
-        $form = $this->createForm('AppBundle\Form\UserType', $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute('newUser_show', array('id' => $user->getId()));
-        }
-
-        return $this->render('user/new.html.twig', array(
-            'user' => $user,
-            'form' => $form->createView(),
-        ));
-    }
 
     /**
      * Finds and displays a user entity.
      *
-     * @Route("/{id}", name="newUser_show")
+     * @Route("/user/{id}", name="UserProfil")
      * @Method("GET")
+     * @Security("user.getIsActive() == true")
      */
-    public function showAction(User $user)
+    public function showUserAction(User $user)
     {
-        $deleteForm = $this->createDeleteForm($user);
 
-        return $this->render('user/profilEmploye.html.twig', array(
+        return $this->render('pages/In/collaborators/profilEmploye.html.twig', array(
             'user' => $user,
-            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays a company entity.
+     *
+     * @Route("/company/{id}", name="CompanyProfil")
+     * @Method("GET")
+     * @Security("user.getIsActive() == true")
+     */
+    public function showCompanyAction(Company $company)
+    {
+        $nbHappySalarie = count($company->getUsers());
+
+        $em = $this->getDoctrine()->getManager();
+        $skillInCompany = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
+        $refHappySens = $em->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
+
+
+        return $this->render('pages/In/company/profilCompany.html.twig', array(
+            'company' => $company,
+            'nbHappySalarie' => $nbHappySalarie,
+            'skillInCompany' => $skillInCompany,
+            'refHappySens' => $refHappySens,
         ));
     }
 
     /**
      * Displays a form to edit an existing user entity.
      *
-     * @Route("/{id}/edit", name="newUser_edit")
+     * @Route("/{id}/userEdit", name="User_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, User $user)
+    public function editUserAction(Request $request, User $user)
     {
-        $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('newUser_edit', array('id' => $user->getId()));
+            return $this->redirectToRoute('User_edit', array('id' => $user->getId()));
         }
 
-        return $this->render('user/edit.html.twig', array(
+        return $this->render('pages/In/collaborators/editUser.html.twig', array(
             'user' => $user,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Deletes a user entity.
+     * Displays a form to edit an existing company entity.
      *
-     * @Route("/{id}", name="newUser_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/companyEdit", name="Company_edit")
+     * @Method({"GET", "POST"})
      */
-    public function deleteAction(Request $request, User $user)
+    public function editCompanyAction(Request $request, Company $company)
     {
-        $form = $this->createDeleteForm($user);
-        $form->handleRequest($request);
+        $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
+        $editForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('Company_edit', array('id' => $company->getId()));
         }
 
-        return $this->redirectToRoute('newUser_index');
+        return $this->render('pages/In/company/editCompany.html.twig', array(
+            'company' => $company,
+            'edit_form' => $editForm->createView(),
+        ));
     }
 
-    /**
-     * Creates a form to delete a user entity.
-     *
-     * @param User $user The user entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(User $user)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('newUser_delete', array('id' => $user->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
 }
