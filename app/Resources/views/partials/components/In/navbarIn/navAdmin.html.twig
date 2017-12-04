@@ -3,9 +3,6 @@
         <div class="nav-wrapper white">
             <a href="{{ path('homepage') }}" class="brand-logo center"><img src="{{ asset('assets/images/logo2.png') }}" alt="LOGO" width="90px" title="Acceuil"></a>
             <ul class="right">
-                {% if is_granted('ROLE_EMPLOYE') %}
-                    <li title="Créer un projet"><a href="{{ path('project_new') }}"><span class="linkNavSide"><i class="material-icons">add</i></span></a></li>
-                {% endif %}
                 <li title="Vos notifications">
                     <a class="dropdown-button linkNavSide"  style="display: flex;" href="#!" data-activates="dropdownNotif">
                         <i class="material-icons">notifications</i>
@@ -15,6 +12,16 @@
                         <li><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
                         <li class="divider"></li>
                         <li><a class="blue-text text-darken-2" href="{{ path('listingNotifications') }}">Voir toutes vos notifications</a></li>
+                    </ul>
+                </li>
+                <li title="Vos notifications">
+                    <a class="dropdown-button linkNavSide" style="display: flex;" href="#!" data-activates="dropdownSettings">
+                        <i class="material-icons">settings</i>
+                    </a>
+                    <ul id="dropdownSettings" class="dropdown-content notifications">
+                        <li><a class="grey-text text-darken-3" href="{{ path('User_edit', {'id' : app.user.id}) }}"><i class="material-icons">create</i>Modifier votre profil</a></li>
+                        <li class="divider"></li>
+                        <li><a class="blue-text text-darken-3" href="{{ path('logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
                     </ul>
                 </li>
             </ul>
@@ -31,7 +38,7 @@
             <ul id="slide-out" class="side-nav">
                 <li>
                     <div class="user-view">
-                            <a href="{{ path('UserProfil', { 'id': app.user.id  }) }}" title="Voir votre profil">
+                        <a href="{{ path('profilAdmin')}}" title="Voir votre profil">
                             <div class="background  blue darken-2 white-text">
                             </div>
                             <img class="circle" src="{{ app.user.photo }}">
@@ -42,14 +49,23 @@
                         </a>
                     </div>
                 </li>
-                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">tab</i>Tous les projets :</a></li>
-                <li><a class="waves-effect" href="{{ path('project_new') }}"><i class="material-icons">create_new_folder</i>Nouveau projet</a></li>
-                <li><a class="waves-effect"><i class="material-icons">folder_shared</i>Vos projets en cours</a></li>
-                <li><a class="waves-effect"><i class="material-icons">folder_special</i>Les projets suivis</a></li>
-                <li><a class="waves-effect"><i class="material-icons">folder</i>Vos projets terminés</a></li>
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">store</i>Inscriptions :</a></li>
+                <li><a class="waves-effect" href="{{ path('newCompany') }}"><i class="material-icons">domain</i>Entreprise</a></li>
+                <li><a class="waves-effect" href="{{ path('newUser') }}"><i class="material-icons">domain</i>Collaborateurs</a></li>
+                <li><a class="waves-effect" href="{{ path('newUser') }}"><i class="material-icons">domain</i>HappyCoach</a></li>
                 <li><div class="divider"></div></li>
-                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">store</i>Entreprise :</a></li>
-                <li><a class="waves-effect" href=""><i class="material-icons">domain</i>{{ app.user.company.name }}</a></li>
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">tab</i>Les projets :</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder_shared</i>Les projets en cours</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder_special</i>Les projets en attentes</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder</i>Les projets terminés</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">tab</i>Les entreprises :</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder_shared</i>Les entreprise par projets</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder_special</i>Les entreprise par nb user</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder</i>Toutes les entreprise</a></li>
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">tab</i>Les happy coachs :</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder_shared</i>Par projets</a></li>
+                <li><a class="waves-effect"><i class="material-icons">folder_special</i>Tous les happyCoachs</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">link</i>Liens pratiques :</a></li>
                 <li><a class="waves-effect" href="{{ path('User_edit', {'id' : app.user.id}) }}"><i class="material-icons">create</i>Modifier votre profil</a></li>
