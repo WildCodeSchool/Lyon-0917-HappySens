@@ -242,18 +242,30 @@ nav {
   background-color: inherit;
   box-shadow: none; }
 
-.loginConnect .iClose {
-  color: #252F3D; }
-.loginConnect .hidden {
-  display: none; }
+.modalConnect {
+  min-width: 100vw;
+  min-height: 100vh;
+  top: 0 !important;
+  background-color: rgba(255, 255, 255, 0.92);
+  padding: 20px 20px; }
+  .modalConnect .iClose {
+    color: #252F3D; }
+  .modalConnect .hidden {
+    display: none; }
 
-.modal-content-Connect a {
-  color: #0288D1; }
-  .modal-content-Connect a:hover {
-    color: #4dabe6;
-    cursor: pointer; }
-.modal-content-Connect a.btn {
-  color: white; }
+.modal-content-Connect {
+  width: 50em;
+  position: relative;
+  top: 45vh;
+  transform: translatey(-45%);
+  margin: auto; }
+  .modal-content-Connect a {
+    color: #0288D1; }
+    .modal-content-Connect a:hover {
+      color: #4dabe6;
+      cursor: pointer; }
+  .modal-content-Connect a.btn {
+    color: white; }
 
 .newUser {
   text-align: center; }

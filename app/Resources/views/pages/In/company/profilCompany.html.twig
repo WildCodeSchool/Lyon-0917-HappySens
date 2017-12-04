@@ -1,6 +1,9 @@
-{% extends 'baseIn.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}{{ company.name }}{% endblock %}
+{% block navbar %}
+    {{ include('partials/components/navbarIn.html.twig') }}
+{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -61,9 +64,9 @@
                 </div>
             </div>
             {# For desktop #}
-            {{ include('pages/In/company/largeProfilCompany.html.twig') }}
+            {{ include('company/largeProfilCompany.html.twig') }}
             {# For mobile and tablet #}
-            {{ include('pages/In/company/mobileProfilCompany.html.twig') }}
+            {{ include('company/mobileProfilCompany.html.twig') }}
 
         </div>
     </div>
