@@ -84,7 +84,7 @@
                         <div class="col l4  center-align">
                             <ul class="">
                                 <li><img class="circle responsive-img" src="{{ user.photo }}" alt="Vignette photo"></li>
-                                <li><a href="/newUser/{{user.id }}">{{ user.firstname }} {{ user.lastname }}</a></li>
+                                <li><a href="{{ path('UserProfil', {'id' : user.id }) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
                                 <li>{{ include('user/userMood.html.twig') }} </li>
                             </ul>
                         </div>
@@ -119,9 +119,10 @@
                         {% for user in company.users %}
                             <div class="col l4 card  center-align">
                                 <ul class="">
-                                    <li><img class="circle responsive-img" src="{{ user.photo }}" alt="Vignette photo">
+                                    <li>
+                                        <img class="circle responsive-img" src="{{ user.photo }}" alt="Vignette photo">
                                     </li>
-                                    <li><a href="/newUser/{{user.id }}">{{ user.firstname }} {{ user.lastname }}</a></li>
+                                    <li><a href="{{ path('UserProfil', {'id' : user.id }) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
                                     <li> {{ include('user/userMood.html.twig') }}</li>
                                 </ul>
                             </div>
