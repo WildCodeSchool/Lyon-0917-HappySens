@@ -51,11 +51,11 @@
                             </tr>
                             <tr>
                                 <th>Lieu des sites</th>
-                                <td>Lyon -France</td>
+                                <td>{{ company.location }}</td>
                             </tr>
                             <tr>
                                 <th>Référent Happy Sens</th>
-                                <td><a href="{{ path('profilHappyCoach') }}">Voir le profil</a></td>
+                                <td><a href="/newUser/{{refHappySens.0.id }}">{{ refHappySens.0.firstName }} {{ refHappySens.0.lastName }}</a></td>
                             </tr>
                             </tbody>
                         </table>

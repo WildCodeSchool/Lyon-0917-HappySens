@@ -55,11 +55,16 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                     ->setTwitter($faker->url)
                     ->setLinkedin($faker->url)
                     ->setLanguage($faker->randomElement($array = ["Anglais", "Espagnol", "Russe", "Polonais", "Vietnamien", "Japonais"]));
+                if ($key != 2 and $key!= 3) {
+                    $user[$nbUser]->setIsActive(1);
+                }
                 if ($key === 2) {
                     $user[$nbUser]->setCompany($this->getReference("company-" . $i));
+                    $user[$nbUser]->setIsActive(rand(0,1));
                 }
                 if ($key === 3) {
                     $user[$nbUser]->setCompany($this->getReference("company-" . rand(0, self::ROLE[2] - 1)));
+                    $user[$nbUser]->setIsActive(rand(0,1));
                 }
                 $manager->persist($user[$nbUser]);
                 $this->addReference("user-" . $nbUser, $user[$nbUser]);

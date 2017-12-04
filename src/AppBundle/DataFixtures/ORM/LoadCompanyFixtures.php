@@ -29,15 +29,17 @@ class LoadCompanyFixtures extends Fixture implements FixtureInterface
             $company[$i]->setBirthdate($faker->dateTime($max = 'now', $timezone = date_default_timezone_get()));
             $company[$i]->setSlogan($faker->sentence($nbWords = 8, $variableNbWords = true));
             $company[$i]->setQuality($faker->sentence($nbWords = 20, $variableNbWords = true));
+            $company[$i]->setThreeCriteria($faker->sentence($nbWords = 20, $variableNbWords = true));
             $company[$i]->setName($faker->company);
             $company[$i]->setLogo($faker->imageUrl(150, 150, 'cats'));
+            $company[$i]->setLocation($faker->city);
+            $company[$i]->setLanguage("Français");
             $company[$i]
                 ->setFacebook($faker->url)
                 ->setTwitter($faker->url)
                 ->setLinkedin($faker->url);
             $manager->persist($company[$i]);
             $this->addReference("company-" . $i, $company[$i]);
-
         }
 
         $manager->flush();

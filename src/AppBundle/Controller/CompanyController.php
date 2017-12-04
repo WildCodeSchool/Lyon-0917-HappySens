@@ -69,14 +69,16 @@ class CompanyController extends Controller
         $nbHappySalarie = count($company->getUsers());
 
         $em = $this->getDoctrine()->getManager();
-        $skillInCompangy = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
+        $skillInCompany = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
+        $refHappySens = $em->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
 
 
         return $this->render('company/show.html.twig', array(
             'company' => $company,
             'delete_form' => $deleteForm->createView(),
             'nbHappySalarie' => $nbHappySalarie,
-            'skillInCompany' => $skillInCompangy,
+            'skillInCompany' => $skillInCompany,
+            'refHappySens' => $refHappySens,
         ));
     }
 

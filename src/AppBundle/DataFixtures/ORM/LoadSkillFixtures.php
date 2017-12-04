@@ -22,12 +22,12 @@ class LoadSkillFixtures extends Fixture implements FixtureInterface
     public function load(ObjectManager $manager) {
         $faker = Faker\Factory::create("fr_FR");
         $skills = [];
-        $listSkill = ['bien-être','bricolage', 'broderie', 'cause animale', 'cause humanitaire', 'chant',
-'cinéma', 'cirque', 'collection d\'objet', 'couture','cuisine', 'culture et jardinage', 'danse', 'décoration',
- 'dessin', 'ecologie','ecriture', 'gastronomie', 'gravure', 'jeux vidéos','littérature','maquettisme', 'musique',
-  'Oenologie', 'peinture', 'photographie','sculpture','spectacle', 'sport animalier', 'sport aérien', 'sport collectif',
-  'sport de combat', 'sport handisport', 'sport individuel', 'sport mécanique', 'sport de montagne','sport nautique',
-   'théâtre','tricot' ];
+        $listSkill = ['Bien-être','Bricolage', 'Broderie', 'Cause animale', 'Cause humanitaire', 'Chant',
+'Cinéma', 'Cirque', 'Collection d\'objet', 'Couture','Cuisine', 'Culture et jardinage', 'Danse', 'Décoration',
+ 'Dessin', 'Ecologie','Ecriture', 'Gastronomie', 'Gravure', 'Jeux vidéos','Littérature','Maquettisme', 'Musique',
+  'Oenologie', 'Peinture', 'Photographie','Sculpture','Spectacle', 'Sport animalier', 'Sport aérien', 'port collectif',
+  'Sport de combat', 'Sport handisport', 'Sport individuel', 'Sport mécanique', 'Sport de montagne','Sport nautique',
+   'Théâtre','Tricot' ];
 
         for($i = 0; $i <= self::MAX; $i++) {
             $skills[$i] = new Skill();

@@ -63,6 +63,13 @@ class Company
     private $quality;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="three_criteria", type="text")
+     */
+    private $threeCriteria;
+
+    /**
      *
      * @ORM\Column(name="facebook", type="string",  length=100, nullable=true)
      */
@@ -91,10 +98,18 @@ class Company
      */
     private $users;
 
+    /**
+     *
+     * @ORM\Column(name="language", type="string", length=255, nullable=true)
+     */
+    private $language;
 
-
-
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=100)
+     */
+    private $location;
 
     /**
      * Constructor
@@ -362,10 +377,63 @@ class Company
         $this->logo = $logo;
     }
 
+    /**
+     * @return string
+     */
+    public function getThreeCriteria(): string
+    {
+        return $this->threeCriteria;
+    }
+
+    /**
+     * @param string $threeCriteria
+     * @return Company
+     */
+    public function setThreeCriteria(string $threeCriteria): Company
+    {
+        $this->threeCriteria = $threeCriteria;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param mixed $language
+     * @return Company
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocation(): string
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param string $location
+     * @return Company
+     */
+    public function setLocation(string $location): Company
+    {
+        $this->location = $location;
+        return $this;
+    }
+
     public function __toString()
     {
         return $this->getLogo() . $this->getName();
     }
-
 
 }
