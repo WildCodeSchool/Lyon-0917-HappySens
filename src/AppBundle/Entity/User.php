@@ -18,7 +18,6 @@ class User implements UserInterface, \Serializable
     CONST ROLE_EMPLOYE = 3;
     CONST ROLE_HAPPYCOACH = 4;
     CONST ROLE_HAPPYCOACH_PROJECT = 5;
-    CONST ROLE_TEMPO = 6;
 
     /**
      * @var int
@@ -755,9 +754,6 @@ class User implements UserInterface, \Serializable
             case self::ROLE_HAPPYCOACH_PROJECT:
                 return array('ROLE_HAPPYCOACH_PROJECT');
                 break;
-            case self::ROLE_TEMPO:
-                return array('ROLE_TEMPO');
-                break;
         }
     }
 
@@ -775,6 +771,7 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->email,
             $this->password,
+            $this->isActive,
         ));
     }
 
@@ -787,6 +784,7 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->email,
             $this->password,
+            $this->isActive,
             ) = unserialize($serialized);
     }
 
