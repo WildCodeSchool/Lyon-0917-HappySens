@@ -25,9 +25,14 @@ class LoadUserHasSkillFixtures extends Fixture implements FixtureInterface
         $userSkills = [];
 
         for($j = 0; $j <= self::MAX; $j++) {
+            $skills = [];
             for ($i = 0; $i <= rand(1, 10); $i++) {
                 $userSkills[$i] = new UserHasSkill();
-                $userSkills[$i]->setSkill($this->getReference("skill-" . rand(1, 80)));
+                do {
+                    $skill = rand(1, 37);
+                } while(in_array($skill, $skills));
+                    $skills[] = $skill;
+                    $userSkills[$i]->setSkill($this->getReference("skill-" . $skill));
                 $userSkills[$i]->setUser($this->getReference("user-" . $j));
                 $userSkills[$i]->setLevel($faker->numberBetween($min = 1, $max = 5));
                 $manager->persist($userSkills[$i]);

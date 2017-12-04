@@ -714,7 +714,11 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
+<<<<<<< HEAD
+    public function getisActive()
+=======
     public function getIsActive()
+>>>>>>> devMaster
     {
         return $this->isActive;
     }
@@ -727,6 +731,9 @@ class User implements UserInterface, \Serializable
         $this->isActive = $isActive;
     }
 
+<<<<<<< HEAD
+
+=======
     public function getUsername()
     {
         return $this->email;
@@ -777,6 +784,7 @@ class User implements UserInterface, \Serializable
             $this->password,
         ));
     }
+>>>>>>> devMaster
 
     /**
      * @see \Serializable::unserialize()

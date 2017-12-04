@@ -94,13 +94,17 @@ class Project
     private $location;
 
     /**
+     *
+     * @ORM\Column(name="language", type="string", length=255, nullable=true)
+     */
+    private $language;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="theme", type="string", length=100)
      */
     private $theme;
-
-
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="likes")
@@ -423,6 +427,25 @@ class Project
         $this->theme = $theme;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param mixed $language
+     * @return Project
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+        return $this;
+    }
+
 
 
 }

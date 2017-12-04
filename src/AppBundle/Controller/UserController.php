@@ -39,9 +39,18 @@ class UserController extends Controller
      */
     public function showCompanyAction(Company $company)
     {
+        $nbHappySalarie = count($company->getUsers());
+
+        $em = $this->getDoctrine()->getManager();
+        $skillInCompany = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
+        $refHappySens = $em->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
+
 
         return $this->render('pages/In/company/profilCompany.html.twig', array(
             'company' => $company,
+            'nbHappySalarie' => $nbHappySalarie,
+            'skillInCompany' => $skillInCompany,
+            'refHappySens' => $refHappySens,
         ));
     }
 
