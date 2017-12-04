@@ -9,6 +9,9 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use Faker;
+use AppBundle\DataFixtures\ORM\LoadCompanyFixtures;
+use AppBundle\DataFixtures\ORM\LoadUserHasSkillFixtures;
+use AppBundle\DataFixtures\ORM\LoadSkillFixtures;
 use AppBundle\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -16,14 +19,13 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadUserFixtures extends Fixture implements FixtureInterface
 {
-
     const ROLE = [
-            1 => 1,
-            2 => 5,
-            3 => 25,
-            4 => 5,
-            5 => 4,
-            6 => 5
+        1 => 1,
+        2 => 5,
+        3 => 25,
+        4 => 5,
+        5 => 4,
+        6 => 5
     ];
 
     public function load(ObjectManager $manager) {
@@ -42,7 +44,7 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                     ->setPhoto($faker->imageUrl("150", "150"))
                     ->setBiography($faker->realText($maxNbChars = 255, 2))
                     ->setSlogan($faker->realText($maxNbChars = 255, 2))
-                    ->setPassword('$2y$13$A7/nsWsNOh4GaCeD4bAv3uL4uMZBPBWz1x00/MCh4d8/Xcs4SjamO')
+                    ->setPassword('azerty1234')
                     ->setMood(rand(1, 5))
                     ->setJob($faker->jobTitle)
                     ->setWorkplace($faker->city)
@@ -50,13 +52,17 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                     ->setFacebook($faker->url)
                     ->setTwitter($faker->url)
                     ->setLinkedin($faker->url)
-                    ->setLanguage($faker->randomElement($array = ["Anglais", "Espagnol", "Russe", "Polonais", "Vietnamien", "Japonais"]))
-                    ->setIsActive(false);
+                    ->setLanguage($faker->randomElement($array = ["Anglais", "Espagnol", "Russe", "Polonais", "Vietnamien", "Japonais"]));
+                if ($key != 2 and $key!= 3) {
+                    $user[$nbUser]->setIsActive(1);
+                }
                 if ($key === 2) {
                     $user[$nbUser]->setCompany($this->getReference("company-" . $i));
+                    $user[$nbUser]->setIsActive(rand(0,1));
                 }
                 if ($key === 3) {
                     $user[$nbUser]->setCompany($this->getReference("company-" . rand(0, self::ROLE[2] - 1)));
+                    $user[$nbUser]->setIsActive(rand(0,1));
                 }
                 $manager->persist($user[$nbUser]);
                 $this->addReference("user-" . $nbUser, $user[$nbUser]);
@@ -69,8 +75,8 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
     public function getDependencies()
     {
         return array(
-          LoadSkillFixtures::class,
-          LoadCompanyFixtures::class,
+            LoadSkillFixtures::class,
+            LoadCompanyFixtures::class,
         );
     }
 }
