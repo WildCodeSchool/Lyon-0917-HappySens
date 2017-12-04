@@ -1,6 +1,11 @@
-{% extends 'baseIn.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Admin{% endblock %}
+
+{% block navbar %}
+    {{ include('partials/components/navbarInAdmin.html.twig') }}
+{% endblock %}
+
 
 {% block content %}
     <div class="container">
@@ -21,6 +26,7 @@
                 </thead>
                 <tbody>
                 <tr>
+                    <td><a href="{{ path('profilCompany') }}">Nom entreprise</a></td>
                     <td>20</td>
                     <td>3</td>
                     <td>2</td>
@@ -46,7 +52,8 @@
                 </thead>
                 <tbody>
                 <tr>
-
+                    <td><a href="{{ path('profilCompany') }}">Nom entreprise</a></td>
+                    <td><a href="{{ path('addProject') }}">Nom projet</a></td>
                     <td>Cuisine</td>
                     <td>06/11/17</td>
                     <td>06/12/17</td>
@@ -75,7 +82,8 @@
 
                 <tbody>
                 <tr>
-
+                    <td><a href="{{ path('profilCompany') }}">Nom entreprise</a></td>
+                    <td><a href="{{ path('addProject') }}">Nom projet</a></td>
                     <td>Cuisine</td>
                     <td>Lyon</td>
                     <td>06/11/18</td>
@@ -103,7 +111,8 @@
                 </thead>
                 <tbody>
                 <tr>
-
+                    <td><a href="{{ path('profilCompany') }}">Nom entreprise</a></td>
+                    <td><a href="{{ path('addProject') }}">Nom projet</a></td>
                     <td>Cuisine</td>
                     <td>06/11/18</td>
                     <td>22</td>

@@ -31,7 +31,7 @@ class AdminController extends Controller
      */
     public function profilAdminAction(Request $request)
     {
-        return $this->render('pages/In/Admin/profilAdmin.html.twig', [
+        return $this->render('pages/In/company/profilCompany.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }

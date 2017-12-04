@@ -1,6 +1,10 @@
-{% extends 'baseIn.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Vos notifications{% endblock %}
+
+{% block navbar %}
+    {{ include('partials/components/navbarIn.html.twig') }}
+{% endblock %}
 
 {% block content %}
     <div class="container generalContainer">
