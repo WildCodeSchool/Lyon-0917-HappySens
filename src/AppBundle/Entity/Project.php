@@ -114,7 +114,7 @@ class Project
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -123,7 +123,7 @@ class Project
      * @param int $id
      * @return Project
      */
-    public function setId(int $id): Project
+    public function setId($id)
     {
         $this->id = $id;
         return $this;
@@ -141,7 +141,7 @@ class Project
      * @param string $title
      * @return Project
      */
-    public function setTitle(string $title): Project
+    public function setTitle($title)
     {
         $this->title = $title;
         return $this;
@@ -159,7 +159,7 @@ class Project
      * @param \DateTime $startingDate
      * @return Project
      */
-    public function setStartingDate(\DateTime $startingDate): Project
+    public function setStartingDate(\DateTime $startingDate)
     {
         $this->startingDate = $startingDate;
         return $this;
@@ -195,7 +195,7 @@ class Project
      * @param string $presentation
      * @return Project
      */
-    public function setPresentation(string $presentation): Project
+    public function setPresentation($presentation)
     {
         $this->presentation = $presentation;
         return $this;
@@ -213,7 +213,7 @@ class Project
      * @param string $profit
      * @return Project
      */
-    public function setProfit(string $profit): Project
+    public function setProfit($profit)
     {
         $this->profit = $profit;
         return $this;
@@ -231,7 +231,7 @@ class Project
      * @param string $beneficeCompany
      * @return Project
      */
-    public function setBeneficeCompany(string $beneficeCompany): Project
+    public function setBeneficeCompany($beneficeCompany)
     {
         $this->beneficeCompany = $beneficeCompany;
         return $this;
@@ -249,7 +249,7 @@ class Project
      * @param string $author
      * @return Project
      */
-    public function setAuthor(string $author): Project
+    public function setAuthor($author)
     {
         $this->author = $author;
         return $this;

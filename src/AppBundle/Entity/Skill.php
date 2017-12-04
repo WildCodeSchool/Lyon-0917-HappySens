@@ -52,7 +52,7 @@ class Skill
     /**
      * @return string
      */
-    public function getNameSkill(): string
+    public function getNameSkill()
     {
         return $this->nameSkill;
     }
@@ -61,7 +61,7 @@ class Skill
      * @param string $nameSkill
      * @return Skill
      */
-    public function setNameSkill(string $nameSkill): Skill
+    public function setNameSkill($nameSkill)
     {
         $this->nameSkill = $nameSkill;
         return $this;
