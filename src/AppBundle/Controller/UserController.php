@@ -9,8 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class UserController extends Controller
 {
@@ -25,6 +25,12 @@ class UserController extends Controller
      */
     public function showUserAction(User $user)
     {
+        $company = $this->getUser()->getCompany();
+
+        if($company !== $user->getCompany()){
+
+            throw new AccessDeniedException("tu n'as rien a foutre ici");
+        }
         return $this->render('pages/In/collaborators/profilEmploye.html.twig', array(
             'user' => $user,
 
@@ -64,8 +70,9 @@ class UserController extends Controller
      * @Route("/{id}/userEdit", name="User_edit")
      * @Method({"GET", "POST"})
      */
-    public function editUserAction(Request $request, User $user)
+    public function editUserAction(Request $request)
     {
+        $user = $this->getUser();
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->handleRequest($request);
 
@@ -87,11 +94,16 @@ class UserController extends Controller
      * @Route("/{id}/companyEdit", name="Company_edit")
      * @Method({"GET", "POST"})
      */
-    public function editCompanyAction(Request $request, Company $company)
+    public function editCompanyAction(Request $request)
     {
+        $company = $this->getUser()->getCompany();
+        $user = $this->getUser();
         $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
         $editForm->handleRequest($request);
+        if($user->getStatus() !== 2){
 
+            throw new AccessDeniedException("Fuis pauvre fou !!");
+        }
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
