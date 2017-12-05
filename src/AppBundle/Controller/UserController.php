@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Company;
+use AppBundle\Service\StatusProject;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -22,11 +23,14 @@ class UserController extends Controller
      * @Method("GET")
      * @Security("user.getIsActive() == true")
      */
-    public function showUserAction(User $user)
+    public function showUserAction(User $user, StatusProject $statusProject)
     {
 
+        $contact = $user->getAuthorProject()->getStatus();
+        $statusTwig = $statusProject->getStatusTwig($contact);
         return $this->render('pages/In/collaborators/profilEmploye.html.twig', array(
             'user' => $user,
+            'statusTwig' => $statusTwig,
         ));
     }
 
