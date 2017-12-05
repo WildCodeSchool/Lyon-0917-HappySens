@@ -10,6 +10,7 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\DataFixtures\ORM\LoadUserFixtures;
 use AppBundle\Entity\Project;
+use AppBundle\Service\SlugService;
 use Faker;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -21,11 +22,13 @@ class LoadProjectFixtures extends Fixture implements FixtureInterface
 
     public function load(ObjectManager $manager) {
         $faker = Faker\Factory::create("fr_FR");
+        $slugService = new SlugService();
         $project = [];
 
         for($i = 0; $i <= self::MAX; $i++) {
+            $title = $faker->sentence($nbWords = 5, $variableNbWords = true);
             $project[$i] = new Project();
-            $project[$i]->setTitle($faker->sentence($nbWords = 5, $variableNbWords = true));
+            $project[$i]->setTitle($title);
             $project[$i]->setStartingDate($faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = date_default_timezone_get()));
             $project[$i]->setEndDate($faker->dateTimeBetween($startDate = 'now', $endDate = '+2 years', $timezone = date_default_timezone_get()));
             $project[$i]->setPresentation($faker->sentence($nbWords = 75, $variableNbWords = true));
@@ -37,6 +40,7 @@ class LoadProjectFixtures extends Fixture implements FixtureInterface
             $project[$i]->setLocation($faker->city);
             $project[$i]->setTheme($this->getReference('skill-' . $i));
             $project[$i]->setLanguage("Français");
+            $project[$i]->setSlug($slugService->slugify($title));
             $manager->persist($project[$i]);
         }
         $manager->flush();
