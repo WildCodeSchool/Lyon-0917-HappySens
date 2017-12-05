@@ -1,6 +1,6 @@
 {% extends 'baseIn.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Companies list</h1>
 
     <table>
@@ -19,7 +19,7 @@
         <tbody>
         {% for company in companies %}
             <tr>
-                <td><a href="{{ path('newCompany_show', { 'id': company.id }) }}">{{ company.id }}</a></td>
+                <td><a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}">{{ company.slug }}</a></td>
                 <td>{{ company.activity }}</td>
                 <td>{{ company.name }}</td>
                 <td>{{ company.nbSalary }}</td>
@@ -29,10 +29,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('newCompany_show', { 'id': company.id }) }}">show</a>
+                            <a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}">Profil</a>
                         </li>
                         <li>
-                            <a href="{{ path('newCompany_edit', { 'id': company.id }) }}">edit</a>
+                            <a href="{{ path('Company_edit', { 'slug': company.slug }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -43,7 +43,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('newCompany_new') }}">Create a new company</a>
+            <a href="{{ path('newCompany') }}">Create a new company</a>
         </li>
     </ul>
 {% endblock %}

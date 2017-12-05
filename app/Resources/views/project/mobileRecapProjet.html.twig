@@ -12,7 +12,7 @@
         <div class="row">
             <ul class="collection">
                 <li class="collection-item avatar" id="userProject">
-                    <a href="/newUser/{{ project.author.id }}">
+                    <a href="/newUser/{{ project.author.slug }}">
                         <img src="{{ project.author.photo }}" alt="" class="circle">
                         <div class="black-text">
                             <span class="titleSecond">Créer par : </span>
@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="collection-item avatar">
-                    <a href="/newCompany/{{ project.author.company.id }}">
+                    <a href="/newCompany/{{ project.author.company.slug }}">
                         <img src="{{ project.author.company.logo }}" alt="" class="circle">
                         <div class="black-text">
                             <span class="titleSecond">Entreprise :</span>
@@ -52,7 +52,7 @@
             <ul class="inline-team-list">
                 {% for user in project.teamProject %}
                 <li>
-                    <a href="/newUser/{{ user.id }}">
+                    <a href="{{ path('UserProfil', {'slug' : user.slug}) }}">
                         <div class="chip">
                             <img src="{{ user.photo }}" alt="Logo company"> <!-- notice the "circle" class -->
                             <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>

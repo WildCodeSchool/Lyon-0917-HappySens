@@ -112,6 +112,12 @@ class Project
     private $teamProject;
 
     /**
+     * @var string
+     * @ORM\Column(name="slug", type="string",  length=255, nullable=true)
+     */
+    private $slug;
+
+    /**
      * @return int
      */
     public function getId()
@@ -445,4 +451,28 @@ class Project
         return $this->getTitle() . " " . $this->getAuthor();
     }
 
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Project
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 }

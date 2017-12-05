@@ -94,7 +94,7 @@
         </div>
         <div class="col s12 m6">
             <div class="center">
-                <a href="{{ path('profilEmploye') }}"
+                <a href="{{ path('UserProfil', {'slug' : app.user.slug}) }}"
                    class="waves-effect waves-light btn pink darken-3">Retour</a>
                 <a href="{{ path('viewProject') }}" type="submit" class="waves-effect waves-light btn amber darken-2">Envoyer</a>
             </div>
