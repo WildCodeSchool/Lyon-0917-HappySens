@@ -2,6 +2,7 @@
     <div class="hideMobile">
         <h5 class="center titleSecond">Les Happy Projets</h5>
     </div>
+    <!--********************************** Project Author****************************************-->
     {% if user.authorProject %}
     <div id="AuthorProject">
         <div class="card medium">
@@ -26,7 +27,7 @@
                     </a>
                 </div>
                 <div class="right">
-                    {#<a href="#!" onclick="like()">{{ project.likeProject }}<i class="fa fa-heart red-text"></i></a>#}
+                    <a href="#!" onclick="like()">{{ user.authorProject.likeProjects|length }}<i class="fa fa-heart red-text"></i></a>
                 </div>
             </div>
             <div class="card-reveal revealProject">
@@ -54,7 +55,7 @@
                         <a href="{{ path('project_show', { 'slug': user.authorProject.slug }) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
                     </div>
                     <div class="right">
-                        <a href="#!" onclick="like()">15 <i class="fa fa-heart red-text"></i></a>
+                        <a href="#!" onclick="like()">{{ user.authorProject.likeProjects|length }} <i class="fa fa-heart red-text"></i></a>
                     </div>
                 </div>
             </div>
@@ -62,65 +63,66 @@
     </div>
     {% endif %}
 
-    <!--********************************** Project Validé****************************************-->
-    <div id="PC_ProjetValidate">
+    <!--********************************** Project Team***************************************-->
+    <div id="ProjectTeam">
+        {% for project in projects %}
         <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="{{ asset('assets/images/happysens-montagne.jpg') }}">
             </div>
-            <div class="chip validate chipStatus">
+            <div class="{{ project.status.class }} chipStatus">
                 <span><i class="fa fa-clock-o"></i></span>
-                <span>En cours</span>
+                <span> {{ project.status.text }}</span>
             </div>
             <div class="card-content">
                 <div class="card-title activator grey-text text-darken-4">
-                    Ascension du mont-blanc
+                    {{ project.title }}
                     <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
                 </div>
                 <div>
-                    <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">
+                    <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
                         <div class="chip">
-                            <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                            <span class="black-text">@name.employe</span>
+                            <img src="{{project.author.photo  }}" alt="photo profil {{ project.author }}"> <!-- notice the "circle" class -->
+                            <span class="black-text">{{ project.author }}</span>
                         </div>
                     </a>
                 </div>
                 <div class="right">
-                    <a href="#!" onclick="like()">45 <i class="fa fa-heart red-text"></i></a>
+                    <a href="#!" onclick="like()">{{ project.likeProjects|length }} <i class="fa fa-heart red-text"></i></a>
                 </div>
             </div>
             <div class="card-reveal revealProject">
                 <span class="card-title grey-text text-darken-4">
-                    Ascension du Mont-blanc
+                    {{ project.title }}
                     <i class="material-icons right">close</i>
                 </span>
                 <div class="row">
                     <div>
-                        <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">
+                        <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
                             <div class="chip left">
-                                <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                <span class="black-text">@name.employe</span>
+                                <img src="{{project.author.photo  }}" alt="photo profil {{ project.author }}"> <!-- notice the "circle" class -->
+                                <span class="black-text">{{ project.author }}e</span>
                             </div>
                         </a>
                     </div>
                     <div>
-                        <div class="chip validate right">
+                        <div class="{{ project.status.class }} right">
                             <span><i class="fa fa-clock-o"></i></span>
-                            <span>En cours</span>
+                            <span>{{ project.status.text }}</span>
                         </div>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eum id illo laudantium non odit, placeat praesentium quaerat ratione voluptates. Adipisci corporis dolore dolores explicabo incidunt itaque labore natus veniam.</p>
+                <p>{{ project.presentation }}.</p>
                 <div class="footerReveal">
                     <div class="left">
-                        <a href="{{ path('viewProject') }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
+                        <a href="{{ path('project_show', { 'slug': project.slug }) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
                     </div>
                     <div class="right">
-                        <a href="#!" onclick="like()">45 <i class="fa fa-heart red-text"></i></a>
+                        <a href="#!" onclick="like()">{{ project.likeProjects|length }} <i class="fa fa-heart red-text"></i></a>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>

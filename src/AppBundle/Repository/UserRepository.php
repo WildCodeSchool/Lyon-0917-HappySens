@@ -10,9 +10,5 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getMyProject()
-    {
-        $qb = $this->createQueryBuilder('u')
-            ->join('u.authorProject');
-    }
+
 }
