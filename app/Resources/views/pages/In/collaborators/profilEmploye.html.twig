@@ -19,7 +19,7 @@
                         <div id="name">
                             <span class="card-title activator grey-text text-darken-4">{{ user.firstName }} {{ user.lastName }}</span>
                             <div class="mini-company">
-                                <a href="{{ path('CompanyProfil')}}">
+                                <a href="{{ path('CompanyProfil', {'slug': user.company.slug}) }}">
                                     <div class="chip  waves-effect waves-light">
                                         <img src="{{ user.company.logo }}" alt="Logo company"> <!-- notice the "circle" class -->
                                         <span>{{ user.company.name }}</span>
@@ -50,7 +50,7 @@
                             </tr>
                             <tr>
                                 <th>Age :</th>
-                                <td>{% if user.birthdate %}{{ "now"|date("Y-d-m")  - user.birthdate|date('Y-m-d') }}{% endif %}</td>
+                                <td>{% if user.birthdate %}{{ "now"|date("Y-d-m")  - user.birthdate|date('Y-m-d') }}{% endif %} ans</td>
                             </tr>
                             <tr>
                                 <th>Lieu de travail :</th>

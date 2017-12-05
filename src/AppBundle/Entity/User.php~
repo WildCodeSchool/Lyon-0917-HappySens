@@ -18,7 +18,6 @@ class User implements UserInterface, \Serializable
     CONST ROLE_EMPLOYE = 3;
     CONST ROLE_HAPPYCOACH = 4;
     CONST ROLE_HAPPYCOACH_PROJECT = 5;
-    CONST ROLE_TEMPO = 6;
 
     /**
      * @var int
@@ -178,14 +177,16 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
-<<<<<<< HEAD
     /**
      * @ORM\OneToOne(targetEntity="Project", mappedBy="author")
      */
     private $authorProject;
 
-=======
->>>>>>> devMaster
+    /**
+     * @var string
+     * @ORM\Column(name="slug", type="string",  length=255)
+     */
+    private $slug;
 
     /**
      * @return int
@@ -722,15 +723,7 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-<<<<<<< HEAD
-    public function getisActive()
-=======
-<<<<<<< HEAD
-    public function getisActive()
-=======
     public function getIsActive()
->>>>>>> devMaster
->>>>>>> devMaster
     {
         return $this->isActive;
     }
@@ -743,13 +736,6 @@ class User implements UserInterface, \Serializable
         $this->isActive = $isActive;
     }
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
->>>>>>> devMaster
-
-=======
     public function getUsername()
     {
         return $this->email;
@@ -778,9 +764,6 @@ class User implements UserInterface, \Serializable
             case self::ROLE_HAPPYCOACH_PROJECT:
                 return array('ROLE_HAPPYCOACH_PROJECT');
                 break;
-            case self::ROLE_TEMPO:
-                return array('ROLE_TEMPO');
-                break;
         }
     }
 
@@ -798,9 +781,9 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->email,
             $this->password,
+            $this->isActive,
         ));
     }
->>>>>>> devMaster
 
     /**
      * @see \Serializable::unserialize()
@@ -811,6 +794,7 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->email,
             $this->password,
+            $this->isActive,
             ) = unserialize($serialized);
     }
 
@@ -841,5 +825,29 @@ class User implements UserInterface, \Serializable
     public function getAuthorProject()
     {
         return $this->authorProject;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return User
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

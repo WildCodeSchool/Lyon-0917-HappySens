@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use AppBundle\Service\SlugService;
 use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -38,9 +39,10 @@ class ProjectController extends Controller
      * @Route("/new", name="project_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, SlugService $slugService)
     {
         $project = new Project();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
         $form->remove('author');
         $form->remove('startingDate');
@@ -50,15 +52,18 @@ class ProjectController extends Controller
         $form->remove('teamProject');
         $project->setStartingDate(DateTime::createFromFormat ('d/m/Y', date('d/m/Y') ));
         $project->setStatus(1);
+        $form->remove('slug');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $project->setEndDate(DateTime::createFromFormat ('d/m/Y', $project->getEndDate() ));
             $em = $this->getDoctrine()->getManager();
+            $project->setSlug($slugService->slugify($project->getTitle()));
+            $project->setAuthor($user);
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('project_show', array('id' => $project->getId()));
+            return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }
 
         return $this->render('project/new.html.twig', array(
@@ -70,7 +75,7 @@ class ProjectController extends Controller
     /**
      * Finds and displays a project entity.
      *
-     * @Route("/{id}", name="project_show")
+     * @Route("/{slug}", name="project_show")
      * @Method("GET")
      */
     public function showAction(Project $project)
@@ -88,10 +93,10 @@ class ProjectController extends Controller
     /**
      * Displays a form to edit an existing project entity.
      *
-     * @Route("/{id}/edit", name="project_edit")
+     * @Route("/{slug}/edit", name="project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project)
+    public function editAction(Request $request, Project $project, SlugService $slugService)
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
@@ -100,12 +105,14 @@ class ProjectController extends Controller
         $editForm->remove('photo');
         $editForm->remove('likeProjects');
         $editForm->remove('teamProject');
+        $editForm->remove('slug');
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $project->setSlug($slugService->slugify($project->getTitle()));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('project_edit', array('id' => $project->getId()));
+            return $this->redirectToRoute('project_edit', array('slug' => $project->getSlug()));
         }
 
         return $this->render('project/edit.html.twig', array(
@@ -118,7 +125,7 @@ class ProjectController extends Controller
     /**
      * Deletes a project entity.
      *
-     * @Route("/{id}", name="project_delete")
+     * @Route("/{slug}", name="project_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Project $project)
@@ -150,7 +157,7 @@ class ProjectController extends Controller
     private function createDeleteForm(Project $project)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('project_delete', array('id' => $project->getId())))
+            ->setAction($this->generateUrl('project_delete', array('slug' => $project->getSlug())))
             ->setMethod('DELETE')
             ->getForm()
         ;
