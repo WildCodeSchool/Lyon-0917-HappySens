@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+
 use AppBundle\Entity\User;
 use AppBundle\Entity\Company;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -9,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class UserController extends Controller
 {
@@ -24,34 +25,37 @@ class UserController extends Controller
      */
     public function showUserAction(User $user)
     {
-
         return $this->render('pages/In/collaborators/profilEmploye.html.twig', array(
             'user' => $user,
+
         ));
     }
 
     /**
      * Finds and displays a company entity.
      *
-     * @Route("/company/{id}", name="CompanyProfil")
+     * @Route("/mycompany", name="CompanyProfil")
      * @Method("GET")
      * @Security("user.getIsActive() == true")
+     *
      */
-    public function showCompanyAction(Company $company)
+    public function showCompanyAction()
     {
+        /** @var Company $company */
+        $company = $this->getUser()->getCompany();
         $nbHappySalarie = count($company->getUsers());
-
         $em = $this->getDoctrine()->getManager();
         $skillInCompany = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
         $refHappySens = $em->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
 
+            return $this->render('pages/In/company/profilCompany.html.twig', array(
+                'company' => $company,
+                'nbHappySalarie' => $nbHappySalarie,
+                'skillInCompany' => $skillInCompany,
+                'refHappySens' => $refHappySens,
+            ));
 
-        return $this->render('pages/In/company/profilCompany.html.twig', array(
-            'company' => $company,
-            'nbHappySalarie' => $nbHappySalarie,
-            'skillInCompany' => $skillInCompany,
-            'refHappySens' => $refHappySens,
-        ));
+
     }
 
     /**

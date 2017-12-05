@@ -19,7 +19,7 @@
                         <div id="name">
                             <span class="card-title activator grey-text text-darken-4">{{ user.firstName }} {{ user.lastName }}</span>
                             <div class="mini-company">
-                                <a href="{{ path('CompanyProfil', {'id': user.company.id}) }}">
+                                <a href="{{ path('CompanyProfil')}}">
                                     <div class="chip  waves-effect waves-light">
                                         <img src="{{ user.company.logo }}" alt="Logo company"> <!-- notice the "circle" class -->
                                         <span>{{ user.company.name }}</span>
