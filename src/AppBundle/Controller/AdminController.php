@@ -26,9 +26,8 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdminController extends Controller
 {
 
-    // Traitement Form connection / contact / profils / inscriptions / projets
     /**
-     * @Route("/", name="profilAdmin")
+     * @Route("/profil/{slug}", name="profilAdmin")
      */
     public function profilAdminAction(Request $request)
     {
@@ -85,7 +84,7 @@ class AdminController extends Controller
     /**
      * Deletes a company entity.
      *
-     * @Route("/{slug}", name="Company_delete")
+     * @Route("/{slug}/deleteCompany", name="Company_delete")
      * @Method("DELETE")
      */
     public function deleteCompanyAction(Request $request, Company $company)
@@ -169,7 +168,7 @@ class AdminController extends Controller
     /**
      * Deletes a user entity.
      *
-     * @Route("/{slug}", name="User_delete")
+     * @Route("/{slug}/deleteUser", name="User_delete")
      * @Method("DELETE")
      */
     public function deleteActionUser(Request $request, User $user)

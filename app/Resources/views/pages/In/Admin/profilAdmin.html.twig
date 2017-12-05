@@ -3,142 +3,238 @@
 {% block title %}Admin{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div id="companyAdmin" class="showTable table-1 hidden">
-            <h3>Liste des entreprises</h3>
-            <table>
-                <thead>
-                <tr>
-                    <th>Nom<i class="material-icons">keyboard_arrow_down</i><i
-                                class="material-icons">arrow_drop_up</i>
-                    </th>
-                    <th>Nombre salariés</th>
-                    <th>Nombre projets</th>
-                    <th>Projets en cours</th>
-                    <th>Projets en attente</th>
-                    <th>Projets terminés</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>20</td>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>1</td>
-                    <td>0</td>
-                </tr>
-                </tbody>
-            </table>
+    <div class="adminDashboard">
+        <div class="row">
+            <div class="col s12 m12 l6 containerDashboard">
+                <div class="contentDashboard">
+                    <h2>Inscriptions</h2>
+                    <section class="listAddUsers">
+                        <a href="{{ path('newCompany') }}">
+                            <div class="center valign-wrapper hoverable" id="createCompany">
+                                <ul>
+                                    <li><i class="fa fa-building fa-2x"></i></li>
+                                    <li><p>Company</p></li>
+                                </ul>
+                            </div>
+                        </a>
+                        <a href="{{ path('newUser') }}">
+                            <div class="center valign-wrapper hoverable" id="createEmploye">
+                                <ul>
+                                    <li><i class="fa fa-user-plus fa-2x"></i></li>
+                                    <li><p>Collaborateur</p></li>
+                                </ul>
+                            </div>
+                        </a>
+                        <a href="{{ path('newUser') }}">
+                            <div class="center valign-wrapper hoverable" id="createHappy">
+                                <ul>
+                                    <li><i class="fa fa-user-plus fa-2x"></i></li>
+                                    <li><p>HappyCoach</p></li>
+                                </ul>
+                            </div>
+                        </a>
+                    </section>
+                </div>
+            </div>
+            <div class="col s12 m12 l6 containerDashboard">
+                <div class="contentDashboard">
+                    <h2>Entreprises</h2>
+                    <section class="listAddUsers">
+                        <a href="{{ path('newCompany') }}">
+                            <div class="center valign-wrapper hoverable" id="createCompany">
+                                <ul>
+                                    <li><i class="fa fa-building fa-2x"></i></li>
+                                    <li><p>Company</p></li>
+                                </ul>
+                            </div>
+                        </a>
+                        <a href="{{ path('newUser') }}">
+                            <div class="center valign-wrapper hoverable" id="createEmploye">
+                                <ul>
+                                    <li><i class="fa fa-user-plus fa-2x"></i></li>
+                                    <li><p>Collaborateur</p></li>
+                                </ul>
+                            </div>
+                        </a>
+                        <a href="{{ path('newUser') }}">
+                            <div class="center valign-wrapper hoverable" id="createHappy">
+                                <ul>
+                                    <li><i class="fa fa-user-plus fa-2x"></i></li>
+                                    <li><p>HappyCoach</p></li>
+                                </ul>
+                            </div>
+                        </a>
+                    </section>
+                </div>
+            </div>
         </div>
-        <div id="projectOnAdmin" class="showTable table-2 hidden">
-            <h3>Liste des projets en cours</h3>
-            <table>
-                <thead>
-                <tr>
-                    <th>Entreprise</th>
-                    <th>Nom</th>
-                    <th>Thématique</th>
-                    <th>Date de dépot</th>
-                    <th>Date de validation pour avoir HC<i class="material-icons">keyboard_arrow_down</i><i
-                                class="material-icons">arrow_drop_up</i></th>
-                    <th>A valider</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-
-                    <td>Cuisine</td>
-                    <td>06/11/17</td>
-                    <td>06/12/17</td>
-                    <td><a class="btn">valider</a></td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col s12 m12 l4 containerDashboard">
+                <div class="contentDashboard hoverable">
+                    <h2>Projets</h2>
+                    <ul class="listAddUsers">
+                        <li><a href="{{ path('newCompany') }}">Entreprise</a></li>
+                        <li><a href="{{ path('newUser') }}">Collaborateur</a></li>
+                        <li><a href="{{ path('newUser') }}">HappyCoach</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s12 m12 l4 containerDashboard">
+                <div class="contentDashboard hoverable">
+                    <h2>Collaborateurs</h2>
+                    <ul class="listAddUsers">
+                        <li><a href="{{ path('newCompany') }}">Entreprise</a></li>
+                        <li><a href="{{ path('newUser') }}">Collaborateur</a></li>
+                        <li><a href="{{ path('newUser') }}">HappyCoach</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col s12 m12 l4 containerDashboard">
+                <div class="contentDashboard hoverable">
+                    <h2>HappyCoachs</h2>
+                    <ul class="listAddUsers">
+                        <li><a href="{{ path('newCompany') }}">Entreprise</a></li>
+                        <li><a href="{{ path('newUser') }}">Collaborateur</a></li>
+                        <li><a href="{{ path('newUser') }}">HappyCoach</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div id="projectGoAdmin" class="showTable table-3 hidden">
-            <h3>Liste des projets validés</h3>
-            <table>
-                <thead>
-                <tr>
-                    <th>Entreprise</th>
-                    <th>Nom</th>
-                    <th>Thématique</th>
-                    <th>Lieu</th>
-                    <th>Date de fin</th>
-                    <th>Happy Coach principal<i class="material-icons">keyboard_arrow_down</i><i
-                                class="material-icons">arrow_drop_up</i>
-                    </th>
-                    <th>Happy Coach secondaires</th>
-                    <th>Nombre participants</th>
-                </tr>
-                </thead>
+        {#<div id="companyAdmin" class="showTable table-1 hidden">#}
+            {#<h3>Liste des entreprises</h3>#}
+            {#<table>#}
+                {#<thead>#}
+                {#<tr>#}
+                    {#<th>Nom<i class="material-icons">keyboard_arrow_down</i><i#}
+                                {#class="material-icons">arrow_drop_up</i>#}
+                    {#</th>#}
+                    {#<th>Nombre salariés</th>#}
+                    {#<th>Nombre projets</th>#}
+                    {#<th>Projets en cours</th>#}
+                    {#<th>Projets en attente</th>#}
+                    {#<th>Projets terminés</th>#}
+                {#</tr>#}
+                {#</thead>#}
+                {#<tbody>#}
+                {#<tr>#}
+                    {#<td>20</td>#}
+                    {#<td>3</td>#}
+                    {#<td>2</td>#}
+                    {#<td>1</td>#}
+                    {#<td>0</td>#}
+                {#</tr>#}
+                {#</tbody>#}
+            {#</table>#}
+        {#</div>#}
+        {#<div id="projectOnAdmin" class="showTable table-2 hidden">#}
+            {#<h3>Liste des projets en cours</h3>#}
+            {#<table>#}
+                {#<thead>#}
+                {#<tr>#}
+                    {#<th>Entreprise</th>#}
+                    {#<th>Nom</th>#}
+                    {#<th>Thématique</th>#}
+                    {#<th>Date de dépot</th>#}
+                    {#<th>Date de validation pour avoir HC<i class="material-icons">keyboard_arrow_down</i><i#}
+                                {#class="material-icons">arrow_drop_up</i></th>#}
+                    {#<th>A valider</th>#}
+                {#</tr>#}
+                {#</thead>#}
+                {#<tbody>#}
+                {#<tr>#}
 
-                <tbody>
-                <tr>
+                    {#<td>Cuisine</td>#}
+                    {#<td>06/11/17</td>#}
+                    {#<td>06/12/17</td>#}
+                    {#<td><a class="btn">valider</a></td>#}
+                {#</tr>#}
+                {#</tbody>#}
+            {#</table>#}
+        {#</div>#}
+        {#<div id="projectGoAdmin" class="showTable table-3 hidden">#}
+            {#<h3>Liste des projets validés</h3>#}
+            {#<table>#}
+                {#<thead>#}
+                {#<tr>#}
+                    {#<th>Entreprise</th>#}
+                    {#<th>Nom</th>#}
+                    {#<th>Thématique</th>#}
+                    {#<th>Lieu</th>#}
+                    {#<th>Date de fin</th>#}
+                    {#<th>Happy Coach principal<i class="material-icons">keyboard_arrow_down</i><i#}
+                                {#class="material-icons">arrow_drop_up</i>#}
+                    {#</th>#}
+                    {#<th>Happy Coach secondaires</th>#}
+                    {#<th>Nombre participants</th>#}
+                {#</tr>#}
+                {#</thead>#}
 
-                    <td>Cuisine</td>
-                    <td>Lyon</td>
-                    <td>06/11/18</td>
-                    <td>Lien happy coach ref</td>
-                    <td>Ajouter HC liste déroulante?</td>
-                    <td>22</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="projectOffAdmin" class="showTable table-4 hidden">
-            <h3>Liste des projets terminés</h3>
-            <table>
-                <thead>
-                <tr>
-                    <th>Entreprise</th>
-                    <th>Nom<i class="material-icons">keyboard_arrow_down</i><i
-                                class="material-icons">arrow_drop_up</i>
-                    </th>
-                    <th>Thématique</th>
-                    <th>Date de fin<i class="material-icons">keyboard_arrow_down</i><i class="material-icons">arrow_drop_up</i>
-                    </th>
-                    <th>Nombre participants</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
+                {#<tbody>#}
+                {#<tr>#}
 
-                    <td>Cuisine</td>
-                    <td>06/11/18</td>
-                    <td>22</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+                    {#<td>Cuisine</td>#}
+                    {#<td>Lyon</td>#}
+                    {#<td>06/11/18</td>#}
+                    {#<td>Lien happy coach ref</td>#}
+                    {#<td>Ajouter HC liste déroulante?</td>#}
+                    {#<td>22</td>#}
+                {#</tr>#}
+                {#</tbody>#}
+            {#</table>#}
+        {#</div>#}
+        {#<div id="projectOffAdmin" class="showTable table-4 hidden">#}
+            {#<h3>Liste des projets terminés</h3>#}
+            {#<table>#}
+                {#<thead>#}
+                {#<tr>#}
+                    {#<th>Entreprise</th>#}
+                    {#<th>Nom<i class="material-icons">keyboard_arrow_down</i><i#}
+                                {#class="material-icons">arrow_drop_up</i>#}
+                    {#</th>#}
+                    {#<th>Thématique</th>#}
+                    {#<th>Date de fin<i class="material-icons">keyboard_arrow_down</i><i class="material-icons">arrow_drop_up</i>#}
+                    {#</th>#}
+                    {#<th>Nombre participants</th>#}
+                {#</tr>#}
+                {#</thead>#}
+                {#<tbody>#}
+                {#<tr>#}
+
+                    {#<td>Cuisine</td>#}
+                    {#<td>06/11/18</td>#}
+                    {#<td>22</td>#}
+                {#</tr>#}
+                {#</tbody>#}
+            {#</table>#}
+        {#</div>#}
 
 
-        <div id="happycoachAdmin" class="showTable table-5 hidden">
-            <h3>Liste des Happy Coach</h3>
-            <table>
-                <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Talents</th>
-                    <th>Passions</th>
-                    <th>Nombre de projets en cours<i class="material-icons">keyboard_arrow_down</i><i
-                                class="material-icons">arrow_drop_up</i></th>
-                    <th>Nombre de projets terminés</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><a href="{{ path('profilHappyCoach') }}">Happy</a></td>
-                    <td><a href="{{ path('profilHappyCoach') }}">Coach</a></td>
-                    <td>Cuisinier</td>
-                    <td>Boulangerie</td>
-                    <td>1</td>
-                    <td>0</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        {#<div id="happycoachAdmin" class="showTable table-5 hidden">#}
+            {#<h3>Liste des Happy Coach</h3>#}
+            {#<table>#}
+                {#<thead>#}
+                {#<tr>#}
+                    {#<th>Nom</th>#}
+                    {#<th>Prénom</th>#}
+                    {#<th>Talents</th>#}
+                    {#<th>Passions</th>#}
+                    {#<th>Nombre de projets en cours<i class="material-icons">keyboard_arrow_down</i><i#}
+                                {#class="material-icons">arrow_drop_up</i></th>#}
+                    {#<th>Nombre de projets terminés</th>#}
+                {#</tr>#}
+                {#</thead>#}
+                {#<tbody>#}
+                {#<tr>#}
+                    {#<td><a href="{{ path('profilHappyCoach') }}">Happy</a></td>#}
+                    {#<td><a href="{{ path('profilHappyCoach') }}">Coach</a></td>#}
+                    {#<td>Cuisinier</td>#}
+                    {#<td>Boulangerie</td>#}
+                    {#<td>1</td>#}
+                    {#<td>0</td>#}
+                {#</tr>#}
+                {#</tbody>#}
+            {#</table>#}
+        {#</div>#}
     </div>
 {% endblock %}
 
