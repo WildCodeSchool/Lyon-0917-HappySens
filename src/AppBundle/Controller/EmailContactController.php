@@ -23,8 +23,10 @@ class EmailContactController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid()) {
             $message = (new \Swift_Message('Contact HappySens'))
-                ->setFrom($contact->getEmail())
+                ->setFrom($contact->getEmail(), $contact->getFirstName() .  $contact->getLastName())
                 ->setTo('famar.wcslyon@gmail.com')
+                ->setBcc($contact->getEmail(), 'contact HappySens')
+                ->setReplyTo('famar.wcslyon@gmail.com')
                 ->setBody(
                     $this->renderView('notificationsEmail/contact.html.twig', [
                         'firstName' => $contact->getFirstName(),
