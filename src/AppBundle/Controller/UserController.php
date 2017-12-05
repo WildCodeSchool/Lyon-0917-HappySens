@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Company;
+use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -18,7 +19,7 @@ class UserController extends Controller
     /**
      * Finds and displays a user entity.
      *
-     * @Route("/user/{id}", name="UserProfil")
+     * @Route("/user/{slug}", name="UserProfil")
      * @Method("GET")
      * @Security("user.getIsActive() == true")
      */
@@ -33,7 +34,7 @@ class UserController extends Controller
     /**
      * Finds and displays a company entity.
      *
-     * @Route("/company/{id}", name="CompanyProfil")
+     * @Route("/company/{slug}", name="CompanyProfil")
      * @Method("GET")
      * @Security("user.getIsActive() == true")
      */
@@ -57,18 +58,20 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing user entity.
      *
-     * @Route("/{id}/userEdit", name="User_edit")
+     * @Route("/{slug}/userEdit", name="User_edit")
      * @Method({"GET", "POST"})
      */
-    public function editUserAction(Request $request, User $user)
+    public function editUserAction(Request $request, User $user, SlugService $slugService)
     {
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
+        $editForm->remove('slug');
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('User_edit', array('id' => $user->getId()));
+            return $this->redirectToRoute('User_edit', array('slug' => $user->getSlug()));
         }
 
         return $this->render('pages/In/collaborators/editUser.html.twig', array(
@@ -80,18 +83,20 @@ class UserController extends Controller
     /**
      * Displays a form to edit an existing company entity.
      *
-     * @Route("/{id}/companyEdit", name="Company_edit")
+     * @Route("/{slug}/companyEdit", name="Company_edit")
      * @Method({"GET", "POST"})
      */
-    public function editCompanyAction(Request $request, Company $company)
+    public function editCompanyAction(Request $request, Company $company, SlugService $slugService)
     {
         $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
+        $editForm->remove('slug');
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $company->setSlug($slugService->slugify($company->getName()));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('Company_edit', array('id' => $company->getId()));
+            return $this->redirectToRoute('Company_edit', array('slug' => $company->getSlug()));
         }
 
         return $this->render('pages/In/company/editCompany.html.twig', array(

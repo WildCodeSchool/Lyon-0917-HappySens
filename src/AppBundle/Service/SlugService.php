@@ -6,7 +6,7 @@
  * Time: 10:33
  */
 
-namespace AppBundle\Services;
+namespace AppBundle\Service;
 
 
 class SlugService
