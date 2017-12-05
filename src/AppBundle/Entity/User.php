@@ -182,6 +182,11 @@ class User implements UserInterface, \Serializable
      */
     private $authorProject;
 
+    /**
+     * @var string
+     * @ORM\Column(name="slug", type="string",  length=255)
+     */
+    private $slug;
 
     /**
      * @return int
@@ -820,5 +825,29 @@ class User implements UserInterface, \Serializable
     public function getAuthorProject()
     {
         return $this->authorProject;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return User
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

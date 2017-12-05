@@ -8,6 +8,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Service\SlugService;
 use Faker;
 use AppBundle\DataFixtures\ORM\LoadCompanyFixtures;
 use AppBundle\DataFixtures\ORM\LoadUserHasSkillFixtures;
@@ -28,14 +29,17 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
     ];
 
     public function load(ObjectManager $manager) {
+        $slugService = new SlugService();
         $faker = Faker\Factory::create("fr_FR");
         $user = [];
         $nbUser = 0;
         foreach (self::ROLE as $key => $role) {
             for ($i = 0; $i < $role; $i++) {
+                $firstName = $faker->firstName();
+                $lastName = $faker->lastName();
                 $user[$nbUser] = new User();
-                $user[$nbUser]->setFirstName($faker->firstName)
-                    ->setLastName($faker->lastName)
+                $user[$nbUser]->setFirstName($firstName)
+                    ->setLastName($lastName)
                     ->setPhone($faker->phoneNumber)
                     ->setEmail($faker->email)
                     ->setStatus($key)
@@ -51,7 +55,8 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                     ->setFacebook($faker->url)
                     ->setTwitter($faker->url)
                     ->setLinkedin($faker->url)
-                    ->setLanguage($faker->randomElement($array = ["Anglais", "Espagnol", "Russe", "Polonais", "Vietnamien", "Japonais"]));
+                    ->setLanguage($faker->randomElement($array = ["Anglais", "Espagnol", "Russe", "Polonais", "Vietnamien", "Japonais"]))
+                    ->setSlug($slugService->slugify($firstName . ' ' . $lastName));
                 if ($key != 2 and $key!= 3) {
                     $user[$nbUser]->setIsActive(1);
                 }

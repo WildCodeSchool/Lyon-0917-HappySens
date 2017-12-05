@@ -17,7 +17,7 @@
                 <li class="waves-effect waves-light"><a href="{{ path('contact') }}"><span class="linkNav">Contact</span></a></li>
                 <li class="waves-effect waves-light"><a href="https://happiness-time.fr/" target="_blank"><span class="waves-effect waves-light linkNav">Blog</span></a></li>
                 {% if app.user is not empty %}
-                    <li><a href="{{ path('logout') }}" class="waves-effect waves-light enterIn hoverable btn" title="Déconnexion"><i class="material-icons left">exit_to_app</i>Déconnexion</a></li>
+                    <li><a href="{{ path('UserProfil', { 'slug': app.user.slug  }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
                 {% else %}
                     <li><a href="{{ path('login') }}" class="waves-effect waves-light enterIn hoverable btn" onclick="$('#modal1').modal('open');" title="Connectez vous à votre profil"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
                 {% endif %}

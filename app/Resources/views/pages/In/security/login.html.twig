@@ -24,8 +24,8 @@
                 </div>
                 <div class="row">
                     <div class="stayConnected">
-                        <input type="checkbox" name="filled-in-box" class="filled-in" id="filled-in-box"/>
-                        <label for="filled-in-box">Souhaitez vous rester connecté ? </label>
+                        <input type="checkbox" name="_remember_me" checked class="filled-in" id="remember_me"/>
+                        <label for="remember_me">Souhaitez vous rester connecté ? </label>
                     </div>
                 </div>
                 <div class="row">
@@ -39,7 +39,10 @@
                     <div class="col s12 m6 offset-m3 center">
                         <div class="card-panel red lighten-2">
                           <span class="white-text">
-                              {{ error.messageKey|trans(error.messageData, 'security') }}
+                              {{ error.messageKey|trans(error.messageData, 'security') | replace({
+                                  "Invalid credentials": "Erreur de combinaison email / mdp. Réessayer !",
+                                  "Bad credentials": "Erreur de combinaison email / mdp. Réessayer !"
+                              }) }}
                           </span>
                         </div>
                     </div>

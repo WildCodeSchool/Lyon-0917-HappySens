@@ -1,9 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
 {% block title %}{{ company.name }}{% endblock %}
-{% block navbar %}
-    {{ include('partials/components/navbarIn.html.twig') }}
-{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -55,7 +52,7 @@
                                 </tr>
                                 <tr>
                                     <th>Référent Happy Sens</th>
-                                    <td><a href="{{ path('UserProfil', {'id': refHappySens.0.id}) }}">{{ refHappySens.0.firstName }} {{ refHappySens.0.lastName }}</a></td>
+                                    <td><a href="{{ path('UserProfil', {'slug': refHappySens.0.slug}) }}">{{ refHappySens.0.firstName }} {{ refHappySens.0.lastName }}</a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -64,9 +61,9 @@
                 </div>
             </div>
             {# For desktop #}
-            {{ include('company/largeProfilCompany.html.twig') }}
+            {{ include('pages/In/company/largeProfilCompany.html.twig') }}
             {# For mobile and tablet #}
-            {{ include('company/mobileProfilCompany.html.twig') }}
+            {{ include('pages/In/company/mobileProfilCompany.html.twig') }}
 
         </div>
     </div>
