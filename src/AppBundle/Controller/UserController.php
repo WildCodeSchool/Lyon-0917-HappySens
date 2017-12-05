@@ -28,8 +28,12 @@ class UserController extends Controller
     {
         $company = $this->getUser()->getCompany();
 
-        $contact = $user->getAuthorProject()->getStatus();
-        $statusTwig = $statusProject->getStatusTwig($contact);
+        if (null !== $user->getAuthorProject()) {
+            $contact = $user->getAuthorProject()->getStatus();
+            $statusTwig = $statusProject->getStatusTwig($contact);
+        } else {
+            $statusTwig = [];
+        }
         if($company !== $user->getCompany()){
 
             throw new AccessDeniedException("tu n'as rien a foutre ici");

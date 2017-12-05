@@ -2,7 +2,7 @@
     <div class="hideMobile">
         <h5 class="center titleSecond">Les Happy Projets</h5>
     </div>
-    {{ dump(user.authorProject) }}
+    {% if user.authorProject %}
     <div id="AuthorProject">
         <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
@@ -18,7 +18,7 @@
                     <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
                 </div>
                 <div>
-                    <a href="{{ path('UserProfil', { 'id': user.id }) }}">
+                    <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">
                         <div class="chip">
                             <img src="{{ user.photo }}" alt="photo profil {{ user.firstname }} {{ user.lastname }}" class="circle">
                             <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
@@ -36,7 +36,7 @@
                 </span>
                 <div class="row">
                     <div>
-                        <a href="{{ path('UserProfil', { 'id': user.id }) }}">
+                        <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">
                             <div class="chip left">
                                 <img src="{{ user.photo }}" alt="photo profil {{ user.firstname }} {{ user.lastname }}" class="circle">
                                 <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
@@ -51,7 +51,7 @@
                 <p>{{ user.authorProject.presentation }}</p>
                 <div class="footerReveal">
                     <div class="left">
-                        <a href="{{ path('viewProject') }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
+                        <a href="{{ path('project_show', { 'slug': user.authorProject.slug }) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
                     </div>
                     <div class="right">
                         <a href="#!" onclick="like()">15 <i class="fa fa-heart red-text"></i></a>
@@ -60,6 +60,7 @@
             </div>
         </div>
     </div>
+    {% endif %}
 
     <!--********************************** Project Validé****************************************-->
     <div id="PC_ProjetValidate">
@@ -77,7 +78,7 @@
                     <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
                 </div>
                 <div>
-                    <a href="{{ path('UserProfil', { 'id': user.id }) }}">
+                    <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">
                         <div class="chip">
                             <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
                             <span class="black-text">@name.employe</span>
@@ -95,7 +96,7 @@
                 </span>
                 <div class="row">
                     <div>
-                        <a href="{{ path('UserProfil', { 'id': user.id }) }}">
+                        <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">
                             <div class="chip left">
                                 <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
                                 <span class="black-text">@name.employe</span>
@@ -117,64 +118,6 @@
                     </div>
                     <div class="right">
                         <a href="#!" onclick="like()">45 <i class="fa fa-heart red-text"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card medium">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="{{ asset('assets/images/happysens-potager.jpg') }}">
-            </div>
-            <div class="chip end chipStatus">
-                <span><i class="fa fa-clock-o"></i></span>
-                <span>Terminé</span>
-            </div>
-            <div class="card-content">
-                <div class="card-title activator grey-text text-darken-4">
-                    Création d'un potager
-                    <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
-                </div>
-                <div>
-                    <a href="{{ path('UserProfil', { 'id': user.id }) }}">
-                        <div class="chip">
-                            <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                            <span class="black-text">@name.employe</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="right">
-                    <a href="#!" onclick="like()">25 <i class="fa fa-heart red-text"></i></a>
-                </div>
-            </div>
-            <div class="card-reveal revealProject">
-                <div class="card-title grey-text text-darken-4">
-                    Création d'un potager
-                    <i class="material-icons right">close</i>
-                </div>
-                <div class="row">
-                    <div>
-                        <a href="{{ path('UserProfil', { 'id': user.id }) }}">
-                            <div class="chip left">
-                                <img src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Logo company"> <!-- notice the "circle" class -->
-                                <span class="black-text">@name.employe</span>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <div class="chip end right">
-                            <span><i class="fa fa-clock-o"></i></span>
-                            <span>Terminé</span>
-                        </div>
-                    </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid blanditiis culpa enim est illo in molestiae officiis placeat praesentium, unde! Ad enim laborum magnam omnis pariatur possimus quia unde, voluptatibus?
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus eum id illo laudantium non odit, placeat praesentium quaerat ratione voluptates. Adipisci corporis dolore dolores explicabo incidunt itaque labore natus veniam.</p>
-                <div class="footerReveal">
-                    <div class="left">
-                        <a href="{{ path('viewProject') }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
-                    </div>
-                    <div class="right">
-                        <a href="#!" onclick="like()">25 <i class="fa fa-heart red-text"></i></a>
                     </div>
                 </div>
             </div>
