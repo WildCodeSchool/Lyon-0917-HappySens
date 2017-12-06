@@ -19,6 +19,8 @@
                 {% if app.user is not empty %}
                     {% if app.user.isActive == 0 %}
                         <li><a href="{{ path('User_edit', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                    {% elseif app.user.status == 1 %}
+                        <li><a href="{{ path('profilAdmin', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
                     {% else %}
                         <li><a href="{{ path('UserProfil', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
                     {% endif %}
