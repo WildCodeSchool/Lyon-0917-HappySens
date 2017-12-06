@@ -38,19 +38,21 @@ class UserController extends Controller
             $TwigStatus = $statusProject->getStatusTwig($projects[$i]->getStatus());
             $projects[$i]->setStatus(['class' => $TwigStatus['class'], 'text' => $TwigStatus['text']]);
         }
+
         $company = $this->getUser()->getCompany();
-        if ($user->getStatus() !== 1) {
+
+        if ($this->getUser()->getStatus() !== 1) {
             if ($company !== $user->getCompany()) {
 
                 throw new AccessDeniedException("tu n'as rien a foutre ici");
             }
             return $this->render('pages/In/collaborators/profilEmploye.html.twig', array(
-
+                'user' => $user,
                 'statusTwig' => $statusTwig,
                 'projects' => $projects,));
 
         }
-        return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects,));
+            return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects,));
 
     }
 
