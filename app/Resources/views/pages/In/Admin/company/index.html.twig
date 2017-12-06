@@ -1,48 +1,41 @@
 {% extends 'baseIn.html.twig' %}
 
 {% block content %}
-    <h1>Companies list</h1>
-    <ul>
-        <li>
-            <a href="{{ path('newCompany') }}">Create a new company</a>
-        </li>
-    </ul>
-    <table class="centered striped bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Activity</th>
-                <th>Name</th>
-                <th>Nbsalary</th>
-                <th>Birthdate</th>
-                <th>Slogan</th>
-                <th>Quality</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for company in companies %}
-            <tr>
-                <td><a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}">{{ company.slug }}</a></td>
-                <td>{{ company.activity }}</td>
-                <td>{{ company.name }}</td>
-                <td>{{ company.nbSalary }}</td>
-                <td>{% if company.birthdate %}{{ company.birthdate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ company.slogan }}</td>
-                <td>{{ company.quality }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}">Profil</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('Company_edit', { 'slug': company.slug }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+    <div class="container">
+        <h1 class="center">Listing entreprise</h1>
+        <ul>
+            <li class="btn waves-effect waves-lighten">
+                <a href="{{ path('newCompany') }}" class="white-text">Create a new company</a>
+            </li>
+        </ul>
+        <ul class="row">
+            {% for company in companies %}
+                <li class="card sticky-action col s12 m6 l4">
+                    <div class="logoCompany waves-effect waves-block waves-light center">
+                        <img class="activator circle" src="{{ company.logo }}" height="150px">
+                    </div>
+                    <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">
+                    <a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}" class="black-text">{{ company.name }} | {{ company.nbSalary }} employés</a>
+                    <i class="material-icons right">more_vert</i>
+                </span>
+                        <div class="row">
+                            <p class="left"><a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}">Profil</a></p>
+                            <p class="right"><a href="{{ path('Company_edit', { 'slug': company.slug }) }}">Supprimer</a></p>
+                        </div>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ company.name }}<i class="material-icons right">close</i></span>
+                        <ul>
+                            <li><span>Activité :</span> {{ company.activity }}</li>
+                            <li>Date de création : {% if company.birthdate %}{{ company.birthdate|date('Y-m-d H:i:s') }}{% endif %}</li>
+                            <li>Slogan : {{ company.slogan }}</li>
+                            <li>Qualité : {{ company.quality }}</li>
+                            <li>Critères : {{ company.threeCriteria }}</li>
+                        </ul>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

@@ -29,7 +29,6 @@ class UserController extends Controller
         $company = $this->getUser()->getCompany();
 
         if($company !== $user->getCompany()){
-
             throw new AccessDeniedException("tu n'as rien a foutre ici");
         }
         return $this->render('pages/In/collaborators/profilEmploye.html.twig', array(

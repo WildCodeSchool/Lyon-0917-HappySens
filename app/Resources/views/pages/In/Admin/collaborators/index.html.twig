@@ -1,67 +1,55 @@
 {% extends 'baseIn.html.twig' %}
 
 {% block content %}
-    <h1>Users list</h1>
-
-    <table class="centered striped bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th>Birthdate</th>
-                <th>Photo</th>
-                <th>Biography</th>
-                <th>Slogan</th>
-                <th>Password</th>
-                <th>Mood</th>
-                <th>Job</th>
-                <th>Workplace</th>
-                <th>Nativelanguage</th>
-                <th>Language</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td><a href="{{ path('UserProfil', { 'slug': user.slug }) }}">{{ user.slug }}</a></td>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.phone }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.status }}</td>
-                <td>{% if user.birthdate %}{{ user.birthdate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ user.photo }}</td>
-                <td>{{ user.biography }}</td>
-                <td>{{ user.slogan }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.mood }}</td>
-                <td>{{ user.job }}</td>
-                <td>{{ user.workplace }}</td>
-                <td>{{ user.nativeLanguage }}</td>
-                <td>{{ user.language }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">Profil</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('User_edit', { 'slug': user.slug }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('newUser') }}">Create a new user</a>
-        </li>
-    </ul>
+    <div class="container">
+        <h1 class="center">Listing collaborateur</h1>
+        <ul>
+            <li class="btn waves-effect waves-lighten">
+                <a href="{{ path('newUser') }}" class="white-text">Ajouter un collaborateur</a>
+            </li>
+        </ul>
+        <ul class="row">
+            {% for user in users %}
+                <li class="card sticky-action col s12 m6 l4">
+                    <div class="logoCompany waves-effect waves-block waves-light center">
+                        <img class="activator circle" src="{{ user.photo }}" height="150px">
+                    </div>
+                    <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">
+                    <a href="{{ path('UserProfil', { 'slug': user.slug }) }}" class="black-text">
+                        <i class="material-icons right">more_vert</i>
+                        <span class="truncate">{{ user.firstName }} {{ user.lastName }} |
+                            {% if user.company != null %}
+                                {{ user.company.name }}
+                            {% elseif user.status == 1 %}
+                                Admin
+                            {% elseif user.status == 4 or user.status == 5 %}
+                                HappyCoach
+                            {% endif %}
+                        </span>
+                    </a>
+                </span>
+                        <div class="row">
+                            <p class="left"><a href="{{ path('UserProfil', { 'slug': user.slug }) }}">Profil</a></p>
+                            <p class="right"><a href="{{ path('User_edit', { 'slug': user.slug }) }}">Supprimer</a></p>
+                        </div>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ user.firstName }} {{ user.lastName }}<i class="material-icons right">close</i></span>
+                        <ul>
+                            <li><span>Métier :</span> {{ user.job }}</li>
+                            <li><span>Lieux :</span> {{ user.workplace }}</li>
+                            <li><span>Langue natale :</span> {{ user.nativeLanguage }}</li>
+                            <li><span>Autres langues :</span> {{ user.language }}</li>
+                            <li><span>Tel :</span> {{ user.phone }}</li>
+                            <li><span>Email :</span> {{ user.email }}</li>
+                            <li><span>Date :</span> {% if user.birthdate %}{{ user.birthdate|date('Y-m-d H:i:s') }}{% endif %}</li>
+                            <li><span>Biography :</span> {{ user.biography }}</li>
+                            <li><span>Slogan :</span> {{ user.slogan }}</li>
+                        </ul>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
