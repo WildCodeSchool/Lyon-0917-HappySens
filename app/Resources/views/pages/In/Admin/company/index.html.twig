@@ -2,7 +2,11 @@
 
 {% block content %}
     <h1>Companies list</h1>
-
+    <ul>
+        <li>
+            <a href="{{ path('newCompany') }}">Create a new company</a>
+        </li>
+    </ul>
     <table class="centered striped bordered">
         <thead>
             <tr>
@@ -41,9 +45,4 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('newCompany') }}">Create a new company</a>
-        </li>
-    </ul>
 {% endblock %}
