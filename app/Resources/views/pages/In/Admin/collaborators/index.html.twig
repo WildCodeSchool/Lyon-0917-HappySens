@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Users list</h1>
 
-    <table>
+    <table class="centered striped bordered">
         <thead>
             <tr>
                 <th>Id</th>
@@ -28,7 +28,7 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('newUser_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td><a href="{{ path('UserProfil', { 'slug': user.slug }) }}">{{ user.slug }}</a></td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.phone }}</td>
@@ -47,10 +47,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('newUser_show', { 'id': user.id }) }}">show</a>
+                            <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">Profil</a>
                         </li>
                         <li>
-                            <a href="{{ path('newUser_edit', { 'id': user.id }) }}">edit</a>
+                            <a href="{{ path('User_edit', { 'slug': user.slug }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -61,7 +61,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('newUser_new') }}">Create a new user</a>
+            <a href="{{ path('newUser') }}">Create a new user</a>
         </li>
     </ul>
 {% endblock %}

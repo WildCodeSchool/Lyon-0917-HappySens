@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Company creation</h1>
 
     {{ form_start(form) }}
@@ -10,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('newCompany_index') }}">Back to the list</a>
+            <a href="{{ path('listingCompany') }}">Toutes les entreprises</a>
         </li>
     </ul>
 {% endblock %}
