@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function showUserAction(User $user, StatusProject $statusProject)
     {
-        $company = $this->getUser()->getCompany();
+
         if (null !== $user->getAuthorProject()) {
             $contact = $user->getAuthorProject()->getStatus();
             $statusTwig = $statusProject->getStatusTwig($contact);
@@ -38,12 +38,19 @@ class UserController extends Controller
             $TwigStatus = $statusProject->getStatusTwig($projects[$i]->getStatus());
             $projects[$i]->setStatus(['class' => $TwigStatus['class'], 'text' => $TwigStatus['text']]);
         }
-        if ($user->getStatus() !== 1) {
+
+        $company = $this->getUser()->getCompany();
+
+        if ($this->getUser()->getStatus() !== 1) {
             if ($company !== $user->getCompany()) {
                 throw new AccessDeniedException("tu n'as rien a foutre ici");
             }
+
             return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects,));
+
         }
+            return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects,));
+
     }
 
     /**

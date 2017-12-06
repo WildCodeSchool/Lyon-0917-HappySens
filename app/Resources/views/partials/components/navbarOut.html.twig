@@ -24,6 +24,8 @@
                     {% else %}
                         <li><a href="{{ path('UserProfil', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
                     {% endif %}
+                {% else %}
+                    <li><a href="{{ path('login') }}" class="waves-effect waves-light enterIn hoverable btn" title="Connexion"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
                 {% endif %}
             </ul>
             <ul class="side-nav" id="mobile-demo">
