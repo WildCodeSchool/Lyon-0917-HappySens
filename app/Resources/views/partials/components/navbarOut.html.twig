@@ -17,9 +17,13 @@
                 <li class="waves-effect waves-light"><a href="{{ path('contact') }}"><span class="linkNav">Contact</span></a></li>
                 <li class="waves-effect waves-light"><a href="https://happiness-time.fr/" target="_blank"><span class="waves-effect waves-light linkNav">Blog</span></a></li>
                 {% if app.user is not empty %}
-                    <li><a href="{{ path('UserProfil', { 'slug': app.user.slug  }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
-                {% else %}
-                    <li><a href="{{ path('login') }}" class="waves-effect waves-light enterIn hoverable btn" onclick="$('#modal1').modal('open');" title="Connectez vous à votre profil"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
+                    {% if app.user.isActive == 0 %}
+                        <li><a href="{{ path('User_edit', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                    {% elseif app.user.status == 1 %}
+                        <li><a href="{{ path('profilAdmin', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                    {% else %}
+                        <li><a href="{{ path('UserProfil', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                    {% endif %}
                 {% endif %}
             </ul>
             <ul class="side-nav" id="mobile-demo">

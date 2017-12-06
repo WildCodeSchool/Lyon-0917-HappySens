@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Company;
+use AppBundle\Service\StatusProject;
 use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,17 +24,33 @@ class UserController extends Controller
      * @Method("GET")
      * @Security("user.getIsActive() == true")
      */
-    public function showUserAction(User $user)
+    public function showUserAction(User $user, StatusProject $statusProject)
     {
         $company = $this->getUser()->getCompany();
+
+        if (null !== $user->getAuthorProject()) {
+            $contact = $user->getAuthorProject()->getStatus();
+            $statusTwig = $statusProject->getStatusTwig($contact);
+        } else {
+            $statusTwig = [];
+        }
+
+        $projects = $user->getTeams();
+        for ($i = 0; $i < count($projects); $i++) {
+            $TwigStatus = $statusProject->getStatusTwig($projects[$i]->getStatus());
+            $projects[$i]->setStatus(['class' => $TwigStatus['class'] , 'text' => $TwigStatus['text']]);
+        }
+
         if ($user->getStatus() !== 1) {
             if ($company !== $user->getCompany()) {
 
                 throw new AccessDeniedException("tu n'as rien a foutre ici");
             }
-            return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user,));
-        }
-        return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user,));
+        return $this->render('pages/In/collaborators/profilEmploye.html.twig', array(
+            'user' => $user,
+            'statusTwig' => $statusTwig,
+            'projects' => $projects,
+        ));
 
     }
 

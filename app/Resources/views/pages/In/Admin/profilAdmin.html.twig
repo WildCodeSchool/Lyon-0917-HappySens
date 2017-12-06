@@ -13,7 +13,7 @@
                             <div class="center valign-wrapper hoverable" id="createCompany">
                                 <ul>
                                     <li><i class="fa fa-building fa-2x"></i></li>
-                                    <li><p>Company</p></li>
+                                    <li><p>Nouvelle entreprise</p></li>
                                 </ul>
                             </div>
                         </a>
@@ -21,7 +21,7 @@
                             <div class="center valign-wrapper hoverable" id="createEmploye">
                                 <ul>
                                     <li><i class="fa fa-user-plus fa-2x"></i></li>
-                                    <li><p>Collaborateur</p></li>
+                                    <li><p>Nouveau collaborateur</p></li>
                                 </ul>
                             </div>
                         </a>
@@ -29,7 +29,7 @@
                             <div class="center valign-wrapper hoverable" id="createHappy">
                                 <ul>
                                     <li><i class="fa fa-user-plus fa-2x"></i></li>
-                                    <li><p>HappyCoach</p></li>
+                                    <li><p>Nouveau HappyCoach</p></li>
                                 </ul>
                             </div>
                         </a>
@@ -38,29 +38,29 @@
             </div>
             <div class="col s12 m12 l6 containerDashboard">
                 <div class="contentDashboard">
-                    <h2>Entreprises</h2>
+                    <h2>Projets</h2>
                     <section class="listAddUsers">
-                        <a href="{{ path('newCompany') }}">
-                            <div class="center valign-wrapper hoverable" id="createCompany">
+                        <a href="{{ path('project_index') }}">
+                            <div class="center valign-wrapper hoverable" id="validProject">
                                 <ul>
-                                    <li><i class="fa fa-building fa-2x"></i></li>
-                                    <li><p>Company</p></li>
+                                    <li><i class="fa fa-check-square-o fa-2x"></i></li>
+                                    <li><p>Valider un projet</p></li>
                                 </ul>
                             </div>
                         </a>
-                        <a href="{{ path('newUser') }}">
-                            <div class="center valign-wrapper hoverable" id="createEmploye">
+                        <a href="{{ path('project_index') }}">
+                            <div class="center valign-wrapper hoverable" id="waitProject">
                                 <ul>
-                                    <li><i class="fa fa-user-plus fa-2x"></i></li>
-                                    <li><p>Collaborateur</p></li>
+                                    <li><i class="fa fa-folder-open-o fa-2x"></i></li>
+                                    <li><p>Les projets en attentes</p></li>
                                 </ul>
                             </div>
                         </a>
-                        <a href="{{ path('newUser') }}">
-                            <div class="center valign-wrapper hoverable" id="createHappy">
+                        <a href="{{ path('project_index') }}">
+                            <div class="center valign-wrapper hoverable" id="runProject">
                                 <ul>
-                                    <li><i class="fa fa-user-plus fa-2x"></i></li>
-                                    <li><p>HappyCoach</p></li>
+                                    <li><i class="fa fa-folder-o fa-2x"></i></li>
+                                    <li><p>Les projets en cours</p></li>
                                 </ul>
                             </div>
                         </a>
@@ -70,33 +70,45 @@
         </div>
         <div class="row">
             <div class="col s12 m12 l4 containerDashboard">
-                <div class="contentDashboard hoverable">
-                    <h2>Projets</h2>
-                    <ul class="listAddUsers">
-                        <li><a href="{{ path('newCompany') }}">Entreprise</a></li>
-                        <li><a href="{{ path('newUser') }}">Collaborateur</a></li>
-                        <li><a href="{{ path('newUser') }}">HappyCoach</a></li>
-                    </ul>
+                <div class="contentDashboard">
+                    <h2>Entreprises</h2>
+                    <section class="listSimple">
+                        <a href="{{ path('listingCompany') }}">
+                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i> <span>Toutes les entreprises</span></p>
+                        </a>
+                        <a href="{{ path('listingCompany') }}">
+                            <p class="center valign-wrapper" id="deleteCompany"><i class="fa fa-trash-o fa-2x"> </i> <span>Supprimer entreprise</span></p>
+                        </a>
+                    </section>
                 </div>
             </div>
             <div class="col s12 m12 l4 containerDashboard">
-                <div class="contentDashboard hoverable">
+                <div class="contentDashboard">
                     <h2>Collaborateurs</h2>
-                    <ul class="listAddUsers">
-                        <li><a href="{{ path('newCompany') }}">Entreprise</a></li>
-                        <li><a href="{{ path('newUser') }}">Collaborateur</a></li>
-                        <li><a href="{{ path('newUser') }}">HappyCoach</a></li>
-                    </ul>
+                    <section class="listSimple">
+                        <a href="{{ path('listingUser') }}">
+                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i> <span>Tous les collaborateurs</span></p>
+                        </a>
+                        <a href="{{ path('listingUser') }}">
+                            <p class="center valign-wrapper" id="deleteCompany"><i class="fa fa-trash-o fa-2x"> </i> <span>Supprimer collaborateur</span></p>
+                        </a>
+                    </section>
                 </div>
             </div>
             <div class="col s12 m12 l4 containerDashboard">
-                <div class="contentDashboard hoverable">
+                <div class="contentDashboard">
                     <h2>HappyCoachs</h2>
-                    <ul class="listAddUsers">
-                        <li><a href="{{ path('newCompany') }}">Entreprise</a></li>
-                        <li><a href="{{ path('newUser') }}">Collaborateur</a></li>
-                        <li><a href="{{ path('newUser') }}">HappyCoach</a></li>
-                    </ul>
+                    <section class="listSimple">
+                        <a href="{{ path('listingUser') }}">
+                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i> <span>Tous les happyCoachs</span></p>
+                        </a>
+                        <a href="{{ path('listingUser') }}">
+                            <p class="center valign-wrapper" id="addProjectHappy"><i class="fa fa-user-plus fa-2x"> </i> <span>Placer un happyCoach</span></p>
+                        </a>
+                        <a href="{{ path('listingUser') }}">
+                            <p class="center valign-wrapper" id="deleteCompany"><i class="fa fa-trash-o fa-2x"> </i> <span>Supprimer happyCoach</span></p>
+                        </a>
+                    </section>
                 </div>
             </div>
         </div>
