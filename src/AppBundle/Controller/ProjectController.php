@@ -16,22 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  */
 class ProjectController extends Controller
 {
-    /**
-     * Lists all project entities.
-     *
-     * @Route("/", name="project_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
 
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
-
-        return $this->render('project/index.html.twig', array(
-            'projects' => $projects,
-        ));
-    }
 
     /**
      * Creates a new project entity.

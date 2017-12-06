@@ -43,13 +43,10 @@ class UserController extends Controller
 
         if ($this->getUser()->getStatus() !== 1) {
             if ($company !== $user->getCompany()) {
-
                 throw new AccessDeniedException("tu n'as rien a foutre ici");
             }
-            return $this->render('pages/In/collaborators/profilEmploye.html.twig', array(
-                'user' => $user,
-                'statusTwig' => $statusTwig,
-                'projects' => $projects,));
+
+            return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects,));
 
         }
             return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects,));
