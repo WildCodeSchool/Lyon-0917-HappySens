@@ -41,42 +41,40 @@ class UserController extends Controller
             $projects[$i]->setStatus(['class' => $TwigStatus['class'] , 'text' => $TwigStatus['text']]);
         }
 
-        if($company !== $user->getCompany()){
+        if ($user->getStatus() !== 1) {
+            if ($company !== $user->getCompany()) {
 
-            throw new AccessDeniedException("tu n'as rien a foutre ici");
-        }
+                throw new AccessDeniedException("tu n'as rien a foutre ici");
+            }
         return $this->render('pages/In/collaborators/profilEmploye.html.twig', array(
             'user' => $user,
             'statusTwig' => $statusTwig,
             'projects' => $projects,
         ));
+
     }
 
     /**
      * Finds and displays a company entity.
      *
-
      * @Route("/company/{slug}", name="CompanyProfil")
      * @Method("GET")
      * @Security("user.getIsActive() == true")
      *
      */
-    public function showCompanyAction()
+    public function showCompanyAction(Company $company)
     {
+        $user = $this->getUser();
         /** @var Company $company */
-        $company = $this->getUser()->getCompany();
+        if ($user->getStatus() !== 1) {
+            $company = $this->getUser()->getCompany();
+
+        }
         $nbHappySalarie = count($company->getUsers());
         $em = $this->getDoctrine()->getManager();
         $skillInCompany = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
         $refHappySens = $em->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
-
-            return $this->render('pages/In/company/profilCompany.html.twig', array(
-                'company' => $company,
-                'nbHappySalarie' => $nbHappySalarie,
-                'skillInCompany' => $skillInCompany,
-                'refHappySens' => $refHappySens,
-            ));
-
+        return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens,));
 
     }
 
@@ -88,22 +86,21 @@ class UserController extends Controller
      */
     public function editUserAction(Request $request, User $user, SlugService $slugService)
     {
-        $user = $this->getUser();
+
+
+        if ($this->getUser()->getStatus() !== 1) {
+
+            $user = $this->getUser();
+        }
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->remove('slug');
         $editForm->handleRequest($request);
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('User_edit', array('slug' => $user->getSlug()));
         }
-
-        return $this->render('pages/In/collaborators/editUser.html.twig', array(
-            'user' => $user,
-            'edit_form' => $editForm->createView(),
-        ));
+        return $this->render('pages/In/collaborators/editUser.html.twig', array('user' => $user, 'edit_form' => $editForm->createView(),));
     }
 
     /**
@@ -114,26 +111,26 @@ class UserController extends Controller
      */
     public function editCompanyAction(Request $request, Company $company, SlugService $slugService)
     {
-        $company = $this->getUser()->getCompany();
+        if ($this->getUser()->getStatus() !== 1) {
+
+            $company = $this->getUser()->getCompany();
+        }
         $user = $this->getUser();
         $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
         $editForm->remove('slug');
         $editForm->handleRequest($request);
-        if($user->getStatus() !== 2){
+        if ($user->getStatus() !== 1) {
+            if ($user->getStatus() !== 2) {
 
-            throw new AccessDeniedException("Fuis pauvre fou !!");
+                throw new AccessDeniedException("Fuis pauvre fou !!");
+            }
         }
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $company->setSlug($slugService->slugify($company->getName()));
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('Company_edit', array('slug' => $company->getSlug()));
         }
-
-        return $this->render('pages/In/company/editCompany.html.twig', array(
-            'company' => $company,
-            'edit_form' => $editForm->createView(),
-        ));
+        return $this->render('pages/In/company/editCompany.html.twig', array('company' => $company, 'edit_form' => $editForm->createView(),));
     }
 
 }
