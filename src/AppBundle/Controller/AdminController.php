@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
 use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -199,6 +200,23 @@ class AdminController extends Controller
             ->setMethod('DELETE')
             ->getForm()
             ;
+    }
+
+    /**
+     * Lists all project entities.
+     *
+     * @Route("/listingProjects", name="listingProjects")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $projects = $em->getRepository('AppBundle:Project')->findAll();
+
+        return $this->render('pages/In/Admin/projects/index.html.twig', array(
+            'projects' => $projects,
+        ));
     }
 
 }
