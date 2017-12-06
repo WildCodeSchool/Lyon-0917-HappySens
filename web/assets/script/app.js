@@ -9,6 +9,7 @@ $(document).ready(function() {
         today: 'aujourd\'hui',
         clear: 'effacer',
         format: 'dd/mm/yyyy',
+        min: true,
         closeOnSelect: true
     });
     $('.collapsible').collapsible();
