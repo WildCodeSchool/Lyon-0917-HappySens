@@ -28,7 +28,7 @@
                             <img src="{{ project.author.company.logo }}" alt="" class="circle">
                             <div class="black-text">
                                 <span class="titleSecond">Entreprise :</span>
-                                <p>{{ project.author.company }}</p>
+                                <p>{{ project.author.company.name }}</p>
                             </div>
                             <p class="secondary-content"><i class="material-icons blue-text text-darken-2">domain</i></p>
                         </a>
@@ -77,7 +77,7 @@
                 <ul class="inline-team-list">
                     {% for user in project.teamProject %}
                     <li>
-                        <a href="/newUser/{{ user.slug }}">
+                        <a href="{{ path('UserProfil', {'slug' : user.slug })}}">
                             <div class="chip">
                                 <img src="{{ user.photo }}" alt="Photo user"> <!-- notice the "circle" class -->
                                 <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
