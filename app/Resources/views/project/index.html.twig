@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
 {% block content %}
     <h1>Projects list</h1>
 
-    <table>
+    <table class="centered striped bordered">
         <thead>
             <tr>
                 <th>Id</th>
@@ -23,7 +23,7 @@
         <tbody>
         {% for project in projects %}
             <tr>
-                <td><a href="{{ path('project_show', { 'id': project.id }) }}">{{ project.id }}</a></td>
+                <td><a href="{{ path('project_show', { 'slug': project.slug }) }}">{{ project.slug }}</a></td>
                 <td>{{ project.title }}</td>
                 <td>{% if project.startingDate %}{{ project.startingDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if project.endDate %}{{ project.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -37,10 +37,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('project_show', { 'id': project.id }) }}">show</a>
+                            <a href="{{ path('project_show', { 'slug': project.slug }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('project_edit', { 'id': project.id }) }}">edit</a>
+                            <a href="{{ path('project_edit', { 'slug': project.slug }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -48,10 +48,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('project_new') }}">Create a new project</a>
-        </li>
-    </ul>
 {% endblock %}
