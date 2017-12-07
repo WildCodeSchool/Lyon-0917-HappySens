@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Admin
@@ -25,6 +26,13 @@ class Project
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 255,
+     *      minMessage = "Le titre de votre projet doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Le titre de votre projet ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      */
     private $title;
 
@@ -42,6 +50,11 @@ class Project
      * @var string
      *
      * @ORM\Column(name="presentation", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Votre message doit contenir au moins plus de {{ limit }} caractères",
+     * )
      */
     private $presentation;
 
@@ -49,6 +62,11 @@ class Project
      * @var string
      *
      * @ORM\Column(name="profit", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Votre message doit contenir au moins plus de {{ limit }} caractères",
+     * )
      */
     private $profit;
 
@@ -56,6 +74,11 @@ class Project
      * @var string
      *
      * @ORM\Column(name="beneficeCompany", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Votre message doit contenir au moins plus de {{ limit }} caractères",
+     * )
      */
     private $beneficeCompany;
 
@@ -83,11 +106,21 @@ class Project
      * @var string
      *
      * @ORM\Column(name="location", type="string", length=100)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 100,
+     *      minMessage = "Le lieu de votre projet doit contenir plus de {{ limit }} caractères",
+     *      maxMessage = "Le lieu de votre projet ne doit pas contenir plus de {{ limit }} caractères"
+     * )
      */
     private $location;
 
     /**
      * @ORM\ManyToOne(targetEntity="Skill", inversedBy="projects")
+     * @Assert\NotNull(
+     *   message = "Thème non sélectionné"
+     * )
      */
     private $theme;
 
@@ -115,21 +148,8 @@ class Project
      */
     private $slug;
 
-
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->languagesProject = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->likeProjects = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->teamProject = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -137,22 +157,16 @@ class Project
     }
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
+     * @param int $id
      * @return Project
      */
-    public function setTitle($title)
+    public function setId($id)
     {
-        $this->title = $title;
-
+        $this->id = $id;
         return $this;
     }
 
     /**
-     * Get title
-     *
      * @return string
      */
     public function getTitle()
@@ -161,22 +175,16 @@ class Project
     }
 
     /**
-     * Set startingDate
-     *
-     * @param \DateTime $startingDate
-     *
+     * @param string $title
      * @return Project
      */
-    public function setStartingDate($startingDate)
+    public function setTitle($title)
     {
-        $this->startingDate = $startingDate;
-
+        $this->title = $title;
         return $this;
     }
 
     /**
-     * Get startingDate
-     *
      * @return \DateTime
      */
     public function getStartingDate()
@@ -185,23 +193,17 @@ class Project
     }
 
     /**
-     * Set endDate
-     *
-     * @param \DateTime $endDate
-     *
+     * @param \DateTime $startingDate
      * @return Project
      */
-    public function setEndDate($endDate)
+    public function setStartingDate(\DateTime $startingDate)
     {
-        $this->endDate = $endDate;
-
+        $this->startingDate = $startingDate;
         return $this;
     }
 
     /**
-     * Get endDate
-     *
-     * @return \DateTime
+     * @return mixed
      */
     public function getEndDate()
     {
@@ -209,22 +211,16 @@ class Project
     }
 
     /**
-     * Set presentation
-     *
-     * @param string $presentation
-     *
+     * @param mixed $endDate
      * @return Project
      */
-    public function setPresentation($presentation)
+    public function setEndDate( $endDate)
     {
-        $this->presentation = $presentation;
-
+        $this->endDate = $endDate;
         return $this;
     }
 
     /**
-     * Get presentation
-     *
      * @return string
      */
     public function getPresentation()
@@ -233,22 +229,16 @@ class Project
     }
 
     /**
-     * Set profit
-     *
-     * @param string $profit
-     *
+     * @param string $presentation
      * @return Project
      */
-    public function setProfit($profit)
+    public function setPresentation($presentation)
     {
-        $this->profit = $profit;
-
+        $this->presentation = $presentation;
         return $this;
     }
 
     /**
-     * Get profit
-     *
      * @return string
      */
     public function getProfit()
@@ -257,22 +247,16 @@ class Project
     }
 
     /**
-     * Set beneficeCompany
-     *
-     * @param string $beneficeCompany
-     *
+     * @param string $profit
      * @return Project
      */
-    public function setBeneficeCompany($beneficeCompany)
+    public function setProfit($profit)
     {
-        $this->beneficeCompany = $beneficeCompany;
-
+        $this->profit = $profit;
         return $this;
     }
 
     /**
-     * Get beneficeCompany
-     *
      * @return string
      */
     public function getBeneficeCompany()
@@ -281,119 +265,17 @@ class Project
     }
 
     /**
-     * Set status
-     *
-     * @param integer $status
-     *
+     * @param string $beneficeCompany
      * @return Project
      */
-    public function setStatus($status)
+    public function setBeneficeCompany($beneficeCompany)
     {
-        $this->status = $status;
-
+        $this->beneficeCompany = $beneficeCompany;
         return $this;
     }
 
     /**
-     * Get status
-     *
-     * @return integer
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set photo
-     *
-     * @param string $photo
-     *
-     * @return Project
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * Get photo
-     *
      * @return string
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
-
-    /**
-     * Set location
-     *
-     * @param string $location
-     *
-     * @return Project
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * Get location
-     *
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Project
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * Set author
-     *
-     * @param \AppBundle\Entity\User $author
-     *
-     * @return Project
-     */
-    public function setAuthor(\AppBundle\Entity\User $author = null)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return \AppBundle\Entity\User
      */
     public function getAuthor()
     {
@@ -401,27 +283,39 @@ class Project
     }
 
     /**
-     * Set theme
-     *
-     * @param \AppBundle\Entity\Skill $theme
-     *
+     * @param string $author
      * @return Project
      */
-    public function setTheme(\AppBundle\Entity\Skill $theme = null)
+    public function setAuthor($author)
     {
-        $this->theme = $theme;
-
+        $this->author = $author;
         return $this;
     }
 
     /**
-     * Get theme
-     *
-     * @return \AppBundle\Entity\Skill
+     * @return mixed
      */
-    public function getTheme()
+    public function getLikeProjects()
     {
-        return $this->theme;
+        return $this->likeProjects;
+    }
+
+    /**
+     * @param mixed $likeProjects
+     * @return Project
+     */
+    public function setLikeProjects($likeProjects)
+    {
+        $this->likeProjects = $likeProjects;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTeamProject()
+    {
+        return $this->teamProject;
     }
 
     /**
@@ -459,6 +353,15 @@ class Project
     }
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->likeProjects = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->teamProject = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Add likeProject
      *
      * @param \AppBundle\Entity\User $likeProject
@@ -480,16 +383,6 @@ class Project
     public function removeLikeProject(\AppBundle\Entity\User $likeProject)
     {
         $this->likeProjects->removeElement($likeProject);
-    }
-
-    /**
-     * Get likeProjects
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLikeProjects()
-    {
-        return $this->likeProjects;
     }
 
     /**
@@ -517,12 +410,99 @@ class Project
     }
 
     /**
-     * Get teamProject
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return mixed
      */
-    public function getTeamProject()
+    public function getStatus()
     {
-        return $this->teamProject;
+        return $this->status;
     }
+
+    /**
+     * @param mixed $status
+     * @return Project
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     * @return Project
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param mixed $location
+     * @return Project
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
+     * @param mixed $theme
+     * @return Project
+     */
+    public function setTheme($theme)
+    {
+        $this->theme = $theme;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     * @return Project
+     */
+    public function setSlug(string $slug): Project
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+
+    public function __toString()
+    {
+        return $this->getTitle() . " " . $this->getAuthor();
+    }
+
 }

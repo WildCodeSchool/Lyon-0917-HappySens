@@ -23,7 +23,7 @@ class LoadSkillFixtures extends Fixture implements FixtureInterface
         $listSkill = ['Bien-être','Bricolage', 'Broderie', 'Cause animale', 'Cause humanitaire', 'Chant',
 'Cinéma', 'Cirque', 'Collection d\'objet', 'Couture','Cuisine', 'Culture et jardinage', 'Danse', 'Décoration',
  'Dessin', 'Ecologie','Ecriture', 'Gastronomie', 'Gravure', 'Jeux vidéos','Littérature','Maquettisme', 'Musique',
-  'Oenologie', 'Peinture', 'Photographie','Sculpture','Spectacle', 'Sport animalier', 'Sport aérien', 'port collectif',
+  'Oenologie', 'Peinture', 'Photographie','Sculpture','Spectacle', 'Sport animalier', 'Sport aérien', 'Sport collectif',
   'Sport de combat', 'Sport handisport', 'Sport individuel', 'Sport mécanique', 'Sport de montagne','Sport nautique',
    'Théâtre','Tricot' ];
 

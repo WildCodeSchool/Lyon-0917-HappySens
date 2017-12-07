@@ -231,6 +231,6 @@ class Language
 
     public function  __toString()
     {
-        return $this->getCode();
+        return $this->getTitreLanguage();
     }
 }

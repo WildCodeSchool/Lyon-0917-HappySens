@@ -515,4 +515,9 @@ class Company
     {
         return $this->languagesCompany;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

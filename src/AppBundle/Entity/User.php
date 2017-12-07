@@ -572,24 +572,6 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getLanguage()
-    {
-        return $this->language;
-    }
-
-    /**
-     * @param mixed $language
-     * @return User
-     */
-    public function setLanguage($language)
-    {
-        $this->language = $language;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getSkills()
     {
         return $this->skills;
@@ -604,8 +586,6 @@ class User implements UserInterface, \Serializable
         $this->skills = $skills;
         return $this;
     }
-
-
 
     /**
      * Constructor
