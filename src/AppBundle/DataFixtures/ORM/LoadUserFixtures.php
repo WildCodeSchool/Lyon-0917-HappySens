@@ -55,8 +55,18 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                     ->setFacebook($faker->url)
                     ->setTwitter($faker->url)
                     ->setLinkedin($faker->url)
-                    ->setLanguage($faker->randomElement($array = ["Anglais", "Espagnol", "Russe", "Polonais", "Vietnamien", "Japonais"]))
                     ->setSlug($slugService->slugify($firstName . ' ' . $lastName));
+                // Add 0 at 5 languages
+                $languages = [];
+                $nbLanguage = rand(0,4);
+                for ($j = 0; $j < $nbLanguage; $j++) {
+                    do {
+                        $language = rand(1, 75);
+                    } while(in_array($language, $languages));
+                    $languages[] = $language;
+                    $user[$nbUser]->addLanguagesUser($this->getReference("language-" . $language));
+                 }
+                 // Is Active or not active
                 if ($key != 2 and $key!= 3) {
                     $user[$nbUser]->setIsActive(1);
                 }
@@ -68,6 +78,7 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                     $user[$nbUser]->setCompany($this->getReference("company-" . rand(0, self::ROLE[2] - 1)));
                     $user[$nbUser]->setIsActive(rand(0,1));
                 }
+
                 $manager->persist($user[$nbUser]);
                 $this->addReference("user-" . $nbUser, $user[$nbUser]);
                 $nbUser++;
@@ -81,6 +92,7 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
         return array(
             LoadSkillFixtures::class,
             LoadCompanyFixtures::class,
+            LoadLanguageFixtures::class,
         );
     }
 }

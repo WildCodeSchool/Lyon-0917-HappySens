@@ -8,7 +8,6 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use Faker;
 use AppBundle\Entity\Skill;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -20,7 +19,6 @@ class LoadSkillFixtures extends Fixture implements FixtureInterface
     const MAX = 37;
 
     public function load(ObjectManager $manager) {
-        $faker = Faker\Factory::create("fr_FR");
         $skills = [];
         $listSkill = ['Bien-être','Bricolage', 'Broderie', 'Cause animale', 'Cause humanitaire', 'Chant',
 'Cinéma', 'Cirque', 'Collection d\'objet', 'Couture','Cuisine', 'Culture et jardinage', 'Danse', 'Décoration',

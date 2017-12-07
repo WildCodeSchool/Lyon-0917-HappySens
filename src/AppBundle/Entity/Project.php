@@ -87,17 +87,15 @@ class Project
     private $location;
 
     /**
-     *
-     * @ORM\Column(name="language", type="string", length=255, nullable=true)
-     */
-    private $language;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Skill", inversedBy="projects")
      */
     private $theme;
 
-
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Language", inversedBy="projects")
+     *
+     */
+    private $languagesProject;
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="likes")
@@ -117,8 +115,21 @@ class Project
      */
     private $slug;
 
+
     /**
-     * @return int
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->languagesProject = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->likeProjects = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->teamProject = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -126,16 +137,22 @@ class Project
     }
 
     /**
-     * @param int $id
+     * Set title
+     *
+     * @param string $title
+     *
      * @return Project
      */
-    public function setId($id)
+    public function setTitle($title)
     {
-        $this->id = $id;
+        $this->title = $title;
+
         return $this;
     }
 
     /**
+     * Get title
+     *
      * @return string
      */
     public function getTitle()
@@ -144,16 +161,22 @@ class Project
     }
 
     /**
-     * @param string $title
+     * Set startingDate
+     *
+     * @param \DateTime $startingDate
+     *
      * @return Project
      */
-    public function setTitle($title)
+    public function setStartingDate($startingDate)
     {
-        $this->title = $title;
+        $this->startingDate = $startingDate;
+
         return $this;
     }
 
     /**
+     * Get startingDate
+     *
      * @return \DateTime
      */
     public function getStartingDate()
@@ -162,17 +185,23 @@ class Project
     }
 
     /**
-     * @param \DateTime $startingDate
+     * Set endDate
+     *
+     * @param \DateTime $endDate
+     *
      * @return Project
      */
-    public function setStartingDate(\DateTime $startingDate)
+    public function setEndDate($endDate)
     {
-        $this->startingDate = $startingDate;
+        $this->endDate = $endDate;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * Get endDate
+     *
+     * @return \DateTime
      */
     public function getEndDate()
     {
@@ -180,16 +209,22 @@ class Project
     }
 
     /**
-     * @param mixed $endDate
+     * Set presentation
+     *
+     * @param string $presentation
+     *
      * @return Project
      */
-    public function setEndDate( $endDate)
+    public function setPresentation($presentation)
     {
-        $this->endDate = $endDate;
+        $this->presentation = $presentation;
+
         return $this;
     }
 
     /**
+     * Get presentation
+     *
      * @return string
      */
     public function getPresentation()
@@ -198,16 +233,22 @@ class Project
     }
 
     /**
-     * @param string $presentation
+     * Set profit
+     *
+     * @param string $profit
+     *
      * @return Project
      */
-    public function setPresentation($presentation)
+    public function setProfit($profit)
     {
-        $this->presentation = $presentation;
+        $this->profit = $profit;
+
         return $this;
     }
 
     /**
+     * Get profit
+     *
      * @return string
      */
     public function getProfit()
@@ -216,16 +257,22 @@ class Project
     }
 
     /**
-     * @param string $profit
+     * Set beneficeCompany
+     *
+     * @param string $beneficeCompany
+     *
      * @return Project
      */
-    public function setProfit($profit)
+    public function setBeneficeCompany($beneficeCompany)
     {
-        $this->profit = $profit;
+        $this->beneficeCompany = $beneficeCompany;
+
         return $this;
     }
 
     /**
+     * Get beneficeCompany
+     *
      * @return string
      */
     public function getBeneficeCompany()
@@ -234,17 +281,119 @@ class Project
     }
 
     /**
-     * @param string $beneficeCompany
+     * Set status
+     *
+     * @param integer $status
+     *
      * @return Project
      */
-    public function setBeneficeCompany($beneficeCompany)
+    public function setStatus($status)
     {
-        $this->beneficeCompany = $beneficeCompany;
+        $this->status = $status;
+
         return $this;
     }
 
     /**
+     * Get status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     *
+     * @return Project
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
      * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return Project
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Project
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \AppBundle\Entity\User $author
+     *
+     * @return Project
+     */
+    public function setAuthor(\AppBundle\Entity\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \AppBundle\Entity\User
      */
     public function getAuthor()
     {
@@ -252,59 +401,61 @@ class Project
     }
 
     /**
-     * @param string $author
+     * Set theme
+     *
+     * @param \AppBundle\Entity\Skill $theme
+     *
      * @return Project
      */
-    public function setAuthor($author)
+    public function setTheme(\AppBundle\Entity\Skill $theme = null)
     {
-        $this->author = $author;
+        $this->theme = $theme;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * Get theme
+     *
+     * @return \AppBundle\Entity\Skill
      */
-    public function getLikeProjects()
+    public function getTheme()
     {
-        return $this->likeProjects;
+        return $this->theme;
     }
 
     /**
-     * @param mixed $likeProjects
+     * Add languagesProject
+     *
+     * @param \AppBundle\Entity\Language $languagesProject
+     *
      * @return Project
      */
-    public function setLikeProjects($likeProjects)
+    public function addLanguagesProject(\AppBundle\Entity\Language $languagesProject)
     {
-        $this->likeProjects = $likeProjects;
+        $this->languagesProject[] = $languagesProject;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * Remove languagesProject
+     *
+     * @param \AppBundle\Entity\Language $languagesProject
      */
-    public function getTeamProject()
+    public function removeLanguagesProject(\AppBundle\Entity\Language $languagesProject)
     {
-        return $this->teamProject;
+        $this->languagesProject->removeElement($languagesProject);
     }
 
     /**
-     * @param mixed $teamProject
-     * @return Project
+     * Get languagesProject
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setTeamProject($teamProject)
+    public function getLanguagesProject()
     {
-        $this->teamProject = $teamProject;
-        return $this;
-    }
-
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->likeProjects = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->teamProject = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->languagesProject;
     }
 
     /**
@@ -332,6 +483,16 @@ class Project
     }
 
     /**
+     * Get likeProjects
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLikeProjects()
+    {
+        return $this->likeProjects;
+    }
+
+    /**
      * Add teamProject
      *
      * @param \AppBundle\Entity\User $teamProject
@@ -356,123 +517,12 @@ class Project
     }
 
     /**
-     * @return mixed
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * @param mixed $status
-     * @return Project
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
-
-    /**
-     * @param mixed $photo
-     * @return Project
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
-     * @param mixed $location
-     * @return Project
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTheme()
-    {
-        return $this->theme;
-    }
-
-    /**
-     * @param mixed $theme
-     * @return Project
-     */
-    public function setTheme($theme)
-    {
-        $this->theme = $theme;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLanguage()
-    {
-        return $this->language;
-    }
-
-    /**
-     * @param mixed $language
-     * @return Project
-     */
-    public function setLanguage($language)
-    {
-        $this->language = $language;
-        return $this;
-    }
-
-
-    public function __toString()
-    {
-        return $this->getTitle() . " " . $this->getAuthor();
-    }
-
-
-    /**
-     * Set slug
+     * Get teamProject
      *
-     * @param string $slug
-     *
-     * @return Project
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setSlug($slug)
+    public function getTeamProject()
     {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
+        return $this->teamProject;
     }
 }

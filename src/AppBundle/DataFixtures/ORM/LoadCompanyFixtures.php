@@ -19,12 +19,13 @@ class LoadCompanyFixtures extends Fixture implements FixtureInterface
 {
     const MAX = 5;
 
-    public function load(ObjectManager $manager) {
+    public function load(ObjectManager $manager)
+    {
         $faker = Faker\Factory::create("fr_FR");
         $slugService = new SlugService();
         $company = [];
 
-        for($i = 0; $i < self::MAX; $i++) {
+        for ($i = 0; $i < self::MAX; $i++) {
             $company[$i] = new Company();
             $name = $faker->company;
             $company[$i]->setActivity($faker->jobTitle);
@@ -36,7 +37,16 @@ class LoadCompanyFixtures extends Fixture implements FixtureInterface
             $company[$i]->setName($name);
             $company[$i]->setLogo($faker->imageUrl(150, 150, 'cats'));
             $company[$i]->setLocation($faker->city);
-            $company[$i]->setLanguage("Français");
+            // Add 0 at 5 languages
+            $languages = [];
+            $nbLanguage = rand(0, 5);
+            for ($j = 0; $j < $nbLanguage; $j++) {
+                do {
+                    $language = rand(1, 75);
+                } while (in_array($language, $languages));
+                $languages[] = $language;
+                $company[$i]->addLanguagesCompany($this->getReference("language-" . $language));
+            }
             $company[$i]->setSlug($slugService->slugify($name));
             $company[$i]
                 ->setFacebook($faker->url)
@@ -47,6 +57,14 @@ class LoadCompanyFixtures extends Fixture implements FixtureInterface
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return array(
+            LoadLanguageFixtures::class,
+        );
+
     }
 }
 
