@@ -20,14 +20,11 @@ class EmailService
         $this->template = $template;
     }
 
-    public function sendMessageContact($contact)
+    public function sendMessageContact($contact, $email_contact)
     {
         $message = \Swift_Message::newInstance()
             ->setSubject('Merci d\'avoir contacté HappySens')
-            ->setFrom($contact->getEmail(), $contact->getFirstName() . ' ' . $contact->getLastName())
-            ->setTo('famar.wcslyon@gmail.com')
-            ->setBcc($contact->getEmail(), 'contact HappySens')
-            ->setReplyTo('famar.wcslyon@gmail.com')
+            ->setTo([$email_contact, $contact->getEmail()] )
             ->setBody(
                 $this->template->render('notificationsEmail/contact.html.twig', [
                     'firstName' => $contact->getFirstName(),
@@ -42,5 +39,4 @@ class EmailService
             );
         $this->mailer->send($message);
     }
-
 }

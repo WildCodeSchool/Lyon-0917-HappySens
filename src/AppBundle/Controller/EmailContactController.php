@@ -23,7 +23,8 @@ class EmailContactController extends Controller
         $form = $this->createForm(EmailContactType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid()) {
-            $emailService->sendMessageContact($contact);
+            $email_contact = $this->container->getParameter('email_contact');
+            $emailService->sendMessageContact($contact, $email_contact);
             $this->addFlash(
                 'contact',
                 'Merci, votre message a bien été envoyé.'
