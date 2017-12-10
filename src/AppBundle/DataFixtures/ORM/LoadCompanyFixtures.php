@@ -42,7 +42,7 @@ class LoadCompanyFixtures extends Fixture implements FixtureInterface
             $nbLanguage = rand(0, 5);
             for ($j = 0; $j < $nbLanguage; $j++) {
                 do {
-                    $language = rand(1, 75);
+                    $language = rand(1, 32);
                 } while (in_array($language, $languages));
                 $languages[] = $language;
                 $company[$i]->addLanguagesCompany($this->getReference("language-" . $language));

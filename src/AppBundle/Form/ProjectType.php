@@ -39,15 +39,11 @@ class ProjectType extends AbstractType
             ])
             ->add('languagesProject', EntityType::class, [
                 'class' => Language::class,
-                'placeholder' => 'Selectionner une ou plusieurs langues',
                 'required' => false,
                 'empty_data' => null,
                 'multiple' => true,
             ])
-//        ->add('languagesProject', LanguageType::class, [
-//            'multiple' => true,
-//            ])
-        ;
+       ;
     }
     
     /**
