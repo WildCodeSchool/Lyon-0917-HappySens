@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Admin
@@ -25,6 +26,13 @@ class Project
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 255,
+     *      minMessage = "Le titre de votre projet doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Le titre de votre projet ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      */
     private $title;
 
@@ -42,6 +50,11 @@ class Project
      * @var string
      *
      * @ORM\Column(name="presentation", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Votre message doit contenir au moins plus de {{ limit }} caractères",
+     * )
      */
     private $presentation;
 
@@ -49,6 +62,11 @@ class Project
      * @var string
      *
      * @ORM\Column(name="profit", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Votre message doit contenir au moins plus de {{ limit }} caractères",
+     * )
      */
     private $profit;
 
@@ -56,6 +74,11 @@ class Project
      * @var string
      *
      * @ORM\Column(name="beneficeCompany", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Votre message doit contenir au moins plus de {{ limit }} caractères",
+     * )
      */
     private $beneficeCompany;
 
@@ -83,6 +106,13 @@ class Project
      * @var string
      *
      * @ORM\Column(name="location", type="string", length=100)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 100,
+     *      minMessage = "Le lieu de votre projet doit contenir plus de {{ limit }} caractères",
+     *      maxMessage = "Le lieu de votre projet ne doit pas contenir plus de {{ limit }} caractères"
+     * )
      */
     private $location;
 
@@ -94,10 +124,11 @@ class Project
 
     /**
      * @ORM\ManyToOne(targetEntity="Skill", inversedBy="projects")
+     * @Assert\NotNull(
+     *   message = "Thème non sélectionné"
+     * )
      */
     private $theme;
-
-
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="likes")
