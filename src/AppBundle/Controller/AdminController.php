@@ -130,9 +130,11 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('AppBundle:User')->findAll();
+        $company = $em->getRepository('AppBundle:Company')->findAll();
 
         return $this->render('pages/In/Admin/collaborators/index.html.twig', array(
             'users' => $users,
+            'company' => $company,
         ));
     }
 
@@ -213,9 +215,11 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $projects = $em->getRepository('AppBundle:Project')->findAll();
+        $company = $em->getRepository('AppBundle:Company')->findAll();
 
         return $this->render('pages/In/Admin/projects/index.html.twig', array(
             'projects' => $projects,
+            'company' => $company,
         ));
     }
 
