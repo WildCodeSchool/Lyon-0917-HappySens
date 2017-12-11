@@ -44,7 +44,9 @@
                             <p class="col s12 titleSecond">Langues</p>
                             <div class="col s12">
                                 {{ user.nativeLanguage }}
-                                {{ user.language }}
+                                {% for language in user.languagesUser %}
+                                    {{ language }}
+                                {% endfor %}
                             </div>
                         </div>
                     </li>

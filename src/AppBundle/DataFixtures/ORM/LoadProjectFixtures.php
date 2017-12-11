@@ -39,8 +39,17 @@ class LoadProjectFixtures extends Fixture implements FixtureInterface
             $project[$i]->setPhoto($faker->imageUrl("640", "480"));
             $project[$i]->setLocation($faker->city);
             $project[$i]->setTheme($this->getReference('skill-' . $i));
-            $project[$i]->setLanguage("Français");
             $project[$i]->setSlug($slugService->slugify($title));
+            // Add 0 at 4 languages
+            $languages = [];
+            $nbLanguage = rand(0,3);
+            for ($j = 0; $j < $nbLanguage; $j++) {
+                do {
+                    $language = rand(1, 32);
+                } while(in_array($language, $languages));
+                $languages[] = $language;
+                $project[$i]->addLanguagesProject($this->getReference("language-" . $language));
+            }
             $manager->persist($project[$i]);
         }
         $manager->flush();
@@ -51,6 +60,7 @@ class LoadProjectFixtures extends Fixture implements FixtureInterface
     {
         return array(
             LoadUserFixtures::class,
+            LoadLanguageFixtures::class,
         );
     }
 }

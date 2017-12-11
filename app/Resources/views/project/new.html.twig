@@ -76,14 +76,15 @@
                     </div>
                 </div>
             </div>
-            {#<div class="col s12 m6">#}
-                {#<h5 class="titleInscription pink-text text-darken-2">Langues :</h5>#}
-                {#<div class="input-field col s12">#}
-                    {#<span class="requireInput">* </span>#}
-                    {#<label for="language"></label>#}
-                    {#{{ form_widget(form.languages) }}#}
-                {#</div>#}
-            {#</div>#}
+            <div class="col s12 m6">
+                <h5 class="titleInscription pink-text text-darken-2">Langues :</h5>
+                <div class="input-field col s12">
+                    <span class="requireInput">* </span>
+                    <label for="language"></label>
+                    {{ form_widget(form.languagesProject) }}
+
+                </div>
+            </div>
             <div class="col s12">
                 <h5 class="titleInscription pink-text text-darken-2">Présentation du projet :</h5>
                 <div class="input-field col s12">
@@ -149,7 +150,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('project_index') }}">Back to the list</a>
+            {#<a href="{{ path('project_index') }}">Back to the list</a>#}
         </li>
     </ul>
 {% endblock %}

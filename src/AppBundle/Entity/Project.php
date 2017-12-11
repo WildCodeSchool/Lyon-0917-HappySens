@@ -117,18 +117,18 @@ class Project
     private $location;
 
     /**
-     *
-     * @ORM\Column(name="language", type="string", length=255, nullable=true)
-     */
-    private $language;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Skill", inversedBy="projects")
      * @Assert\NotNull(
      *   message = "Thème non sélectionné"
      * )
      */
     private $theme;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Language", inversedBy="projects")
+     *
+     */
+    private $languagesProject;
 
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="likes")
@@ -319,15 +319,38 @@ class Project
     }
 
     /**
-     * @param mixed $teamProject
+     * Add languagesProject
+     *
+     * @param \AppBundle\Entity\Language $languagesProject
+     *
      * @return Project
      */
-    public function setTeamProject($teamProject)
+    public function addLanguagesProject(\AppBundle\Entity\Language $languagesProject)
     {
-        $this->teamProject = $teamProject;
+        $this->languagesProject[] = $languagesProject;
+
         return $this;
     }
 
+    /**
+     * Remove languagesProject
+     *
+     * @param \AppBundle\Entity\Language $languagesProject
+     */
+    public function removeLanguagesProject(\AppBundle\Entity\Language $languagesProject)
+    {
+        $this->languagesProject->removeElement($languagesProject);
+    }
+
+    /**
+     * Get languagesProject
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLanguagesProject()
+    {
+        return $this->languagesProject;
+    }
 
     /**
      * Constructor
@@ -459,20 +482,20 @@ class Project
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getLanguage()
+    public function getSlug(): string
     {
-        return $this->language;
+        return $this->slug;
     }
 
     /**
-     * @param mixed $language
+     * @param string $slug
      * @return Project
      */
-    public function setLanguage($language)
+    public function setSlug(string $slug): Project
     {
-        $this->language = $language;
+        $this->slug = $slug;
         return $this;
     }
 
@@ -482,28 +505,4 @@ class Project
         return $this->getTitle() . " " . $this->getAuthor();
     }
 
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Project
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
 }

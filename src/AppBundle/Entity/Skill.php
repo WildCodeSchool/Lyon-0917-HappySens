@@ -67,71 +67,13 @@ class Skill
         return $this;
     }
 
-
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->nameSkill = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add nameSkill
-     *
-     * @param \AppBundle\Entity\UserHasSkill $nameSkill
-     *
-     * @return Skill
-     */
-    public function addNameSkill(\AppBundle\Entity\UserHasSkill $nameSkill)
-    {
-        $this->nameSkill[] = $nameSkill;
-
-        return $this;
-    }
-
-    /**
-     * Remove nameSkill
-     *
-     * @param \AppBundle\Entity\UserHasSkill $nameSkill
-     */
-    public function removeNameSkill(\AppBundle\Entity\UserHasSkill $nameSkill)
-    {
-        $this->nameSkill->removeElement($nameSkill);
-    }
-
-    /**
-     * Add skill
-     *
-     * @param \AppBundle\Entity\UserHasSkill $skill
-     *
-     * @return Skill
-     */
-    public function addSkill(\AppBundle\Entity\UserHasSkill $skill)
-    {
-        $this->skill[] = $skill;
-
-        return $this;
-    }
-
-    /**
-     * Remove skill
-     *
-     * @param \AppBundle\Entity\UserHasSkill $skill
-     */
-    public function removeSkill(\AppBundle\Entity\UserHasSkill $skill)
-    {
-        $this->skill->removeElement($skill);
-    }
-
-    /**
-     * Get skill
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSkill()
-    {
-        return $this->skill;
+        $this->userskills = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->projects = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -168,11 +110,6 @@ class Skill
         return $this->userskills;
     }
 
-    public function __toString()
-    {
-        return $this->nameSkill;
-    }
-
     /**
      * Add project
      *
@@ -205,5 +142,10 @@ class Skill
     public function getProjects()
     {
         return $this->projects;
+    }
+
+    public function __toString()
+    {
+        return $this->nameSkill;
     }
 }

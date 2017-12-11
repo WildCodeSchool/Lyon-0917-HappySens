@@ -99,12 +99,6 @@ class Company
     private $users;
 
     /**
-     *
-     * @ORM\Column(name="language", type="string", length=255, nullable=true)
-     */
-    private $language;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="location", type="string", length=100)
@@ -118,11 +112,18 @@ class Company
     private $slug;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Language", inversedBy="companies")
+     *
+     */
+    private $languagesCompany;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->languagesCompany = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -280,6 +281,174 @@ class Company
     }
 
     /**
+     * Set threeCriteria
+     *
+     * @param string $threeCriteria
+     *
+     * @return Company
+     */
+    public function setThreeCriteria($threeCriteria)
+    {
+        $this->threeCriteria = $threeCriteria;
+
+        return $this;
+    }
+
+    /**
+     * Get threeCriteria
+     *
+     * @return string
+     */
+    public function getThreeCriteria()
+    {
+        return $this->threeCriteria;
+    }
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     *
+     * @return Company
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set twitter
+     *
+     * @param string $twitter
+     *
+     * @return Company
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+
+        return $this;
+    }
+
+    /**
+     * Get twitter
+     *
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Set linkedin
+     *
+     * @param string $linkedin
+     *
+     * @return Company
+     */
+    public function setLinkedin($linkedin)
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    /**
+     * Get linkedin
+     *
+     * @return string
+     */
+    public function getLinkedin()
+    {
+        return $this->linkedin;
+    }
+
+    /**
+     * Set logo
+     *
+     * @param string $logo
+     *
+     * @return Company
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     *
+     * @return Company
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Company
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Add user
      *
      * @param \AppBundle\Entity\User $user
@@ -314,156 +483,41 @@ class Company
     }
 
     /**
-     * @return mixed
-     */
-    public function getFacebook()
-    {
-        return $this->facebook;
-    }
-
-    /**
-     * @param mixed $facebook
+     * Add languagesCompany
+     *
+     * @param \AppBundle\Entity\Language $languagesCompany
+     *
      * @return Company
      */
-    public function setFacebook($facebook)
+    public function addLanguagesCompany(\AppBundle\Entity\Language $languagesCompany)
     {
-        $this->facebook = $facebook;
+        $this->languagesCompany[] = $languagesCompany;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * Remove languagesCompany
+     *
+     * @param \AppBundle\Entity\Language $languagesCompany
      */
-    public function getTwitter()
+    public function removeLanguagesCompany(\AppBundle\Entity\Language $languagesCompany)
     {
-        return $this->twitter;
+        $this->languagesCompany->removeElement($languagesCompany);
     }
 
     /**
-     * @param mixed $twitter
-     * @return Company
+     * Get languagesCompany
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setTwitter($twitter)
+    public function getLanguagesCompany()
     {
-        $this->twitter = $twitter;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLinkedin()
-    {
-        return $this->linkedin;
-    }
-
-    /**
-     * @param mixed $linkedin
-     * @return Company
-     */
-    public function setLinkedin($linkedin)
-    {
-        $this->linkedin = $linkedin;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLogo()
-    {
-        return $this->logo;
-    }
-
-    /**
-     * @param mixed $logo
-     */
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-    }
-
-    /**
-     * @return string
-     */
-    public function getThreeCriteria(): string
-    {
-        return $this->threeCriteria;
-    }
-
-    /**
-     * @param string $threeCriteria
-     * @return Company
-     */
-    public function setThreeCriteria(string $threeCriteria): Company
-    {
-        $this->threeCriteria = $threeCriteria;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLanguage()
-    {
-        return $this->language;
-    }
-
-    /**
-     * @param mixed $language
-     * @return Company
-     */
-    public function setLanguage($language)
-    {
-        $this->language = $language;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLocation(): string
-    {
-        return $this->location;
-    }
-
-    /**
-     * @param string $location
-     * @return Company
-     */
-    public function setLocation(string $location): Company
-    {
-        $this->location = $location;
-        return $this;
+        return $this->languagesCompany;
     }
 
     public function __toString()
     {
-        return $this->getLogo() . $this->getName();
-    }
-
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Company
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
+        return $this->getName();
     }
 }
