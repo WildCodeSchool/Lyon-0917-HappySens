@@ -36,7 +36,9 @@
                         <div class="row">
                             <p class="col l12 titleSecond">Langues</p>
                             <div class="col l12">
-                                {{ company.language }}
+                                {% for language in company.languagesCompany %}
+                                {{ language }}
+                                {% endfor %}
                             </div>
                         </div>
                     </li>

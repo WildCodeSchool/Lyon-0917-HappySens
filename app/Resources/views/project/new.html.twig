@@ -20,61 +20,114 @@
                 <h5 class="titleInscription pink-text text-darken-2">Nom :</h5>
 
                 <div class="input-field col s12">
-                    {{ form_widget(form.title) }}
+                    {% if (form_errors(form.title))  %}
+                        {{ form_widget(form.title, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+                        {{ form_widget(form.title) }}
+                    {% endif %}
                     <label for="project_name"><span class="requireInput">* </span>Nom de votre projet</label>
+                    <div class="center error">
+                        {{ form_errors(form.title) }}
+                    </div>
                 </div>
             </div>
             <div class="col s12 m6">
                 <h5 class="titleInscription pink-text text-darken-2">Lieu :</h5>
                 <div class="input-field col s12">
-                    {{ form_widget(form.location) }}
+                    {% if (form_errors(form.location))  %}
+                        {{ form_widget(form.location, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+                        {{ form_widget(form.location) }}
+                    {% endif %}
                     <label for="location"><span class="requireInput">* </span>Lieu de votre projet</label>
+                    <div class="center error">
+                        {{ form_errors(form.location) }}
+                    </div>
                 </div>
             </div>
+
             <div class="col s12">
                 <h5 class="titleInscription pink-text text-darken-2">Date :</h5>
                 <div class="input-field col s12 m6">
-                    {{ form_widget(form.endDate, {'attr': {'class': 'datepicker'}}) }}
+                    {% if (form_errors(form.endDate))  %}
+                        {{ form_widget(form.endDate, {'attr': {'class': 'datepicker error'}}) }}
+                    {% else %}
+                        {{ form_widget(form.endDate, {'attr': {'class': 'datepicker'}}) }}
+                    {% endif %}
                     <label for="end_date"><span class="requireInput">* </span>Date de fin</label>
+                    <div class="center error">
+                        {{ form_errors(form.endDate) }}
+                    </div>
                 </div>
             </div>
+
             <div class="col s12 m6">
                 <h5 class="titleInscription pink-text text-darken-2">Thème :</h5>
                 <div class="input-field col s12">
                     <span class="requireInput">* </span>
-                    {{ form_widget(form.theme) }}
+                    {% if (form_errors(form.theme))  %}
+                        {{ form_widget(form.theme, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+                        {{ form_widget(form.theme) }}
+                    {% endif %}
                     <label for="theme"></label>
+                    <div class="center error">
+                        {{ form_errors(form.theme) }}
+                    </div>
                 </div>
             </div>
-            {#<div class="col s12 m6">#}
-                {#<h5 class="titleInscription pink-text text-darken-2">Langues :</h5>#}
-                {#<div class="input-field col s12">#}
-                    {#<span class="requireInput">* </span>#}
-                    {#<label for="language"></label>#}
-                    {#{{ form_widget(form.languages) }}#}
-                {#</div>#}
-            {#</div>#}
+            <div class="col s12 m6">
+                <h5 class="titleInscription pink-text text-darken-2">Langues :</h5>
+                <div class="input-field col s12">
+                    <span class="requireInput">* </span>
+                    <label for="language"></label>
+                    {{ form_widget(form.languagesProject) }}
+
+                </div>
+            </div>
             <div class="col s12">
                 <h5 class="titleInscription pink-text text-darken-2">Présentation du projet :</h5>
                 <div class="input-field col s12">
-                    {{ form_widget(form.presentation, { 'attr': {'class': 'materialize-textarea'} }) }}
+                    {% if (form_errors(form.presentation))  %}
+                        {{ form_widget(form.presentation, { 'attr': {'class': 'materialize-textarea error'} }) }}
+                    {% else %}
+                        {{ form_widget(form.presentation, { 'attr': {'class': 'materialize-textarea'} }) }}
+                    {% endif %}
                     <label for="description"><span class="requireInput">* </span>Ecrire votre présentation du
                         projet</label>
+                    <div class="center error">
+                        {{ form_errors(form.presentation) }}
+                    </div>
                 </div>
             </div>
             <div class="col s12">
                 <h5 class="titleInscription pink-text text-darken-2">Les Avantages :</h5>
                 <div class="input-field col s12 m6">
-                    {{ form_widget(form.beneficeCompany, { 'attr': {'class': 'materialize-textarea'} }) }}
+                    {% if (form_errors(form.beneficeCompany))  %}
+                        {{ form_widget(form.beneficeCompany, { 'attr': {'class': 'materialize-textarea error'} }) }}
+                    {% else %}
+                        {{ form_widget(form.beneficeCompany, { 'attr': {'class': 'materialize-textarea'} }) }}
+                    {% endif %}
                     <label for="advantagesCompany"><span class="requireInput">* </span>3 avantages pour votre
                         employeur</label>
+                    <div class="center error">
+                        {{ form_errors(form.beneficeCompany) }}
+                    </div>
                 </div>
                 <div class="input-field col s12 m6">
-                    {{ form_widget(form.profit, { 'attr': {'class': 'materialize-textarea'} }) }}
+                    {% if (form_errors(form.profit))  %}
+                        {{ form_widget(form.profit, { 'attr': {'class': 'materialize-textarea error'} }) }}
+                    {% else %}
+                        {{ form_widget(form.profit, { 'attr': {'class': 'materialize-textarea'} }) }}
+                    {% endif %}
                     <label for="advantagesGroup"><span class="requireInput">* </span>3 avantages pour le groupe de
                         votre projet</label>
+                    <div class="center error">
+                        {{ form_errors(form.profit) }}
+                    </div>
                 </div>
             </div>
+
             {#<div class="file-field input-field col s12 m6">#}
                 {#<div class="btn blue darken-3">Image#}
                     {#<input type="file">#}
@@ -94,4 +147,10 @@
         </div>
     </div>
     {{ form_end(form) }}
+
+    <ul>
+        <li>
+            {#<a href="{{ path('project_index') }}">Back to the list</a>#}
+        </li>
+    </ul>
 {% endblock %}

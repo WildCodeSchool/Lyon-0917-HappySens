@@ -41,9 +41,9 @@
                         <div class="row">
                             <p class="col s12 titleSecond">Langues</p>
                             <div class="col s12">
-                                <i class="fa fa-language fa-2x"></i>
-                                <i class="fa fa-language fa-2x"></i>
-                                <i class="fa fa-language fa-2x"></i>
+                                <p> {% for language in  project.languagesProject%}
+                                {{ language}}
+                                    {% endfor %} </p>
                             </div>
                         </div>
                     </li>
