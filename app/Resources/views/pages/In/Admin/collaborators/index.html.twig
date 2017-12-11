@@ -40,7 +40,11 @@
                             <li><span>Métier :</span> {{ user.job }}</li>
                             <li><span>Lieux :</span> {{ user.workplace }}</li>
                             <li><span>Langue natale :</span> {{ user.nativeLanguage }}</li>
-                            <li><span>Autres langues :</span> {{ user.language }}</li>
+                            <li><span>Autres langues :</span>
+                                {% for language in user.languagesUser %}
+                                    {{ language }}
+                                {% endfor %}
+                            </li>
                             <li><span>Tel :</span> {{ user.phone }}</li>
                             <li><span>Email :</span> {{ user.email }}</li>
                             <li><span>Date :</span> {% if user.birthdate %}{{ user.birthdate|date('Y-m-d H:i:s') }}{% endif %}</li>

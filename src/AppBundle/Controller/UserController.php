@@ -88,7 +88,6 @@ class UserController extends Controller
 
 
         if ($this->getUser()->getStatus() !== 1) {
-
             $user = $this->getUser();
         }
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);

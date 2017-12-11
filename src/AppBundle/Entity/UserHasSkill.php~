@@ -41,4 +41,100 @@ class UserHasSkill
      */
     private $type;
 
+
+    /**
+     * Set level
+     *
+     * @param integer $level
+     *
+     * @return UserHasSkill
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return integer
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return UserHasSkill
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return UserHasSkill
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set skill
+     *
+     * @param \AppBundle\Entity\Skill $skill
+     *
+     * @return UserHasSkill
+     */
+    public function setSkill(\AppBundle\Entity\Skill $skill)
+    {
+        $this->skill = $skill;
+
+        return $this;
+    }
+
+    /**
+     * Get skill
+     *
+     * @return \AppBundle\Entity\Skill
+     */
+    public function getSkill()
+    {
+        return $this->skill;
+    }
 }
