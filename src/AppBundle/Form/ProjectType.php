@@ -42,9 +42,8 @@ class ProjectType extends AbstractType
                 'required' => false,
                 'empty_data' => null,
                 'multiple' => true,
-            ])
-       ;
-    }
+              ]);
+ }
     
     /**
      * {@inheritdoc}
