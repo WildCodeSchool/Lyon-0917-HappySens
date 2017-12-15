@@ -11,7 +11,6 @@ namespace AppBundle\Repository;
 class CompanyRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getSkillInCompagny($companyId) {
-
         $qb = $this
             ->createQueryBuilder('c')
             ->select([ '(avg(us.level)) as level', 'count(s.nameSkill) as nbSalary', 's.nameSkill as nameSkill'])
@@ -38,4 +37,17 @@ class CompanyRepository extends \Doctrine\ORM\EntityRepository
            ->getQuery();
         return $qb->getResult();
     }
+
+    public function getProjectsInCompany($companyId) {
+        $qb = $this
+            ->createQueryBuilder('c')
+            ->join('c.users', 'u')
+            ->join('u.authorProject', 'p')
+            ->select('p.title', 'p.startingDate', 'p.endDate', 'p.presentation', 'p.profit', 'p.beneficeCompany', 'p.status', 'p.photo', 'p.location', 'p.slug', 'u.firstName', 'u.lastName', 'u.photo', 'u.slug', 'p.id', 'u.id as authorProject')
+            ->setParameter('idCompany', $companyId)
+            ->where('c.id=:idCompany')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
 }
