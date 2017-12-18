@@ -47,9 +47,10 @@ class ProjectController extends Controller
             $fileName = $fileUploader->upload($file, "photoProject");
             $project->setPhoto($fileName);
             $project->setEndDate(DateTime::createFromFormat ('d/m/Y', $project->getEndDate() ));
-            $em = $this->getDoctrine()->getManager();
             $project->setSlug($slugService->slugify($project->getTitle()));
             $project->setAuthor($user);
+
+            $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
 

@@ -8,7 +8,10 @@
 
 namespace AppBundle\Service;
 
+use AppBundle\AppBundle;
+use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use AppBundle\Service\SlugService;
 
 class FileUploader
 {
@@ -32,13 +35,32 @@ class FileUploader
 
     public function transformCSV($file)
     {
-        $result = [];
+        $csv = array_map('str_getcsv', file($file));
+// This is for have value for key like [name] => dupond
+//    array_walk($csv, function(&$a) use ($csv) {
+//        $a = array_combine($csv[0], $a);
+//    });
+        return $csv;
+    }
 
-        $contentCsv = file_get_contents($file);
-
-
-
-        return $result;
+    public function insertUser($valueMdp, $idCompany, $fileUsers)
+    {
+        $users = $fileUsers;
+        $slug = new SlugService();
+        for($i = 0; $i < count($users); $i++) {
+            foreach ($users as $key => $user) {
+                $newUser = new User();
+                $newUser->setFirstName($user[0]);
+                $newUser->setLastName($user[1]);
+                $newUser->setEmail($user[2]);
+                $newUser->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT));
+                $newUser->setStatus(3);
+                $newUser->setIsActive(0);
+                $newUser->setCompany($idCompany);
+                $newUser->setSlug($slug->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()));
+            }
+        }
+        return $newUser;
     }
 
     public function getTargetDirectory()

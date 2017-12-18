@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
+use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -60,7 +61,7 @@ class AdminController extends Controller
      * @Route("/newCompany", name="newCompany")
      * @Method({"GET", "POST"})
      */
-    public function newCompanyAction(Request $request, SlugService $slugService)
+    public function newCompanyAction(Request $request, FileUploader $fileUploader, SlugService $slugService)
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
@@ -68,8 +69,34 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $csvFile = $company->getFileUsers();
+            $fileName = $fileUploader->upload($csvFile, "csvFiles");
+            $company->setFileUsers($fileName);
+
+            $logo = $company->getLogo();
+            $fileName = $fileUploader->upload($logo, "photoCompany");
+            $company->setLogo($fileName);
+
+            $users = $fileUploader->transformCSV('uploads/csvFiles/' . $company->getFileUsers());
+
+            for($i = 0; $i < count($users); $i++) {
+                $newUser = new User();
+                foreach ($users as $key => $user) {
+                    $newUser->setFirstName($user[0]);
+                    $newUser->setLastName($user[1]);
+                    $newUser->setEmail($user[2]);
+                    $newUser->setPassword(password_hash('1234', PASSWORD_BCRYPT));
+                    $newUser->setStatus(3);
+                    $newUser->setIsActive(0);
+                    $newUser->setCompany($company->getId());
+
+                    $newUser->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()));
+                }
+                $company->addUser($newUser);
+            }
+
             $company->setSlug($slugService->slugify($company->getName()));
+            $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
 
