@@ -32,6 +32,21 @@
                 </div>
             </div>
             <div class="col s12 m6">
+                <h5 class="titleInscription pink-text text-darken-2">Date :</h5>
+                <div class="input-field col s12">
+                    {% if (form_errors(form.endDate))  %}
+                        {{ form_widget(form.endDate, {'attr': {'class': 'datepicker error'}}) }}
+                    {% else %}
+                        {{ form_widget(form.endDate, {'attr': {'class': 'datepicker'}}) }}
+                    {% endif %}
+                    <label for="end_date"><span class="requireInput">* </span>Date de fin</label>
+                    <div class="center error">
+                        {{ form_errors(form.endDate) }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m6">
                 <h5 class="titleInscription pink-text text-darken-2">Lieu :</h5>
                 <div class="input-field col s12">
                     {% if (form_errors(form.location))  %}
@@ -42,21 +57,6 @@
                     <label for="location"><span class="requireInput">* </span>Lieu de votre projet</label>
                     <div class="center error">
                         {{ form_errors(form.location) }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12">
-                <h5 class="titleInscription pink-text text-darken-2">Date :</h5>
-                <div class="input-field col s12 m6">
-                    {% if (form_errors(form.endDate))  %}
-                        {{ form_widget(form.endDate, {'attr': {'class': 'datepicker error'}}) }}
-                    {% else %}
-                        {{ form_widget(form.endDate, {'attr': {'class': 'datepicker'}}) }}
-                    {% endif %}
-                    <label for="end_date"><span class="requireInput">* </span>Date de fin</label>
-                    <div class="center error">
-                        {{ form_errors(form.endDate) }}
                     </div>
                 </div>
             </div>
@@ -82,7 +82,6 @@
                     <span class="requireInput">* </span>
                     <label for="language"></label>
                     {{ form_widget(form.languagesProject) }}
-
                 </div>
             </div>
             <div class="col s12">
@@ -124,6 +123,16 @@
                         votre projet</label>
                     <div class="center error">
                         {{ form_errors(form.profit) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <h5 class="titleInscription pink-text text-darken-2">Photo :</h5>
+                <div class="input-field col s12">
+                    <label for="location"><span class="requireInput">* </span></label>
+                    {{ form_widget(form.photo) }}
+                    <div class="center error">
+                        {{ form_errors(form.photo) }}
                     </div>
                 </div>
             </div>
