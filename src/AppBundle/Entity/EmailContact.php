@@ -58,11 +58,11 @@ class EmailContact
      *      minMessage = "Le téléphone doit être sous la forme : 00-00-00-00-00",
      *      maxMessage = "Le téléphone doit être sous la forme : 00-00-00-00-00"
      * )
-     * *Assert\Regex(
-     * *    pattern="/\d/",
-     * *    match=false,
-     *  *   message="Le téléphone doit être sous la forme : 00-00-00-00-00"
-     * *)
+     * Assert\Regex(
+     *     pattern="#^0[1-9]([-. ]?[0-9]{2}){4}$#",
+     *     match=false,
+     *     message="Le téléphone doit être sous la forme : 00-00-00-00-00"
+     * )
      */
     private $phone;
 
