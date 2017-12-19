@@ -1,3 +1,0 @@
-Jean,Dupond,jean.dupondxx@gmail.com
-Alban,suchaire,alban.such@gmail.com
-Bobx,Bobox,bobx.bobo@gmail.com

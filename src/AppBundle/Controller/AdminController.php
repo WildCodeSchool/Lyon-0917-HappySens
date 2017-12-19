@@ -71,41 +71,19 @@ class AdminController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $csvFile = $company->getFileUsers();
             $fileName = $fileUploader->upload($csvFile, "csvFiles");
-            $company->setFileUsers($fileName);
-
             $logo = $company->getLogo();
-            $fileName = $fileUploader->upload($logo, "photoCompany");
-            $company->setLogo($fileName);
+            $logoName = $fileUploader->upload($logo, "photoCompany");
 
+            $company->setLogo($logoName);
+            $company->setFileUsers($fileName);
             $company->setSlug($slugService->slugify($company->getName()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
 
-            // Users
-            $idCompany = $this->getDoctrine()->getRepository(Company::class)->find($company->getId());
-            $db = $this->getDoctrine()->getManager();
-            $users = $fileUploader->transformCSV('uploads/csvFiles/' . $company->getFileUsers());
-            $newUser = [];
-            $listEmails = [];
-            for($i = 0; $i < count($users); $i++) {
-                if (!in_array($users[$i][2], $listEmails)) {
-                    $newUser[$i] = new User();
-                    for ($j = 0; $j < count($users[$i]); $j++) {
-                        $newUser[$i]->setFirstName($users[$i][0]);
-                        $newUser[$i]->setLastName($users[$i][1]);
-                        $newUser[$i]->setEmail($users[$i][2]);
-                        $newUser[$i]->setPassword(password_hash('1234', PASSWORD_BCRYPT));
-                        $newUser[$i]->setStatus(3);
-                        $newUser[$i]->setIsActive(0);
-                        $newUser[$i]->setCompany($idCompany);
-                        $newUser[$i]->setSlug($slugService->slugify($newUser[$i]->getFirstName() . ' ' . $newUser[$i]->getLastName()));
-                        $listEmails[$i] = $users[$i][2];
-                    }
-                    $db->persist($newUser[$i]);
-                }
-            }
-            $db->flush();
+            $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
+            $fileUploader->insertUser("1234", $em->find(Company::class, $company->getId()), $fileUsers);
+            unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
 
             return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
         }

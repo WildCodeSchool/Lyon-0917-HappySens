@@ -1,17 +1,9 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 parameters:
-#    upload_directory: '%kernel.project_dir%/web/uploads/photo_project'
+    upload_directory: '%kernel.project_dir%/web/uploads'
 
 services:
-    redirect.after.login:
-            class: AppBundle\Service\AfterLoginRedirection
-            arguments: ['@router']
-
-    AppBundle\Service\FileUploader:
-            arguments:
-                $targetDirectory: '%upload_directory%'
-
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
@@ -41,3 +33,11 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    redirect.after.login:
+            class: AppBundle\Service\AfterLoginRedirection
+            arguments: ['@router']
+
+    AppBundle\Service\FileUploader:
+            arguments:
+                $directory: '%upload_directory%'
+                $db: '@doctrine'

@@ -10,25 +10,46 @@ namespace AppBundle\Service;
 
 use AppBundle\AppBundle;
 use AppBundle\Entity\User;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use AppBundle\Service\SlugService;
 
 class FileUploader
 {
-    private $targetDirectory;
+    private $directory;
 
-    public function __construct()
+    private $db;
+
+    /**
+     * @return mixed
+     */
+    public function getDb()
     {
-        $this->targetDirectory = $this->getTargetDirectory();
+        return $this->db;
     }
 
-    public function upload(UploadedFile $file, $directory)
+    /**
+     * @param mixed $db
+     * @return FileUploader
+     */
+    public function setDb($db)
+    {
+        $this->db = $db;
+        return $this;
+    }
+
+    public function __construct(RegistryInterface $db, $directory)
+    {
+
+        $this->directory = $directory;
+        $this->db = $db;
+    }
+
+    public function upload(UploadedFile $file, $underDir)
     {
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
-        $this->setTargetDirectory($directory);
-
-        $file->move($this->getTargetDirectory(), $fileName);
+        $file->move($this->getDirectory($underDir), $fileName);
 
         return $fileName;
     }
@@ -45,36 +66,38 @@ class FileUploader
 
     public function insertUser($valueMdp, $idCompany, $fileUsers)
     {
-        $users = $fileUsers;
-        $slug = new SlugService();
-        for($i = 0; $i < count($users); $i++) {
-            foreach ($users as $key => $user) {
-                if (!in_array('mail', $arrayMail))
-                {
+        // for destroy twins
+        $listEmails = [];
+        $slugService = new SlugService();
 
-                }
-
+        for($i = 0; $i < count($fileUsers); $i++) {
+            if (!in_array($fileUsers[$i][2], $listEmails)) {
                 $newUser = new User();
-                $newUser->setFirstName($user[0]);
-                $newUser->setLastName($user[1]);
-                $newUser->setEmail($user[2]);
+                $newUser->setFirstName($fileUsers[$i][0]);
+                $newUser->setLastName($fileUsers[$i][1]);
+                $newUser->setEmail($fileUsers[$i][2]);
                 $newUser->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT));
                 $newUser->setStatus(3);
+                $newUser->setMood(0);
                 $newUser->setIsActive(0);
                 $newUser->setCompany($idCompany);
-                $newUser->setSlug($slug->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()));
+                $newUser->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()));
+                $listEmails[$i] = $fileUsers[$i][2];
+                $this->getDb()->getManager()->persist($newUser);
             }
         }
-        return $newUser;
+        $this->getDb()->getManager()->flush();
+
+        return " utilisateurs sont créés";
     }
 
-    public function getTargetDirectory()
+    public function getDirectory($underDir)
     {
-        return $this->targetDirectory;
+        return $this->directory . '/' . $underDir;
     }
 
-    public function setTargetDirectory($directory)
+    public function setDirectory($directory)
     {
-        return $this->targetDirectory  = "uploads/$directory";
+        return $this->directory  = $directory;
     }
 }
