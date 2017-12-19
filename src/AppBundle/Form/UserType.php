@@ -3,10 +3,11 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Language;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\LanguageType;
 
 class UserType extends AbstractType
 {

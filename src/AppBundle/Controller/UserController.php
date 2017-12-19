@@ -35,10 +35,9 @@ class UserController extends Controller
         }
         $projects = $user->getTeams();
         for ($i = 0; $i < count($projects); $i++) {
-            $TwigStatus = $statusProject->getStatusTwig($projects[$i]->getStatus());
-            $projects[$i]->setStatus(['class' => $TwigStatus['class'], 'text' => $TwigStatus['text']]);
+            $twigStatus = $statusProject->getStatusTwig($projects[$i]->getStatus());
+            $projects[$i]->setStatus(['class' => $twigStatus['class'], 'text' => $twigStatus['text']]);
         }
-
         $company = $this->getUser()->getCompany();
 
         if ($this->getUser()->getStatus() !== 1) {
@@ -61,20 +60,28 @@ class UserController extends Controller
      * @Security("user.getIsActive() == true")
      *
      */
-    public function showCompanyAction(Company $company)
+    public function showCompanyAction(Company $company, StatusProject $statusProject)
     {
         $user = $this->getUser();
         /** @var Company $company */
         if ($user->getStatus() !== 1) {
             $company = $this->getUser()->getCompany();
-
         }
         $nbHappySalarie = count($company->getUsers());
         $em = $this->getDoctrine()->getManager();
         $skillInCompany = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
         $refHappySens = $em->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
-        return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens,));
+        $projects = $em->getRepository('AppBundle:Company')->getProjectsInCompany($company->getId());
 
+        if (count($projects) > 0) {
+            for ($i = 0; $i < count($projects); $i++) {
+                $project = $em->getRepository('AppBundle:Project')->findBy(array('id' => $projects[$i]['id']));
+                $projects[$i]['nbLike'] = count($project[0]->getLikeProjects());
+                $twigStatus = $statusProject->getStatusTwig($projects[$i]['status']);
+                $projects[$i]['status'] =  $twigStatus;
+            }
+        }
+        return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens, 'projects' => $projects));
     }
 
     /**
@@ -110,7 +117,6 @@ class UserController extends Controller
     public function editCompanyAction(Request $request, Company $company, SlugService $slugService)
     {
         if ($this->getUser()->getStatus() !== 1) {
-
             $company = $this->getUser()->getCompany();
         }
         $user = $this->getUser();
