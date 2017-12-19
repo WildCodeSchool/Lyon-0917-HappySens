@@ -77,28 +77,35 @@ class AdminController extends Controller
             $fileName = $fileUploader->upload($logo, "photoCompany");
             $company->setLogo($fileName);
 
-            $users = $fileUploader->transformCSV('uploads/csvFiles/' . $company->getFileUsers());
-
-            for($i = 0; $i < count($users); $i++) {
-                $newUser = new User();
-                foreach ($users as $key => $user) {
-                    $newUser->setFirstName($user[0]);
-                    $newUser->setLastName($user[1]);
-                    $newUser->setEmail($user[2]);
-                    $newUser->setPassword(password_hash('1234', PASSWORD_BCRYPT));
-                    $newUser->setStatus(3);
-                    $newUser->setIsActive(0);
-                    $newUser->setCompany($company->getId());
-
-                    $newUser->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()));
-                }
-                $company->addUser($newUser);
-            }
-
             $company->setSlug($slugService->slugify($company->getName()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
+
+            // Users
+            $idCompany = $this->getDoctrine()->getRepository(Company::class)->find($company->getId());
+            $db = $this->getDoctrine()->getManager();
+            $users = $fileUploader->transformCSV('uploads/csvFiles/' . $company->getFileUsers());
+            $newUser = [];
+            $listEmails = [];
+            for($i = 0; $i < count($users); $i++) {
+                if (!in_array($users[$i][2], $listEmails)) {
+                    $newUser[$i] = new User();
+                    for ($j = 0; $j < count($users[$i]); $j++) {
+                        $newUser[$i]->setFirstName($users[$i][0]);
+                        $newUser[$i]->setLastName($users[$i][1]);
+                        $newUser[$i]->setEmail($users[$i][2]);
+                        $newUser[$i]->setPassword(password_hash('1234', PASSWORD_BCRYPT));
+                        $newUser[$i]->setStatus(3);
+                        $newUser[$i]->setIsActive(0);
+                        $newUser[$i]->setCompany($idCompany);
+                        $newUser[$i]->setSlug($slugService->slugify($newUser[$i]->getFirstName() . ' ' . $newUser[$i]->getLastName()));
+                        $listEmails[$i] = $users[$i][2];
+                    }
+                    $db->persist($newUser[$i]);
+                }
+            }
+            $db->flush();
 
             return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
         }

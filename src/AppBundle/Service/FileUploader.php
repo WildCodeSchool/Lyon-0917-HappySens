@@ -49,6 +49,11 @@ class FileUploader
         $slug = new SlugService();
         for($i = 0; $i < count($users); $i++) {
             foreach ($users as $key => $user) {
+                if (!in_array('mail', $arrayMail))
+                {
+
+                }
+
                 $newUser = new User();
                 $newUser->setFirstName($user[0]);
                 $newUser->setLastName($user[1]);

@@ -94,7 +94,7 @@ class Company
     private $logo;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="company", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="User", mappedBy="company", cascade={"persist"})
      */
     private $users;
 
