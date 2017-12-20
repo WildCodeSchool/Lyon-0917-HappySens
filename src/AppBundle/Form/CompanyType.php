@@ -23,8 +23,8 @@ class CompanyType extends AbstractType
             ->add('threeCriteria')
             ->add('location')
             ->add('quality')
-            ->add('fileUsers', FileType::class)
-            ->add('logo', FileType::class);
+            ->add('fileUsers', FileType::class, ['mapped' => false])
+            ->add('logo', FileType::class, ['mapped' => false]);
     }
     
     /**
