@@ -16,29 +16,28 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('firstName')
-            ->add('lastName')
-            ->add('phone')
-            ->add('email')
-            ->add('status')
-            ->add('birthdate')
-            ->add('photo')
-            ->add('biography')
-            ->add('slogan')
-            ->add('password')
-            ->add('mood')
-            ->add('job')
-            ->add('workplace')
-            ->add('nativeLanguage')
-            ->add('languagesUser', EntityType::class, [
-            'class' => Language::class,
-            'required' => false,
-            'empty_data' => null,
-            'multiple' => true,
-        ])
-            ->add('company')
-            ->add('isActive');
+        $builder->add('firstName')
+                ->add('lastName')
+                ->add('phone')
+                ->add('email')
+                ->add('status')
+                ->add('birthdate')
+                ->add('photo')
+                ->add('biography')
+                ->add('slogan')
+                ->add('password')
+                ->add('mood')
+                ->add('job')
+                ->add('workplace')
+                ->add('nativeLanguage')
+                ->add('languagesUser', EntityType::class, [
+                    'class' => Language::class,
+                    'required' => true,
+                    'empty_data' => null,
+                    'multiple' => true,
+                ])
+                ->add('company')
+                ->add('isActive');
     }
     
     /**
