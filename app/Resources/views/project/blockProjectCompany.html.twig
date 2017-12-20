@@ -20,8 +20,12 @@
                 <div>
                     <a href="{{ path('UserProfil', { 'slug': project.slug }) }}">
                         <div class="chip left">
-                            <img src="{{project.photo  }}" alt="photo profil {{ project.firstName}} {{  project.lastName }}"> <!-- notice the "circle" class -->
-                            <span class="black-text">{{ project.firstName}} {{  project.lastName }}e</span>
+                            {% if project.photo is null %}
+                                <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                            {% else %}
+                                <img src="{{ asset('uploads/photoCompany/' ~ project.photo) }}" alt="profile image" class="circle responsive-img">
+                            {% endif %}
+                            <span class="black-text">{{ project.firstName}} {{  project.lastName }}</span>
                         </div>
                     </a>
                 </div>
@@ -38,7 +42,11 @@
                     <div>
                         <a href="{{ path('UserProfil', { 'slug': project.slug }) }}">
                             <div class="chip left">
-                                <img src="{{project.photo  }}" alt="photo profil {{ project.firstName}} {{  project.lastName }}"> <!-- notice the "circle" class -->
+                                {% if project.photo is null %}
+                                    <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                {% else %}
+                                    <img src="{{ asset('uploads/photoCompany/' ~ project.photo) }}" alt="profile image" class="circle responsive-img">
+                                {% endif %}
                                 <span class="black-text">{{ project.firstName}} {{  project.lastName }}e</span>
                             </div>
                         </a>

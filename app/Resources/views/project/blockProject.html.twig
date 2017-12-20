@@ -21,7 +21,11 @@
                 <div>
                     <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">
                         <div class="chip">
-                            <img src="{{ user.photo }}" alt="photo profil {{ user.firstname }} {{ user.lastname }}" class="circle">
+                            {% if user.photo is null %}
+                                <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                            {% else %}
+                                <img src="{{ asset('uploads/photoCompany/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                            {% endif %}
                             <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
                         </div>
                     </a>
@@ -39,8 +43,11 @@
                     <div>
                         <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">
                             <div class="chip left">
-                                <img src="{{ user.photo }}" alt="photo profil {{ user.firstname }} {{ user.lastname }}" class="circle">
-                                <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
+                                {% if user.photo is null %}
+                                    <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                {% else %}
+                                    <img src="{{ asset('uploads/photoCompany/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                                {% endif %}                                     <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
                             </div>
                         </a>
                     </div>
