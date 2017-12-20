@@ -51,7 +51,7 @@ class UserType extends AbstractType
             'multiple' => true,
         ])
             ->add('company')
-            ->add('isActive');
+            ->add('isActive', HiddenType::class);
     }
     
     /**

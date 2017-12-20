@@ -2,10 +2,21 @@
 
 {% block content %}
     <div class="container">
-        <h1>User edit</h1>
 
         {{ form_start(edit_form) }}
-        <div class="step1">
+
+        <div id="step1" >
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="col s12 center">
+                        <a href="#!" class="breadcrumb blue pink-text" onclick="goStep1()">Informations personnelles</a>
+                        <a href="#!" class="breadcrumb  pink-text" onclick="goStep2()">Informations professionnelles</a>
+                        <a href="#!" class="breadcrumb  pink-text" onclick="goStep3()">Informations Happy Sens</a>
+                    </div>
+                </div>
+            </nav>
+            <h1>Informations personnelles</h1>
+
             <div class="row">
 
                 <div class="col s12">
@@ -102,9 +113,22 @@
                         {{ form_errors(edit_form.birthdate) }}
                     </div>
                 </div>
+                <a class="waves-effect waves-light btn" onclick="goStep2()" >suivant</a>
             </div>
         </div>
-        <div class="step2">
+
+        <div id="step2" class="hide">
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="col s12 center">
+                        <a href="#!" class="breadcrumb  pink-text" onclick="goStep1()">Informations personnelles</a>
+                        <a href="#!" class="breadcrumb blue pink-text" onclick="goStep2()">Informations professionnelles</a>
+                        <a href="#!" class="breadcrumb  pink-text" onclick="goStep3()">Informations Happy Sens</a>
+                    </div>
+                </div>
+            </nav>
+            <h1>Informations professionnelles</h1>
+
             <div class="col s12">
                 <h5 class="titleInscription pink-text text-darken-2">Job :</h5>
                 <div class="input-field col s12">
@@ -150,9 +174,21 @@
                     </div>
                 </div>
             </div>
+            <a class="waves-effect waves-light btn" onclick="goStep1()" >retour</a>
+            <a class="waves-effect waves-light btn" onclick="goStep3()" >suivant</a>
 
         </div>
-        <div class="step3">
+        <div id="step3" class="hide">
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="col s12 center">
+                        <a href="#!" class="breadcrumb  pink-text" onclick="goStep1()">Informations personnelles</a>
+                        <a href="#!" class="breadcrumb  pink-text" onclick="goStep2()">Informations professionnelles</a>
+                        <a href="#!" class="breadcrumb blue pink-text" onclick="goStep3()">Informations Happy Sens</a>
+                    </div>
+                </div>
+            </nav>
+            <h1>Informations Happy Sens</h1>
             <div class="col s12">
                 <h5 class="titleInscription pink-text text-darken-2">Biographie :</h5>
                 <div class="input-field col s12">
@@ -225,11 +261,16 @@
                     </div>
                 </div>
             </div>
+            <a class="waves-effect waves-light btn" onclick="goStep2()" >retour</a>
 
+            <input class="waves-effect waves-light btn" type="submit" value="Envoyer"/>
         </div>
 
-        <input type="submit" value="Edit"/>
         {{ form_end(edit_form) }}
 
     </div>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/script/stepForm.js') }}"></script>
 {% endblock %}
