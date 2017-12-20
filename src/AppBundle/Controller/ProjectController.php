@@ -6,6 +6,7 @@ use AppBundle\Entity\Project;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
 use DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -17,6 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Admin controller.
  *
  * @Route("project")
+ * @Security("user.getIsActive() === true")
  */
 class ProjectController extends Controller
 {
@@ -27,6 +29,7 @@ class ProjectController extends Controller
      *
      * @Route("/new", name="project_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_EMPLOYE') && user.getIsActive() === true")
      */
     public function newAction(Request $request, FileUploader $fileUploader, SlugService $slugService)
     {

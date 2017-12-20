@@ -35,9 +35,7 @@ class UserType extends AbstractType
                     'required' => true,
                     'empty_data' => null,
                     'multiple' => true,
-                ])
-                ->add('company')
-                ->add('isActive');
+                ]);
     }
     
     /**

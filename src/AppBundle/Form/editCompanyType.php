@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CompanyType extends AbstractType
+class editCompanyType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -23,10 +23,10 @@ class CompanyType extends AbstractType
             ->add('threeCriteria')
             ->add('location')
             ->add('quality')
-            ->add('fileUsers', FileType::class)
-            ->add('logo', FileType::class);
+            ->add('fileUsers', FileType::class, array('mapped' => false))
+            ->add('logo', FileType::class, array('mapped' => false, 'required' => false));
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -34,7 +34,7 @@ class CompanyType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Company',
-            'users' => 'AppBundle\Entity\User'
+            'users' => 'AppBundle\Entity\User',
         ));
     }
 

@@ -69,8 +69,11 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $csvFile = $company->getFileUsers();
-            $fileName = $fileUploader->upload($csvFile, "csvFiles");
+           dump($form);
+           dump($company);
+
+            $myFile = $company->getFileUsers();
+            $fileName = $fileUploader->upload($myFile, "csvFiles");
             $logo = $company->getLogo();
             $logoName = $fileUploader->upload($logo, "photoCompany");
 
@@ -84,7 +87,6 @@ class AdminController extends Controller
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
             $fileUploader->insertUser("1234", $em->find(Company::class, $company->getId()), $fileUsers);
             unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
-
             return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
         }
 
