@@ -137,4 +137,13 @@ class UserHasSkill
     {
         return $this->skill;
     }
+//
+//    public function __toString()
+//    {
+//
+//        $name = $this->getSkill();
+//
+//        return ''.$name;
+//    }
+
 }

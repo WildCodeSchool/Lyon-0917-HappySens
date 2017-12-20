@@ -94,7 +94,7 @@ class Company
     private $logo;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="company")
+     * @ORM\OneToMany(targetEntity="User", mappedBy="company", cascade={"persist"})
      */
     private $users;
 
@@ -116,6 +116,29 @@ class Company
      *
      */
     private $languagesCompany;
+
+    /**
+     * @var string
+     */
+    private $fileUsers;
+
+    /**
+     * @return string
+     */
+    public function getFileUsers()
+    {
+        return $this->fileUsers;
+    }
+
+    /**
+     * @param string $fileUsers
+     * @return Company
+     */
+    public function setFileUsers($fileUsers)
+    {
+        $this->fileUsers = $fileUsers;
+        return $this;
+    }
 
     /**
      * Constructor

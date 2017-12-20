@@ -3,6 +3,8 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Language;
+use AppBundle\Entity\Skill;
+use AppBundle\Entity\UserHasSkill;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
@@ -50,6 +52,15 @@ class UserType extends AbstractType
             'empty_data' => null,
             'multiple' => true,
         ])
+            ->add('userskills', EntityType::class, [
+                'class' => UserHasSkill::class,
+                'choice_label' => 'skill',
+//                'choices' => $user->getUserskills(),
+                'required' => false,
+                'empty_data' => null,
+                'multiple' => true,
+            ])
+
             ->add('company')
             ->add('isActive', HiddenType::class);
     }

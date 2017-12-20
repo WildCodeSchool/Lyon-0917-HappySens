@@ -121,7 +121,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="nativeLanguage", type="string", length=50, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Language", inversedBy="nativeUser")
      */
     private $nativeLanguage;
 

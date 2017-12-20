@@ -261,6 +261,32 @@
                     </div>
                 </div>
             </div>
+            <div class="col s12 m6">
+                <h5 class="titleInscription pink-text text-darken-2">Vos Talents Actuels :</h5>
+                <div class="input-field col s12">
+                    <span class="requireInput">* </span>
+                    {% if (form_errors(edit_form.userskills))  %}
+                        {{ form_widget(edit_form.userskills, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+                        {{ form_widget(edit_form.userskills) }}
+                    {% endif %}
+                    <label for="skill"></label>
+                    <div class="center error">
+                        {{ form_errors(edit_form.userskills) }}
+                    </div>
+                </div>
+                <div>
+                    {% for userHasSkill in  user.userskills %}
+                    <div class="col s12 m6">
+                        <input>{{ userHasSkill.skill.nameSkill }}
+                    </div>
+                    <div class="col s12 m6">
+                        <input type="range" id="test5" min="0" max="5" value="{{ userHasSkill.level }}"/>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
             <a class="waves-effect waves-light btn" onclick="goStep2()" >retour</a>
 
             <input class="waves-effect waves-light btn" type="submit" value="Envoyer"/>

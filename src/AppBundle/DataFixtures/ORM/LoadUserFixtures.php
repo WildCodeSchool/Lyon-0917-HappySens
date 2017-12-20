@@ -51,7 +51,7 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
                     ->setMood(rand(1, 5))
                     ->setJob($faker->jobTitle)
                     ->setWorkplace($faker->city)
-                    ->setNativeLanguage("FR")
+                    ->setNativeLanguage->addLanguagesUser($this->getReference("language-" . $language))
                     ->setFacebook($faker->url)
                     ->setTwitter($faker->url)
                     ->setLinkedin($faker->url)
