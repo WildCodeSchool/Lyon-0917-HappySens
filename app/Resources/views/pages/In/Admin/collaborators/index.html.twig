@@ -44,6 +44,7 @@
                                 {% for language in user.languagesUser %}
                                     {{ language }}
                                 {% endfor %}
+                            </li>
                             <li><span>Tel :</span> {{ user.phone }}</li>
                             <li><span>Email :</span> {{ user.email }}</li>
                             <li><span>Date :</span> {% if user.birthdate %}{{ user.birthdate|date('Y-m-d H:i:s') }}{% endif %}</li>

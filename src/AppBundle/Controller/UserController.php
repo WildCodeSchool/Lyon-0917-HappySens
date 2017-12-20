@@ -95,7 +95,6 @@ class UserController extends Controller
 
 
         if ($this->getUser()->getStatus() !== 1) {
-
             $user = $this->getUser();
         }
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
@@ -123,10 +122,10 @@ class UserController extends Controller
         $user = $this->getUser();
         $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
         $editForm->remove('slug');
+        $editForm->remove('fileUsers');
         $editForm->handleRequest($request);
         if ($user->getStatus() !== 1) {
             if ($user->getStatus() !== 2) {
-
                 throw new AccessDeniedException("Fuis pauvre fou !!");
             }
         }
@@ -135,7 +134,7 @@ class UserController extends Controller
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('Company_edit', array('slug' => $company->getSlug()));
         }
-        return $this->render('pages/In/company/editCompany.html.twig', array('company' => $company, 'edit_form' => $editForm->createView(),));
+        return $this->render('pages/In/company/editCompany.html.twig', array('company' => $company, 'edit_form' => $editForm->createView()));
     }
 
 }

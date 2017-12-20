@@ -1,16 +1,17 @@
 {% extends 'baseIn.html.twig' %}
 
 {% block content %}
-    <h1>Company creation</h1>
-
-    {{ form_start(form) }}
+    <div class="container">
+        <h1>Company creation</h1>
+        <ul>
+            <li>
+                <a href="{{ path('listingCompany') }}">Toutes les entreprises</a>
+            </li>
+        </ul>
+        {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('listingCompany') }}">Toutes les entreprises</a>
-        </li>
-    </ul>
+    </div>
 {% endblock %}
