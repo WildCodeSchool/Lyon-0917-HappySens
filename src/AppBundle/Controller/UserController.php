@@ -40,6 +40,10 @@ class UserController extends Controller
         }
         $company = $this->getUser()->getCompany();
 
+        if ($this->getUser()->getStatus() === 4) {
+            return $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', array('user' => $user));
+        }
+
         if ($this->getUser()->getStatus() !== 1) {
             if ($company !== $user->getCompany()) {
                 throw new AccessDeniedException("tu n'as rien a foutre ici");
@@ -48,6 +52,7 @@ class UserController extends Controller
             return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects,));
 
         }
+
             return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects,));
 
     }

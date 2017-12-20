@@ -2,10 +2,10 @@
     {# Others #}
     <div class="col s4">
         <div class="row">
-            <div class="card-panel amber darken-2 white-text">
+            <div class="card-panel pink darken-2 white-text">
                 <h5 class="titleSecond">A propos de moi </h5>
                 <p>
-
+                    {{ user.biography }}
                 </p>
             </div>
             <div>
@@ -15,7 +15,7 @@
                     <div class="row valign-wrapper">
                         <span class="center titleSecond">
                             <b>Le bonheur au travail c'est ...</b>
-                            {{ user.slogan }}
+                            {{ user.slogan }}.
                         </span>
                     </div>
                 </li>
@@ -52,7 +52,7 @@
                 </li>
             </ul>
             <div>
-                <h5 class="titleSecond">Mes passions et talents cachés :</h5>
+                <h5 class="titleSecond">Mes passions et talents :</h5>
             </div>
             <ul class="collection">
                 <li class="collection-item">
@@ -78,7 +78,7 @@
     <div class="col s8">
         <div class="row">
             <section class="PC_blockProject">
-                {{ include('project/blockProject.html.twig') }}
+                {#{{ include('partials/components/PC_blockProject.html.twig') }}#}
             </section>
         </div>
     </div>
