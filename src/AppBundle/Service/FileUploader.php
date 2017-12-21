@@ -73,15 +73,19 @@ class FileUploader
         for($i = 0; $i < count($fileUsers); $i++) {
             if (!in_array($fileUsers[$i][2], $listEmails)) {
                 $newUser = new User();
-                $newUser->setFirstName($fileUsers[$i][0]);
-                $newUser->setLastName($fileUsers[$i][1]);
-                $newUser->setEmail($fileUsers[$i][2]);
-                $newUser->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT));
-                $newUser->setStatus(3);
-                $newUser->setMood(0);
-                $newUser->setIsActive(0);
-                $newUser->setCompany($idCompany);
-                $newUser->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()));
+                $newUser->setFirstName($fileUsers[$i][0])
+                        ->setLastName($fileUsers[$i][1])
+                        ->setEmail($fileUsers[$i][2])
+                        ->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT))
+                        ->setMood(0)
+                        ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
+                        ->setCompany($idCompany)
+                        ->setIsActive(0);
+                if ($i === 0) {
+                    $newUser->setStatus(2);
+                } else {
+                    $newUser->setStatus(3);
+                }
                 $listEmails[$i] = $fileUsers[$i][2];
                 $this->getDb()->getManager()->persist($newUser);
             }

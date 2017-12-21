@@ -388,6 +388,8 @@ class Project
     public function removeLikeProject(\AppBundle\Entity\User $likeProject)
     {
         $this->likeProjects->removeElement($likeProject);
+
+        return $this;
     }
 
     /**
@@ -412,6 +414,8 @@ class Project
     public function removeTeamProject(\AppBundle\Entity\User $teamProject)
     {
         $this->teamProject->removeElement($teamProject);
+
+        return $this;
     }
 
     /**

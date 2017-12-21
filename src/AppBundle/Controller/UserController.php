@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Company;
+use AppBundle\Service\FileUploader;
 use AppBundle\Service\StatusProject;
 use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -11,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
@@ -101,11 +103,25 @@ class UserController extends Controller
         $editForm->remove('slug');
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+
+
             $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
+            if ($user->getIsActive() == false) {
+                $user->setIsActive(1);
+            }
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('User_edit', array('slug' => $user->getSlug()));
+
+            if ($this->getUser()->getIsActive() == true) {
+                return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
+
+            }
+            else {
+                return $this->redirectToRoute('User_edit', array('slug' => $user->getSlug()));
+
+            }
         }
-        return $this->render('pages/In/collaborators/editUser.html.twig', array('user' => $user, 'edit_form' => $editForm->createView(),));
+        return $this->render('pages/In/collaborators/editUser.html.twig', array('user' => $user, 'edit_form' => $editForm->createView()));
     }
 
     /**
@@ -114,14 +130,15 @@ class UserController extends Controller
      * @Route("/{slug}/companyEdit", name="Company_edit")
      * @Method({"GET", "POST"})
      */
-    public function editCompanyAction(Request $request, Company $company, SlugService $slugService)
+    public function editCompanyAction(Request $request, Company $company, SlugService $slugService, FileUploader $fileUploader)
     {
         if ($this->getUser()->getStatus() !== 1) {
             $company = $this->getUser()->getCompany();
         }
         $user = $this->getUser();
-        $editForm = $this->createForm('AppBundle\Form\CompanyType', $company);
+        $editForm = $this->createForm('AppBundle\Form\editCompanyType', $company);
         $editForm->remove('slug');
+        $company->setFileUsers("");
         $editForm->remove('fileUsers');
         $editForm->handleRequest($request);
         if ($user->getStatus() !== 1) {
@@ -130,9 +147,20 @@ class UserController extends Controller
             }
         }
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if(!empty($editForm['logo']->getData())) {
+                unlink($fileUploader->getDirectory("photoCompany") . '/' .$company->getLogo());
+                $logo = $editForm['logo']->getData();
+                $logoName = $fileUploader->upload($logo, "photoCompany");
+                $company->setLogo($logoName);
+            }
             $company->setSlug($slugService->slugify($company->getName()));
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('Company_edit', array('slug' => $company->getSlug()));
+            if ($this->getUser()->getIsActive() == false || $this->getUser()->getIsActive() !== 1) {
+                return $this->redirectToRoute('User_edit', array('slug' => $this->getUser()->getSlug()));
+            }
+            else {
+                return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
+            }
         }
         return $this->render('pages/In/company/editCompany.html.twig', array('company' => $company, 'edit_form' => $editForm->createView()));
     }

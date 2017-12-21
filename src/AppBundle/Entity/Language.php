@@ -46,7 +46,11 @@ class Language
      *
      */
     private $users;
-
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="nativeLanguage")
+     *
+     */
+    private $nativeUser;
     /**
      * @ORM\ManyToMany(targetEntity="Project", mappedBy="languagesProject")
      *
@@ -158,6 +162,22 @@ class Language
     }
 
     /**
+     * @return mixed
+     */
+    public function getNativeUser()
+    {
+        return $this->nativeUser;
+    }
+
+    /**
+     * @param mixed $nativeUser
+     */
+    public function setNativeUser($nativeUser)
+    {
+        $this->nativeUser = $nativeUser;
+    }
+
+    /**
      * Get users
      *
      * @return \Doctrine\Common\Collections\Collection
@@ -240,27 +260,8 @@ class Language
         return $this->getTitreLanguage();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getNativeUser()
-    {
-        return $this->nativeUser;
-    }
-
-    /**
-     * @param mixed $nativeUser
-     * @return Language
-     */
-    public function setNativeUser($nativeUser)
-    {
-        $this->nativeUser = $nativeUser;
-        return $this;
-    }
 
 
-
-    /**
      * Add nativeUser
      *
      * @param \AppBundle\Entity\User $nativeUser
