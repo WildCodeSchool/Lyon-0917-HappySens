@@ -3,9 +3,6 @@
         <div class="nav-wrapper white">
             <a href="{{ path('homepage') }}" class="brand-logo center"><img src="{{ asset('assets/images/logo2.png') }}" alt="LOGO" width="90px" title="Acceuil"></a>
             <ul class="right">
-                {% if is_granted('ROLE_EMPLOYE') %}
-                    <li title="Créer un projet"><a href="{{ path('project_new') }}"><span class="linkNavSide"><i class="material-icons">add</i></span></a></li>
-                {% endif %}
                 <li title="Vos notifications">
                     <a class="dropdown-button linkNavSide"  style="display: flex;" href="#!" data-activates="dropdownNotif">
                         <i class="material-icons">notifications</i>
@@ -31,7 +28,7 @@
             <ul id="slide-out" class="side-nav">
                 <li>
                     <div class="user-view">
-                        <a href="{{ path('UserProfil', { 'slug': app.user.slug  }) }}" title="Voir votre profil">
+                        <a href="{{ path('profilHappyCoach', { 'slug': app.user.slug  }) }}" title="Voir votre profil">
                             <div class="background  blue darken-2 white-text">
                             </div>
                             <img class="circle" src="{{ app.user.photo }}">
@@ -48,10 +45,7 @@
                 <li><a class="waves-effect"><i class="material-icons">folder_special</i>Les projets suivis</a></li>
                 <li><a class="waves-effect"><i class="material-icons">folder</i>Vos projets terminés</a></li>
                 <li><div class="divider"></div></li>
-                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">store</i>Entreprise :</a></li>
-                <li><a class="waves-effect" href="{{ path('CompanyProfil', {'slug' : app.user.company.slug}) }}"><i class="material-icons">domain</i>{{ app.user.company.name }}</a></li>
-                <li><div class="divider"></div></li>
-                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">link</i>Liens pratiques :</a></li>
+                 <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">link</i>Liens pratiques :</a></li>
                 <li><a class="waves-effect" href="{{ path('User_edit', {'slug' : app.user.slug}) }}"><i class="material-icons">create</i>Modifier votre profil</a></li>
                 <li><a class="waves-effect" href="{{ path('logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
                 <li><a href="https://happiness-time.fr/" target="_blank" class="waves-effect"><i class="material-icons">message</i>Blog</a></li>

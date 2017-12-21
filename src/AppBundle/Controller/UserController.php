@@ -27,32 +27,28 @@ class UserController extends Controller
     public function showUserAction(User $user, StatusProject $statusProject)
     {
 
-        if (null !== $user->getAuthorProject()) {
-            $contact = $user->getAuthorProject()->getStatus();
-            $statusTwig = $statusProject->getStatusTwig($contact);
-        } else {
-            $statusTwig = [];
-        }
-        $projects = $user->getTeams();
-        for ($i = 0; $i < count($projects); $i++) {
-            $twigStatus = $statusProject->getStatusTwig($projects[$i]->getStatus());
-            $projects[$i]->setStatus(['class' => $twigStatus['class'], 'text' => $twigStatus['text']]);
-        }
-        $company = $this->getUser()->getCompany();
-
-        if ($this->getUser()->getStatus() === 4) {
-            return $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', array('user' => $user));
-        }
-
-        if ($this->getUser()->getStatus() !== 1) {
-            if ($company !== $user->getCompany()) {
-                throw new AccessDeniedException("tu n'as rien a foutre ici");
+            if (null !== $user->getAuthorProject()) {
+                $contact = $user->getAuthorProject()->getStatus();
+                $statusTwig = $statusProject->getStatusTwig($contact);
+            } else {
+                $statusTwig = [];
             }
+            $projects = $user->getTeams();
+            for ($i = 0; $i < count($projects); $i++) {
+                $twigStatus = $statusProject->getStatusTwig($projects[$i]->getStatus());
+                $projects[$i]->setStatus(['class' => $twigStatus['class'], 'text' => $twigStatus['text']]);
+            }
+            $company = $this->getUser()->getCompany();
 
-            return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects,));
+            if ($this->getUser()->getStatus() !== 1) {
+                if ($company !== $user->getCompany()) {
+                    throw new AccessDeniedException("tu n'as rien a foutre ici");
+                }
 
-        }
-            return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects,));
+                return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects));
+
+            }
+            return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects));
 
     }
 
@@ -139,6 +135,36 @@ class UserController extends Controller
             return $this->redirectToRoute('Company_edit', array('slug' => $company->getSlug()));
         }
         return $this->render('pages/In/company/editCompany.html.twig', array('company' => $company, 'edit_form' => $editForm->createView()));
+    }
+
+    /**
+     * Finds and displays a user entity.
+     *
+     * @Route("happycoach/{slug}", name="profilHappyCoach")
+     * @Method("GET")
+     * @Security("user.getIsActive() == true")
+     */
+    public function showHappyCoachAction(User $user, StatusProject $statusProject)
+    {
+
+        if ($this->getUser()->getStatus() === 4) {
+            $statusTwig = [];
+            $projects = $user->getHappyCoachRef();
+            $slug = $user->getSlug();
+            if (null !== count($projects)) {
+                if (count($projects) === 1) {
+                    $contact = $user->getHappyCoachRef()->getStatus();
+                    $statusTwig = $statusProject->getStatusTwig($contact);
+                } else {
+                    for ($i = 0; $i < count($projects); $i++) {
+                        $twigStatus = $statusProject->getStatusTwig($projects[$i]->getStatus());
+                        $projects[$i]->setStatus(['class' => $twigStatus['class'], 'text' => $twigStatus['text']]);
+                        $statusTwig = [];
+                    }
+                }
+            }
+            return $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects, 'slug' => $slug));
+        }
     }
 
 }
