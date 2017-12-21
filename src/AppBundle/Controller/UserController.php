@@ -27,28 +27,28 @@ class UserController extends Controller
     public function showUserAction(User $user, StatusProject $statusProject)
     {
 
-            if (null !== $user->getAuthorProject()) {
-                $contact = $user->getAuthorProject()->getStatus();
-                $statusTwig = $statusProject->getStatusTwig($contact);
-            } else {
-                $statusTwig = [];
-            }
-            $projects = $user->getTeams();
-            for ($i = 0; $i < count($projects); $i++) {
-                $twigStatus = $statusProject->getStatusTwig($projects[$i]->getStatus());
-                $projects[$i]->setStatus(['class' => $twigStatus['class'], 'text' => $twigStatus['text']]);
-            }
-            $company = $this->getUser()->getCompany();
+        if (null !== $user->getAuthorProject()) {
+            $contact = $user->getAuthorProject()->getStatus();
+            $statusTwig = $statusProject->getStatusTwig($contact);
+        } else {
+            $statusTwig = [];
+        }
+        $projects = $user->getTeams();
+        if (null !== count($projects)) {
+            $projects = $statusProject->getProjectsWithStatus($projects);
+        }
 
-            if ($this->getUser()->getStatus() !== 1) {
-                if ($company !== $user->getCompany()) {
-                    throw new AccessDeniedException("tu n'as rien a foutre ici");
-                }
+        $company = $this->getUser()->getCompany();
 
-                return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects));
-
+        if ($this->getUser()->getStatus() !== 1) {
+            if ($company !== $user->getCompany()) {
+                throw new AccessDeniedException("tu n'as rien a foutre ici");
             }
+
             return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects));
+
+        }
+        return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects));
 
     }
 
@@ -149,21 +149,15 @@ class UserController extends Controller
 
         if ($this->getUser()->getStatus() === 4) {
             $statusTwig = [];
-            $projects = $user->getHappyCoachRef();
-            $slug = $user->getSlug();
-            if (null !== count($projects)) {
-                if (count($projects) === 1) {
-                    $contact = $user->getHappyCoachRef()->getStatus();
-                    $statusTwig = $statusProject->getStatusTwig($contact);
-                } else {
-                    for ($i = 0; $i < count($projects); $i++) {
-                        $twigStatus = $statusProject->getStatusTwig($projects[$i]->getStatus());
-                        $projects[$i]->setStatus(['class' => $twigStatus['class'], 'text' => $twigStatus['text']]);
-                        $statusTwig = [];
-                    }
-                }
+            $projectsRef = $user->getHappyCoachRef();
+            if (null !== count($projectsRef)) {
+                $projectsRef = $statusProject->getProjectsWithStatus($projectsRef);
             }
-            return $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects, 'slug' => $slug));
+            $projectsTeam = $user->getTeams();
+            if (null !== count($projectsTeam)) {
+                $projectsTeam = $statusProject->getProjectsWithStatus($projectsTeam);
+            }
+            return $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projectsRef' => $projectsRef, 'projectsTeam' => $projectsTeam));
         }
     }
 
