@@ -53,6 +53,7 @@ class AdminController extends Controller
         return $this->render('pages/In/Admin/company/index.html.twig', array(
             'companies' => $companies,
         ));
+
     }
 
     /**

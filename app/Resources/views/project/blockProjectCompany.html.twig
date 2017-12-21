@@ -6,7 +6,7 @@
         {% for project in projects %}
         <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="{{ asset('assets/images/happysens-montagne.jpg') }}">
+                <img src="{{ asset('uploads/photoProject/' ~ project.photoProject) }}" alt="profile image" class="activator">
             </div>
             <div class="{{ project.status.class }} chipStatus">
                 <span><i class="fa fa-clock-o"></i></span>
@@ -20,7 +20,7 @@
                 <div>
                     <a href="{{ path('UserProfil', { 'slug': project.slug }) }}">
                         <div class="chip left">
-                            {% if project.photo is null %}
+                            {% if project.photo is  null %}
                                 <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                             {% else %}
                                 <img src="{{ asset('uploads/photoCompany/' ~ project.photo) }}" alt="profile image" class="circle responsive-img">

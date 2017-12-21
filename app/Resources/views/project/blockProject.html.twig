@@ -24,7 +24,7 @@
                             {% if user.photo is null %}
                                 <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                             {% else %}
-                                <img src="{{ asset('uploads/photoCompany/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                                <img src="{{ user.photo }}" alt="profile image" class="circle responsive-img">
                             {% endif %}
                             <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
                         </div>
@@ -47,7 +47,8 @@
                                     <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                                 {% else %}
                                     <img src="{{ asset('uploads/photoCompany/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
-                                {% endif %}                                     <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
+                                {% endif %}
+                                <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
                             </div>
                         </a>
                     </div>
