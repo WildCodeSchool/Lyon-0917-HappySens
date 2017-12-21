@@ -92,7 +92,7 @@ class DefaultController extends Controller
      */
     public function testAction(Request $request)
     {
-        return $this->render('pages/template/templates_listing.html.twig', [
+        return $this->render('pages/template/email/template_mail.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }

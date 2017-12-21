@@ -121,7 +121,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="nativeLanguage", type="string", length=50, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Language", inversedBy="nativeUser")
      */
     private $nativeLanguage;
 
@@ -143,7 +143,7 @@ class User implements UserInterface, \Serializable
     private $teams;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Language", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="Language", inversedBy="users")
      *
      */
     private $languagesUser;
@@ -572,24 +572,6 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getLanguage()
-    {
-        return $this->language;
-    }
-
-    /**
-     * @param mixed $language
-     * @return User
-     */
-    public function setLanguage($language)
-    {
-        $this->language = $language;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getSkills()
     {
         return $this->skills;
@@ -604,8 +586,6 @@ class User implements UserInterface, \Serializable
         $this->skills = $skills;
         return $this;
     }
-
-
 
     /**
      * Constructor

@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
+use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -52,15 +53,15 @@ class AdminController extends Controller
         return $this->render('pages/In/Admin/company/index.html.twig', array(
             'companies' => $companies,
         ));
+
     }
 
     /**
      * Creates a new company entity.
-     *
      * @Route("/newCompany", name="newCompany")
      * @Method({"GET", "POST"})
      */
-    public function newCompanyAction(Request $request, SlugService $slugService)
+    public function newCompanyAction(Request $request, FileUploader $fileUploader, SlugService $slugService)
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
@@ -68,11 +69,24 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+           dump($form);
+           dump($company);
+
+            $myFile = $company->getFileUsers();
+            $fileName = $fileUploader->upload($myFile, "csvFiles");
+            $logo = $company->getLogo();
+            $logoName = $fileUploader->upload($logo, "photoCompany");
+
+            $company->setLogo($logoName);
+            $company->setFileUsers($fileName);
             $company->setSlug($slugService->slugify($company->getName()));
+            $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
 
+            $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
+            $fileUploader->insertUser("1234", $em->find(Company::class, $company->getId()), $fileUsers);
+            unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
             return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
         }
 
@@ -130,9 +144,11 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('AppBundle:User')->findAll();
+        $company = $em->getRepository('AppBundle:Company')->findAll();
 
         return $this->render('pages/In/Admin/collaborators/index.html.twig', array(
             'users' => $users,
+            'company' => $company,
         ));
     }
 
@@ -213,9 +229,11 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $projects = $em->getRepository('AppBundle:Project')->findAll();
+        $company = $em->getRepository('AppBundle:Company')->findAll();
 
         return $this->render('pages/In/Admin/projects/index.html.twig', array(
             'projects' => $projects,
+            'company' => $company,
         ));
     }
 

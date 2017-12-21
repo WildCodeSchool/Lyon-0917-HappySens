@@ -4,16 +4,22 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
+use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
 use DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Admin controller.
  *
  * @Route("project")
+ * @Security("user.getIsActive() === true")
  */
 class ProjectController extends Controller
 {
@@ -24,8 +30,9 @@ class ProjectController extends Controller
      *
      * @Route("/new", name="project_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_EMPLOYE') && user.getIsActive() === true")
      */
-    public function newAction(Request $request, SlugService $slugService)
+    public function newAction(Request $request, FileUploader $fileUploader, SlugService $slugService)
     {
         $project = new Project();
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -33,7 +40,6 @@ class ProjectController extends Controller
         $form->remove('author');
         $form->remove('startingDate');
         $form->remove('status');
-        $form->remove('photo');
         $form->remove('likeProjects');
         $form->remove('teamProject');
         $project->setStartingDate(DateTime::createFromFormat ('d/m/Y', date('d/m/Y') ));
@@ -42,10 +48,14 @@ class ProjectController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $project->getPhoto();
+            $fileName = $fileUploader->upload($file, "photoProject");
+            $project->setPhoto($fileName);
             $project->setEndDate(DateTime::createFromFormat ('d/m/Y', $project->getEndDate() ));
-            $em = $this->getDoctrine()->getManager();
             $project->setSlug($slugService->slugify($project->getTitle()));
             $project->setAuthor($user);
+
+            $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
 

@@ -11,7 +11,11 @@
                         <img class="activator" src="{{ asset('assets/images/happysens-time.jpg') }}" height="300px">
                     </div>
                     <div class="card-profile-image">
-                        <img src="{{ company.logo }}" alt="profile image" class="circle z-depth-3 activator">
+                        {% if company.logo is null %}
+                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle z-depth-3 activator">
+                        {% else %}
+                            <img src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="profile image" class="circle responsive-img">
+                        {% endif %}
                     </div>
                     <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light pink darken-2 right"><i class="material material-icons">info_outline</i></a>
 

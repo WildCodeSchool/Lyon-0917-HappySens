@@ -7,7 +7,7 @@
     <div id="AuthorProject">
         <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="{{ asset('assets/images/happysens-cuisine.jpg') }}">
+                <img class="activator" src="{{ asset('uploads/photoProject/' ~ user.authorProject.photo) }}">
             </div>
             <div class="{{ statusTwig.class }} chipStatus">
                 <span><i class="fa fa-clock-o"></i></span>
@@ -21,7 +21,11 @@
                 <div>
                     <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">
                         <div class="chip">
-                            <img src="{{ user.photo }}" alt="photo profil {{ user.firstname }} {{ user.lastname }}" class="circle">
+                            {% if user.photo is null %}
+                                <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                            {% else %}
+                                <img src="{{ user.photo }}" alt="profile image" class="circle responsive-img">
+                            {% endif %}
                             <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
                         </div>
                     </a>
@@ -45,7 +49,11 @@
                     <div>
                         <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">
                             <div class="chip left">
-                                <img src="{{ user.photo }}" alt="photo profil {{ user.firstname }} {{ user.lastname }}" class="circle">
+                                {% if user.photo is null %}
+                                    <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                {% else %}
+                                    <img src="{{ asset('uploads/photoCompany/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                                {% endif %}
                                 <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
                             </div>
                         </a>
@@ -126,6 +134,7 @@
                 <div class="footerReveal">
                     <div class="left">
                         <a href="{{ path('project_show', { 'slug': project.slug }) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
+
                     </div>
                     <div class="right">
                         <a href="#!" onclick="like()">{{ project.likeProjects|length }} <i class="fa fa-heart red-text"></i></a>
