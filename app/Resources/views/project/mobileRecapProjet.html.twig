@@ -21,6 +21,7 @@
                         <p class="secondary-content"><i class="material-icons amber-text text-darken-2">person</i></p>
                     </a>
                 </li>
+                {% if  project.happyCoach%}
                 <li class="collection-item avatar">
                     <a href="/happycoach/{{ project.happyCoach.slug }}">
                         <img src="{{ project.happyCoach.photo }}" alt="" class="circle">
@@ -31,6 +32,16 @@
                         <p class="secondary-content"><i class="material-icons pink-text text-darken-2">group</i></p>
                     </a>
                 </li>
+                {% else %}
+                <li class="collection-item avatar">
+                    <img src="{{ asset('assets/images/placeholder.png') }}" alt="" class="circle">
+                        <div class="black-text">
+                            <span class="titleSecond">HappyCoach référent :</span>
+                            <p>Pas encore designé</p>
+                        </div>
+                        <p class="secondary-content"><i class="material-icons pink-text text-darken-2">group</i></p>
+                </li>
+                {% endif%}
                 <li class="collection-item avatar">
                     <a href="/company/{{ project.author.company.slug }}">
                         <img src="{{ project.author.company.logo }}" alt="" class="circle">
@@ -50,16 +61,29 @@
         <div class="containList">
             <h5 class="titleSecond amber-text text-darken-2">Equipe :</h5>
             <ul class="inline-team-list">
-                {% for user in project.teamProject %}
-                <li>
-                    <a href="{{ path('UserProfil', {'slug' : user.slug}) }}">
-                        <div class="chip">
-                            <img src="{{ user.photo }}" alt="Logo company"> <!-- notice the "circle" class -->
-                            <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
-                        </div>
-                    </a>
-                </li>
-                {% endfor %}
+                {% if project.teamProject is not empty %}
+                    {% for user in project.teamProject %}
+                        <li>
+                            {% if user.status == 2 or  user.status == 3%}
+                                <a href="{{ path('UserProfil', {'slug' : user.slug })}}">
+                                    <div class="chip amber">
+                                        <img src="{{ user.photo }}" alt="Photo user"> <!-- notice the "circle" class -->
+                                        <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
+                                    </div>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('profilHappyCoach', {'slug' : user.slug })}}">
+                                    <div class="chip pink">
+                                        <img src="{{ user.photo }}" alt="Photo user"> <!-- notice the "circle" class -->
+                                        <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <p>Pas encore de membre dans cette équipe</p>
+                {% endif %}
             </ul>
         </div>
         <div class="row">

@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function showUserAction(User $user, StatusProject $statusProject)
     {
-
+        //TODO securité HappyCoach
         if (null !== $user->getAuthorProject()) {
             $contact = $user->getAuthorProject()->getStatus();
             $statusTwig = $statusProject->getStatusTwig($contact);
@@ -69,18 +69,7 @@ class UserController extends Controller
         if ($user->getStatus() === 2 or $user->getStatus() === 3) {
             $company = $this->getUser()->getCompany();
         }
-        //TODO Ajouter securité pour HappyCoach
-        if ($user->getStatus() === 4) {
-            $listIdProject = [];
-            foreach ($user->getHappyCoachRef() as $project) {
-                $listIdProject[] = $project->getId();
-            }
-            foreach ($user->getTeams() as $project) {
-                $listIdProject[] = $project->getId();
-            }
-            dump($listIdProject);
 
-        }
         $nbHappySalarie = count($company->getUsers());
         $em = $this->getDoctrine()->getManager();
         $skillInCompany = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
@@ -95,6 +84,24 @@ class UserController extends Controller
                 $projects[$i]['status'] =  $twigStatus;
             }
         }
+
+        // securité pour HappyCoach
+        if ($user->getStatus() === 4) {
+            foreach ($user->getHappyCoachRef() as $project) {
+                $idCompanyRef = $project->getAuthor()->getCompany()->getId();
+                if ($idCompanyRef === $company->getId()) {
+                    return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens, 'projects' => $projects));
+                }
+            }
+            foreach ($user->getTeams() as $project) {
+                $idCompanyRef = $project->getAuthor()->getCompany()->getId();
+                if ($idCompanyRef === $company->getId()) {
+                    return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens, 'projects' => $projects));
+                }
+                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
+            }
+        }
+
         return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens, 'projects' => $projects));
     }
 
