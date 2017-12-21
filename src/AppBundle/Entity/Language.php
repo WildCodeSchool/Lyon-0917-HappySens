@@ -64,12 +64,6 @@ class Language
     private $companies;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="nativeLanguage")
-     *
-     */
-    private $nativeUser;
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -260,8 +254,7 @@ class Language
         return $this->getTitreLanguage();
     }
 
-
-
+    /**
      * Add nativeUser
      *
      * @param \AppBundle\Entity\User $nativeUser

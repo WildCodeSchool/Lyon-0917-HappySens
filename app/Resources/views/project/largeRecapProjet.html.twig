@@ -5,7 +5,7 @@
                 <ul class="collection">
                     <li class="collection-item avatar" id="userProject">
                         <a href="{{ path('UserProfil', {'slug' : project.author.slug }) }}">
-                        <img src="{{ project.author.photo }}" alt="créateur du projet" class="circle">
+                        <img src="{{ project.author.photo }}" alt="" class="circle">
                             <div class="black-text">
                                 <span class="titleSecond">Créer par : </span>
                                 <p>{{ project.author }}</p>
@@ -14,11 +14,11 @@
                         </a>
                     </li>
                     <li class="collection-item avatar">
-                        <a href="{{ path('profilHappyCoach', {'slug' : project.happyCoach.slug }) }}">
-                            <img src="{{ project.happyCoach.photo }}" alt="HappyCoach référent" class="circle">
+                        <a href="{{ path('profilHappyCoach') }}">
+                            <img src="https://randomuser.me/api/portraits/women/11.jpg" alt="" class="circle">
                             <div class="black-text">
                                 <span class="titleSecond">HappyCoach référent :</span>
-                                <p>{{ project.happyCoach }}</p>
+                                <p>@name.happyCoach</p>
                             </div>
                             <p class="secondary-content"><i class="material-icons pink-text text-darken-2">group</i></p>
                         </a>
