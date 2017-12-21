@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use AppBundle\Entity\User;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
 use DateTime;
@@ -156,5 +157,66 @@ class ProjectController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/joinTeam/{slug}/", name="join_team")
+     *
+     */
+    // TODO: AJAX
+    public function joinAction(Request $request, Project $project)
+    {
+        $idU = $this->getUser();
+        $add = $project->addTeamProject($idU);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($add);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+    /**
+     * @Route("/quitTeam/{slug}/", name="quit_team")
+     *
+     */
+    // TODO: AJAX
+    public function quitAction(Request $request, Project $project)
+    {
+        $idU = $this->getUser();
+        $rm = $project->removeTeamProject($idU);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($rm);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+
+    /**
+     * @Route("/likeProject/{slug}/", name="like_project")
+     *
+     */
+    // TODO: AJAX
+    public function likeAction(Request $request, Project $project)
+    {
+        $idU = $this->getUser();
+        $add = $project->addLikeProject($idU);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($add);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+    /**
+     * @Route("/unlikeProject/{slug}/", name="unlike_project")
+     *
+     */
+    // TODO: AJAX
+    public function unlikeAction(Request $request, Project $project)
+    {
+        $idU = $this->getUser();
+        $add = $project->removeLikeProject($idU);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($add);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
     }
 }

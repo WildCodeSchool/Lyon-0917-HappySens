@@ -31,7 +31,13 @@
                     </a>
                 </div>
                 <div class="right">
-                    <a href="#!" onclick="like()">{{ user.authorProject.likeProjects|length }} <i class="fa fa-heart red-text"></i></a>
+
+                    {% if app.user not in user.authorProject.likeProjects %}
+                        <a href="{{ path('like_project', {'slug': user.authorProject.slug}) }}" onclick="like()"><p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ user.authorProject.likeProjects | length }}</p></a>
+                    {% else %}
+                        <a href="{{ path('unlike_project', {'slug': user.authorProject.slug}) }}"><p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ user.authorProject.likeProjects | length }}</p></a>
+                    {% endif %}
+
                 </div>
             </div>
             <div class="card-reveal revealProject">
@@ -63,7 +69,11 @@
                         <a href="{{ path('project_show', { 'slug': user.authorProject.slug }) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
                     </div>
                     <div class="right">
-                        <a href="#!" onclick="like()">{{ user.authorProject.likeProjects|length }} <i class="fa fa-heart red-text"></i></a>
+                        {% if app.user not in user.authorProject.likeProjects %}
+                            <a href="{{ path('like_project', {'slug': user.authorProject.slug}) }}"><p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ user.authorProject.likeProjects | length }}</p></a>
+                        {% else %}
+                            <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ user.authorProject.likeProjects | length }}</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
