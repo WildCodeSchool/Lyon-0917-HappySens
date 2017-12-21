@@ -66,8 +66,20 @@ class UserController extends Controller
     {
         $user = $this->getUser();
         /** @var Company $company */
-        if ($user->getStatus() !== 1) {
+        if ($user->getStatus() === 2 or $user->getStatus() === 3) {
             $company = $this->getUser()->getCompany();
+        }
+        //TODO Ajouter securité pour HappyCoach
+        if ($user->getStatus() === 4) {
+            $listIdProject = [];
+            foreach ($user->getHappyCoachRef() as $project) {
+                $listIdProject[] = $project->getId();
+            }
+            foreach ($user->getTeams() as $project) {
+                $listIdProject[] = $project->getId();
+            }
+            dump($listIdProject);
+
         }
         $nbHappySalarie = count($company->getUsers());
         $em = $this->getDoctrine()->getManager();
