@@ -58,7 +58,6 @@ class AdminController extends Controller
 
     /**
      * Creates a new company entity.
-     *
      * @Route("/newCompany", name="newCompany")
      * @Method({"GET", "POST"})
      */
