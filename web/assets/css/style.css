@@ -877,8 +877,8 @@ ul.followUs {
   margin-left: 25px;
   z-index: 2;
   cursor: pointer;
-  width: 150px;
-  height: 150px; }
+  max-width: 150px;
+  max-height: 150px; }
   .card-profile-image img {
     max-height: 150px;
     max-width: 130px;
@@ -963,6 +963,9 @@ ul.followUs {
   .personPlus:hover {
     background-color: rgba(2, 136, 209, 0.8); }
 
+#toast-container {
+  top: 90%; }
+=======
 .wrapper {
   padding: 1.5em;
   margin-bottom: 70px;
