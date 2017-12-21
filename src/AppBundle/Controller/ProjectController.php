@@ -3,62 +3,62 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use AppBundle\Service\FileUploader;
+use AppBundle\Service\SlugService;
 use DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Admin controller.
  *
  * @Route("project")
+ * @Security("user.getIsActive() === true")
  */
 class ProjectController extends Controller
 {
-    /**
-     * Lists all project entities.
-     *
-     * @Route("/", name="project_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
 
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
-
-        return $this->render('project/index.html.twig', array(
-            'projects' => $projects,
-        ));
-    }
 
     /**
      * Creates a new project entity.
      *
      * @Route("/new", name="project_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_EMPLOYE') && user.getIsActive() === true")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader, SlugService $slugService)
     {
         $project = new Project();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
         $form->remove('author');
         $form->remove('startingDate');
         $form->remove('status');
-        $form->remove('photo');
         $form->remove('likeProjects');
         $form->remove('teamProject');
         $project->setStartingDate(DateTime::createFromFormat ('d/m/Y', date('d/m/Y') ));
         $project->setStatus(1);
+        $form->remove('slug');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $project->getPhoto();
+            $fileName = $fileUploader->upload($file, "photoProject");
+            $project->setPhoto($fileName);
             $project->setEndDate(DateTime::createFromFormat ('d/m/Y', $project->getEndDate() ));
+            $project->setSlug($slugService->slugify($project->getTitle()));
+            $project->setAuthor($user);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
             $em->flush();
 
-            return $this->redirectToRoute('project_show', array('id' => $project->getId()));
+            return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }
 
         return $this->render('project/new.html.twig', array(
@@ -70,7 +70,7 @@ class ProjectController extends Controller
     /**
      * Finds and displays a project entity.
      *
-     * @Route("/{id}", name="project_show")
+     * @Route("/{slug}", name="project_show")
      * @Method("GET")
      */
     public function showAction(Project $project)
@@ -88,10 +88,10 @@ class ProjectController extends Controller
     /**
      * Displays a form to edit an existing project entity.
      *
-     * @Route("/{id}/edit", name="project_edit")
+     * @Route("/{slug}/edit", name="project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project)
+    public function editAction(Request $request, Project $project, SlugService $slugService)
     {
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
@@ -100,12 +100,14 @@ class ProjectController extends Controller
         $editForm->remove('photo');
         $editForm->remove('likeProjects');
         $editForm->remove('teamProject');
+        $editForm->remove('slug');
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $project->setSlug($slugService->slugify($project->getTitle()));
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('project_edit', array('id' => $project->getId()));
+            return $this->redirectToRoute('project_edit', array('slug' => $project->getSlug()));
         }
 
         return $this->render('project/edit.html.twig', array(
@@ -118,7 +120,7 @@ class ProjectController extends Controller
     /**
      * Deletes a project entity.
      *
-     * @Route("/{id}", name="project_delete")
+     * @Route("/{slug}", name="project_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Project $project)
@@ -150,7 +152,7 @@ class ProjectController extends Controller
     private function createDeleteForm(Project $project)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('project_delete', array('id' => $project->getId())))
+            ->setAction($this->generateUrl('project_delete', array('slug' => $project->getSlug())))
             ->setMethod('DELETE')
             ->getForm()
         ;

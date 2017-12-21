@@ -1,22 +1,22 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
 {% block title %}{{ project.title }}{% endblock %}
 
-{% block navbar %}
-    {{ include('partials/components/navbarIn.html.twig') }}
-{% endblock %}
 
 {% block content %}
 
     <div class="container">
         <div class="row">
             <div class="headerDetailsProject">
-                <div class="">
+                <div class="background">
+                    <img src="{{ asset('uploads/photoProject/' ~ project.photo) }}" alt="">
+                    <div class="content">
                         {{ include('project/status.html.twig') }}
-                </div>
-                <div class="row">
-                    <div class="title center">
-                        <p class="amber-text text-darken-2">{{ project.title }}</p>
+                        <div class="row">
+                            <div class="title">
+                                <p class="amber-text text-darken-2"><span>{{ project.title }}</span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

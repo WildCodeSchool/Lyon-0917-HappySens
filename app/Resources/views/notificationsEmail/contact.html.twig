@@ -3,6 +3,7 @@
 Merci d'avoir contacté HappySens. <br>
 
 Ci-dessous les informations que vous nous avez transmise : <br>
+Votre email : {{ email }} <br>
 Votre n° de téléphone : {{ phone }} <br>
 {%  if company != null %}
 Nom de votre entreprise : {{ company }} <br>
@@ -15,4 +16,4 @@ Nous vous répondrons dans les meilleurs delais. <br>
 <h3> HappySens </h3>
 Votre partenaire bonheur en entreprise.
 
-<img src="{{ asset('assets/images/logo.png') }}" >
+<img src="{{ absolute_url(asset('assets/images/logo.png')) }}" >
