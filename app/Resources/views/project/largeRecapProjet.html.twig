@@ -5,7 +5,7 @@
                 <ul class="collection">
                     <li class="collection-item avatar" id="userProject">
                         <a href="{{ path('UserProfil', {'slug' : project.author.slug }) }}">
-                        <img src="{{ project.author.photo }}" alt="créateur du projet" class="circle">
+                        <img src="{{ project.author.photo }}" alt="photo du créateur du project" class="circle">
                             <div class="black-text">
                                 <span class="titleSecond">Créer par : </span>
                                 <p>{{ project.author }}</p>
@@ -15,8 +15,8 @@
                     </li>
                     {% if  project.happyCoach%}
                         <li class="collection-item avatar">
-                            <a href="/happycoach/{{ project.happyCoach.slug }}">
-                                <img src="{{ project.happyCoach.photo }}" alt="" class="circle">
+                            <a href="{{ path('profilHappyCoach', {'slug' : project.happyCoach.slug }) }}">
+                                <img src="{{ project.happyCoach.photo }}" alt="photo de l'HappyCoach référent" class="circle">
                                 <div class="black-text">
                                     <span class="titleSecond">HappyCoach référent :</span>
                                     <p>{{ project.happyCoach }}</p>
@@ -35,8 +35,8 @@
                         </li>
                     {% endif%}
                     <li class="collection-item avatar">
-                        <a href="/company/{{ project.author.company.slug }}">
-                            <img src="{{ project.author.company.logo }}" alt="" class="circle">
+                        <a href="{{ path('CompanyProfil', {'slug' : project.author.company.slug })}}">
+                            <img src="{{ project.author.company.logo }}" alt="logo de l'entreprise" class="circle">
                             <div class="black-text">
                                 <span class="titleSecond">Entreprise :</span>
                                 <p>{{ project.author.company.name }}</p>
