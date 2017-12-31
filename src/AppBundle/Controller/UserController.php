@@ -45,7 +45,7 @@ class UserController extends Controller
         //TODO à tester => redirection à faire pour éviter le message d'erreur
         if ($this->getUser()->getStatus() === User::ROLE_COMPANY or $this->getUser()->getStatus() === User::ROLE_EMPLOYE) {
             if ($company !== $user->getCompany()) {
-                $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $this->getUser(), 'statusTwig' => $statusTwig, 'projects' => $projects));
+                throw new AccessDeniedException("tu n'as rien a foutre ici");
             }
             return $pageTrueShowUser;
         }
@@ -75,7 +75,8 @@ class UserController extends Controller
                         return $pageTrueShowUser;
                     }
                 }
-                return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
+                throw new AccessDeniedException("tu n'as rien a foutre ici");
+//                return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
             }
         }
         return $pageTrueShowUser;
@@ -126,7 +127,8 @@ class UserController extends Controller
                 if ($idCompanyRef === $company->getId()) {
                     return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens, 'projects' => $projects));
                 }
-                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
+                throw new AccessDeniedException("tu n'as rien a foutre ici");
+//                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
             }
         }
 
@@ -233,20 +235,32 @@ class UserController extends Controller
 
         $pageTrueShowHappyCoach = $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projectsRef' => $projectsRef, 'projectsTeam' => $projectsTeam));
 
+        //TODO refactor with request
         if ($this->getUser()->getStatus() === User::ROLE_COMPANY or $this->getUser()->getStatus() === User::ROLE_EMPLOYE) {
-            foreach ($user->getAuthorproject() as $projectAuthor) {
-                $idAuthor = $projectAuthor->getAuthor->getId();
-                if ($idAuthor === $user->getId()) {
+            foreach ($user->gethappyCoachRef() as $project) {
+                $idAuthor = $project->getAuthor()->getId();
+                if ($idAuthor === $this->getUser()->getId()) {
                     return $pageTrueShowHappyCoach;
                 }
-            }
-            foreach ($user->getTeams() as $projectTeam) {
-                $idAuthor = $projectTeam->getAuthor->getId();
-                if ($idAuthor === $user->getId()) {
-                    return $pageTrueShowHappyCoach;
+                $team = $project->getTeamProject();
+                foreach ($team as $member) {
+                    $idMember = $member->getId();
+                    if ($idMember === $this->getUser()->getId()) {
+                        return $pageTrueShowHappyCoach;
+                    }
                 }
             }
-            return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
+                foreach ($user->getTeams() as $projectTeam) {
+                    $team = $projectTeam->getTeamProject();
+                    foreach ($team as $member) {
+                        $idMember = $member->getId();
+                        if ($idMember === $this->getUser()->getId()) {
+                            return $pageTrueShowHappyCoach;
+                        }
+                    }
+                }
+            //TODO change Redirect
+            throw new AccessDeniedException("tu n'as rien a foutre ici");
         }
 
         //TODO refactor with request
@@ -270,8 +284,8 @@ class UserController extends Controller
                     return $pageTrueShowHappyCoach;
                 }
             }
-
-            return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
+            throw new AccessDeniedException("tu n'as rien a foutre ici");
+//            return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
         }
 
         return $pageTrueShowHappyCoach;
