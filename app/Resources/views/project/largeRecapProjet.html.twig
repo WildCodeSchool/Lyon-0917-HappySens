@@ -5,7 +5,7 @@
                 <ul class="collection">
                     <li class="collection-item avatar" id="userProject">
                         <a href="{{ path('UserProfil', {'slug' : project.author.slug }) }}">
-                        <img src="{{ project.author.photo }}" alt="photo du créateur du project" class="circle">
+                        <img src="{{ project.author.photo }}" alt="photo du créateur du projet" class="circle">
                             <div class="black-text">
                                 <span class="titleSecond">Créer par : </span>
                                 <p>{{ project.author }}</p>
@@ -115,14 +115,14 @@
                                 {% if user.status == 2 or  user.status == 3%}
                                 <a href="{{ path('UserProfil', {'slug' : user.slug })}}">
                                     <div class="chip amber">
-                                        <img src="{{ user.photo }}" alt="Photo user"> <!-- notice the "circle" class -->
+                                        <img src="{{ user.photo }}" alt="Photo utilisateur"> <!-- notice the "circle" class -->
                                         <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
                                     </div>
                                 </a>
                                 {% else %}
                                 <a href="{{ path('profilHappyCoach', {'slug' : user.slug })}}">
                                     <div class="chip pink">
-                                        <img src="{{ user.photo }}" alt="Photo user"> <!-- notice the "circle" class -->
+                                        <img src="{{ user.photo }}" alt="Photo utilisateur"> <!-- notice the "circle" class -->
                                         <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
                                     </div>
                                 </a>

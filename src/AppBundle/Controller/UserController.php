@@ -24,8 +24,11 @@ class UserController extends Controller
      * @Route("/user/{slug}", name="UserProfil")
      * @Method("GET")
      * @Security("user.getIsActive() == true")
+     * @param User $user
+     * @param StatusProject $statusProject
+     * @return mixed
      */
-    public function showUserAction(User $user, StatusProject $statusProject, Request $request)
+    public function showUserAction(User $user, StatusProject $statusProject)
     {
         if (null !== $user->getAuthorProject()) {
             $contact = $user->getAuthorProject()->getStatus();
@@ -40,7 +43,11 @@ class UserController extends Controller
 
         $company = $this->getUser()->getCompany();
 
-        $pageTrueShowUser = $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects));
+        $pageTrueShowUser = $this->render('pages/In/collaborators/profilEmploye.html.twig', [
+            'user' => $user,
+            'statusTwig' => $statusTwig,
+            'projects' => $projects,
+        ]);
 
         //TODO à tester => redirection à faire pour éviter le message d'erreur
         if ($this->getUser()->getStatus() === User::ROLE_COMPANY or $this->getUser()->getStatus() === User::ROLE_EMPLOYE) {
@@ -88,7 +95,9 @@ class UserController extends Controller
      * @Route("/company/{slug}", name="CompanyProfil")
      * @Method("GET")
      * @Security("user.getIsActive() == true")
-     *
+     * @param Company $company
+     * @param StatusProject $statusProject
+     * @return mixed
      */
     public function showCompanyAction(Company $company, StatusProject $statusProject)
     {
@@ -119,20 +128,35 @@ class UserController extends Controller
             foreach ($user->getHappyCoachRef() as $project) {
                 $idCompanyRef = $project->getAuthor()->getCompany()->getId();
                 if ($idCompanyRef === $company->getId()) {
-                    return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens, 'projects' => $projects));
+                    return $this->render('pages/In/company/profilCompany.html.twig', [
+                        'company' => $company,
+                        'nbHappySalarie' => $nbHappySalarie,
+                        'skillInCompany' => $skillInCompany,
+                        'refHappySens' => $refHappySens,
+                        'projects' => $projects,]);
                 }
             }
             foreach ($user->getTeams() as $project) {
                 $idCompanyRef = $project->getAuthor()->getCompany()->getId();
                 if ($idCompanyRef === $company->getId()) {
-                    return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens, 'projects' => $projects));
+                    return $this->render('pages/In/company/profilCompany.html.twig', [
+                        'company' => $company,
+                        'nbHappySalarie' => $nbHappySalarie,
+                        'skillInCompany' => $skillInCompany,
+                        'refHappySens' => $refHappySens,
+                        'projects' => $projects,]);
                 }
                 throw new AccessDeniedException("tu n'as rien a foutre ici");
 //                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
             }
         }
 
-        return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens, 'projects' => $projects));
+        return $this->render('pages/In/company/profilCompany.html.twig', [
+            'company' => $company,
+            'nbHappySalarie' => $nbHappySalarie,
+            'skillInCompany' => $skillInCompany,
+            'refHappySens' => $refHappySens,
+            'projects' => $projects]);
     }
 
     /**
@@ -140,10 +164,13 @@ class UserController extends Controller
      *
      * @Route("/{slug}/userEdit", name="User_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param User $user
+     * @param SlugService $slugService
+     * @return mixed
      */
     public function editUserAction(Request $request, User $user, SlugService $slugService)
     {
-
 
         if ($this->getUser()->getStatus() !== 1) {
             $user = $this->getUser();
@@ -152,9 +179,6 @@ class UserController extends Controller
         $editForm->remove('slug');
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-
-
-
             $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
             if ($user->getIsActive() == false) {
                 $user->setIsActive(1);
@@ -170,7 +194,9 @@ class UserController extends Controller
 
             }
         }
-        return $this->render('pages/In/collaborators/editUser.html.twig', array('user' => $user, 'edit_form' => $editForm->createView()));
+        return $this->render('pages/In/collaborators/editUser.html.twig', [
+            'user' => $user,
+            'edit_form' => $editForm->createView(),]);
     }
 
     /**
@@ -211,7 +237,9 @@ class UserController extends Controller
                 return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
             }
         }
-        return $this->render('pages/In/company/editCompany.html.twig', array('company' => $company, 'edit_form' => $editForm->createView()));
+        return $this->render('pages/In/company/editCompany.html.twig', [
+            'company' => $company,
+            'edit_form' => $editForm->createView(),]);
     }
 
     /**
@@ -233,7 +261,11 @@ class UserController extends Controller
             $projectsTeam = $statusProject->getProjectsWithStatus($projectsTeam);
         }
 
-        $pageTrueShowHappyCoach = $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projectsRef' => $projectsRef, 'projectsTeam' => $projectsTeam));
+        $pageTrueShowHappyCoach = $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', [
+            'user' => $user,
+            'statusTwig' => $statusTwig,
+            'projectsRef' => $projectsRef,
+            'projectsTeam' => $projectsTeam,]);
 
         //TODO refactor with request
         if ($this->getUser()->getStatus() === User::ROLE_COMPANY or $this->getUser()->getStatus() === User::ROLE_EMPLOYE) {
