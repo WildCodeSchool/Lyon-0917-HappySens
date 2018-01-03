@@ -14,7 +14,6 @@
         <br>
         {#step#}
         <div id="step1">
-
             <div class="row">
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Prenom :</h5>
@@ -111,14 +110,12 @@
                     </div>
                 </div>
                 <div class="center">
-                <a class="waves-effect waves-light btn amber darken-3" onclick="goStep2()">suivant</a>
+                    <a class="waves-effect waves-light btn amber darken-3" onclick="goStep2()">suivant</a>
                 </div>
             </div>
         </div>
         {#step 2#}
         <div id="step2" class="hide">
-
-
             <div class="col s12">
                 <h5 class="titleInscription blue-text text-darken-3">Job :</h5>
                 <div class="input-field col s12">
@@ -165,11 +162,11 @@
                 </div>
             </div>
             <div class="center">
-            <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
-            <a class="waves-effect waves-light btn amber darken-3" onclick="goStep3()">suivant</a>
+                <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
+                <a class="waves-effect waves-light btn amber darken-3" onclick="goStep3()">suivant</a>
             </div>
         </div>
-{#step3#}
+        {#step3#}
         <div id="step3" class="hide">
 
             <div class="col s12">
@@ -245,15 +242,13 @@
                 </div>
             </div>
             <div class="center">
-            <a class="waves-effect waves-light btn blue darken-3" onclick="goStep2()">retour</a>
-            <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer"/>
+                <a class="waves-effect waves-light btn blue darken-3" onclick="goStep2()">retour</a>
+                <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer"/>
             </div>
         </div>
         <br>
         {{ form_end(edit_form) }}
-
     </div>
-
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('assets/script/stepForm.js') }}"></script>
