@@ -83,7 +83,17 @@
         <div id="tabProjects" class="col s12 white switch_content">
             <div class="row">
                 <section class="PC_blockProject">
-                    {{ include('project/blockProjectHappyCoach.html.twig') }}
+                    <div class="PC_bProjectInProgress">
+                        <div class="hideMobile">
+                            <h5 class="center titleSecond">Mes Happy Projets</h5>
+                        </div>
+                        {% for project in projectsRef %}
+                            {{ include('project/cardProject.html.twig') }}
+                        {% endfor %}
+                        {% for project in projectsTeam %}
+                            {{ include('project/cardProject.html.twig') }}
+                        {% endfor %}
+                    </div>
                 </section>
             </div>
         </div>
