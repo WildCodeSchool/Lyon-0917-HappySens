@@ -22,10 +22,12 @@ class UserController extends Controller
 
     /**
      * Finds and displays a user entity.
-     *
      * @Route("/user/{slug}", name="UserProfil")
      * @Method("GET")
      * @Security("user.getIsActive() == true")
+     * @param User $user
+     * @param StatusProject $statusProject
+     * @return mixed
      */
     public function showUserAction(User $user, StatusProject $statusProject)
     {
@@ -42,16 +44,50 @@ class UserController extends Controller
 
         $company = $this->getUser()->getCompany();
 
-        if ($this->getUser()->getStatus() !== 1) {
+        $pageTrueShowUser = $this->render('pages/In/collaborators/profilEmploye.html.twig', [
+            'user' => $user,
+            'statusTwig' => $statusTwig,
+            'projects' => $projects,
+        ]);
+
+        //TODO à tester => redirection à faire pour éviter le message d'erreur
+        if ($this->getUser()->getStatus() === User::ROLE_COMPANY or $this->getUser()->getStatus() === User::ROLE_EMPLOYE) {
             if ($company !== $user->getCompany()) {
                 throw new AccessDeniedException("tu n'as rien a foutre ici");
             }
-
-            return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects));
-
+            return $pageTrueShowUser;
         }
-        return $this->render('pages/In/collaborators/profilEmploye.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projects' => $projects));
 
+        //TODO refactor with request
+        if ($this->getUser()->getStatus() === User::ROLE_HAPPYCOACH) {
+            foreach ($this->getUser()->getHappyCoachRef() as $project) {
+                $idAuthor = $project->getAuthor()->getId();
+                if ($idAuthor === $user->getId()) {
+                    return $pageTrueShowUser;
+                }
+                $team = $project->getTeamProject();
+                foreach ($team as $member) {
+                    if ($member->getId() === $user->getId()) {
+                        return $pageTrueShowUser;
+                    }
+                }
+            }
+            foreach ($this->getUser()->getTeams() as $project) {
+                $idAuthor = $project->getAuthor()->getId();
+                if ($idAuthor === $user->getId()) {
+                    return $pageTrueShowUser;
+                }
+                $team = $project->getTeamProject();
+                foreach ($team as $member) {
+                    if ($member->getId() === $user->getId()) {
+                        return $pageTrueShowUser;
+                    }
+                }
+                throw new AccessDeniedException("tu n'as rien a foutre ici");
+//                return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
+            }
+        }
+        return $pageTrueShowUser;
     }
 
     /**
@@ -60,15 +96,18 @@ class UserController extends Controller
      * @Route("/company/{slug}", name="CompanyProfil")
      * @Method("GET")
      * @Security("user.getIsActive() == true")
-     *
+     * @param Company $company
+     * @param StatusProject $statusProject
+     * @return mixed
      */
     public function showCompanyAction(Company $company, StatusProject $statusProject)
     {
         $user = $this->getUser();
         /** @var Company $company */
-        if ($user->getStatus() !== 1) {
+        if ($user->getStatus() === User::ROLE_COMPANY or $user->getStatus() === User::ROLE_EMPLOYE) {
             $company = $this->getUser()->getCompany();
         }
+
         $nbHappySalarie = count($company->getUsers());
         $em = $this->getDoctrine()->getManager();
         $skillInCompany = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
@@ -83,7 +122,42 @@ class UserController extends Controller
                 $projects[$i]['status'] =  $twigStatus;
             }
         }
-        return $this->render('pages/In/company/profilCompany.html.twig', array('company' => $company, 'nbHappySalarie' => $nbHappySalarie, 'skillInCompany' => $skillInCompany, 'refHappySens' => $refHappySens, 'projects' => $projects));
+
+        // securité pour HappyCoach
+        //TODO refactor with request
+        if ($user->getStatus() === User::ROLE_HAPPYCOACH) {
+            foreach ($user->getHappyCoachRef() as $project) {
+                $idCompanyRef = $project->getAuthor()->getCompany()->getId();
+                if ($idCompanyRef === $company->getId()) {
+                    return $this->render('pages/In/company/profilCompany.html.twig', [
+                        'company' => $company,
+                        'nbHappySalarie' => $nbHappySalarie,
+                        'skillInCompany' => $skillInCompany,
+                        'refHappySens' => $refHappySens,
+                        'projects' => $projects,]);
+                }
+            }
+            foreach ($user->getTeams() as $project) {
+                $idCompanyRef = $project->getAuthor()->getCompany()->getId();
+                if ($idCompanyRef === $company->getId()) {
+                    return $this->render('pages/In/company/profilCompany.html.twig', [
+                        'company' => $company,
+                        'nbHappySalarie' => $nbHappySalarie,
+                        'skillInCompany' => $skillInCompany,
+                        'refHappySens' => $refHappySens,
+                        'projects' => $projects,]);
+                }
+                throw new AccessDeniedException("tu n'as rien a foutre ici");
+//                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
+            }
+        }
+
+        return $this->render('pages/In/company/profilCompany.html.twig', [
+            'company' => $company,
+            'nbHappySalarie' => $nbHappySalarie,
+            'skillInCompany' => $skillInCompany,
+            'refHappySens' => $refHappySens,
+            'projects' => $projects]);
     }
 
     /**
@@ -91,10 +165,13 @@ class UserController extends Controller
      *
      * @Route("/{slug}/userEdit", name="User_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param User $user
+     * @param SlugService $slugService
+     * @return mixed
      */
     public function editUserAction(Request $request, User $user, SlugService $slugService)
     {
-
 
         if ($this->getUser()->getStatus() !== 1) {
             $user = $this->getUser();
@@ -120,7 +197,9 @@ class UserController extends Controller
 
             }
         }
-        return $this->render('pages/In/collaborators/editUser.html.twig', array('user' => $user, 'edit_form' => $editForm->createView()));
+        return $this->render('pages/In/collaborators/editUser.html.twig', [
+            'user' => $user,
+            'edit_form' => $editForm->createView(),]);
     }
 
     /**
@@ -161,7 +240,9 @@ class UserController extends Controller
                 return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
             }
         }
-        return $this->render('pages/In/company/editCompany.html.twig', array('company' => $company, 'edit_form' => $editForm->createView()));
+        return $this->render('pages/In/company/editCompany.html.twig', [
+            'company' => $company,
+            'edit_form' => $editForm->createView(),]);
     }
 
     /**
@@ -173,30 +254,90 @@ class UserController extends Controller
      */
     public function showHappyCoachAction(User $user, StatusProject $statusProject)
     {
-
-        if ($this->getUser()->getStatus() === 4) {
-            $statusTwig = [];
-            $projectsRef = $user->getHappyCoachRef();
-            if (null !== count($projectsRef)) {
-                $projectsRef = $statusProject->getProjectsWithStatus($projectsRef);
-            }
-            $projectsTeam = $user->getTeams();
-            if (null !== count($projectsTeam)) {
-                $projectsTeam = $statusProject->getProjectsWithStatus($projectsTeam);
-            }
-            return $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projectsRef' => $projectsRef, 'projectsTeam' => $projectsTeam));
+        $statusTwig = [];
+        $projectsRef = $user->getHappyCoachRef();
+        if (null !== count($projectsRef)) {
+            $projectsRef = $statusProject->getProjectsWithStatus($projectsRef);
         }
-        return $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', array('user' => $user, 'statusTwig' => $statusTwig, 'projectsRef' => $projectsRef, 'projectsTeam' => $projectsTeam));
-    }
+        $projectsTeam = $user->getTeams();
+        if (null !== count($projectsTeam)) {
+            $projectsTeam = $statusProject->getProjectsWithStatus($projectsTeam);
+        }
 
+        $pageTrueShowHappyCoach = $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', [
+            'user' => $user,
+            'statusTwig' => $statusTwig,
+            'projectsRef' => $projectsRef,
+            'projectsTeam' => $projectsTeam,]);
+
+        //TODO refactor with request
+        if ($this->getUser()->getStatus() === User::ROLE_COMPANY or $this->getUser()->getStatus() === User::ROLE_EMPLOYE) {
+            foreach ($user->gethappyCoachRef() as $project) {
+                $idAuthor = $project->getAuthor()->getId();
+                if ($idAuthor === $this->getUser()->getId()) {
+                    return $pageTrueShowHappyCoach;
+                }
+                $team = $project->getTeamProject();
+                foreach ($team as $member) {
+                    $idMember = $member->getId();
+                    if ($idMember === $this->getUser()->getId()) {
+                        return $pageTrueShowHappyCoach;
+                    }
+                }
+            }
+                foreach ($user->getTeams() as $projectTeam) {
+                    $team = $projectTeam->getTeamProject();
+                    foreach ($team as $member) {
+                        $idMember = $member->getId();
+                        if ($idMember === $this->getUser()->getId()) {
+                            return $pageTrueShowHappyCoach;
+                        }
+                    }
+                }
+            //TODO change Redirect
+            throw new AccessDeniedException("tu n'as rien a foutre ici");
+        }
+
+        //TODO refactor with request
+        if ($this->getUser()->getStatus() === User::ROLE_HAPPYCOACH and $this->getUser()->getId() != $user->getId()) {
+            foreach ($user->getTeams() as $projectTeam) {
+                $idHappyCoachRef = $projectTeam->getHappyCoach()->getId();
+                if ($idHappyCoachRef === $this->getUser()->getId()) {
+                    return $pageTrueShowHappyCoach;
+                }
+                $team = $projectTeam->getTeamProject();
+                foreach ($team as $member) {
+                    $idMember = $member->getId();
+                    if ($idMember === $this->getUser()->getId()) {
+                        return $pageTrueShowHappyCoach;
+                    }
+                }
+            }
+            foreach ($this->getUser()->getTeams() as $projectTeam) {
+                $idHappyCoachRef = $projectTeam->getHappyCoach()->getId();
+                if ($idHappyCoachRef === $user->getId()) {
+                    return $pageTrueShowHappyCoach;
+                }
+            }
+            throw new AccessDeniedException("tu n'as rien a foutre ici");
+//            return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
+        }
+
+        return $pageTrueShowHappyCoach;
+
+    }
 
     /**
      * Displays a form to update mood.
      *
      * @Route("/updateMood/{slug}", name="updateMood")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param User $user
+     * @param SlugService $slugService
      * @return mixed
      */
+
     public function updateMoodAction(Request $request, User $user, SlugService $slugService)
     {
         $user = $this->getUser();
@@ -239,7 +380,7 @@ class UserController extends Controller
         }
 
         return $this->render('user/updateMood.html.twig', [
-            'edit_form' => $editForm->createView(),]
+                'edit_form' => $editForm->createView(),]
         );
     }
 

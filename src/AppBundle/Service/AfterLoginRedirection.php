@@ -62,7 +62,7 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
             } elseif (in_array('ROLE_COMPANY', $rolesTab, true)) {
                 $redirection = new RedirectResponse($this->router->generate('Company_edit', array('slug' => $user->getCompany()->getSlug())));
             } elseif (in_array('ROLE_HAPPYCOACH', $rolesTab, true)) {
-                $redirection = new RedirectResponse($this->router->generate('profilHappyCoach', array('slug' => $user->getSlug())));
+                $redirection = new RedirectResponse($this->router->generate('User_edit', array('slug' => $user->getSlug())));
             }
         } else if ($dateUpdateMood >= $lastDateUpdateMood and
             (in_array('ROLE_EMPLOYE', $rolesTab, true) or
