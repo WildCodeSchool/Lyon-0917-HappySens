@@ -43,11 +43,11 @@ class EmailService
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
 
-        $message->setSubject('Merci d\'avoir contacté HappySens')
+        $message->setSubject("Merci d'avoir contacté HappySens")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $contact->getEmail()])
             ->setBody(
-                $this->template->render('notificationsEmail/categories/contact/contact.txt.twig', [
+                $this->template->render('notificationsEmail/categories/contact/contact.html.twig', [
                     'firstName' => $contact->getFirstName(),
                     'lastName' => $contact->getLastName(),
                     'email'=> $contact->getEmail(),
@@ -56,8 +56,7 @@ class EmailService
                     'status' => $contact->getStatus(),
                     'message' => $contact->getMessage(),
                     'logo' => $img,
-                ]), 'text/html'
-            )
+                ]), 'text/html')
             ->addPart($this->template->render('notificationsEmail/categories/contact/contact.txt.twig', [
                 'firstName' => $contact->getFirstName(),
                 'lastName' => $contact->getLastName(),
