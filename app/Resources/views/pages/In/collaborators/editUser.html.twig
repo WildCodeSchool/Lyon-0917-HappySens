@@ -15,6 +15,9 @@
         {#step#}
         <div id="step1">
             <div class="row">
+                {{ form_start(form2) }}
+                {{ form_widget(form2) }}
+
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Prenom :</h5>
                     <div class="input-field col s12">
@@ -247,6 +250,7 @@
             </div>
         </div>
         <br>
+        {{ form_end(form2) }}
         {{ form_end(edit_form) }}
     </div>
 {% endblock %}

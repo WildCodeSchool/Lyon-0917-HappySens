@@ -3,8 +3,11 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Language;
+use AppBundle\Entity\Skill;
+use AppBundle\Entity\UserHasSkill;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -41,6 +44,7 @@ class UserType extends AbstractType
                     'max' => 5
                 )
                 ))
+
             ->add('job')
             ->add('workplace')
             ->add('nativeLanguage')
@@ -52,6 +56,7 @@ class UserType extends AbstractType
         ])
             ->add('company')
             ->add('isActive', HiddenType::class);
+
     }
     
     /**
