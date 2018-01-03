@@ -9,6 +9,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\User;
+use DateTime;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -50,6 +51,9 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
             return $role->getRole();
         }, $roles);
 
+        $lastDateUpdateMood = $user->getDateUpdateMood();
+        $dateUpdateMood = new DateTime();
+        $dateUpdateMood->modify('-1 month');
         if($active['active'] == false) {
             if (in_array('ROLE_ADMIN', $rolesTab, true)) {
                 $redirection = new RedirectResponse($this->router->generate('profilAdmin', array('slug' => $user->getSlug())));
@@ -60,6 +64,14 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
             } elseif (in_array('ROLE_HAPPYCOACH', $rolesTab, true)) {
                 $redirection = new RedirectResponse($this->router->generate('profilHappyCoach', array('slug' => $user->getSlug())));
             }
+        } else if ($dateUpdateMood >= $lastDateUpdateMood and
+            (in_array('ROLE_EMPLOYE', $rolesTab, true) or
+                in_array('ROLE_COMPANY', $rolesTab, true) or
+                in_array('ROLE_HAPPYCOACH', $rolesTab, true))) {
+            $redirection = new RedirectResponse($this->router->generate('updateMood', [
+                'User' => $user,
+                'slug' => $user->getSlug(),
+                ]));
         } else {
             if (in_array('ROLE_ADMIN', $rolesTab, true)) {
                 $redirection = new RedirectResponse($this->router->generate('profilAdmin', array('slug' => $user->getSlug())));

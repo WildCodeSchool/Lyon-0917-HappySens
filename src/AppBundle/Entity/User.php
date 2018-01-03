@@ -105,6 +105,12 @@ class User implements UserInterface, \Serializable
     private $mood;
 
     /**
+     *
+     * @ORM\Column(name="date_update_mood", type="date", nullable=true)
+     */
+    private $dateUpdateMood;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="job", type="string", length=255, nullable=true)
@@ -463,6 +469,24 @@ class User implements UserInterface, \Serializable
     public function setMood($mood)
     {
         $this->mood = $mood;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateUpdateMood()
+    {
+        return $this->dateUpdateMood;
+    }
+
+    /**
+     * @param mixed $dateUpdateMood
+     * @return User
+     */
+    public function setDateUpdateMood($dateUpdateMood)
+    {
+        $this->dateUpdateMood = $dateUpdateMood;
         return $this;
     }
 
