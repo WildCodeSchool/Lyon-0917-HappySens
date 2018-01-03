@@ -46,7 +46,11 @@ class Language
      *
      */
     private $users;
-
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="nativeLanguage")
+     *
+     */
+    private $nativeUser;
     /**
      * @ORM\ManyToMany(targetEntity="Project", mappedBy="languagesProject")
      *
@@ -149,6 +153,22 @@ class Language
     public function removeUser(\AppBundle\Entity\User $user)
     {
         $this->users->removeElement($user);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNativeUser()
+    {
+        return $this->nativeUser;
+    }
+
+    /**
+     * @param mixed $nativeUser
+     */
+    public function setNativeUser($nativeUser)
+    {
+        $this->nativeUser = $nativeUser;
     }
 
     /**

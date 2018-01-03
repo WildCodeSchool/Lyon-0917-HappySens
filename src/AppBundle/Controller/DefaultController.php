@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Service\EmailService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -87,13 +88,15 @@ class DefaultController extends Controller
 
 
     // Traitement Form connection / contact / profils / inscriptions / projets
-    /**
-     * @Route("test", name="listingTemplate")
-     */
-    public function testAction(Request $request)
-    {
-        return $this->render('pages/template/email/template_mail.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
+//    /**
+//     * @Route("test", name="listingTemplate")
+//     */
+//    public function testAction(Request $request, EmailService $mail)
+//    {
+//        $mail->sendTest();
+//
+//        return $this->render('pages/Out/index.html.twig', [
+//            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+//        ]);
+//    }
 }
