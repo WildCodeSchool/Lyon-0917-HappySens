@@ -91,6 +91,7 @@ class AdminController extends Controller
                 $emailService
             );
             unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
+
             $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234');
 
 

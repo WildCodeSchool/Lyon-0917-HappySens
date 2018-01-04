@@ -1,10 +1,10 @@
 {% for message in app.flashes('notif') %}
     <div class="row flash-notice notif" id="flashNoticeContact">
-        <div class="card col s6 m4 l3 xl2 light-grey lighten-1 black-text">
+        <div class="card">
             <div class="row right">
-                <a href="#" onclick="hideContactFlash()"><i class="material-icons black-text">close</i></a>
+                <a href="#" onclick="hideContactFlash()"><i class="material-icons">close</i></a>
             </div>
-            <div class="row center">
+            <div class="center">
                 <p class="message-content">{{ message }}</p>
             </div>
         </div>

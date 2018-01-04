@@ -154,7 +154,7 @@ class EmailService
     }
 
     /**
-     * @param $user
+     * @param $company
      * @param $email_contact
      * @param $valueMdp
      */
@@ -165,15 +165,17 @@ class EmailService
         $em = $this->db;
 
         $referent = $em->getManager()->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
-        $message->setSubject("Votre compte happySens vient d'être créer")
+        dump($referent[0]);
+
+        $message->setSubject("Votre compte entreprise happySens vient d'être créer")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $referent[0]['email']])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/inscriptions/company/newCompany.html.twig', [
                     'logo' => $img,
-                    'firstname' => $company->getName(),
-                    'lastname' => $company->getNbSalary(),
+                    'name' => $company->getName(),
+                    'nbSalary' => $company->getNbSalary(),
                     'email' => $referent[0]['email'],
                     'password' => $valueMdp,
                 ]), 'text/html'

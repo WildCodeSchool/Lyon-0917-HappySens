@@ -1,12 +1,28 @@
 {% extends 'notificationsEmail/baseMail.html.twig' %}
-
+{% block stylesheet %}
+    <style>
+        .contentNewCompany {
+            padding: 50px;
+        }
+        .infosOthers {
+            margin: 50px 0 0 0;
+        }
+    </style>
+{% endblock %}
 {% block content %}
-    <h1 class="title">Bonjour {{ firstname }} {{ lastname }},</h1>
-
-    <span class="content">Votre projet à bien était créer et vous trouverez ici les informations :</span>
-    <ul class="text">
-        <li class="content">Email : {{ email }} </li>
-        <li class="content">Mot de passe temporaire : {{ password }} </li>
-    </ul>
-    <p class="content">Lors de votre connexion vous devrez modifier vos infos et changer de Mdp.</p>
+    <h1 class="title">L'entreprise {{ name }} est désormais inscrit sur HappySens,</h1>
+    <div class="contentNewCompany">
+        <div class="list">
+            <span class="introList">Les identifiants temporaires sont les suivants:</span>
+            <ul class="text">
+                <li class="content">Email : {{ email }} </li>
+                <li class="content">Mot de passe temporaire : {{ password }} </li>
+            </ul>
+        </div>
+        <p class="infosOthers">Vous retrouverez toutes les informations sur votre entreprise, et n'oubliez de changez votre MDP lors de votre 1ere connexion.</p>
+        <a href="http://happysens.fr/login">
+            <button>Accéder à votre page</button>
+        </a>
+        <p class="content">Lors de votre connexion vous devrez modifier vos infos et changer de Mdp.</p>
+    </div>
 {% endblock %}

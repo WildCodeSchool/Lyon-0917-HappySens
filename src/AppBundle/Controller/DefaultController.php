@@ -88,15 +88,13 @@ class DefaultController extends Controller
 
 
     // Traitement Form connection / contact / profils / inscriptions / projets
-//    /**
-//     * @Route("test", name="listingTemplate")
-//     */
-//    public function testAction(Request $request, EmailService $mail)
-//    {
-//        $mail->sendTest();
-//
-//        return $this->render('pages/Out/index.html.twig', [
-//            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-//        ]);
-//    }
+    /**
+     * @Route("test", name="listingTemplate")
+     */
+    public function testAction(Request $request, EmailService $mail)
+    {
+        return $this->render('notificationsEmail/categories/inscriptions/company/newCompany.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+        ]);
+    }
 }
