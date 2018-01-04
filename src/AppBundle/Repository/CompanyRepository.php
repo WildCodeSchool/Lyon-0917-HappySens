@@ -29,7 +29,7 @@ class CompanyRepository extends \Doctrine\ORM\EntityRepository
 
     public function getReferentHappySens($companyId) {
        $qb = $this->createQueryBuilder('c')
-           ->select('u.firstName', 'u.lastName', 'u.slug')
+           ->select('u.firstName', 'u.lastName', 'u.slug', 'u.email as email')
            ->join('c.users', 'u')
            ->setParameter('idCompany', $companyId)
            ->where('c.id=:idCompany')

@@ -64,7 +64,7 @@ class FileUploader
         return $csv;
     }
 
-    public function insertUser($valueMdp, $idCompany, $fileUsers)
+    public function insertUser($valueMdp, $idCompany, $fileUsers, $email_contact, EmailService $emailService)
     {
         // for destroy twins
         $listEmails = [];
@@ -73,6 +73,7 @@ class FileUploader
         for($i = 0; $i < count($fileUsers); $i++) {
             if (!in_array($fileUsers[$i][2], $listEmails)) {
                 $newUser = new User();
+
                 $newUser->setFirstName($fileUsers[$i][0])
                         ->setLastName($fileUsers[$i][1])
                         ->setEmail($fileUsers[$i][2])
@@ -88,11 +89,10 @@ class FileUploader
                 }
                 $listEmails[$i] = $fileUsers[$i][2];
                 $this->getDb()->getManager()->persist($newUser);
+                $emailService->sendMailNewUser($newUser, $email_contact, $valueMdp);
             }
         }
         $this->getDb()->getManager()->flush();
-
-        return " utilisateurs sont créés";
     }
 
     public function getDirectory($underDir)

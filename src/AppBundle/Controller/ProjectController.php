@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
 use DateTime;
@@ -31,7 +32,7 @@ class ProjectController extends Controller
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_EMPLOYE') && user.getIsActive() === true")
      */
-    public function newAction(Request $request, FileUploader $fileUploader, SlugService $slugService)
+    public function newAction(Request $request, FileUploader $fileUploader, SlugService $slugService, EmailService $emailService)
     {
         $project = new Project();
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -56,7 +57,15 @@ class ProjectController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
-            $em->flush();
+
+            $email_contact = $this->container->getParameter('email_contact');
+            $emailService->sendMailProject($project, $email_contact);
+
+            $this->addFlash(
+                'notif',
+                'Votre projet à bien était créer !'
+            );
+//            $em->flush();
 
             return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }

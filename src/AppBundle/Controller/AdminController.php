@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
+use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -61,7 +62,7 @@ class AdminController extends Controller
      * @Route("/newCompany", name="newCompany")
      * @Method({"GET", "POST"})
      */
-    public function newCompanyAction(Request $request, FileUploader $fileUploader, SlugService $slugService)
+    public function newCompanyAction(Request $request, FileUploader $fileUploader, SlugService $slugService, EmailService $emailService)
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
@@ -69,9 +70,6 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-           dump($form);
-           dump($company);
-
             $myFile = $company->getFileUsers();
             $fileName = $fileUploader->upload($myFile, "csvFiles");
             $logo = $company->getLogo();
@@ -85,8 +83,17 @@ class AdminController extends Controller
             $em->flush();
 
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
-            $fileUploader->insertUser("1234", $em->find(Company::class, $company->getId()), $fileUsers);
+            $fileUploader->insertUser(
+                "1234",
+                $em->find(Company::class, $company->getId()),
+                $fileUsers,
+                $this->container->getParameter('email_contact'),
+                $emailService
+            );
             unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
+            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234');
+
+
             return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
         }
 

@@ -1,0 +1,12 @@
+{% extends 'notificationsEmail/baseMail.html.twig' %}
+
+{% block content %}
+    <h1 class="title">Bonjour {{ firstname }} {{ lastname }},</h1>
+
+    <span class="content">Votre projet à bien était créer et vous trouverez ici les informations :</span>
+    <ul class="text">
+        <li class="content">Email : {{ email }} </li>
+        <li class="content">Mot de passe temporaire : {{ password }} </li>
+    </ul>
+    <p class="content">Lors de votre connexion vous devrez modifier vos infos et changer de Mdp.</p>
+{% endblock %}

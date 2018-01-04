@@ -1,6 +1,40 @@
 {% extends 'baseIn.html.twig' %}
 
 {% block content %}
+    <section class="hide" id="waitingDiv">
+        <div class="positionLoad">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="grey-text text-lighten-2">Veuillez patientez pendant le chargement ...</p>
+        </div>
+    </section>
     <div class="container">
         <h1>Company creation</h1>
         <ul>
@@ -10,7 +44,7 @@
         </ul>
         {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input type="submit" value="Create" onclick="loadingPage()" />
         {{ form_end(form) }}
 
     </div>
