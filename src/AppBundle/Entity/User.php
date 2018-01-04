@@ -121,7 +121,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="nativeLanguage", type="string", length=50, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Language", inversedBy="nativeUser")
      */
     private $nativeLanguage;
 
@@ -143,10 +143,10 @@ class User implements UserInterface, \Serializable
     private $teams;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Language", inversedBy="users")
      *
-     * @ORM\Column(name="language", type="string", length=255, nullable=true)
      */
-    private $language;
+    private $languagesUser;
 
     /**
      * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="user")
@@ -182,6 +182,73 @@ class User implements UserInterface, \Serializable
      */
     private $authorProject;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="happyCoach")
+     */
+    private $happyCoachRef;
+
+    /**
+     * @var string
+     * @ORM\Column(name="slug", type="string",  length=255)
+     */
+    private $slug;
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getRoles()
+    {
+        switch($this->getStatus()) {
+            case self::ROLE_ADMIN:
+                return array('ROLE_ADMIN');
+                break;
+            case self::ROLE_COMPANY:
+                return array('ROLE_COMPANY');
+                break;
+            case self::ROLE_EMPLOYE:
+                return array('ROLE_EMPLOYE');
+                break;
+            case self::ROLE_HAPPYCOACH:
+                return array('ROLE_HAPPYCOACH');
+                break;
+            case self::ROLE_HAPPYCOACH_PROJECT:
+                return array('ROLE_HAPPYCOACH_PROJECT');
+                break;
+        }
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->isActive,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->isActive,
+            ) = unserialize($serialized);
+    }
 
     /**
      * @return int
@@ -510,24 +577,6 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getLanguage()
-    {
-        return $this->language;
-    }
-
-    /**
-     * @param mixed $language
-     * @return User
-     */
-    public function setLanguage($language)
-    {
-        $this->language = $language;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getSkills()
     {
         return $this->skills;
@@ -542,8 +591,6 @@ class User implements UserInterface, \Serializable
         $this->skills = $skills;
         return $this;
     }
-
-
 
     /**
      * Constructor
@@ -736,62 +783,7 @@ class User implements UserInterface, \Serializable
         return $this->email;
     }
 
-    public function getSalt()
-    {
-        return null;
-    }
 
-    public function getRoles()
-    {
-        switch($this->getStatus()) {
-            case self::ROLE_ADMIN:
-                return array('ROLE_ADMIN');
-                break;
-            case self::ROLE_COMPANY:
-                return array('ROLE_COMPANY');
-                break;
-            case self::ROLE_EMPLOYE:
-                return array('ROLE_EMPLOYE');
-                break;
-            case self::ROLE_HAPPYCOACH:
-                return array('ROLE_HAPPYCOACH');
-                break;
-            case self::ROLE_HAPPYCOACH_PROJECT:
-                return array('ROLE_HAPPYCOACH_PROJECT');
-                break;
-        }
-    }
-
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
-
-    /**
-     * @see \Serializable::serialize()
-     */
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->email,
-            $this->password,
-            $this->isActive,
-        ));
-    }
-
-    /**
-     * @see \Serializable::unserialize()
-     */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->email,
-            $this->password,
-            $this->isActive,
-            ) = unserialize($serialized);
-    }
 
     public function __toString()
     {
@@ -820,5 +812,107 @@ class User implements UserInterface, \Serializable
     public function getAuthorProject()
     {
         return $this->authorProject;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return User
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add languagesUser
+     *
+     * @param \AppBundle\Entity\Language $languagesUser
+     *
+     * @return User
+     */
+    public function addLanguagesUser(\AppBundle\Entity\Language $languagesUser)
+    {
+        $this->languagesUser[] = $languagesUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove languagesUser
+     *
+     * @param \AppBundle\Entity\Language $languagesUser
+     */
+    public function removeLanguagesUser(\AppBundle\Entity\Language $languagesUser)
+    {
+        $this->languagesUser->removeElement($languagesUser);
+    }
+
+    /**
+     * Get languagesUser
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLanguagesUser()
+    {
+        return $this->languagesUser;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHappyCoachRef()
+    {
+        return $this->happyCoachRef;
+    }
+
+    /**
+     * @param mixed $happyCoachRef
+     * @return User
+     */
+    public function setHappyCoachRef($happyCoachRef)
+    {
+        $this->happyCoachRef = $happyCoachRef;
+        return $this;
+    }
+
+
+
+    /**
+     * Add happyCoachRef
+     *
+     * @param \AppBundle\Entity\Project $happyCoachRef
+     *
+     * @return User
+     */
+    public function addHappyCoachRef(\AppBundle\Entity\Project $happyCoachRef)
+    {
+        $this->happyCoachRef[] = $happyCoachRef;
+
+        return $this;
+    }
+
+    /**
+     * Remove happyCoachRef
+     *
+     * @param \AppBundle\Entity\Project $happyCoachRef
+     */
+    public function removeHappyCoachRef(\AppBundle\Entity\Project $happyCoachRef)
+    {
+        $this->happyCoachRef->removeElement($happyCoachRef);
     }
 }

@@ -1,69 +1,59 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
-{% block title %}@name.happyCoach{% endblock %}
-
-{% block navbar %}
-    {{ include('partials/components/navbarIn.html.twig') }}
-{% endblock %}
+{% block title %}{{ user.firstName }} {{ user.lastName }}{% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="col s12 m10 offset-m1">
-            {#<div class="row">#}
-            {#<h1 class="titleProfilEmploye header center light-blue-text text-darken-2">Le bonheur au travail commence par un projet qui fait sens !</h1>#}
-            {#</div>#}
             <div class="row">
                 <div class="card medium headerProfil">
                     <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="{{ asset('assets/images/happysens-time.jpg') }}" height="300px">
                     </div>
                     <div class="card-profile-image">
-                        <img src="https://randomuser.me/api/portraits/women/11.jpg" alt="profile image" class="circle z-depth-3 activator">
+                        <img src="{{ user.photo }}" alt="profile image" class="circle z-depth-3 activator">
                     </div>
-                    <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light pink darken-2 right"><i class="material material-icons">info_outline</i></a>
-
+                    <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light pink darken-2 right hoverable"><i
+                                class="material material-icons">info_outline</i></a>
                     <div class="card-content">
                         <div class="myInfosEmploye">
                             <div id="name">
-                                <span class="card-title activator grey-text text-darken-4">@name.happyCoach</span>
+                                <span class="card-title activator grey-text text-darken-4">{{ user.firstName }} {{ user.lastName }}</span>
                                 <span>Nbrs happy projets</span>
                             </div>
                         </div>
                     </div>
                     <div class="card-reveal">
                         <h5 class="amber-text">
-                            John Doe
+                            {{ user.firstName }} {{ user.lastName }}
                             <i class="material-icons right black-text card-title">close</i>
                         </h5>
                         <div class="infoPersoEmploye">
-
                         </div>
                         <div class="col s12 l8 center-align">
                             <table class="infosEmploye">
                                 <tbody>
                                 <tr>
-                                    <th>Entreprise :</th>
-                                    <td>HappySens</td>
-                                </tr>
-                                <tr>
                                     <th>Fonction :</th>
-                                    <td>CEO</td>
+                                    <td>{{ user.job }}</td>
                                 </tr>
                                 <tr>
                                     <th>Age :</th>
-                                    <td>25 ans</td>
+                                    <td>{% if user.birthdate %}{{ "now"|date("Y-d-m")  - user.birthdate|date('Y-m-d') }}{% endif %}
+                                        ans
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Lieu de travail :</th>
-                                    <td>69002 Lyon</td>
+                                    <td>{{ user.workplace }}</td>
                                 </tr>
                                 <tr>
                                     <th>Mail :</th>
-                                    <td>example@example.com</td>
+                                    <td>{{ user.email }}</td>
                                 </tr>
                                 <tr>
                                     <th>Tel :</th>
-                                    <td>06 01 02 03 04 </td>
+                                    <td>{{ user.phone }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -72,9 +62,9 @@
                 </div>
             </div>
             {# For desktop #}
-            {{ include('partials/components/largeProfilHappyCoach.html.twig') }}
+            {{ include('pages/In/happyCoach/largeProfilHappyCoach.html.twig') }}
             {# For mobile and tablet #}
-            {{ include('partials/components/mobileProfilHappyCoach.html.twig') }}
+            {{ include('pages/In/happyCoach/mobileProfilHappyCoach.html.twig') }}
         </div>
     </div>
 {% endblock %}

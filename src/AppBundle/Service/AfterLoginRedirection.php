@@ -52,25 +52,25 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
 
         if($active['active'] == false) {
             if (in_array('ROLE_ADMIN', $rolesTab, true)) {
-                $redirection = new RedirectResponse($this->router->generate('profilAdmin', array('id' => $user->getId())));
+                $redirection = new RedirectResponse($this->router->generate('profilAdmin', array('slug' => $user->getSlug())));
             } elseif (in_array('ROLE_EMPLOYE', $rolesTab, true)) {
-                $redirection = new RedirectResponse($this->router->generate('User_edit', array('id' => $user->getId())));
+                $redirection = new RedirectResponse($this->router->generate('User_edit', array('slug' => $user->getSlug())));
             } elseif (in_array('ROLE_COMPANY', $rolesTab, true)) {
-                $redirection = new RedirectResponse($this->router->generate('Company_edit', array('id' => $user->getCompany()->getId())));
+                $redirection = new RedirectResponse($this->router->generate('Company_edit', array('slug' => $user->getCompany()->getSlug())));
             } elseif (in_array('ROLE_HAPPYCOACH', $rolesTab, true)) {
-                $redirection = new RedirectResponse($this->router->generate('profilHappyCoach', array('id' => $user->getId())));
+                $redirection = new RedirectResponse($this->router->generate('User_edit', array('slug' => $user->getSlug())));
             }
         } else {
             if (in_array('ROLE_ADMIN', $rolesTab, true)) {
-                $redirection = new RedirectResponse($this->router->generate('profilAdmin', array('id' => $user->getId())));
+                $redirection = new RedirectResponse($this->router->generate('profilAdmin', array('slug' => $user->getSlug())));
             } elseif (in_array('ROLE_EMPLOYE', $rolesTab, true)) {
-                $redirection = new RedirectResponse($this->router->generate('UserProfil', array('id' => $user->getId())));
+                $redirection = new RedirectResponse($this->router->generate('UserProfil', array('slug' => $user->getSlug())));
             } elseif (in_array('ROLE_COMPANY', $rolesTab, true)) {
-                $redirection = new RedirectResponse($this->router->generate('CompanyProfil', array('id' => $user->getCompany()->getId())));
+                $redirection = new RedirectResponse($this->router->generate('CompanyProfil', array('slug' => $user->getCompany()->getSlug())));
             } elseif (in_array('ROLE_HAPPYCOACH', $rolesTab, true)) {
-                $redirection = new RedirectResponse($this->router->generate('UserProfil', array('id' => $user->getId())));
+                $redirection = new RedirectResponse($this->router->generate('profilHappyCoach', array('slug' => $user->getSlug())));
             } else {
-                $redirection = new RedirectResponse($this->router->generate('User_edit', array('id' => $user->getId())));
+                $redirection = new RedirectResponse($this->router->generate('User_edit', array('slug' => $user->getSlug())));
             }
         }
         return $redirection;

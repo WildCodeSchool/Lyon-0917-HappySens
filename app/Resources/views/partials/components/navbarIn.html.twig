@@ -20,14 +20,10 @@
             </ul>
             <ul class="left">
                 <li title="Menu accès rapide">
-                    <a href="#" data-activates="slide-out" class="button linkNavSide ">
+                    <a href="#" data-activates="slide-out" class="button linkNavSide">
                         <div class="imgMenu">
-                            <img class="circle responsive-img" src="https://randomuser.me/api/portraits/med/men/11.jpg" alt="Vignette photo">
-                            {% if app.user.status == 2 %}
-                                <span class="hide-on-small-only">{{ app.user.company.name }}</span>
-                            {% else %}
-                                <span class="hide-on-small-only">{{ app.user.firstname }} {{ app.user.lastname }}</span>
-                            {% endif %}
+                            <img class="circle responsive-img" src="{{ app.user.photo }}" alt="Vignette photo">
+                            <span class="hide-on-small-only">{{ app.user.firstname }} {{ app.user.lastname }}</span>
                         </div>
                     </a>
                 </li>
@@ -35,17 +31,13 @@
             <ul id="slide-out" class="side-nav">
                 <li>
                     <div class="user-view">
-                        {% if app.user.status == 2 %}
-                            <a href="{{ path('CompanyProfil', { 'id': app.user.company.id  }) }}" title="Voir votre profil">
-                        {% else %}
                             <a href="{{ path('UserProfil', { 'id': app.user.id  }) }}" title="Voir votre profil">
-                        {% endif %}
-                            <div class="background blue darken-2">
+                            <div class="background  blue darken-2 white-text">
                             </div>
-                            <img class="circle" src="https://www.publicationsports.com/vProd/asset/image/component/ps/ps_single_login/user_logo.png">
+                            <img class="circle" src="{{ app.user.photo }}">
                             <div>
-                                <span class="white-text name">John Doe</span>
-                                <span class="white-text email">jdandturk@gmail.com</span>
+                                <span class="name">{{ app.user.firstname }} {{ app.user.lastname }}</span>
+                                <span class="email">{{ app.user.email }}</span>
                             </div>
                         </a>
                     </div>
@@ -57,11 +49,11 @@
                 <li><a class="waves-effect"><i class="material-icons">folder</i>Vos projets terminés</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">store</i>Entreprise :</a></li>
-                <li><a class="waves-effect" href="{{ path('company') }}"><i class="material-icons">domain</i>@name.entreprise</a></li>
+                <li><a class="waves-effect" href=""><i class="material-icons">domain</i>{{ app.user.company.name }}</a></li>
                 <li><div class="divider"></div></li>
-
                 <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">link</i>Liens pratiques :</a></li>
-                <li><a class="waves-effect"><i class="material-icons">create</i>Modifier votre profil</a></li>
+                <li><a class="waves-effect" href="{{ path('User_edit', {'id' : app.user.id}) }}"><i class="material-icons">create</i>Modifier votre profil</a></li>
+                <li><a class="waves-effect" href="{{ path('logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
                 <li><a href="https://happiness-time.fr/" target="_blank" class="waves-effect"><i class="material-icons">message</i>Blog</a></li>
                 <li><a href="{{ path('homepage') }}" class="waves-effect"><i class="material-icons">home</i>Accueil</a></li>
                 <li><a href="{{ path('contact') }}" class="waves-effect"><i class="material-icons">sms</i>Contact</a></li>

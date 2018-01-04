@@ -22,6 +22,10 @@ security:
         main:
             anonymous: ~
             provider: email_provider
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
             form_login:
                 login_path: login
                 check_path: login

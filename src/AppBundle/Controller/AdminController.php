@@ -9,7 +9,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
+use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
+use AppBundle\Service\FileUploader;
+use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -25,13 +28,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AdminController extends Controller
 {
 
-    // Traitement Form connection / contact / profils / inscriptions / projets
     /**
-     * @Route("/", name="profilAdmin")
+     * @Route("/profil/{slug}", name="profilAdmin")
      */
     public function profilAdminAction(Request $request)
     {
-        return $this->render('pages/In/company/profilCompany.html.twig', [
+        return $this->render('pages/In/Admin/profilAdmin.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
@@ -51,26 +53,41 @@ class AdminController extends Controller
         return $this->render('pages/In/Admin/company/index.html.twig', array(
             'companies' => $companies,
         ));
+
     }
 
     /**
      * Creates a new company entity.
-     *
      * @Route("/newCompany", name="newCompany")
      * @Method({"GET", "POST"})
      */
-    public function newCompanyAction(Request $request)
+    public function newCompanyAction(Request $request, FileUploader $fileUploader, SlugService $slugService)
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
+        $form->remove('slug');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+           dump($form);
+           dump($company);
+
+            $myFile = $company->getFileUsers();
+            $fileName = $fileUploader->upload($myFile, "csvFiles");
+            $logo = $company->getLogo();
+            $logoName = $fileUploader->upload($logo, "photoCompany");
+
+            $company->setLogo($logoName);
+            $company->setFileUsers($fileName);
+            $company->setSlug($slugService->slugify($company->getName()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
 
-            return $this->redirectToRoute('newCompany_show', array('id' => $company->getId()));
+            $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
+            $fileUploader->insertUser("1234", $em->find(Company::class, $company->getId()), $fileUsers);
+            unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
+            return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
         }
 
         return $this->render('pages/In/Admin/company/new.html.twig', array(
@@ -82,7 +99,7 @@ class AdminController extends Controller
     /**
      * Deletes a company entity.
      *
-     * @Route("/{id}", name="Company_delete")
+     * @Route("/{slug}/deleteCompany", name="Company_delete")
      * @Method("DELETE")
      */
     public function deleteCompanyAction(Request $request, Company $company)
@@ -109,10 +126,9 @@ class AdminController extends Controller
     private function createDeleteFormCompany(Company $company)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('Company_delete', array('id' => $company->getId())))
+            ->setAction($this->generateUrl('Company_delete', array('slug' => $company->getSlug())))
             ->setMethod('DELETE')
-            ->getForm()
-            ;
+            ->getForm();
     }
 
     //User
@@ -128,9 +144,11 @@ class AdminController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('AppBundle:User')->findAll();
+        $company = $em->getRepository('AppBundle:Company')->findAll();
 
         return $this->render('pages/In/Admin/collaborators/index.html.twig', array(
             'users' => $users,
+            'company' => $company,
         ));
     }
 
@@ -140,21 +158,22 @@ class AdminController extends Controller
      * @Route("/newUser", name="newUser")
      * @Method({"GET", "POST"})
      */
-    public function newActionUser(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function newActionUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService)
     {
         $user = new User();
         $form = $this->createForm('AppBundle\Form\UserType', $user);
+        $form->remove('slug');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
-
+            $user->setSlug($slugService->slugify($user->getFirstName() . ' ' . $user->getLastName()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('newUser_show', array('id' => $user->getId()));
+            return $this->redirectToRoute('newUser_show', array('slug' => $user->getSlug()));
         }
 
         return $this->render('pages/In/Admin/collaborators/new.html.twig', array(
@@ -166,7 +185,7 @@ class AdminController extends Controller
     /**
      * Deletes a user entity.
      *
-     * @Route("/{id}", name="User_delete")
+     * @Route("/{slug}/deleteUser", name="User_delete")
      * @Method("DELETE")
      */
     public function deleteActionUser(Request $request, User $user)
@@ -193,10 +212,29 @@ class AdminController extends Controller
     private function createDeleteFormUser(User $user)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('User_delete', array('id' => $user->getId())))
+            ->setAction($this->generateUrl('User_delete', array('slug' => $user->getSlug())))
             ->setMethod('DELETE')
             ->getForm()
             ;
+    }
+
+    /**
+     * Lists all project entities.
+     *
+     * @Route("/listingProjects", name="listingProjects")
+     * @Method("GET")
+     */
+    public function indexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $projects = $em->getRepository('AppBundle:Project')->findAll();
+        $company = $em->getRepository('AppBundle:Company')->findAll();
+
+        return $this->render('pages/In/Admin/projects/index.html.twig', array(
+            'projects' => $projects,
+            'company' => $company,
+        ));
     }
 
 }

@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getProjectsInCompany($companyId) {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->join('u.authorProject', 'p')
+            ->setParameter('idCompany', $companyId)
+            ->where('u.company=:idCompany')
+            ->getQuery();
+        return $qb->getResult();
+    }
 }
