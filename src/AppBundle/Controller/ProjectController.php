@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -76,14 +77,40 @@ class ProjectController extends Controller
      */
     public function showAction(Project $project)
     {
+         $user = $this->getUser();
+
         $deleteForm = $this->createDeleteForm($project);
         $nbLikes = count($project->getLikeProjects());
 
-        return $this->render('project/show.html.twig', array(
+        $viewProject = $this->render('project/show.html.twig', array(
             'project' => $project,
             'nbLike' => $nbLikes,
             'delete_form' => $deleteForm->createView(),
         ));
+
+        if($user->getStatus() === User::ROLE_COMPANY or $user->getStatus() === User::ROLE_EMPLOYE) {
+            if ($user->getCompany() === $project->getAuthor()->getCompany()) {
+                return $viewProject;
+            } else {
+                throw new AccessDeniedException("ce n'est pas un projet de ton entreprise");
+            }
+        }
+
+        if($user->getStatus() === User::ROLE_HAPPYCOACH) {
+            if ( $project->getHappyCoach() !== NULL) {
+                if ($user->getId() === $project->getHappyCoach()->getId()) {
+                    return $viewProject;
+                }
+            }
+
+            foreach ($project->getTeamProject() as $userTeam) {
+                if ($userTeam->getId() === $user->getId()) {
+                    return $viewProject;
+                }
+            }
+            throw new AccessDeniedException("tu ne travailles pas sur ce projet");
+        }
+        return $viewProject;
     }
 
     /**
