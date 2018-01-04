@@ -21,8 +21,10 @@
                         <li><a href="{{ path('User_edit', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
                     {% elseif app.user.status == 1 %}
                         <li><a href="{{ path('profilAdmin', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
-                    {% else %}
+                    {% elseif app.user.status == 2 or app.user.status == 3 %}
                         <li><a href="{{ path('UserProfil', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                    {% elseif app.user.status == 4 %}
+                        <li><a href="{{ path('profilHappyCoach', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
                     {% endif %}
                 {% else %}
                     <li><a href="{{ path('login') }}" class="waves-effect waves-light enterIn hoverable btn" title="Connexion"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
