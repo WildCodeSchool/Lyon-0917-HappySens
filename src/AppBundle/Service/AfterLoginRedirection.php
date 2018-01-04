@@ -9,7 +9,6 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\User;
-use DateTime;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
@@ -52,7 +51,7 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         }, $roles);
 
         $lastDateUpdateMood = $user->getDateUpdateMood();
-        $dateUpdateMood = new DateTime();
+        $dateUpdateMood = new \DateTime();
         $dateUpdateMood->modify('-1 month');
         if($active['active'] == false) {
             if (in_array('ROLE_ADMIN', $rolesTab, true)) {

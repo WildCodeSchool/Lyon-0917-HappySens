@@ -7,7 +7,6 @@ use AppBundle\Entity\Company;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\StatusProject;
 use AppBundle\Service\SlugService;
-use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -366,16 +365,20 @@ class UserController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $today = new DateTime();
+            $today = new \DateTime();
             $user->setDateUpdateMood($today);
             $this->getDoctrine()->getManager()->flush();
-            switch (true) {
-                case ($this->getUser()->getStatus() === User::ROLE_EMPLOYE) :
+            $status = $this->getUser()->getStatus();
+            switch ($status) {
+                case (User::ROLE_EMPLOYE) :
                     return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
-                case ($this->getUser()->getStatus() === User::ROLE_COMPANY) :
+                    break;
+                case (User::ROLE_COMPANY) :
                     return $this->redirectToRoute('CompanyProfil', array('slug' => $user->getCompany()->getSlug()));
-                case ($this->getUser()->getStatus() === User::ROLE_HAPPYCOACH) :
+                    break;
+                case (User::ROLE_HAPPYCOACH) :
                     return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
+                    break;
             }
         }
 
