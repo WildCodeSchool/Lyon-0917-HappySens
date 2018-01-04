@@ -19,4 +19,21 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
+    public function getUser() {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->join('u.company', 'c')
+            ->where('u.status = 2 or u.status = 3')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function getHappyCoach() {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->where('u.status = 4')
+            ->getQuery();
+        return $qb->getResult();
+    }
 }

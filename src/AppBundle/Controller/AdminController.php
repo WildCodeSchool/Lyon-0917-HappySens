@@ -142,14 +142,29 @@ class AdminController extends Controller
     public function listingUserAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:User')->getUser();
 
-        $users = $em->getRepository('AppBundle:User')->findAll();
-        $company = $em->getRepository('AppBundle:Company')->findAll();
-
-        return $this->render('pages/In/Admin/collaborators/index.html.twig', array(
+        return $this->render('pages/In/Admin/collaborators/index.html.twig', [
             'users' => $users,
-            'company' => $company,
-        ));
+            'listing' => 'Collaborateur',
+        ]);
+    }
+
+    /**
+     * Lists all user HappyCoach.
+     *
+     * @Route("/listingHappyCoach", name="listingHappyCoach")
+     * @Method("GET")
+     */
+    public function listingHappyCoachAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:User')->getHappyCoach();
+
+        return $this->render('pages/In/Admin/collaborators/index.html.twig', [
+            'users' => $users,
+            'listing' => 'HappyCoach',
+        ]);
     }
 
     /**
