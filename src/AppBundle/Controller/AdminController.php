@@ -33,8 +33,18 @@ class AdminController extends Controller
      */
     public function profilAdminAction(Request $request)
     {
+        $nbProjectsByStatus = [];
+        $nbUserByStatus = [];
+        $em = $this->getDoctrine()->getManager();
+        $nbProjectsByStatus = $em->getRepository('AppBundle:Project')->getNumberProjectsByStatus();
+        $nbUserByStatus = $em->getRepository('AppBundle:User')->getNumberUserByRole();
+        $nbCompany = $em->getRepository('AppBundle:Company')->getNumberCompany();
+
         return $this->render('pages/In/Admin/profilAdmin.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'nbProjectsByStatus' => $nbProjectsByStatus,
+            'nbUserByStatus' => $nbUserByStatus,
+            'nbCompany' => $nbCompany,
         ]);
     }
 
@@ -236,19 +246,16 @@ class AdminController extends Controller
     /**
      * Lists all project entities.
      *
-     * @Route("/listingProjects", name="listingProjects")
+     * @Route("/listingProjects/{status}", name="listingProjects")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($status)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
-        $company = $em->getRepository('AppBundle:Company')->findAll();
+        $projects = $em->getRepository('AppBundle:Project')->getProjectsByStatus($status);
 
         return $this->render('pages/In/Admin/projects/index.html.twig', array(
             'projects' => $projects,
-            'company' => $company,
         ));
     }
 

@@ -10,6 +10,31 @@ namespace AppBundle\Repository;
  */
 class ProjectRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * return all project with status $status
+     * @return mixed
+     */
+    public function getProjectsByStatus($status) {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->setParameter('status', $status)
+            ->where('p.status =:status')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    /**
+     * return number of project by status $status
+     * @return mixed
+     */
+    public function getNumberProjectsByStatus() {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->groupBy('p.status')
+            ->getQuery();
+        return $qb->getResult();
+    }
 
 }
 

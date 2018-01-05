@@ -40,27 +40,36 @@
                 <div class="contentDashboard">
                     <h2>Projets</h2>
                     <section class="listAddUsers">
-                        <a href="{{ path('listingProjects') }}">
-                            <div class="center valign-wrapper hoverable" id="validProject">
-                                <ul>
-                                    <li><i class="fa fa-check-square-o fa-2x"></i></li>
-                                    <li><p>Valider un projet</p></li>
-                                </ul>
-                            </div>
-                        </a>
-                        <a href="{{ path('listingProjects') }}">
+                        {#<a href="{{ path('listingProjects') }}">#}
+                            {#<div class="center valign-wrapper hoverable" id="validProject">#}
+                                {#<ul>#}
+                                    {#<li><i class="fa fa-check-square-o fa-2x"></i></li>#}
+                                    {#<li><p>Valider un projet</p></li>#}
+                                {#</ul>#}
+                            {#</div>#}
+                        {#</a>#}
+
+                        <a href="{{ path('listingProjects', {'status': 1}) }}">
                             <div class="center valign-wrapper hoverable" id="waitProject">
                                 <ul>
                                     <li><i class="fa fa-folder-open-o fa-2x"></i></li>
-                                    <li><p>Les projets en attentes</p></li>
+                                    <li><p>{{ nbProjectsByStatus[0][1] }} projets à valider</p></li>
                                 </ul>
                             </div>
                         </a>
-                        <a href="{{ path('listingProjects') }}">
-                            <div class="center valign-wrapper hoverable" id="runProject">
+                        <a href="{{ path('listingProjects', {'status': 2}) }}">
+                            <div class="center valign-wrapper hoverable" id="validProject">
+                                <ul>
+                                    <li><i class="fa fa-check-square-o fa-2x"></i></li>
+                                    <li><p>{{ nbProjectsByStatus[1][1] }} projets en cours</p></li>
+                                </ul>
+                            </div>
+                        </a>
+                        <a href="{{ path('listingProjects', {'status': 3}) }}">
+                            <div class="center valign-wrapper hoverable" id="finishProject">
                                 <ul>
                                     <li><i class="fa fa-folder-o fa-2x"></i></li>
-                                    <li><p>Les projets en cours</p></li>
+                                    <li><p>{{ nbProjectsByStatus[2][1] }} projets terminé </p></li>
                                 </ul>
                             </div>
                         </a>
@@ -74,7 +83,7 @@
                     <h2>Entreprises</h2>
                     <section class="listSimple">
                         <a href="{{ path('listingCompany') }}">
-                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i> <span>Toutes les entreprises</span></p>
+                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i> <span>Toutes les entreprises ({{  nbCompany[0][1]}})</span></p>
                         </a>
                         <a href="{{ path('listingCompany') }}">
                             <p class="center valign-wrapper" id="deleteCompany"><i class="fa fa-trash-o fa-2x"> </i> <span>Supprimer entreprise</span></p>
@@ -87,7 +96,7 @@
                     <h2>Collaborateurs</h2>
                     <section class="listSimple">
                         <a href="{{ path('listingUser') }}">
-                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i> <span>Tous les collaborateurs</span></p>
+                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i> <span>Tous les collaborateurs ({{  nbUserByStatus[2][1] +   nbUserByStatus[3][1]}})</span></p>
                         </a>
                         <a href="{{ path('listingUser') }}">
                             <p class="center valign-wrapper" id="deleteCompany"><i class="fa fa-trash-o fa-2x"> </i> <span>Supprimer collaborateur</span></p>
@@ -100,7 +109,7 @@
                     <h2>HappyCoachs</h2>
                     <section class="listSimple">
                         <a href="{{ path('listingHappyCoach') }}">
-                            <p class="center valign-wrapper" id="allHappyCoach"><i class="fa fa-list-alt fa-2x"> </i> <span>Tous les happyCoachs</span></p>
+                            <p class="center valign-wrapper" id="allHappyCoach"><i class="fa fa-list-alt fa-2x"> </i> <span>Tous les happyCoachs ({{  nbUserByStatus[3][1]}})</span></p>
                         </a>
                         <a href="{{ path('listingUser') }}">
                             <p class="center valign-wrapper" id="addProjectHappy"><i class="fa fa-user-plus fa-2x"> </i> <span>Placer un happyCoach</span></p>

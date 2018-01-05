@@ -10,6 +10,10 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $companyId
+     * @return mixed
+     */
     public function getProjectsInCompany($companyId) {
         $qb = $this
             ->createQueryBuilder('u')
@@ -20,6 +24,11 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
+    /**
+     * Return all Salary and User Company
+     *
+     * @return mixed
+     */
     public function getUser() {
         $qb = $this
             ->createQueryBuilder('u')
@@ -29,11 +38,25 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
+    /**
+     * Return all HappyCoach
+     * @return mixed
+     */
     public function getHappyCoach() {
         $qb = $this
             ->createQueryBuilder('u')
             ->where('u.status = 4')
             ->getQuery();
         return $qb->getResult();
+    }
+
+    public function getNumberUserByRole() {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->groupBy('u.status')
+            ->getQuery();
+        return $qb->getResult();
+
     }
 }
