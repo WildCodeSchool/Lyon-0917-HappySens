@@ -83,7 +83,7 @@ class AdminController extends Controller
             $em->flush();
 
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
-            $fileUploader->insertUser(
+            $arrayUsers = $fileUploader->insertUser(
                 "1234",
                 $em->find(Company::class, $company->getId()),
                 $fileUsers,
@@ -93,9 +93,13 @@ class AdminController extends Controller
             unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
 
             $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234');
+            $countUser = $fileUploader->getCounter();
 
-
-            return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
+            return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', array(
+                'users' => $arrayUsers,
+                'company' => $company,
+                'countUser' => $countUser,
+            ));
         }
 
         return $this->render('pages/In/Admin/company/new.html.twig', array(
