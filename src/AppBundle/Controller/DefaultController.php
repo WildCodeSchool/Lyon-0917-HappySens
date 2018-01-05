@@ -66,16 +66,6 @@ class DefaultController extends Controller
         ]);
     }
 
-
-    /**
-     * @Route("profilHappyCoach", name="profilHappyCoach")
-     */
-    public function profilHappyCoachAction(Request $request)
-    {
-        return $this->render('pages/profilHappyCoach.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
     /**
      * @Route("listingNotifications", name="listingNotifications")
      */

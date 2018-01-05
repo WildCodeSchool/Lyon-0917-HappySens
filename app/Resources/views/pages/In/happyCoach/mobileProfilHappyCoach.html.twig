@@ -7,7 +7,7 @@
     <div class="switch_container">
         <div id="tabInfo" class="col s12 white switch_content">
             <div class="row">
-                <div class="card-panel amber darken-2 white-text">
+                <div class="card-panel pink darken-2 white-text">
                     <h5 class="titleSecond">A propos de moi </h5>
                     <p>
                         {{ user.biography }}
@@ -51,18 +51,18 @@
                                             class="fa fa-facebook-square fa-2x blue-text text-darken-4"></i></a>
                                 <a href="{{ user.twitter }}"><i
                                             class="fa fa-twitter-square fa-2x blue-text text-darken-1"></i></a>
-                                <a href="{{ user.linkedin }}"><i class="fa fa-linkedin fa-2x red-text"></i></a>
+                                <a href="{{ user.linkedin }}"><i class="fa fa-linkedin fa-2x red-text"></i></a>>
                             </div>
                         </div>
                     </li>
                 </ul>
                 <div>
-                    <h5 class="titleSecond">Mes passions et talents cachés :</h5>
+                    <h5 class="titleSecond">Mes passions et talents :</h5>
                 </div>
                 <ul class="collection">
                     {% for skill in user.userskills %}
-                    <li class="collection-item">
-                        <div class="row">
+                        <li class="collection-item">
+                            <div class="row">
                                 <p class="col s12 titleSecond"> {{ skill.skill }}</p>
                                 <div class="col l12">
                                     {% for i in 1..skill.level %}
@@ -74,8 +74,8 @@
                                         {% endfor %}
                                     {% endif %}
                                 </div>
-                        </div>
-                    </li>
+                            </div>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
@@ -83,7 +83,17 @@
         <div id="tabProjects" class="col s12 white switch_content">
             <div class="row">
                 <section class="PC_blockProject">
-                    {{ include('project/blockProject.html.twig') }}
+                    <div class="PC_bProjectInProgress">
+                        <div class="hideMobile">
+                            <h5 class="center titleSecond">Mes Happy Projets</h5>
+                        </div>
+                        {% for project in projectsRef %}
+                            {{ include('project/cardProject.html.twig') }}
+                        {% endfor %}
+                        {% for project in projectsTeam %}
+                            {{ include('project/cardProject.html.twig') }}
+                        {% endfor %}
+                    </div>
                 </section>
             </div>
         </div>

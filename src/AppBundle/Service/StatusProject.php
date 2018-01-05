@@ -15,8 +15,8 @@ class StatusProject
     public function getStatusTwig($status)
     {
         $statusTwig = [
-        'class' => "",
-        'text' => ""
+            'class' => "",
+            'text' => ""
         ];
         switch (true) {
             case $status == 1:
@@ -33,6 +33,26 @@ class StatusProject
                 break;
         }
         return $statusTwig;
+    }
+
+    public function getProjectsWithStatus($projects)
+    {
+        for ($i = 0; $i < count($projects); $i++) {
+            $status = $projects[$i]->getStatus();
+            $statusTwig = StatusProject::getStatusTwig($status);
+            $projects[$i]->setStatus(['class' => $statusTwig['class'], 'text' => $statusTwig['text']]);
+        }
+
+        return $projects;
+    }
+
+    public function getProjectWithStatus($project)
+    {
+            $status = $project->getStatus();
+            $statusTwig = StatusProject::getStatusTwig($status);
+            $project->setStatus(['class' => $statusTwig['class'], 'text' => $statusTwig['text']]);
+
+        return $project;
     }
 
 }
