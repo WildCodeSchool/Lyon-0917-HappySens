@@ -11,6 +11,10 @@ main {
   flex: 1 0 auto;
 }
 
+.panel-error {
+  padding: 10px;
+}
+
 // Container general
 .generalContainer {
   min-height: 40vh;
@@ -65,4 +69,8 @@ main {
     margin-top: 25px;
     font-size: 1.3em;
   }
+}
+
+.widthMax {
+  max-width: 600px;
 }

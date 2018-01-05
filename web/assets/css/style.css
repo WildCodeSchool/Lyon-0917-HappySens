@@ -141,6 +141,9 @@ body {
 main {
   flex: 1 0 auto; }
 
+.panel-error {
+  padding: 10px; }
+
 .generalContainer {
   min-height: 40vh;
   padding: 70px 20px; }
@@ -185,6 +188,9 @@ main {
   .positionLoad p {
     margin-top: 25px;
     font-size: 1.3em; }
+
+.widthMax {
+  max-width: 600px; }
 
 /*************    Composant   ****************************/
 .Contact {
@@ -633,9 +639,20 @@ ul.switch li.active, ul.switch li.active {
   margin-bottom: -25px;
   background-color: #252F3D; }
 
-ul.followUs {
-  display: flex;
-  justify-content: space-between; }
+.followUs a {
+  color: white; }
+  .followUs a:hover {
+    color: greycd; }
+.followUs .margin {
+  margin: 5px 0; }
+.followUs li {
+  font-size: 1.2em;
+  color: white; }
+  .followUs li:hover {
+    color: black; }
+  .followUs li span {
+    font-size: 0.85em;
+    margin-left: 5px; }
 
 .containExplainEmploye {
   margin: 50px 0; }

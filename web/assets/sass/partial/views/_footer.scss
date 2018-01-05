@@ -4,8 +4,26 @@
   background-color: $darkColor;
 }
 
-ul.followUs {
-  display: flex;
+.followUs {
   //width: 100%;
-  justify-content: space-between;
+  a {
+    color: white;
+    &:hover {
+      color: greycd ;
+    }
+  }
+  .margin {
+    margin: 5px 0;
+  }
+  li {
+    font-size: 1.2em;
+    color: white;
+    &:hover {
+      color: black;
+    }
+    span {
+      font-size: 0.85em;
+      margin-left: 5px;
+    }
+  }
 }

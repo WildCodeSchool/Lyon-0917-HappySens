@@ -3,9 +3,9 @@
 {% block title %}Se connecter{% endblock %}
 
 {% block content %}
-<div class="container generalContainer">
+<div class="container generalContainer widthMax">
     <div class="row">
-        <h5 class="blue-text text-darken-3 titleSecond">Se connecter à votre compte</h5>
+        <h5 class="blue-text text-darken-3 titleSecond">Connexion à votre compte</h5>
     </div>
     <form action="{{ path('login') }}" method="post">
         <div class="row">
@@ -28,26 +28,26 @@
                         <label for="remember_me">Souhaitez vous rester connecté ? </label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field center">
-                        Vous avez oublié votre <a href="#" onclick="missingPassword()">mot de passe?</a>
-                    </div>
-                </div>
-            </div>
-            {% if error %}
-                <div class="row">
-                    <div class="col s12 m6 offset-m3 center">
-                        <div class="card-panel red lighten-2">
+                {% if error %}
+                    <div class="row">
+                        <div class="col s12 m8 offset-m2 center">
+                            <div class="card-panel panel-error red lighten-2">
                           <span class="white-text">
                               {{ error.messageKey|trans(error.messageData, 'security') | replace({
                                   "Invalid credentials": "Erreur de combinaison email / mdp. Réessayer !",
                                   "Bad credentials": "Erreur de combinaison email / mdp. Réessayer !"
                               }) }}
                           </span>
+                            </div>
                         </div>
                     </div>
+                {% endif %}
+                <div class="row">
+                    <div class="input-field center">
+                        Vous avez oublié votre <a href="#" onclick="missingPassword()">mot de passe?</a>
+                    </div>
                 </div>
-            {% endif %}
+            </div>
             <div class="col s12" id="btnConnexion">
                 <div class="row">
                     <div class="input-field center">
