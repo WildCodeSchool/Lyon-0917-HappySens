@@ -25,31 +25,27 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
-     * Return all Salary and User Company
-     *
+     * Return user by type (salary or happyCoach)
      * @return mixed
      */
-    public function getUser() {
+    public function getUserByType($status)
+    {
         $qb = $this
             ->createQueryBuilder('u')
-            ->join('u.company', 'c')
-            ->where('u.status = 2 or u.status = 3')
-            ->getQuery();
+            ->join('u.company', 'c');
+        if ($status == 'salary') {
+            $qb = $qb->where('u.status = 2 or u.status = 3');
+        } else if ($status == 'happyCoach') {
+            $qb = $qb->where('u.status = 4');
+        }
+        $qb = $qb->getQuery();
         return $qb->getResult();
     }
 
     /**
-     * Return all HappyCoach
+     * Return count number of user by Role
      * @return mixed
      */
-    public function getHappyCoach() {
-        $qb = $this
-            ->createQueryBuilder('u')
-            ->where('u.status = 4')
-            ->getQuery();
-        return $qb->getResult();
-    }
-
     public function getNumberUserByRole() {
         $qb = $this
             ->createQueryBuilder('u')
@@ -57,6 +53,5 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->groupBy('u.status')
             ->getQuery();
         return $qb->getResult();
-
     }
 }

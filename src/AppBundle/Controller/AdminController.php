@@ -35,16 +35,19 @@ class AdminController extends Controller
     {
         $nbProjectsByStatus = [];
         $nbUserByStatus = [];
+        $nbSkills = [];
         $em = $this->getDoctrine()->getManager();
         $nbProjectsByStatus = $em->getRepository('AppBundle:Project')->getNumberProjectsByStatus();
         $nbUserByStatus = $em->getRepository('AppBundle:User')->getNumberUserByRole();
         $nbCompany = $em->getRepository('AppBundle:Company')->getNumberCompany();
+        $nbSkills = $em->getRepository('AppBundle:Skill')->getNumberSkill();
 
         return $this->render('pages/In/Admin/profilAdmin.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
             'nbProjectsByStatus' => $nbProjectsByStatus,
             'nbUserByStatus' => $nbUserByStatus,
             'nbCompany' => $nbCompany,
+            'nbSkill' => $nbSkills
         ]);
     }
 

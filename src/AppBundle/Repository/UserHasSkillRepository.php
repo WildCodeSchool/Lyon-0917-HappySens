@@ -10,4 +10,28 @@ namespace AppBundle\Repository;
  */
 class UserHasSkillRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * Return for each Skill number of user by Type
+     * @param $status
+     * @return mixed
+     */
+    public function getNumberByUserTypeNumberSkill($status)
+    {
+        $qb = $this
+            ->createQueryBuilder('us')
+            ->join('us.skill', 's')
+            ->join('us.user', 'u')
+            ->select('count(us.skill) as nbUser', 's.nameSkill', 's.id')
+            ->groupBy('us.skill')
+            ->orderBy('nbUser', 'DESC');
+        if ($status == 'salary') {
+            $qb = $qb->where('u.status = 2 or u.status = 3');
+        } else if ($status == 'happyCoach') {
+            $qb = $qb->where('u.status = 4');
+        }
+        $qb = $qb->getQuery();
+        return $qb->getResult();
+    }
+
 }

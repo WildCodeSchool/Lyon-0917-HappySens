@@ -22,12 +22,16 @@ class SkillController extends Controller
      */
     public function indexAction()
     {
+        $nbHappyCoachBySkill = [];
         $em = $this->getDoctrine()->getManager();
-
+        $nbSalaryBySkill = $em->getRepository('AppBundle:UserHasSkill')->getNumberByUserTypeNumberSkill('salary');
+        $nbHappyCoachBySkill = $em->getRepository('AppBundle:UserHasSkill')->getNumberByUserTypeNumberSkill('happyCoach');
         $skills = $em->getRepository('AppBundle:Skill')->findAll();
 
         return $this->render('skill/index.html.twig', array(
-            'skills' => $skills,
+            'nbSalaryBySkill' => $nbSalaryBySkill,
+            'nbHappyCoachBySkill' => $nbHappyCoachBySkill,
+            'skills' => $skills
         ));
     }
 
