@@ -22,7 +22,7 @@ class UserHasSkillRepository extends \Doctrine\ORM\EntityRepository
             ->createQueryBuilder('us')
             ->join('us.skill', 's')
             ->join('us.user', 'u')
-            ->select('count(us.skill) as nbUser', 's.nameSkill', 's.id')
+            ->select('count(us.skill) as nbUser', 's.nameSkill', 's.id', 'AVG(us.level) as level')
             ->groupBy('us.skill')
             ->orderBy('nbUser', 'DESC');
         if ($status == 'salary') {

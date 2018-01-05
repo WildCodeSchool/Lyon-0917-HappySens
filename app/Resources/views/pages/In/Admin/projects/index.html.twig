@@ -38,10 +38,35 @@
                                     <span class="black-text">{{ project.author }}</span>
                                 </div>
                             </a>
+                            {% if project.status == 1 %}
+                                <a href="{{ path('project_validate', {'slug' : project.slug}) }}">
+                                    <div class="chip inProgress green">
+                                        <span><i class="fa fa-check-square-o fa"></i></span>
+                                        <span>Valider le projet</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                            {% if project.status == 1 or project.status == 2 %}
+                                <a href="{{ path('project_finish', {'slug' : project.slug}) }}">
+                                    <div class="chip inProgress red">
+                                        <span><i class="fa fa-remove fa"></i></span>
+                                        <span>Terminer le projet</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                            {% if project.status == 3  %}
+                                <a href="{{ path('project_reopen', {'slug' : project.slug}) }}">
+                                    <div class="chip inProgress green">
+                                        <span><i class="fa fa-check-square-o fa"></i></span>
+                                        <span>Rouvrir le projet</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                            <div class="right">
+                                <a href="#!" onclick="like()">{{ project.likeProjects | length }} <i class="fa fa-heart red-text"></i></a>
+                            </div>
                         </div>
-                        <div class="right">
-                            <a href="#!" onclick="like()">{{ project.likeProjects | length }} <i class="fa fa-heart red-text"></i></a>
-                        </div>
+
                     </div>
                     <div class="card-reveal revealProject">
                         <div class="card-title grey-text text-darken-4">

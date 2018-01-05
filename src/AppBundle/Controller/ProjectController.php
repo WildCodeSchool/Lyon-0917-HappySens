@@ -246,4 +246,51 @@ class ProjectController extends Controller
         $em->flush();
         return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
     }
+
+    /**
+     * @Route("/validProject/{slug}/", name="project_validate")
+     *
+     */
+    // TODO: AJAX
+    public function validateProjectAction(Request $request, Project $project)
+    {
+        $statusProject = $project->setStatus('2');
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($statusProject);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+    /**
+     * @Route("/finishProject/{slug}/", name="project_finish")
+     *
+     */
+    // TODO: AJAX
+    public function finishProjectAction(Request $request, Project $project)
+    {
+        $today = new \DateTime();
+        $project->setStatus('3');
+        $project->setEndDate($today);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($project);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+    /**
+     * @Route("/reopenProject/{slug}/", name="project_reopen")
+     *
+     */
+    // TODO: AJAX
+    public function reopenProjectAction(Request $request, Project $project)
+    {
+        $newDateEnd = new \DateTime();
+        $newDateEnd->add(new \DateInterval('P1M'));
+        $project->setStatus('2');
+        $project->setEndDate($newDateEnd);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($project);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
 }

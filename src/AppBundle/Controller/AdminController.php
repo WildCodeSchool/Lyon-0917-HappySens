@@ -155,7 +155,7 @@ class AdminController extends Controller
     public function listingUserAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository('AppBundle:User')->getUser();
+        $users = $em->getRepository('AppBundle:User')->getUserByType('salary');
 
         return $this->render('pages/In/Admin/collaborators/index.html.twig', [
             'users' => $users,
@@ -172,8 +172,8 @@ class AdminController extends Controller
     public function listingHappyCoachAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository('AppBundle:User')->getHappyCoach();
-
+        $users = $em->getRepository('AppBundle:User')->getUserByType('happyCoach');
+dump($users);
         return $this->render('pages/In/Admin/collaborators/index.html.twig', [
             'users' => $users,
             'listing' => 'HappyCoach',

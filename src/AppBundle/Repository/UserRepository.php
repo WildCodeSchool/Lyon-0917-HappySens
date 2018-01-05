@@ -31,10 +31,10 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
     public function getUserByType($status)
     {
         $qb = $this
-            ->createQueryBuilder('u')
-            ->join('u.company', 'c');
+            ->createQueryBuilder('u');
         if ($status == 'salary') {
-            $qb = $qb->where('u.status = 2 or u.status = 3');
+            $qb = $qb->where('u.status = 2 or u.status = 3')
+                ->join('u.company', 'c');
         } else if ($status == 'happyCoach') {
             $qb = $qb->where('u.status = 4');
         }

@@ -60,14 +60,7 @@
                         <div class="row">
                             <p class="col l12 titleSecond"> {{ skill.skill }}</p>
                             <div class="col l12">
-                                {% for i in 1..skill.level %}
-                                    <i class="material-icons amber-text text-darken-2">star</i>
-                                {% endfor %}
-                                {% if skill.level != 5 %}
-                                    {% for i in 5..(skill.level+ 1) %}
-                                        <i class="material-icons  amber-text text-darken-2">star_border</i>
-                                    {% endfor %}
-                                {% endif %}
+                                {{ include('skill/skillLevel.html.twig') }}
                             </div>
                         </div>
                     {% endfor %}

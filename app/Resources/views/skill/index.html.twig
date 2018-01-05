@@ -12,12 +12,15 @@
                             {% for salarySkill in nbSalaryBySkill %}
                                 {% if salarySkill.id == skill.id %}
                                     {{ salarySkill.nbUser | default('0') }}
+                                    {% set skill = salarySkill %}
+                                    {{ include('skill/skillLevel.html.twig') }}
                                 {% endif %}
                             {% endfor %}</p>
                         <p>Nombre d'HappyCoach :
                             {% for skillHappyCoach in nbHappyCoachBySkill %}
                                 {% if skillHappyCoach.id == skill.id %}
                                     {{ skillHappyCoach.nbUser | default('0') }}
+                                    / niveau moyen : {{ skillHappyCoach.level |  round(1)}}
                                 {% endif %}
                             {% endfor %}
                         </p>
