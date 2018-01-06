@@ -183,6 +183,11 @@ class User implements UserInterface, \Serializable
     private $authorProject;
 
     /**
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="happyCoach")
+     */
+    private $happyCoachRef;
+
+    /**
      * @var string
      * @ORM\Column(name="slug", type="string",  length=255)
      */
