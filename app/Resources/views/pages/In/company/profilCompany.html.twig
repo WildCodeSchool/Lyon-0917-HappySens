@@ -11,8 +11,8 @@
                         <img class="activator" src="{{ asset('assets/images/happysens-time.jpg') }}" height="300px">
                     </div>
                     <div class="card-profile-image">
-                        {% if company.logo is null %}
-                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle z-depth-3 activator">
+                        {% if company.logo %}
+                            <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" class="circle z-depth-3 activator">
                         {% else %}
                             <img src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="profile image" class="circle responsive-img">
                         {% endif %}
@@ -56,7 +56,9 @@
                                 </tr>
                                 <tr>
                                     <th>Référent Happy Sens</th>
-                                    <td><a href="{{ path('UserProfil', {'slug': refHappySens.0.slug}) }}">{{ refHappySens.0.firstName }} {{ refHappySens.0.lastName }}</a></td>
+                                    {% if refHappySens %}
+                                        <td><a href="{{ path('UserProfil', {'slug': refHappySens.0.slug}) }}">{{ refHappySens.0.firstName }} {{ refHappySens.0.lastName }}</a></td>
+                                    {% endif %}
                                 </tr>
                                 </tbody>
                             </table>

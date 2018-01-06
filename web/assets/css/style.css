@@ -110,9 +110,6 @@
   .mobile {
     display: block !important; }
 
-  .modal-content {
-    width: 25em !important; }
-
   .detailsExplainEntreprise {
     padding: 10px !important; }
 
@@ -193,8 +190,21 @@ main {
   max-width: 600px; }
 
 .withoutProject {
-  margin: 20px auto;
-  text-align: center; }
+  margin: 40px auto;
+  text-align: center;
+  color: grey;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3em; }
+  .withoutProject a {
+    color: white;
+    font-family: 'Roboto', sans-serif; }
+  .withoutProject button.btn {
+    background-color: #C2185B;
+    color: white;
+    font-size: 0.7em; }
+
+.containerListingProject {
+  padding: 20px 0; }
 
 /*************    Composant   ****************************/
 .Contact {
@@ -646,17 +656,17 @@ ul.switch li.active, ul.switch li.active {
 .followUs a {
   color: white; }
   .followUs a:hover {
-    color: greycd; }
+    color: grey; }
 .followUs .margin {
   margin: 5px 0; }
 .followUs li {
   font-size: 1.2em;
   color: white; }
-  .followUs li:hover {
-    color: black; }
   .followUs li span {
     font-size: 0.85em;
     margin-left: 5px; }
+    .followUs li span:hover {
+      color: grey; }
 
 .containExplainEmploye {
   margin: 50px 0; }
@@ -720,7 +730,7 @@ ul.switch li.active, ul.switch li.active {
   font-size: 3em;
   font-family: "Quicksand", sans-serif; }
 .blocExplainEntreprise .containExplainEntreprise {
-  padding: 30px 15px;
+  padding: 30px 35px;
   text-align: left; }
   .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
     font-family: "Roboto", sans-serif; }

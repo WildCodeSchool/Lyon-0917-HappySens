@@ -5,11 +5,10 @@
 }
 
 .followUs {
-  //width: 100%;
   a {
     color: white;
     &:hover {
-      color: greycd ;
+      color: grey ;
     }
   }
   .margin {
@@ -18,12 +17,12 @@
   li {
     font-size: 1.2em;
     color: white;
-    &:hover {
-      color: black;
-    }
     span {
       font-size: 0.85em;
       margin-left: 5px;
+      &:hover {
+        color: grey ;
+      }
     }
   }
 }

@@ -63,12 +63,11 @@ class ProjectController extends Controller
             $email_contact = $this->container->getParameter('email_contact');
             $emailService->sendMailProject($project, $email_contact);
 
+            $em->flush();
             $this->addFlash(
                 'notif',
                 'Votre projet à bien était créer !'
             );
-//            $em->flush();
-
             return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }
 

@@ -76,6 +76,21 @@ main {
 }
 
 .withoutProject {
-  margin: 20px auto;
+  margin: 40px auto;
   text-align: center;
+  color: grey;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3em;
+  a {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+  button.btn {
+    background-color: $pinkColor;
+    color: white;
+    font-size: 0.7em;
+  }
+}
+.containerListingProject {
+  padding: 20px 0;
 }

@@ -98,16 +98,48 @@
                     </ul>
                 </div>
                 {% endfor %}
-                {#<div class="row">#}
-                    {#<span class="col s12 center"><a href="#">Voir tous les Happy Salarié</a></span>#}
-                {#</div>#}
+                <div class="row">
+                    <a class="waves-effect waves-light modal-trigger" href="#modal2">Voir tous les happySalariés</a>
+                </div>
             </div>
         </div>
         <div id="tabProjects" class="col s12 white switch_content">
             <div class="row">
                 <section class="PC_blockProject">
-                    {#{{ include('partials/components/PC_blockProject.html.twig') }}#}
+                    {{ include('project/blockProjectCompany.html.twig') }}
                 </section>
+            </div>
+        </div>
+    </div>
+    <div class="" id="">
+        <div class="row">
+            <!-- Modal Structure -->
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                    <div class="row">
+                        <h4 class="left">Tous les salariés</h4>
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right"><i class="material-icons">close</i></a>
+                    </div>
+                    <div class="row">
+                        {% for user in company.users %}
+                            <div class="col l4 card  center-align">
+                                <ul class="">
+                                    <li>
+                                        {% if user.photo %}
+                                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                        {% else %}
+                                            <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                                        {% endif %}
+                                    </li>
+                                    <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
+                                    <li> {{ include('user/userMood.html.twig') }}</li>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
             </div>
         </div>
     </div>
