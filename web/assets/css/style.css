@@ -799,6 +799,9 @@ ul.switch li.active, ul.switch li.active {
       font-size: 1.3em;
       margin-bottom: 10px; }
 
+.jumbotronInContainer li {
+  margin-top: 25px; }
+
 .error {
   color: red; }
 
