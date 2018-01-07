@@ -65,6 +65,7 @@
                             <div class="row">
                                 <p class="col s12 titleSecond"> {{ skill.skill }}</p>
                                 <div class="col l12">
+                                    {% set level = skill.level %}
                                     {{ include('skill/skillLevel.html.twig') }}
                                 </div>
                             </div>

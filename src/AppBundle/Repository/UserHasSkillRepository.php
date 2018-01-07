@@ -10,7 +10,6 @@ namespace AppBundle\Repository;
  */
 class UserHasSkillRepository extends \Doctrine\ORM\EntityRepository
 {
-
     /**
      * Return for each Skill number of user by Type
      * @param $status
@@ -29,6 +28,57 @@ class UserHasSkillRepository extends \Doctrine\ORM\EntityRepository
             $qb = $qb->where('u.status = 2 or u.status = 3');
         } else if ($status == 'happyCoach') {
             $qb = $qb->where('u.status = 4');
+        }
+        $qb = $qb->getQuery();
+        return $qb->getResult();
+    }
+
+
+    /**
+     * Return for each Skill number of user for one status
+     * @param $status
+     * @return mixed
+     */
+    public function getNumberUserByTypeForOneSkill($status, $id)
+    {
+        $qb = $this
+            ->createQueryBuilder('us')
+            ->join('us.skill', 's')
+            ->join('us.user', 'u')
+            ->select('count(us.skill) as nbUser', 'AVG(us.level) as level')
+            ->setParameter('id', $id)
+            ->where('s.id =:id');
+        if ($status == 'collaborator') {
+            $qb = $qb->andwhere('u.status = 2 or u.status = 3');
+        } else if ($status == 'happyCoach') {
+            $qb = $qb->andwhere('u.status = 4');
+        }
+        $qb = $qb->getQuery();
+        return $qb->getResult();
+    }
+
+    /**
+     * Return for one Skill list of User with this Skill
+     * @param $status
+     * @param $id
+     * @return mixed
+     */
+    public function getUsersForOneSkill($status, $id)
+    {
+        $qb = $this
+            ->createQueryBuilder('us')
+            ->join('us.skill', 's')
+            ->join('us.user', 'u')
+            ->select('u.firstName', 'u.lastName', 'us.level', 'u.slug', 'u.photo', 'u.status')
+            ->setParameter('id', $id)
+            ->where('s.id =:id');
+        if ($status == 'collaborator') {
+            $qb = $qb->join('u.company', 'c')
+                ->addselect('c.name as company', 'c.slug as slugCompany')
+                ->andWhere('u.status = 2 or u.status = 3')
+            ->orderBy('c.id');
+        } else if ($status == 'happyCoach') {
+            $qb = $qb->andwhere('u.status = 4');
         }
         $qb = $qb->getQuery();
         return $qb->getResult();

@@ -36,5 +36,42 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
+    /**
+     * return number of project by skill
+     * @return mixed
+     */
+    public function getNumberProjectsBySkill($idSkill) {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->select('COUNT(p) as nbProject')
+            ->setParameter('idSkill', $idSkill)
+            ->where('p.theme =:idSkill')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+
+    /**
+     * return number of project by skill
+     * @return mixed
+     */
+    public function getProjectsBySkill($idSkill) {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->join('p.author', 'ua')
+            ->leftjoin('p.happyCoach', 'uHC')
+            ->leftjoin('p.teamProject', 't')
+            ->select('p.title', 'p.startingDate', 'p.endDate', 'p.status', 'p.location', 'p.slug as slugProject',
+                'ua.firstName as firstNameAuthor', 'ua.lastName as lastNameAuthor', 'ua.slug as slugAuthor', 'ua.photo as photoAuthor',
+                'uHC.firstName as firstNameHCRef', 'uHC.lastName as lastNameHCRef', 'uHC.photo as photoHCRef', 'uHC.slug as slugHCRef',
+                'count(t.firstName) as nbUserTeam' )
+            ->groupBy('p.id')
+            ->setParameter('idSkill', $idSkill)
+            ->where('p.theme =:idSkill')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+
 }
 

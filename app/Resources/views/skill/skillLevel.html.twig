@@ -1,8 +1,9 @@
-{% for i in 1..skill.level | round %}
+
+{% for i in 1..level | round %}
     <i class="material-icons amber-text text-darken-2">star</i>
 {% endfor %}
-{% if skill.level | round != 5 %}
-    {% for i in 5..(skill.level | round+ 1) %}
+{% if level | round != 5 %}
+    {% for i in 5..(level | round+ 1) %}
         <i class="material-icons  amber-text text-darken-2">star_border</i>
     {% endfor %}
 {% endif %}

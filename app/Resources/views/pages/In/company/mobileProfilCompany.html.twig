@@ -70,6 +70,7 @@
                             {% for skill in skillInCompany %}
                             <p class="col s12 titleSecond"> {{ skill.nameSkill }} <br>({{ skill.nbSalary }} Happy Salariés)</p>
                                 <div class="col s12">
+                                    {% set level = skill.level %}
                                     {{ include('skill/skillLevel.html.twig') }}
                         </div>
                         {% endfor %}

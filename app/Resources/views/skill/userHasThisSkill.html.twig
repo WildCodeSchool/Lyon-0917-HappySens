@@ -1,0 +1,18 @@
+<div class="card-panel col s12 m6 l3 center ">
+    <div class="col s6">
+        <img src="{{ user.photo }}" alt="photo" class="circle" height="75px">
+    </div>
+    <div class="col s6">
+        {% if user.status == 4  %}
+            <a href="{{ path('profilHappyCoach', { 'slug': user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a><br>
+        {%  elseif user.status == 2 or user.status == 3 %}
+            <a href="{{ path('UserProfil', { 'slug': user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a><br>
+        {% endif %}
+        {% set level = user.level %}
+        {{ include('skill/skillLevel.html.twig') }}
+        {% if user.status == 2 %} Référent {% endif %}
+        {% if user.status == 2 or user.status == 3 %}
+        <a href="{{ path('CompanyProfil', { 'slug': user.slugCompany }) }}">{{ user.company }}</a><br>
+        {% endif %}
+    </div>
+</div>

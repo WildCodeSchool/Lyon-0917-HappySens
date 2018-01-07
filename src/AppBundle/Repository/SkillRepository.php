@@ -23,4 +23,17 @@ class SkillRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
+    /**
+     * For each Skill return id and name
+     * @return mixed
+     */
+    public function getNameSkill()
+    {
+        $qb = $this
+            ->createQueryBuilder('s')
+            ->select('s.nameSkill', 's.id')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
 }
