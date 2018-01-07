@@ -14,7 +14,7 @@
                         {% if company.logo %}
                             <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" class="circle z-depth-3 activator">
                         {% else %}
-                            <img src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="profile image" class="circle responsive-img">
+                            <img src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="profile image" class="circle z-depth-3 activator">
                         {% endif %}
                     </div>
                     <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light pink darken-2 right"><i class="material material-icons">info_outline</i></a>

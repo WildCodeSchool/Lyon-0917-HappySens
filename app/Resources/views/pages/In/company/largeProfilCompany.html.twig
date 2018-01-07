@@ -25,11 +25,11 @@
             <div class="row">
                 <ul class="collection">
                     <li class="collection-item">
-                        <div class="row valign-wrapper">
-                        <span class="center titleSecond">
-                            <b>Le bonheur au travail c'est ...</b>
-                            {{ company.slogan }}.
-                        </span>
+                        <div class="row">
+                            <p class="center titleSecond valign-wrapper">
+                                <b>Le bonheur au travail c'est ...</b>
+                                {{ company.slogan }}.
+                            </p>
                         </div>
                     </li>
                     <li class="collection-item">
@@ -95,15 +95,15 @@
                 <div>
                     <h5 class="titleSecond">Mes Happy Salarié : </h5>
                 </div>
-                <div class="collection">
+                <div class="collection paddingCollection">
                     {% for user in company.users | slice(0, 3) %}
-                        <div class="col l4  center-align">
+                        <div class="col l4 center-align">
                             <ul class="">
                                 <li>
                                     {% if user.photo is null %}
-                                        <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                        <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle" height="110px">
                                     {% else %}
-                                        <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                                        <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" height="110px">
                                     {% endif %}
                                 </li>
                                 <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
@@ -141,9 +141,9 @@
                                 <ul class="">
                                     <li>
                                         {% if user.photo %}
-                                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" height="120px" class="circle">
                                         {% else %}
-                                            <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                                            <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" height="120px" class="circle">
                                         {% endif %}
                                     </li>
                                     <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
