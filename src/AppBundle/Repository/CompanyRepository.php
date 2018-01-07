@@ -50,4 +50,13 @@ class CompanyRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
+    public function getNumberCompany() {
+        $qb = $this
+            ->createQueryBuilder('c')
+            ->select('COUNT(c)')
+            ->getQuery();
+        return $qb->getResult();
+
+    }
+
 }

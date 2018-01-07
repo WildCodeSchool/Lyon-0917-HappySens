@@ -10,4 +10,30 @@ namespace AppBundle\Repository;
  */
 class SkillRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * Count the number of skill
+     * @return mixed
+     */
+    public function getNumberSkill() {
+        $qb = $this
+            ->createQueryBuilder('s')
+            ->select('COUNT(s)')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    /**
+     * For each Skill return id and name
+     * @return mixed
+     */
+    public function getNameSkill()
+    {
+        $qb = $this
+            ->createQueryBuilder('s')
+            ->select('s.nameSkill', 's.id')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
 }

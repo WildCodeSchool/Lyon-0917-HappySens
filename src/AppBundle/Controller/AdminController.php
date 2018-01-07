@@ -33,8 +33,21 @@ class AdminController extends Controller
      */
     public function profilAdminAction(Request $request)
     {
+        $nbProjectsByStatus = [];
+        $nbUserByStatus = [];
+        $nbSkills = [];
+        $em = $this->getDoctrine()->getManager();
+        $nbProjectsByStatus = $em->getRepository('AppBundle:Project')->getNumberProjectsByStatus();
+        $nbUserByStatus = $em->getRepository('AppBundle:User')->getNumberUserByRole();
+        $nbCompany = $em->getRepository('AppBundle:Company')->getNumberCompany();
+        $nbSkills = $em->getRepository('AppBundle:Skill')->getNumberSkill();
+
         return $this->render('pages/In/Admin/profilAdmin.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'nbProjectsByStatus' => $nbProjectsByStatus,
+            'nbUserByStatus' => $nbUserByStatus,
+            'nbCompany' => $nbCompany,
+            'nbSkill' => $nbSkills
         ]);
     }
 
@@ -142,14 +155,29 @@ class AdminController extends Controller
     public function listingUserAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:User')->getUserByType('salary');
 
-        $users = $em->getRepository('AppBundle:User')->findAll();
-        $company = $em->getRepository('AppBundle:Company')->findAll();
-
-        return $this->render('pages/In/Admin/collaborators/index.html.twig', array(
+        return $this->render('pages/In/Admin/collaborators/index.html.twig', [
             'users' => $users,
-            'company' => $company,
-        ));
+            'listing' => 'Collaborateur',
+        ]);
+    }
+
+    /**
+     * Lists all user HappyCoach.
+     *
+     * @Route("/listingHappyCoach", name="listingHappyCoach")
+     * @Method("GET")
+     */
+    public function listingHappyCoachAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:User')->getUserByType('happyCoach');
+dump($users);
+        return $this->render('pages/In/Admin/collaborators/index.html.twig', [
+            'users' => $users,
+            'listing' => 'HappyCoach',
+        ]);
     }
 
     /**
@@ -221,19 +249,16 @@ class AdminController extends Controller
     /**
      * Lists all project entities.
      *
-     * @Route("/listingProjects", name="listingProjects")
+     * @Route("/listingProjects/{status}", name="listingProjects")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($status)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
-        $company = $em->getRepository('AppBundle:Company')->findAll();
+        $projects = $em->getRepository('AppBundle:Project')->getProjectsByStatus($status);
 
         return $this->render('pages/In/Admin/projects/index.html.twig', array(
             'projects' => $projects,
-            'company' => $company,
         ));
     }
 

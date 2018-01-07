@@ -965,7 +965,7 @@ ul.followUs {
 
 #toast-container {
   top: 90%; }
-=======
+
 .wrapper {
   padding: 1.5em;
   margin-bottom: 70px;
@@ -1064,10 +1064,10 @@ ul.followUs {
           background-color: white;
           border: 2px solid #FFA000;
           color: #FFA000; }
-        .containerDashboard .contentDashboard .listAddUsers div#runProject {
+        .containerDashboard .contentDashboard .listAddUsers div#finishProject {
           background-color: white;
-          border: 2px solid #0288D1;
-          color: #0288D1; }
+          border: 2px solid red;
+          color: red; }
       .containerDashboard .contentDashboard .listAddUsers a {
         margin: auto;
         font-size: 1.3em;
