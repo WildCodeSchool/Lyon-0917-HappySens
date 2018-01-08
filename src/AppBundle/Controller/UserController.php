@@ -186,6 +186,8 @@ class UserController extends Controller
             if ($user->getIsActive() == false) {
                 $user->setIsActive(1);
             }
+            $today = new DateTime();
+            $user->setDateUpdateMood($today);
             $this->getDoctrine()->getManager()->flush();
 
             if ($this->getUser()->getIsActive() == true) {
@@ -334,5 +336,65 @@ class UserController extends Controller
 
     }
 
-}
+    /**
+     * Displays a form to update mood.
+     *
+     * @Route("/updateMood/{slug}", name="updateMood")
+     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param User $user
+     * @param SlugService $slugService
+     * @return mixed
+     */
 
+    public function updateMoodAction(Request $request, User $user, SlugService $slugService)
+    {
+        $user = $this->getUser();
+        $editForm = $this->createForm('AppBundle\Form\UserType', $user);
+        $editForm->remove('slug')
+            ->remove('firstName')
+            ->remove('lastName')
+            ->remove('phone')
+            ->remove('email')
+            ->remove('status')
+            ->remove('birthdate')
+            ->remove('photo')
+            ->remove('biography')
+            ->remove('slogan')
+            ->remove('password')
+            ->remove('job')
+            ->remove('workplace')
+            ->remove('facebook')
+            ->remove('twitter')
+            ->remove('linkedin')
+            ->remove('is_active')
+            ->remove('date_update_mood')
+            ->remove('nativeLanguage')
+            ->remove('company')
+            ->remove('languagesUser');
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $today = new \DateTime();
+            $user->setDateUpdateMood($today);
+            $this->getDoctrine()->getManager()->flush();
+            $status = $this->getUser()->getStatus();
+            switch ($status) {
+                case (User::ROLE_EMPLOYE) :
+                    return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
+                    break;
+                case (User::ROLE_COMPANY) :
+                    return $this->redirectToRoute('CompanyProfil', array('slug' => $user->getCompany()->getSlug()));
+                    break;
+                case (User::ROLE_HAPPYCOACH) :
+                    return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
+                    break;
+            }
+        }
+
+        return $this->render('user/updateMood.html.twig', [
+                'edit_form' => $editForm->createView(),]
+        );
+    }
+
+}
