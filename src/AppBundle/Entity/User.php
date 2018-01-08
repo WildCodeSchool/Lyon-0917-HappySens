@@ -802,11 +802,13 @@ class User implements UserInterface, \Serializable
         $this->isActive = $isActive;
     }
 
+    /**
+     * @return string
+     */
     public function getUsername()
     {
         return $this->email;
     }
-
 
 
     public function __toString()

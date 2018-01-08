@@ -54,4 +54,17 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
+    /**
+     * @param $email
+     * @return array
+     */
+    public function findByEmail($email) {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->setParameter('email', $email)
+            ->where('u.email=:email')
+            ->getQuery();
+        return $qb->getResult();
+    }
 }

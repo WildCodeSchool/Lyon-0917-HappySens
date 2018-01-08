@@ -37,6 +37,10 @@ services:
             class: AppBundle\Service\AfterLoginRedirection
             arguments: ['@router']
 
+    AppBundle\Service\CheckSecurityService:
+            arguments:
+                $db: '@doctrine'
+
     AppBundle\Service\FileUploader:
             arguments:
                 $directory: '%upload_directory%'
