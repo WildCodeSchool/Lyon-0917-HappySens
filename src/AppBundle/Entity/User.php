@@ -13,11 +13,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, \Serializable
 {
-    CONST ROLE_ADMIN = 1;
-    CONST ROLE_COMPANY = 2;
-    CONST ROLE_EMPLOYE = 3;
-    CONST ROLE_HAPPYCOACH = 4;
-    CONST ROLE_HAPPYCOACH_PROJECT = 5;
+    const ROLE_ADMIN = 1;
+    const ROLE_COMPANY = 2;
+    const ROLE_EMPLOYE = 3;
+    const ROLE_HAPPYCOACH = 4;
+    const ROLE_HAPPYCOACH_PROJECT = 5;
 
     /**
      * @var int
@@ -183,10 +183,21 @@ class User implements UserInterface, \Serializable
     private $authorProject;
 
     /**
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="happyCoach")
+     */
+    private $happyCoachRef;
+
+    /**
      * @var string
      * @ORM\Column(name="slug", type="string",  length=255)
      */
     private $slug;
+
+    /**
+     * @var int
+     */
+    private $statusMail;
+
 
     public function getSalt()
     {
@@ -260,6 +271,24 @@ class User implements UserInterface, \Serializable
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatusMail()
+    {
+        return $this->statusMail;
+    }
+
+    /**
+     * @param int $statusMail
+     * @return User
+     */
+    public function setStatusMail($statusMail)
+    {
+        $this->statusMail = $statusMail;
         return $this;
     }
 
@@ -865,5 +894,47 @@ class User implements UserInterface, \Serializable
     public function getLanguagesUser()
     {
         return $this->languagesUser;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHappyCoachRef()
+    {
+        return $this->happyCoachRef;
+    }
+
+    /**
+     * @param mixed $happyCoachRef
+     * @return User
+     */
+    public function setHappyCoachRef($happyCoachRef)
+    {
+        $this->happyCoachRef = $happyCoachRef;
+        return $this;
+    }
+
+    /**
+     * Add happyCoachRef
+     *
+     * @param \AppBundle\Entity\Project $happyCoachRef
+     *
+     * @return User
+     */
+    public function addHappyCoachRef(\AppBundle\Entity\Project $happyCoachRef)
+    {
+        $this->happyCoachRef[] = $happyCoachRef;
+
+        return $this;
+    }
+
+    /**
+     * Remove happyCoachRef
+     *
+     * @param \AppBundle\Entity\Project $happyCoachRef
+     */
+    public function removeHappyCoachRef(\AppBundle\Entity\Project $happyCoachRef)
+    {
+        $this->happyCoachRef->removeElement($happyCoachRef);
     }
 }

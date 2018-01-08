@@ -29,7 +29,7 @@ class CompanyRepository extends \Doctrine\ORM\EntityRepository
 
     public function getReferentHappySens($companyId) {
        $qb = $this->createQueryBuilder('c')
-           ->select('u.firstName', 'u.lastName', 'u.slug')
+           ->select('u.firstName', 'u.lastName', 'u.slug', 'u.email as email')
            ->join('c.users', 'u')
            ->setParameter('idCompany', $companyId)
            ->where('c.id=:idCompany')
@@ -43,11 +43,20 @@ class CompanyRepository extends \Doctrine\ORM\EntityRepository
             ->createQueryBuilder('c')
             ->join('c.users', 'u')
             ->join('u.authorProject', 'p')
-            ->select('p.title', 'p.startingDate', 'p.endDate', 'p.presentation', 'p.profit', 'p.beneficeCompany', 'p.status', 'p.photo', 'p.location', 'p.slug as projectSlug', 'u.firstName', 'u.lastName', 'u.photo', 'u.slug', 'p.id', 'u.id as authorProject')
+            ->select('p.title', 'p.startingDate', 'p.endDate', 'p.presentation', 'p.profit', 'p.beneficeCompany', 'p.status', 'p.photo as photoProject', 'p.location', 'p.slug as projectSlug', 'u.firstName', 'u.lastName', 'u.photo', 'u.slug', 'p.id', 'u.id as authorProject')
             ->setParameter('idCompany', $companyId)
             ->where('c.id=:idCompany')
             ->getQuery();
         return $qb->getResult();
+    }
+
+    public function getNumberCompany() {
+        $qb = $this
+            ->createQueryBuilder('c')
+            ->select('COUNT(c)')
+            ->getQuery();
+        return $qb->getResult();
+
     }
 
 }

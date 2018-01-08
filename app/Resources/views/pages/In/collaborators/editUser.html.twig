@@ -10,7 +10,6 @@
             </ul>
         </nav>
         {{ form_start(edit_form) }}
-
         <br>
         {#step#}
         {#{{ form_widget(edit_form.userskills) }}#}
@@ -148,21 +147,21 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12">
-                <h5 class="titleInscription blue-text text-darken-3">Entreprise :</h5>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
-                    {% if (form_errors(edit_form.company)) %}
-                        {{ form_widget(edit_form.company, {'attr': {'class': 'error'}}) }}
-                    {% else %}
-                        {{ form_widget(edit_form.company) }}
-                    {% endif %}
-                    <label for="company"><span class="requireInput">* </span>Entreprise</label>
-                    <div class="center error">
-                        {{ form_errors(edit_form.company) }}
-                    </div>
-                </div>
-            </div>
+            {#<div class="col s12">#}
+                {#<h5 class="titleInscription blue-text text-darken-3">Entreprise :</h5>#}
+                {#<div class="input-field col s12">#}
+                    {#<i class="material-icons prefix blue-text text-darken-3">account_circle</i>#}
+                    {#{% if (form_errors(edit_form.company)) %}#}
+                        {#{{ form_widget(edit_form.company, {'attr': {'class': 'error'}}) }}#}
+                    {#{% else %}#}
+                        {#{{ form_widget(edit_form.company) }}#}
+                    {#{% endif %}#}
+                    {#<label for="company"><span class="requireInput">* </span>Entreprise</label>#}
+                    {#<div class="center error">#}
+                        {#{{ form_errors(edit_form.company) }}#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
             <div class="center">
                 <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
                 <a class="waves-effect waves-light btn amber darken-3" onclick="goStep3()">suivant</a>

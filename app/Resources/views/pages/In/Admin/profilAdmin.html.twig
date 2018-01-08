@@ -40,27 +40,30 @@
                 <div class="contentDashboard">
                     <h2>Projets</h2>
                     <section class="listAddUsers">
-                        <a href="{{ path('listingProjects') }}">
-                            <div class="center valign-wrapper hoverable" id="validProject">
-                                <ul>
-                                    <li><i class="fa fa-check-square-o fa-2x"></i></li>
-                                    <li><p>Valider un projet</p></li>
-                                </ul>
-                            </div>
-                        </a>
-                        <a href="{{ path('listingProjects') }}">
+                         <a href="{{ path('listingProjects', {'status': 1}) }}">
                             <div class="center valign-wrapper hoverable" id="waitProject">
                                 <ul>
                                     <li><i class="fa fa-folder-open-o fa-2x"></i></li>
-                                    <li><p>Les projets en attentes</p></li>
+                                    <li>{{ nbProjectsByStatus[0][1] }} </li>
+                                    <li>projets à valider</li>
                                 </ul>
                             </div>
                         </a>
-                        <a href="{{ path('listingProjects') }}">
-                            <div class="center valign-wrapper hoverable" id="runProject">
+                        <a href="{{ path('listingProjects', {'status': 2}) }}">
+                            <div class="center valign-wrapper hoverable" id="validProject">
+                                <ul>
+                                    <li><i class="fa fa-check-square-o fa-2x"></i></li>
+                                    <li>{{ nbProjectsByStatus[1][1] }}</li>
+                                    <li>projets en cours</li>
+                                </ul>
+                            </div>
+                        </a>
+                        <a href="{{ path('listingProjects', {'status': 3}) }}">
+                            <div class="center valign-wrapper hoverable" id="finishProject">
                                 <ul>
                                     <li><i class="fa fa-folder-o fa-2x"></i></li>
-                                    <li><p>Les projets en cours</p></li>
+                                    <li>{{ nbProjectsByStatus[2][1] }}</li>
+                                    <li> projets terminé</li>
                                 </ul>
                             </div>
                         </a>
@@ -74,23 +77,13 @@
                     <h2>Entreprises</h2>
                     <section class="listSimple">
                         <a href="{{ path('listingCompany') }}">
-                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i> <span>Toutes les entreprises</span></p>
-                        </a>
-                        <a href="{{ path('listingCompany') }}">
-                            <p class="center valign-wrapper" id="deleteCompany"><i class="fa fa-trash-o fa-2x"> </i> <span>Supprimer entreprise</span></p>
-                        </a>
-                    </section>
-                </div>
-            </div>
-            <div class="col s12 m12 l4 containerDashboard">
-                <div class="contentDashboard">
-                    <h2>Collaborateurs</h2>
-                    <section class="listSimple">
-                        <a href="{{ path('listingUser') }}">
-                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i> <span>Tous les collaborateurs</span></p>
+                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i>
+                                <span>Toutes les entreprises ({{ nbCompany[0][1] }})</span></p>
                         </a>
                         <a href="{{ path('listingUser') }}">
-                            <p class="center valign-wrapper" id="deleteCompany"><i class="fa fa-trash-o fa-2x"> </i> <span>Supprimer collaborateur</span></p>
+                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i>
+                                <span>Tous les collaborateurs ({{ nbUserByStatus[2][1] +   nbUserByStatus[3][1] }}
+                                    )</span></p>
                         </a>
                     </section>
                 </div>
@@ -99,154 +92,43 @@
                 <div class="contentDashboard">
                     <h2>HappyCoachs</h2>
                     <section class="listSimple">
-                        <a href="{{ path('listingUser') }}">
-                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i> <span>Tous les happyCoachs</span></p>
+                        <a href="{{ path('listingHappyCoach') }}">
+                            <p class="center valign-wrapper" id="allHappyCoach"><i class="fa fa-list-alt fa-2x"> </i>
+                                <span>Tous les happyCoachs ({{ nbUserByStatus[3][1] }}
+                                    )</span></p>
                         </a>
                         <a href="{{ path('listingUser') }}">
-                            <p class="center valign-wrapper" id="addProjectHappy"><i class="fa fa-user-plus fa-2x"> </i> <span>Placer un happyCoach</span></p>
+                            <p class="center valign-wrapper" id="addProjectHappy"><i class="fa fa-user-plus fa-2x"> </i>
+                                <span>Placer un happyCoach</span></p>
                         </a>
                         <a href="{{ path('listingUser') }}">
-                            <p class="center valign-wrapper" id="deleteCompany"><i class="fa fa-trash-o fa-2x"> </i> <span>Supprimer happyCoach</span></p>
+                            <p class="center valign-wrapper" id="deleteCompany"><i class="fa fa-trash-o fa-2x"> </i>
+                                <span>Supprimer happyCoach</span>
+                            </p>
+                        </a>
+                    </section>
+                </div>
+            </div>
+            <div class="col s12 m12 l4 containerDashboard">
+                <div class="contentDashboard">
+                    <h2>Talents</h2>
+                    <section class="listSimple">
+                        <a href="{{ path('skills_index') }}">
+                            <p class="center valign-wrapper" id="AllSkills"><i class="fa fa-list-alt fa-2x"> </i>
+                                <span>Liste des talents ({{ nbSkill[0][1] }})</span></p>
+                        </a>
+                        <a href="{{ path('skills_new') }}">
+                            <p class="center valign-wrapper" id="addSkill"><i class="fa fa-list-alt fa-2x"> </i>
+                                <span>Ajouter un talent </span></p>
+                        </a>
+                        <a href="{{ path('listingUser') }}">
+                            <p class="center valign-wrapper" id="deleteSkill"><i class="fa fa-trash-o fa-2x"> </i>
+                                <span>Supprimer un talent</span></p>
                         </a>
                     </section>
                 </div>
             </div>
         </div>
-        {#<div id="companyAdmin" class="showTable table-1 hidden">#}
-            {#<h3>Liste des entreprises</h3>#}
-            {#<table>#}
-                {#<thead>#}
-                {#<tr>#}
-                    {#<th>Nom<i class="material-icons">keyboard_arrow_down</i><i#}
-                                {#class="material-icons">arrow_drop_up</i>#}
-                    {#</th>#}
-                    {#<th>Nombre salariés</th>#}
-                    {#<th>Nombre projets</th>#}
-                    {#<th>Projets en cours</th>#}
-                    {#<th>Projets en attente</th>#}
-                    {#<th>Projets terminés</th>#}
-                {#</tr>#}
-                {#</thead>#}
-                {#<tbody>#}
-                {#<tr>#}
-                    {#<td>20</td>#}
-                    {#<td>3</td>#}
-                    {#<td>2</td>#}
-                    {#<td>1</td>#}
-                    {#<td>0</td>#}
-                {#</tr>#}
-                {#</tbody>#}
-            {#</table>#}
-        {#</div>#}
-        {#<div id="projectOnAdmin" class="showTable table-2 hidden">#}
-            {#<h3>Liste des projets en cours</h3>#}
-            {#<table>#}
-                {#<thead>#}
-                {#<tr>#}
-                    {#<th>Entreprise</th>#}
-                    {#<th>Nom</th>#}
-                    {#<th>Thématique</th>#}
-                    {#<th>Date de dépot</th>#}
-                    {#<th>Date de validation pour avoir HC<i class="material-icons">keyboard_arrow_down</i><i#}
-                                {#class="material-icons">arrow_drop_up</i></th>#}
-                    {#<th>A valider</th>#}
-                {#</tr>#}
-                {#</thead>#}
-                {#<tbody>#}
-                {#<tr>#}
-
-                    {#<td>Cuisine</td>#}
-                    {#<td>06/11/17</td>#}
-                    {#<td>06/12/17</td>#}
-                    {#<td><a class="btn">valider</a></td>#}
-                {#</tr>#}
-                {#</tbody>#}
-            {#</table>#}
-        {#</div>#}
-        {#<div id="projectGoAdmin" class="showTable table-3 hidden">#}
-            {#<h3>Liste des projets validés</h3>#}
-            {#<table>#}
-                {#<thead>#}
-                {#<tr>#}
-                    {#<th>Entreprise</th>#}
-                    {#<th>Nom</th>#}
-                    {#<th>Thématique</th>#}
-                    {#<th>Lieu</th>#}
-                    {#<th>Date de fin</th>#}
-                    {#<th>Happy Coach principal<i class="material-icons">keyboard_arrow_down</i><i#}
-                                {#class="material-icons">arrow_drop_up</i>#}
-                    {#</th>#}
-                    {#<th>Happy Coach secondaires</th>#}
-                    {#<th>Nombre participants</th>#}
-                {#</tr>#}
-                {#</thead>#}
-
-                {#<tbody>#}
-                {#<tr>#}
-
-                    {#<td>Cuisine</td>#}
-                    {#<td>Lyon</td>#}
-                    {#<td>06/11/18</td>#}
-                    {#<td>Lien happy coach ref</td>#}
-                    {#<td>Ajouter HC liste déroulante?</td>#}
-                    {#<td>22</td>#}
-                {#</tr>#}
-                {#</tbody>#}
-            {#</table>#}
-        {#</div>#}
-        {#<div id="projectOffAdmin" class="showTable table-4 hidden">#}
-            {#<h3>Liste des projets terminés</h3>#}
-            {#<table>#}
-                {#<thead>#}
-                {#<tr>#}
-                    {#<th>Entreprise</th>#}
-                    {#<th>Nom<i class="material-icons">keyboard_arrow_down</i><i#}
-                                {#class="material-icons">arrow_drop_up</i>#}
-                    {#</th>#}
-                    {#<th>Thématique</th>#}
-                    {#<th>Date de fin<i class="material-icons">keyboard_arrow_down</i><i class="material-icons">arrow_drop_up</i>#}
-                    {#</th>#}
-                    {#<th>Nombre participants</th>#}
-                {#</tr>#}
-                {#</thead>#}
-                {#<tbody>#}
-                {#<tr>#}
-
-                    {#<td>Cuisine</td>#}
-                    {#<td>06/11/18</td>#}
-                    {#<td>22</td>#}
-                {#</tr>#}
-                {#</tbody>#}
-            {#</table>#}
-        {#</div>#}
-
-
-        {#<div id="happycoachAdmin" class="showTable table-5 hidden">#}
-            {#<h3>Liste des Happy Coach</h3>#}
-            {#<table>#}
-                {#<thead>#}
-                {#<tr>#}
-                    {#<th>Nom</th>#}
-                    {#<th>Prénom</th>#}
-                    {#<th>Talents</th>#}
-                    {#<th>Passions</th>#}
-                    {#<th>Nombre de projets en cours<i class="material-icons">keyboard_arrow_down</i><i#}
-                                {#class="material-icons">arrow_drop_up</i></th>#}
-                    {#<th>Nombre de projets terminés</th>#}
-                {#</tr>#}
-                {#</thead>#}
-                {#<tbody>#}
-                {#<tr>#}
-                    {#<td><a href="{{ path('profilHappyCoach') }}">Happy</a></td>#}
-                    {#<td><a href="{{ path('profilHappyCoach') }}">Coach</a></td>#}
-                    {#<td>Cuisinier</td>#}
-                    {#<td>Boulangerie</td>#}
-                    {#<td>1</td>#}
-                    {#<td>0</td>#}
-                {#</tr>#}
-                {#</tbody>#}
-            {#</table>#}
-        {#</div>#}
     </div>
 {% endblock %}
 

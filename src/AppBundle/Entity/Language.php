@@ -254,7 +254,8 @@ class Language
         return $this->getTitreLanguage();
     }
 
-    /**
+
+    /*
      * Add nativeUser
      *
      * @param \AppBundle\Entity\User $nativeUser

@@ -1,6 +1,40 @@
 {% extends 'baseIn.html.twig' %}
 
 {% block content %}
+    <section class="hide" id="waitingDiv">
+        <div class="positionLoad">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="grey-text text-lighten-2">Veuillez patientez pendant le chargement ...</p>
+        </div>
+    </section>
     <div class="container">
 
         <a class="waves-effect waves-light btn pink darken-2" href="{{ path('listingCompany') }}">Toutes les
@@ -174,8 +208,7 @@
                 </div>
                 <div class="center">
                     <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
-
-                    <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer"/>
+                    <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Create" onclick="loadingPage()"/>
                 </div>
             </div>
             {{ form_end(form) }}

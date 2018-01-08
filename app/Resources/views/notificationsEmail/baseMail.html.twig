@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <style>
+        body, html {
+            color: #333333;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 900px;
+            background-color: #EDF1F2;
+            padding: 30px;
+            font-weight: 400;
+        }
+        header {
+            width: 100%;
+            text-align: center;
+        }
+        .logo {
+            height: 100px;
+        }
+        .containerContent {
+            padding: 50px;
+        }
+        h1,h2,h3,h4,h5 {
+            font-family: "Quicksand", sans-serif;
+        }
+        p, span, li {
+            font-family: "Quicksand", sans-serif;
+        }
+        ul {
+            list-style-type: none;
+        }
+        footer {
+            text-align: center;
+            border-top: 1px solid lightgrey;
+        }
+        footer p, footer a {
+            text-decoration: none;
+            color: grey;
+        }
+        .list {
+            text-align: left;
+        }
+        .introList {
+            font-size: 1.2em;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .content {
+            font-size: 1.2em;
+
+        }
+        .text {
+            margin: 20px 0 30px 0;
+            text-align: justify;
+        }
+        button {
+            text-align: center;
+            background-color: #0288d1;
+            padding: 15px 20px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            box-shadow: 1px 2px 6px rgba(0,0,0,0.5);
+            margin: 40px auto;
+        }
+        button:hover {
+            cursor: pointer;
+            background-color: rgba(2, 136, 209, 0.95);
+            box-shadow: 1px 2px 6px rgba(0,0,0,0.6);
+
+        }
+        button:active {
+            color: rgba(0, 0, 0, 0.7);
+        }
+        ul {
+            text-align: left;
+        }
+        li {
+            margin: 10px;
+            text-align: left;
+        }
+        .sign {
+            margin-top: 40px;
+            font-size: 1.2em;
+            font-weight: 400;
+            text-align: left;
+        }
+        .sign h3 {
+            margin-bottom: 10px;
+            color: #c2185b;
+            font-weight: 500;
+        }
+        .sign span {
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: #333333;
+        }
+        p, span {
+            text-align: left;
+            font-weight: 400;
+        }
+        .title {
+            font-size: 2.2em;
+            color: #FFA000;
+            margin-bottom: 40px;
+            font-weight: 500;
+            text-align: left;
+        }
+    </style>
+    {% block stylesheet %}{% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="http://www.happysens.fr" title="Découvrez notre plateforme">
+                <img class ="logo" src="{{ logo }}" >
+            </a>
+        </header>
+        <div class="containerContent">
+            {% block content %}
+            {% endblock %}
+            <div class="sign">
+                <h3>HappySens</h3>
+                <span>Votre partenaire bonheur en entreprise</span>
+            </div>
+        </div>
+        <footer>
+            <p><a href="http://happysens.fr/contact"><i class="fa fa-envelope"></i> Nous contactez</a></p>
+            <p><a href="http://happysens.fr"><i class="fa fa-sign-in"></i> Accédez à HappySens.Fr</a></p>
+        </footer>
+    </div>
+</body>
+</html>

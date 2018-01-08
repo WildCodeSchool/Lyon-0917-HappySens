@@ -16,9 +16,53 @@ use AppBundle\Service\SlugService;
 
 class FileUploader
 {
+    const MAIL_OK = 1;
+
+    const MAIL_FAIL = 0;
+    /**
+     * @var string
+     */
     private $directory;
 
+    /**
+     * @var RegistryInterface
+     */
     private $db;
+
+    /**
+     * @var int
+     */
+    private $counter = 0;
+
+    /**
+     * FileUploader constructor.
+     * @param RegistryInterface $db
+     * @param $directory
+     */
+    public function __construct(RegistryInterface $db, $directory)
+    {
+
+        $this->directory = $directory;
+        $this->db = $db;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCounter()
+    {
+        return $this->counter;
+    }
+
+    /**
+     * @param mixed $counter
+     * @return FileUploader
+     */
+    public function setCounter($counter)
+    {
+        $this->counter = $counter;
+        return $this;
+    }
 
     /**
      * @return mixed
@@ -36,13 +80,6 @@ class FileUploader
     {
         $this->db = $db;
         return $this;
-    }
-
-    public function __construct(RegistryInterface $db, $directory)
-    {
-
-        $this->directory = $directory;
-        $this->db = $db;
     }
 
     public function upload(UploadedFile $file, $underDir)
@@ -64,31 +101,42 @@ class FileUploader
         return $csv;
     }
 
-    public function insertUser($valueMdp, $idCompany, $fileUsers)
+    public function insertUser($valueMdp, $idCompany, $fileUsers, $email_contact, EmailService $emailService)
     {
         // for destroy twins
         $listEmails = [];
+        $arrayUsers = [];
         $slugService = new SlugService();
 
         for($i = 0; $i < count($fileUsers); $i++) {
             if (!in_array($fileUsers[$i][2], $listEmails)) {
                 $newUser = new User();
-                $newUser->setFirstName($fileUsers[$i][0]);
-                $newUser->setLastName($fileUsers[$i][1]);
-                $newUser->setEmail($fileUsers[$i][2]);
-                $newUser->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT));
-                $newUser->setStatus(3);
-                $newUser->setMood(0);
-                $newUser->setIsActive(0);
-                $newUser->setCompany($idCompany);
-                $newUser->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()));
+
+                $newUser->setFirstName($fileUsers[$i][0])
+                        ->setLastName($fileUsers[$i][1])
+                        ->setEmail($fileUsers[$i][2])
+                        ->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT))
+                        ->setMood(0)
+                        ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
+                        ->setCompany($idCompany)
+                        ->setIsActive(0);
+                if ($i === 0) {
+                    $newUser->setStatus(2);
+                } else {
+                    $newUser->setStatus(3);
+                }
                 $listEmails[$i] = $fileUsers[$i][2];
+                $this->setCounter(($this->getCounter() + 1));
+
+                $emailService->sendMailNewUser($newUser, $email_contact, $valueMdp);
+                $newUser->setStatusMail(self::MAIL_OK);
+                $arrayUsers[$i] = $newUser;
                 $this->getDb()->getManager()->persist($newUser);
             }
         }
         $this->getDb()->getManager()->flush();
 
-        return " utilisateurs sont créés";
+        return $arrayUsers;
     }
 
     public function getDirectory($underDir)

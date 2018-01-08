@@ -1,0 +1,13 @@
+{% extends ':notificationsEmail:baseTxtMail.txt.twig' %}
+
+{% block content %}
+Bonjour {{ author.firstname }} {{ author.lastname }}, <br>
+<br>
+Votre projet à bien était créer et vous trouverez ici les informations :
+<br>
+Titre : {{ title }}<br>
+Status : {{ status }}<br>
+Lieux : {{ location }}<br>
+<br>
+Vous allez recevoir un mail lors de la confirmation de votre projet par le comité.<br>
+{% endblock %}
