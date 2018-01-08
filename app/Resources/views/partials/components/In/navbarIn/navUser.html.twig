@@ -30,7 +30,7 @@
                 <li title="Menu accès rapide">
                     <a href="#" data-activates="slide-out" class="button linkNavSide">
                         <div class="imgMenu">
-                            {% if app.user.photo is null %}
+                            {% if app.user.photo %}
                                 <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                             {% else %}
                                 <img src="{{ asset('uploads/photoCompany/' ~ app.user.photo) }}" alt="profile image" class="circle responsive-img">
@@ -46,7 +46,7 @@
                         <a href="{{ path('UserProfil', { 'slug': app.user.slug  }) }}" title="Voir votre profil">
                             <div class="background  blue darken-2 white-text">
                             </div>
-                            {% if app.user.photo is null %}
+                            {% if app.user.photo %}
                                 <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                             {% else %}
                                 <img src="{{ asset('uploads/photoCompany/' ~ app.user.photo) }}" alt="profile image" class="circle responsive-img">

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Service\EmailService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -80,9 +81,9 @@ class DefaultController extends Controller
     /**
      * @Route("test", name="listingTemplate")
      */
-    public function testAction(Request $request)
+    public function testAction(Request $request, EmailService $mail)
     {
-        return $this->render('pages/template/email/template_mail.html.twig', [
+        return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }

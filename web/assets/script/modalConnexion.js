@@ -9,3 +9,5 @@ function findPassword(){
     $('#password').removeClass('hide');
     $('#btnConnexion').removeClass('hide');
 }
+
+

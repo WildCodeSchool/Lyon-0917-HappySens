@@ -41,3 +41,9 @@ services:
             arguments:
                 $directory: '%upload_directory%'
                 $db: '@doctrine'
+
+    AppBundle\Service\EmailService:
+            arguments:
+                $sender: '%swiftmailer.sender_address%'
+                $db: '@doctrine'
+

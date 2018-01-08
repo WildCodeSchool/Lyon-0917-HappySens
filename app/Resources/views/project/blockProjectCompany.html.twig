@@ -1,8 +1,9 @@
 <div class="PC_bProjectInProgress">
     <div class="hideMobile">
-        <h5 class="center titleSecond">Les Happy Projets</h5>
+        <h4 class="center titleSecond">Les Happy Projets</h4>
     </div>
        <div id="ProjectTeam">
+        {% if projects != null %}
         {% for project in projects %}
         <div class="card medium">
             <div class="card-image waves-effect waves-block waves-light">
@@ -20,7 +21,7 @@
                 <div>
                     <a href="{{ path('UserProfil', { 'slug': project.slug }) }}">
                         <div class="chip left">
-                            {% if project.photo is  null %}
+                            {% if project.photo %}
                                 <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                             {% else %}
                                 <img src="{{ asset('uploads/photoCompany/' ~ project.photo) }}" alt="profile image" class="circle responsive-img">
@@ -42,7 +43,7 @@
                     <div>
                         <a href="{{ path('UserProfil', { 'slug': project.slug }) }}">
                             <div class="chip left">
-                                {% if project.photo is null %}
+                                {% if project.photo %}
                                     <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                                 {% else %}
                                     <img src="{{ asset('uploads/photoCompany/' ~ project.photo) }}" alt="profile image" class="circle responsive-img">
@@ -70,5 +71,10 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+           <div class="withoutProject">
+               <p>{{ company.name }} n'as pas encore de projet.</p>
+           </div>
+        {% endif %}
     </div>
 </div>
