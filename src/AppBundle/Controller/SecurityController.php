@@ -46,32 +46,42 @@ class SecurityController extends Controller
              ->remove('idUser')
              ->remove('dateSend');
         $form->handleRequest($request);
-        $errors = [];
+        $error = '';
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $mail = $changePwd->getEmail();
             $user = $em->getRepository('AppBundle:User')->findByEmail($mail);
-            foreach ($user as $item) {
-                if ($mail === $item->getEmail()) {
-                    $changePwd->setIdUser($item->getId())
-                              ->setEmail($item->getEmail())
-                              ->setDateSend(new \DateTime('now'))
-                              ->setToken($item->getFirstName(), $mail, $item->getId());
-                    $changePwd->setIsActive(false);
-                    $email_contact = $this->container->getParameter('email_contact');
-                    $emailService->sendMailNewPwd($mail, $email_contact, $item->getFirstName(), $item->getLastName(), $changePwd->getToken());
-                } else {
-                    $errors += ['Adresse email invalide, réessayer.'];
-                    return $this->render('pages/In/security/send.html.twig', array(
-                        'changePwd' => $changePwd,
-                        'errors' => $errors,
-                        'form' => $form->createView(),
-                    ));
+            if (!empty($user)) {
+                foreach ($user as $item) {
+                    if ($mail == $item->getEmail()) {
+                        $changePwd->setIdUser($item->getId())
+                            ->setEmail($item->getEmail())
+                            ->setDateSend(new \DateTime('now'))
+                            ->setToken($item->getFirstName(), $mail, $item->getId());
+                        $changePwd->setIsActive(false);
+                        $email_contact = $this->container->getParameter('email_contact');
+                        $emailService->sendMailNewPwd($mail, $email_contact, $item->getFirstName(), $item->getLastName(), $changePwd->getToken());
+                    } else {
+                        $error = 'Adresse email invalide, réessayer.';
+                        return $this->render('pages/In/security/send.html.twig', array(
+                            'changePwd' => $changePwd,
+                            'error' => $error,
+                            'form' => $form->createView(),
+                        ));
+                    }
+                    $em->persist($changePwd);
+                    $em->flush();
                 }
+            } else {
+                $error = 'Adresse email invalide, réessayer.';
+                return $this->render('pages/In/security/send.html.twig', array(
+                    'changePwd' => $changePwd,
+                    'error' => $error,
+                    'form' => $form->createView(),
+                ));
             }
-            $em->persist($changePwd);
-            $em->flush();
+
             return $this->render('pages/In/security/login.html.twig', array(
                 'changePwd' => $changePwd,
                 'form' => $form->createView(),
@@ -80,7 +90,7 @@ class SecurityController extends Controller
 
         return $this->render('pages/In/security/send.html.twig', array(
             'changePwd' => $changePwd,
-            'errors' => $errors,
+            'errors' => $error,
             'form' => $form->createView(),
         ));
     }
