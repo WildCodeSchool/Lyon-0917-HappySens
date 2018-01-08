@@ -160,9 +160,11 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing user entity.
+     * Displays a form to edit an existing user entity :
+     * ROLE_COMPANY, ROLE_EMPLOYE and ROLE_HAPPYCOACH.
      *
      * @Route("/{slug}/userEdit", name="User_edit")
+     *
      * @Method({"GET", "POST"})
      * @param Request $request
      * @param User $user
@@ -176,7 +178,8 @@ class UserController extends Controller
             $user = $this->getUser();
         }
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
-        $editForm->remove('slug');
+        $editForm->remove('slug')
+            ->remove('company');
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
@@ -186,10 +189,13 @@ class UserController extends Controller
             $this->getDoctrine()->getManager()->flush();
 
             if ($this->getUser()->getIsActive() == true) {
-                return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
-
-            }
-            else {
+                if ($user->getStatus() == User::ROLE_EMPLOYE or $user->getStatus() == User::ROLE_COMPANY) {
+                    return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
+                }
+                if ($user->getStatus() == User::ROLE_HAPPYCOACH) {
+                    return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
+                }
+            } else {
                 return $this->redirectToRoute('User_edit', array('slug' => $user->getSlug()));
 
             }
@@ -253,19 +259,23 @@ class UserController extends Controller
     {
         $statusTwig = [];
         $projectsRef = $user->getHappyCoachRef();
+        $nbProject = 0;
         if (null !== count($projectsRef)) {
             $projectsRef = $statusProject->getProjectsWithStatus($projectsRef);
+            $nbProject += count($projectsRef);
         }
         $projectsTeam = $user->getTeams();
         if (null !== count($projectsTeam)) {
             $projectsTeam = $statusProject->getProjectsWithStatus($projectsTeam);
+            $nbProject += count($projectsTeam);
         }
 
         $pageTrueShowHappyCoach = $this->render('pages/In/happyCoach/profilHappyCoach.html.twig', [
             'user' => $user,
             'statusTwig' => $statusTwig,
             'projectsRef' => $projectsRef,
-            'projectsTeam' => $projectsTeam,]);
+            'projectsTeam' => $projectsTeam,
+            'nbProject' => $nbProject,]);
 
         //TODO refactor with request
         if ($this->getUser()->getStatus() === User::ROLE_COMPANY or $this->getUser()->getStatus() === User::ROLE_EMPLOYE) {
