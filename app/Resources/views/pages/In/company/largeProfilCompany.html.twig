@@ -90,7 +90,7 @@
                     <h5 class="titleSecond">Mes Happy Salarié : </h5>
                 </div>
                 <div class="collection paddingCollection">
-                    {% for user in company.users | slice(0, 3) %}
+                    {% for user in collaborators | slice(0, 3) %}
                         <div class="col l4 center-align">
                             <ul class="">
                                 <li>
@@ -100,7 +100,7 @@
                                         <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" height="110px">
                                     {% endif %}
                                 </li>
-                                <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
+                                <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a></li>
                                 <li>{{ include('user/userMood.html.twig') }} </li>
                             </ul>
                         </div>
@@ -130,7 +130,7 @@
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right"><i class="material-icons">close</i></a>
                     </div>
                     <div class="row">
-                        {% for user in company.users %}
+                        {% for user in collaborators %}
                             <div class="col l4 card  center-align">
                                 <ul class="">
                                     <li>
@@ -140,7 +140,7 @@
                                             <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" height="120px" class="circle">
                                         {% endif %}
                                     </li>
-                                    <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
+                                    <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a></li>
                                     <li> {{ include('user/userMood.html.twig') }}</li>
                                 </ul>
                             </div>
