@@ -76,14 +76,8 @@
                             {% for skill in skillInCompany %}
                             <p class="col l12 titleSecond">{{ skill.nameSkill }} ({{ skill.nbSalary }} Happy Salariés)</p>
                             <div class="col l12">
-                                {% for i in 1..skill.level | round %}
-                                    <i class="material-icons amber-text text-darken-2">star</i>
-                                {% endfor %}
-                                {% if skill.level!= 5 %}
-                                    {% for i in 5..(skill.level | round+ 1) %}
-                                        <i class="material-icons  amber-text text-darken-2">star_border</i>
-                                    {% endfor %}
-                                {% endif %}
+                                {% set level = skill.level %}
+                                {{ include('skill/skillLevel.html.twig') }}
                             </div>
                             {% endfor %}
                         </div>
