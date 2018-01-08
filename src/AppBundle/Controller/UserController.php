@@ -94,21 +94,11 @@ class UserController extends Controller
     public function editUserAction(Request $request, User $user, SlugService $slugService)
     {
 
-        $userHasSkill = new UserHasSkill();
         if ($this->getUser()->getStatus() !== 1) {
             $user = $this->getUser();
 
         }
-        $userHasSkill->getUser()->getId();
-        $form2 = $this->createForm('AppBundle\Form\UserHasSkillType', $userHasSkill);
-        $form2->handleRequest($request);
-        if ($form2->isSubmitted() && $form2->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($userHasSkill);
-            $em->flush();
 
-            return $this->redirectToRoute('User_edit', array('slug' => $user->getSlug()));
-        }
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->remove('slug');
         $editForm->handleRequest($request);
@@ -117,7 +107,7 @@ class UserController extends Controller
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('User_edit', array('slug' => $user->getSlug()));
         }
-        return $this->render('pages/In/collaborators/editUser.html.twig', array('user' => $user, 'edit_form' => $editForm->createView(), 'form2' => $form2->createView(),
+        return $this->render('pages/In/collaborators/editUser.html.twig', array('user' => $user, 'edit_form' => $editForm->createView(),
         ));
     }
 
