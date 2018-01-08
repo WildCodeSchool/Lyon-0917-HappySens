@@ -82,6 +82,7 @@ class FileUploader
         return $this;
     }
 
+    // TODO : WIP errors for size and types of files
     public function upload(UploadedFile $file, $underDir)
     {
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
