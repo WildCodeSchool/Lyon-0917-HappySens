@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends Controller
@@ -63,6 +65,7 @@ class SecurityController extends Controller
                         $email_contact = $this->container->getParameter('email_contact');
                         $emailService->sendMailNewPwd($mail, $email_contact, $item->getFirstName(), $item->getLastName(), $changePwd->getToken());
                     } else {
+                        // TODO : Afficher les erreurs
                         $error = 'Adresse email invalide, réessayer.';
                         return $this->render('pages/In/security/send.html.twig', array(
                             'changePwd' => $changePwd,
@@ -74,6 +77,7 @@ class SecurityController extends Controller
                     $em->flush();
                 }
             } else {
+                // TODO : Afficher les erreurs
                 $error = 'Adresse email invalide, réessayer.';
                 return $this->render('pages/In/security/send.html.twig', array(
                     'changePwd' => $changePwd,
@@ -86,6 +90,8 @@ class SecurityController extends Controller
                 'form' => $form->createView(),
             ));
         }
+        // TODO : Afficher les erreurs
+
         return $this->render('pages/In/security/send.html.twig', array(
             'changePwd' => $changePwd,
             'errors' => $error,
@@ -101,36 +107,63 @@ class SecurityController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function changeAction(ChangePwd $changePwd, Request $request)
+    public function changeAction(ChangePwd $changePwd, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        // TODO: Create verif for check if token is valid and desactivate token when is redirect
+        // TODO: Refactoriser dans un service
         $errors = '';
         $sendToken = $request->attributes->get('token');
         $userToken = $changePwd->getToken();
         $form = $this->createForm('AppBundle\Form\EditPasswordType', $changePwd);
         $form->handleRequest($request);
 
+        // TODO : test avec plusieurs demande en meme temps, car obligation de supprimer chaque ligne, si test fail créer une requete pour verifier que L'id user === idUser de $changePwd
         if ($changePwd->getisActive() === false){
             if ($userToken === $sendToken) {
                 $em = $this->getDoctrine()->getManager();
                 $changePwd->setIsActive(true);
-
-                // Change password;
                 $senderUser = $em->getRepository('AppBundle:User')->findById($changePwd->getIdUser());
-                foreach($senderUser as $user) {
-                    // Verif formulaire
-                    if ($form->isSubmitted() && $form->isValid()) {
-                        dump($user->getPassword());
-                        dump($request->request);
+
+                if ($form->isSubmitted() && $form->isValid()) {
+                    foreach($senderUser as $user) {
+                        $contentSend = $request->request;
+                        foreach($contentSend as $data) {
+                            $sendPwd = $data['pwd'];
+                            $confirmSendPwd = $data['confirmPwd'];
+                            if($sendPwd === $confirmSendPwd) {
+                                $password = $passwordEncoder->encodePassword($user, $sendPwd);
+                                $user->setPassword($password);
+                                $em->persist($changePwd);
+                                $em->persist($user);
+                                $em->remove($changePwd);
+                                $em->flush();
+                                return $this->render('pages/In/security/login.html.twig');
+                            }
+                            else {
+                                $errors = 'Les deux saisies ne sont pas identiques.';
+                                // TODO : Afficher les erreurs
+                                dump($errors);
+                                return $this->render('pages/In/security/change.html.twig', [
+                                    'token' => $changePwd->getToken(),
+                                    'errors' => $errors,
+                                    'form' => $form->createView(),
+                                ]);
+                            }
+                        }
+
                     }
                 }
             } else {
                 $errors = "La page demandé n'existe plus.";
+                // TODO : Afficher les erreurs
+                dump($errors);
                 return $this->render('pages/In/security/login.html.twig', [
                     'errors' => $errors,
                 ]);
             }
         } else {
+            $errors = "Token invalide";
+            // TODO : Afficher les erreurs
+            dump($errors);
             return $this->render('pages/In/security/change.html.twig', [
                 'token' => $changePwd->getToken(),
                 'form' => $form->createView(),

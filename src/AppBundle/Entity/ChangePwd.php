@@ -87,7 +87,7 @@ class ChangePwd
      */
     public function setToken($firstName, $email, $id)
     {
-        return $this->token = password_hash("$firstName $email $id", PASSWORD_BCRYPT);
+        return $this->token = hash('md5', $firstName . $email . $id);
     }
 
     /**
