@@ -13,7 +13,7 @@ use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class CheckSecurityService
+class NotificationService
 {
 
     private $db;
@@ -34,7 +34,7 @@ class CheckSecurityService
 
     /**
      * @param mixed $db
-     * @return CheckSecurityService
+     * @return NotificationService
      */
     public function setDb($db)
     {
@@ -42,20 +42,9 @@ class CheckSecurityService
         return $this;
     }
 
-    public function sendMail($mail, EmailService $emailService)
+    public function sendNotif($mail, EmailService $emailService)
     {
-        $em = $this->getDb();
-        $token = "";
 
-
-        dump($user);
-
-
-//        $em->persist($token);
-//        $em->flush();
-//        $emailService->sendMailNewPwd($user);
-
-        return $mail;
     }
 
 

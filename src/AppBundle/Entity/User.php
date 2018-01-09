@@ -194,6 +194,11 @@ class User implements UserInterface, \Serializable
     private $slug;
 
     /**
+     * @ORM\OneToMany(targetEntity="NotificationSystem", mappedBy="sender")
+     */
+    private $sendNotif;
+
+    /**
      * @var int
      */
     private $statusMail;
