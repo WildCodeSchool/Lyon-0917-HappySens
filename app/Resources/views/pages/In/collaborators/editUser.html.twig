@@ -4,16 +4,17 @@
     <div class="container">
         <nav class="wrapper row">
             <ul class="center bread">
-                <li class="active" id="breadOne" onclick="goStep1()"><a href="#">Infos personnelles</a></li>
-                <li class="" id="breadTwo" onclick="goStep2()"><a href="#">Infos personnelles</a></li>
-                <li class="" id="breadThree" onclick="goStep3()"><a href="#">Infos personnelles</a></li>
+                <li class="active" id="breadOne" onclick="goStep1()"><a href="#">Infos Personnelles</a></li>
+                <li class="" id="breadTwo" onclick="goStep2()"><a href="#">Infos Professionnelles</a></li>
+                <li class="" id="breadThree" onclick="goStep3()"><a href="#">Infos HappySens</a></li>
             </ul>
         </nav>
         {{ form_start(edit_form) }}
         <br>
         {#step#}
-        <div id="step1">
+        {#{{ form_widget(edit_form.userskills) }}#}
 
+        <div id="step1">
             <div class="row">
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Prenom :</h5>
@@ -110,14 +111,12 @@
                     </div>
                 </div>
                 <div class="center">
-                <a class="waves-effect waves-light btn amber darken-3" onclick="goStep2()">suivant</a>
+                    <a class="waves-effect waves-light btn amber darken-3" onclick="goStep2()">suivant</a>
                 </div>
             </div>
         </div>
         {#step 2#}
         <div id="step2" class="hide">
-
-
             <div class="col s12">
                 <h5 class="titleInscription blue-text text-darken-3">Job :</h5>
                 <div class="input-field col s12">
@@ -164,11 +163,11 @@
                 {#</div>#}
             {#</div>#}
             <div class="center">
-            <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
-            <a class="waves-effect waves-light btn amber darken-3" onclick="goStep3()">suivant</a>
+                <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
+                <a class="waves-effect waves-light btn amber darken-3" onclick="goStep3()">suivant</a>
             </div>
         </div>
-{#step3#}
+        {#step3#}
         <div id="step3" class="hide">
 
             <div class="col s12">
@@ -216,6 +215,25 @@
                 </div>
             </div>
             <div class="col s12">
+                <h5 class="titleInscription blue-text text-darken-3">Ajout talents :</h5>
+                <div class="range-field col s12">
+                    {{ form_widget(edit_form.userskills.vars.prototype) }}
+                    <h5 class="titleInscription blue-text text-darken-3">Mes Talents :</h5>
+
+                    {% if (form_errors(edit_form.userskills)) %}
+                        {{ form_widget(edit_form.userskills, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+                        {{ form_widget(edit_form.userskills) }}
+                        {{ form_widget(edit_form.userskills) }}
+
+                    {% endif %}
+
+                    <div class="center error">
+                        {{ form_errors(edit_form.userskills) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
                 <h5 class="titleInscription blue-text text-darken-3">Langue maternelle :</h5>
                 <div class="range-field col s12">
                     <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
@@ -244,14 +262,13 @@
                 </div>
             </div>
             <div class="center">
-            <a class="waves-effect waves-light btn blue darken-3" onclick="goStep2()">retour</a>
-            <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer"/>
+                <a class="waves-effect waves-light btn blue darken-3" onclick="goStep2()">retour</a>
+                <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer"/>
             </div>
         </div>
         <br>
         {{ form_end(edit_form) }}
     </div>
-
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('assets/script/stepForm.js') }}"></script>

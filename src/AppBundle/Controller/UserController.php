@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Company;
+use AppBundle\Entity\UserHasSkill;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\StatusProject;
 use AppBundle\Service\SlugService;
@@ -174,7 +175,9 @@ class UserController extends Controller
 
         if ($this->getUser()->getStatus() !== 1) {
             $user = $this->getUser();
+
         }
+
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->remove('slug')
             ->remove('company');
@@ -200,9 +203,11 @@ class UserController extends Controller
 
             }
         }
+
         return $this->render('pages/In/collaborators/editUser.html.twig', [
             'user' => $user,
             'edit_form' => $editForm->createView(),]);
+
     }
 
     /**
