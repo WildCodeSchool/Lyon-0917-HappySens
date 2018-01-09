@@ -81,13 +81,11 @@ class SecurityController extends Controller
                     'form' => $form->createView(),
                 ));
             }
-
             return $this->render('pages/In/security/login.html.twig', array(
                 'changePwd' => $changePwd,
                 'form' => $form->createView(),
             ));
         }
-
         return $this->render('pages/In/security/send.html.twig', array(
             'changePwd' => $changePwd,
             'errors' => $error,
@@ -96,13 +94,54 @@ class SecurityController extends Controller
     }
 
     /**
-     * @Route("/change/{token}", name="change")
-     * @Method("GET")
+     * @Route("/{token}/change", name="create")
+     * @Method({"GET", "POST"})
+     *
+     * @param ChangePwd $changePwd
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function changeAction(Request $request)
+    public function changeAction(ChangePwd $changePwd, Request $request)
     {
+        // TODO: Create verif for check if token is valid and desactivate token when is redirect
+        $errors = '';
+        $sendToken = $request->attributes->get('token');
+        $userToken = $changePwd->getToken();
+        $form = $this->createForm('AppBundle\Form\EditPasswordType', $changePwd);
+        $form->handleRequest($request);
 
-//        return $this->render('pages/In/security/change.html.twig', {  });
+        if ($changePwd->getisActive() === false){
+            if ($userToken === $sendToken) {
+                $em = $this->getDoctrine()->getManager();
+                $changePwd->setIsActive(true);
+
+                // Change password;
+                $senderUser = $em->getRepository('AppBundle:User')->findById($changePwd->getIdUser());
+                foreach($senderUser as $user) {
+                    // Verif formulaire
+                    if ($form->isSubmitted() && $form->isValid()) {
+                        dump($user->getPassword());
+                        dump($request->request);
+                    }
+                }
+            } else {
+                $errors = "La page demandé n'existe plus.";
+                return $this->render('pages/In/security/login.html.twig', [
+                    'errors' => $errors,
+                ]);
+            }
+        } else {
+            return $this->render('pages/In/security/change.html.twig', [
+                'token' => $changePwd->getToken(),
+                'form' => $form->createView(),
+            ]);
+        }
+
+        return $this->render('pages/In/security/change.html.twig', [
+            'token' => $changePwd->getToken(),
+            'form' => $form->createView(),
+            'errors' => $errors,
+        ]);
     }
 
 

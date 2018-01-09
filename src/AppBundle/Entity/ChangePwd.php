@@ -56,6 +56,16 @@ class ChangePwd
      */
     private $isActive;
 
+    /**
+     * @var string
+     */
+    private $pwd;
+
+    /**
+     * @var string
+     */
+    private $confirmPwd;
+
 
     /**
      * Get id
@@ -89,6 +99,45 @@ class ChangePwd
     {
         return $this->token;
     }
+
+    /**
+     * @return string
+     */
+    public function getPwd()
+    {
+        return $this->pwd;
+    }
+
+    /**
+     * @param $pwd
+     * @return $this
+     */
+    public function setPwd($pwd)
+    {
+        $this->pwd = $pwd;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfirmPwd()
+    {
+        return $this->confirmPwd;
+    }
+
+    /**
+     * @param $confirmPwd
+     * @return $this
+     */
+    public function setConfirmPwd($confirmPwd)
+    {
+        $this->confirmPwd = $confirmPwd;
+        return $this;
+    }
+
+
+
 
     /**
      * Set idUser

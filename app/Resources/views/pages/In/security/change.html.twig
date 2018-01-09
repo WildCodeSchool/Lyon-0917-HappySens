@@ -7,47 +7,43 @@
     <div class="row">
         <h5 class="blue-text text-darken-3 titleSecond">Changement de votre mot de passe</h5>
     </div>
-    <form action="" method="post">
-        <div class="row">
-            <div class="col s12" id="password">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="newPassword" type="password" name="_newPassword" class="validate">
-                        <label for="newPassword">Nouveau Mot de passe</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="confirmPassword" type="password" name="_confirmPassword" class="validate">
-                        <label for="confirmPassword">Confirmation du nouveau Mot de passe</label>
-                    </div>
-                </div>
-                {#{% if error %}#}
-                    {#<div class="row">#}
-                        {#<div class="col s12 m8 offset-m2 center">#}
-                            {#<div class="card-panel panel-error red lighten-2">#}
-                          {#<span class="white-text">#}
-                              {#{{ error.messageKey|trans(error.messageData, 'security') | replace({#}
-                                  {#"Invalid credentials": "Erreur de combinaison email / mdp. Réessayer !",#}
-                                  {#"Bad credentials": "Erreur de combinaison email / mdp. Réessayer !"#}
-                              {#}) }}#}
-                          {#</span>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#{% endif %}#}
-            </div>
-            <div class="col s12" id="btnConnexion">
-                <div class="row">
-                    <div class="input-field center">
-                        <button type="submit" class="btn waves-effect waves-light amber darken-2">
-                            Validation
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+    {{ form_start(form) }}
+    <div class="input-field col s12 center">
+        <i class="fa fa-lock prefix"></i>
+        {% if (form_errors(form.pwd)) %}
+            {{ form_widget(form.pwd, {'attr': {'class': 'error'}}) }}
+        {% else %}
+            {{ form_widget(form.pwd) }}
+        {% endif %}
+        <label for="email"><span class="requireInput">* </span>Mot de passe</label>
+        <div class="center error">
+            {{ form_errors(form.pwd) }}
+            {% if error is defined %}
+                {{ error }}
+            {% endif %}
         </div>
-    </form>
+    </div>
+    <div class="input-field col s12 center">
+        <i class="fa fa-repeat prefix"></i>
+        {% if (form_errors(form.confirmPwd)) %}
+            {{ form_widget(form.confirmPwd, {'attr': {'class': 'error'}}) }}
+        {% else %}
+            {{ form_widget(form.confirmPwd) }}
+        {% endif %}
+        <label for="email"><span class="requireInput">* </span>Confirmer</label>
+        <div class="center error">
+            {{ form_errors(form.confirmPwd) }}
+            {% if error is defined %}
+                {{ error }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="input-field col s12 center">
+        <button type="submit" class="btn waves-effect waves-light amber darken-2" onclick="loadingPage()">
+            Confirmer
+            <i class="material-icons right">send</i>
+        </button>
+    </div>
+    {{ form_end(form) }}
 </div>
 {% endblock %}

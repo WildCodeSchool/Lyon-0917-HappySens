@@ -67,4 +67,17 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function findById($id) {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->setParameter('id', $id)
+            ->where('u.id=:id')
+            ->getQuery();
+        return $qb->getResult();
+    }
 }
