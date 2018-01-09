@@ -16,8 +16,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class NotificationService
 {
 
-    private $db;
+    // TODO : create const for all contents of notification :
 
+    private $db;
 
     public function __construct(RegistryInterface $db)
     {
@@ -42,6 +43,7 @@ class NotificationService
         return $this;
     }
 
+    // TODO : create all stuf for create new notification
     public function sendNotif($mail, EmailService $emailService)
     {
 
