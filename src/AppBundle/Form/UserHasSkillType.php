@@ -8,8 +8,12 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Skill;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,8 +26,16 @@ class UserHasSkillType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('user', HiddenType::class);
-        $builder->add('level');
-        $builder->add('skill');
+        $builder->add('level', RangeType::class, array(
+            'attr' => array(
+                'min' => 0,
+                'max' => 5
+            )));
+        $builder->add('skill', EntityType::class, [
+            'class' => Skill::class,
+            'attr' => [ 'class' => 'browser-default']
+
+        ]);
 
     }
 

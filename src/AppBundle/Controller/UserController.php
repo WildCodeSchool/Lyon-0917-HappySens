@@ -101,6 +101,7 @@ class UserController extends Controller
 
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->remove('slug');
+        $editForm->remove('user');
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
