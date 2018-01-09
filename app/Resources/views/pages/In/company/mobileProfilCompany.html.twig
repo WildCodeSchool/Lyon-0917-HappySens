@@ -83,11 +83,11 @@
                 <h5 class="titleSecond">Mes Happy Salarié : </h5>
             </div>
             <div class="collection">
-                {% for user in company.users %}
+                {% for user in collaborators %}
                 <div class="col s12 center-align">
                     <ul class="">
                         <li><img class="circle responsive-img" src="{{ user.photo }}" alt="Vignette photo" height="70px"></li>
-                        <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
+                        <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a></li>
                         <li>{{ include('user/userMood.html.twig') }} </li>
                     </ul>
                 </div>
@@ -115,7 +115,7 @@
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right"><i class="material-icons">close</i></a>
                     </div>
                     <div class="row">
-                        {% for user in company.users %}
+                        {% for user in collaborators %}
                             <div class="col l4 card  center-align">
                                 <ul class="">
                                     <li>
@@ -125,7 +125,7 @@
                                             <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
                                         {% endif %}
                                     </li>
-                                    <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstname }} {{ user.lastname }}</a></li>
+                                    <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a></li>
                                     <li> {{ include('user/userMood.html.twig') }}</li>
                                 </ul>
                             </div>

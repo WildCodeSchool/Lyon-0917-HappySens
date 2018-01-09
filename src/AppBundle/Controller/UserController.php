@@ -107,11 +107,14 @@ class UserController extends Controller
             $company = $this->getUser()->getCompany();
         }
 
-        $nbHappySalarie = count($company->getUsers());
+
         $em = $this->getDoctrine()->getManager();
+        $nbHappySalarie = $em->getRepository('AppBundle:Company')->getNumberCollaboratorHasActif($company->getId());
         $skillInCompany = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
         $refHappySens = $em->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
         $projects = $em->getRepository('AppBundle:Company')->getProjectsInCompany($company->getId());
+        $collaborators = $em->getRepository('AppBundle:Company')->getAllCollaboratorInCompany($company->getId());
+        shuffle($collaborators);
 
         if (count($projects) > 0) {
             for ($i = 0; $i < count($projects); $i++) {
@@ -122,41 +125,36 @@ class UserController extends Controller
             }
         }
 
+        $trueViewCompany = $this->render('pages/In/company/profilCompany.html.twig', [
+            'company' => $company,
+            'nbHappySalarie' => $nbHappySalarie,
+            'skillInCompany' => $skillInCompany,
+            'refHappySens' => $refHappySens,
+            'projects' => $projects,
+            'collaborators' => $collaborators,
+            ]);
+
+
         // securité pour HappyCoach
         //TODO refactor with request
         if ($user->getStatus() === User::ROLE_HAPPYCOACH) {
             foreach ($user->getHappyCoachRef() as $project) {
                 $idCompanyRef = $project->getAuthor()->getCompany()->getId();
                 if ($idCompanyRef === $company->getId()) {
-                    return $this->render('pages/In/company/profilCompany.html.twig', [
-                        'company' => $company,
-                        'nbHappySalarie' => $nbHappySalarie,
-                        'skillInCompany' => $skillInCompany,
-                        'refHappySens' => $refHappySens,
-                        'projects' => $projects,]);
+                    return $trueViewCompany;
                 }
             }
             foreach ($user->getTeams() as $project) {
                 $idCompanyRef = $project->getAuthor()->getCompany()->getId();
                 if ($idCompanyRef === $company->getId()) {
-                    return $this->render('pages/In/company/profilCompany.html.twig', [
-                        'company' => $company,
-                        'nbHappySalarie' => $nbHappySalarie,
-                        'skillInCompany' => $skillInCompany,
-                        'refHappySens' => $refHappySens,
-                        'projects' => $projects,]);
+                    return $trueViewCompany;
                 }
                 throw new AccessDeniedException("tu n'as rien a foutre ici");
 //                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
             }
         }
 
-        return $this->render('pages/In/company/profilCompany.html.twig', [
-            'company' => $company,
-            'nbHappySalarie' => $nbHappySalarie,
-            'skillInCompany' => $skillInCompany,
-            'refHappySens' => $refHappySens,
-            'projects' => $projects]);
+        return $trueViewCompany;
     }
 
     /**
