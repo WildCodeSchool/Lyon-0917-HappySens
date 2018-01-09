@@ -186,7 +186,7 @@ class UserController extends Controller
             if ($user->getIsActive() == false) {
                 $user->setIsActive(1);
             }
-            $today = new DateTime();
+            $today = new \DateTime();
             $user->setDateUpdateMood($today);
             $this->getDoctrine()->getManager()->flush();
 

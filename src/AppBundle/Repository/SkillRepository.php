@@ -24,16 +24,20 @@ class SkillRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
-     * For each Skill return id and name
+     * For each Skill return id, name of Skill and number of project with this skill
      * @return mixed
      */
-    public function getNameSkill()
+    public function getNumberProjectForSkill()
     {
         $qb = $this
             ->createQueryBuilder('s')
-            ->select('s.nameSkill', 's.id')
+            ->leftjoin('s.projects', 'p')
+            ->groupBy('s.id')
+            ->select('count(p.theme) as nbproject','s.nameSkill', 's.id')
+            ->orderBy('s.id')
             ->getQuery();
         return $qb->getResult();
     }
+
 
 }

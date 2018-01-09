@@ -22,24 +22,14 @@ class SkillController extends Controller
      */
     public function indexAction()
     {
-
         $em = $this->getDoctrine()->getManager();
-        $skills = $em->getRepository('AppBundle:Skill')->getNameSkill();
+        $skills = $em->getRepository('AppBundle:Skill')->getNumberProjectForSkill();
         for ($i = 0; $i < count($skills); $i++) {
             $skills[$i]['collaborator'] = $em->getRepository('AppBundle:UserHasSkill')->getNumberUserByTypeForOneSkill('collaborator', $skills[$i]['id']);
             $skills[$i]['happyCoach'] = $em->getRepository('AppBundle:UserHasSkill')->getNumberUserByTypeForOneSkill('happyCoach', $skills[$i]['id']);
-            $skills[$i]['project'] = $em->getRepository('AppBundle:Project')->getNumberProjectsBySkill($skills[$i]['id']);
         }
-/*        $nbHappyCoachBySkill = [];
-        $em = $this->getDoctrine()->getManager();
-        $nbSalaryBySkill = $em->getRepository('AppBundle:UserHasSkill')->getNumberByUserTypeNumberSkill('salary');
-        $nbHappyCoachBySkill = $em->getRepository('AppBundle:UserHasSkill')->getNumberByUserTypeNumberSkill('happyCoach');
-        $skills = $em->getRepository('AppBundle:Skill')->findAll();*/
-
         return $this->render('skill/index.html.twig', array(
-//            'nbSalaryBySkill' => $nbSalaryBySkill,
-//            'nbHappyCoachBySkill' => $nbHappyCoachBySkill,
-            'skills' => $skills
+            'skills' => $skills,
         ));
     }
 
