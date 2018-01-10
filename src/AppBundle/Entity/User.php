@@ -155,7 +155,7 @@ class User implements UserInterface, \Serializable
     private $languagesUser;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="user", cascade={"persist"})
      */
     private $userskills;
 
@@ -698,29 +698,6 @@ class User implements UserInterface, \Serializable
         $this->teams->removeElement($team);
     }
 
-    /**
-     * Add skill
-     *
-     * @param \AppBundle\Entity\UserHasSkill $skill
-     *
-     * @return User
-     */
-    public function addSkill(\AppBundle\Entity\UserHasSkill $skill)
-    {
-        $this->skills[] = $skill;
-
-        return $this;
-    }
-
-    /**
-     * Remove skill
-     *
-     * @param \AppBundle\Entity\UserHasSkill $skill
-     */
-    public function removeSkill(\AppBundle\Entity\UserHasSkill $skill)
-    {
-        $this->skills->removeElement($skill);
-    }
 
     /**
      * Add userskill
@@ -731,6 +708,7 @@ class User implements UserInterface, \Serializable
      */
     public function addUserskill(\AppBundle\Entity\UserHasSkill $userskill)
     {
+        $userskill->setUser($this);
         $this->userskills[] = $userskill;
 
         return $this;
