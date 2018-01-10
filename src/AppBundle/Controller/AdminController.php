@@ -196,34 +196,36 @@ dump($users);
     /**
      * Creates a new user entity.
      *
-     * @Route("/newUser", name="newUser")
+     * @Route("/newUser/{status}", name="newUser")
      * @Method({"GET", "POST"})
      */
-    public function newActionUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService)
+    public function newActionUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService, $status)
     {
         $user = new User();
-
-
         $form = $this->createForm('AppBundle\Form\UserType', $user);
         $form->remove('slug');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setStatus($status);
             $user->setPassword($password);
             $user->setSlug($slugService->slugify($user->getFirstName() . ' ' . $user->getLastName()));
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('newUser_show', array('slug' => $user->getSlug()));
+            return $this->redirectToRoute('newUser_show', [
+                'slug' => $user->getSlug(),
+                ]);
         }
 
 
-        return $this->render('pages/In/Admin/collaborators/new.html.twig', array(
+        return $this->render('pages/In/Admin/collaborators/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ));
+            'status' => $status,
+        ]);
     }
 
     /**
