@@ -10,15 +10,24 @@
 }
 
 #flashNoticeContact{
-  opacity:0.6;
+  opacity: 0.9;
   .card {
     position: fixed;
     left: 10px;
     top: 40px;
     margin-left: 10px;
-    border-radius: 2px;
+    border-radius: 4px;
     padding: 10px 10px 0 10px;
     margin-bottom: 0;
+    background-color: white;
+    border: 1px solid #42c338;
+    color: #38a331;
+    font-weight: 400;
+    font-size: 1.1em;
+    font-family: "Roboto", sans-serif;
+  }
+  i {
+    color: #42c338;
   }
 }
 

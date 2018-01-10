@@ -2,6 +2,11 @@
 
 {% block content %}
     <div class="container">
+
+       <div class="row">
+            <img src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="">
+            <h1>Company edit</h1>
+        </div>
         <nav class="wrapper row">
             <ul class="center bread">
                 <li class="active userCompany" id="breadOne" onclick="goStep1()"><a href="#">Informations Entreprise</a></li>
@@ -162,6 +167,8 @@
             </div>
             {{ form_end(edit_form) }}
         </div>
+
+
     </div>
 {% endblock %}
 {% block javascripts %}

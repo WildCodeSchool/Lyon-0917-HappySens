@@ -12,6 +12,7 @@ use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserHasSkill;
+use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -34,8 +35,21 @@ class AdminController extends Controller
      */
     public function profilAdminAction(Request $request)
     {
+        $nbProjectsByStatus = [];
+        $nbUserByStatus = [];
+        $nbSkills = [];
+        $em = $this->getDoctrine()->getManager();
+        $nbProjectsByStatus = $em->getRepository('AppBundle:Project')->getNumberProjectsByStatus();
+        $nbUserByStatus = $em->getRepository('AppBundle:User')->getNumberUserByRole();
+        $nbCompany = $em->getRepository('AppBundle:Company')->getNumberCompany();
+        $nbSkills = $em->getRepository('AppBundle:Skill')->getNumberSkill();
+
         return $this->render('pages/In/Admin/profilAdmin.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'nbProjectsByStatus' => $nbProjectsByStatus,
+            'nbUserByStatus' => $nbUserByStatus,
+            'nbCompany' => $nbCompany,
+            'nbSkill' => $nbSkills
         ]);
     }
 
@@ -54,15 +68,15 @@ class AdminController extends Controller
         return $this->render('pages/In/Admin/company/index.html.twig', array(
             'companies' => $companies,
         ));
+
     }
 
     /**
      * Creates a new company entity.
-     *
      * @Route("/newCompany", name="newCompany")
      * @Method({"GET", "POST"})
      */
-    public function newCompanyAction(Request $request, FileUploader $fileUploader, SlugService $slugService)
+    public function newCompanyAction(Request $request, FileUploader $fileUploader, SlugService $slugService, EmailService $emailService)
     {
         $company = new Company();
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
@@ -70,8 +84,8 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $csvFile = $company->getFileUsers();
-            $fileName = $fileUploader->upload($csvFile, "csvFiles");
+            $myFile = $company->getFileUsers();
+            $fileName = $fileUploader->upload($myFile, "csvFiles");
             $logo = $company->getLogo();
             $logoName = $fileUploader->upload($logo, "photoCompany");
 
@@ -83,10 +97,23 @@ class AdminController extends Controller
             $em->flush();
 
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
-            $fileUploader->insertUser("1234", $em->find(Company::class, $company->getId()), $fileUsers);
+            $arrayUsers = $fileUploader->insertUser(
+                "1234",
+                $em->find(Company::class, $company->getId()),
+                $fileUsers,
+                $this->container->getParameter('email_contact'),
+                $emailService
+            );
             unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
 
-            return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
+            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234');
+            $countUser = $fileUploader->getCounter();
+
+            return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', array(
+                'users' => $arrayUsers,
+                'company' => $company,
+                'countUser' => $countUser,
+            ));
         }
 
         return $this->render('pages/In/Admin/company/new.html.twig', array(
@@ -141,14 +168,29 @@ class AdminController extends Controller
     public function listingUserAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:User')->getUserByType('salary');
 
-        $users = $em->getRepository('AppBundle:User')->findAll();
-        $company = $em->getRepository('AppBundle:Company')->findAll();
-
-        return $this->render('pages/In/Admin/collaborators/index.html.twig', array(
+        return $this->render('pages/In/Admin/collaborators/index.html.twig', [
             'users' => $users,
-            'company' => $company,
-        ));
+            'listing' => 'Collaborateur',
+        ]);
+    }
+
+    /**
+     * Lists all user HappyCoach.
+     *
+     * @Route("/listingHappyCoach", name="listingHappyCoach")
+     * @Method("GET")
+     */
+    public function listingHappyCoachAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:User')->getUserByType('happyCoach');
+dump($users);
+        return $this->render('pages/In/Admin/collaborators/index.html.twig', [
+            'users' => $users,
+            'listing' => 'HappyCoach',
+        ]);
     }
 
     /**
@@ -223,19 +265,16 @@ class AdminController extends Controller
     /**
      * Lists all project entities.
      *
-     * @Route("/listingProjects", name="listingProjects")
+     * @Route("/listingProjects/{status}", name="listingProjects")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($status)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $projects = $em->getRepository('AppBundle:Project')->findAll();
-        $company = $em->getRepository('AppBundle:Company')->findAll();
+        $projects = $em->getRepository('AppBundle:Project')->getProjectsByStatus($status);
 
         return $this->render('pages/In/Admin/projects/index.html.twig', array(
             'projects' => $projects,
-            'company' => $company,
         ));
     }
 

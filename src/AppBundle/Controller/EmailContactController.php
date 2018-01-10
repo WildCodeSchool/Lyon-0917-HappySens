@@ -26,10 +26,9 @@ class EmailContactController extends Controller
             $email_contact = $this->container->getParameter('email_contact');
             $emailService->sendMessageContact($contact, $email_contact);
             $this->addFlash(
-                'contact',
-                'Merci, votre message a bien été envoyé.'
+                'notif',
+                'Nous avons bien reçu votre message !'
             );
-
             return $this->redirectToRoute('homepage');
         }
         return $this->render('pages/Out/contact.html.twig',[

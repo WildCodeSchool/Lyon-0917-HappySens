@@ -1,0 +1,17 @@
+{% extends 'notificationsEmail/baseMail.html.twig' %}
+
+{% block content %}
+    <h1 class="title">Bonjour {{ firstName }} {{ lastName }}, merci d'avoir contacté HappySens</h1>
+
+    <span class="content">Voici les informations que vous nous avez transmise :</span>
+    <ul class="text">
+        <li class="content">Votre email : {{ email }} </li>
+        <li class="content">Votre n° de téléphone : {{ phone }} </li>
+        {%  if company != null %}
+            <li class="content">Nom de votre entreprise : {{ company }}</li>
+        {% endif %}
+        <li class="content">Votre status : {{ status }}</li>
+        <li class="content">Votre message : {{ message }}. </li>
+    </ul>
+    <p class="content">Nous vous répondrons dans les meilleurs delais.</p>
+{% endblock %}

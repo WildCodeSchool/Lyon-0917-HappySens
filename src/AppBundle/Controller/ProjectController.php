@@ -3,12 +3,16 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Project;
+use AppBundle\Service\EmailService;
+use AppBundle\Entity\User;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
 use DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Admin controller.
  *
  * @Route("project")
+ * @Security("user.getIsActive() === true")
  */
 class ProjectController extends Controller
 {
@@ -27,8 +32,9 @@ class ProjectController extends Controller
      *
      * @Route("/new", name="project_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_EMPLOYE') && user.getIsActive() === true")
      */
-    public function newAction(Request $request, FileUploader $fileUploader, SlugService $slugService)
+    public function newAction(Request $request, FileUploader $fileUploader, SlugService $slugService, EmailService $emailService)
     {
         $project = new Project();
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -53,8 +59,15 @@ class ProjectController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($project);
-            $em->flush();
 
+            $email_contact = $this->container->getParameter('email_contact');
+            $emailService->sendMailProject($project, $email_contact);
+
+            $em->flush();
+            $this->addFlash(
+                'notif',
+                'Votre projet à bien était créer !'
+            );
             return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }
 
@@ -72,14 +85,40 @@ class ProjectController extends Controller
      */
     public function showAction(Project $project)
     {
+         $user = $this->getUser();
+
         $deleteForm = $this->createDeleteForm($project);
         $nbLikes = count($project->getLikeProjects());
 
-        return $this->render('project/show.html.twig', array(
+        $viewProject = $this->render('project/show.html.twig', array(
             'project' => $project,
             'nbLike' => $nbLikes,
             'delete_form' => $deleteForm->createView(),
         ));
+
+        if($user->getStatus() === User::ROLE_COMPANY or $user->getStatus() === User::ROLE_EMPLOYE) {
+            if ($user->getCompany() === $project->getAuthor()->getCompany()) {
+                return $viewProject;
+            } else {
+                throw new AccessDeniedException("ce n'est pas un projet de ton entreprise");
+            }
+        }
+
+        if($user->getStatus() === User::ROLE_HAPPYCOACH) {
+            if ( $project->getHappyCoach() !== NULL) {
+                if ($user->getId() === $project->getHappyCoach()->getId()) {
+                    return $viewProject;
+                }
+            }
+
+            foreach ($project->getTeamProject() as $userTeam) {
+                if ($userTeam->getId() === $user->getId()) {
+                    return $viewProject;
+                }
+            }
+            throw new AccessDeniedException("tu ne travailles pas sur ce projet");
+        }
+        return $viewProject;
     }
 
     /**
@@ -153,5 +192,113 @@ class ProjectController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/joinTeam/{slug}/", name="join_team")
+     *
+     */
+    // TODO: AJAX
+    public function joinAction(Request $request, Project $project)
+    {
+        $idU = $this->getUser();
+        $add = $project->addTeamProject($idU);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($add);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+    /**
+     * @Route("/quitTeam/{slug}/", name="quit_team")
+     *
+     */
+    // TODO: AJAX
+    public function quitAction(Request $request, Project $project)
+    {
+        $idU = $this->getUser();
+        $rm = $project->removeTeamProject($idU);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($rm);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+
+    /**
+     * @Route("/likeProject/{slug}/", name="like_project")
+     *
+     */
+    // TODO: AJAX
+    public function likeAction(Request $request, Project $project)
+    {
+        $idU = $this->getUser();
+        $add = $project->addLikeProject($idU);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($add);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+    /**
+     * @Route("/unlikeProject/{slug}/", name="unlike_project")
+     *
+     */
+    // TODO: AJAX
+    public function unlikeAction(Request $request, Project $project)
+    {
+        $idU = $this->getUser();
+        $add = $project->removeLikeProject($idU);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($add);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+    /**
+     * @Route("/validProject/{slug}/", name="project_validate")
+     *
+     */
+    // TODO: AJAX
+    public function validateProjectAction(Request $request, Project $project)
+    {
+        $statusProject = $project->setStatus('2');
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($statusProject);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+    /**
+     * @Route("/finishProject/{slug}/", name="project_finish")
+     *
+     */
+    // TODO: AJAX
+    public function finishProjectAction(Request $request, Project $project)
+    {
+        $today = new \DateTime();
+        $project->setStatus('3');
+        $project->setEndDate($today);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($project);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+    }
+
+    /**
+     * @Route("/reopenProject/{slug}/", name="project_reopen")
+     *
+     */
+    // TODO: AJAX
+    public function reopenProjectAction(Request $request, Project $project)
+    {
+        $newDateEnd = new \DateTime();
+        $newDateEnd->add(new \DateInterval('P1M'));
+        $project->setStatus('2');
+        $project->setEndDate($newDateEnd);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($project);
+        $em->flush();
+        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
     }
 }

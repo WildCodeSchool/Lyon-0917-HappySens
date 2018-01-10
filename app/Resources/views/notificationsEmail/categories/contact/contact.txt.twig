@@ -1,0 +1,17 @@
+{% extends ':notificationsEmail:baseTxtMail.txt.twig' %}
+
+{% block content %}
+Bonjour {{ firstName }} {{ lastName }}, merci d'avoir contacté HappySens <br>
+<br>
+Voici les informations que vous nous avez transmise :<br>
+<br>
+Votre email : {{ email }}<br>
+Votre n° de téléphone : {{ phone }}<br>
+{%  if company != null %}
+Nom de votre entreprise : {{ company }}<br>
+{% endif %}
+Votre status : {{ status }}<br>
+Votre message : {{ message }}<br>
+<br>
+Nous vous répondrons dans les meilleurs delais.<br>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MAJ humeur {% endblock %}
+
+{% block content %}
+    <div class="container generalContainer">
+        <div class="row">
+            <h5 class="blue-text text-darken-3 titleSecond">Merci de mettre à jour votre humeur :</h5>
+        </div>
+        {{ form_start(edit_form) }}
+        <div class="col s12">
+            <h5 class="titleInscription blue-text text-darken-3">Humeur :</h5>
+            <div class="range-field col s12">
+                <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
+                {% if (form_errors(edit_form.mood)) %}
+                    {{ form_widget(edit_form.mood, {'attr': {'class': 'error'}}) }}
+                {% else %}
+                    {{ form_widget(edit_form.mood) }}
+                {% endif %}
+                <div class="center error">
+                    {{ form_errors(edit_form.mood) }}
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer"/>
+        </div>
+        {{ form_end(edit_form) }}
+    </div>
+{% endblock %}
+

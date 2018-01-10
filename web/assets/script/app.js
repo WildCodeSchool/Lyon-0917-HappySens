@@ -17,3 +17,11 @@ $(document).ready(function() {
     $('#modal2').modal();
 
 });
+
+function hideContactFlash() {
+    $('#flashNoticeContact').addClass('hide');
+}
+
+function loadingPage() {
+    $('#waitingDiv').removeClass('hide');
+}

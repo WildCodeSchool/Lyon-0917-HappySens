@@ -31,6 +31,8 @@
         {% block header %}{% endblock %}
     </header>
     <main class="col s12" id="main">
+        {{ include('partials/components/notificationsEmail/notifications.html.twig') }}
+
         <!--  include button scroll to top !!! Don't move this link !!! -->
         <div class="scrollToTop waves-effect waves-light amber darken-3 z-depth-2" aria-hidden="true" title="Retour haut de page.">
             <i class="material-icons">keyboard_capslock</i>
