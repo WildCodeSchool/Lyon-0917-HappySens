@@ -12,7 +12,11 @@
             <div class="col s12" id="password">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="email" name="_username" class="validate" value="{{ last_username }}">
+                        <input id="email" type="email" name="_username" class="validate" value="
+                        {% if last_username is defined %}
+                            {{ last_username }}
+                        {% endif %}
+                        ">
                         <label for="email">Email</label>
                     </div>
                 </div>
@@ -28,7 +32,7 @@
                         <label for="remember_me">Souhaitez vous rester connecté ? </label>
                     </div>
                 </div>
-                {% if error %}
+                {% if error is defined and error != null %}
                     <div class="row">
                         <div class="col s12 m8 offset-m2 center">
                             <div class="card-panel panel-error red lighten-2">
@@ -41,10 +45,11 @@
                             </div>
                         </div>
                     </div>
+                {% else %}
                 {% endif %}
                 <div class="row">
                     <div class="input-field center">
-                        Vous avez oublié votre <a href="#" onclick="missingPassword()">mot de passe?</a>
+                        Vous avez oublié votre <a href="{{ path('sendChange') }}">mot de passe?</a>
                     </div>
                 </div>
             </div>
@@ -55,36 +60,6 @@
                             Connexion
                             <i class="material-icons right">send</i>
                         </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-    <form action="#" method="post">
-        <div class="row hide" id="hiddenMissingPassword">
-            <div class="input-field col s12">
-                <p>
-                    Vous avez perdu votre mot de passe ? Pas de panique, nous allons vous aider à le récupérer.
-                    Saisissez votre adresse e-mail ci-dessous, et vous recevrez, sous peu, à cette même adresse,
-                    un lien vous permettant de choisir un nouveau mot de passe.
-                </p>
-            </div>
-            <div class="input-field col s12 center">
-                <input id="email" type="email" class="validate">
-                <label for="email">Email</label>
-            </div>
-            <div class="col s12">
-                <div class="row">
-                    <div class="input-field center">
-                        <div class="input-field col s12 center">
-                            <a href="#" onclick="findPassword()" class="btn-flat waves-effect waves-light">Annuler
-                                <i class="material-icons left">reply</i>
-                            </a>
-                            <a href="#" onclick="findPassword()" class="btn waves-effect waves-light blue darken-2">
-                                Envoyer
-                                <i class="material-icons right">send</i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

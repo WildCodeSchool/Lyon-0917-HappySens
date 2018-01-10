@@ -83,7 +83,7 @@ class UserController extends Controller
                         return $pageTrueShowUser;
                     }
                 }
-                throw new AccessDeniedException("tu n'as rien a foutre ici");
+                throw new AccessDeniedException("Cette page n'est pas autorisé");
 //                return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
             }
         }

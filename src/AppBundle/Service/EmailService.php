@@ -121,6 +121,36 @@ class EmailService
     }
 
     /**
+     * @param $project
+     * @param $email_contact
+     */
+    public function sendMailNewPwd($mailUser, $email_contact, $firstName, $lastName, $token)
+    {
+        $message = \Swift_Message::newInstance();
+        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+        $message->setSubject('Réeinitialisation de votre mot de passe')
+            ->setCharset("utf-8")
+            ->setTo([$email_contact, $mailUser])
+            ->setFrom([$this->sender => self::SENDER])
+            ->setBody(
+                $this->template->render('notificationsEmail/categories/resetPassword/resetPassword.html.twig', [
+                    'logo' => $img,
+                    'firstname' => $firstName,
+                    'lastName' => $lastName,
+                    'token' => $token,
+                ]), 'text/html'
+            )
+            ->addPart($this->template->render('notificationsEmail/categories/resetPassword/resetPassword.txt.twig', [
+                'logo' => $img,
+                'firstname' => $firstName,
+                'lastName' => $lastName,
+                'token' => $token,
+            ]), 'text/plain');
+
+        $this->mailer->send($message);
+    }
+
+    /**
      * @param $user
      * @param $email_contact
      * @param $valueMdp
@@ -129,7 +159,6 @@ class EmailService
     {
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-
         $message->setSubject("Votre compte happySens vient d'être créer")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $user->getEmail()])
@@ -163,9 +192,8 @@ class EmailService
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
         $em = $this->db;
-
         $referent = $em->getManager()->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
-        dump($referent[0]);
+        dump($referent);
 
         $message->setSubject("Votre compte entreprise happySens vient d'être créer")
             ->setCharset("utf-8")
