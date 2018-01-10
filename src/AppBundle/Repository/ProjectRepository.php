@@ -40,21 +40,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
      * return number of project by skill
      * @return mixed
      */
-    public function getNumberProjectsBySkill($idSkill) {
-        $qb = $this
-            ->createQueryBuilder('p')
-            ->select('COUNT(p) as nbProject')
-            ->setParameter('idSkill', $idSkill)
-            ->where('p.theme =:idSkill')
-            ->getQuery();
-        return $qb->getResult();
-    }
-
-
-    /**
-     * return number of project by skill
-     * @return mixed
-     */
     public function getProjectsBySkill($idSkill) {
         $qb = $this
             ->createQueryBuilder('p')

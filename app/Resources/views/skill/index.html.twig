@@ -2,37 +2,6 @@
 
 {% block content %}
     <h1 class="center">Listes des Talents</h1>
-{#    <div class="row">
-        {% for skill in skills %}
-            <div class="col s12 m6 l3">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title">{{ skill.nameSkill }}</span>
-                        <p>Nombre de salarié :
-                            {% set numberOfSalary = 0  %}
-                            {% for salarySkill in nbSalaryBySkill %}
-                                {% if salarySkill.id == skill.id %}
-                                    {{ numberOfSalary + salarySkill.nbUser  }}
-                                    {% set skill = salarySkill %}
-                                    ({{ include('skill/skillLevel.html.twig') }})
-                                {% endif %}
-                            {% endfor %}</p>
-                        <p>Nombre d'HappyCoach :
-                            {% for skillHappyCoach in nbHappyCoachBySkill %}
-                                {% if skillHappyCoach.id == skill.id %}
-                                    {{ skillHappyCoach.nbUser | default('0') }}
-                                    / niveau moyen : {{ skillHappyCoach.level |  round(1)}}
-                                {% endif %}
-                            {% endfor %}
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <a href="{{ path('skills_edit', { 'id': skill.id }) }}">modifier le talent</a>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>#}
     <div class="row">
         {% for skill in skills %}
             <div class="col s12 m6 l3">
@@ -55,11 +24,7 @@
                         {% endif %}
                         </p>
                         <p>Nombre de projet :
-                            {% if skill.project is empty %}
-                                0
-                            {% else%}
-                                {{ skill.project.0.nbProject }}
-                            {% endif %}
+                                {{ skill.nbproject }}
                         </p>
                     </div>
                     <div class="card-action">
