@@ -10,4 +10,74 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $companyId
+     * @return mixed
+     */
+    public function getProjectsInCompany($companyId) {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->join('u.authorProject', 'p')
+            ->setParameter('idCompany', $companyId)
+            ->where('u.company=:idCompany')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    /**
+     * Return user by type (salary or happyCoach)
+     * @return mixed
+     */
+    public function getUserByType($status)
+    {
+        $qb = $this
+            ->createQueryBuilder('u');
+        if ($status == 'salary') {
+            $qb = $qb->where('u.status = 2 or u.status = 3')
+                ->join('u.company', 'c');
+        } else if ($status == 'happyCoach') {
+            $qb = $qb->where('u.status = 4');
+        }
+        $qb = $qb->getQuery();
+        return $qb->getResult();
+    }
+
+    /**
+     * Return count number of user by Role
+     * @return mixed
+     */
+    public function getNumberUserByRole() {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->select('COUNT(u)')
+            ->groupBy('u.status')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    /**
+     * @param $email
+     * @return array
+     */
+    public function findByEmail($email) {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->setParameter('email', $email)
+            ->where('u.email=:email')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function findById($id) {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->setParameter('id', $id)
+            ->where('u.id=:id')
+            ->getQuery();
+        return $qb->getResult();
+    }
 }

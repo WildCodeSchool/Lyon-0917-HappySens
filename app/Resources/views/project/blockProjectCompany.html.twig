@@ -1,0 +1,80 @@
+<div class="PC_bProjectInProgress">
+    <div class="hideMobile">
+        <h4 class="center titleSecond">Les Happy Projets</h4>
+    </div>
+       <div id="ProjectTeam">
+        {% if projects != null %}
+        {% for project in projects %}
+        <div class="card medium">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img src="{{ asset('uploads/photoProject/' ~ project.photoProject) }}" alt="profile image" class="activator">
+            </div>
+            <div class="{{ project.status.class }} chipStatus">
+                <span><i class="fa fa-clock-o"></i></span>
+                <span> {{ project.status.text }}</span>
+            </div>
+            <div class="card-content">
+                <div class="card-title activator grey-text text-darken-4">
+                    {{ project.title }}
+                    <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
+                </div>
+                <div>
+                    <a href="{{ path('UserProfil', { 'slug': project.slug }) }}">
+                        <div class="chip left">
+                            {% if project.photo %}
+                                <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                            {% else %}
+                                <img src="{{ asset('uploads/photoCompany/' ~ project.photo) }}" alt="profile image" class="circle responsive-img">
+                            {% endif %}
+                            <span class="black-text">{{ project.firstName}} {{  project.lastName }}</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="right">
+                    <a href="#!" onclick="like()">{{ project.nbLike }} <i class="fa fa-heart red-text"></i></a>
+                </div>
+            </div>
+            <div class="card-reveal revealProject">
+                <span class="card-title grey-text text-darken-4">
+                    {{ project.title }}
+                    <i class="material-icons right">close</i>
+                </span>
+                <div class="row">
+                    <div>
+                        <a href="{{ path('UserProfil', { 'slug': project.slug }) }}">
+                            <div class="chip left">
+                                {% if project.photo %}
+                                    <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                {% else %}
+                                    <img src="{{ asset('uploads/photoCompany/' ~ project.photo) }}" alt="profile image" class="circle responsive-img">
+                                {% endif %}
+                                <span class="black-text">{{ project.firstName}} {{  project.lastName }}e</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div>
+                        <div class="{{ project.status.class }} right">
+                            <span><i class="fa fa-clock-o"></i></span>
+                            <span>{{ project.status.text }}</span>
+                        </div>
+                    </div>
+                </div>
+                <p>{{ project.presentation }}.</p>
+                <div class="footerReveal">
+                    <div class="left">
+                        <a href="{{ path('project_show', { 'slug': project.projectSlug }) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
+                    </div>
+                    <div class="right">
+                        <a href="#!" onclick="like()">{{ project.nbLike }} <i class="fa fa-heart red-text"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+           <div class="withoutProject">
+               <p>{{ company.name }} n'as pas encore de projet.</p>
+           </div>
+        {% endif %}
+    </div>
+</div>

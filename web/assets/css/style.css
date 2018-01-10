@@ -110,9 +110,6 @@
   .mobile {
     display: block !important; }
 
-  .modal-content {
-    width: 25em !important; }
-
   .detailsExplainEntreprise {
     padding: 10px !important; }
 
@@ -141,6 +138,9 @@ body {
 main {
   flex: 1 0 auto; }
 
+.panel-error {
+  padding: 10px; }
+
 .generalContainer {
   min-height: 40vh;
   padding: 70px 20px; }
@@ -162,6 +162,52 @@ main {
 
 .changeBg2 {
   background-color: #F7F2DF; }
+
+.notif {
+  z-index: 10000000;
+  position: fixed; }
+
+#waitingDiv {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10000;
+  background-color: rgba(37, 47, 61, 0.95);
+  padding: 20px; }
+
+.positionLoad {
+  top: 45vh;
+  position: relative;
+  transform: translatey(-50%);
+  margin-left: -20px;
+  text-align: center;
+  width: 100vw; }
+  .positionLoad p {
+    margin-top: 25px;
+    font-size: 1.3em; }
+
+.widthMax {
+  max-width: 600px; }
+
+.withoutProject {
+  margin: 40px auto;
+  text-align: center;
+  color: grey;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3em; }
+  .withoutProject a {
+    color: white;
+    font-family: 'Roboto', sans-serif; }
+  .withoutProject button.btn {
+    background-color: #C2185B;
+    color: white;
+    font-size: 0.7em; }
+
+.containerListingProject {
+  padding: 20px 0; }
+
+.paddingCollection {
+  padding: 15px 10px; }
 
 /*************    Composant   ****************************/
 .Contact {
@@ -242,30 +288,18 @@ nav {
   background-color: inherit;
   box-shadow: none; }
 
-.modalConnect {
-  min-width: 100vw;
-  min-height: 100vh;
-  top: 0 !important;
-  background-color: rgba(255, 255, 255, 0.92);
-  padding: 20px 20px; }
-  .modalConnect .iClose {
-    color: #252F3D; }
-  .modalConnect .hidden {
-    display: none; }
+.loginConnect .iClose {
+  color: #252F3D; }
+.loginConnect .hidden {
+  display: none; }
 
-.modal-content-Connect {
-  width: 50em;
-  position: relative;
-  top: 45vh;
-  transform: translatey(-45%);
-  margin: auto; }
-  .modal-content-Connect a {
-    color: #0288D1; }
-    .modal-content-Connect a:hover {
-      color: #4dabe6;
-      cursor: pointer; }
-  .modal-content-Connect a.btn {
-    color: white; }
+.modal-content-Connect a {
+  color: #0288D1; }
+  .modal-content-Connect a:hover {
+    color: #4dabe6;
+    cursor: pointer; }
+.modal-content-Connect a.btn {
+  color: white; }
 
 .newUser {
   text-align: center; }
@@ -358,15 +392,6 @@ nav {
   background-position: center -370px;
   margin-top: -90px; }
 
-#contentAddProject {
-  min-height: 50vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("../images/happysens-sport.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: bottom;
-  margin-top: -90px; }
-
 .headerTitleOthers {
   border-radius: 5px;
   top: 32vh;
@@ -388,10 +413,10 @@ nav {
   margin-top: 2.5rem; }
 
 .cardTitle {
-  font-size: 2.2em;
+  font-size: 2.3em;
   font-family: "Quicksand", sans-serif;
   text-align: center;
-  color: #0288D1; }
+  color: #FFA000; }
 
 .textCard {
   font-size: 1.2em;
@@ -622,9 +647,20 @@ ul.switch li.active, ul.switch li.active {
   margin-bottom: -25px;
   background-color: #252F3D; }
 
-ul.followUs {
-  display: flex;
-  justify-content: space-between; }
+.followUs a {
+  color: white; }
+  .followUs a:hover {
+    color: grey; }
+.followUs .margin {
+  margin: 5px 0; }
+.followUs li {
+  font-size: 1.2em;
+  color: white; }
+  .followUs li span {
+    font-size: 0.85em;
+    margin-left: 5px; }
+    .followUs li span:hover {
+      color: grey; }
 
 .containExplainEmploye {
   margin: 50px 0; }
@@ -688,7 +724,7 @@ ul.followUs {
   font-size: 3em;
   font-family: "Quicksand", sans-serif; }
 .blocExplainEntreprise .containExplainEntreprise {
-  padding: 30px 15px;
+  padding: 30px 35px;
   text-align: left; }
   .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
     font-family: "Roboto", sans-serif; }
@@ -757,6 +793,9 @@ ul.followUs {
       font-size: 1.3em;
       margin-bottom: 10px; }
 
+.jumbotronInContainer li {
+  margin-top: 25px; }
+
 .error {
   color: red; }
 
@@ -769,15 +808,23 @@ ul.followUs {
     text-align: center; }
 
 #flashNoticeContact {
-  opacity: 0.6; }
+  opacity: 0.9; }
   #flashNoticeContact .card {
     position: fixed;
     left: 10px;
     top: 40px;
     margin-left: 10px;
-    border-radius: 2px;
+    border-radius: 4px;
     padding: 10px 10px 0 10px;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    background-color: white;
+    border: 1px solid #42c338;
+    color: #38a331;
+    font-weight: 400;
+    font-size: 1.1em;
+    font-family: "Roboto", sans-serif; }
+  #flashNoticeContact i {
+    color: #42c338; }
 
 .presentation {
   padding: 30px 0; }
@@ -907,8 +954,8 @@ ul.followUs {
   margin-left: 25px;
   z-index: 2;
   cursor: pointer;
-  width: 150px;
-  height: 150px; }
+  max-width: 150px;
+  max-height: 150px; }
   .card-profile-image img {
     max-height: 150px;
     max-width: 130px;
@@ -948,13 +995,28 @@ ul.followUs {
   color: white; }
 
 .headerDetailsProject {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url("../images/happysens-salaries.jpg");
-  background-size: cover;
-  background-position: center;
   height: 30vh;
   max-height: 400px;
-  padding: 20px;
-  border-radius: 2px; }
+  border-radius: 2px;
+  padding: 1px;
+  overflow: hidden; }
+  .headerDetailsProject .background {
+    width: 100%;
+    display: block;
+    position: relative; }
+    .headerDetailsProject .background img {
+      width: 100%;
+      height: 400px;
+      margin-top: -50px; }
+    .headerDetailsProject .background .content {
+      position: absolute;
+      top: 10px;
+      margin-left: 10px; }
+    .headerDetailsProject .background p {
+      transform: translatex(26vw);
+      text-align: center;
+      justify-content: center;
+      display: flex; }
 
 .detailsProjectExplain, .dateProject {
   padding-left: 20px; }
@@ -975,5 +1037,183 @@ ul.followUs {
   background-color: #0288D1; }
   .personPlus:hover {
     background-color: rgba(2, 136, 209, 0.8); }
+
+#toast-container {
+  top: 90%; }
+
+.wrapper {
+  padding: 1.5em;
+  margin-bottom: 70px;
+  text-align: center; }
+  .wrapper ul {
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    margin: auto; }
+    .wrapper ul li {
+      float: left;
+      padding: 0;
+      text-align: center;
+      margin: auto;
+      width: 32%; }
+      .wrapper ul li a {
+        color: #ccc;
+        text-decoration: none;
+        padding: 10px 0 10px 55px;
+        background: #f1f1f1;
+        position: relative; }
+        .wrapper ul li a:after {
+          content: " ";
+          display: block;
+          height: 0;
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 30px solid #f1f1f1;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          left: 100%;
+          z-index: 2; }
+        .wrapper ul li a:before {
+          content: " ";
+          display: block;
+          height: 0;
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 30px solid white;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          margin-left: 6px;
+          left: 100%;
+          z-index: 1; }
+      .wrapper ul li:first-child a {
+        padding-left: 15px; }
+      .wrapper ul li.active a {
+        color: white;
+        background: #0288D1; }
+        .wrapper ul li.active a:after {
+          border-left-color: #0288D1; }
+    .wrapper ul li.userCompany {
+      float: left;
+      padding: 0;
+      text-align: center;
+      margin: auto;
+      width: 50%; }
+      .wrapper ul li.userCompany a {
+        color: #ccc;
+        text-decoration: none;
+        padding: 10px 0 10px 55px;
+        background: #f1f1f1;
+        position: relative; }
+        .wrapper ul li.userCompany a:after {
+          content: " ";
+          display: block;
+          height: 0;
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 30px solid #f1f1f1;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          left: 100%;
+          z-index: 2; }
+        .wrapper ul li.userCompany a:before {
+          content: " ";
+          display: block;
+          height: 0;
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 30px solid white;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          margin-left: 6px;
+          left: 100%;
+          z-index: 1; }
+      .wrapper ul li.userCompany:first-child a {
+        padding-left: 15px; }
+      .wrapper ul li.userCompany.active a {
+        color: white;
+        background: #0288D1; }
+        .wrapper ul li.userCompany.active a:after {
+          border-left-color: #0288D1; }
+
+.adminDashboard {
+  margin: 30px 0; }
+
+.containerDashboard {
+  height: 45vh;
+  padding: 50px 20px; }
+  .containerDashboard .contentDashboard {
+    background-color: #e2e2e2;
+    height: 100%;
+    padding: 20px;
+    text-align: center; }
+    .containerDashboard .contentDashboard h2 {
+      font-family: "Quicksand", sans-serif; }
+    .containerDashboard .contentDashboard .listAddUsers {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap; }
+      .containerDashboard .contentDashboard .listAddUsers div {
+        border-radius: 3px;
+        margin-top: 30px;
+        padding: 20px 40px;
+        height: 10em;
+        width: 10em; }
+        .containerDashboard .contentDashboard .listAddUsers div#createHappy {
+          background-color: white;
+          border: 2px solid #C2185B;
+          color: #C2185B; }
+        .containerDashboard .contentDashboard .listAddUsers div#createCompany {
+          background-color: #f9f9f9;
+          border: 2px solid #0288D1;
+          color: #0288D1; }
+        .containerDashboard .contentDashboard .listAddUsers div#createEmploye {
+          background-color: white;
+          border: 2px solid #FFA000;
+          color: #FFA000; }
+        .containerDashboard .contentDashboard .listAddUsers div#validProject {
+          background-color: white;
+          border: 2px solid #2b8b24;
+          color: #2b8b24; }
+        .containerDashboard .contentDashboard .listAddUsers div#waitProject {
+          background-color: white;
+          border: 2px solid #FFA000;
+          color: #FFA000; }
+        .containerDashboard .contentDashboard .listAddUsers div#finishProject {
+          background-color: white;
+          border: 2px solid red;
+          color: red; }
+      .containerDashboard .contentDashboard .listAddUsers a {
+        margin: auto;
+        font-size: 1.3em;
+        color: white; }
+    .containerDashboard .contentDashboard .listSimple {
+      padding-left: 60px;
+      padding-top: 30px; }
+      .containerDashboard .contentDashboard .listSimple p {
+        font-size: 1.3em;
+        justify-content: flex-start;
+        color: black;
+        transition: all 30ms; }
+        .containerDashboard .contentDashboard .listSimple p:hover {
+          color: #515151;
+          cursor: pointer;
+          transform: scale(0.98);
+          transition: 30ms ease 0s; }
+        .containerDashboard .contentDashboard .listSimple p#allCompany i {
+          color: #0288D1; }
+        .containerDashboard .contentDashboard .listSimple p#deleteCompany i {
+          color: red; }
+        .containerDashboard .contentDashboard .listSimple p#addProjectHappy i {
+          color: #C2185B; }
+        .containerDashboard .contentDashboard .listSimple p span {
+          margin-left: 15px; }
+
+.logoCompany {
+  margin-top: 30px; }
 
 /*# sourceMappingURL=style.css.map */

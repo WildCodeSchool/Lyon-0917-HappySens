@@ -1,0 +1,120 @@
+{% extends 'baseIn.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="center">Listing Projets</h1>
+        <ul class="row">
+            {% for project in projects %}
+                {% if project.author != null %}
+                <li class="card medium col s12 m6">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="{{ project.photo }}">
+                    </div>
+                    {% if project.status == 1 %}
+                        <div class="chip inProgress chipStatus">
+                            <span><i class="fa fa-clock-o"></i></span>
+                            <span>Attente</span>
+                        </div>
+                    {% elseif project.status == 2 %}
+                        <div class="chip validate chipStatus">
+                            <span><i class="fa fa-clock-o"></i></span>
+                            <span>En cours</span>
+                        </div>
+                    {% elseif project.status == 3 %}
+                        <div class="chip end chipStatus">
+                            <span><i class="fa fa-clock-o"></i></span>
+                            <span>Terminé</span>
+                        </div>
+                    {% endif %}
+                    <div class="card-content">
+                        <div class="card-title activator grey-text text-darken-4">
+                            <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
+                            <span class="truncate">{{ project.title }}</span>
+                        </div>
+                        <div>
+                            <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
+                                <div class="chip">
+                                    <img src="{{ project.author.photo }}" alt="Logo company"> <!-- notice the "circle" class -->
+                                    <span class="black-text">{{ project.author }}</span>
+                                </div>
+                            </a>
+                            {% if project.status == 1 %}
+                                <a href="{{ path('project_validate', {'slug' : project.slug}) }}">
+                                    <div class="chip inProgress green">
+                                        <span><i class="fa fa-check-square-o fa"></i></span>
+                                        <span>Valider le projet</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                            {% if project.status == 1 or project.status == 2 %}
+                                <a href="{{ path('project_finish', {'slug' : project.slug}) }}">
+                                    <div class="chip inProgress red">
+                                        <span><i class="fa fa-remove fa"></i></span>
+                                        <span>Terminer le projet</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                            {% if project.status == 3  %}
+                                <a href="{{ path('project_reopen', {'slug' : project.slug}) }}">
+                                    <div class="chip inProgress green">
+                                        <span><i class="fa fa-check-square-o fa"></i></span>
+                                        <span>Rouvrir le projet</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                            <div class="right">
+                                <a href="#!" onclick="like()">{{ project.likeProjects | length }} <i class="fa fa-heart red-text"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-reveal revealProject">
+                        <div class="card-title grey-text text-darken-4">
+                            {{ project.title }}
+                            <i class="material-icons right">close</i>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
+                                    <div class="chip left">
+                                        <img src="{{ project.author.photo }}" alt="Logo company"> <!-- notice the "circle" class -->
+                                        <span class="black-text">{{ project.author }}</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                {% if project.status == 1 %}
+                                    <div class="chip inProgress right">
+                                        <span><i class="fa fa-clock-o"></i></span>
+                                        <span>Attente</span>
+                                    </div>
+                                {% elseif project.status == 2 %}
+                                    <div class="chip validate right">
+                                        <span><i class="fa fa-clock-o"></i></span>
+                                        <span>En cours</span>
+                                    </div>
+                                {% elseif project.status == 3 %}
+                                    <div class="chip end right">
+                                        <span><i class="fa fa-clock-o"></i></span>
+                                        <span>Terminé</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <p>{{ project.presentation }}</p>
+                        <p>{{ project.beneficeCompany }}</p>
+                        <div class="footerReveal">
+                            <div class="left">
+                                <a href="{{ path('project_show', {'slug' : project.slug}) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
+                            </div>
+                            <div class="right">
+                                <a href="#!" onclick="like()">{{ project.likeProjects | length }} <i class="fa fa-heart red-text"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

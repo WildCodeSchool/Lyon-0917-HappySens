@@ -29,9 +29,9 @@ class EmailContactType extends AbstractType
             ->add('status', ChoiceType::class, [
                 'placeholder' => 'Votre choix',
                 'choices' => [
-                    'Salarié' => 'collaborators',
-                    'Entreprise' => 'company',
-                    'Happy Coach' => 'happyCoach',
+                    'Collaborateur' => 'Collaborateur',
+                    'Entreprise' => 'Entreprise',
+                    'Happy Coach' => 'Happy Coach',
                 ],
                 'required'   => false,
                 'empty_data' => null

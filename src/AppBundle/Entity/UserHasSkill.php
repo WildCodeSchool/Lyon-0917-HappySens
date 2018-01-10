@@ -15,7 +15,7 @@ class UserHasSkill
 
     /**
      * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="userskills")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="userskills", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, unique=false)
      */
     private $user;
@@ -43,7 +43,71 @@ class UserHasSkill
 
 
     /**
-     * @return mixed
+     * Set level
+     *
+     * @param integer $level
+     *
+     * @return UserHasSkill
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return integer
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return UserHasSkill
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return UserHasSkill
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {
@@ -51,68 +115,26 @@ class UserHasSkill
     }
 
     /**
-     * @param mixed $user
+     * Set skill
+     *
+     * @param \AppBundle\Entity\Skill $skill
+     *
      * @return UserHasSkill
      */
-    public function setUser($user)
+    public function setSkill(\AppBundle\Entity\Skill $skill)
     {
-        $this->user = $user;
+        $this->skill = $skill;
+
         return $this;
     }
 
     /**
-     * @return mixed
+     * Get skill
+     *
+     * @return \AppBundle\Entity\Skill
      */
     public function getSkill()
     {
         return $this->skill;
     }
-
-    /**
-     * @param mixed $skill
-     * @return UserHasSkill
-     */
-    public function setSkill($skill)
-    {
-        $this->skill = $skill;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLevel(): int
-    {
-        return $this->level;
-    }
-
-    /**
-     * @param int $level
-     * @return UserHasSkill
-     */
-    public function setLevel(int $level): UserHasSkill
-    {
-        $this->level = $level;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getType(): int
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param int $type
-     * @return UserHasSkill
-     */
-    public function setType(int $type): UserHasSkill
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-
 }

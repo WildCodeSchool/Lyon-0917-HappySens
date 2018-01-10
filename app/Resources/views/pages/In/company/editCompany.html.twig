@@ -1,21 +1,176 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
-{% block body %}
-    <h1>Company edit</h1>
+{% block content %}
+    <div class="container">
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+       <div class="row">
+            <img src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="">
+            <h1>Company edit</h1>
+        </div>
+        <nav class="wrapper row">
+            <ul class="center bread">
+                <li class="active userCompany" id="breadOne" onclick="goStep1()"><a href="#">Informations Entreprise</a></li>
+                <li class="userCompany" id="breadTwo" onclick="goStep2()"><a href="#">Informations HappySens</a></li>
+            </ul>
+        </nav>
+        {{ form_start(edit_form) }}
+        {#step#}
+        <div id="step1">
 
-    <ul>
-        <li>
-            <a href="{{ path('listingCompany') }}">Back to the list</a>
-        </li>
-        <li>
-            {#{{ form_start(delete_form_company) }}#}
-                {#<input type="submit" value="Delete">#}
-            {#{{ form_end(delete_form_company) }}#}
-        </li>
-    </ul>
+            <div class="row">
+                <div class="col s6">
+                    <h5 class="titleInscription blue-text text-darken-3">Nom :</h5>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
+                        {% if (form_errors(edit_form.name)) %}
+                            {{ form_widget(edit_form.name, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_widget(edit_form.name) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.name) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col s6">
+                    <h5 class="titleInscription blue-text text-darken-3">Logo :</h5>
+                    <div class="input-field col s12">
+                        {% if (form_errors(edit_form.logo)) %}
+                            {{ form_widget(edit_form.logo, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_widget(edit_form.logo) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.logo) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <h5 class="titleInscription blue-text text-darken-3">Activité :</h5>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text text-darken-3">work</i>
+                        {% if (form_errors(edit_form.activity)) %}
+                            {{ form_widget(edit_form.activity, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_widget(edit_form.activity) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.activity) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col s6">
+                    <h5 class="titleInscription blue-text text-darken-3">lieu :</h5>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text text-darken-3">location_on</i>
+                        {% if (form_errors(edit_form.location)) %}
+                            {{ form_widget(edit_form.location, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_widget(edit_form.location) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.location) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <h5 class="titleInscription blue-text text-darken-3">Effectifs :</h5>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix blue-text text-darken-3">group</i>
+                        {% if (form_errors(edit_form.nbSalary)) %}
+                            {{ form_widget(edit_form.nbSalary, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_widget(edit_form.nbSalary) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.nbSalary) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col s6">
+                    <h5 class="titleInscription blue-text text-darken-3">Date de Création :</h5>
+                    <div class="input-field col s12">
+                        {% if (form_errors(edit_form.birthdate)) %}
+                            {{ form_widget(edit_form.birthdate, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            <div class="col s3">
+                                {{ form_widget(edit_form.birthdate.year) }}
+                            </div>
+                            <div class="col s3">
+                                {{ form_widget(edit_form.birthdate.month) }}
+                            </div>
+                            <div class="col s3">
+                                {{ form_widget(edit_form.birthdate.day) }}
+                            </div>
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.birthdate) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <a class="waves-effect waves-light btn amber darken-3" onclick="goStep2()">suivant</a>
+            </div>
+        </div>
+        {#step#}
+        <div id="step2" class="hide">
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="titleInscription blue-text text-darken-3">Slogan :</h5>
+                    <div class="input-fiel col s12">
+                        {% if (form_errors(edit_form.slogan)) %}
+                            {{ form_widget(edit_form.slogan, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_widget(edit_form.slogan, {'attr' : {'class': 'materialize-textarea'}}) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.slogan) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <h5 class="titleInscription blue-text text-darken-3">Qualités :</h5>
+                    <div class="input-field col s12">
+                        {% if (form_errors(edit_form.quality)) %}
+                            {{ form_widget(edit_form.quality, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_widget(edit_form.quality, {'attr' : {'class': 'materialize-textarea'}}) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.quality) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <h5 class="titleInscription blue-text text-darken-3">Les 3 critères pour valider un projet :</h5>
+                    <div class="input-field col s12">
+                        {% if (form_errors(edit_form.threeCriteria)) %}
+                            {{ form_widget(edit_form.threeCriteria, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_widget(edit_form.threeCriteria, {'attr' : {'class': 'materialize-textarea'}}) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.threeCriteria) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="center">
+                    <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
+
+                    <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Edit"/>
+                </div>
+            </div>
+            {{ form_end(edit_form) }}
+        </div>
+
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/script/stepForm.js') }}"></script>
 {% endblock %}

@@ -1,10 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
 {% block title %}Vos notifications{% endblock %}
-
-{% block navbar %}
-    {{ include('partials/components/navbarIn.html.twig') }}
-{% endblock %}
 
 {% block content %}
     <div class="container generalContainer">
@@ -36,7 +32,7 @@
                                 <li class="black-text">
                                     Mettez les informations de votre profil à jour :
                                 </li>
-                                <li><a href="{{ path('profilEmploye') }}">@name.employe</a></li>
+                                <li><a href="{{ path('UserProfil', {'slug' : app.user.slug}) }}">@name.employe</a></li>
                             </ul>
                         </div>
                     </div>
@@ -51,7 +47,7 @@
                                 <li class="black-text">
                                     Bienvenue sur HappySens, allez donc visitez la page de votre entreprise :
                                 </li>
-                                <li><a href="{{ path('profilCompany') }}">@name.company</a></li>
+                                <li><a href="{{ path('CompanyProfil', {'slug' : app.user.company.slug}) }}">@name.company</a></li>
                             </ul>
                         </div>
                     </div>

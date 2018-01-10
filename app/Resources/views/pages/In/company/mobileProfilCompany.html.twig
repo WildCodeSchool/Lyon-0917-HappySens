@@ -1,0 +1,140 @@
+<div class="row hide-on-med-and-up show-on-small show-on-medium">
+    {# mobile #}
+    <ul class="switch">
+        <li class="active"><a href="#tabInfo">Informations</a></li>
+        <li><a href="#tabProjects">Projets</a></li>
+    </ul>
+    <div class="switch_container">
+        <div id="tabInfo" class="col s12 white switch_content">
+            <div class="row">
+                <div class="col s12">
+                    <div class="row">
+                        <div class="card-panel blue darken-2 titleSecond center">
+                            <div class="white-text"> Les enjeux collectifs de la qualité de Vie au Travail :
+                                <p>{{ company.quality }}.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <div class="row">
+                        <div class="card-panel blue darken-2 titleSecond center">
+                            <div class="white-text"> Les 3 critéres à remplir pour un Happy projet validé :
+                                <ul>
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cum dolore dolores.</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cum dolore dolores.</li>
+                                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur cum dolore dolores.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="collection">
+                    <li class="collection-item">
+                        <div class="row valign-wrapper">
+                        <span class="center titleSecond">
+                            <b>Le bonheur au travail c'est ...</b>
+                            {{ company.slogan }}.
+                        </span>
+                        </div>
+                    </li>
+                    <li class="collection-item">
+                        <div class="row">
+                            <p class="col s12 titleSecond">Langues</p>
+                            <div class="col s12">
+                                <i class="fa fa-language fa-2x"></i>
+                                <i class="fa fa-language fa-2x"></i>
+                                <i class="fa fa-language fa-2x"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="collection-item">
+                        <div class="row">
+                            <p class="col s12 titleSecond">Suivez-nous </p>
+                            <div class="col s12">
+                                    <a href="{{ company.facebook }}"><i class="fa fa-facebook-square fa-2x blue-text text-darken-4"></i></a>
+                                    <a href="{{ company.twitter }}"><i class="fa fa-twitter-square fa-2x blue-text text-darken-1"></i></a>
+                                    <a href="{{ company.linkedin }}"><i class="fa fa-linkedin fa-2x blue-text"></i></a>
+                             </div>
+                        </div>
+                    </li>
+                </ul>
+                <div>
+                    <h5 class="titleSecond">Nos passions et talents cachés :</h5>
+                </div>
+                <ul class="collection">
+                    <li class="collection-item">
+                        <div class="row">
+                            {% for skill in skillInCompany %}
+                            <p class="col s12 titleSecond"> {{ skill.nameSkill }} <br>({{ skill.nbSalary }} Happy Salariés)</p>
+                                <div class="col s12">
+                                    {% set level = skill.level %}
+                                    {{ include('skill/skillLevel.html.twig') }}
+                        </div>
+                        {% endfor %}
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div>
+                <h5 class="titleSecond">Mes Happy Salarié : </h5>
+            </div>
+            <div class="collection">
+                {% for user in collaborators %}
+                <div class="col s12 center-align">
+                    <ul class="">
+                        <li><img class="circle responsive-img" src="{{ user.photo }}" alt="Vignette photo" height="70px"></li>
+                        <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a></li>
+                        <li>{{ include('user/userMood.html.twig') }} </li>
+                    </ul>
+                </div>
+                {% endfor %}
+                <div class="row">
+                    <a class="waves-effect waves-light modal-trigger" href="#modal2">Voir tous les happySalariés</a>
+                </div>
+            </div>
+        </div>
+        <div id="tabProjects" class="col s12 white switch_content">
+            <div class="row">
+                <section class="PC_blockProject">
+                    {{ include('project/blockProjectCompany.html.twig') }}
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="" id="">
+        <div class="row">
+            <!-- Modal Structure -->
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                    <div class="row">
+                        <h4 class="left">Tous les salariés</h4>
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right"><i class="material-icons">close</i></a>
+                    </div>
+                    <div class="row">
+                        {% for user in collaborators %}
+                            <div class="col l4 card  center-align">
+                                <ul class="">
+                                    <li>
+                                        {% if user.photo %}
+                                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                        {% else %}
+                                            <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                                        {% endif %}
+                                    </li>
+                                    <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a></li>
+                                    <li> {{ include('user/userMood.html.twig') }}</li>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

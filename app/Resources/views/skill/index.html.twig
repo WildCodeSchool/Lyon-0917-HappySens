@@ -1,39 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
-{% block body %}
-    <h1>Skills list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nameskill</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+{% block content %}
+    <h1 class="center">Listes des Talents</h1>
+    <div class="row">
         {% for skill in skills %}
-            <tr>
-                <td><a href="{{ path('skills_show', { 'id': skill.id }) }}">{{ skill.id }}</a></td>
-                <td>{{ skill.nameSkill }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('skills_show', { 'id': skill.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('skills_edit', { 'id': skill.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+            <div class="col s12 m6 l3">
+                <div class="card  grey lighten-2">
+                    <div class="card-content blue-text text-darken-3">
+                        <span class="card-title black-text">{{ skill.nameSkill | upper }}</span>
+                        <p>Nombre de salarié :
+                            {% if skill.collaborator is empty %}
+                                0
+                            {% else %}
+                                {{ skill.collaborator.0.nbUser }}
+                                <span class="right">niveau : {{ skill.collaborator.0.level | round(1) }}</span>
+                            {% endif %}
+                        <p>Nombre d'HappyCoach :
+                            {% if skill.happyCoach is null %}
+                            0
+                            {% else%}
+                             {{ skill.happyCoach.0.nbUser  }}
+                                <span class="right">niveau : {{  skill.happyCoach.0.level | round(1)}}</span>
+                        {% endif %}
+                        </p>
+                        <p>Nombre de projet :
+                                {{ skill.nbproject }}
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a class="pink-text text-darken-2" href="{{ path('skills_show', { 'id': skill.id }) }}">voir le talent</a>
+                        <a class="pink-text text-darken-2 right" href="{{ path('skills_edit', { 'id': skill.id }) }}">modifier le talent</a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
+    </div>
+    <ul class="center">
         <li>
-            <a href="{{ path('skills_new') }}">Create a new skill</a>
+            <a href="{{ path('skills_new') }}">Ajouter un Talent</a>
         </li>
     </ul>
 {% endblock %}

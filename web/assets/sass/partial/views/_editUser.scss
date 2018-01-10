@@ -1,0 +1,123 @@
+.wrapper {
+  padding: 1.5em;
+  margin-bottom: 70px;
+  text-align: center;
+  ul {
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    margin: auto;
+    li {
+      float: left;
+      padding: 0;
+      text-align: center;
+      margin: auto;
+      width: 32%;
+      a {
+        color: #ccc;
+        text-decoration: none;
+        padding: 10px 0 10px 55px;
+        background: #f1f1f1;
+        position: relative;
+
+        &:after {
+          content: " ";
+          display: block;
+          height: 0;
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 30px solid #f1f1f1;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          left: 100%;
+          z-index: 2; }
+
+        &:before {
+          content: " ";
+          display: block;
+          height: 0;
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 30px solid white;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          margin-left: 6px;
+          left: 100%;
+          z-index: 1;
+        }
+      }
+
+      &:first-child a {
+        padding-left: 15px;
+      }
+
+      &.active a {
+        color: white;
+        background: $blueColor;
+
+        &:after {
+          border-left-color: $blueColor;
+        }
+      }
+    }
+    li.userCompany {
+      float: left;
+      padding: 0;
+      text-align: center;
+      margin: auto;
+      width: 50%;
+      a {
+        color: #ccc;
+        text-decoration: none;
+        padding: 10px 0 10px 55px;
+        background: #f1f1f1;
+        position: relative;
+
+        &:after {
+          content: " ";
+          display: block;
+          height: 0;
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 30px solid #f1f1f1;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          left: 100%;
+          z-index: 2; }
+
+        &:before {
+          content: " ";
+          display: block;
+          height: 0;
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 30px solid white;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          margin-left: 6px;
+          left: 100%;
+          z-index: 1;
+        }
+      }
+
+      &:first-child a {
+        padding-left: 15px;
+      }
+
+      &.active a {
+        color: white;
+        background: $blueColor;
+
+        &:after {
+          border-left-color: $blueColor;
+        }
+      }
+    }
+  }
+}
+

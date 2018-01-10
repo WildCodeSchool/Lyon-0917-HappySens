@@ -42,8 +42,8 @@
   margin-left: 25px;
   z-index: 2;
   cursor: pointer;
-  width: 150px;
-  height: 150px;
+  max-width: 150px;
+  max-height: 150px;
   img {
     max-height: 150px;
     max-width: 130px;
@@ -81,3 +81,9 @@
   background-color: $blueColor !important;
   font-size: large !important;
 }
+
+//.userskills {
+//  select {
+//    display: block !important;
+//  }
+//}

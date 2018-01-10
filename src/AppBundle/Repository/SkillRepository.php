@@ -10,4 +10,34 @@ namespace AppBundle\Repository;
  */
 class SkillRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * Count the number of skill
+     * @return mixed
+     */
+    public function getNumberSkill() {
+        $qb = $this
+            ->createQueryBuilder('s')
+            ->select('COUNT(s)')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    /**
+     * For each Skill return id, name of Skill and number of project with this skill
+     * @return mixed
+     */
+    public function getNumberProjectForSkill()
+    {
+        $qb = $this
+            ->createQueryBuilder('s')
+            ->leftjoin('s.projects', 'p')
+            ->groupBy('s.id')
+            ->select('count(p.theme) as nbproject','s.nameSkill', 's.id')
+            ->orderBy('s.id')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+
 }

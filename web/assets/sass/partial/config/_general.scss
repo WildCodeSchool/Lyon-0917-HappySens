@@ -11,6 +11,10 @@ main {
   flex: 1 0 auto;
 }
 
+.panel-error {
+  padding: 10px;
+}
+
 // Container general
 .generalContainer {
   min-height: 40vh;
@@ -38,4 +42,59 @@ main {
 }
 .changeBg2 {
   background-color: #F7F2DF;
+}
+
+.notif {
+  z-index: 10000000;
+  position: fixed;
+}
+
+#waitingDiv {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10000;
+  background-color: rgba($darkColor, 0.95);
+  padding: 20px;
+}
+
+.positionLoad {
+  top: 45vh;
+  position: relative;
+  transform: translatey(-50%);
+  margin-left: -20px;
+  text-align: center;
+  width: 100vw;
+  p {
+    margin-top: 25px;
+    font-size: 1.3em;
+  }
+}
+
+.widthMax {
+  max-width: 600px;
+}
+
+.withoutProject {
+  margin: 40px auto;
+  text-align: center;
+  color: grey;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3em;
+  a {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+  button.btn {
+    background-color: $pinkColor;
+    color: white;
+    font-size: 0.7em;
+  }
+}
+.containerListingProject {
+  padding: 20px 0;
+}
+
+.paddingCollection {
+  padding: 15px 10px;
 }

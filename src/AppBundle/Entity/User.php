@@ -13,11 +13,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface, \Serializable
 {
-    CONST ROLE_ADMIN = 1;
-    CONST ROLE_COMPANY = 2;
-    CONST ROLE_EMPLOYE = 3;
-    CONST ROLE_HAPPYCOACH = 4;
-    CONST ROLE_HAPPYCOACH_PROJECT = 5;
+    const ROLE_ADMIN = 1;
+    const ROLE_COMPANY = 2;
+    const ROLE_EMPLOYE = 3;
+    const ROLE_HAPPYCOACH = 4;
+    const ROLE_HAPPYCOACH_PROJECT = 5;
 
     /**
      * @var int
@@ -105,6 +105,12 @@ class User implements UserInterface, \Serializable
     private $mood;
 
     /**
+     *
+     * @ORM\Column(name="date_update_mood", type="date", nullable=true)
+     */
+    private $dateUpdateMood;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="job", type="string", length=255, nullable=true)
@@ -121,7 +127,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="nativeLanguage", type="string", length=50, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Language", inversedBy="nativeUser")
      */
     private $nativeLanguage;
 
@@ -143,13 +149,13 @@ class User implements UserInterface, \Serializable
     private $teams;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Language", inversedBy="users")
      *
-     * @ORM\Column(name="language", type="string", length=255, nullable=true)
      */
-    private $language;
+    private $languagesUser;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="user", cascade={"persist"})
      */
     private $userskills;
 
@@ -182,6 +188,79 @@ class User implements UserInterface, \Serializable
      */
     private $authorProject;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="happyCoach")
+     */
+    private $happyCoachRef;
+
+    /**
+     * @var string
+     * @ORM\Column(name="slug", type="string",  length=255)
+     */
+    private $slug;
+
+    /**
+     * @var int
+     */
+    private $statusMail;
+
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function getRoles()
+    {
+        switch($this->getStatus()) {
+            case self::ROLE_ADMIN:
+                return array('ROLE_ADMIN');
+                break;
+            case self::ROLE_COMPANY:
+                return array('ROLE_COMPANY');
+                break;
+            case self::ROLE_EMPLOYE:
+                return array('ROLE_EMPLOYE');
+                break;
+            case self::ROLE_HAPPYCOACH:
+                return array('ROLE_HAPPYCOACH');
+                break;
+            case self::ROLE_HAPPYCOACH_PROJECT:
+                return array('ROLE_HAPPYCOACH_PROJECT');
+                break;
+        }
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->isActive,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            $this->isActive,
+            ) = unserialize($serialized);
+    }
 
     /**
      * @return int
@@ -198,6 +277,24 @@ class User implements UserInterface, \Serializable
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatusMail()
+    {
+        return $this->statusMail;
+    }
+
+    /**
+     * @param int $statusMail
+     * @return User
+     */
+    public function setStatusMail($statusMail)
+    {
+        $this->statusMail = $statusMail;
         return $this;
     }
 
@@ -400,6 +497,24 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * @return mixed
+     */
+    public function getDateUpdateMood()
+    {
+        return $this->dateUpdateMood;
+    }
+
+    /**
+     * @param mixed $dateUpdateMood
+     * @return User
+     */
+    public function setDateUpdateMood($dateUpdateMood)
+    {
+        $this->dateUpdateMood = $dateUpdateMood;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getJob()
@@ -510,24 +625,6 @@ class User implements UserInterface, \Serializable
     /**
      * @return mixed
      */
-    public function getLanguage()
-    {
-        return $this->language;
-    }
-
-    /**
-     * @param mixed $language
-     * @return User
-     */
-    public function setLanguage($language)
-    {
-        $this->language = $language;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getSkills()
     {
         return $this->skills;
@@ -542,8 +639,6 @@ class User implements UserInterface, \Serializable
         $this->skills = $skills;
         return $this;
     }
-
-
 
     /**
      * Constructor
@@ -603,29 +698,6 @@ class User implements UserInterface, \Serializable
         $this->teams->removeElement($team);
     }
 
-    /**
-     * Add skill
-     *
-     * @param \AppBundle\Entity\UserHasSkill $skill
-     *
-     * @return User
-     */
-    public function addSkill(\AppBundle\Entity\UserHasSkill $skill)
-    {
-        $this->skills[] = $skill;
-
-        return $this;
-    }
-
-    /**
-     * Remove skill
-     *
-     * @param \AppBundle\Entity\UserHasSkill $skill
-     */
-    public function removeSkill(\AppBundle\Entity\UserHasSkill $skill)
-    {
-        $this->skills->removeElement($skill);
-    }
 
     /**
      * Add userskill
@@ -636,6 +708,7 @@ class User implements UserInterface, \Serializable
      */
     public function addUserskill(\AppBundle\Entity\UserHasSkill $userskill)
     {
+        $userskill->setUser($this);
         $this->userskills[] = $userskill;
 
         return $this;
@@ -731,67 +804,14 @@ class User implements UserInterface, \Serializable
         $this->isActive = $isActive;
     }
 
+    /**
+     * @return string
+     */
     public function getUsername()
     {
         return $this->email;
     }
 
-    public function getSalt()
-    {
-        return null;
-    }
-
-    public function getRoles()
-    {
-        switch($this->getStatus()) {
-            case self::ROLE_ADMIN:
-                return array('ROLE_ADMIN');
-                break;
-            case self::ROLE_COMPANY:
-                return array('ROLE_COMPANY');
-                break;
-            case self::ROLE_EMPLOYE:
-                return array('ROLE_EMPLOYE');
-                break;
-            case self::ROLE_HAPPYCOACH:
-                return array('ROLE_HAPPYCOACH');
-                break;
-            case self::ROLE_HAPPYCOACH_PROJECT:
-                return array('ROLE_HAPPYCOACH_PROJECT');
-                break;
-        }
-    }
-
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
-
-    /**
-     * @see \Serializable::serialize()
-     */
-    public function serialize()
-    {
-        return serialize(array(
-            $this->id,
-            $this->email,
-            $this->password,
-            $this->isActive,
-        ));
-    }
-
-    /**
-     * @see \Serializable::unserialize()
-     */
-    public function unserialize($serialized)
-    {
-        list (
-            $this->id,
-            $this->email,
-            $this->password,
-            $this->isActive,
-            ) = unserialize($serialized);
-    }
 
     public function __toString()
     {
@@ -820,5 +840,105 @@ class User implements UserInterface, \Serializable
     public function getAuthorProject()
     {
         return $this->authorProject;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return User
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add languagesUser
+     *
+     * @param \AppBundle\Entity\Language $languagesUser
+     *
+     * @return User
+     */
+    public function addLanguagesUser(\AppBundle\Entity\Language $languagesUser)
+    {
+        $this->languagesUser[] = $languagesUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove languagesUser
+     *
+     * @param \AppBundle\Entity\Language $languagesUser
+     */
+    public function removeLanguagesUser(\AppBundle\Entity\Language $languagesUser)
+    {
+        $this->languagesUser->removeElement($languagesUser);
+    }
+
+    /**
+     * Get languagesUser
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLanguagesUser()
+    {
+        return $this->languagesUser;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHappyCoachRef()
+    {
+        return $this->happyCoachRef;
+    }
+
+    /**
+     * @param mixed $happyCoachRef
+     * @return User
+     */
+    public function setHappyCoachRef($happyCoachRef)
+    {
+        $this->happyCoachRef = $happyCoachRef;
+        return $this;
+    }
+
+    /**
+     * Add happyCoachRef
+     *
+     * @param \AppBundle\Entity\Project $happyCoachRef
+     *
+     * @return User
+     */
+    public function addHappyCoachRef(\AppBundle\Entity\Project $happyCoachRef)
+    {
+        $this->happyCoachRef[] = $happyCoachRef;
+
+        return $this;
+    }
+
+    /**
+     * Remove happyCoachRef
+     *
+     * @param \AppBundle\Entity\Project $happyCoachRef
+     */
+    public function removeHappyCoachRef(\AppBundle\Entity\Project $happyCoachRef)
+    {
+        $this->happyCoachRef->removeElement($happyCoachRef);
     }
 }
