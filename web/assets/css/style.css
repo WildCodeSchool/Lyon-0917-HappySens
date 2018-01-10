@@ -392,15 +392,6 @@ nav {
   background-position: center -370px;
   margin-top: -90px; }
 
-#contentAddProject {
-  min-height: 50vh;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("../images/happysens-sport.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: bottom;
-  margin-top: -90px; }
-
 .headerTitleOthers {
   border-radius: 5px;
   top: 32vh;
@@ -1103,6 +1094,50 @@ ul.switch li.active, ul.switch li.active {
         color: white;
         background: #0288D1; }
         .wrapper ul li.active a:after {
+          border-left-color: #0288D1; }
+    .wrapper ul li.userCompany {
+      float: left;
+      padding: 0;
+      text-align: center;
+      margin: auto;
+      width: 50%; }
+      .wrapper ul li.userCompany a {
+        color: #ccc;
+        text-decoration: none;
+        padding: 10px 0 10px 55px;
+        background: #f1f1f1;
+        position: relative; }
+        .wrapper ul li.userCompany a:after {
+          content: " ";
+          display: block;
+          height: 0;
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 30px solid #f1f1f1;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          left: 100%;
+          z-index: 2; }
+        .wrapper ul li.userCompany a:before {
+          content: " ";
+          display: block;
+          height: 0;
+          border-top: 50px solid transparent;
+          border-bottom: 50px solid transparent;
+          border-left: 30px solid white;
+          position: absolute;
+          top: 50%;
+          margin-top: -50px;
+          margin-left: 6px;
+          left: 100%;
+          z-index: 1; }
+      .wrapper ul li.userCompany:first-child a {
+        padding-left: 15px; }
+      .wrapper ul li.userCompany.active a {
+        color: white;
+        background: #0288D1; }
+        .wrapper ul li.userCompany.active a:after {
           border-left-color: #0288D1; }
 
 .adminDashboard {

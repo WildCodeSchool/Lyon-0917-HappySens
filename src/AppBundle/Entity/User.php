@@ -105,6 +105,12 @@ class User implements UserInterface, \Serializable
     private $mood;
 
     /**
+     *
+     * @ORM\Column(name="date_update_mood", type="date", nullable=true)
+     */
+    private $dateUpdateMood;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="job", type="string", length=255, nullable=true)
@@ -149,7 +155,7 @@ class User implements UserInterface, \Serializable
     private $languagesUser;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="UserHasSkill", mappedBy="user", cascade={"persist"})
      */
     private $userskills;
 
@@ -496,6 +502,24 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * @return mixed
+     */
+    public function getDateUpdateMood()
+    {
+        return $this->dateUpdateMood;
+    }
+
+    /**
+     * @param mixed $dateUpdateMood
+     * @return User
+     */
+    public function setDateUpdateMood($dateUpdateMood)
+    {
+        $this->dateUpdateMood = $dateUpdateMood;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getJob()
@@ -679,29 +703,6 @@ class User implements UserInterface, \Serializable
         $this->teams->removeElement($team);
     }
 
-    /**
-     * Add skill
-     *
-     * @param \AppBundle\Entity\UserHasSkill $skill
-     *
-     * @return User
-     */
-    public function addSkill(\AppBundle\Entity\UserHasSkill $skill)
-    {
-        $this->skills[] = $skill;
-
-        return $this;
-    }
-
-    /**
-     * Remove skill
-     *
-     * @param \AppBundle\Entity\UserHasSkill $skill
-     */
-    public function removeSkill(\AppBundle\Entity\UserHasSkill $skill)
-    {
-        $this->skills->removeElement($skill);
-    }
 
     /**
      * Add userskill
@@ -712,6 +713,7 @@ class User implements UserInterface, \Serializable
      */
     public function addUserskill(\AppBundle\Entity\UserHasSkill $userskill)
     {
+        $userskill->setUser($this);
         $this->userskills[] = $userskill;
 
         return $this;

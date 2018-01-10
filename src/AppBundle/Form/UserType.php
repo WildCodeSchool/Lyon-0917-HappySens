@@ -3,8 +3,12 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Language;
+use AppBundle\Entity\Skill;
+use AppBundle\Entity\UserHasSkill;
+use function Sodium\add;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -39,8 +43,7 @@ class UserType extends AbstractType
                 'attr' => array(
                     'min' => 0,
                     'max' => 5
-                )
-                ))
+                )))
             ->add('job')
             ->add('workplace')
             ->add('nativeLanguage')
@@ -51,9 +54,16 @@ class UserType extends AbstractType
             'multiple' => true,
         ])
             ->add('company')
-            ->add('isActive', HiddenType::class);
+            ->add('isActive', HiddenType::class)
+        ->add('userskills', CollectionType::class, [
+            'entry_type' => UserHasSkillType::class,
+            'allow_add'    => true,
+            'allow_delete' => true,
+            'by_reference' => false,
+        ]);
+
     }
-    
+
     /**
      * {@inheritdoc}
      */

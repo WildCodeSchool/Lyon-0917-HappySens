@@ -3,22 +3,12 @@
 {% block title %}Créer un projet{% endblock %}
 
 {% block content %}
-    <div id="contentAddProject" class="parallax-container-others">
-        <div class="section no-pad-bot">
-            <div class="col s12">
-                <div class="headerTitleOthers container" id="headerTitle">
-                    <h1 class="header center amber-text text-darken-2">Proposez votre happy projet</h1>
-                </div>
-            </div>
-        </div>
-    </div>
     <section class="createProjet generalContainer">
         <div class="container">
             {{ form_start(form) }}
             <div class="row">
                 <div class="col s12 m6">
                     <h5 class="titleInscription pink-text text-darken-2">Nom :</h5>
-
                     <div class="input-field col s12">
                         {{ form_widget(form.nameProject) }}
                         <label for="project_name"><span class="requireInput">* </span>Nom de votre projet</label>

@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
+use AppBundle\Entity\UserHasSkill;
 use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
@@ -201,6 +202,8 @@ dump($users);
     public function newActionUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService)
     {
         $user = new User();
+
+
         $form = $this->createForm('AppBundle\Form\UserType', $user);
         $form->remove('slug');
         $form->handleRequest($request);
@@ -215,6 +218,7 @@ dump($users);
 
             return $this->redirectToRoute('newUser_show', array('slug' => $user->getSlug()));
         }
+
 
         return $this->render('pages/In/Admin/collaborators/new.html.twig', array(
             'user' => $user,

@@ -82,10 +82,10 @@ class FileUploader
         return $this;
     }
 
-    // TODO : WIP errors for size and types of files
+    // TODO : Create const for underDir and switch with all types of uploads with verif
     public function upload(UploadedFile $file, $underDir)
     {
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+        $fileName = md5(uniqid()).'.'. $file->guessExtension();
 
         $file->move($this->getDirectory($underDir), $fileName);
 
@@ -96,9 +96,9 @@ class FileUploader
     {
         $csv = array_map('str_getcsv', file($file));
 // This is for have value for key like [name] => dupond
-//    array_walk($csv, function(&$a) use ($csv) {
-//        $a = array_combine($csv[0], $a);
-//    });
+        array_walk($csv, function(&$a) use ($csv) {
+            $a = array_combine($csv[0], $a);
+        });
         return $csv;
     }
 
@@ -109,37 +109,34 @@ class FileUploader
         $arrayUsers = [];
         $slugService = new SlugService();
 
-        for($i = 0; $i < count($fileUsers); $i++) {
-            if (!in_array($fileUsers[$i][2], $listEmails)) {
-                $newUser = new User();
-
-                $newUser->setFirstName($fileUsers[$i][0])
-                        ->setLastName($fileUsers[$i][1])
-                        ->setEmail($fileUsers[$i][2])
+            for($i = 1; $i < count($fileUsers); $i++) {
+                if (!in_array($fileUsers[$i]['email'], $listEmails)) {
+                    $newUser = new User();
+                    $newUser->setFirstName($fileUsers[$i]['prenom'])
+                        ->setLastName($fileUsers[$i]['nom'])
+                        ->setEmail($fileUsers[$i]['email'])
                         ->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT))
                         ->setMood(0)
                         ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
                         ->setCompany($idCompany)
                         ->setIsActive(0);
-                if ($i === 0) {
-                    $newUser->setStatus(2);
-                } else {
-                    $newUser->setStatus(3);
+                    if ($i === 1) {
+                        $newUser->setStatus(2);
+                    } else {
+                        $newUser->setStatus(3);
+                    }
+                    $listEmails[$i] = $fileUsers[$i]['email'];
+                    $this->setCounter(($this->getCounter() + 1));
+
+                    $emailService->sendMailNewUser($newUser, $email_contact, $valueMdp);
+                    $newUser->setStatusMail(self::MAIL_OK);
+                    $arrayUsers[$i] = $newUser;
+                    $this->getDb()->getManager()->persist($newUser);
                 }
-                $listEmails[$i] = $fileUsers[$i][2];
-                $this->setCounter(($this->getCounter() + 1));
-
-                $emailService->sendMailNewUser($newUser, $email_contact, $valueMdp);
-                $newUser->setStatusMail(self::MAIL_OK);
-                $arrayUsers[$i] = $newUser;
-                $this->getDb()->getManager()->persist($newUser);
             }
-        }
-        $this->getDb()->getManager()->flush();
-
-        return $arrayUsers;
+            $this->getDb()->getManager()->flush();
+            return $arrayUsers;
     }
-
     public function getDirectory($underDir)
     {
         return $this->directory . '/' . $underDir;

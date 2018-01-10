@@ -24,6 +24,21 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
+     * return all project with status 2 and endDate passed
+     * @return mixed
+     */
+    public function getEndDateProjectStatusTwo($today) {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->setParameter('today', $today)
+            ->where('p.status = 2')
+            ->andWhere('p.endDate < :today')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+
+    /**
      * return number of project by status $status
      * @return mixed
      */
@@ -35,21 +50,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getResult();
     }
-
-    /**
-     * return number of project by skill
-     * @return mixed
-     */
-    public function getNumberProjectsBySkill($idSkill) {
-        $qb = $this
-            ->createQueryBuilder('p')
-            ->select('COUNT(p) as nbProject')
-            ->setParameter('idSkill', $idSkill)
-            ->where('p.theme =:idSkill')
-            ->getQuery();
-        return $qb->getResult();
-    }
-
 
     /**
      * return number of project by skill

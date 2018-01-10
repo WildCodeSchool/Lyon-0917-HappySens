@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,11 @@ class CompanyType extends AbstractType
         $builder->add('activity')
             ->add('name')
             ->add('nbSalary')
-            ->add('birthdate')
+            ->add('birthdate', BirthdayType::class, [
+        'placeholder' => array(
+            'year' => 'Year', 'month' => 'Month', 'day' => 'Day'
+        )
+    ])
             ->add('slogan')
             ->add('quality')
             ->add('threeCriteria')
