@@ -25,8 +25,6 @@
                     {{ include('partials/components/In/navbarIn/navUser.html.twig') }}
                 {% elseif app.user.status == 4 %}
                     {{ include('partials/components/In/navbarIn/navHappyCoach.html.twig') }}
-                {% elseif app.user.status == 5 %}
-                    {{ include('partials/components/In/navbarIn/navHappyCoach.html.twig') }}
                 {% endif %}
         {% block header %}{% endblock %}
     </header>

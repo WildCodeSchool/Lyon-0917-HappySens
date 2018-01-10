@@ -3,9 +3,14 @@
 {% block content %}
 
     <div class="container">
-        <h1 class="blue-text text-darken-3">Nouveau Colaborateur</h1>
 
-        <a class="waves-effect waves-light btn pink darken-2" href="{{ path('listingUser') }}">Back to the list</a>
+        <h1 class="blue-text text-darken-3">
+            {% if status == 3 %} Nouveau Collaborateur
+            {% elseif status == 4 %} Nouveau Happy Coach
+            {% endif %}
+        </h1>
+
+        <a class="waves-effect waves-light btn pink darken-2" href="{{ path('profilAdmin', {'slug' : app.user.slug}) }}">Retour tableau de bord</a>
 
         <nav class="wrapper row">
             <ul class="center bread">
@@ -16,14 +21,10 @@
         </nav>
 
         {{ form_start(form) }}
-
         <br>
         {#step#}
         <div id="step1">
             <div class="row">
-
-
-
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Prenom :</h5>
                     <div class="input-field col s12">

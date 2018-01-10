@@ -374,7 +374,8 @@ class UserController extends Controller
             ->remove('date_update_mood')
             ->remove('nativeLanguage')
             ->remove('company')
-            ->remove('languagesUser');
+            ->remove('languagesUser')
+            ->remove('userskills');
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

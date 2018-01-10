@@ -17,7 +17,6 @@ class User implements UserInterface, \Serializable
     const ROLE_COMPANY = 2;
     const ROLE_EMPLOYE = 3;
     const ROLE_HAPPYCOACH = 4;
-    const ROLE_HAPPYCOACH_PROJECT = 5;
 
     /**
      * @var int
@@ -224,9 +223,6 @@ class User implements UserInterface, \Serializable
                 break;
             case self::ROLE_HAPPYCOACH:
                 return array('ROLE_HAPPYCOACH');
-                break;
-            case self::ROLE_HAPPYCOACH_PROJECT:
-                return array('ROLE_HAPPYCOACH_PROJECT');
                 break;
         }
     }
