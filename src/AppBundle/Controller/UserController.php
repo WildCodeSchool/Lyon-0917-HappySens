@@ -102,13 +102,18 @@ class UserController extends Controller
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->remove('slug');
         $editForm->remove('user');
+        $editForm->remove('company');
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            dump($editForm);
             $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('User_edit', array('slug' => $user->getSlug()));
+//            return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
         }
-        return $this->render('pages/In/collaborators/editUser.html.twig', array('user' => $user, 'edit_form' => $editForm->createView(),
+
+        return $this->render('pages/In/collaborators/editUser.html.twig', array(
+            'user' => $user,
+            'edit_form' => $editForm->createView(),
         ));
     }
 

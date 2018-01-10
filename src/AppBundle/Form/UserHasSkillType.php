@@ -25,7 +25,6 @@ class UserHasSkillType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('user', HiddenType::class);
         $builder->add('level', RangeType::class, array(
             'attr' => array(
                 'min' => 0,

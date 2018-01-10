@@ -59,7 +59,7 @@ class UserType extends AbstractType
             'entry_type' => UserHasSkillType::class,
             'allow_add'    => true,
             'allow_delete' => true,
-            'prototype' => true,
+            'by_reference' => false,
         ]);
 
     }
