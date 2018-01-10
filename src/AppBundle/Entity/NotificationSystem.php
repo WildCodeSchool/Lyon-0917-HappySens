@@ -180,4 +180,3 @@ class NotificationSystem
         return $this->isRead;
     }
 }
-

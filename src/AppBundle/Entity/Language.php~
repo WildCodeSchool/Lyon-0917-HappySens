@@ -253,4 +253,29 @@ class Language
     {
         return $this->getTitreLanguage();
     }
+
+
+    /*
+     * Add nativeUser
+     *
+     * @param \AppBundle\Entity\User $nativeUser
+     *
+     * @return Language
+     */
+    public function addNativeUser(\AppBundle\Entity\User $nativeUser)
+    {
+        $this->nativeUser[] = $nativeUser;
+
+        return $this;
+    }
+
+    /**
+     * Remove nativeUser
+     *
+     * @param \AppBundle\Entity\User $nativeUser
+     */
+    public function removeNativeUser(\AppBundle\Entity\User $nativeUser)
+    {
+        $this->nativeUser->removeElement($nativeUser);
+    }
 }

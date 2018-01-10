@@ -85,6 +85,7 @@ class Skill
      */
     public function addUserskill(\AppBundle\Entity\UserHasSkill $userskill)
     {
+        $userskill->setUser();
         $this->userskills[] = $userskill;
 
         return $this;

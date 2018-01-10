@@ -9,6 +9,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\AppBundle;
+use AppBundle\Entity\NotificationSystem;
 use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -17,6 +18,7 @@ class NotificationService
 {
 
     // TODO : create const for all contents of notification :
+    const CONTENT_LIKE_NOTIF = " à aimer votre projet.";
 
     private $db;
 
@@ -44,9 +46,25 @@ class NotificationService
     }
 
     // TODO : create all stuf for create new notification
-    public function sendNotif($mail, EmailService $emailService)
+    public function sendNotif($sender, $idTarget)
     {
+        $errors = "";
+        $newNotif = new NotificationSystem();
+        $em = $this->getDb()->getManager();
 
+        $newNotif->setDateSend(new \DateTime())
+                 ->setIdTarget($idTarget)
+                 ->setIsRead(0)
+                 ->setSender($sender)
+                 ->setContent(self::CONTENT_LIKE_NOTIF);
+
+        if(empty($errors)) {
+            $em->persist($newNotif);
+            $em->flush();
+        } else {
+            return $errors = "Erreur create notification";
+        }
+        return true;
     }
 
 
