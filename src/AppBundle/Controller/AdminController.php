@@ -19,6 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -95,25 +96,20 @@ class AdminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
-
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
-            $arrayUsers = $fileUploader->insertUser(
-                "1234",
-                $em->find(Company::class, $company->getId()),
-                $fileUsers,
-                $this->container->getParameter('email_contact'),
-                $emailService
-            );
+            unset($fileUsers[0]);
+/*
+
             unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
 
             $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234');
             $countUser = $fileUploader->getCounter();
-
+*/
             return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', array(
-                'users' => $arrayUsers,
+                'fileUser' => $fileUsers,
                 'company' => $company,
-                'countUser' => $countUser,
             ));
+
         }
 
         return $this->render('pages/In/Admin/company/new.html.twig', array(
