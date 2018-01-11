@@ -187,31 +187,27 @@ class EmailService
      * @param $email_contact
      * @param $valueMdp
      */
-    public function sendMailNewCompany($company, $email_contact, $valueMdp)
+    public function sendMailNewCompany($company, $email_contact, $valueMdp, $referent)
     {
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-        $em = $this->db;
-        $referent = $em->getManager()->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
-        dump($referent);
-
         $message->setSubject("Votre compte entreprise happySens vient d'être créer")
             ->setCharset("utf-8")
-            ->setTo([$email_contact, $referent[0]['email']])
+            ->setTo([$email_contact, $referent])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/inscriptions/company/newCompany.html.twig', [
                     'logo' => $img,
                     'name' => $company->getName(),
                     'nbSalary' => $company->getNbSalary(),
-                    'email' => $referent[0]['email'],
+                    'email' => $referent,
                     'password' => $valueMdp,
                 ]), 'text/html'
             )
             ->addPart($this->template->render('notificationsEmail/categories/inscriptions/company/newCompany.txt.twig', [
                 'firstname' => $company->getName(),
                 'lastname' => $company->getNbSalary(),
-                'email' => $referent[0]['email'],
+                'email' => $referent,
                 'password' => $valueMdp,
             ]), 'text/plain');
 

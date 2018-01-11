@@ -108,6 +108,7 @@ class FileUploader
         $slugService = new SlugService();
         $newUser = new User();
 
+        $checkStatus = ($status === 1)? 3 : 2;
         $newUser->setFirstName($fileUsers['prenom'])
             ->setLastName($fileUsers['nom'])
             ->setEmail($fileUsers['email'])
@@ -116,7 +117,7 @@ class FileUploader
             ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
             ->setCompany($idCompany)
             ->setIsActive(0);
-        $newUser->setStatus(($status > 1)? 3 : 2);
+        $newUser->setStatus(($checkStatus > 1)? 3 : 2);
 
         $userCreate = [
           'prenom' => $newUser->getFirstName(),
@@ -126,11 +127,10 @@ class FileUploader
           'key' => $key,
         ];
 
-//        $this->getDb()->getManager()->persist($newUser);
-//        $this->getDb()->getManager()->flush();
-//
-//        $emailService->sendMailNewUser($newUser, $email_contact, $valueMdp);
-//        $newUser->setStatusMail(self::MAIL_OK);
+        $this->getDb()->getManager()->persist($newUser);
+        $emailService->sendMailNewUser($newUser, $email_contact, $valueMdp);
+        $newUser->setStatusMail(self::MAIL_OK);
+        $this->getDb()->getManager()->flush();
 
         return $userCreate;
     }
