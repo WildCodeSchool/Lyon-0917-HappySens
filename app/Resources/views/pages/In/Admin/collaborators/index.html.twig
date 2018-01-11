@@ -6,7 +6,7 @@
         <h1 class="center">Listing {{ listing }} </h1>
         <ul>
             <li class="btn waves-effect waves-lighten">
-                <a href="{{ path('newUser') }}" class="white-text">Ajouter un {{ listing }}</a>
+                <a href="{{ path('newUser', {'status' : status}) }}" class="white-text">Ajouter un {{ listing }}</a>
             </li>
         </ul>
         <ul class="row">
