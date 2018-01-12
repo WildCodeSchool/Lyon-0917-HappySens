@@ -82,6 +82,11 @@ class FileUploader
         return $this;
     }
 
+    /**
+     * @param UploadedFile $file
+     * @param $underDir
+     * @return string
+     */
     // TODO : Create const for underDir and switch with all types of uploads with verif
     public function upload(UploadedFile $file, $underDir)
     {
@@ -92,6 +97,10 @@ class FileUploader
         return $fileName;
     }
 
+    /**
+     * @param $file
+     * @return array
+     */
     public function transformCSV($file)
     {
         $csv = array_map('str_getcsv', file($file));
@@ -102,46 +111,62 @@ class FileUploader
         return $csv;
     }
 
-    public function insertUser($valueMdp, $idCompany, $fileUsers, $email_contact, EmailService $emailService)
+    /**
+     * @param $valueMdp
+     * @param $idCompany
+     * @param $fileUsers
+     * @param $email_contact
+     * @param EmailService $emailService
+     * @param $status
+     * @param $key
+     * @return array
+     */
+    public function insertUser($valueMdp, $idCompany, $fileUsers, $email_contact, EmailService $emailService, $status, $key)
     {
         // for destroy twins
-        $listEmails = [];
-        $arrayUsers = [];
         $slugService = new SlugService();
+        $newUser = new User();
 
-            for($i = 1; $i < count($fileUsers); $i++) {
-                if (!in_array($fileUsers[$i]['email'], $listEmails)) {
-                    $newUser = new User();
-                    $newUser->setFirstName($fileUsers[$i]['prenom'])
-                        ->setLastName($fileUsers[$i]['nom'])
-                        ->setEmail($fileUsers[$i]['email'])
-                        ->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT))
-                        ->setMood(0)
-                        ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
-                        ->setCompany($idCompany)
-                        ->setIsActive(0);
-                    if ($i === 1) {
-                        $newUser->setStatus(2);
-                    } else {
-                        $newUser->setStatus(3);
-                    }
-                    $listEmails[$i] = $fileUsers[$i]['email'];
-                    $this->setCounter(($this->getCounter() + 1));
+        $checkStatus = ($status === 1)? 3 : 2;
+        $newUser->setFirstName($fileUsers['prenom'])
+            ->setLastName($fileUsers['nom'])
+            ->setEmail($fileUsers['email'])
+            ->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT))
+            ->setMood(0)
+            ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
+            ->setCompany($idCompany)
+            ->setIsActive(0);
+        $newUser->setStatus(($checkStatus > 1)? 3 : 2);
 
-                    $emailService->sendMailNewUser($newUser, $email_contact, $valueMdp);
-                    $newUser->setStatusMail(self::MAIL_OK);
-                    $arrayUsers[$i] = $newUser;
-                    $this->getDb()->getManager()->persist($newUser);
-                }
-            }
-            $this->getDb()->getManager()->flush();
-            return $arrayUsers;
+        $userCreate = [
+          'prenom' => $newUser->getFirstName(),
+          'nom' => $newUser->getLastName(),
+          'email' => $newUser->getEmail(),
+          'slug' => $newUser->getSlug(),
+          'key' => $key,
+        ];
+
+        $this->getDb()->getManager()->persist($newUser);
+        $emailService->sendMailNewUser($newUser, $email_contact, $valueMdp);
+        $newUser->setStatusMail(self::MAIL_OK);
+        $this->getDb()->getManager()->flush();
+
+        return $userCreate;
     }
+
+    /**
+     * @param $underDir
+     * @return string
+     */
     public function getDirectory($underDir)
     {
         return $this->directory . '/' . $underDir;
     }
 
+    /**
+     * @param $directory
+     * @return mixed
+     */
     public function setDirectory($directory)
     {
         return $this->directory  = $directory;

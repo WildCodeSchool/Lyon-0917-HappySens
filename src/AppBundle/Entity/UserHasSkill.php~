@@ -15,7 +15,7 @@ class UserHasSkill
 
     /**
      * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="userskills")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="userskills", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false, unique=false)
      */
     private $user;
