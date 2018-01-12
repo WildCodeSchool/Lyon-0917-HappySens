@@ -73,9 +73,17 @@ class AdminController extends Controller
     }
 
     /**
-     * Creates a new company entity.
+     * Create new company
+     *
+     * @param Request $request
+     * @param FileUploader $fileUploader
+     * @param SlugService $slugService
+     * @param EmailService $emailService
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/newCompany", name="newCompany")
      * @Method({"GET", "POST"})
+     *
      */
     public function newCompanyAction(Request $request, FileUploader $fileUploader, SlugService $slugService, EmailService $emailService)
     {

@@ -82,6 +82,11 @@ class FileUploader
         return $this;
     }
 
+    /**
+     * @param UploadedFile $file
+     * @param $underDir
+     * @return string
+     */
     // TODO : Create const for underDir and switch with all types of uploads with verif
     public function upload(UploadedFile $file, $underDir)
     {
@@ -92,6 +97,10 @@ class FileUploader
         return $fileName;
     }
 
+    /**
+     * @param $file
+     * @return array
+     */
     public function transformCSV($file)
     {
         $csv = array_map('str_getcsv', file($file));
@@ -102,6 +111,16 @@ class FileUploader
         return $csv;
     }
 
+    /**
+     * @param $valueMdp
+     * @param $idCompany
+     * @param $fileUsers
+     * @param $email_contact
+     * @param EmailService $emailService
+     * @param $status
+     * @param $key
+     * @return array
+     */
     public function insertUser($valueMdp, $idCompany, $fileUsers, $email_contact, EmailService $emailService, $status, $key)
     {
         // for destroy twins
@@ -135,11 +154,19 @@ class FileUploader
         return $userCreate;
     }
 
+    /**
+     * @param $underDir
+     * @return string
+     */
     public function getDirectory($underDir)
     {
         return $this->directory . '/' . $underDir;
     }
 
+    /**
+     * @param $directory
+     * @return mixed
+     */
     public function setDirectory($directory)
     {
         return $this->directory  = $directory;
