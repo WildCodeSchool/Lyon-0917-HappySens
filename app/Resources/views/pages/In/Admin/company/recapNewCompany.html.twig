@@ -3,9 +3,9 @@
     <div class="container">
         <h2>Récapitulatif de la création de {{ company.name }}</h2>
         <div class="row">
-            <h4>L'entreprise</h4>
-            <div class="row">
-                <section class="card sticky-action col s12 m6 l4">
+            <div class="col s12 l6">
+                <h4>L'entreprise</h4>
+                <section class="card sticky-action col s12">
                     <div class="logoCompany waves-effect waves-block waves-light center">
                         {% if company.logo is null %}
                             <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="activator circle responsive-img">
@@ -28,28 +28,45 @@
                     </div>
                 </section>
             </div>
-        </div>
-        <div class="row">
-            <h4>Création des {{ countUser }} collaborateurs suivants :</h4>
-            <ul class="collection">
-            {% for user in users %}
-                <li class="collection-item avatar">
-                    <a href="{{ path('UserProfil', { 'slug': user.slug }) }}" class="black-text">
-                        <img src="{{ asset('assets/images/placeholder.png') }}" alt="" class="circle">
-                        <span class="title">{{ user.firstname }} {{ user.lastname }}</span>
-                        <p>{{ user.email }}</p>
-                    </a>
-                    <p class="secondary-content black-text">
-                        Envoi mail :
-                        {#{% if %}#}
-                            {#<i class="material-icons green-text">done</i>#}
-                        {#{% else %}#}
-                            {#<i class="material-icons red-text">close</i>#}
-                        {#{% endif %}#}
-                    </p>
-                </li>
-            {% endfor %}
-            </ul>
+            <div class="col s12 l6">
+            <h4>Création collaborateurs <span id="counter"></span> / {{ fileUser|length }} :</h4>
+                <ul class="collection" id="listCreatedUser"></ul>
+            </div>
         </div>
     </div>
+    {#{% for user in fileUser %}#}
+        {#{% dump user %}#}
+    {#{% endfor %}#}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        {% for key, user in fileUser %}
+            $(document).ready(injectUser('{{ user.nom }}', '{{ user.prenom }}', '{{ user.email }}', {{ key }}, '{{ company.id }}'));
+        {% endfor %}
+        function injectUser(nom, prenom, email, key, idComp) {
+            $.ajax({
+                type: "POST",
+                url: "/ajax/addUser/",
+                data : {'nom' : nom, 'prenom' : prenom, 'email' : email, 'key' : key, 'idComp' : idComp},
+                success: function (response) {
+                    let users = JSON.parse(response.data);
+                    console.log(users);
+                    html = '<li class="collection-item avatar">' +
+                                '<a href="/user/' + users.slug + '" class="black-text">' +
+                                    '<img src="/assets/images/placeholder.png" alt="" class="circle">' +
+                                    '<span class="title">' + users.nom + users.prenom + '</span>' +
+                                    '<p>' + users.email + '</p>' +
+                                '</a>'+
+                                '<p class="secondary-content black-text">Envoi mail : <i class="material-icons green-text">done</i></p>' +
+                            '</li>';
+                    counter = users.key;
+                    $('#listCreatedUser').append(html);
+                    $('#counter').html(counter);
+                },
+                error: function () {
+                    console.log('bad');
+                }
+            })
+        }
+    </script>
 {% endblock %}

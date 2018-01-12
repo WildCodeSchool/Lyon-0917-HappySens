@@ -49,8 +49,9 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
     public function getNumberUserByRole() {
         $qb = $this
             ->createQueryBuilder('u')
-            ->select('COUNT(u)')
+            ->select('COUNT(u) as nbUser', 'u.status', 'u.isActive')
             ->groupBy('u.status')
+            ->addGroupBy('u.isActive')
             ->getQuery();
         return $qb->getResult();
     }

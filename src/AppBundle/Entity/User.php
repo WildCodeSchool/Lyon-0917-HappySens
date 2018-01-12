@@ -200,6 +200,11 @@ class User implements UserInterface, \Serializable
     private $slug;
 
     /**
+     * @ORM\OneToMany(targetEntity="NotificationSystem", mappedBy="sender")
+     */
+    private $sendNotif;
+
+    /**
      * @var int
      */
     private $statusMail;
@@ -940,5 +945,53 @@ class User implements UserInterface, \Serializable
     public function removeHappyCoachRef(\AppBundle\Entity\Project $happyCoachRef)
     {
         $this->happyCoachRef->removeElement($happyCoachRef);
+    }
+
+    /**
+     * Add sendNotif
+     *
+     * @param \AppBundle\Entity\NotificationSystem $sendNotif
+     *
+     * @return User
+     */
+    public function addSendNotif(\AppBundle\Entity\NotificationSystem $sendNotif)
+    {
+        $this->sendNotif[] = $sendNotif;
+
+        return $this;
+    }
+
+    /**
+     * Remove sendNotif
+     *
+     * @param \AppBundle\Entity\NotificationSystem $sendNotif
+     */
+    public function removeSendNotif(\AppBundle\Entity\NotificationSystem $sendNotif)
+    {
+        $this->sendNotif->removeElement($sendNotif);
+    }
+
+    /**
+     * Get sendNotif
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSendNotif()
+    {
+        return $this->sendNotif;
+    }
+
+    /**
+     * Set sendNotif
+     *
+     * @param \AppBundle\Entity\NotificationSystem $sendNotif
+     *
+     * @return User
+     */
+    public function setSendNotif(\AppBundle\Entity\NotificationSystem $sendNotif = null)
+    {
+        $this->sendNotif = $sendNotif;
+
+        return $this;
     }
 }

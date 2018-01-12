@@ -149,6 +149,11 @@ class Project
     private $slug;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="happyCoachRef")
+     */
+    private $happyCoach;
+
+    /**
      * @return int
      */
     public function getId()
@@ -383,6 +388,8 @@ class Project
     public function removeLikeProject(\AppBundle\Entity\User $likeProject)
     {
         $this->likeProjects->removeElement($likeProject);
+
+        return $this;
     }
 
     /**
@@ -407,6 +414,8 @@ class Project
     public function removeTeamProject(\AppBundle\Entity\User $teamProject)
     {
         $this->teamProject->removeElement($teamProject);
+
+        return $this;
     }
 
     /**
@@ -505,4 +514,48 @@ class Project
         return $this->getTitle() . " " . $this->getAuthor();
     }
 
+    /**
+     * @return mixed
+     */
+    public function getHappyCoach()
+    {
+        return $this->happyCoach;
+    }
+
+    /**
+     * @param mixed $happyCoach
+     * @return Project
+     */
+    public function setHappyCoach($happyCoach)
+    {
+        $this->happyCoach = $happyCoach;
+        return $this;
+    }
+
+
+
+
+    /**
+     * Add happyCoach
+     *
+     * @param \AppBundle\Entity\User $happyCoach
+     *
+     * @return Project
+     */
+    public function addHappyCoach(\AppBundle\Entity\User $happyCoach)
+    {
+        $this->happyCoach[] = $happyCoach;
+
+        return $this;
+    }
+
+    /**
+     * Remove happyCoach
+     *
+     * @param \AppBundle\Entity\User $happyCoach
+     */
+    public function removeHappyCoach(\AppBundle\Entity\User $happyCoach)
+    {
+        $this->happyCoach->removeElement($happyCoach);
+    }
 }
