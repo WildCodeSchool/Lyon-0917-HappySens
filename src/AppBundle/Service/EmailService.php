@@ -191,7 +191,7 @@ class EmailService
     {
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-        $message->setSubject("Votre compte entreprise happySens vient d'être créer")
+        $message->setSubject("Votre compte entreprise happySens vient d'être crée")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $referent])
             ->setFrom([$this->sender => self::SENDER])
