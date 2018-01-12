@@ -1,4 +1,49 @@
 {% extends 'baseIn.html.twig' %}
+{% block javascripts %}
+    <script>
+        {% for key, user in fileUser %}
+        $(document).ready(injectUser('{{ user.nom }}', '{{ user.prenom }}', '{{ user.email }}', {{ key }}, '{{ company.id }}'));
+        {% endfor %}
+        function injectUser(nom, prenom, email, key, idComp) {
+            $.ajax({
+                type: "POST",
+                url: "/ajax/addUser/",
+                data : {'nom' : nom, 'prenom' : prenom, 'email' : email, 'key' : key, 'idComp' : idComp},
+                success: function (response) {
+                    let users = JSON.parse(response.data);
+                    if (response.hasOwnProperty('errors') === false) {
+                        html = '<li class="collection-item avatar">' +
+                            '<a href="/user/' + users.slug + '" class="black-text">' +
+                            '<img src="/assets/images/placeholder.png" alt="" class="circle">' +
+                            '<span class="title">' + users.nom + users.prenom + '</span>' +
+                            '<p>' + users.email + '</p>' +
+                            '</a>'+
+                            '<p class="secondary-content black-text"><i class="material-icons green-text">done</i></p>' +
+                            '</li>';
+                        counter = users.key;
+                    } else {
+                        console.log(response.errors + response.data);
+                        html = '<li class="collection-item avatar">' +
+                            '<a href="/user/' + users.slug + '" class="black-text">' +
+                            '<img src="/assets/images/placeholder.png" alt="" class="circle">' +
+                            '<span class="title">' + users.nom + users.prenom + '</span>' +
+                            '<p>' + users.email + '</p>' +
+                            '</a>'+
+                            '<p class="secondary-content black-text"><i class="material-icons red-text">close</i></p>' +
+                            '<p class="red-text"><b>' + response.errors + '</b></p>' +
+                            '</li>';
+                    }
+                    $('#listCreatedUser').append(html);
+                    $('#counter').html(counter);
+                },
+                error: function (response) {
+                    console.log(response);
+                    html = '<li class="collection-item error">' + response.responseStatus + '</li>'
+                }
+            })
+        }
+    </script>
+{% endblock %}
 {% block content %}
     <div class="container">
         <h2>Récapitulatif de la création de {{ company.name }}</h2>
@@ -34,39 +79,6 @@
             </div>
         </div>
     </div>
-    {#{% for user in fileUser %}#}
-        {#{% dump user %}#}
-    {#{% endfor %}#}
+
 {% endblock %}
-{% block javascripts %}
-    <script>
-        {% for key, user in fileUser %}
-            $(document).ready(injectUser('{{ user.nom }}', '{{ user.prenom }}', '{{ user.email }}', {{ key }}, '{{ company.id }}'));
-        {% endfor %}
-        function injectUser(nom, prenom, email, key, idComp) {
-            $.ajax({
-                type: "POST",
-                url: "/ajax/addUser/",
-                data : {'nom' : nom, 'prenom' : prenom, 'email' : email, 'key' : key, 'idComp' : idComp},
-                success: function (response) {
-                    let users = JSON.parse(response.data);
-                    console.log(users);
-                    html = '<li class="collection-item avatar">' +
-                                '<a href="/user/' + users.slug + '" class="black-text">' +
-                                    '<img src="/assets/images/placeholder.png" alt="" class="circle">' +
-                                    '<span class="title">' + users.nom + users.prenom + '</span>' +
-                                    '<p>' + users.email + '</p>' +
-                                '</a>'+
-                                '<p class="secondary-content black-text">Envoi mail : <i class="material-icons green-text">done</i></p>' +
-                            '</li>';
-                    counter = users.key;
-                    $('#listCreatedUser').append(html);
-                    $('#counter').html(counter);
-                },
-                error: function () {
-                    console.log('bad');
-                }
-            })
-        }
-    </script>
-{% endblock %}
+

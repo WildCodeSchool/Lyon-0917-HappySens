@@ -10,6 +10,7 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    const ADMIN_COMPANY = 2;
     /**
      * @param $companyId
      * @return mixed
@@ -80,5 +81,18 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->where('u.id=:id')
             ->getQuery();
         return $qb->getResult();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function findAdminComp() {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->setParameter('id', self::ADMIN_COMPANY)
+            ->select('u.email as email')
+            ->where('u.id=:id')
+            ->getQuery();
+        return $qb->getSingleResult();
     }
 }

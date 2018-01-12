@@ -98,6 +98,7 @@
                                 ({{ nbUserByStatus['refCompany']['isActif'] + nbUserByStatus['collaborator']['isActif'] }}
                                     / {{ nbUserByStatus['refCompany']['isActif']  + nbUserByStatus['refCompany']['isNotActif'] +  nbUserByStatus['collaborator']['isActif'] +   nbUserByStatus['collaborator']['isNotActif'] }})
                                 </span></p>
+                                {#<span>Tous les collaborateurs ({{ nbUserByStatus[2][1] + nbUserByStatus[3][1] }})</span></p>#}
                         </a>
                     </section>
                 </div>

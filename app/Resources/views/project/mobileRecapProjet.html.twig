@@ -6,7 +6,25 @@
                 <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-calendar-check-o"></i></span> {{ project.startingDate|date('Y-m-d') }}</p>
                 <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-calendar-times-o"></i></span> {{ project.endDate|date('Y-m-d') }}</p>
                 <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-map-marker"></i></span> {{ project.location }}</p>
-                <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ nbLike }}</p>
+                {% if app.user.status != 4 %}
+                    {% if app.user not in project.likeProjects %}
+                        <a href="{{ path('like_project', {'slug': project.slug}) }}" onclick="like()">
+                            <p class="black-text chip">
+                                <span class="red-text"><i class="fa fa-heart"></i></span>
+                                {{ nbLike }}
+                            </p>
+                        </a>
+                    {% else %}
+                        <a href="{{ path('unlike_project', {'slug': project.slug}) }}">
+                            <p class="black-text chip">
+                                <span class="red-text"><i class="fa fa-heart"></i></span>
+                                {{ nbLike }}
+                            </p>
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ nbLike }}</p></a>
+                {% endif %}
             </div>
         </div>
         <div class="row">

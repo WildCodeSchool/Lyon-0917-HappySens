@@ -102,9 +102,17 @@ class AdminController extends Controller
     }
 
     /**
-     * Creates a new company entity.
+     * Create new company
+     *
+     * @param Request $request
+     * @param FileUploader $fileUploader
+     * @param SlugService $slugService
+     * @param EmailService $emailService
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/newCompany", name="newCompany")
      * @Method({"GET", "POST"})
+     *
      */
     public function newCompanyAction(Request $request, FileUploader $fileUploader, SlugService $slugService, EmailService $emailService)
     {
@@ -112,7 +120,6 @@ class AdminController extends Controller
         $form = $this->createForm('AppBundle\Form\CompanyType', $company);
         $form->remove('slug');
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $myFile = $company->getFileUsers();
             $fileName = $fileUploader->upload($myFile, "csvFiles");
@@ -125,22 +132,16 @@ class AdminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
+
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
             unset($fileUsers[0]);
-/*
-
             unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
-
-            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234');
-            $countUser = $fileUploader->getCounter();
-*/
+            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234', $fileUsers[1]['email']);
             return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', array(
                 'fileUser' => $fileUsers,
                 'company' => $company,
             ));
-
         }
-
         return $this->render('pages/In/Admin/company/new.html.twig', array(
             'company' => $company,
             'form' => $form->createView(),
