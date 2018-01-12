@@ -40,7 +40,7 @@ class AjaxController extends Controller
         $fileUsers['prenom'] = $request->request->get('prenom');
         $fileUsers['email'] = $request->request->get('email');
 
-        if(!$request->isXmlHttpRequest()) {
+        if($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
             $key = $request->request->get('key');
             $idCompany = $request->request->get('idComp');
