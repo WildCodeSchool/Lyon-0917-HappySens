@@ -2,21 +2,12 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Language;
-use AppBundle\Entity\Skill;
-use AppBundle\Entity\UserHasSkill;
-use function Sodium\add;
+use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\RangeType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\LanguageType;
 
 class NewUserType extends AbstractType
 {
@@ -33,13 +24,11 @@ class NewUserType extends AbstractType
             ->add('password', HiddenType::class)
             ->add('status', ChoiceType::class, [
                 'choices' => [
-                    'Collaborateur' => 3,
-                    'Réf Happy Sens' => 2,
+                    'Collaborateur' => User::ROLE_EMPLOYE,
+                    'Réf Happy Sens' => User::ROLE_COMPANY,
                  ],
              ])
             ->add('company');
-
-
     }
 
     /**

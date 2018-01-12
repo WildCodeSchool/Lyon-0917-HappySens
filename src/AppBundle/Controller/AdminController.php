@@ -226,7 +226,7 @@ dump($users);
      * @Route("/newUser/{status}", name="newUser")
      * @Method({"GET", "POST"})
      */
-    public function newActionUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService, EmailService $emailService, $status)
+    public function newUserAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService, EmailService $emailService, $status)
     {
         $user = new User();
 
