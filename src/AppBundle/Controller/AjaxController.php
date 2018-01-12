@@ -7,7 +7,6 @@ use AppBundle\Entity\Company;
 use AppBundle\Entity\User;
 use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
-use SensioLabs\Security\Exception\HttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
