@@ -233,8 +233,8 @@ class UserController extends Controller
             }
         }
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            if(!empty($editForm['logo']->getData())) {
-                unlink($fileUploader->getDirectory("photoCompany") . '/' .$company->getLogo());
+            if (!empty($editForm['logo']->getData())) {
+                unlink($fileUploader->getDirectory("photoCompany") . '/' . $company->getLogo());
                 $logo = $editForm['logo']->getData();
                 $logoName = $fileUploader->upload($logo, "photoCompany");
                 $company->setLogo($logoName);
@@ -243,14 +243,14 @@ class UserController extends Controller
             $this->getDoctrine()->getManager()->flush();
             if ($this->getUser()->getIsActive() == false || $this->getUser()->getIsActive() !== 1) {
                 return $this->redirectToRoute('User_edit', array('slug' => $this->getUser()->getSlug()));
-            }
-            else {
+            } else {
                 return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
             }
         }
         return $this->render('pages/In/company/editCompany.html.twig', [
             'company' => $company,
-            'edit_form' => $editForm->createView(),]);
+            'edit_form' => $editForm->createView(),
+            ]);
     }
 
     /**

@@ -1,16 +1,32 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
-{% block body %}
-    <h1>Skill creation</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('skills_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block content %}
+    <div class="container">
+        <h1 class="center">Ajouter un Talent</h1>
+        <div class="row">
+            <div class="col s6 ">
+                {{ form_start(form) }}
+                <h5 class="titleInscription blue-text text-darken-3">Nom du Talent :</h5>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix blue-text text-darken-3">create</i>
+                    {% if (form_errors(form.nameSkill)) %}
+                        {{ form_widget(form.nameSkill, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+                        {{ form_widget(form.nameSkill) }}
+                    {% endif %}
+                    <label for="skill"><span class="requireInput">* </span>Talent</label>
+                    <div class="center error">
+                        {{ form_errors(form.nameSkill) }}
+                    </div>
+                </div>
+                <input type="submit" value="Valider"/>
+                {{ form_end(form) }}
+                <ul>
+                    <li>
+                        <a href="{{ path('skills_index') }}">Retour à la liste des talents</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}

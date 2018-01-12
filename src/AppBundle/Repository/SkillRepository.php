@@ -34,7 +34,7 @@ class SkillRepository extends \Doctrine\ORM\EntityRepository
             ->leftjoin('s.projects', 'p')
             ->groupBy('s.id')
             ->select('count(p.theme) as nbproject','s.nameSkill', 's.id')
-            ->orderBy('s.id')
+            ->orderBy('s.nameSkill')
             ->getQuery();
         return $qb->getResult();
     }
