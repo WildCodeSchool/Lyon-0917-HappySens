@@ -28,7 +28,7 @@ class NotificationSystemController extends Controller
         $allNotif = $em->getRepository('AppBundle:NotificationSystem')->findAllByUser($idUser);
 
         return $this->render('pages/In/notifications/listingNotifications.html.twig', [
-            'notifs' => $allNotif,
+            'not    ifs' => $allNotif,
         ]);
     }
 

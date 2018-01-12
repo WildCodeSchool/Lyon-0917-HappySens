@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\ChangePwd;
 use AppBundle\Entity\Company;
+use AppBundle\Entity\User;
 use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
 use SensioLabs\Security\Exception\HttpException;
@@ -21,6 +22,10 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AjaxController extends Controller
 {
+    const ROLE_ADMIN = User::ROLE_ADMIN;
+    const ROLE_COMPANY = User::ROLE_COMPANY;
+    const ROLE_EMPLOYE = User::ROLE_EMPLOYE;
+
     /**
      * Create user when add a new company
      *
@@ -51,7 +56,7 @@ class AjaxController extends Controller
                 $fileUsers,
                 $this->container->getParameter('email_contact'),
                 $emailService,
-                ($key <= 1) ? 2 : 3,
+                ($key <= self::ROLE_ADMIN) ? self::ROLE_COMPANY : self::ROLE_EMPLOYE,
                 $key
             );
             return new JsonResponse(['data' => json_encode($arrayUsers)]);
@@ -60,5 +65,4 @@ class AjaxController extends Controller
             return new JsonResponse(['errors' => $errors, 'data' => json_encode($fileUsers)]);
         }
     }
-
 }

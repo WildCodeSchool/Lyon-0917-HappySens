@@ -18,7 +18,7 @@ class NotificationService
 {
 
     // TODO : create const for all contents of notification :
-    const CONTENT_LIKE_NOTIF = " à aimer votre projet.";
+    const CONTENT_LIKE_NOTIF = " à aimé votre projet.";
 
     private $db;
 
@@ -62,7 +62,7 @@ class NotificationService
             $em->persist($newNotif);
             $em->flush();
         } else {
-            return $errors = "Erreur create notification";
+            return $errors = "Error create notification";
         }
         return true;
     }
