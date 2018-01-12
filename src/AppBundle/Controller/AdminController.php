@@ -34,21 +34,50 @@ class AdminController extends Controller
     /**
      * @Route("/profil/{slug}", name="profilAdmin")
      */
-    public function profilAdminAction(Request $request)
+    public function profilAdminAction()
     {
-        $nbProjectsByStatus = [];
-        $nbUserByStatus = [];
-        $nbSkills = [];
+
+        $numberUserByStatus['collaborator']['isActif'] = 0;
+        $numberUserByStatus['collaborator']['isNotActif'] = 0;
+        $numberUserByStatus['refCompany']['isActif'] = 0;
+        $numberUserByStatus['refCompany']['isNotActif'] = 0;
+        $numberUserByStatus['happyCoach']['isActif'] = 0;
+        $numberUserByStatus['happyCoach']['isNotActif'] = 0;
+
         $em = $this->getDoctrine()->getManager();
         $nbProjectsByStatus = $em->getRepository('AppBundle:Project')->getNumberProjectsByStatus();
-        $nbUserByStatus = $em->getRepository('AppBundle:User')->getNumberUserByRole();
+        $getNumberUserByRole = $em->getRepository('AppBundle:User')->getNumberUserByRole();
+        foreach($getNumberUserByRole as $userByStatus) {
+            switch($userByStatus['status']) {
+                case (User::ROLE_EMPLOYE) :
+                    if ($userByStatus['isActive'] === true) {
+                        $numberUserByStatus['collaborator']['isActif'] = $userByStatus['nbUser'];
+                    } else {
+                        $numberUserByStatus['collaborator']['isNotActif'] = $userByStatus['nbUser'];
+                    }
+                    break;
+                case (User::ROLE_COMPANY) :
+                    if ($userByStatus['isActive'] === true) {
+                        $numberUserByStatus['refCompany']['isActif'] = $userByStatus['nbUser'];
+                    } else {
+                        $numberUserByStatus['refCompany']['isNotActif'] = $userByStatus['nbUser'];
+                    }
+                    break;
+                case (User::ROLE_HAPPYCOACH) :
+                    if ($userByStatus['isActive'] === true) {
+                        $numberUserByStatus['happyCoach']['isActif'] = $userByStatus['nbUser'];
+                    } else {
+                        $numberUserByStatus['happyCoach']['isNotActif'] = $userByStatus['nbUser'];
+                    }
+                    break;
+            }
+        }
         $nbCompany = $em->getRepository('AppBundle:Company')->getNumberCompany();
         $nbSkills = $em->getRepository('AppBundle:Skill')->getNumberSkill();
-
         return $this->render('pages/In/Admin/profilAdmin.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
             'nbProjectsByStatus' => $nbProjectsByStatus,
-            'nbUserByStatus' => $nbUserByStatus,
+            'nbUserByStatus' => $numberUserByStatus,
             'nbCompany' => $nbCompany,
             'nbSkill' => $nbSkills
         ]);
@@ -162,6 +191,7 @@ class AdminController extends Controller
         return $this->render('pages/In/Admin/collaborators/index.html.twig', [
             'users' => $users,
             'listing' => 'Collaborateur',
+            'status' => User::ROLE_EMPLOYE,
         ]);
     }
 
@@ -179,39 +209,49 @@ dump($users);
         return $this->render('pages/In/Admin/collaborators/index.html.twig', [
             'users' => $users,
             'listing' => 'HappyCoach',
+            'status' => User::ROLE_HAPPYCOACH,
         ]);
     }
 
     /**
      * Creates a new user entity.
      *
-     * @Route("/newUser", name="newUser")
+     * @Route("/newUser/{status}", name="newUser")
      * @Method({"GET", "POST"})
      */
-    public function newActionUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService)
+    public function newUserAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService, EmailService $emailService, $status)
     {
         $user = new User();
 
-
-        $form = $this->createForm('AppBundle\Form\UserType', $user);
+        $form = $this->createForm('AppBundle\Form\NewUserType', $user);
         $form->remove('slug');
+        if ($status == User::ROLE_HAPPYCOACH) {
+            $form->remove('company')
+                ->remove('status');
+        }
         $form->handleRequest($request);
-
+        //TODO Password and slugification
         if ($form->isSubmitted() && $form->isValid()) {
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $today = new \DateTime();
+            $temp = $today->getTimestamp() - 1515703308;
+            $password = $passwordEncoder->encodePassword($user, '1234');
+            if($status == User::ROLE_HAPPYCOACH) {
+                $user->setStatus(User::ROLE_HAPPYCOACH);
+            }
             $user->setPassword($password);
-            $user->setSlug($slugService->slugify($user->getFirstName() . ' ' . $user->getLastName()));
+            $user->setIsActive(0);
+            $user->setSlug($slugService->slugify($user->getFirstName() . ' ' . $user->getLastName() . ' ' . $temp));
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-
-            return $this->redirectToRoute('newUser_show', array('slug' => $user->getSlug()));
+            $emailService->sendMailNewUser($user, $this->container->getParameter('email_contact'), '1234');
+            return $this->redirectToRoute('profilAdmin', array('slug' => $this->getUser()->getSlug()));
         }
-
 
         return $this->render('pages/In/Admin/collaborators/new.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
+            'status' => $status,
         ));
     }
 
