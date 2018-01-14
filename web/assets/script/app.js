@@ -14,7 +14,8 @@ $(document).ready(function() {
     });
     $('.collapsible').collapsible();
     $(".button").sideNav();
-    $('#modal2').modal();
+    $('#modalAllCollaborator').modal();
+    $('#modalAllSkill').modal();
 
 });
 
