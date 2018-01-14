@@ -8,7 +8,7 @@
                 {% if project.author != null %}
                 <li class="card medium col s12 m6">
                     <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ project.photo }}">
+                        <img class="activator" src="{{ asset('uploads/photoProject/' ~ project.photo) }}" alt="">
                     </div>
                     {% if project.status == 1 %}
                         <div class="chip inProgress chipStatus">
@@ -48,7 +48,7 @@
                                 {#</a>#}
                             {% else %}
                                 <div class="chip">
-                                    <a href="{{ path('project_edit', {'slug' : project.slug}) }}">
+                                    <a href="{{ path('addHappyCoach', {'slugProject' : project.slug}) }}">
                                         <span class="black-text">Ajouter un HappyCoach</span></a>
                                 </div>
                             {% endif %}

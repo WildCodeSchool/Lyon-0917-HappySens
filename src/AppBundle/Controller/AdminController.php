@@ -261,8 +261,9 @@ class AdminController extends Controller
         //TODO Password and slugification
         if ($form->isSubmitted() && $form->isValid()) {
             $today = new \DateTime();
-            $temp = $today->getTimestamp() - 1515703308;
-            $password = $passwordEncoder->encodePassword($user, '1234');
+            $temp = $today->getTimestamp() - 1515703308; // 1515703308 = Timestamp date created line so 2018/01/12
+            $passwordNotEncoder = bin2hex(random_bytes(5));
+            $password = $passwordEncoder->encodePassword($user, $passwordNotEncoder);
             if ($status == User::ROLE_HAPPYCOACH) {
                 $user->setStatus(User::ROLE_HAPPYCOACH);
             }
@@ -272,7 +273,7 @@ class AdminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            $emailService->sendMailNewUser($user, $this->container->getParameter('email_contact'), '1234');
+            $emailService->sendMailNewUser($user, $this->container->getParameter('email_contact'), $passwordNotEncoder);
             return $this->redirectToRoute('profilAdmin', array('slug' => $this->getUser()->getSlug()));
         }
 
@@ -333,26 +334,31 @@ class AdminController extends Controller
             'projects' => $projects,
         ));
     }
-}
 
     /**
+     * @param Request $request
+     * @param Project $project
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * Add one HappyCoach Ref
      *
-     * @Route("/{slug}/edit", name="project_edit")
+     * @Route("/project/{slugProject}/happycoach", name="addHappyCoach")
+     * @param Project $project The Project entity
      * @Method({"GET", "POST"})
      */
-/*    public function addHappyCoachRefAction(Request $request, Project $project)
+   public function addHappyCoachRefAction(Request $request, Project $project)
     {
-
+        $project->setPhoto(
+            new File('uploads/photoProject'.'/'.$project->getPhoto())
+        );
         $editForm = $this->createForm('AppBundle\Form\AddHappyCoachInProjectType', $project);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+           /* $this->getDoctrine()->getManager()->flush();*/
 
             return $this->redirectToRoute('project_edit', array('slug' => $project->getSlug()));
         }
-
+dump($project);
         return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', array(
             'project' => $project,
             'edit_form' => $editForm->createView(),

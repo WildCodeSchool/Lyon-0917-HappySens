@@ -17,7 +17,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 class AddHappyCoachInProjectType
 {
     /**
-     * {@inheritdoc}
+     * @param FormBuilderInterface $builder
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

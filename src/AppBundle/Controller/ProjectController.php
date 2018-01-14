@@ -16,6 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 
 /**
@@ -130,6 +131,9 @@ class ProjectController extends Controller
      */
     public function editAction(Request $request, Project $project, SlugService $slugService)
     {
+        $project->setPhoto(
+            new File('uploads/photoProject'.'/'.$project->getPhoto())
+        );
         $deleteForm = $this->createDeleteForm($project);
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
         $editForm->remove('author');
