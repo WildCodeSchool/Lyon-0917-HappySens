@@ -353,28 +353,7 @@ class UserController extends Controller
     public function updateMoodAction(Request $request, User $user, SlugService $slugService)
     {
         $user = $this->getUser();
-        $editForm = $this->createForm('AppBundle\Form\UserType', $user);
-        $editForm->remove('slug')
-            ->remove('firstName')
-            ->remove('lastName')
-            ->remove('phone')
-            ->remove('email')
-            ->remove('status')
-            ->remove('birthdate')
-            ->remove('photo')
-            ->remove('biography')
-            ->remove('slogan')
-            ->remove('password')
-            ->remove('job')
-            ->remove('workplace')
-            ->remove('facebook')
-            ->remove('twitter')
-            ->remove('linkedin')
-            ->remove('is_active')
-            ->remove('date_update_mood')
-            ->remove('nativeLanguage')
-            ->remove('company')
-            ->remove('languagesUser');
+        $editForm = $this->createForm('AppBundle\Form\MoodType', $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
