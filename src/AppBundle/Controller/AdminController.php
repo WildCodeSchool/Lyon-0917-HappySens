@@ -107,7 +107,7 @@ class AdminController extends Controller
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
             unset($fileUsers[0]);
             unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
-            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234', $fileUsers[1]['email']);
+//            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234', $fileUsers[1]['email']);
             return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', array(
                 'fileUser' => $fileUsers,
                 'company' => $company,

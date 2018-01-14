@@ -275,7 +275,8 @@ main {
     color: #252F3D; }
 
 .imgMenu {
-  display: flex; }
+  display: flex;
+  width: 125%; }
   .imgMenu span {
     margin-top: 1px;
     margin-left: 5px; }
