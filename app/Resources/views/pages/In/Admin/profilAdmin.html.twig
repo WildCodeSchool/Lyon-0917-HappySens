@@ -44,11 +44,7 @@
                             <div class="center valign-wrapper hoverable" id="waitProject">
                                 <ul>
                                     <li><i class="fa fa-folder-open-o fa-2x"></i></li>
-                                    {% if nbProjectsByStatus[0] is defined %}
-                                        <li>{{ nbProjectsByStatus[0][1] }} </li>
-                                    {% else %}
-                                        <li>0</li>
-                                    {% endif %}
+                                        <li>{{ nbProjectsByStatus[1] }} </li>
                                     <li>projets à valider</li>
                                 </ul>
                             </div>
@@ -57,11 +53,7 @@
                             <div class="center valign-wrapper hoverable" id="validProject">
                                 <ul>
                                     <li><i class="fa fa-check-square-o fa-2x"></i></li>
-                                    {% if nbProjectsByStatus[1] is defined %}
-                                        <li>{{ nbProjectsByStatus[1][1] }}</li>
-                                    {% else %}
-                                        <li>0</li>
-                                    {% endif %}
+                                                                           <li>{{ nbProjectsByStatus[2] }}</li>
                                     <li>projets en cours</li>
                                 </ul>
                             </div>
@@ -70,11 +62,9 @@
                             <div class="center valign-wrapper hoverable" id="finishProject">
                                 <ul>
                                     <li><i class="fa fa-folder-o fa-2x"></i></li>
-                                    {% if nbProjectsByStatus[2] is defined %}
-                                        <li>{{ nbProjectsByStatus[2][1] }}</li>
-                                    {% else %}
-                                        <li>0</li>
-                                    {% endif %}
+
+                                        <li>{{ nbProjectsByStatus[3] }}</li>
+
                                     <li> projets terminé</li>
                                 </ul>
                             </div>
@@ -95,8 +85,8 @@
                         <a href="{{ path('listingUser') }}">
                             <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i>
                                 <span>Tous les collaborateurs :
-                                ({{ nbUserByStatus['refCompany']['isActif'] + nbUserByStatus['collaborator']['isActif'] }}
-                                    / {{ nbUserByStatus['refCompany']['isActif']  + nbUserByStatus['refCompany']['isNotActif'] +  nbUserByStatus['collaborator']['isActif'] +   nbUserByStatus['collaborator']['isNotActif'] }})
+                                ({{  nbUserByStatus['collaborator']['isActif'] }}
+                                    / {{  nbUserByStatus['collaborator']['total'] }})
                                 </span></p>
                                 {#<span>Tous les collaborateurs ({{ nbUserByStatus[2][1] + nbUserByStatus[3][1] }})</span></p>#}
                         </a>
@@ -110,7 +100,7 @@
                         <a href="{{ path('listingHappyCoach') }}">
                             <p class="center valign-wrapper" id="allHappyCoach"><i class="fa fa-list-alt fa-2x"> </i>
                                 <span>Tous les happyCoachs
-                                        ({{ nbUserByStatus['happyCoach']['isActif'] }} / {{  nbUserByStatus['happyCoach']['isActif']  + nbUserByStatus['happyCoach']['isNotActif'] }})
+                                        ({{ nbUserByStatus['happyCoach']['isActif'] }} / {{  nbUserByStatus['happyCoach']['total']  }})
                                          </span></p>
                         </a>
                         <a href="{{ path('listingUser') }}">
