@@ -1,14 +1,14 @@
 {% if user.mood != 0 or user.mood != null %}
     {% for i in 1..user.mood %}
-        <img class="responsive-img" src="{{ asset('assets/images/icone-soleil-20px.png') }}">
+        <img class="responsive-img" src="{{ asset('assets/images/icone-soleil-red.png') }}">
     {% endfor %}
     {% if user.mood != 5 %}
         {% for i in 5..(user.mood+ 1) %}
-            <img class="responsive-img" src="{{ asset('assets/images/icone-soleil-vide-20px.png') }}">
+            <img class="responsive-img" src="{{ asset('assets/images/icone-soleil-vide-red.png') }}">
         {% endfor %}
     {% endif %}
 {% else %}
     {% for i in 1..5 %}
-        <img class="responsive-img" src="{{ asset('assets/images/icone-soleil-vide-20px.png') }}">
+        <img class="responsive-img" src="{{ asset('assets/images/icone-soleil-vide-red.png') }}">
     {% endfor %}
 {% endif %}
