@@ -116,6 +116,7 @@ class Company
 
     /**
      * @var string
+     * @ORM\Column(name="file_users", type="string",  length=255, nullable=true)
      */
     private $fileUsers;
 

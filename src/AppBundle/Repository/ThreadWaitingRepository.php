@@ -10,4 +10,33 @@ namespace AppBundle\Repository;
  */
 class ThreadWaitingRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @return array
+     */
+    public function findOlders() {
+        $now = new \DateTime('now');
+        $qb = $this
+            ->createQueryBuilder('w')
+            ->where('w.istrait < 1')
+            ->orderBy('w.datesend')
+            ->getQuery()
+            ->setFirstResult(0)
+            ->setMaxResults(50);
+        return $qb->getResult();
+    }
+
+    /**
+     * @param $idComp
+     * @return array
+     */
+    public function findByIdComp($idComp) {
+        $qb = $this
+            ->createQueryBuilder('tw')
+            ->setParameter('id', $idComp)
+            ->where('tw.idcomp=:id')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
 }

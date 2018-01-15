@@ -1,40 +1,41 @@
 {% extends 'baseIn.html.twig' %}
 {% block javascripts %}
     <script>
-        {% for key, user in fileUser %}
-        $(document).ready(queuingUser('{{ user.nom }}', '{{ user.prenom }}', '{{ user.email }}', {{ key }}, '{{ company.id }}'));
-        {% endfor %}
-        function queuingUser(nom, prenom, email, key, idComp) {
+        //IF newCompany = true
+        $(document).ready(
+            getUsers('{{ company.id }}')
+        );
+        function getUsers(idComp) {
             $.ajax({
                 type: "POST",
-                url: "/ajax/queuingUser/",
-                data : {'nom' : nom, 'prenom' : prenom, 'email' : email, 'key' : key, 'idComp' : idComp},
+                url: "/ajax/getUserCreated/",
+                data : {'idComp' : idComp},
                 success: function (response) {
                     let user = JSON.parse(response.data);
-                    if (response.hasOwnProperty('errors') === false) {
+                    console.log(user);
+                    for (let i = 0; i < user.length(); i++) {
+                        if (user.isTrait == false) {
+                            iconStatus = '<p class="secondary-content black-text"><i class="material-icons orange-text">update</i></p>';
+                        } else {
+                            iconStatus = '<p class="secondary-content black-text"><i class="material-icons green-text">check_circle</i></p>';
+                        }
                         html = '<li class="collection-item avatar">' +
                             '<img src="/assets/images/placeholder.png" alt="" class="circle">' +
-                            '<span class="title">' + user.nom + user.prenom + '</span>' +
-                            '<p>' + user.email + '</p>' +
-                            '<p class="secondary-content black-text"><i class="material-icons orange-text">update</i>En attente</p>' +
+                            '<span class="title">' + user[i].nom + user[i].prenom + '</span>' +
+                            '<p>' + user[i].email + '</p>' +
+                            iconStatus +
                             '</li>';
-                        counter = user.key;
-                    } else {
-                        console.log(response.errors + response.data);
-                        html = '<li class="collection-item avatar">' +
-                            '<img src="/assets/images/placeholder.png" alt="" class="circle">' +
-                            '<span class="title">' + user.nom + user.prenom + '</span>' +
-                            '<p>' + user.email + '</p>' +
-                            '<p class="secondary-content black-text"><i class="material-icons red-text">close</i></p>' +
-                            '<p class="red-text"><b>' + response.errors + '</b></p>' +
-                            '</li>';
+                        if (user.isTrait == false) {
+                            $('#listWaitUser').append(html);
+                            $('#counter').append(counter);
+                        } else {
+                            $('#listCreatedUser').append(html);
+                            $('#counter').append(counter);
+                        }
                     }
-                    $('#listCreatedUser').append(html);
-                    $('#counter').html(counter);
                 },
-                error: function (response) {
-                    console.log(response);
-                    html = '<li class="collection-item error">' + response.responseStatus + '</li>'
+                error: function () {
+                    console.log('erreurs');
                 }
             })
         }
@@ -69,9 +70,15 @@
                     </div>
                 </section>
             </div>
-            <div class="col s12">
-            <h4>En attente de création <span id="counter"></span> / {{ fileUser|length }} :</h4>
-                <ul class="collection col s12 m6" id="listCreatedUser"></ul>
+            <div class="row">
+                <div class="col s12 m6">
+                    <h4>En attente de création des users</h4>
+                    <ul class="collection col s12" id="listWaitUser"></ul>
+                </div>
+                <div class="col s12 m6">
+                    <h4>Utilisateurs créer : <button onclick="getUsers('{{ company.id }}')" class="btn"><i class="material-icons">autorenew</i></button></h4>
+                    <ul class="collection col s12" id="listCreatedUser"></ul>
+                </div>
             </div>
         </div>
     </div>

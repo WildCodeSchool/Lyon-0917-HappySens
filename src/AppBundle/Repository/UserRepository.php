@@ -83,6 +83,19 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
     }
 
     /**
+     * @param $idComp
+     * @return array
+     */
+    public function findByIdComp($idComp) {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->setParameter('id', $idComp)
+            ->where('u.company=:id')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    /**
      * @return mixed
      */
     public function findAdminComp() {

@@ -29,9 +29,9 @@ class ThreadWaiting
     private $userdata;
 
     /**
-     * @var \DateTime
+     * @var int
      *
-     * @ORM\Column(name="datesend", type="datetime")
+     * @ORM\Column(name="datesend", type="bigint")
      */
     private $datesend;
 
@@ -87,7 +87,7 @@ class ThreadWaiting
     /**
      * Set datesend
      *
-     * @param \DateTime $datesend
+     * @param int $datesend
      *
      * @return ThreadWaiting
      */
@@ -101,7 +101,7 @@ class ThreadWaiting
     /**
      * Get datesend
      *
-     * @return \DateTime
+     * @return int
      */
     public function getDatesend()
     {
@@ -156,4 +156,3 @@ class ThreadWaiting
         return $this->istrait;
     }
 }
-
