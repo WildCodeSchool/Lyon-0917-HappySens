@@ -136,7 +136,6 @@ class ProjectController extends Controller
             $project->setPhoto(
                 new File($this->getParameter('upload_directory').'/photoProject/'.$project->getPhoto())
             );
-
         }
 
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);

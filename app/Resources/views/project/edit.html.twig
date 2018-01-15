@@ -22,6 +22,7 @@
                     <h5 class="titleInscription blue-text text-darken-3">Nom :</h5>
 
                     <div class="input-field col s12">
+                    <i class="material-icons prefix blue-text text-darken-3">title</i>
                         {% if (form_errors(edit_form.title))  %}
                             {{ form_widget(edit_form.title, {'attr': {'class': 'error'}}) }}
                         {% else %}
@@ -49,12 +50,15 @@
                     </div>
                 </div>
                 <div class="col s12 m6">
-                    <h5 class="titleInscription blue-text text-darken-3">Date de fin du projet:</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Date de fin du projet: </h5>
                     <div class="input-field col s12">
+                        <div class="col s1">
+                            <i class="material-icons prefix blue-text text-darken-3">timer_off</i>
+                        </div>
                         {% if (form_errors(edit_form.endDate))  %}
                             {{ form_widget(edit_form.endDate, {'attr': {'class': 'datepicker error'}}) }}
                         {% else %}
-                             <div class="col s3">
+                         <div class="col s3">
                             {{ form_widget(edit_form.endDate.year) }}
                         </div>
                         <div class="col s3">
@@ -74,6 +78,7 @@
                 <div class="col s12 m6">
                     <h5 class="titleInscription blue-text text-darken-3">Lieu :</h5>
                     <div class="input-field col s12">
+                    <i class="material-icons prefix blue-text text-darken-3">location_on</i>
                         {% if (form_errors(edit_form.location))  %}
                             {{ form_widget(edit_form.location, {'attr': {'class': 'error'}}) }}
                         {% else %}
@@ -103,6 +108,7 @@
                 <div class="col s12">
                     <h5 class="titleInscription blue-text text-darken-3">Présentation du projet :</h5>
                     <div class="input-field col s12">
+                    <i class="material-icons prefix blue-text text-darken-3">mode_edit</i>
                         {% if (form_errors(edit_form.presentation))  %}
                             {{ form_widget(edit_form.presentation, { 'attr': {'class': 'materialize-textarea error'} }) }}
                         {% else %}
@@ -118,6 +124,7 @@
                 <div class="col s12">
                     <h5 class="titleInscription blue-text text-darken-3">Les Avantages :</h5>
                     <div class="input-field col s12">
+                    <i class="material-icons prefix blue-text text-darken-3">storage</i>
                         {% if (form_errors(edit_form.beneficeCompany))  %}
                             {{ form_widget(edit_form.beneficeCompany, { 'attr': {'class': 'materialize-textarea error'} }) }}
                         {% else %}
@@ -130,6 +137,7 @@
                         </div>
                     </div>
                     <div class="input-field col s12">
+                    <i class="material-icons prefix blue-text text-darken-3">storage</i>
                         {% if (form_errors(edit_form.profit))  %}
                             {{ form_widget(edit_form.profit, { 'attr': {'class': 'materialize-textarea error'} }) }}
                         {% else %}
@@ -144,6 +152,7 @@
                 </div>
                 <div class="col s12">
                     <h5 class="titleInscription blue-text text-darken-3">Photo :</h5>
+                    <i class="material-icons prefix blue-text text-darken-3">insert_photo</i>
                          {% if (form_errors(edit_form.photo))  %}
                             {{ form_widget(edit_form.photo, { 'attr': {'class': 'materialize-textarea error'} }) }}
                         {% else %}
@@ -153,14 +162,7 @@
                             {{ form_errors(edit_form.photo) }}
                         </div>
                 </div>
-                {#<div class="file-field input-field col s12 m6">#}
-                {#<div class="btn blue darken-3">Image#}
-                {#<input type="file">#}
-                {#</div>#}
-                {#<label for="image_project"></label>#}
-                {#{{ form_widget(form.photo, { 'attr': {'class': 'file-path-wrapper'} }) }}#}
-                {#</div>#}
-                <div class="col s12">
+                  <div class="col s12">
                     <div class="center">
                         <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
                         <a class="waves-effect waves-light btn amber darken-2"><input type="submit" value="Envoyer" /></a>
