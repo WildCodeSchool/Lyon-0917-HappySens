@@ -1,21 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseIn.html.twig' %}
 
-{% block body %}
-    <h1>Skill edit</h1>
+{% block content %}
+<div class="container">
+    <h1 class="center">Modifier le Talent : {{ skill.nameSkill }}</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
+    <div class="row">
+        <h5 class="titleInscription blue-text text-darken-3">Nom du Talent :</h5>
+        <div class="input-field col s12 m6 center">
+            <i class="material-icons prefix blue-text text-darken-3">create</i>
+            {% if (form_errors(edit_form.nameSkill)) %}
+                {{ form_widget(edit_form.nameSkill, {'attr': {'class': 'error'}}) }}
+            {% else %}
+                {{ form_widget(edit_form.nameSkill) }}
+            {% endif %}
+            <label for="skill"><span class="requireInput">* </span>Talent</label>
+            <div class="center error">
+                {{ form_errors(edit_form.nameSkill) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6 m3">
+            <input class='btn center' type="submit" value="Modifier"/>
+            {{ form_end(edit_form) }}
+        </div>
+        <div class="col s6 m3">
+            {{ form_start(delete_form) }}
+            <input class='btn right' type="submit" value="Supprimer">
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
     <ul>
         <li>
-            <a href="{{ path('skills_index') }}">Back to the list</a>
+            <a href="{{ path('skills_index') }}">Retour à la liste des Talents</a>
         </li>
         <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
+
         </li>
     </ul>
+</div>
 {% endblock %}

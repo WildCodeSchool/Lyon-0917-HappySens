@@ -4,8 +4,7 @@
     {{ include('partials/frame/loader.html.twig') }}
     <div class="container">
 
-        <a class="waves-effect waves-light btn pink darken-2" href="{{ path('listingCompany') }}">Toutes les
-            entreprises</a>
+        <a class="waves-effect waves-light btn pink darken-2" href="{{ path('profilAdmin', {'slug' : app.user.slug}) }}">Retour tableau de bord</a>
 
         <nav class="wrapper row">
             <ul class="center bread">
@@ -153,7 +152,7 @@
                     </div>
                 </div>
                 <div class="col s12">
-                    <h5 class="titleInscription blue-text text-darken-3">Colaborateurs :</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Collaborateurs :</h5>
                     <div class="input-field col s12">
                         {% if (form_errors(form.fileUsers)) %}
                             {{ form_widget(form.fileUsers, {'attr': {'class': 'error'}}) }}
