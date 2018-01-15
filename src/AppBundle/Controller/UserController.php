@@ -176,7 +176,7 @@ class UserController extends Controller
     public function editUserAction(Request $request, User $user, SlugService $slugService)
     {
 
-        if ($this->getUser()->getStatus() !== 1) {
+        if ($this->getUser()->getStatus() !== User::ROLE_ADMIN) {
             $user = $this->getUser();
 
 

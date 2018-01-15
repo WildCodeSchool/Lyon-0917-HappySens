@@ -92,6 +92,7 @@ class ProjectController extends Controller
         $nbLikes = count($project->getLikeProjects());
 
         $viewProject = $this->render('project/show.html.twig', array(
+            'user' => $user,
             'project' => $project,
             'nbLike' => $nbLikes,
             'delete_form' => $deleteForm->createView(),
