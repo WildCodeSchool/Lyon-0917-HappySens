@@ -158,14 +158,14 @@ class EmailService
     public function sendMailNewUser($user, $email_contact, $valueMdp)
     {
         $message = \Swift_Message::newInstance();
-        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+//        $img = $message->embed(Swift_Image::fromPath('/web/assets/images/logo2.png'));
         $message->setSubject("Votre compte happySens vient d'être créer")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $user->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/inscriptions/employe/newUser.html.twig', [
-                    'logo' => $img,
+//                    'logo' => $img,
                     'firstname' => $user->getFirstName(),
                     'lastname' => $user->getLastName(),
                     'email' => $user->getEmail(),
