@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Company;
 use AppBundle\Entity\UserHasSkill;
+use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\StatusProject;
 use AppBundle\Service\SlugService;
@@ -15,6 +16,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Constraints\Email;
 
 class UserController extends Controller
 {
@@ -175,6 +178,7 @@ class UserController extends Controller
 
         if ($this->getUser()->getStatus() !== 1) {
             $user = $this->getUser();
+
 
         }
 
@@ -399,5 +403,65 @@ class UserController extends Controller
                 'edit_form' => $editForm->createView(),]
         );
     }
+    /**
+     * Creates a new collaborater entity.
+     *
+     * @Route("/newCollaborater", name="newCollaborater")
+     * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_COMPANY')")
+     */
+    public function newActionUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService, EmailService $emailService)
+    {
+        $company = $this->getUser()->getCompany();
+
+        $user = new User();
+
+        $form = $this->createForm('AppBundle\Form\UserType', $user);
+        $form->remove('slug')
+            ->remove('phone')
+            ->remove('userskills')
+            ->remove('birthdate')
+            ->remove('photo')
+            ->remove('biography')
+            ->remove('slogan')
+            ->remove('job')
+            ->remove('workplace')
+            ->remove('mood')
+            ->remove('facebook')
+            ->remove('twitter')
+            ->remove('linkedin')
+            ->remove('is_active')
+            ->remove('date_update_mood')
+            ->remove('nativeLanguage')
+            ->remove('company')
+            ->remove('languagesUser');
+//        $form->get('company')->setData('$company');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $today = new \DateTime();
+            $temp = $today->getTimestamp() - 1515703308; // 1515703308 = Timestamp date created line so 2018/01/12
+            $passwordNotEncoder = bin2hex(random_bytes(5));
+            $password = $passwordEncoder->encodePassword($user, $passwordNotEncoder);
+            $user->setPassword($password);
+            $user->setStatus(User::ROLE_EMPLOYE);
+            $user->setIsActive(0);
+            $user->setCompany($company);
+            $user->setSlug($slugService->slugify($user->getFirstName() . ' ' . $user->getLastName() . ' ' . $temp));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            $emailService->sendMailNewUser($user, $this->container->getParameter('email_contact'), $passwordNotEncoder);
+
+            return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
+        }
+
+
+        return $this->render('pages/In/company/newCollaborater.html.twig', array(
+            'user' => $user,
+            'form' => $form->createView(),
+        ));
+    }
+
 
 }
