@@ -115,6 +115,7 @@ class UserController extends Controller
         $refHappySens = $em->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
         $projects = $em->getRepository('AppBundle:Company')->getProjectsInCompany($company->getId());
         $collaborators = $em->getRepository('AppBundle:Company')->getAllCollaboratorInCompany($company->getId());
+        $rangeNbSalary = $company->getRangeNbSalary();
         shuffle($collaborators);
 
         if (count($projects) > 0) {
@@ -133,6 +134,7 @@ class UserController extends Controller
             'refHappySens' => $refHappySens,
             'projects' => $projects,
             'collaborators' => $collaborators,
+            'rangeNbSalary' => $rangeNbSalary,
             ]);
 
 

@@ -243,17 +243,17 @@ class Company
     {
         $rangeNbSalary='';
         switch($this->nbSalary) {
-            case (Company::NB_SALARY_50) :
-                $rangeNbSalary = '0-50';
+            case (self::NB_SALARY_50) :
+                $rangeNbSalary = ' < 50';
                 break;
-            case (Company::NB_SALARY_250) :
-                $rangeNbSalary = '51-250';
+            case (self::NB_SALARY_250) :
+                $rangeNbSalary = '51 - 250';
                 break;
-            case (Company::NB_SALARY_500) :
-                $rangeNbSalary = '251-500';
+            case (self::NB_SALARY_500) :
+                $rangeNbSalary = '251 - 500';
                 break;
-            case (Company::NB_SALARY_MORE_500) :
-                $rangeNbSalary = '< 500';
+            case (self::NB_SALARY_MORE_500) :
+                $rangeNbSalary = ' > 500';
                 break;
         }
         return $rangeNbSalary;
