@@ -45,14 +45,18 @@ class AjaxController extends Controller
             $usersFind = $this->getDoctrine()->getRepository('AppBundle:ThreadWaiting')->findByIdComp($idComp);
             $userData = "";
             $usersCreated = [];
-            foreach($usersFind as $user) {
+            foreach($usersFind as $key => $user) {
                 $userData = $user->getUserData();
-                $usersCreated['email'] = $userData['email'];
-                $usersCreated['prenom'] = $userData['prenom'];
-                $usersCreated['nom'] = $userData['nom'];
-                $usersCreated['isTrait'] = $user->getIstrait();
+                $usersCreated[$key]['email'] = $userData['email'];
+                $usersCreated[$key]['prenom'] = $userData['prenom'];
+                $usersCreated[$key]['nom'] = $userData['nom'];
+                $usersCreated[$key]['isTrait'] = $user->getIstrait();
             }
-            return new JsonResponse(['data' => json_encode($usersCreated)]);
+
+
+            $test = $usersCreated;
+            unset($usersCreated);
+            return new JsonResponse(['data' => json_encode($test)]);
         }
         $errors = "Aucun utilisateur trouvé";
         return new JsonResponse(['errors' => json_encode('failed')]);

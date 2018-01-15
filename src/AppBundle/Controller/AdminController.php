@@ -97,6 +97,7 @@ class AdminController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $myFile = $company->getFileUsers();
+            $valuePwd = '1234';
             $fileName = $fileUploader->upload($myFile, "csvFiles");
             $logo = $company->getLogo();
             $logoName = $fileUploader->upload($logo, "photoCompany");
@@ -111,6 +112,8 @@ class AdminController extends Controller
 //        unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
             $now = new \DateTime('now');
             foreach($fileUsers as $key => $user) {
+                $user['key'] = $key;
+                $user['valuePwd'] = $valuePwd;
                 $thread = new ThreadWaiting();
                 $thread->setUserdata($user)
                     ->setIdcomp($company->getId())

@@ -22,7 +22,7 @@ class ThreadWaitingRepository extends \Doctrine\ORM\EntityRepository
             ->orderBy('w.datesend')
             ->getQuery()
             ->setFirstResult(0)
-            ->setMaxResults(50);
+            ->setMaxResults(250);
         return $qb->getResult();
     }
 

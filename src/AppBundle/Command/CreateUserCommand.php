@@ -49,9 +49,7 @@ class CreateUserCommand extends ContainerAwareCommand
                     $userData,
                     $emailContact
                 );
-                if($create == true) {
-                    $user->setIsTrait(true);
-                }
+                $user->setIsTrait(true);
                 $counter += 1;
             }
             $output->writeln("$counter user created");

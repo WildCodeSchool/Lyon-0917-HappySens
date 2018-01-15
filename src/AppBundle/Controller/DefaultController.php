@@ -83,7 +83,7 @@ class DefaultController extends Controller
      */
     public function testAction(Request $request, EmailService $mail)
     {
-        $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:ThreadWaiting')->findByIdComp(577);
+        $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:ThreadWaiting')->findOlders();
         dump($test);
 
         return 'nothing';
