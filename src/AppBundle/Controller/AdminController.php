@@ -156,6 +156,7 @@ class AdminController extends Controller
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
             unset($fileUsers[0]);
             unlink($fileUploader->getDirectory("csvFiles") . '/' . $company->getFileUsers());
+            //TODO change password
             $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234', $fileUsers[1]['email']);
             return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', array(
                 'fileUser' => $fileUsers,
@@ -233,7 +234,6 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('AppBundle:User')->getUserByType('happyCoach');
-        dump($users);
         return $this->render('pages/In/Admin/collaborators/index.html.twig', [
             'users' => $users,
             'listing' => 'HappyCoach',
