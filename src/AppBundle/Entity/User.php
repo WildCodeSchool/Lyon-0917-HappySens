@@ -81,7 +81,7 @@ class User implements UserInterface, \Serializable
      *      minMessage = "Indiquer le bon format : 0000000000",
      *      maxMessage = "Indiquer le bon format : 00-00-00-00-00"
      * )
-     * Assert\Regex(
+     * @Assert\Regex(
      *     pattern="#^0[1-9]([-. ]?[0-9]{2}){4}$#",
      *     match=false,
      *     message="Indiquer le bon format : 00-00-00-00-00"

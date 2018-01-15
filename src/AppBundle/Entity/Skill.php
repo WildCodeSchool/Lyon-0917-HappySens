@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Skill
@@ -24,6 +25,11 @@ class Skill
     /**
      * @var string
      * @ORM\Column(name="name_skill", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Le nom du talent doit contenir au moins plus de {{ limit }} caractères",
+     * )
      */
     private $nameSkill;
 
