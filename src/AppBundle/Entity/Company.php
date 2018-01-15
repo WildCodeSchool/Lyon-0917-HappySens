@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Company
 {
+    // Constant for nbSalaray => see function getRangeNbSalary()
+    const NB_SALARY_50 = 1; // 0-50 salary
+    const NB_SALARY_250 = 2; // 51-250 salary
+    const NB_SALARY_500 = 3; // 251-500 salary
+    const NB_SALARY_MORE_500 = 4; // < 500 salary
+
     /**
      * @var int
      *
@@ -226,6 +232,31 @@ class Company
     public function getNbSalary()
     {
         return $this->nbSalary;
+    }
+
+    /**
+     * Get rangeNbSalary
+     *
+     * @return integer
+     */
+    public function getRangeNbSalary()
+    {
+        $rangeNbSalary='';
+        switch($this->nbSalary) {
+            case (Company::NB_SALARY_50) :
+                $rangeNbSalary = '0-50';
+                break;
+            case (Company::NB_SALARY_250) :
+                $rangeNbSalary = '51-250';
+                break;
+            case (Company::NB_SALARY_500) :
+                $rangeNbSalary = '251-500';
+                break;
+            case (Company::NB_SALARY_MORE_500) :
+                $rangeNbSalary = '< 500';
+                break;
+        }
+        return $rangeNbSalary;
     }
 
     /**

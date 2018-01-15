@@ -4,7 +4,7 @@
     <div class="container">
 
        <div class="row">
-            <h1>Company edit</h1>
+            <h1 class="center">Modifier le profil de l'entreprise : {{ company.name }}</h1>
         </div>
         <nav class="wrapper row">
             <ul class="center bread">
@@ -34,9 +34,9 @@
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Date de Création :</h5>
                     {% if (form_errors(edit_form.birthdate))  %}
-                        {{ form_row(edit_form.birthdate, {'attr': {'class': 'datepicker error'}}) }}
+                        {{ form_row(edit_form.birthdate, {'attr': {'class': 'datepickerCompany error'}}) }}
                     {% else %}
-                        {{ form_row(edit_form.birthdate, {'attr': {'class': 'datepicker'}}) }}
+                        {{ form_row(edit_form.birthdate, {'attr': {'class': 'datepickerCompany'}}) }}
                     {% endif %}
                     <div class="center error">
                         {{ form_errors(edit_form.birthdate) }}
@@ -88,6 +88,49 @@
                         </div>
                     </div>
                 </div>
+                <div class="col s12 m6">
+                   <h5 class="titleInscription blue-text text-darken-3">Facebook :</h5>
+                   <div class="range-field col s12">
+                       <i class="fa fa-facebook-square fa-2x blue-text text-darken-3 hoverable"></i>
+                        {% if (form_errors(edit_form.facebook)) %}
+                            {{ form_row(edit_form.facebook, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_row(edit_form.facebook) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.facebook) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <h5 class="titleInscription blue-text text-darken-3">Twitter</h5>
+                    <div class="range-field col s12">
+                        <i class="fa fa-twitter-square fa-2x blue-text text-darken-3 hoverable"></i>
+                        {% if (form_errors(edit_form.twitter)) %}
+                            {{ form_row(edit_form.twitter, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_row(edit_form.twitter) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.twitter) }}
+                        </div>
+                    </div>
+               </div>
+                <div class="col s12 m6">
+                    <h5 class="titleInscription blue-text text-darken-3">linkedin :</h5>
+                    <div class="range-field col s12">
+                        <i class="fa fa-linkedin-square fa-2x blue-text text-darken-3 hoverable"></i>
+                        {% if (form_errors(edit_form.linkedin)) %}
+                            {{ form_row(edit_form.linkedin, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_row(edit_form.linkedin) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.linkedin) }}
+                        </div>
+                      </div>
+                </div>
+
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Logo :</h5>
                     <div class="file-field input-field col s12">
@@ -115,7 +158,7 @@
         <div id="step2" class="hide">
             <div class="row">
                 <div class="col s12">
-                    <h5 class="titleInscription blue-text text-darken-3">Slogan :</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Le bonheur au travail c'est :</h5>
                     <div class="input-fiel col s12">
                         {% if (form_errors(edit_form.slogan)) %}
                             {{ form_widget(edit_form.slogan, {'attr': {'class': 'error'}}) }}
@@ -128,7 +171,7 @@
                     </div>
                 </div>
                 <div class="col s12">
-                    <h5 class="titleInscription blue-text text-darken-3">Qualités :</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Les enjeux collectifs de la qualité de Vie au Travail :</h5>
                     <div class="input-field col s12">
                         {% if (form_errors(edit_form.quality)) %}
                             {{ form_widget(edit_form.quality, {'attr': {'class': 'error'}}) }}
@@ -156,7 +199,7 @@
                 <div class="center">
                     <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
 
-                    <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Edit"/>
+                    <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Editer le profil"/>
                 </div>
             </div>
             {{ form_end(edit_form) }}
