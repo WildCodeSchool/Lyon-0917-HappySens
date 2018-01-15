@@ -395,26 +395,9 @@ class UserController extends Controller
 
         $user = new User();
 
-        $form = $this->createForm('AppBundle\Form\UserType', $user);
-        $form->remove('slug')
-            ->remove('phone')
-            ->remove('userskills')
-            ->remove('birthdate')
-            ->remove('photo')
-            ->remove('biography')
-            ->remove('slogan')
-            ->remove('job')
-            ->remove('workplace')
-            ->remove('mood')
-            ->remove('facebook')
-            ->remove('twitter')
-            ->remove('linkedin')
-            ->remove('is_active')
-            ->remove('date_update_mood')
-            ->remove('nativeLanguage')
-            ->remove('company')
-            ->remove('languagesUser');
-//        $form->get('company')->setData('$company');
+        $form = $this->createForm('AppBundle\Form\NewUserType', $user);
+        $form->remove('status');
+        $form->remove('company');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
