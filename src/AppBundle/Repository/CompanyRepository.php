@@ -27,7 +27,7 @@ class  CompanyRepository extends \Doctrine\ORM\EntityRepository
             ->addOrderBy('level', "desc")
             ->setParameter('idCompany', $companyId)
             ->groupBy('s.nameSkill')
-            ->setMaxResults(5)
+//            ->setMaxResults(5)
              ->where('c.id=:idCompany')
             ->getQuery();
         return $qb->getResult();

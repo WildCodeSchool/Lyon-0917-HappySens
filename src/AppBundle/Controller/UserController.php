@@ -237,8 +237,8 @@ class UserController extends Controller
             }
         }
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            if(!empty($editForm['logo']->getData())) {
-                unlink($fileUploader->getDirectory("photoCompany") . '/' .$company->getLogo());
+            if (!empty($editForm['logo']->getData())) {
+                unlink($fileUploader->getDirectory("photoCompany") . '/' . $company->getLogo());
                 $logo = $editForm['logo']->getData();
                 $logoName = $fileUploader->upload($logo, "photoCompany");
                 $company->setLogo($logoName);
@@ -247,14 +247,14 @@ class UserController extends Controller
             $this->getDoctrine()->getManager()->flush();
             if ($this->getUser()->getIsActive() == false || $this->getUser()->getIsActive() !== 1) {
                 return $this->redirectToRoute('User_edit', array('slug' => $this->getUser()->getSlug()));
-            }
-            else {
+            } else {
                 return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
             }
         }
         return $this->render('pages/In/company/editCompany.html.twig', [
             'company' => $company,
-            'edit_form' => $editForm->createView(),]);
+            'edit_form' => $editForm->createView(),
+            ]);
     }
 
     /**
@@ -357,28 +357,7 @@ class UserController extends Controller
     public function updateMoodAction(Request $request, User $user, SlugService $slugService)
     {
         $user = $this->getUser();
-        $editForm = $this->createForm('AppBundle\Form\UserType', $user);
-        $editForm->remove('slug')
-            ->remove('firstName')
-            ->remove('lastName')
-            ->remove('phone')
-            ->remove('email')
-            ->remove('status')
-            ->remove('birthdate')
-            ->remove('photo')
-            ->remove('biography')
-            ->remove('slogan')
-            ->remove('password')
-            ->remove('job')
-            ->remove('workplace')
-            ->remove('facebook')
-            ->remove('twitter')
-            ->remove('linkedin')
-            ->remove('is_active')
-            ->remove('date_update_mood')
-            ->remove('nativeLanguage')
-            ->remove('company')
-            ->remove('languagesUser');
+        $editForm = $this->createForm('AppBundle\Form\MoodType', $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
