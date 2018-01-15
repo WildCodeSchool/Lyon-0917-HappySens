@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 
@@ -129,32 +130,46 @@ class ProjectController extends Controller
      * @Route("/{slug}/edit", name="project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project, SlugService $slugService)
+    public function editAction(Request $request, Project $project, FileUploader $fileUploader, SlugService $slugService)
     {
         $project->setPhoto(
             new File('uploads/photoProject'.'/'.$project->getPhoto())
         );
         $deleteForm = $this->createDeleteForm($project);
+        if ($project->getPhoto() !== NULL) {
+            $photoTemp = $project->getPhoto();
+            $project->setPhoto(
+                new File($this->getParameter('upload_directory').'/photoProject/'.$project->getPhoto())
+            );
+        }
+
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
+        $editForm->remove('startingDate');
         $editForm->remove('author');
         $editForm->remove('status');
-        $editForm->remove('photo');
         $editForm->remove('likeProjects');
         $editForm->remove('teamProject');
         $editForm->remove('slug');
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if ($editForm->getData()->getPhoto() !== NULL) {
+                $file = $project->getPhoto();
+                $fileName = $fileUploader->upload($file, "photoProject");
+                $project->setPhoto($fileName);
+            } else {
+                $project->setPhoto($photoTemp);
+            }
+
             $project->setSlug($slugService->slugify($project->getTitle()));
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('project_edit', array('slug' => $project->getSlug()));
+            return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }
 
         return $this->render('project/edit.html.twig', array(
             'project' => $project,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+          /*  'delete_form' => $deleteForm->createView(),*/
         ));
     }
 
