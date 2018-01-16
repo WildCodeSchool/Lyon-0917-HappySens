@@ -67,7 +67,7 @@ class ProjectController extends Controller
             $em->flush();
             $this->addFlash(
                 'notif',
-                'Votre projet à bien était créer !'
+                'Votre projet a bien été créé !'
             );
             return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }
@@ -101,7 +101,7 @@ class ProjectController extends Controller
             if ($user->getCompany() === $project->getAuthor()->getCompany()) {
                 return $viewProject;
             } else {
-                throw new AccessDeniedException("ce n'est pas un projet de ton entreprise");
+                throw new AccessDeniedException("Vous n'êtes pas autorisé à voir un projet d'une autre entreprise");
             }
         }
 
@@ -117,7 +117,7 @@ class ProjectController extends Controller
                     return $viewProject;
                 }
             }
-            throw new AccessDeniedException("tu ne travailles pas sur ce projet");
+            throw new AccessDeniedException("Vous n'êtes pas autorisé à travailler sur ce projet");
         }
         return $viewProject;
     }
