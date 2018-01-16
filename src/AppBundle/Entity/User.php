@@ -83,7 +83,7 @@ class User implements UserInterface, \Serializable
      * )
      * @Assert\Regex(
      *     pattern="#^0[1-9]([-. ]?[0-9]{2}){4}$#",
-     *     match=false,
+     *     match=true,
      *     message="Indiquer le bon format : 00-00-00-00-00"
      * )
      */
