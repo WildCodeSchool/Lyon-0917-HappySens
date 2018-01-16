@@ -29,11 +29,13 @@ class UserType extends AbstractType
             ->add('phone')
             ->add('email')
             ->add('status', HiddenType::class)
-            ->add('birthdate', BirthdayType::class, [
-                'placeholder' => array(
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day'
-                )
-            ])
+            ->add('birthdate', BirthdayType::class,
+                [
+                    'label' => 'Date de naissance',
+                    'widget' => 'single_text',
+                    'format' => 'dd-MM-yyyy',
+            ]
+    )
             ->add('photo',FileType::class, [
                 'label' => 'Votre photo',
                 'required' => false,
@@ -75,14 +77,17 @@ class UserType extends AbstractType
             'allow_delete' => true,
             'by_reference' => false,
         ])
-        ->add('facebook', UrlType::class, [
-            'required' => false,
-        ])
+            ->add('facebook', UrlType::class, [
+                'required' => false,
+                'label' => 'https://www.facebook.com/',
+            ])
             ->add('twitter', UrlType::class, [
                 'required' => false,
+                'label' => 'https://twitter.com/',
             ])
             ->add('linkedin', UrlType::class, [
                 'required' => false,
+                'label' => 'https://www.linkedin.com/in/',
             ]);
     }
 

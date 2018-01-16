@@ -13,7 +13,6 @@
         {{ form_start(edit_form) }}
         <br>
         {#step#}
-        {#{{ form_widget(edit_form.userskills) }}#}
 
         <div id="step1">
             <div class="row">
@@ -100,18 +99,10 @@
 
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Date d'Anniversaire :</h5>
-                    {% if (form_errors(edit_form.birthdate)) %}
-                        {{ form_widget(edit_form.birthdate, {'attr': {'class': 'error'}}) }}
+                    {% if (form_errors(edit_form.birthdate))  %}
+                        {{ form_row(edit_form.birthdate, {'attr': {'class': 'datepickerUser error'}}) }}
                     {% else %}
-                        <div class="col s3">
-                            {{ form_widget(edit_form.birthdate.year) }}
-                        </div>
-                        <div class="col s3">
-                            {{ form_widget(edit_form.birthdate.month) }}
-                        </div>
-                        <div class="col s3">
-                            {{ form_widget(edit_form.birthdate.day) }}
-                        </div>
+                        {{ form_row(edit_form.birthdate, {'attr': {'class': 'datepickerUser'}}) }}
                     {% endif %}
                     <div class="center error">
                         {{ form_errors(edit_form.birthdate) }}
@@ -202,25 +193,25 @@
                 <div class="col s12 m6">
                     <h5 class="titleInscription blue-text text-darken-3">Facebook :</h5>
                     <div class="range-field col s12">
-                        <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
+                        <i class="fa fa-facebook-square fa-2x blue-text text-darken-3 hoverable"></i>
                         {% if (form_errors(edit_form.facebook)) %}
-                            {{ form_widget(edit_form.facebook, {'attr': {'class': 'error'}}) }}
+                            {{ form_row(edit_form.facebook, {'attr': {'class': 'error'}}) }}
                         {% else %}
-                            {{ form_widget(edit_form.facebook) }}
+                            {{ form_row(edit_form.facebook) }}
                         {% endif %}
                         <div class="center error">
-                            {{ form_errors(edit_form.facebook) }}
+                            {#{{ form_errors(edit_form.facebook) }}#}
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m6">
                     <h5 class="titleInscription blue-text text-darken-3">Twitter</h5>
                     <div class="range-field col s12">
-                        <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
+                        <i class="fa fa-twitter-square fa-2x blue-text text-darken-3 hoverable"></i>
                         {% if (form_errors(edit_form.twitter)) %}
-                            {{ form_widget(edit_form.twitter, {'attr': {'class': 'error'}}) }}
+                            {{ form_row(edit_form.twitter, {'attr': {'class': 'error'}}) }}
                         {% else %}
-                            {{ form_widget(edit_form.twitter) }}
+                            {{ form_row(edit_form.twitter) }}
                         {% endif %}
                         <div class="center error">
                             {{ form_errors(edit_form.twitter) }}
@@ -230,11 +221,11 @@
                 <div class="col s12 m6">
                     <h5 class="titleInscription blue-text text-darken-3">linkedin :</h5>
                     <div class="range-field col s12">
-                        <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
+                        <i class="fa fa-linkedin-square fa-2x blue-text text-darken-3 hoverable"></i>
                         {% if (form_errors(edit_form.linkedin)) %}
-                            {{ form_widget(edit_form.linkedin, {'attr': {'class': 'error'}}) }}
+                            {{ form_row(edit_form.linkedin, {'attr': {'class': 'error'}}) }}
                         {% else %}
-                            {{ form_widget(edit_form.linkedin) }}
+                            {{ form_row(edit_form.linkedin) }}
                         {% endif %}
                         <div class="center error">
                             {{ form_errors(edit_form.linkedin) }}
@@ -266,7 +257,7 @@
                 </div>
             </div>
             <div class="col s12">
-                <h5 class="titleInscription blue-text text-darken-3">Slogan :</h5>
+                <h5 class="titleInscription blue-text text-darken-3">Le bonheur au travail c'est .. :</h5>
                 <div class="input-field col s12">
                     <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
                     {% if (form_errors(edit_form.slogan)) %}
@@ -294,8 +285,11 @@
                     </div>
                 </div>
             </div>
-        </div>
 
+        <div class="center">
+            <a class="waves-effect waves-light btn amber darken-3" onclick="goStep4()">suivant</a>
+        </div>
+        </div>
         {#step4#}
         <div id="step4" class="hide">
             <div class="row">
@@ -316,7 +310,7 @@
                             {{ form_widget(edit_form.userskills, {'attr': {'class': 'error'}}) }}
                         {% endif %}
                         <div class="center error">
-                            {{ form_errors(edit_form.userskills) }}
+                            {{ form_errors(edit_form) }}
                         </div>
                     </div>
                 </div>
@@ -325,7 +319,7 @@
                 {{ form_label(edit_form.userskills) }}
             </div>
             <div class="center">
-                <button class="waves-effect waves-light btn blue darken-3" onclick="goStep2()">retour</button>
+                <button class="waves-effect waves-light btn blue darken-3" onclick="goStep3()">retour</button>
                 <button class="waves-effect waves-light btn pink darken-2" type="submit">Envoyer</button>
             </div>
             <br>
