@@ -149,7 +149,7 @@ class Project
     private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="happyCoachRef")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="happyCoachRef")
      */
     private $happyCoach;
 

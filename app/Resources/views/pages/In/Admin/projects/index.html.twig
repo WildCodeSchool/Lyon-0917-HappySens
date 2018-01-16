@@ -33,23 +33,24 @@
                         </div>
                         <div>
                             <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
-                                <div class="chip">
+                                <div class="chip amber darken-2">
                                     <img src="{{ project.author.photo }}" alt="photo {{ project.author }}"> <!-- notice the "circle" class -->
                                     <span class="black-text">{{ project.author }}</span>
                                 </div>
                             </a>
                             {% if project.happyCoach is defined and project.happyCoach is not null%}
-                                {#<a href="{{ path('UserProfil', { 'slug': project.happyCoach.slug }) }}">#}
-                                    <div class="chip right">
-                                        {#<img src="{{ project.happyCoach.photo }}" alt="photo {{ project.happyCoach }}">#}
+                                <a href="{{ path('profilHappyCoach', { 'slug': project.happyCoach.slug }) }}">
+                                    <div class="chip pink darken-2">
+                                        <img src="{{ project.happyCoach.photo }}" alt="photo {{ project.happyCoach }}">
                                         <!-- notice the "circle" class -->
-                                        {#<span class="black-text">{{ project.happyCoach }}</span>#}
+                                        <span class="black-text">{{ project.happyCoach }}</span>
                                     </div>
-                                {#</a>#}
+                                </a>
                             {% else %}
-                                <div class="chip">
-                                    <a href="{{ path('addHappyCoach', {'slugProject' : project.slug}) }}">
-                                        <span class="black-text">Ajouter un HappyCoach</span></a>
+                                <div class="btn pink darken-2">
+                                    <a href="{{ path('addHappyCoach', {'slug' : project.slug}) }}">
+
+                                        <span class="white-text"> + HappyCoach Référent</span></a>
                                 </div>
                             {% endif %}
                             <div class="row">

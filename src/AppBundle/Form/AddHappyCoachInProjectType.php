@@ -8,13 +8,15 @@
 
 namespace AppBundle\Form;
 
-
 use AppBundle\Entity\Project;
 use AppBundle\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AddHappyCoachInProjectType
+class AddHappyCoachInProjectType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -23,11 +25,15 @@ class AddHappyCoachInProjectType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('happyCoach', EntityType::class, [
-                'class' => User::class,
-                'required' => false,
-                'empty_data' => null,
-                'multiple' => false,
-            ]);
+            'class' => User::class,
+            'required' => false,
+            'empty_data' => null,
+            'multiple' => false,
+            'query_builder' => function (EntityRepository $er) {
+                return $er->createQueryBuilder('u')
+                    ->where('u.status = 4');
+            },
+        ]);
     }
 
     /**
