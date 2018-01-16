@@ -162,17 +162,11 @@ class EmailService
     public function sendMailNewUser($user, $email_contact, $valueMdp)
     {
         $message = \Swift_Message::newInstance();
-<<<<<<< HEAD
-
         $finder = new Finder();
         foreach ($finder->in([__DIR__, 'web/assets/images/'])->name('logo2.png') as $file) {
             $img = $message->embed(Swift_Image::fromPath($file));
         }
         $message->setSubject("Votre compte happySens vient d'être créer")
-=======
-        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-        $message->setSubject("Votre compte happySens vient d'être créé")
->>>>>>> b299c95f278e174df96512ebd28614ad75575331
             ->setCharset("utf-8")
             ->setTo([$email_contact, $user->getEmail()])
             ->setFrom([$this->sender => self::SENDER])

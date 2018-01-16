@@ -20,6 +20,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -158,8 +159,7 @@ class AdminController extends Controller
 
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
             unset($fileUsers[0]);
-<<<<<<< HEAD
-//        unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
+
             $now = new \DateTime('now');
             foreach($fileUsers as $key => $user) {
                 $user['key'] = $key;
@@ -173,11 +173,9 @@ class AdminController extends Controller
             }
             $em->flush();
 
-=======
             unlink($fileUploader->getDirectory("csvFiles") . '/' . $company->getFileUsers());
             //TODO change password
->>>>>>> b299c95f278e174df96512ebd28614ad75575331
-            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234', $fileUsers[1]['email']);
+            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), $valuePwd, $fileUsers[1]['email']);
 
             return $this->redirectToRoute('resume_create_company', array(
                 'id' => $company->getId(),
@@ -391,7 +389,6 @@ class AdminController extends Controller
 
             return $this->redirectToRoute('project_edit', array('slug' => $project->getSlug()));
         }
-dump($project);
         return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', array(
             'project' => $project,
             'edit_form' => $editForm->createView(),
