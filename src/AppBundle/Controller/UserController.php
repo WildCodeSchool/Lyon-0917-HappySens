@@ -179,13 +179,12 @@ class UserController extends Controller
             $user = $this->getUser();
         }
 
+        $photoTemp = $user->getPhoto();
         if ($user->getPhoto() !== NULL) {
-            $photoTemp = $user->getPhoto();
             $user->setPhoto(
                 new File($this->getParameter('upload_directory').'/photoUser/'.$user->getPhoto())
             );
-        } else {
-            $photoTemp = $user->getPhoto();
+            $photoTempEntire = $user->getPhoto();
         }
 
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
@@ -195,6 +194,9 @@ class UserController extends Controller
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             if ($editForm->getData()->getPhoto() !== NULL) {
+                if (isset($photoTempEntire)) {
+                    unlink($photoTempEntire);
+                }
                 $file = $user->getPhoto();
                 $fileName = $fileUploader->upload($file, "photoUser");
                 $user->setPhoto($fileName);
@@ -218,6 +220,9 @@ class UserController extends Controller
                 }
                 if ($user->getStatus() == User::ROLE_HAPPYCOACH) {
                     return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
+                }
+                if ($user->getStatus() == User::ROLE_ADMIN) {
+                    return $this->redirectToRoute('profilAdmin', array('slug' => $user->getSlug()));
                 }
             } else {
                 return $this->redirectToRoute('User_edit', array('slug' => $user->getSlug()));
