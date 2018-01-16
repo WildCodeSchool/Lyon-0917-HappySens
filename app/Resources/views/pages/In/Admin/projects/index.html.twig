@@ -80,15 +80,31 @@
                             {{ project.title }} |  | {{ project.author.company.name }}
                             <i class="material-icons right">close</i>
                         </div>
+
                         <div class="row">
                             <div>
                                 <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
-                                    <div class="chip left">
+                                    <div class="chip left amber darken-2">
                                         <img src="{{ project.author.photo }}" alt="Logo company"> <!-- notice the "circle" class -->
                                         <span class="black-text">{{ project.author }}</span>
                                     </div>
                                 </a>
                             </div>
+                            {% if project.happyCoach is defined and project.happyCoach is not null%}
+                                <a href="{{ path('profilHappyCoach', { 'slug': project.happyCoach.slug }) }}">
+                                    <div class="chip pink darken-2">
+                                        <img src="{{ project.happyCoach.photo }}" alt="photo {{ project.happyCoach }}">
+                                        <!-- notice the "circle" class -->
+                                        <span class="black-text">{{ project.happyCoach }}</span>
+                                    </div>
+                                </a>
+                            {% else %}
+                                <div class="btn pink darken-2">
+                                    <a href="{{ path('addHappyCoach', {'slug' : project.slug}) }}">
+
+                                        <span class="white-text"> + HappyCoach Référent</span></a>
+                                </div>
+                            {% endif %}
                             <div>
                                 {% if project.status == 1 %}
                                     <div class="chip inProgress right">
@@ -107,9 +123,13 @@
                                     </div>
                                 {% endif %}
                             </div>
+                            {#<p>{{ include ('project/projectTeam.html.twig') }}</p>#}
+                            <p>{{ project.presentation }}</p>
+                            <p><a href="{{ path('addHappyCoachTeam', { 'slug': project.slug}) }}">Ajouter des HappyCoachs</a></p>
+
                         </div>
-                        <p>{{ project.presentation }}</p>
-                        <p>{{ project.beneficeCompany }}</p>
+
+
                         <div class="footerReveal">
                             <div class="left">
                                 <a href="{{ path('project_show', {'slug' : project.slug}) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>

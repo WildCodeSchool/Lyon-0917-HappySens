@@ -361,4 +361,30 @@ class AdminController extends Controller
             ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * Add HappyCoach in team
+     *
+     * @Route("/project/{slug}/addHappyCoachTeam", name="addHappyCoachTeam")
+     * @param Project $project The Project entity
+     * @Method({"GET", "POST"})
+     */
+    public function addHappyCoachTeamAction(Request $request, Project $project)
+    {
+
+        $editForm = $this->createForm('AppBundle\Form\AddHappyCoachInTeamType', $project);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('profilAdmin', array('slug' => $this->getUser()->getSlug()));
+        }
+        return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', [
+            'project' => $project,
+            'edit_form' => $editForm->createView(),
+        ]);
+    }
+
 }

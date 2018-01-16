@@ -4,13 +4,12 @@
 
 {% block content %}
 
-
     <div class="container">
         <h1 class="center">HappyCoach référent du projet : {{ project.title }}</h1>
         {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
         <input type="submit" value="Valider" />
         {{ form_end(edit_form) }}
-
     </div>
+
 {% endblock %}
