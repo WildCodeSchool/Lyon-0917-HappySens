@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Company
@@ -25,6 +26,13 @@ class Company
      * @var string
      *
      * @ORM\Column(name="activity", type="string", length=100, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 255,
+     *      minMessage = "L'activité de votre entreprise doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "L'activité de votre entreprise de votre projet ne doit pas contenir plus de {{ limit }} caractères"
+     *      )
      */
     private $activity;
 
@@ -32,6 +40,14 @@ class Company
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=100)
+     * @Assert\NotBlank()
+     * @Assert\Type("String")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Le nom de votre entreprise doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom de votre entreprise doit contenir moins de  {{ limit }} caractères"
+     * )
      */
     private $name;
 
@@ -49,6 +65,13 @@ class Company
      * @var string
      *
      * @ORM\Column(name="slogan", type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 255,
+     *      minMessage = "Votre slogan doit contenir au moins plus de {{ limit }} caractères",
+     *      maxMessage = "Votre slogan ne doit pas contenir plus de {{ limit }} caractères"
+     * )
      */
     private $slogan;
 
@@ -56,6 +79,11 @@ class Company
      * @var string
      *
      * @ORM\Column(name="quality", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Vos qualités doivent contenir au moins plus de {{ limit }} caractères",
+     * )
      */
     private $quality;
 
@@ -63,6 +91,11 @@ class Company
      * @var string
      *
      * @ORM\Column(name="three_criteria", type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Vos critères doivent contenir au moins plus de {{ limit }} caractères",
+     * )
      */
     private $threeCriteria;
 
@@ -116,6 +149,7 @@ class Company
 
     /**
      * @var string
+     * @ORM\Column(name="file_users", type="string",  length=255, nullable=true)
      */
     private $fileUsers;
 

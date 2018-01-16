@@ -4,25 +4,30 @@
         .contentNewCompany {
             padding: 50px;
         }
+
         .infosOthers {
             margin: 50px 0 0 0;
         }
     </style>
 {% endblock %}
 {% block content %}
-    <h1 class="title">L'entreprise {{ name }} est désormais inscrit sur HappySens,</h1>
+    <h1 class="title">Bienvenue {{ name }}, sur votre plateforme HappySens,</h1>
     <div class="contentNewCompany">
         <div class="list">
-            <span class="introList">Les identifiants temporaires sont les suivants:</span>
+            <span class="introList">Vos identifiants temporaires sont les suivants:</span>
             <ul class="text">
                 <li class="content">Email : {{ email }} </li>
                 <li class="content">Mot de passe temporaire : {{ password }} </li>
             </ul>
         </div>
-        <p class="infosOthers">Vous retrouverez toutes les informations sur votre entreprise, et n'oubliez de changez votre MDP lors de votre 1ere connexion.</p>
+        <p class="infosOthers">Nous vous invitons à bien renseigner le profil de votre entreprise et à découvrir sans
+            tarder cet espace dédié au bonheur et au bien-être de vos collaborateurs. N'oubliez pas de modifier votre
+            mot de passe lors de votre première connexion.</p>
         <a href="http://happysens.fr/login">
             <button>Accéder à votre page</button>
         </a>
-        <p class="content">Lors de votre connexion vous devrez modifier vos infos et changer de Mdp.</p>
+        <p class="content">Nous vous souhaitons une agréable utilisation.</p>
     </div>
 {% endblock %}
+
+
