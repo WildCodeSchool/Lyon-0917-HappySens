@@ -123,7 +123,7 @@ class AdminController extends Controller
             }
             $em->flush();
 
-//            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234', $fileUsers[1]['email']);
+            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234', $fileUsers[1]['email']);
 
             return $this->redirectToRoute('resume_create_company', array(
                 'id' => $company->getId(),
