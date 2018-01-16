@@ -14,14 +14,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Validator\Constraints\Email;
 
 class UserController extends Controller
 {
-
 
     /**
      * Finds and displays a user entity.
@@ -173,13 +172,20 @@ class UserController extends Controller
      * @param SlugService $slugService
      * @return mixed
      */
-    public function editUserAction(Request $request, User $user, SlugService $slugService)
+    public function editUserAction(Request $request, User $user, SlugService $slugService, FileUploader $fileUploader,
+                                   UserPasswordEncoderInterface $passwordEncoder)
     {
-
         if ($this->getUser()->getStatus() !== User::ROLE_ADMIN) {
             $user = $this->getUser();
+        }
 
-
+        if ($user->getPhoto() !== NULL) {
+            $photoTemp = $user->getPhoto();
+            $user->setPhoto(
+                new File($this->getParameter('upload_directory').'/photoUser/'.$user->getPhoto())
+            );
+        } else {
+            $photoTemp = $user->getPhoto();
         }
 
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
@@ -188,6 +194,16 @@ class UserController extends Controller
         $editForm->remove('company');
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if ($editForm->getData()->getPhoto() !== NULL) {
+                $file = $user->getPhoto();
+                $fileName = $fileUploader->upload($file, "photoUser");
+                $user->setPhoto($fileName);
+            } else {
+                $user->setPhoto($photoTemp);
+            }
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+
             $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
             if ($user->getIsActive() == false) {
                 $user->setIsActive(1);
@@ -210,7 +226,8 @@ class UserController extends Controller
         }
         return $this->render('pages/In/collaborators/editUser.html.twig', [
             'user' => $user,
-            'edit_form' => $editForm->createView()]);
+            'edit_form' => $editForm->createView(),
+            ]);
     }
 
     /**

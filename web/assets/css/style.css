@@ -291,6 +291,7 @@ nav {
 
 .loginConnect .iClose {
   color: #252F3D; }
+
 .loginConnect .hidden {
   display: none; }
 
@@ -299,6 +300,7 @@ nav {
   .modal-content-Connect a:hover {
     color: #4dabe6;
     cursor: pointer; }
+
 .modal-content-Connect a.btn {
   color: white; }
 
@@ -482,12 +484,15 @@ nav {
 
 .chip img {
   background-color: #fff; }
+
 .chip.validate {
   background-color: rgba(34, 139, 34, 0.8);
   color: white; }
+
 .chip.inProgress {
   background-color: rgba(255, 165, 0, 0.8);
   color: white; }
+
 .chip.end {
   background-color: rgba(255, 0, 0, 0.8);
   color: white; }
@@ -652,8 +657,10 @@ ul.switch li.active, ul.switch li.active {
   color: white; }
   .followUs a:hover {
     color: grey; }
+
 .followUs .margin {
   margin: 5px 0; }
+
 .followUs li {
   font-size: 1.2em;
   color: white; }
@@ -724,6 +731,7 @@ ul.switch li.active, ul.switch li.active {
 .blocExplainEntreprise h3 {
   font-size: 3em;
   font-family: "Quicksand", sans-serif; }
+
 .blocExplainEntreprise .containExplainEntreprise {
   padding: 30px 35px;
   text-align: left; }
@@ -872,11 +880,13 @@ ul.switch li.active, ul.switch li.active {
   font-size: 3em;
   font-family: "Quicksand", sans-serif;
   margin-bottom: 40px; }
+
 .blocExplainIndex h5 {
   font-size: 1.5em;
   margin: 50px 5px;
   font-family: "Quicksand", sans-serif;
   color: #252F3D; }
+
 .blocExplainIndex .containExplainIndex {
   margin-top: 50px; }
   .blocExplainIndex .containExplainIndex i {
@@ -976,8 +986,10 @@ ul.switch li.active, ul.switch li.active {
 
 .revealProject .row {
   padding: 20px 5px; }
+
 .revealProject p {
   padding: 0 10px; }
+
 .revealProject .footerReveal {
   padding: 15px 5px;
   margin-top: 10px; }
@@ -1057,7 +1069,7 @@ ul.switch li.active, ul.switch li.active {
       padding: 0;
       text-align: center;
       margin: auto;
-      width: 32%; }
+      width: 24%; }
       .wrapper ul li a {
         color: #ccc;
         text-decoration: none;
