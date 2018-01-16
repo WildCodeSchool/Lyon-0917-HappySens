@@ -189,7 +189,7 @@ class User implements UserInterface, \Serializable
     private $authorProject;
 
     /**
-     * @ORM\OneToOne(targetEntity="Project", mappedBy="happyCoach")
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="happyCoach")
      */
     private $happyCoachRef;
 

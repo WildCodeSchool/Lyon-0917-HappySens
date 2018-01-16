@@ -6,140 +6,146 @@
         <ul class="row">
             {% for project in projects %}
                 {% if project.author != null %}
-                <li class="card medium col s12 m6">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="{{ asset('uploads/photoProject/' ~ project.photo) }}" alt="">
-                    </div>
-                    {% if project.status == 1 %}
-                        <div class="chip inProgress chipStatus">
-                            <span><i class="fa fa-clock-o"></i></span>
-                            <span>Attente</span>
+                    <li class="card medium col s12 m6">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="{{ asset('uploads/photoProject/' ~ project.photo) }}"
+                                                         alt="photo {{ project.photo }}">
                         </div>
-                    {% elseif project.status == 2 %}
-                        <div class="chip validate chipStatus">
-                            <span><i class="fa fa-clock-o"></i></span>
-                            <span>En cours</span>
-                        </div>
-                    {% elseif project.status == 3 %}
-                        <div class="chip end chipStatus">
-                            <span><i class="fa fa-clock-o"></i></span>
-                            <span>Terminé</span>
-                        </div>
-                    {% endif %}
-                    <div class="card-content">
-                        <div class="card-title activator grey-text text-darken-4">
-                            <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
-                            <span class="truncate">{{ project.title }} | {{ project.author.company.name }}</span>
-                        </div>
-                        <div>
-                            <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
-                                <div class="chip amber darken-2">
-                                    <img src="{{ project.author.photo }}" alt="photo {{ project.author }}"> <!-- notice the "circle" class -->
-                                    <span class="black-text">{{ project.author }}</span>
-                                </div>
-                            </a>
-                            {% if project.happyCoach is defined and project.happyCoach is not null%}
-                                <a href="{{ path('profilHappyCoach', { 'slug': project.happyCoach.slug }) }}">
-                                    <div class="chip pink darken-2">
-                                        <img src="{{ project.happyCoach.photo }}" alt="photo {{ project.happyCoach }}">
-                                        <!-- notice the "circle" class -->
-                                        <span class="black-text">{{ project.happyCoach }}</span>
-                                    </div>
-                                </a>
-                            {% else %}
-                                <div class="btn pink darken-2">
-                                    <a href="{{ path('addHappyCoach', {'slug' : project.slug}) }}">
-
-                                        <span class="white-text"> + HappyCoach Référent</span></a>
-                                </div>
-                            {% endif %}
-                            <div class="row">
-                            {% if project.status == 1 %}
-                                <a  class="btn green waves-effect waves-light" href="{{ path('project_validate', {'slug' : project.slug}) }}" title="Valider le projet">
-                                        <span><i class="fa fa-check-square-o fa"></i></span>
-                                </a>
-                            {% endif %}
-                            {% if project.status == 1 or project.status == 2 %}
-                                <a class="btn red waves-effect waves-light" href="{{ path('project_finish', {'slug' : project.slug}) }}" title="Cloturer le projet">
-                                        <span><i class="fa fa-remove fa"></i></span>
-                                </a>
-                            {% endif %}
-                            {% if project.status == 3  %}
-                                <a class="btn green waves-effect waves-light" href="{{ path('project_reopen', {'slug' : project.slug}) }}" title="Rouvrir le projet">
-                                        <span><i class="fa fa-check-square-o fa"></i></span>
-                                </a>
-                            {% endif %}
-                            <div class="right">
-                                {{ project.likeProjects | length }} <i class="fa fa-heart red-text"></i>
+                        {% if project.status == 1 %}
+                            <div class="chip inProgress chipStatus">
+                                <span><i class="fa fa-clock-o"></i></span>
+                                <span>Attente</span>
                             </div>
+                        {% elseif project.status == 2 %}
+                            <div class="chip validate chipStatus">
+                                <span><i class="fa fa-clock-o"></i></span>
+                                <span>En cours</span>
                             </div>
+                        {% elseif project.status == 3 %}
+                            <div class="chip end chipStatus">
+                                <span><i class="fa fa-clock-o"></i></span>
+                                <span>Terminé</span>
+                            </div>
+                        {% endif %}
+                        <div class="chip ">
+                            <span class="black-text">{{ project.endDate  | date("d/m/Y") }}</span>
                         </div>
-                    </div>
-                    <div class="card-reveal revealProject">
-                        <div class="card-title grey-text text-darken-4">
-                            {{ project.title }} |  | {{ project.author.company.name }}
-                            <i class="material-icons right">close</i>
-                        </div>
-
-                        <div class="row">
+                        <div class="card-content">
+                            <div class="card-title activator grey-text text-darken-4">
+                                <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
+                                <span class="truncate">
+                                <a href="{{ path('project_show', {'slug': project.slug}) }}">{{ project.title }}</a> |
+                                <a href="{{ path('CompanyProfil', {'slug': project.author.company.slug}) }}">
+                                    {{ project.author.company }}</a></span>
+                            </div>
                             <div>
                                 <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
-                                    <div class="chip left amber darken-2">
-                                        <img src="{{ project.author.photo }}" alt="Logo company"> <!-- notice the "circle" class -->
+                                    <div class="chip">
+                                        {% if project.author.photo is null %}
+                                            <img src="{{ asset('assets/images/placeholder.png') }}">
+                                        {% else %}
+                                            <img src="{{ asset('uploads/photoUser/' ~ project.author.photo) }}"
+                                                 alt="photo {{ project.author }}">
+                                        {% endif %}
                                         <span class="black-text">{{ project.author }}</span>
                                     </div>
                                 </a>
+                                {% if project.status == 1 %}
+                                    <a href="{{ path('project_validate', {'slug' : project.slug}) }}">
+                                        <div class="chip inProgress green">
+                                            <span><i class="fa fa-check-square-o fa"></i></span>
+                                            <span>Valider le projet</span>
+                                        </div>
+                                    </a>
+                                {% endif %}
+                                {% if project.status == 1 or project.status == 2 %}
+                                    <a href="{{ path('project_finish', {'slug' : project.slug}) }}">
+                                        <div class="chip inProgress red">
+                                            <span><i class="fa fa-remove fa"></i></span>
+                                            <span>Terminer le projet</span>
+                                        </div>
+                                    </a>
+                                {% endif %}
+                                {% if project.status == 3  %}
+                                    <a href="{{ path('project_reopen', {'slug' : project.slug}) }}">
+                                        <div class="chip inProgress green">
+                                            <span><i class="fa fa-check-square-o fa"></i></span>
+                                            <span>Rouvrir le projet</span>
+                                        </div>
+                                    </a>
+                                {% endif %}
+                                <div class="right">
+                                    {{ project.likeProjects | length }} <i class="fa fa-heart red-text"></i>
+                                </div>
                             </div>
-                            {% if project.happyCoach is defined and project.happyCoach is not null%}
-                                <a href="{{ path('profilHappyCoach', { 'slug': project.happyCoach.slug }) }}">
-                                    <div class="chip pink darken-2">
-                                        <img src="{{ project.happyCoach.photo }}" alt="photo {{ project.happyCoach }}">
-                                        <!-- notice the "circle" class -->
-                                        <span class="black-text">{{ project.happyCoach }}</span>
+
+                        </div>
+                        <div class="card-reveal revealProject">
+                            <div class="card-title grey-text text-darken-4">
+                                <a href="{{ path('project_show', {'slug': project.slug}) }}">{{ project.title }}</a> |
+                                <a href="{{ path('CompanyProfil', {'slug': project.author.company.slug}) }}">
+                                    {{ project.author.company }}</a>
+                                <div class="chip">
+                                    <span class="black-text">{{ project.endDate  | date("d/m/Y") }}</span>
+                                </div>
+                                <i class="material-icons right">close</i>
+                            </div>
+                            <div class="row">
+                                <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
+                                    <div class="chip amber darken-2">
+                                        {% if project.author.photo is null %}
+                                            <img src="{{ asset('assets/images/placeholder.png') }}">
+                                        {% else %}
+                                            <img src="{{ asset('uploads/photoUser/' ~ project.author.photo) }}"
+                                                 alt="photo {{ project.author }}">
+                                        {% endif %}
+                                        <span class="black-text">{{ project.author }}</span>
                                     </div>
                                 </a>
-                            {% else %}
-                                <div class="btn pink darken-2">
-                                    <a href="{{ path('addHappyCoach', {'slug' : project.slug}) }}">
-
-                                        <span class="white-text"> + HappyCoach Référent</span></a>
-                                </div>
-                            {% endif %}
-                            <div>
-                                {% if project.status == 1 %}
-                                    <div class="chip inProgress right">
-                                        <span><i class="fa fa-clock-o"></i></span>
-                                        <span>Attente</span>
-                                    </div>
-                                {% elseif project.status == 2 %}
-                                    <div class="chip validate right">
-                                        <span><i class="fa fa-clock-o"></i></span>
-                                        <span>En cours</span>
-                                    </div>
-                                {% elseif project.status == 3 %}
-                                    <div class="chip end right">
-                                        <span><i class="fa fa-clock-o"></i></span>
-                                        <span>Terminé</span>
+                                {% if project.happyCoach is defined and project.happyCoach is not null %}
+                                    {% set user = project.happyCoach  %}
+                                    <a href="{{ path('profilHappyCoach', { 'slug': user.slug }) }}">
+                                        <div class="chip pink">
+                                            {% if project.happyCoach.photo is null %}
+                                                <img src="{{ asset('assets/images/placeholder.png') }}">
+                                            {% else %}
+                                                <img src="{{ project.happyCoach.photo }}"
+                                                     alt="photo {{ project.happyCoach }}">
+                                            {% endif %}
+                                            <span class="black-text">{{ project.happyCoach }}</span>
+                                        </div>
+                                    </a>
+                                {% else %}
+                                    <div class="chip">
+                                        <span class="black-text"> Pas d'HappyCoach référent</span></a>
                                     </div>
                                 {% endif %}
+                                <div class="chip">
+                                    {{ project.theme }}
+                                </div>
+                                <div class="chip">
+                                    {{ project.location }}
+                                </div>
+                                <div class="right">
+                                    {{ project.likeProjects | length }} <i class="fa fa-heart red-text"></i>
+                                </div>
                             </div>
-                            {#<p>{{ include ('project/projectTeam.html.twig') }}</p>#}
-                            <p>{{ project.presentation }}</p>
-                            <p><a href="{{ path('addHappyCoachTeam', { 'slug': project.slug}) }}">Ajouter des HappyCoachs</a></p>
+                            <div class="row">
+                                {{ project.presentation }}
+                                {{ include('project/projectTeam.html.twig') }}
 
+                            </div>
+                            <div class="footerReveal">
+                                <div class="left">
+                                    <a class="btn" href="{{ path('addHappyCoach', {'slug' : project.slug}) }}">HappyCoach Référent</a>
+                                </div>
+                                <div class="right">
+                                    <a class="btn" href="{{ path('addHappyCoach', {'slug' : project.slug}) }}">HappyCoach équipe</a>
+                                </div>
+
+                            </div>
                         </div>
-
-
-                        <div class="footerReveal">
-                            <div class="left">
-                                <a href="{{ path('project_show', {'slug' : project.slug}) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
-                            </div>
-                            <div class="right">
-                                {{ project.likeProjects | length }} <i class="fa fa-heart red-text"></i>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                    </li>
                 {% endif %}
             {% endfor %}
         </ul>
