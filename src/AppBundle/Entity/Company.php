@@ -60,7 +60,7 @@ class Company
 
     /**
      *
-     * @ORM\Column(name="birthdate", type="date", nullable=true)
+     * @ORM\Column(name="birthdate", type="string", nullable=true)
      */
     private $birthdate;
 
