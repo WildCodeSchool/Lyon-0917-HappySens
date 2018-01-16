@@ -35,7 +35,15 @@ class FileUploader
      */
     private $counter = 0;
 
+    /**
+     * @var EmailService
+     */
     private $emailService;
+
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
 
     /**
      * FileUploader constructor.
@@ -43,12 +51,13 @@ class FileUploader
      * @param $directory
      * @param EmailService $emailService
      */
-    public function __construct(RegistryInterface $db, $directory, EmailService $emailService)
+    public function __construct(RegistryInterface $db, $directory, EmailService $emailService,  UserPasswordEncoderInterface $passwordEncoder)
     {
 
         $this->directory = $directory;
         $this->db = $db;
         $this->emailService = $emailService;
+        $this->passwordEncoder = $passwordEncoder;
 
     }
 
@@ -124,7 +133,7 @@ class FileUploader
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return int
      */
-    public function insertUser($idCompany, $fileUsers, $email_contact, UserPasswordEncoderInterface $passwordEncoder)
+    public function insertUser($idCompany, $fileUsers, $email_contact)
     {
         $slugService = new SlugService();
         $newUser = new User();
@@ -133,7 +142,7 @@ class FileUploader
             $newUser->setFirstName($fileUsers['prenom'])
                 ->setLastName($fileUsers['nom'])
                 ->setEmail($fileUsers['email'])
-                ->setPassword($passwordEncoder->encodePassword($newUser, $fileUsers['valuePwd']))
+                ->setPassword($this->passwordEncoder->encodePassword($newUser, $fileUsers['valuePwd']))
                 ->setMood(0)
                 ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
                 ->setCompany($idCompany)

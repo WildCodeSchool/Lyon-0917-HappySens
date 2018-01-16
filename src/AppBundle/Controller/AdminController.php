@@ -174,8 +174,7 @@ class AdminController extends Controller
             $em->flush();
 
             unlink($fileUploader->getDirectory("csvFiles") . '/' . $company->getFileUsers());
-            //TODO change password
-            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), $valuePwd, $fileUsers[1]['email']);
+//            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), $valuePwd, $fileUsers[1]['email']);
 
             return $this->redirectToRoute('resume_create_company', array(
                 'id' => $company->getId(),

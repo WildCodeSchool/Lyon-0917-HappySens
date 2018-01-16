@@ -163,9 +163,7 @@ class EmailService
     {
         $message = \Swift_Message::newInstance();
         $finder = new Finder();
-        foreach ($finder->in([__DIR__, 'web/assets/images/'])->name('logo2.png') as $file) {
-            $img = $message->embed(Swift_Image::fromPath($file));
-        }
+        $img = $finder->in([__DIR__, 'web/assets/images/'])->name('logo2.png');
         $message->setSubject("Votre compte happySens vient d'être créer")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $user->getEmail()])
