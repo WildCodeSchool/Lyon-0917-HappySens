@@ -21,6 +21,7 @@ function goStep3() {
     $("#step3").removeClass("hide");
     $("#breadThree").addClass("active");
     $("#breadTwo").addClass("active");
+
 }
 // setup an "add a tag" link
 var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');

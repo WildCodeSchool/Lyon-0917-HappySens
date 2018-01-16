@@ -6,7 +6,6 @@ use AppBundle\Entity\Project;
 use AppBundle\Service\EmailService;
 use AppBundle\Entity\User;
 use AppBundle\Service\FileUploader;
-use AppBundle\Service\NotificationService;
 use AppBundle\Service\SlugService;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -231,16 +230,13 @@ class ProjectController extends Controller
      *
      */
     // TODO: AJAX
-    public function likeAction(Project $project, NotificationService $notificationService)
+    public function likeAction(Request $request, Project $project)
     {
         $idU = $this->getUser();
-            if ($idU->getId() !== $project->getAuthor()->getId()) {
-                $add = $project->addLikeProject($idU);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($add);
-                $em->flush();
-                $notificationService->sendNotif($idU, $project->getAuthor()->getId());
-            }
+        $add = $project->addLikeProject($idU);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($add);
+        $em->flush();
         return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
     }
 

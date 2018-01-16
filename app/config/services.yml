@@ -37,7 +37,7 @@ services:
             class: AppBundle\Service\AfterLoginRedirection
             arguments: ['@router']
 
-    AppBundle\Service\NotificationService:
+    AppBundle\Service\CheckSecurityService:
             arguments:
                 $db: '@doctrine'
 

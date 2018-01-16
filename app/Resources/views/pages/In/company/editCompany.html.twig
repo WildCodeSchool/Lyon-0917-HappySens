@@ -4,6 +4,7 @@
     <div class="container">
 
        <div class="row">
+            <img src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="">
             <h1>Company edit</h1>
         </div>
         <nav class="wrapper row">
@@ -32,14 +33,16 @@
                     </div>
                 </div>
                 <div class="col s6">
-                    <h5 class="titleInscription blue-text text-darken-3">Date de Création :</h5>
-                    {% if (form_errors(edit_form.birthdate))  %}
-                        {{ form_row(edit_form.birthdate, {'attr': {'class': 'datepicker error'}}) }}
-                    {% else %}
-                        {{ form_row(edit_form.birthdate, {'attr': {'class': 'datepicker'}}) }}
-                    {% endif %}
-                    <div class="center error">
-                        {{ form_errors(edit_form.birthdate) }}
+                    <h5 class="titleInscription blue-text text-darken-3">Logo :</h5>
+                    <div class="input-field col s12">
+                        {% if (form_errors(edit_form.logo)) %}
+                            {{ form_widget(edit_form.logo, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            {{ form_widget(edit_form.logo) }}
+                        {% endif %}
+                        <div class="center error">
+                            {{ form_errors(edit_form.logo) }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,7 +79,7 @@
             <div class="row">
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Effectifs :</h5>
-                    <div class="file-field input-field col s12">
+                    <div class="input-field col s12">
                         <i class="material-icons prefix blue-text text-darken-3">group</i>
                         {% if (form_errors(edit_form.nbSalary)) %}
                             {{ form_widget(edit_form.nbSalary, {'attr': {'class': 'error'}}) }}
@@ -89,20 +92,23 @@
                     </div>
                 </div>
                 <div class="col s6">
-                    <h5 class="titleInscription blue-text text-darken-3">Logo :</h5>
-                    <div class="file-field input-field col s12">
-                        {% if (form_errors(edit_form.logo)) %}
-                            {{ form_widget(edit_form.logo, {'attr': {'class': 'error'}}) }}
+                    <h5 class="titleInscription blue-text text-darken-3">Date de Création :</h5>
+                    <div class="input-field col s12">
+                        {% if (form_errors(edit_form.birthdate)) %}
+                            {{ form_widget(edit_form.birthdate, {'attr': {'class': 'error'}}) }}
                         {% else %}
-                            <div class="btn blue darken-2">
-                                <span>Votre logo</span>
-                                {{ form_widget(edit_form.logo) }}
+                            <div class="col s3">
+                                {{ form_widget(edit_form.birthdate.year) }}
+                            </div>
+                            <div class="col s3">
+                                {{ form_widget(edit_form.birthdate.month) }}
+                            </div>
+                            <div class="col s3">
+                                {{ form_widget(edit_form.birthdate.day) }}
                             </div>
                         {% endif %}
-                        <div class="file-path-wrapper">
-                            <img class="right" src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="">
-                        </div>
                         <div class="center error">
+                            {{ form_errors(edit_form.birthdate) }}
                         </div>
                     </div>
                 </div>
