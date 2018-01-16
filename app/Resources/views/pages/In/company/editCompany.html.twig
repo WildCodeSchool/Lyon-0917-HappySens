@@ -118,7 +118,7 @@
                     <h5 class="titleInscription blue-text text-darken-3">Slogan :</h5>
                     <div class="input-fiel col s12">
                         {% if (form_errors(edit_form.slogan)) %}
-                            {{ form_widget(edit_form.slogan, {'attr': {'class': 'error'}}) }}
+                            {{ form_widget(edit_form.slogan, {'attr' : {'class': 'materialize-textarea error'}}) }}
                         {% else %}
                             {{ form_widget(edit_form.slogan, {'attr' : {'class': 'materialize-textarea'}}) }}
                         {% endif %}
@@ -131,7 +131,7 @@
                     <h5 class="titleInscription blue-text text-darken-3">Qualités :</h5>
                     <div class="input-field col s12">
                         {% if (form_errors(edit_form.quality)) %}
-                            {{ form_widget(edit_form.quality, {'attr': {'class': 'error'}}) }}
+                            {{ form_widget(edit_form.quality, {'attr' : {'class': 'materialize-textarea error'}}) }}
                         {% else %}
                             {{ form_widget(edit_form.quality, {'attr' : {'class': 'materialize-textarea'}}) }}
                         {% endif %}
@@ -144,7 +144,7 @@
                     <h5 class="titleInscription blue-text text-darken-3">Les 3 critères pour valider un projet :</h5>
                     <div class="input-field col s12">
                         {% if (form_errors(edit_form.threeCriteria)) %}
-                            {{ form_widget(edit_form.threeCriteria, {'attr': {'class': 'error'}}) }}
+                            {{ form_widget(edit_form.threeCriteria, {'attr' : {'class': 'materialize-textarea error'}}) }}
                         {% else %}
                             {{ form_widget(edit_form.threeCriteria, {'attr' : {'class': 'materialize-textarea'}}) }}
                         {% endif %}

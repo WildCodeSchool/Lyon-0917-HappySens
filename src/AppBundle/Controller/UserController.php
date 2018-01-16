@@ -56,7 +56,7 @@ class UserController extends Controller
         //TODO à tester => redirection à faire pour éviter le message d'erreur
         if ($this->getUser()->getStatus() === User::ROLE_COMPANY or $this->getUser()->getStatus() === User::ROLE_EMPLOYE) {
             if ($company !== $user->getCompany()) {
-                throw new AccessDeniedException("tu n'as rien a foutre ici");
+                throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
             }
             return $pageTrueShowUser;
         }
@@ -86,7 +86,7 @@ class UserController extends Controller
                         return $pageTrueShowUser;
                     }
                 }
-                throw new AccessDeniedException("Cette page n'est pas autorisé");
+                throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
 //                return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
             }
         }
@@ -153,7 +153,7 @@ class UserController extends Controller
                 if ($idCompanyRef === $company->getId()) {
                     return $trueViewCompany;
                 }
-                throw new AccessDeniedException("tu n'as rien a foutre ici");
+                throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
 //                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
             }
         }
@@ -188,7 +188,6 @@ class UserController extends Controller
         $editForm->remove('company');
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            dump($editForm);
             $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
             if ($user->getIsActive() == false) {
                 $user->setIsActive(1);
@@ -211,7 +210,7 @@ class UserController extends Controller
         }
         return $this->render('pages/In/collaborators/editUser.html.twig', [
             'user' => $user,
-            'edit_form' => $editForm->createView(),]);
+            'edit_form' => $editForm->createView()]);
     }
 
     /**
@@ -311,7 +310,7 @@ class UserController extends Controller
                     }
                 }
             //TODO change Redirect
-            throw new AccessDeniedException("tu n'as rien a foutre ici");
+            throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
         }
 
         //TODO refactor with request
@@ -335,7 +334,7 @@ class UserController extends Controller
                     return $pageTrueShowHappyCoach;
                 }
             }
-            throw new AccessDeniedException("tu n'as rien a foutre ici");
+            throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
 //            return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
         }
 
