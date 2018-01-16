@@ -11,7 +11,6 @@ namespace AppBundle\Service;
 
 use Swift_Image;
 use Symfony\Bridge\Doctrine\RegistryInterface;
-use Symfony\Component\Finder\Finder;
 
 class EmailService
 {
@@ -122,11 +121,8 @@ class EmailService
     }
 
     /**
-     * @param $mailUser
+     * @param $project
      * @param $email_contact
-     * @param $firstName
-     * @param $lastName
-     * @param $token
      */
     public function sendMailNewPwd($mailUser, $email_contact, $firstName, $lastName, $token)
     {
@@ -162,11 +158,7 @@ class EmailService
     public function sendMailNewUser($user, $email_contact, $valueMdp)
     {
         $message = \Swift_Message::newInstance();
-
-        $finder = new Finder();
-        foreach ($finder->in([__DIR__, 'web/assets/images/'])->name('logo2.png') as $file) {
-            $img = $message->embed(Swift_Image::fromPath($file));
-        }
+        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
         $message->setSubject("Votre compte happySens vient d'être créer")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $user->getEmail()])
@@ -194,29 +186,32 @@ class EmailService
      * @param $company
      * @param $email_contact
      * @param $valueMdp
-     * @param $referent
      */
-    public function sendMailNewCompany($company, $email_contact, $valueMdp, $referent)
+    public function sendMailNewCompany($company, $email_contact, $valueMdp)
     {
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-        $message->setSubject("Votre compte entreprise happySens vient d'être créé")
+        $em = $this->db;
+        $referent = $em->getManager()->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
+        dump($referent);
+
+        $message->setSubject("Votre compte entreprise happySens vient d'être créer")
             ->setCharset("utf-8")
-            ->setTo([$email_contact, $referent])
+            ->setTo([$email_contact, $referent[0]['email']])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/inscriptions/company/newCompany.html.twig', [
                     'logo' => $img,
                     'name' => $company->getName(),
                     'nbSalary' => $company->getNbSalary(),
-                    'email' => $referent,
+                    'email' => $referent[0]['email'],
                     'password' => $valueMdp,
                 ]), 'text/html'
             )
             ->addPart($this->template->render('notificationsEmail/categories/inscriptions/company/newCompany.txt.twig', [
                 'firstname' => $company->getName(),
                 'lastname' => $company->getNbSalary(),
-                'email' => $referent,
+                'email' => $referent[0]['email'],
                 'password' => $valueMdp,
             ]), 'text/plain');
 

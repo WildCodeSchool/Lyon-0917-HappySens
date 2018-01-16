@@ -1,7 +1,7 @@
 {% extends 'baseIn.html.twig' %}
 
 {% block content %}
-    <div class="container generalContainer">
+    <div class="container">
         <nav class="wrapper row">
             <ul class="center bread">
                 <li class="active" id="breadOne" onclick="goStep1()"><a href="#">Infos Personnelles</a></li>
@@ -232,27 +232,36 @@
             <div class="col s12">
                 <h5 class="titleInscription blue-text text-darken-3">Ajout talents :</h5>
                 <div class="col s12">
-                    <ul class="userskills"
-                        data-prototype="{{ form_widget(edit_form.userskills.vars.prototype.level) | e("html_attr") }}
-                                        {{ form_widget(edit_form.userskills.vars.prototype.skill) | e("html_attr") }}">
-                        {% for skills in edit_form.userskills %}
-                          <li>
-                              {{ form_row(skills.skill) }}
-                              {{ form_row(skills.level) }}
-                          </li>
-                        {% endfor %}
-                    </ul>
+                        <ul class="userskills"
+                            data-prototype="{{ form_widget(edit_form.userskills.vars.prototype.level) | e("html_attr") }}
+                                            {{ form_widget(edit_form.userskills.vars.prototype.skill) | e("html_attr") }}">
+                            {% for skills in edit_form.userskills %}
+                              <li>
+                                  {{ form_row(skills.skill) }}
+                                  {{ form_row(skills.level) }}
+                              </li>
+                            {% endfor %}
+                        </ul>
+
+
                     {% if (form_errors(edit_form.userskills)) %}
                         {{ form_widget(edit_form.userskills, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+
+
+                        {#{{ form_widget(edit_form.userskills.children[0]) }}#}
+                        {#{{ form_widget(edit_form.userskills.children[0].level) }}#}
+                        {#{{ form_widget(edit_form.userskills.children[0].skill) }}#}
                     {% endif %}
+
                     <div class="center error">
                         {{ form_errors(edit_form.userskills) }}
                     </div>
                 </div>
             </div>
             <div class="center">
-                <button class="waves-effect waves-light btn blue darken-3" onclick="goStep2()">retour</button>
-                <button class="waves-effect waves-light btn pink darken-2" type="submit">Envoyer</button>
+                <a class="waves-effect waves-light btn blue darken-3" onclick="goStep2()">retour</a>
+                <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer"/>
             </div>
         </div>
         <br>
