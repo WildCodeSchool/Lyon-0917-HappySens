@@ -11,6 +11,7 @@ namespace AppBundle\Service;
 
 use Swift_Image;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\Finder\Finder;
 
 class EmailService
 {
@@ -121,8 +122,11 @@ class EmailService
     }
 
     /**
-     * @param $project
+     * @param $mailUser
      * @param $email_contact
+     * @param $firstName
+     * @param $lastName
+     * @param $token
      */
     public function sendMailNewPwd($mailUser, $email_contact, $firstName, $lastName, $token)
     {
@@ -158,8 +162,11 @@ class EmailService
     public function sendMailNewUser($user, $email_contact, $valueMdp)
     {
         $message = \Swift_Message::newInstance();
-        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-        $message->setSubject("Votre compte happySens vient d'être créé")
+        $finder = new Finder();
+        foreach ($finder->in([__DIR__, 'web/assets/images/'])->name('logo2.png') as $file) {
+            $img = $message->embed(Swift_Image::fromPath($file));
+        }
+        $message->setSubject("Votre compte happySens vient d'être créer")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $user->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
@@ -186,6 +193,7 @@ class EmailService
      * @param $company
      * @param $email_contact
      * @param $valueMdp
+     * @param $referent
      */
     public function sendMailNewCompany($company, $email_contact, $valueMdp, $referent)
     {
