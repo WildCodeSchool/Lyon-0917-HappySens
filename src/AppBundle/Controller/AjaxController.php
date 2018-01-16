@@ -52,13 +52,9 @@ class AjaxController extends Controller
                 $usersCreated[$key]['nom'] = $userData['nom'];
                 $usersCreated[$key]['isTrait'] = $user->getIstrait();
             }
-
-
-            $test = $usersCreated;
-            unset($usersCreated);
-            return new JsonResponse(['data' => json_encode($test)]);
+            return new JsonResponse(['data' => json_encode($usersCreated)]);
         }
         $errors = "Aucun utilisateur trouvé";
-        return new JsonResponse(['errors' => json_encode('failed')]);
+        return new JsonResponse(['errors' => json_encode($errors)]);
     }
 }
