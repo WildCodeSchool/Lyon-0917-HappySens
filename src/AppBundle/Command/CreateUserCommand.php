@@ -44,12 +44,12 @@ class CreateUserCommand extends ContainerAwareCommand
             foreach($usersWaiting as $user) {
                 $userData = $user->getUserData();
                 $idComp = $user->getIdComp();
+                $user->setIsTrait(true);
                 $create = $fileUploader->insertUser(
                     $this->em->find(Company::class, $idComp),
                     $userData,
                     $emailContact
                 );
-                $user->setIsTrait(true);
                 $counter += 1;
             }
             $output->writeln("$counter user created");

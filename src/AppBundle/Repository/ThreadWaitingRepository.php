@@ -20,9 +20,7 @@ class ThreadWaitingRepository extends \Doctrine\ORM\EntityRepository
             ->createQueryBuilder('w')
             ->where('w.istrait < 1')
             ->orderBy('w.datesend')
-            ->getQuery()
-            ->setFirstResult(0)
-            ->setMaxResults(250);
+            ->getQuery();
         return $qb->getResult();
     }
 
