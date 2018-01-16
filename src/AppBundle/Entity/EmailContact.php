@@ -30,7 +30,7 @@ class EmailContact
      *      min = 2,
      *      max = 50,
      *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
-     *      maxMessage = "Votre nom ne contenir moins de  {{ limit }} caractères"
+     *      maxMessage = "Votre nom doit contenir moins de  {{ limit }} caractères"
      * )
      * @Assert\Regex(
      *     pattern="/\d/",

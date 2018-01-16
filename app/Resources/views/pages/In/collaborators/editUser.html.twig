@@ -255,9 +255,9 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
                     {% if (form_errors(edit_form.biography)) %}
-                        {{ form_widget(edit_form.biography, {'attr': {'class': 'error'}}) }}
+                        {{ form_widget(edit_form.biography, {'attr': {'class': 'materialize-textarea error'}}) }}
                     {% else %}
-                        {{ form_widget(edit_form.biography, {'attr':{'class': 'materialize-textarea'}}) }}
+                        {{ form_widget(edit_form.biography, {'attr': {'class': 'materialize-textarea'}}) }}
                     {% endif %}
                     <label for="biography"><span class="requireInput">* </span>Biographie</label>
                     <div class="center error">
@@ -270,9 +270,9 @@
                 <div class="input-field col s12">
                     <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
                     {% if (form_errors(edit_form.slogan)) %}
-                        {{ form_widget(edit_form.slogan, {'attr': {'class': 'error'}}) }}
+                        {{ form_widget(edit_form.slogan, {'attr': {'class': 'materialize-textarea error'}}) }}
                     {% else %}
-                        {{ form_widget(edit_form.slogan) }}
+                        {{ form_widget(edit_form.slogan, {'attr': {'class': 'materialize-textarea'}}) }}
                     {% endif %}
                     <label for="slogan"><span class="requireInput">* </span>Slogan</label>
                     <div class="center error">
@@ -320,6 +320,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="hide">
+                {{ form_label(edit_form.userskills) }}
             </div>
             <div class="center">
                 <button class="waves-effect waves-light btn blue darken-3" onclick="goStep2()">retour</button>

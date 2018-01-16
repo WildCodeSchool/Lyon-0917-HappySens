@@ -3,15 +3,8 @@
 {% block content %}
 
     <div class="container">
-        <h1 class="blue-text text-darken-3">
-            <h1 class="blue-text text-darken-3 center">
-                {% if status == 3 %} Nouveau Collaborateur
-                {% elseif status == 4 %} Nouveau Happy Coach
-                {% endif %}
-            </h1>
-        </h1>
         <a class="waves-effect waves-light btn pink darken-2"
-           href="{{ path('profilAdmin', {'slug' : app.user.slug}) }}">Retour tableau de bord</a>
+           href="{{ path('UserProfil', {'slug' : app.user.slug}) }}">Retour Profil</a>
         {{ form_start(form) }}
         <br>
         <div class="row">
@@ -45,38 +38,6 @@
                     </div>
                 </div>
             </div>
-            {% if status == 3 %}
-                <div class="col s6">
-                    <h5 class="titleInscription blue-text text-darken-3">Entreprise :</h5>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix blue-text text-darken-3">business</i>
-                        {% if (form_errors(form.company)) %}
-                            {{ form_widget(form.company, {'attr': {'class': 'error'}}) }}
-                        {% else %}
-                            {{ form_widget(form.company) }}
-                        {% endif %}
-                        <label for="company"><span class="requireInput">* </span>Entreprise</label>
-                        <div class="center error">
-                            {{ form_errors(form.company) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col s6">
-                    <h5 class="titleInscription blue-text text-darken-3">Status :</h5>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix blue-text text-darken-3">supervisor_account</i>
-                        {% if (form_errors(form.status)) %}
-                            {{ form_widget(form.status, {'attr': {'class': 'error'}}) }}
-                        {% else %}
-                            {{ form_widget(form.status) }}
-                        {% endif %}
-                        <label for="email"><span class="requireInput">* </span>Status</label>
-                        <div class="center error">
-                            {{ form_errors(form.status) }}
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
             <div class="col s6">
                 <h5 class="titleInscription blue-text text-darken-3">Email :</h5>
                 <div class="input-field col s12">
@@ -95,10 +56,9 @@
         </div>
         <div class="center">
             <a class="waves-effect waves-light btn blue darken-3"
-               href="{{ path('profilAdmin', {'slug' : app.user.slug}) }}">Retour</a>
+               href="{{ path('UserProfil', {'slug' : app.user.slug}) }}">Retour</a>
             <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer"/>
         </div>
-
         <br>
         {{ form_end(form) }}
     </div>

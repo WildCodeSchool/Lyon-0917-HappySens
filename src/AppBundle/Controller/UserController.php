@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Company;
+use AppBundle\Entity\UserHasSkill;
+use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\StatusProject;
 use AppBundle\Service\SlugService;
@@ -15,6 +17,7 @@ use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Constraints\Email;
 
 class UserController extends Controller
 {
@@ -52,7 +55,7 @@ class UserController extends Controller
         //TODO à tester => redirection à faire pour éviter le message d'erreur
         if ($this->getUser()->getStatus() === User::ROLE_COMPANY or $this->getUser()->getStatus() === User::ROLE_EMPLOYE) {
             if ($company !== $user->getCompany()) {
-                throw new AccessDeniedException("tu n'as rien a foutre ici");
+                throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
             }
             return $pageTrueShowUser;
         }
@@ -82,7 +85,7 @@ class UserController extends Controller
                         return $pageTrueShowUser;
                     }
                 }
-                throw new AccessDeniedException("Cette page n'est pas autorisé");
+                throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
 //                return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
             }
         }
@@ -149,7 +152,7 @@ class UserController extends Controller
                 if ($idCompanyRef === $company->getId()) {
                     return $trueViewCompany;
                 }
-                throw new AccessDeniedException("tu n'as rien a foutre ici");
+                throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
 //                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
             }
         }
@@ -172,7 +175,7 @@ class UserController extends Controller
     public function editUserAction(Request $request, User $user, SlugService $slugService, FileUploader $fileUploader,
                                    UserPasswordEncoderInterface $passwordEncoder)
     {
-        if ($this->getUser()->getStatus() !== 1) {
+        if ($this->getUser()->getStatus() !== User::ROLE_ADMIN) {
             $user = $this->getUser();
         }
 
@@ -223,7 +226,8 @@ class UserController extends Controller
         }
         return $this->render('pages/In/collaborators/editUser.html.twig', [
             'user' => $user,
-            'edit_form' => $editForm->createView(),]);
+            'edit_form' => $editForm->createView(),
+            ]);
     }
 
     /**
@@ -249,8 +253,8 @@ class UserController extends Controller
             }
         }
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            if(!empty($editForm['logo']->getData())) {
-                unlink($fileUploader->getDirectory("photoCompany") . '/' .$company->getLogo());
+            if (!empty($editForm['logo']->getData())) {
+                unlink($fileUploader->getDirectory("photoCompany") . '/' . $company->getLogo());
                 $logo = $editForm['logo']->getData();
                 $logoName = $fileUploader->upload($logo, "photoCompany");
                 $company->setLogo($logoName);
@@ -259,14 +263,14 @@ class UserController extends Controller
             $this->getDoctrine()->getManager()->flush();
             if ($this->getUser()->getIsActive() == false || $this->getUser()->getIsActive() !== 1) {
                 return $this->redirectToRoute('User_edit', array('slug' => $this->getUser()->getSlug()));
-            }
-            else {
+            } else {
                 return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
             }
         }
         return $this->render('pages/In/company/editCompany.html.twig', [
             'company' => $company,
-            'edit_form' => $editForm->createView(),]);
+            'edit_form' => $editForm->createView(),
+            ]);
     }
 
     /**
@@ -323,7 +327,7 @@ class UserController extends Controller
                     }
                 }
             //TODO change Redirect
-            throw new AccessDeniedException("tu n'as rien a foutre ici");
+            throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
         }
 
         //TODO refactor with request
@@ -347,7 +351,7 @@ class UserController extends Controller
                     return $pageTrueShowHappyCoach;
                 }
             }
-            throw new AccessDeniedException("tu n'as rien a foutre ici");
+            throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
 //            return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
         }
 
@@ -369,28 +373,7 @@ class UserController extends Controller
     public function updateMoodAction(Request $request, User $user, SlugService $slugService)
     {
         $user = $this->getUser();
-        $editForm = $this->createForm('AppBundle\Form\UserType', $user);
-        $editForm->remove('slug')
-            ->remove('firstName')
-            ->remove('lastName')
-            ->remove('phone')
-            ->remove('email')
-            ->remove('status')
-            ->remove('birthdate')
-            ->remove('photo')
-            ->remove('biography')
-            ->remove('slogan')
-            ->remove('password')
-            ->remove('job')
-            ->remove('workplace')
-            ->remove('facebook')
-            ->remove('twitter')
-            ->remove('linkedin')
-            ->remove('is_active')
-            ->remove('date_update_mood')
-            ->remove('nativeLanguage')
-            ->remove('company')
-            ->remove('languagesUser');
+        $editForm = $this->createForm('AppBundle\Form\MoodType', $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -415,5 +398,48 @@ class UserController extends Controller
                 'edit_form' => $editForm->createView(),]
         );
     }
+    /**
+     * Creates a new collaborater entity.
+     *
+     * @Route("/newCollaborater", name="newCollaborater")
+     * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_COMPANY')")
+     */
+    public function newActionUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService, EmailService $emailService)
+    {
+        $company = $this->getUser()->getCompany();
+
+        $user = new User();
+
+        $form = $this->createForm('AppBundle\Form\NewUserType', $user);
+        $form->remove('status');
+        $form->remove('company');
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $today = new \DateTime();
+            $temp = $today->getTimestamp() - 1515703308; // 1515703308 = Timestamp date created line so 2018/01/12
+            $passwordNotEncoder = bin2hex(random_bytes(5));
+            $password = $passwordEncoder->encodePassword($user, $passwordNotEncoder);
+            $user->setPassword($password);
+            $user->setStatus(User::ROLE_EMPLOYE);
+            $user->setIsActive(0);
+            $user->setCompany($company);
+            $user->setSlug($slugService->slugify($user->getFirstName() . ' ' . $user->getLastName() . ' ' . $temp));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            $emailService->sendMailNewUser($user, $this->container->getParameter('email_contact'), $passwordNotEncoder);
+
+            return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
+        }
+
+
+        return $this->render('pages/In/company/newCollaborater.html.twig', array(
+            'user' => $user,
+            'form' => $form->createView(),
+        ));
+    }
+
 
 }
