@@ -275,7 +275,8 @@ main {
     color: #252F3D; }
 
 .imgMenu {
-  display: flex; }
+  display: flex;
+  width: 125%; }
   .imgMenu span {
     margin-top: 1px;
     margin-left: 5px; }
@@ -1215,5 +1216,30 @@ ul.switch li.active, ul.switch li.active {
 
 .logoCompany {
   margin-top: 30px; }
+
+.placeHolderRecap {
+  text-align: center;
+  color: grey;
+  font-size: 1.8em;
+  padding: 30px 20px 20px 20px; }
+
+.listRecap {
+  margin: 15px 0; }
+
+.explainRecap {
+  font-size: 1.4em;
+  font-family: 'Quicksand', sans-serif;
+  margin-top: 20px; }
+  .explainRecap p {
+    padding-top: 20px; }
+
+.recapTitle {
+  margin: 40px auto; }
+
+.containLinksComp {
+  padding: 20px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
 
 /*# sourceMappingURL=style.css.map */

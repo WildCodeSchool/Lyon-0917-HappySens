@@ -7,51 +7,26 @@
         <div class="row">
             <h2 class="header left title">Vos notifications</h2>
             <ul class="col s12">
+                {% for notif in notifs %}
                 <li class="col s10 offset-s1">
                     <div class="card-panel grey lighten-5 z-depth-1 hoverable">
                         <div class="row valign-wrapper">
                             <div class="col s2">
-                                <img src="https://randomuser.me/api/portraits/thumb/men/83.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                {% if notif.sender.photo is null %}
+                                    <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                {% else %}
+                                    <img src="{{ asset('uploads/photoCompany/' ~ notif.sender.photo) }}" alt="profile image" class="circle responsive-img">
+                                {% endif %}
                             </div>
                             <ul class="col s10">
                                 <li class="black-text">
-                                    Vous avez aimer le projet "@title.project" de @name.user
+                                    {{ notif.sender.firstname }} {{ notif.sender.lastname }} {{ notif.content }}
                                 </li>
-                                <li><a href="{{ path('listingNotifications') }}">@title.project</a></li>
                             </ul>
                         </div>
                     </div>
                 </li>
-                <li class="col s10 offset-s1">
-                    <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                        <div class="row valign-wrapper">
-                            <div class="col s2">
-                                <img src="https://randomuser.me/api/portraits/thumb/women/55.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-                            </div>
-                            <ul class="col s10">
-                                <li class="black-text">
-                                    Mettez les informations de votre profil à jour :
-                                </li>
-                                <li><a href="{{ path('UserProfil', {'slug' : app.user.slug}) }}">@name.employe</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="col s10 offset-s1">
-                    <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                        <div class="row valign-wrapper">
-                            <div class="col s2">
-                                <img src="https://randomuser.me/api/portraits/thumb/men/83.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-                            </div>
-                            <ul class="col s10">
-                                <li class="black-text">
-                                    Bienvenue sur HappySens, allez donc visitez la page de votre entreprise :
-                                </li>
-                                <li><a href="{{ path('CompanyProfil', {'slug' : app.user.company.slug}) }}">@name.company</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
+                {% endfor %}
             </ul>
         </div>
     </div>

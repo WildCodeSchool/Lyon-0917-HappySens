@@ -42,10 +42,7 @@ class Company
      */
     private $nbSalary;
 
-    /**
-     *
-     * @ORM\Column(name="birthdate", type="datetime", nullable=true)
-     */
+
     private $birthdate;
 
     /**
@@ -119,6 +116,7 @@ class Company
 
     /**
      * @var string
+     * @ORM\Column(name="file_users", type="string",  length=255, nullable=true)
      */
     private $fileUsers;
 
@@ -232,11 +230,8 @@ class Company
     }
 
     /**
-     * Set birthdate
-     *
-     * @param \DateTime $birthdate
-     *
-     * @return Company
+     * @param $birthdate
+     * @return $this
      */
     public function setBirthdate($birthdate)
     {
@@ -246,9 +241,7 @@ class Company
     }
 
     /**
-     * Get birthdate
-     *
-     * @return \DateTime
+     * @return mixed
      */
     public function getBirthdate()
     {

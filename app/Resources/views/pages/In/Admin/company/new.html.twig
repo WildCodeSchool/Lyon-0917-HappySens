@@ -94,18 +94,10 @@
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Date de Création :</h5>
                     <div class="input-field col s12">
-                        {% if (form_errors(form.birthdate)) %}
-                            {{ form_widget(form.birthdate, {'attr': {'class': 'error'}}) }}
+                        {% if (form_errors(form.birthdate))  %}
+                            {{ form_row(form.birthdate, {'attr': {'class': 'datepicker error'}}) }}
                         {% else %}
-                            <div class="col s3">
-                                {{ form_widget(form.birthdate.year) }}
-                            </div>
-                            <div class="col s3">
-                                {{ form_widget(form.birthdate.month) }}
-                            </div>
-                            <div class="col s3">
-                                {{ form_widget(form.birthdate.day) }}
-                            </div>
+                            {{ form_row(form.birthdate, {'attr': {'class': 'datepicker'}}) }}
                         {% endif %}
                         <div class="center error">
                             {{ form_errors(form.birthdate) }}
@@ -175,10 +167,12 @@
                 </div>
                 <div class="center">
                     <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
-                    <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer" onclick="loadingPage()/>
+                    <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer" onclick="loadingPage()"/>
                 </div>
             </div>
-            {{ form_end(form) }}
+            {{ form_widget(form._token) }}
+
+            {{ form_end(form, {'render_rest': false}) }}
         </div>
     </div>
 {% endblock %}

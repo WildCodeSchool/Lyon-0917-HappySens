@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
+use AppBundle\Entity\ThreadWaiting;
 use AppBundle\Entity\User;
 use AppBundle\Entity\UserHasSkill;
 use AppBundle\Service\EmailService;
@@ -19,7 +20,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
@@ -72,9 +75,17 @@ class AdminController extends Controller
     }
 
     /**
-     * Creates a new company entity.
+     * Create new company
+     *
+     * @param Request $request
+     * @param FileUploader $fileUploader
+     * @param SlugService $slugService
+     * @param EmailService $emailService
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/newCompany", name="newCompany")
      * @Method({"GET", "POST"})
+     *
      */
     public function newCompanyAction(Request $request, FileUploader $fileUploader, SlugService $slugService, EmailService $emailService)
     {
@@ -84,42 +95,57 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
             $myFile = $company->getFileUsers();
+            $valuePwd = bin2hex(random_bytes(5));
             $fileName = $fileUploader->upload($myFile, "csvFiles");
             $logo = $company->getLogo();
             $logoName = $fileUploader->upload($logo, "photoCompany");
-
-            $company->setLogo($logoName);
-            $company->setFileUsers($fileName);
-            $company->setSlug($slugService->slugify($company->getName()));
-            $em = $this->getDoctrine()->getManager();
+            $company->setLogo($logoName)
+                    ->setFileUsers($fileName)
+                    ->setSlug($slugService->slugify($company->getName()));
             $em->persist($company);
             $em->flush();
 
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
-            $arrayUsers = $fileUploader->insertUser(
-                "1234",
-                $em->find(Company::class, $company->getId()),
-                $fileUsers,
-                $this->container->getParameter('email_contact'),
-                $emailService
-            );
-            unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
+            unset($fileUsers[0]);
+//        unlink($fileUploader->getDirectory("csvFiles") . '/' .$company->getFileUsers());
+            $now = new \DateTime('now');
+            foreach($fileUsers as $key => $user) {
+                $user['key'] = $key;
+                $user['valuePwd'] = $valuePwd;
+                $thread = new ThreadWaiting();
+                $thread->setUserdata($user)
+                    ->setIdcomp($company->getId())
+                    ->setIstrait(false)
+                    ->setDatesend($now->getTimestamp());
+                $em->persist($thread);
+            }
+            $em->flush();
 
-            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234');
-            $countUser = $fileUploader->getCounter();
+            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), '1234', $fileUsers[1]['email']);
 
-            return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', array(
-                'users' => $arrayUsers,
-                'company' => $company,
-                'countUser' => $countUser,
+            return $this->redirectToRoute('resume_create_company', array(
+                'id' => $company->getId(),
             ));
         }
-
         return $this->render('pages/In/Admin/company/new.html.twig', array(
             'company' => $company,
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * Recap of creation company.
+     *
+     * @Route("/resume/{id}/", name="resume_create_company")
+     * @Method("GET")
+     */
+    public function showAction(Request $request, Company $company, FileUploader $fileUploader)
+    {
+        return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', [
+            'company' => $company,
+        ]);
     }
 
     /**
