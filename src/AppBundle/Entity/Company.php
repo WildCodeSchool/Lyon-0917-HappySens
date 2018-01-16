@@ -16,7 +16,7 @@ class Company
     const NB_SALARY_50 = 1; // 0-50 salary
     const NB_SALARY_250 = 2; // 51-250 salary
     const NB_SALARY_500 = 3; // 251-500 salary
-    const NB_SALARY_MORE_500 = 4; // < 500 salary
+    const NB_SALARY_MORE_500 = 4; // > 500 salary
 
     /**
      * @var int
