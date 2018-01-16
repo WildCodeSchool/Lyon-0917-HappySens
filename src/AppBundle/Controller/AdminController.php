@@ -97,7 +97,7 @@ class AdminController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $myFile = $company->getFileUsers();
-            $valuePwd = '1234';
+            $valuePwd = bin2hex(random_bytes(5));
             $fileName = $fileUploader->upload($myFile, "csvFiles");
             $logo = $company->getLogo();
             $logoName = $fileUploader->upload($logo, "photoCompany");

@@ -13,6 +13,7 @@ use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use AppBundle\Service\SlugService;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class FileUploader
 {
@@ -120,9 +121,10 @@ class FileUploader
      * @param $idCompany
      * @param $fileUsers
      * @param $email_contact
-     * @return bool
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return int
      */
-    public function insertUser($idCompany, $fileUsers, $email_contact)
+    public function insertUser($idCompany, $fileUsers, $email_contact, UserPasswordEncoderInterface $passwordEncoder)
     {
         $slugService = new SlugService();
         $newUser = new User();
@@ -131,7 +133,7 @@ class FileUploader
             $newUser->setFirstName($fileUsers['prenom'])
                 ->setLastName($fileUsers['nom'])
                 ->setEmail($fileUsers['email'])
-                ->setPassword(password_hash($fileUsers['valuePwd'], PASSWORD_BCRYPT))
+                ->setPassword($passwordEncoder->encodePassword($newUser, $fileUsers['valuePwd']))
                 ->setMood(0)
                 ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
                 ->setCompany($idCompany)

@@ -15,7 +15,6 @@ class ThreadWaitingRepository extends \Doctrine\ORM\EntityRepository
      * @return array
      */
     public function findOlders() {
-        $now = new \DateTime('now');
         $qb = $this
             ->createQueryBuilder('w')
             ->where('w.istrait < 1')
