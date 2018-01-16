@@ -264,11 +264,15 @@ class ProjectController extends Controller
      *
      */
     // TODO: AJAX
-    public function validateProjectAction(Request $request, Project $project)
+    public function validateProjectAction(Request $request, Project $project, EmailService $emailService)
     {
         $statusProject = $project->setStatus('2');
         $em = $this->getDoctrine()->getManager();
         $em->persist($statusProject);
+
+        $email_contact = $this->container->getParameter('email_contact');
+        $emailService->sendMailProjectValidate($project, $email_contact);
+
         $em->flush();
         return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
     }
