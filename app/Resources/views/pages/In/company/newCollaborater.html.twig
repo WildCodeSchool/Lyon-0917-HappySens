@@ -1,0 +1,66 @@
+{% extends 'baseIn.html.twig' %}
+
+{% block content %}
+
+    <div class="container">
+        <a class="waves-effect waves-light btn pink darken-2"
+           href="{{ path('UserProfil', {'slug' : app.user.slug}) }}">Retour Profil</a>
+        {{ form_start(form) }}
+        <br>
+        <div class="row">
+            <div class="col s6">
+                <h5 class="titleInscription blue-text text-darken-3">Prenom :</h5>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
+                    {% if (form_errors(form.firstName)) %}
+                        {{ form_widget(form.firstName, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+                        {{ form_widget(form.firstName) }}
+                    {% endif %}
+                    <label for="firstName"><span class="requireInput">* </span>Prénom</label>
+                    <div class="center error">
+                        {{ form_errors(form.firstName) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col s6">
+                <h5 class="titleInscription blue-text text-darken-3">Nom :</h5>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
+                    {% if (form_errors(form.lastName)) %}
+                        {{ form_widget(form.lastName, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+                        {{ form_widget(form.lastName) }}
+                    {% endif %}
+                    <label for="lastName"><span class="requireInput">* </span>Nom</label>
+                    <div class="center error">
+                        {{ form_errors(form.lastName) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col s6">
+                <h5 class="titleInscription blue-text text-darken-3">Email :</h5>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix blue-text text-darken-3">email</i>
+                    {% if (form_errors(form.email)) %}
+                        {{ form_widget(form.email, {'attr': {'class': 'error'}}) }}
+                    {% else %}
+                        {{ form_widget(form.email) }}
+                    {% endif %}
+                    <label for="email"><span class="requireInput">* </span>Email</label>
+                    <div class="center error">
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <a class="waves-effect waves-light btn blue darken-3"
+               href="{{ path('UserProfil', {'slug' : app.user.slug}) }}">Retour</a>
+            <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer"/>
+        </div>
+        <br>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

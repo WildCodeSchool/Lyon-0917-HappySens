@@ -13,12 +13,13 @@ use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use AppBundle\Service\SlugService;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class FileUploader
 {
-    const MAIL_OK = 1;
+    const CREATE_OK = 1;
 
-    const MAIL_FAIL = 0;
+    const CREATE_FAIL = 0;
     /**
      * @var string
      */
@@ -34,16 +35,21 @@ class FileUploader
      */
     private $counter = 0;
 
+    private $emailService;
+
     /**
      * FileUploader constructor.
      * @param RegistryInterface $db
      * @param $directory
+     * @param EmailService $emailService
      */
-    public function __construct(RegistryInterface $db, $directory)
+    public function __construct(RegistryInterface $db, $directory, EmailService $emailService)
     {
 
         $this->directory = $directory;
         $this->db = $db;
+        $this->emailService = $emailService;
+
     }
 
     /**
@@ -112,46 +118,37 @@ class FileUploader
     }
 
     /**
-     * @param $valueMdp
      * @param $idCompany
      * @param $fileUsers
      * @param $email_contact
-     * @param EmailService $emailService
-     * @param $status
-     * @param $key
-     * @return array
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return int
      */
-    public function insertUser($valueMdp, $idCompany, $fileUsers, $email_contact, EmailService $emailService, $status, $key)
+    public function insertUser($idCompany, $fileUsers, $email_contact, UserPasswordEncoderInterface $passwordEncoder)
     {
-        // for destroy twins
         $slugService = new SlugService();
         $newUser = new User();
 
-        $checkStatus = ($status === 1)? 3 : 2;
-        $newUser->setFirstName($fileUsers['prenom'])
-            ->setLastName($fileUsers['nom'])
-            ->setEmail($fileUsers['email'])
-            ->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT))
-            ->setMood(0)
-            ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
-            ->setCompany($idCompany)
-            ->setIsActive(0);
-        $newUser->setStatus(($checkStatus > 1)? 3 : 2);
+        if (!empty($fileUsers)) {
+            $newUser->setFirstName($fileUsers['prenom'])
+                ->setLastName($fileUsers['nom'])
+                ->setEmail($fileUsers['email'])
+                ->setPassword($passwordEncoder->encodePassword($newUser, $fileUsers['valuePwd']))
+                ->setMood(0)
+                ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
+                ->setCompany($idCompany)
+                ->setIsActive(0);
+            $newUser->setStatus(($fileUsers['key'] <= 1) ? User::ROLE_COMPANY : User::ROLE_EMPLOYE);
 
-        $userCreate = [
-          'prenom' => $newUser->getFirstName(),
-          'nom' => $newUser->getLastName(),
-          'email' => $newUser->getEmail(),
-          'slug' => $newUser->getSlug(),
-          'key' => $key,
-        ];
+            $this->getDb()->getManager()->persist($newUser);
+            $this->emailService->sendMailNewUser($newUser, $email_contact, $fileUsers['valuePwd']);
+            $newUser->setStatusMail(1);
+            $this->getDb()->getManager()->flush();
 
-        $this->getDb()->getManager()->persist($newUser);
-        $emailService->sendMailNewUser($newUser, $email_contact, $valueMdp);
-        $newUser->setStatusMail(self::MAIL_OK);
-        $this->getDb()->getManager()->flush();
-
-        return $userCreate;
+            return self::CREATE_OK;
+        } else {
+            return self::CREATE_FAIL;
+        }
     }
 
     /**
