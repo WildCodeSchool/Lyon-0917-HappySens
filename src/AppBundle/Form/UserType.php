@@ -3,19 +3,18 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Language;
-use AppBundle\Entity\Skill;
-use AppBundle\Entity\UserHasSkill;
-use function Sodium\add;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\LanguageType;
 
 class UserType extends AbstractType
 {
@@ -35,18 +34,33 @@ class UserType extends AbstractType
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day'
                 )
             ])
-            ->add('photo')
+            ->add('photo',FileType::class, [
+                'label' => 'Votre photo',
+                'required' => false,
+            ])
             ->add('biography')
             ->add('slogan')
-            ->add('password', HiddenType::class)
-            ->add('mood', RangeType::class, array(
+            ->add('password', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passe doivent correspondre',
+                'options' => array('attr' => array('class' => 'password-field')),
+                'required' => false,
+                'first_options' => array('label' => 'Nouveau mot de passe'),
+                'second_options' => array('label' => 'Confirmez votre mot de passe'),
+            ))
+           ->add('mood', RangeType::class, array(
                 'attr' => array(
                     'min' => 0,
                     'max' => 5
                 )))
             ->add('job')
             ->add('workplace')
-            ->add('nativeLanguage')
+            ->add('nativeLanguage',EntityType::class, [
+                'class' => Language::class,
+                'required' => false,
+//                'empty_data' => null,
+                'multiple' => false,
+            ])
             ->add('languagesUser', EntityType::class, [
             'class' => Language::class,
             'required' => false,
@@ -60,8 +74,16 @@ class UserType extends AbstractType
             'allow_add'    => true,
             'allow_delete' => true,
             'by_reference' => false,
-        ]);
-
+        ])
+        ->add('facebook', UrlType::class, [
+            'required' => false,
+        ])
+            ->add('twitter', UrlType::class, [
+                'required' => false,
+            ])
+            ->add('linkedin', UrlType::class, [
+                'required' => false,
+            ]);
     }
 
     /**
