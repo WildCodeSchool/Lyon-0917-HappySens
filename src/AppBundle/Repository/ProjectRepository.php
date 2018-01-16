@@ -45,7 +45,7 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
     public function getNumberProjectsByStatus() {
         $qb = $this
             ->createQueryBuilder('p')
-            ->select('COUNT(p)')
+            ->select('COUNT(p) as number', 'p.status as status')
             ->groupBy('p.status')
             ->getQuery();
         return $qb->getResult();

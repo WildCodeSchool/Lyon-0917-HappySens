@@ -98,7 +98,7 @@ class EmailService
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
 
-        $message->setSubject('Votre projet à bien était créer')
+        $message->setSubject('Votre projet a bien été créé')
             ->setCharset("utf-8")
             ->setTo([$email_contact, $project->getAuthor()->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
@@ -132,7 +132,7 @@ class EmailService
     {
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-        $message->setSubject('Réeinitialisation de votre mot de passe')
+        $message->setSubject('Réinitialisation de votre mot de passe')
             ->setCharset("utf-8")
             ->setTo([$email_contact, $mailUser])
             ->setFrom([$this->sender => self::SENDER])
@@ -162,12 +162,17 @@ class EmailService
     public function sendMailNewUser($user, $email_contact, $valueMdp)
     {
         $message = \Swift_Message::newInstance();
+<<<<<<< HEAD
 
         $finder = new Finder();
         foreach ($finder->in([__DIR__, 'web/assets/images/'])->name('logo2.png') as $file) {
             $img = $message->embed(Swift_Image::fromPath($file));
         }
         $message->setSubject("Votre compte happySens vient d'être créer")
+=======
+        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+        $message->setSubject("Votre compte happySens vient d'être créé")
+>>>>>>> b299c95f278e174df96512ebd28614ad75575331
             ->setCharset("utf-8")
             ->setTo([$email_contact, $user->getEmail()])
             ->setFrom([$this->sender => self::SENDER])

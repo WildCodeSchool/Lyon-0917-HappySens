@@ -1,0 +1,11 @@
+{% extends 'notificationsEmail/baseMail.html.twig' %}
+
+{% block content %}
+    <h1 class="title">Bonjour {{ author.firstname }} {{ author.lastname }},</h1>
+
+    <span class="content">Nous sommes très heureux de vous informer que votre projet vient d’être validé par l’Happy Comité. </span>
+    <p class="infosOthers">Votre Happy Coach prendra contact avec vous dans les meilleurs délais pour débuter la première phase de préparation.
+        Informez votre équipe et vos supporters, libérez vos passions et votre créativité, ça va être à vous de jouer pour plus de bonheur au travail !
+    </p>
+    <p class="content">Félicitations cher(e) CHO !</p>
+{% endblock %}

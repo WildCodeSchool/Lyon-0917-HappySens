@@ -72,17 +72,19 @@
         <div class="col s12 l8">
             <div class="row">
                 <div class="right">
-                    {% if app.user.status != 4 %}
-                        {% if app.user not in project.teamProject %}
-                            <a href="{{ path('join_team', {"slug": project.slug}) }}" onclick="joinProject()"
-                               class="btn waves-effect waves-light personPlus" type="submit" name="action">Rejoindre
-                                <i class="material-icons right">person_add</i>
-                            </a>
-                        {% else %}
-                            <a href="{{ path('quit_team', {"slug": project.slug}) }}" onclick="joinProject()"
-                               class="btn waves-effect waves-light personPlus" type="submit" name="action">Quitter
-                                <i class="material-icons right">cancel</i>
-                            </a>
+                    {% if user != project.author %}
+                        {% if app.user.status != 4 %}
+                            {% if app.user not in project.teamProject %}
+                                <a href="{{ path('join_team', {"slug": project.slug}) }}" onclick="joinProject()"
+                                   class="btn waves-effect waves-light personPlus" type="submit" name="action">Rejoindre
+                                    <i class="material-icons right">person_add</i>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('quit_team', {"slug": project.slug}) }}" onclick="joinProject()"
+                                   class="btn waves-effect waves-light personPlus" type="submit" name="action">Quitter
+                                    <i class="material-icons right">cancel</i>
+                                </a>
+                            {% endif %}
                         {% endif %}
                     {% endif %}
                 </div>
