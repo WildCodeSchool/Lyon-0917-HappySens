@@ -45,7 +45,7 @@ class Company
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=100, unique=true)
      * @Assert\NotBlank()
      * @Assert\Type("String")
      * @Assert\Length(
@@ -64,7 +64,10 @@ class Company
      */
     private $nbSalary;
 
-
+    /**
+     *
+     * @ORM\Column(name="birthdate", type="string", nullable=true)
+     */
     private $birthdate;
 
     /**
@@ -143,7 +146,7 @@ class Company
 
     /**
      * @var string
-     * @ORM\Column(name="slug", type="string",  length=255, nullable=true)
+     * @ORM\Column(name="slug", type="string",  length=255, nullable=true, unique=true)
      */
     private $slug;
 

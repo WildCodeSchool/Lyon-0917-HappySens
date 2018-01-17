@@ -116,29 +116,7 @@
             <div class="containList">
                 <h5 class="titleSecond amber-text text-darken-2">Equipe :</h5>
                 <ul class="inline-team-list">
-                    {% if project.teamProject is not empty %}
-                        {% for user in project.teamProject %}
-                            <li>
-                                {% if user.status == 2 or  user.status == 3%}
-                                <a href="{{ path('UserProfil', {'slug' : user.slug })}}">
-                                    <div class="chip amber">
-                                        <img src="{{ user.photo }}" alt="Photo utilisateur"> <!-- notice the "circle" class -->
-                                        <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
-                                    </div>
-                                </a>
-                                {% else %}
-                                <a href="{{ path('profilHappyCoach', {'slug' : user.slug })}}">
-                                    <div class="chip pink">
-                                        <img src="{{ user.photo }}" alt="Photo utilisateur"> <!-- notice the "circle" class -->
-                                        <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
-                                    </div>
-                                </a>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    {% else %}
-                        <p>Pas encore de membre dans cette équipe</p>
-                    {% endif %}
+                   {{ include('project/projectTeam.html.twig') }}
                 </ul>
             </div>
             <div class="row">
