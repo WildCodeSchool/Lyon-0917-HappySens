@@ -59,7 +59,7 @@ class EmailContact
      *      maxMessage = "Le téléphone doit être sous la forme : 00-00-00-00-00"
      * )
      * Assert\Regex(
-     *     pattern="#^0[1-9]([-. ]?[0-9]{2}){4}$#",
+     *     pattern="#^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$#",
      *     match=false,
      *     message="Le téléphone doit être sous la forme : 00-00-00-00-00"
      * )
