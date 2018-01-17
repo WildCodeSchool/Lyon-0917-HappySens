@@ -145,7 +145,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=255 , nullable=false)
      */
     private $password;
 
@@ -181,7 +181,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="workplace", type="string", length=100, nullable=true)
      * @Assert\Length(
      *      min = 3,
-     *      max = 255,
+     *      max = 100,
      *      minMessage = "Le lieu de votre travail doit contenir au moins plus de {{ limit }} caractères",
      *      maxMessage = "Le lieu de votre travail ne doit pas contenir plus de {{ limit }} caractères"
      * )

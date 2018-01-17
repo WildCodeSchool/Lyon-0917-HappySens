@@ -175,6 +175,15 @@ class UserController extends Controller
     public function editUserAction(Request $request, User $user, SlugService $slugService, FileUploader $fileUploader,
                                    UserPasswordEncoderInterface $passwordEncoder)
     {
+        $errors = [
+            'password' => '',
+            'biography' => '',
+            'phone' => '',
+            'slogan' => '',
+            'workplace' => '',
+            'job' => '',
+        ];
+        $countErrors = 0;
         if ($this->getUser()->getStatus() !== User::ROLE_ADMIN) {
             $user = $this->getUser();
         }
@@ -186,13 +195,53 @@ class UserController extends Controller
             );
             $photoTempEntire = $user->getPhoto();
         }
-
+        $tempPassword = $user->getPassword();
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->remove('slug');
         $editForm->remove('user');
         $editForm->remove('company');
         $editForm->handleRequest($request);
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+        if ($editForm->isSubmitted()) {
+            if ($this->getUser()->getIsActive() == 0) {
+                if ($editForm->getData()->getPassword() == NULL) {
+                    $errors['password'] = "Votre mot de passe doit être changé, veuillez remplir ces champs";
+                    $countErrors++;
+                    /*                    return $this->render('pages/In/collaborators/editUser.html.twig', [
+                                            'user' => $user,
+                                            'edit_form' => $editForm->createView(),
+                                            'errors' => $errors,
+                                        ]);*/
+                }
+            }
+            if ($editForm->getData()->getBiography() == null) {
+                $errors['biography'] = "Ce champs est requis est doit être rempli";
+                $countErrors++;
+            }
+            if ($editForm->getData()->getSlogan() == null) {
+                $errors['slogan'] = "Merci de mettre votre slogan bonheur";
+                $countErrors++;
+            }
+            if ($editForm->getData()->getJob() == null) {
+                $errors['job'] = "Merci d'indiquer votre profession";
+                $countErrors++;
+            }
+            if ($editForm->getData()->getPhone() == null) {
+                $errors['phone'] = "Merci d'indiquer votre n° de téléphone";
+                $countErrors++;
+            }
+            if ($editForm->getData()->getWorkplace() == null) {
+                $errors['workplace'] = "Merci d'indiquer votre lieu de travail";
+                $countErrors++;
+            }
+            if ($countErrors > 0) {
+                return $this->render('pages/In/collaborators/editUser.html.twig', [
+                    'user' => $user,
+                    'edit_form' => $editForm->createView(),
+                    'errors' => $errors,
+                ]);
+            }
+        } if ($editForm->isSubmitted() && $editForm->isValid()) {
             if ($editForm->getData()->getPhoto() !== NULL) {
                 if (isset($photoTempEntire)) {
                     unlink($photoTempEntire);
@@ -203,8 +252,16 @@ class UserController extends Controller
             } else {
                 $user->setPhoto($photoTemp);
             }
-            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
+            if ($editForm->getData()->getPassword() !== null) {
+                $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+                $user->setPassword($password);
+            } else {
+                $user->setPassword($tempPassword);
+            }
+            $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
+            if ($user->getIsActive() == false) {
+                $user->setIsActive(true);
+            }
 
             $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
             if ($user->getIsActive() == false) {
