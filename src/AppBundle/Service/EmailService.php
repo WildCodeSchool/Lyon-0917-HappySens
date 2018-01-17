@@ -13,6 +13,7 @@ use Swift_Image;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Finder\Finder;
 
+
 class EmailService
 {
 
@@ -42,7 +43,8 @@ class EmailService
      * EmailService constructor.
      * @param \Swift_Mailer $mailer
      * @param \Twig_Environment $template
-     * @param $sender string
+     * @param $sender
+     * @param RegistryInterface $db
      */
     public function __construct(\Swift_Mailer $mailer, \Twig_Environment $template, $sender, RegistryInterface $db)
     {
@@ -162,8 +164,8 @@ class EmailService
     public function sendMailNewUser($user, $email_contact, $valueMdp)
     {
         $message = \Swift_Message::newInstance();
-        $finder = new Finder();
-        $img = $finder->in([__DIR__, 'web/assets/images/'])->name('logo2.png');
+        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+
         $message->setSubject("Votre compte happySens vient d'être créer")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $user->getEmail()])

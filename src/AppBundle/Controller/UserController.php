@@ -203,10 +203,9 @@ class UserController extends Controller
             }
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
-
             $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
             if ($user->getIsActive() == false) {
-                $user->setIsActive(1);
+                $user->setIsActive(true);
             }
             $today = new \DateTime();
             $user->setDateUpdateMood($today);
