@@ -38,11 +38,11 @@
                     </li>
                     <li class="collection-item">
                         <div class="row">
-                            <p class="col s12 titleSecond">Langues</p>
-                            <div class="col s12">
-                                <i class="fa fa-language fa-2x"></i>
-                                <i class="fa fa-language fa-2x"></i>
-                                <i class="fa fa-language fa-2x"></i>
+                            <p class="col l12 titleSecond">Langues</p>
+                            <div class="col l12">
+                                {% for language in company.languagesCompany %}
+                                    {{ language }}
+                                {% endfor %}
                             </div>
                         </div>
                     </li>
@@ -72,8 +72,7 @@
                                 </div>
                             {% endfor %}
                             <div class="row center">
-                                <a class="waves-effect waves-light modal-trigger center btn" href="#modal_2">Voir tous les Talents</a>
-
+                                <a class="waves-effect waves-light modal-trigger center btn blue darken-2" href="#modalAllSkill">Voir tous les Talents</a>
                             </div>
                         </div>
                     </li>
@@ -99,7 +98,7 @@
                 </div>
                 {% endfor %}
                 <div class="row">
-                    <a class="btn center waves-effect waves-light modal-trigger" href="#modal_1">Tous les happySalariés</a>
+                    <a class="btn center waves-effect waves-light modal-trigger amber darken-2" href="#modalAllCollaborator">Tous les happySalariés</a>
                 </div>
             </div>
         </div>

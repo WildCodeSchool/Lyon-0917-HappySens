@@ -18,7 +18,6 @@ class User implements UserInterface, \Serializable
     const ROLE_COMPANY = 2;
     const ROLE_EMPLOYE = 3;
     const ROLE_HAPPYCOACH = 4;
-    const ROLE_HAPPYCOACH_PROJECT = 5;
 
     /**
      * @var int
@@ -73,18 +72,17 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=30, nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Type("String")
      * @Assert\Length(
      *      min = 10,
-     *      max = 17,
-     *      minMessage = "Indiquer le bon format : 0000000000",
-     *      maxMessage = "Indiquer le bon format : +33 3 33 33 33 33"
+     *      max = 14,
+     *      minMessage = "Le téléphone doit être sous la forme : 00-00-00-00-00",
+     *      maxMessage = "Le téléphone doit être sous la forme : 00-00-00-00-00"
      * )
-     * @Assert\Regex(
-     *     pattern="#/(\+\d+(\s|-))?0\d(\s|-)?(\d{2}(\s|-)?){4}/#",
+     * Assert\Regex(
+     *     pattern="#^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$#",
      *     match=false,
-     *     message="Indiquer le bon format"
+     *     message="Le téléphone doit être sous la forme : 00-00-00-00-00"
      * )
      */
     private $phone;
@@ -93,7 +91,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=150, unique=true)
-     * @Assert\NotBlank()
      * @Assert\Email(
      *     message = "Votre email : '{{ value }}' n'est pas valide.",
      *     checkMX = true
@@ -110,7 +107,7 @@ class User implements UserInterface, \Serializable
 
     /**
      *
-     * @ORM\Column(name="birthdate", type="datetime", nullable=true)
+     * @ORM\Column(name="birthdate", type="date", nullable=true)
      */
     private $birthdate;
 
@@ -125,7 +122,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="biography", type="text", nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 10,
      *      minMessage = "Votre message doit contenir au moins plus de {{ limit }} caractères",
@@ -137,7 +133,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="slogan", type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 10,
      *      max = 255,
@@ -150,7 +145,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=255 , nullable=false)
      */
     private $password;
 
@@ -171,7 +166,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="job", type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 3,
      *      max = 255,
@@ -185,10 +179,9 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="workplace", type="string", length=100, nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 3,
-     *      max = 255,
+     *      max = 100,
      *      minMessage = "Le lieu de votre travail doit contenir au moins plus de {{ limit }} caractères",
      *      maxMessage = "Le lieu de votre travail ne doit pas contenir plus de {{ limit }} caractères"
      * )
