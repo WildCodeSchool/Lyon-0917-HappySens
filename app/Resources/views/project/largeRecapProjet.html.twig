@@ -86,6 +86,11 @@
                                 </a>
                             {% endif %}
                         {% endif %}
+                    {% else %}
+                        <a href="{{ path('project_edit', {"slug": project.slug}) }}" class="btn waves-effect waves-light personPlus"
+                           type="submit" name="action">Modifier
+                            <i class="material-icons right">create</i>
+                        </a>
                     {% endif %}
                 </div>
                 <div class="dateProject left">
@@ -93,20 +98,25 @@
                     <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-calendar-times-o"></i></span> {{ project.endDate|date('Y-m-d') }}</p>
                     <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-map-marker"></i></span> {{ project.location }}</p>
                     {% if app.user.status != 4 %}
-                        {% if app.user not in project.likeProjects %}
+                        {% if app.user not in project.likeProjects and app.user != project.author %}
                             <a href="{{ path('like_project', {'slug': project.slug}) }}" onclick="like()">
                                 <p class="black-text chip">
                                     <span class="red-text"><i class="fa fa-heart"></i></span>
                                      {{ nbLike }}
                                 </p>
                             </a>
-                        {% else %}
+                        {% elseif app.user != project.author %}
                             <a href="{{ path('unlike_project', {'slug': project.slug}) }}">
                                 <p class="black-text chip">
                                     <span class="red-text"><i class="fa fa-heart"></i></span>
                                     {{ nbLike }}
                                 </p>
                             </a>
+                        {% else %}
+                            <p class="black-text chip">
+                                <span class="red-text"><i class="fa fa-heart"></i></span>
+                                {{ nbLike }}
+                            </p>
                         {% endif %}
                     {% else %}
                         <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ nbLike }}</p></a>

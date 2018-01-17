@@ -57,18 +57,12 @@
                         </div>
                         {% if (form_errors(edit_form.endDate))  %}
                             {{ form_widget(edit_form.endDate, {'attr': {'class': 'datepicker error'}}) }}
-                        {% else %}
-                         <div class="col s3">
-                            {{ form_widget(edit_form.endDate.year) }}
-                        </div>
-                        <div class="col s3">
-                            {{ form_widget(edit_form.endDate.month ) }}
-                        </div>
-                        <div class="col s3">
-                            {{ form_widget(edit_form.endDate.day) }}
-                        </div>
+                            {% else %}
+                             <div class="col s3">
+                                {{ form_widget(edit_form.endDate, {'attr': {'class': 'datepicker'}}) }}
+                            </div>
+                            <label for="end_date"><span class="requireInput">* </span></label>
                         {% endif %}
-                        <label for="end_date"><span class="requireInput">* </span></label>
                         <div class="center error">
                             {{ form_errors(edit_form.endDate) }}
                         </div>
@@ -152,15 +146,25 @@
                 </div>
                 <div class="col s12">
                     <h5 class="titleInscription blue-text text-darken-3">Photo :</h5>
-                    <i class="material-icons prefix blue-text text-darken-3">insert_photo</i>
-                         {% if (form_errors(edit_form.photo))  %}
+                    <div class="file-field input-field col s12">
+                        {% if (form_errors(edit_form.photo))  %}
                             {{ form_widget(edit_form.photo, { 'attr': {'class': 'materialize-textarea error'} }) }}
                         {% else %}
-                            {{ form_widget(edit_form.photo, { 'attr': {'class': 'materialize-textarea'} }) }}
+                            <div class="btn blue darken-2">
+                                <span>Votre Photo</span>
+                                {{ form_widget(edit_form.photo) }}
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
                         {% endif %}
                         <div class="center error">
                             {{ form_errors(edit_form.photo) }}
                         </div>
+                        <div class="center error">
+                        </div>
+                    </div>
+
                 </div>
                   <div class="col s12">
                     <div class="center">
