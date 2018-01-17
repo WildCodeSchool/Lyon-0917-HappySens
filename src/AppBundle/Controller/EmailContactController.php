@@ -14,8 +14,8 @@ class EmailContactController extends Controller
     /**
      * @Route("/contact", name="contact")
      * @param Request $request
-     * @param \Swift_Mailer $mailer
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param EmailService $emailService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function contactAction(Request $request, EmailService $emailService)
     {

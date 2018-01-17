@@ -12,16 +12,16 @@ use AppBundle\Entity\Company;
 use AppBundle\Entity\Project;
 use AppBundle\Entity\ThreadWaiting;
 use AppBundle\Entity\User;
-use AppBundle\Entity\UserHasSkill;
 use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
+use Doctrine\ORM\Mapping\Id;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -114,10 +114,9 @@ class AdminController extends Controller
      */
     public function listingCompanyAction()
     {
+
         $em = $this->getDoctrine()->getManager();
-
         $companies = $em->getRepository('AppBundle:Company')->findAll();
-
         return $this->render('pages/In/Admin/company/index.html.twig', array(
             'companies' => $companies,
         ));
@@ -159,9 +158,8 @@ class AdminController extends Controller
 
             $fileUsers = $fileUploader->transformCSV($fileUploader->getDirectory("csvFiles/") . $company->getFileUsers());
             unset($fileUsers[0]);
-
-            $now = new \DateTime('now');
             foreach($fileUsers as $key => $user) {
+                $now = new \DateTime('now');
                 $user['key'] = $key;
                 $user['valuePwd'] = $valuePwd;
                 $thread = new ThreadWaiting();
@@ -172,10 +170,8 @@ class AdminController extends Controller
                 $em->persist($thread);
             }
             $em->flush();
-
             unlink($fileUploader->getDirectory("csvFiles") . '/' . $company->getFileUsers());
-            //TODO change password
-            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), $valuePwd, $fileUsers[1]['email']);
+//            $emailService->sendMailNewCompany($company, $this->container->getParameter('email_contact'), $valuePwd, $fileUsers[1]['email']);
 
             return $this->redirectToRoute('resume_create_company', array(
                 'id' => $company->getId(),
@@ -185,6 +181,20 @@ class AdminController extends Controller
             'company' => $company,
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     *
+     * @Route("/resume-inscription-entreprise", name="resumeCompany")
+     * @return Response
+     */
+    public function listRecapCompany()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $allResume = $em->getRepository('AppBundle:Company')->findAllForRecap();
+        return $this->render('pages/In/Admin/company/listingRecapCompany.twig', [
+            'allResume' => $allResume,
+        ]);
     }
 
     /**
@@ -368,32 +378,56 @@ class AdminController extends Controller
 
     /**
      * @param Request $request
-     * @param Project $project
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * Add one HappyCoach Ref
      *
-     * @Route("/project/{slugProject}/happycoach", name="addHappyCoach")
+     * @Route("/project/{slug}/addHappyCoachRef", name="addHappyCoach")
      * @param Project $project The Project entity
      * @Method({"GET", "POST"})
      */
    public function addHappyCoachRefAction(Request $request, Project $project)
     {
-        $project->setPhoto(
-            new File('uploads/photoProject'.'/'.$project->getPhoto())
-        );
+
         $editForm = $this->createForm('AppBundle\Form\AddHappyCoachInProjectType', $project);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-           /* $this->getDoctrine()->getManager()->flush();*/
+               $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('project_edit', array('slug' => $project->getSlug()));
+            return $this->redirectToRoute('profilAdmin', array('slug' => $this->getUser()->getSlug()));
         }
-        return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', array(
+        return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', [
             'project' => $project,
             'edit_form' => $editForm->createView(),
+            ]);
+    }
 
-            ));
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * Add HappyCoach in team
+     *
+     * @Route("/project/{slug}/addHappyCoachTeam", name="addHappyCoachTeam")
+     * @param Project $project The Project entity
+     * @Method({"GET", "POST"})
+     */
+    public function addHappyCoachTeamAction(Request $request, Project $project)
+    {
+
+        $editForm = $this->createForm('AppBundle\Form\AddHappyCoachInTeamType', $project);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('profilAdmin', [
+                'slug' => $this->getUser()->getSlug(),
+                ]);
+        }
+        return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', [
+            'project' => $project,
+            'edit_form' => $editForm->createView(),
+        ]);
     }
 
 }

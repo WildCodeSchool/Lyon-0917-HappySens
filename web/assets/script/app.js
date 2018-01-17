@@ -1,7 +1,6 @@
 $(document).ready(function() {
     $('select').material_select();
     $(".button-collapse").sideNav();
-    $('#modal1').modal();
     $('.datepicker').pickadate({
         close: 'Ok',
         monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
@@ -27,8 +26,7 @@ $(document).ready(function() {
     });
     $('.collapsible').collapsible();
     $(".button").sideNav();
-    $('#modalAllCollaborator').modal();
-    $('#modalAllSkill').modal();
+    $('.modal').modal();
 
 });
 

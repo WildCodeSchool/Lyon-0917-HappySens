@@ -189,7 +189,7 @@ class UserController extends Controller
         }
 
         $photoTemp = $user->getPhoto();
-        if ($user->getPhoto() !== NULL) {
+        if ($user->getPhoto()) {
             $user->setPhoto(
                 new File($this->getParameter('upload_directory').'/photoUser/'.$user->getPhoto())
             );

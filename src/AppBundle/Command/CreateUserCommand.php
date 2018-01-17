@@ -45,7 +45,7 @@ class CreateUserCommand extends ContainerAwareCommand
                 $userData = $user->getUserData();
                 $idComp = $user->getIdComp();
                 $user->setIsTrait(true);
-                $create = $fileUploader->insertUser(
+                $fileUploader->insertUser(
                     $this->em->find(Company::class, $idComp),
                     $userData,
                     $emailContact
