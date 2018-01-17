@@ -15,6 +15,7 @@ use AppBundle\Entity\User;
 use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
+use Doctrine\ORM\Mapping\Id;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -113,10 +114,9 @@ class AdminController extends Controller
      */
     public function listingCompanyAction()
     {
+
         $em = $this->getDoctrine()->getManager();
-
         $companies = $em->getRepository('AppBundle:Company')->findAll();
-
         return $this->render('pages/In/Admin/company/index.html.twig', array(
             'companies' => $companies,
         ));
@@ -378,32 +378,56 @@ class AdminController extends Controller
 
     /**
      * @param Request $request
-     * @param Project $project
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * Add one HappyCoach Ref
      *
-     * @Route("/project/{slugProject}/happycoach", name="addHappyCoach")
+     * @Route("/project/{slug}/addHappyCoachRef", name="addHappyCoach")
      * @param Project $project The Project entity
      * @Method({"GET", "POST"})
      */
    public function addHappyCoachRefAction(Request $request, Project $project)
     {
-        $project->setPhoto(
-            new File('uploads/photoProject'.'/'.$project->getPhoto())
-        );
+
         $editForm = $this->createForm('AppBundle\Form\AddHappyCoachInProjectType', $project);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-           /* $this->getDoctrine()->getManager()->flush();*/
+               $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('project_edit', array('slug' => $project->getSlug()));
+            return $this->redirectToRoute('profilAdmin', array('slug' => $this->getUser()->getSlug()));
         }
-        return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', array(
+        return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', [
             'project' => $project,
             'edit_form' => $editForm->createView(),
+            ]);
+    }
 
-            ));
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * Add HappyCoach in team
+     *
+     * @Route("/project/{slug}/addHappyCoachTeam", name="addHappyCoachTeam")
+     * @param Project $project The Project entity
+     * @Method({"GET", "POST"})
+     */
+    public function addHappyCoachTeamAction(Request $request, Project $project)
+    {
+
+        $editForm = $this->createForm('AppBundle\Form\AddHappyCoachInTeamType', $project);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('profilAdmin', [
+                'slug' => $this->getUser()->getSlug(),
+                ]);
+        }
+        return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', [
+            'project' => $project,
+            'edit_form' => $editForm->createView(),
+        ]);
     }
 
 }

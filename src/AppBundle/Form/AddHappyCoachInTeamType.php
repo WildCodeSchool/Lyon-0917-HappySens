@@ -15,7 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AddHappyCoachInProjectType extends AbstractType
+class AddHappyCoachInTeamType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -23,11 +23,11 @@ class AddHappyCoachInProjectType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('happyCoach', EntityType::class, [
+        $builder->add('teamProject', EntityType::class, [
             'class' => User::class,
             'required' => false,
             'empty_data' => null,
-            'multiple' => false,
+            'multiple' => true,
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('u')
                     ->where('u.status = 4');
