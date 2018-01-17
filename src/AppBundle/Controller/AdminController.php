@@ -16,6 +16,7 @@ use AppBundle\Entity\UserHasSkill;
 use AppBundle\Service\EmailService;
 use AppBundle\Service\FileUploader;
 use AppBundle\Service\SlugService;
+use Doctrine\ORM\Mapping\Id;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -114,10 +115,9 @@ class AdminController extends Controller
      */
     public function listingCompanyAction()
     {
+
         $em = $this->getDoctrine()->getManager();
-
         $companies = $em->getRepository('AppBundle:Company')->findAll();
-
         return $this->render('pages/In/Admin/company/index.html.twig', array(
             'companies' => $companies,
         ));
