@@ -1,0 +1,18 @@
+{% extends 'notificationsEmail/baseMail.html.twig' %}
+
+{% block content %}
+    <h1 class="title">Bienvenue {{ firstname }} {{ lastname }}, sur votre plateforme HappySens,</h1>
+
+    <span class="content">Vos identifiants temporaires sont les suivants :</span>
+    <ul class="text">
+        <li class="content">Email : {{ email }} </li>
+        <li class="content">Mot de passe temporaire : {{ password }} </li>
+    </ul>
+    <p class="infosOthers">Nous vous invitons à bien renseigner votre profil et à présenter vos expertises et spécialités ainsi que leurs utilisations dans le cadre d’un projet mené en entreprise.
+        Nous reprenons contact avec vous très rapidement pour vous adresser le questionnaire et la charte HappySens à nous retourner complétés et signés pour validation définitive de votre inscription.
+    </p>
+    <a href="http://happysens.fr/login">
+        <button>Accéder à votre profil</button>
+    </a>
+    <p class="content">Merci de votre confiance, nous serions ravis de vous compter parmi nos Happy Coachs.</p>
+{% endblock %}

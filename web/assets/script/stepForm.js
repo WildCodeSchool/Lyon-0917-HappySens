@@ -1,28 +1,45 @@
 function goStep1() {
     $("#step2").addClass("hide");
     $("#step3").addClass("hide");
+    $("#step4").addClass("hide");
     $("#step1").removeClass("hide");
     $("#breadOne").addClass("active");
     $("#breadTwo").removeClass("active");
     $("#breadThree").removeClass("active");
+    $("#breadFour").removeClass("active");
 
 }
 function goStep2() {
     $("#step1").addClass("hide");
     $("#step3").addClass("hide");
+    $("#step4").addClass("hide");
     $("#step2").removeClass("hide");
     $("#breadTwo").addClass("active");
     $("#breadThree").removeClass("active");
+    $("#breadFour").removeClass("active");
 
 }
 function goStep3() {
     $("#step2").addClass("hide");
     $("#step1").addClass("hide");
+    $("#step4").addClass("hide");
     $("#step3").removeClass("hide");
+    $("#breadOne").addClass("active");
     $("#breadThree").addClass("active");
     $("#breadTwo").addClass("active");
-
+    $("#breadFour").removeClass("active");
 }
+
+function goStep4() {
+    $("#step2").addClass("hide");
+    $("#step1").addClass("hide");
+    $("#step3").addClass("hide");
+    $("#step4").removeClass("hide");
+    $("#breadThree").addClass("active");
+    $("#breadTwo").addClass("active");
+    $("#breadFour").addClass("active");
+}
+
 // setup an "add a tag" link
 var $addTagLink = $('<a href="#" class="add_tag_link">Add a tag</a>');
 var $newLinkLi = $('<div></div>').append($addTagLink);

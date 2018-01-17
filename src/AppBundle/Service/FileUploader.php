@@ -13,12 +13,13 @@ use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use AppBundle\Service\SlugService;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class FileUploader
 {
-    const MAIL_OK = 1;
+    const CREATE_OK = 1;
 
-    const MAIL_FAIL = 0;
+    const CREATE_FAIL = 0;
     /**
      * @var string
      */
@@ -35,15 +36,29 @@ class FileUploader
     private $counter = 0;
 
     /**
+     * @var EmailService
+     */
+    private $emailService;
+
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
+
+    /**
      * FileUploader constructor.
      * @param RegistryInterface $db
      * @param $directory
+     * @param EmailService $emailService
      */
-    public function __construct(RegistryInterface $db, $directory)
+    public function __construct(RegistryInterface $db, $directory, EmailService $emailService,  UserPasswordEncoderInterface $passwordEncoder)
     {
 
         $this->directory = $directory;
         $this->db = $db;
+        $this->emailService = $emailService;
+        $this->passwordEncoder = $passwordEncoder;
+
     }
 
     /**
@@ -82,6 +97,11 @@ class FileUploader
         return $this;
     }
 
+    /**
+     * @param UploadedFile $file
+     * @param $underDir
+     * @return string
+     */
     // TODO : Create const for underDir and switch with all types of uploads with verif
     public function upload(UploadedFile $file, $underDir)
     {
@@ -92,6 +112,10 @@ class FileUploader
         return $fileName;
     }
 
+    /**
+     * @param $file
+     * @return array
+     */
     public function transformCSV($file)
     {
         $csv = array_map('str_getcsv', file($file));
@@ -102,46 +126,53 @@ class FileUploader
         return $csv;
     }
 
-    public function insertUser($valueMdp, $idCompany, $fileUsers, $email_contact, EmailService $emailService)
+    /**
+     * @param $idCompany
+     * @param $fileUsers
+     * @param $email_contact
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return int
+     */
+    public function insertUser($idCompany, $fileUsers, $email_contact)
     {
-        // for destroy twins
-        $listEmails = [];
-        $arrayUsers = [];
         $slugService = new SlugService();
+        $newUser = new User();
 
-            for($i = 1; $i < count($fileUsers); $i++) {
-                if (!in_array($fileUsers[$i]['email'], $listEmails)) {
-                    $newUser = new User();
-                    $newUser->setFirstName($fileUsers[$i]['prenom'])
-                        ->setLastName($fileUsers[$i]['nom'])
-                        ->setEmail($fileUsers[$i]['email'])
-                        ->setPassword(password_hash($valueMdp, PASSWORD_BCRYPT))
-                        ->setMood(0)
-                        ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
-                        ->setCompany($idCompany)
-                        ->setIsActive(0);
-                    if ($i === 1) {
-                        $newUser->setStatus(2);
-                    } else {
-                        $newUser->setStatus(3);
-                    }
-                    $listEmails[$i] = $fileUsers[$i]['email'];
-                    $this->setCounter(($this->getCounter() + 1));
+        if (!empty($fileUsers)) {
+            $newUser->setFirstName($fileUsers['prenom'])
+                ->setLastName($fileUsers['nom'])
+                ->setEmail($fileUsers['email'])
+                ->setPassword($this->passwordEncoder->encodePassword($newUser, $fileUsers['valuePwd']))
+                ->setMood(0)
+                ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
+                ->setCompany($idCompany)
+                ->setIsActive(0);
+            $newUser->setStatus(($fileUsers['key'] <= 1) ? User::ROLE_COMPANY : User::ROLE_EMPLOYE);
 
-                    $emailService->sendMailNewUser($newUser, $email_contact, $valueMdp);
-                    $newUser->setStatusMail(self::MAIL_OK);
-                    $arrayUsers[$i] = $newUser;
-                    $this->getDb()->getManager()->persist($newUser);
-                }
-            }
+            $this->getDb()->getManager()->persist($newUser);
+            $this->emailService->sendMailNewUser($newUser, $email_contact, $fileUsers['valuePwd']);
+            $newUser->setStatusMail(1);
             $this->getDb()->getManager()->flush();
-            return $arrayUsers;
+
+            return self::CREATE_OK;
+        } else {
+            return self::CREATE_FAIL;
+        }
     }
+
+    /**
+     * @param $underDir
+     * @return string
+     */
     public function getDirectory($underDir)
     {
         return $this->directory . '/' . $underDir;
     }
 
+    /**
+     * @param $directory
+     * @return mixed
+     */
     public function setDirectory($directory)
     {
         return $this->directory  = $directory;

@@ -1,3 +1,0 @@
-mysql -h localhost -u root -p happysens < stats_pays_titres.sql
-
-happysens : nom de la base de donnée

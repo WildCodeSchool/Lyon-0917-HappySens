@@ -11,7 +11,7 @@
                         <li class=""><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
                         <li><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
                         <li class="divider"></li>
-                        <li><a class="blue-text text-darken-2" href="{{ path('listingNotifications') }}">Voir toutes vos notifications</a></li>
+                        <li><a class="blue-text text-darken-2" href="{{ path('list', { 'slug': app.user.slug }) }}">Voir toutes vos notifications</a></li>
                     </ul>
                 </li>
                 <li title="Vos paramétres">
@@ -29,7 +29,11 @@
                 <li title="Menu accès rapide">
                     <a href="#" data-activates="slide-out" class="button linkNavSide">
                         <div class="imgMenu">
-                            <img class="circle responsive-img" src="{{ app.user.photo }}" alt="Vignette photo">
+                            {% if app.user.photo is defined %}
+                                <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                            {% else %}
+                                <img src="{{ asset('uploads/photoUser/' ~ app.user.photo) }}" alt="profile image" class="circle z-depth-3 activator">
+                            {% endif %}
                             <span class="hide-on-small-only">{{ app.user.firstname }} {{ app.user.lastname }}</span>
                         </div>
                     </a>
@@ -41,7 +45,11 @@
                         <a href="{{ path('profilHappyCoach', { 'slug': app.user.slug  }) }}" title="Voir votre profil">
                             <div class="background  blue darken-2 white-text">
                             </div>
-                            <img class="circle" src="{{ app.user.photo }}">
+                            {% if app.user.photo is defined %}
+                                <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                            {% else %}
+                                <img src="{{ asset('uploads/photoUser/' ~ app.user.photo) }}" alt="profile image" class="circle z-depth-3 activator">
+                            {% endif %}
                             <div>
                                 <span class="name">{{ app.user.firstname }} {{ app.user.lastname }}</span>
                                 <span class="email">{{ app.user.email }}</span>
