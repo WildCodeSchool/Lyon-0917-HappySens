@@ -219,4 +219,32 @@ class EmailService
 
         $this->mailer->send($message);
     }
+
+    /**
+     * @param $project
+     * @param $email_contact
+     */
+    public function sendMailProjectValidate($project, $email_contact)
+    {
+        $message = \Swift_Message::newInstance();
+        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+
+        $message->setSubject('Votre projet a été validé')
+            ->setCharset("utf-8")
+            ->setTo([$email_contact, $project->getAuthor()->getEmail()])
+            ->setFrom([$this->sender => self::SENDER])
+            ->setBody(
+                $this->template->render('notificationsEmail/categories/project/validateProject.html.twig', [
+                    'logo' => $img,
+                    'author' => $project->getAuthor(),
+                    'title' => $project->getTitle(),
+                ]), 'text/html'
+            )
+            ->addPart($this->template->render('notificationsEmail/categories/project/validateProject.txt.twig', [
+                'author' => $project->getAuthor(),
+                'title' => $project->getTitle(),
+            ]), 'text/plain');
+
+        $this->mailer->send($message);
+    }
 }
