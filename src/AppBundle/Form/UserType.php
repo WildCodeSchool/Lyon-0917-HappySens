@@ -6,11 +6,13 @@ use AppBundle\Entity\Language;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,22 +28,31 @@ class UserType extends AbstractType
         $builder
             ->add('firstName')
             ->add('lastName')
-            ->add('phone')
-            ->add('email')
+            ->add('phone', TextType::class, [
+                'required' => true,
+            ])
+            ->add('email', EmailType::class, [
+                'required' => true,
+            ])
             ->add('status', HiddenType::class)
             ->add('birthdate', BirthdayType::class,
                 [
                     'label' => 'Date de naissance',
                     'widget' => 'single_text',
                     'format' => 'dd-MM-yyyy',
+                    'required' => true,
             ]
     )
             ->add('photo',FileType::class, [
                 'label' => 'Votre photo',
                 'required' => false,
             ])
-            ->add('biography')
-            ->add('slogan')
+            ->add('biography', TextType::class, [
+                'required' => true,
+            ])
+            ->add('slogan', TextType::class, [
+                'required' => true,
+            ])
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent correspondre',
@@ -53,14 +64,19 @@ class UserType extends AbstractType
            ->add('mood', RangeType::class, array(
                 'attr' => array(
                     'min' => 0,
-                    'max' => 5
+                    'max' => 5,
+                    'required' => true,
                 )))
-            ->add('job')
-            ->add('workplace')
+            ->add('job', TextType::class, [
+                'required' => true,
+            ])
+            ->add('workplace', TextType::class, [
+                'required' => true,
+            ])
             ->add('nativeLanguage',EntityType::class, [
                 'class' => Language::class,
                 'required' => false,
-//                'empty_data' => null,
+                'empty_data' => null,
                 'multiple' => false,
             ])
             ->add('languagesUser', EntityType::class, [
@@ -76,6 +92,7 @@ class UserType extends AbstractType
             'allow_add'    => true,
             'allow_delete' => true,
             'by_reference' => false,
+            'required' => true,
         ])
             ->add('facebook', UrlType::class, [
                 'required' => false,

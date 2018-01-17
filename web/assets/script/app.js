@@ -21,7 +21,7 @@ $(document).ready(function() {
         selectMonths: true, // Enable Month Selection
         selectYears: 80, // Creates a dropdown of 80 years to control year
         format: 'dd/mm/yyyy',
-        min: false,
+        // min: false,
         max: true,
         closeOnSelect: true
     });

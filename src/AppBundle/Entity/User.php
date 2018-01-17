@@ -72,7 +72,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=30, nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Type("String")
      * @Assert\Length(
      *      min = 10,
@@ -92,7 +91,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=150, unique=true)
-     * @Assert\NotBlank()
      * @Assert\Email(
      *     message = "Votre email : '{{ value }}' n'est pas valide.",
      *     checkMX = true
@@ -124,7 +122,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="biography", type="text", nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 10,
      *      minMessage = "Votre message doit contenir au moins plus de {{ limit }} caractères",
@@ -136,7 +133,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="slogan", type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 10,
      *      max = 255,
@@ -170,7 +166,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="job", type="string", length=255, nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 3,
      *      max = 255,
@@ -184,7 +179,6 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="workplace", type="string", length=100, nullable=true)
-     * @Assert\NotBlank()
      * @Assert\Length(
      *      min = 3,
      *      max = 255,
