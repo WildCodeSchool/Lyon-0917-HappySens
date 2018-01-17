@@ -22,9 +22,8 @@ class ProjectType extends AbstractType
         $builder->add('title', TextType::class)
             ->add('startingDate', DateType::class, ['mapped' => false])
             ->add('endDate', DateType::class, [
-                'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day'
-                ],
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
             ])
             ->add('author', TextType::class, ['mapped' => false])
             ->add('status', TextType::class, ['mapped' => false])

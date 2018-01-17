@@ -264,11 +264,6 @@ class UserController extends Controller
             if ($user->getIsActive() == false) {
                 $user->setIsActive(true);
             }
-
-            $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
-            if ($user->getIsActive() == false) {
-                $user->setIsActive(1);
-            }
             $today = new \DateTime();
             $user->setDateUpdateMood($today);
             $this->getDoctrine()->getManager()->flush();

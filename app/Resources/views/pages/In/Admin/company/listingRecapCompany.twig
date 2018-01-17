@@ -13,7 +13,7 @@
             <li>
                 <div class="collapsible-header">
                     <div class="row">
-                        {% if resume.logo is null %}
+                        {% if resume.logo is defined %}
                             <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" height="50px" class="circle">
                         {% else %}
                             <img src="{{ asset('uploads/photoCompany/' ~ resume.logo) }}" alt="profile image" height="50px" class="circles">
