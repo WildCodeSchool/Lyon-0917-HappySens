@@ -11,7 +11,12 @@
         </ul>
         <ul class="row">
             {% for user in users %}
-            <li class="card sticky-action col s12 m6 l4">
+                {% if user.isactive != true %}
+                    <li class="card sticky-action col s12 m6 l4 grey lighten-1">
+                {% else %}
+                    <li class="card sticky-action col s12 m6 l4">
+                {% endif %}
+
                 <div class="logoCompany waves-effect waves-block waves-light center">
                     <img class="activator circle" src="{{ user.photo }}" height="150px">
                 </div>

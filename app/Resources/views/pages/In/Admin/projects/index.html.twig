@@ -11,6 +11,8 @@
                             <img class="activator" src="{{ asset('uploads/photoProject/' ~ project.photo) }}"
                                                          alt="photo {{ project.photo }}">
                         </div>
+                        <div class="row">
+                        <div class="col s3">
                         {% if project.status == 1 %}
                             <div class="chip inProgress chipStatus">
                                 <span><i class="fa fa-clock-o"></i></span>
@@ -27,8 +29,12 @@
                                 <span>Terminé</span>
                             </div>
                         {% endif %}
-                        <div class="chip ">
+                        </div>
+                            <div class="col s3 offset-s6">
+                        <div class="chip">
                             <span class="black-text">{{ project.endDate  | date("d/m/Y") }}</span>
+                        </div>
+                            </div>
                         </div>
                         <div class="card-content">
                             <div class="card-title activator grey-text text-darken-4">

@@ -117,6 +117,7 @@ class AdminController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $companies = $em->getRepository('AppBundle:Company')->findAll();
+
         return $this->render('pages/In/Admin/company/index.html.twig', array(
             'companies' => $companies,
         ));

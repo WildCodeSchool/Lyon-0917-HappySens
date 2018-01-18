@@ -23,8 +23,8 @@
                     </div>
                     <div class="card-footer recapComp">
                         <div class="containLinksComp">
-                            <button class="left btn blue darken-2 hoverable"><a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}" class=" white-text">Profil</a></button>
-                            <button class="right btn amber darken-2 hoverable"><a href="{{ path('Company_edit', { 'slug': company.slug }) }}" class=" white-text">Modifier</a></button>
+                           <a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}" class="waves-effect waves-light btn blue darken-2">Profil</a>
+                            <a href="{{ path('Company_edit', { 'slug': company.slug }) }}" class="waves-effect waves-light btn amber darken-2">Modifier</a>
                         </div>
                     </div>
                 </section>

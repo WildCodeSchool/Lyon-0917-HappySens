@@ -52,8 +52,14 @@
                         </div>
                         <div class="row">
                             {% for user in company.users %}
-                                <div class="col l4 card  center-align">
-                                    <ul class="">
+
+                                    {% if user.isactive != true %}
+                                        <div class="col l4 card center-align grey lighten-1">
+                                        {% else %}
+                                            <div class="col l4 card center-align">
+                                        {% endif %}
+
+                                        <ul class="">
                                         <li>
                                             {% if user.photo is null %}
                                                 <img src="{{ asset('assets/images/placeholder.png') }}"
