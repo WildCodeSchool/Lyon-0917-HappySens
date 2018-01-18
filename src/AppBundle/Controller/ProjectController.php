@@ -56,7 +56,6 @@ class ProjectController extends Controller
             $file = $project->getPhoto();
             $fileName = $fileUploader->upload($file, "photoProject");
             $project->setPhoto($fileName);
-            $project->setEndDate(DateTime::createFromFormat ('d/m/Y', $project->getEndDate() ));
             $project->setSlug($slugService->slugify($project->getTitle()));
             $project->setAuthor($user);
 
@@ -133,15 +132,13 @@ class ProjectController extends Controller
      */
     public function editAction(Request $request, Project $project, FileUploader $fileUploader, SlugService $slugService)
     {
-        $project->setPhoto(
-            new File('uploads/photoProject'.'/'.$project->getPhoto())
-        );
-        $deleteForm = $this->createDeleteForm($project);
-        if ($project->getPhoto() !== NULL) {
+        if ($project->getPhoto()) {
             $photoTemp = $project->getPhoto();
             $project->setPhoto(
                 new File($this->getParameter('upload_directory').'/photoProject/'.$project->getPhoto())
             );
+        } else {
+            $photoTemp = $project->getPhoto();
         }
 
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);

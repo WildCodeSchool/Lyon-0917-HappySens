@@ -22,9 +22,8 @@ class ProjectType extends AbstractType
         $builder->add('title', TextType::class)
             ->add('startingDate', DateType::class, ['mapped' => false])
             ->add('endDate', DateType::class, [
-                'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day'
-                ],
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
             ])
             ->add('author', TextType::class, ['mapped' => false])
             ->add('status', TextType::class, ['mapped' => false])
@@ -40,7 +39,7 @@ class ProjectType extends AbstractType
             ->add('teamProject', TextType::class, ['mapped' => false])
             ->add('theme', EntityType::class, [
                 'class' => Skill::class,
-                'placeholder' => 'Choisir votre theme',
+                'placeholder' => 'Choisir votre thème',
                 'required' => false,
                 'empty_data' => null,
             ])

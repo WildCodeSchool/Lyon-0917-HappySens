@@ -13,6 +13,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Company
 {
+    // Constant for nbSalaray => see function getRangeNbSalary()
+    const NB_SALARY_50 = 1; // 0-50 salary
+    const NB_SALARY_250 = 2; // 51-250 salary
+    const NB_SALARY_500 = 3; // 251-500 salary
+    const NB_SALARY_MORE_500 = 4; // > 500 salary
+
     /**
      * @var int
      *
@@ -60,7 +66,7 @@ class Company
 
     /**
      *
-     * @ORM\Column(name="birthdate", type="string", nullable=true)
+     * @ORM\Column(name="birthdate", type="date", nullable=true)
      */
     private $birthdate;
 
@@ -263,6 +269,31 @@ class Company
     public function getNbSalary()
     {
         return $this->nbSalary;
+    }
+
+    /**
+     * Get rangeNbSalary
+     *
+     * @return integer
+     */
+    public function getRangeNbSalary()
+    {
+        $rangeNbSalary='';
+        switch($this->nbSalary) {
+            case (self::NB_SALARY_50) :
+                $rangeNbSalary = ' < 50';
+                break;
+            case (self::NB_SALARY_250) :
+                $rangeNbSalary = '51 - 250';
+                break;
+            case (self::NB_SALARY_500) :
+                $rangeNbSalary = '251 - 500';
+                break;
+            case (self::NB_SALARY_MORE_500) :
+                $rangeNbSalary = ' > 500';
+                break;
+        }
+        return $rangeNbSalary;
     }
 
     /**

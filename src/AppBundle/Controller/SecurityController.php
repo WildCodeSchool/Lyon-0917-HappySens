@@ -153,7 +153,7 @@ class SecurityController extends Controller
                     }
                 }
             } else {
-                $errors = "La page demandé n'existe plus.";
+                $errors = "La page demandée n'existe plus.";
                 // TODO : Afficher les erreurs
                 dump($errors);
                 return $this->render('pages/In/security/login.html.twig', [

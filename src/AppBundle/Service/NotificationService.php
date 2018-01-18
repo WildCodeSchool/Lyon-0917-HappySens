@@ -18,7 +18,7 @@ class NotificationService
 {
 
     // TODO : create const for all contents of notification :
-    const CONTENT_LIKE_NOTIF = " à aimé votre projet.";
+    const CONTENT_LIKE_NOTIF = " a aimé votre projet.";
 
     private $db;
 

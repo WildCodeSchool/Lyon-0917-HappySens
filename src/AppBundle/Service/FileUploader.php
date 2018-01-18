@@ -50,6 +50,7 @@ class FileUploader
      * @param RegistryInterface $db
      * @param $directory
      * @param EmailService $emailService
+     * @param UserPasswordEncoderInterface $passwordEncoder
      */
     public function __construct(RegistryInterface $db, $directory, EmailService $emailService,  UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -58,7 +59,6 @@ class FileUploader
         $this->db = $db;
         $this->emailService = $emailService;
         $this->passwordEncoder = $passwordEncoder;
-
     }
 
     /**
@@ -130,7 +130,6 @@ class FileUploader
      * @param $idCompany
      * @param $fileUsers
      * @param $email_contact
-     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return int
      */
     public function insertUser($idCompany, $fileUsers, $email_contact)
