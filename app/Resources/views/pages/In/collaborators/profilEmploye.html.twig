@@ -54,7 +54,7 @@
                             </tr>
                             <tr>
                                 <th>Age :</th>
-                                <td>{% if user.birthdate %}{{ "now"|date("Y-d-m")  - user.birthdate|date('Y-m-d') }}{% endif %} ans</td>
+                                <td>{% if user.age %}{{ user.age.y }}{% endif %} ans</td>
                             </tr>
                             <tr>
                                 <th>Lieu de travail :</th>
