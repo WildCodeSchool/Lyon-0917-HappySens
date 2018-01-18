@@ -87,7 +87,7 @@
                             </div>
                             <div class="{{ statusTwig.class }} right">
                                 <span><i class="fa fa-clock-o"></i></span>
-                                <span>{{ statusTwig.text }}s</span>
+                                <span>{{ statusTwig.text }}</span>
                             </div>
                         </div>
                         <p>{{ user.authorProject.presentation }}</p>
@@ -157,7 +157,7 @@
                 {% for project in projects %}
                     <div class="card medium">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ asset('uploads/photoProject/' ~ user.authorProject.photo) }}">
+                            <img class="activator" src="{{ asset('uploads/photoProject/' ~ project.photo) }}">
                         </div>
                         <div class="{{ project.status.class }} chipStatus">
                             <span><i class="fa fa-clock-o"></i></span>
@@ -182,6 +182,7 @@
                             </div>
                             <div class="right">
                                 {% if app.user.status != 4 %}
+                                    {% if user.authorProject.likedProjects is defined %}
                                     {% if app.user not in user.authorProject.likeProjects and app.user != user.authorProject.author %}
                                         <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
                                             <p class="black-text chip">
@@ -208,6 +209,7 @@
                                             </p>
                                         </a>
                                     {% endif %}
+                                        {% endif %}
                                 {% else %}
                                     <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i>
                                             {{ user.authorProject.likeProjects | length }}</span>
@@ -229,7 +231,7 @@
                                             {% else %}
                                                 <img src="{{ asset('uploads/photoUser/' ~ project.author.photo) }}" alt="profile image" class="circle responsive-img">
                                             {% endif %}
-                                            <span class="black-text">{{ project.author }}e</span>
+                                            <span class="black-text">{{ project.author }}</span>
                                         </div>
                                     </a>
                                 </div>
