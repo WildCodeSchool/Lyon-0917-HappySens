@@ -115,6 +115,12 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     * @Assert\File(
+     *     maxSize = "6016k",
+     *     maxSizeMessage = "La taille maximale du fichier est fixée à 5Mo",
+     *     mimeTypes = {"image/png", "image/x-png", "image/jpeg", "image/x-jpeg"},
+     *     mimeTypesMessage = "Merci de mettre une image valide (format jpeg ou png)"
+     * )
      */
     private $photo;
 
