@@ -11,7 +11,7 @@
                     <img class="activator" src="{{ asset('assets/images/happysens-time.jpg') }}" height="300px">
                 </div>
                 <div class="card-profile-image">
-                    {% if user.photo is null %}
+                    {% if user.photo is defined %}
                         <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                     {% else %}
                         <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">

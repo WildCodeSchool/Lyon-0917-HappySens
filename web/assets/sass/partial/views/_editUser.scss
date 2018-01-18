@@ -13,14 +13,13 @@
       padding: 0;
       text-align: center;
       margin: auto;
-      width: 24%;
       a {
         color: #ccc;
         text-decoration: none;
         padding: 10px 0 10px 55px;
         background: #f1f1f1;
         position: relative;
-
+        font-family: 'Quicksand', sans-serif;
         &:after {
           content: " ";
           display: block;
@@ -33,7 +32,6 @@
           margin-top: -50px;
           left: 100%;
           z-index: 2; }
-
         &:before {
           content: " ";
           display: block;
@@ -49,15 +47,12 @@
           z-index: 1;
         }
       }
-
       &:first-child a {
         padding-left: 15px;
       }
-
       &.active a {
         color: white;
         background: $blueColor;
-
         &:after {
           border-left-color: $blueColor;
         }

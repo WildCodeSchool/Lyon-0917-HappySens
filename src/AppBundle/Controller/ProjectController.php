@@ -288,10 +288,9 @@ class ProjectController extends Controller
             $em = $this->getDoctrine()->getManager();
             $id = $request->request->get('id');
             $project = $em->getRepository('AppBundle:Project')->find($id);
-            $add = $project->removeLikeProject($user);
-            $em->persist($add);
+            $project->removeLikeProject($user);
             $em->flush();
-            return new JsonResponse(['data' => json_encode('Vous ne pouvez pas aimer votre propre projet')]);
+            return new JsonResponse(['data' => json_encode('Vous n\'aimez plus le projet')]);
         }
         return new JsonResponse(['data' => json_encode('Failed')]);
     }

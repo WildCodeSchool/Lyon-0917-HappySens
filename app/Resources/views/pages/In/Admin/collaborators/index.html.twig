@@ -18,7 +18,11 @@
                 {% endif %}
 
                 <div class="logoCompany waves-effect waves-block waves-light center">
-                    <img class="activator circle" src="{{ user.photo }}" height="150px">
+                    {% if user.photo is null %}
+                        <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" height="100px" class="circle">
+                    {% else %}
+                        <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" height="100px" class="circle">
+                    {% endif %}
                 </div>
                 <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">
@@ -45,7 +49,7 @@
                         </div>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ user.firstName }} {{ user.lastName }}<i class="material-icons right">close</i></span>
+                        <span class="card-title grey-text text-darken-4 truncate">{{ user.firstName }} {{ user.lastName }}<i class="material-icons right">close</i></span>
                         <ul>
                             <li><span>Métier :</span> {{ user.job }}</li>
                             <li><span>Lieu :</span> {{ user.workplace }}</li>

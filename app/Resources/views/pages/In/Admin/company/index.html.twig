@@ -12,12 +12,16 @@
             {% for company in companies %}
                 <li class="card sticky-action col s12 m6 l4">
                     <div class="logoCompany waves-effect waves-block waves-light center">
-                        <img class="activator circle" src="{{ company.logo }}" height="150px">
+                        {% if company.logo is null %}
+                            <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" height="100px" class="circle">
+                        {% else %}
+                            <img src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="profile image" height="100px" class="circle">
+                        {% endif %}
                     </div>
                     <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">
                     <a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}"
-                       class="black-text">{{ company.name }} | {{ company.nbSalary }} employés</a>
+                       class="black-text truncate">{{ company.name }} | {{ company.nbSalary }} employés</a>
                     <i class="material-icons right">more_vert</i>
                 </span>
                         <div class="row">
