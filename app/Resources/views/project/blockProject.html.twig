@@ -190,43 +190,36 @@
                                 </a>
                             </div>
                             <div class="right">
-                                {% dump project %}
                                 {% if app.user.status != 4 %}
-                                    {% if user.authorProject.likedProjects is defined %}
-                                        {% if app.user not in user.authorProject.likeProjects and app.user != user.authorProject.author %}
-                                            <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
-                                                <p class="black-text chip">
+                                    {% if project.author != null and app.user not in project.likeProjects and app.user != project.author %}
+                                        <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
+                                            <p class="black-text chip">
                                                 <span class="red-text" id="likeProject"><i class="fa fa-heart-o"></i>
                                                     {{ project.likeProjects | length }}
                                                 </span>
-                                                </p>
-                                            </a>
-                                        {% elseif app.user != user.authorProject.author %}
-                                            <a onclick="dislikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
-                                                <p class="black-text chip">
+                                            </p>
+                                        </a>
+                                    {% elseif app.user != project.author %}
+                                        <a onclick="dislikeProject({{ project.id }}, '{{ project.title }}')">
+                                            <p class="black-text chip">
                                             <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
-                                                {{ user.authorProject.likeProjects | length }}
+                                                {{ project.likeProjects | length }}
                                             </span>
-                                                </p>
-                                            </a>
+                                            </p>
+                                        </a>
 
-                                        {% else %}
-                                            <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
-                                                <p class="black-text chip">
+                                    {% else %}
+                                        <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
+                                            <p class="black-text chip">
                                             <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
-                                                {{ user.authorProject.likeProjects | length }}
+                                                {{ project.likeProjects | length }}
                                             </span>
-                                                </p>
-                                            </a>
-                                        {% endif %}
+                                            </p>
+                                        </a>
                                     {% endif %}
                                 {% else %}
                                     <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i>
-                                            {% if project.likeProjects is defined %}
                                             {{ project.likeProjects | length }}</span>
-                                        {% else %}
-                                            0
-                                        {% endif %}
                                     </p>
                                 {% endif %}
                             </div>
