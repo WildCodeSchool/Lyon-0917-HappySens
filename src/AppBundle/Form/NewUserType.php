@@ -25,7 +25,7 @@ class NewUserType extends AbstractType
             ->add('status', ChoiceType::class, [
                 'choices' => [
                     'Collaborateur' => User::ROLE_EMPLOYE,
-                    'Réf Happy Sens' => User::ROLE_COMPANY,
+                    'Référent Happy Sens' => User::ROLE_COMPANY,
                  ],
              ])
             ->add('company');

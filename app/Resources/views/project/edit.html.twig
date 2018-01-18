@@ -10,8 +10,8 @@
     <div class="container">
         <nav class="wrapper row">
             <ul class="center bread">
-                <li class="active userCompany" id="breadOne" onclick="goStep1()"><a href="#">Titre Projet</a></li>
-                <li class="userCompany" id="breadTwo" onclick="goStep2()"><a href="#">Informations Projet</a></li>
+                <li class="active userCompany" id="breadOne" onclick="goStep1()"><a href="#">Informations de votre projet</a></li>
+                <li class="userCompany" id="breadTwo" onclick="goStep2()"><a href="#">Détails de votre projet</a></li>
             </ul>
         </nav>
         {{ form_start(edit_form) }}
@@ -108,7 +108,7 @@
                         {% else %}
                             {{ form_widget(edit_form.presentation, { 'attr': {'class': 'materialize-textarea'} }) }}
                         {% endif %}
-                        <label for="description"><span class="requireInput">* </span>Ecrire votre présentation du
+                        <label for="description"><span class="requireInput">* </span>Ecrire la présentation de votre
                             projet</label>
                         <div class="center error">
                             {{ form_errors(edit_form.presentation) }}
@@ -124,7 +124,7 @@
                         {% else %}
                             {{ form_widget(edit_form.beneficeCompany, { 'attr': {'class': 'materialize-textarea'} }) }}
                         {% endif %}
-                        <label for="advantagesCompany"><span class="requireInput">* </span>3 avantages pour votre
+                        <label for="advantagesCompany"><span class="requireInput">* </span>Trois avantages pour votre
                             employeur</label>
                         <div class="center error">
                             {{ form_errors(edit_form.beneficeCompany) }}
@@ -137,7 +137,7 @@
                         {% else %}
                             {{ form_widget(edit_form.profit, { 'attr': {'class': 'materialize-textarea'} }) }}
                         {% endif %}
-                        <label for="advantagesGroup"><span class="requireInput">* </span>3 avantages pour le groupe de
+                        <label for="advantagesGroup"><span class="requireInput">* </span>Trois avantages pour le groupe de
                             votre projet</label>
                         <div class="center error">
                             {{ form_errors(edit_form.profit) }}
