@@ -14,7 +14,12 @@ class ChangePwdType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('token')->add('idUser')->add('dateSend')->add('email', EmailType::class);
+        $builder->add('token')
+            ->add('idUser')
+            ->add('dateSend')
+            ->add('email', EmailType::class, [
+                'required' => true,
+        ]);
     }
     
     /**

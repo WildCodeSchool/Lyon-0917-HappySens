@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -167,7 +168,6 @@ class ProjectController extends Controller
         return $this->render('project/edit.html.twig', array(
             'project' => $project,
             'edit_form' => $editForm->createView(),
-          /*  'delete_form' => $deleteForm->createView(),*/
         ));
     }
 
@@ -244,36 +244,56 @@ class ProjectController extends Controller
 
 
     /**
-     * @Route("/likeProject/{slug}/", name="like_project")
      *
+     * @Route("/likeProject/", name="like_project")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @param NotificationService $notificationService
+     * @return $this|JsonResponse
      */
-    // TODO: AJAX
-    public function likeAction(Project $project, NotificationService $notificationService)
+    public function likeAction(Request $request, NotificationService $notificationService)
     {
-        $idU = $this->getUser();
-            if ($idU->getId() !== $project->getAuthor()->getId()) {
-                $add = $project->addLikeProject($idU);
-                $em = $this->getDoctrine()->getManager();
+        if($request->isXmlHttpRequest()) {
+            $user = $this->getUser();
+            $em = $this->getDoctrine()->getManager();
+            $id = $request->request->get('id');
+            $project = $em->getRepository('AppBundle:Project')->find($id);
+            if ($user->getId() !== $project->getAuthor()->getId()) {
+                $add = $project->addLikeProject($user);
                 $em->persist($add);
                 $em->flush();
-                $notificationService->sendNotif($idU, $project->getAuthor()->getId());
+                $notificationService->sendNotif($user, $project->getAuthor()->getId());
+                $allLikes = [$project->getLikeProjects()];
+                return new JsonResponse(json_encode(['likeSend' => count($allLikes)]));
+            } else {
+                return new JsonResponse(['badUser' => json_encode('Vous ne pouvez pas aimer votre propre projet')]);
             }
-        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+        }
+        return new JsonResponse(json_encode(['likeFailed' => "Erreur lors de l'envoi du like"]));
     }
 
     /**
-     * @Route("/unlikeProject/{slug}/", name="unlike_project")
      *
+     * @Route("/dislikeProject/", name="dislike_project")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @return JsonResponse
      */
-    // TODO: AJAX
-    public function unlikeAction(Request $request, Project $project)
+    public function dislikeAction(Request $request)
     {
-        $idU = $this->getUser();
-        $add = $project->removeLikeProject($idU);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($add);
-        $em->flush();
-        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+        if($request->isXmlHttpRequest()) {
+            $user = $this->getUser();
+            $em = $this->getDoctrine()->getManager();
+            $id = $request->request->get('id');
+            $project = $em->getRepository('AppBundle:Project')->find($id);
+            $add = $project->removeLikeProject($user);
+            $em->persist($add);
+            $em->flush();
+            return new JsonResponse(['data' => json_encode('Vous ne pouvez pas aimer votre propre projet')]);
+        }
+        return new JsonResponse(['data' => json_encode('Failed')]);
     }
 
     /**

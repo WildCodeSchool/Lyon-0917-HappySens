@@ -124,6 +124,7 @@ class UserController extends Controller
             for ($i = 0; $i < count($projects); $i++) {
                 $project = $em->getRepository('AppBundle:Project')->findBy(array('id' => $projects[$i]['id']));
                 $projects[$i]['nbLike'] = count($project[0]->getLikeProjects());
+                $projects[$i]['like'] = $project[0]->getLikeProjects();
                 $twigStatus = $statusProject->getStatusTwig($projects[$i]['status']);
                 $projects[$i]['status'] =  $twigStatus;
             }
@@ -209,11 +210,6 @@ class UserController extends Controller
                 if ($editForm->getData()->getPassword() == NULL) {
                     $errors['password'] = "Votre mot de passe doit être changé, veuillez remplir ces champs";
                     $countErrors++;
-                    /*                    return $this->render('pages/In/collaborators/editUser.html.twig', [
-                                            'user' => $user,
-                                            'edit_form' => $editForm->createView(),
-                                            'errors' => $errors,
-                                        ]);*/
                 }
             }
             if ($editForm->getData()->getBiography() == null) {

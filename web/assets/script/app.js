@@ -46,6 +46,10 @@ function hideContactFlash() {
     $('#flashNoticeContact').addClass('hide');
 }
 
-function loadingPage() {
-    $('#waitingDiv').removeClass('hide');
+function loadingPage(change) {
+    if (change !== null) {
+        if($("#appbundle_changepwd_email").val().length >= 10) {
+            $('#waitingDiv').removeClass('hide');
+        }
+    }
 }

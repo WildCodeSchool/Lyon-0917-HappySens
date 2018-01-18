@@ -21,17 +21,48 @@
                 <div>
                     <a href="{{ path('UserProfil', { 'slug': project.slug }) }}">
                         <div class="chip left">
-                            {% if project.photo %}
+                            {% if project.photo is defined %}
                                 <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                             {% else %}
-                                <img src="{{ asset('uploads/photoCompany/' ~ project.photo) }}" alt="profile image" class="circle responsive-img">
+                                <img src="{{ project.photo }}" alt="profile image" class="circle responsive-img">
                             {% endif %}
                             <span class="black-text">{{ project.firstName}} {{  project.lastName }}</span>
                         </div>
                     </a>
                 </div>
                 <div class="right">
-                    <a href="#!" onclick="like()">{{ project.nbLike }} <i class="fa fa-heart red-text"></i></a>
+                    {% if app.user.status != 4 %}
+                        {% dump project %}
+                        {% if app.user not in project.like and app.user.id != project.authorProject %}
+                            <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
+                                <p class="black-text chip">
+                                    <span class="red-text" id="likeProject"><i class="fa fa-heart-o"></i>
+                                        {{ project.nbLike }}
+                                    </span>
+                                </p>
+                            </a>
+                        {% elseif app.user.id != project.authorProject %}
+                            <a onclick="dislikeProject({{ project.id }}, '{{ project.title }}')">
+                                <p class="black-text chip">
+                                    <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                        {{ project.nbLike }}
+                                    </span>
+                                </p>
+                            </a>
+                        {% else %}
+                            <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
+                                <p class="black-text chip">
+                                    <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                        {{ project.nbLike }}
+                                    </span>
+                                </p>
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        <p class="black-text chip">
+                            <span class="red-text"><i class="fa fa-heart"></i>{{ user.authorProject.likeProjects | length }}</span>
+                        </p>
+                    {% endif %}
                 </div>
             </div>
             <div class="card-reveal revealProject">
@@ -43,12 +74,12 @@
                     <div>
                         <a href="{{ path('UserProfil', { 'slug': project.slug }) }}">
                             <div class="chip left">
-                                {% if project.photo %}
+                                {% if project.photo is defined %}
                                     <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                                 {% else %}
-                                    <img src="{{ asset('uploads/photoCompany/' ~ project.photo) }}" alt="profile image" class="circle responsive-img">
+                                    <img src="{{ project.photo }}" alt="profile image" class="circle responsive-img">
                                 {% endif %}
-                                <span class="black-text">{{ project.firstName}} {{  project.lastName }}e</span>
+                                <span class="black-text">{{ project.firstName}} {{  project.lastName }}</span>
                             </div>
                         </a>
                     </div>
@@ -65,7 +96,38 @@
                         <a href="{{ path('project_show', { 'slug': project.projectSlug }) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
                     </div>
                     <div class="right">
-                        <a href="#!" onclick="like()">{{ project.nbLike }} <i class="fa fa-heart red-text"></i></a>
+                        {% if app.user.status != 4 %}
+                            {% dump project %}
+                            {% if app.user not in project.like and app.user.id != project.authorProject %}
+                                <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
+                                    <p class="black-text chip">
+                                    <span class="red-text" id="likeProject"><i class="fa fa-heart-o"></i>
+                                        {{ project.nbLike }}
+                                    </span>
+                                    </p>
+                                </a>
+                            {% elseif app.user.id != project.authorProject %}
+                                <a onclick="dislikeProject({{ project.id }}, '{{ project.title }}')">
+                                    <p class="black-text chip">
+                                    <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                        {{ project.nbLike }}
+                                    </span>
+                                    </p>
+                                </a>
+                            {% else %}
+                                <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
+                                    <p class="black-text chip">
+                                    <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                        {{ project.nbLike }}
+                                    </span>
+                                    </p>
+                                </a>
+                            {% endif %}
+                        {% else %}
+                            <p class="black-text chip">
+                                <span class="red-text"><i class="fa fa-heart"></i>{{ user.authorProject.likeProjects | length }}</span>
+                            </p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
