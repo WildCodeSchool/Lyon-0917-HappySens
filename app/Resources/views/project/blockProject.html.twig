@@ -26,7 +26,7 @@
                                     {% if user.photo is null %}
                                         <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                                     {% else %}
-                                        <img src="{{ user.photo }}" alt="profile image" class="circle responsive-img">
+                                        <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
                                     {% endif %}
                                     <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
                                 </div>
@@ -79,7 +79,7 @@
                                         {% if user.photo is null %}
                                             <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                                         {% else %}
-                                            <img src="{{ asset('uploads/photoCompany/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                                            <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
                                         {% endif %}
                                         <span class="black-text">{{ user.firstname }} {{ user.lastname }}</span>
                                     </div>
@@ -157,7 +157,7 @@
                 {% for project in projects %}
                     <div class="card medium">
                         <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="{{ project.photo }}">
+                            <img class="activator" src="{{ asset('uploads/photoProject/' ~ user.authorProject.photo) }}">
                         </div>
                         <div class="{{ project.status.class }} chipStatus">
                             <span><i class="fa fa-clock-o"></i></span>
@@ -171,7 +171,11 @@
                             <div>
                                 <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
                                     <div class="chip">
-                                        <img src="{{project.author.photo  }}" alt="photo profil {{ project.author }}"> <!-- notice the "circle" class -->
+                                        {% if project.author.photo is null %}
+                                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                        {% else %}
+                                            <img src="{{ asset('uploads/photoUser/' ~ project.author.photo) }}" alt="profile image" class="circle responsive-img">
+                                        {% endif %}
                                         <span class="black-text">{{ project.author }}</span>
                                     </div>
                                 </a>
@@ -220,7 +224,11 @@
                                 <div>
                                     <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">
                                         <div class="chip left">
-                                            <img src="{{project.author.photo  }}" alt="photo profil {{ project.author }}"> <!-- notice the "circle" class -->
+                                            {% if project.author.photo is null %}
+                                                <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                            {% else %}
+                                                <img src="{{ asset('uploads/photoUser/' ~ project.author.photo) }}" alt="profile image" class="circle responsive-img">
+                                            {% endif %}
                                             <span class="black-text">{{ project.author }}e</span>
                                         </div>
                                     </a>

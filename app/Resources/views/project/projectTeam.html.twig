@@ -1,12 +1,11 @@
 {% if project.teamProject is not empty %}
-    <ul>
     {% for user in project.teamProject %}
         <li>
             {% if user.status == 2 or  user.status == 3%}
                 <a href="{{ path('UserProfil', {'slug' : user.slug })}}">
-                    <div class="chip amber">
+                    <div class="chip amber darken-2">
                         {% if user.photo is not null %}
-                        <img src="{{ user.photo }}" alt="Photo utilisateur">
+                        <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="Photo utilisateur">
                         {% else %}
                         <img src="{{ asset('assets/images/placeholder.png') }}">
                         {% endif %}
@@ -16,10 +15,11 @@
             {% else %}
                 <a href="{{ path('profilHappyCoach', {'slug' : user.slug })}}">
                     <div class="chip pink">
-                        {% if user.photo is not null %}
-                        <img src="{{ user.photo }}" alt="Photo utilisateur">
+                        {% if user.photo is null %}
+                            <img src="{{ asset('assets/images/placeholder.png') }}">
+
                         {% else %}
-                        <img src="{{ asset('assets/images/placeholder.png') }}">
+                            <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="Photo utilisateur">
                         {% endif %}
                         <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
                     </div>
@@ -27,7 +27,6 @@
             {% endif %}
         </li>
     {% endfor %}
-    </ul>
 {% else %}
     <p>Pas encore de membre dans cette équipe</p>
 {% endif %}
