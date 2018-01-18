@@ -32,14 +32,39 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="right">
+                        <div class="right" id="likeProject">
+                            {% if app.user.status != 4 %}
+                                {% if app.user not in user.authorProject.likeProjects and app.user != user.authorProject.author %}
+                                    <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                        <p class="black-text chip">
+                                            <span class="red-text" id="likeProject"><i class="fa fa-heart-o"></i>
+                                                {{ user.authorProject.likeProjects | length }}
+                                            </span>
+                                        </p>
+                                    </a>
+                                {% elseif app.user != user.authorProject.author %}
+                                    <a onclick="dislikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                        <p class="black-text chip">
+                                            <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                                {{ user.authorProject.likeProjects | length }}
+                                            </span>
+                                        </p>
+                                    </a>
 
-                            {% if app.user not in user.authorProject.likeProjects %}
-                                <a href="{{ path('like_project', {'slug': user.authorProject.slug}) }}" onclick="like()"><p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ user.authorProject.likeProjects | length }}</p></a>
+                                {% else %}
+                                    <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                        <p class="black-text chip">
+                                            <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                                {{ user.authorProject.likeProjects | length }}
+                                            </span>
+                                        </p>
+                                    </a>
+                                {% endif %}
                             {% else %}
-                                <a href="{{ path('unlike_project', {'slug': user.authorProject.slug}) }}"><p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ user.authorProject.likeProjects | length }}</p></a>
+                                <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i>
+                                        {{ user.authorProject.likeProjects | length }}</span>
+                                </p>
                             {% endif %}
-
                         </div>
                     </div>
                     <div class="card-reveal revealProject">
@@ -71,10 +96,37 @@
                                 <a href="{{ path('project_show', { 'slug': user.authorProject.slug }) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
                             </div>
                             <div class="right">
-                                {% if app.user not in user.authorProject.likeProjects %}
-                                    <a href="{{ path('like_project', {'slug': user.authorProject.slug}) }}"><p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ user.authorProject.likeProjects | length }}</p></a>
+                                {% if app.user.status != 4 %}
+                                    {% if app.user not in user.authorProject.likeProjects and app.user != user.authorProject.author %}
+                                        <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                            <p class="black-text chip">
+                                                <span class="red-text" id="likeProject"><i class="fa fa-heart-o"></i>
+                                                    {{ user.authorProject.likeProjects | length }}
+                                                </span>
+                                            </p>
+                                        </a>
+                                    {% elseif app.user != user.authorProject.author %}
+                                        <a onclick="dislikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                            <p class="black-text chip">
+                                            <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                                {{ user.authorProject.likeProjects | length }}
+                                            </span>
+                                            </p>
+                                        </a>
+
+                                    {% else %}
+                                        <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                            <p class="black-text chip">
+                                            <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                                {{ user.authorProject.likeProjects | length }}
+                                            </span>
+                                            </p>
+                                        </a>
+                                    {% endif %}
                                 {% else %}
-                                    <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i></span> {{ user.authorProject.likeProjects | length }}</p>
+                                    <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i>
+                                            {{ user.authorProject.likeProjects | length }}</span>
+                                    </p>
                                 {% endif %}
                             </div>
                         </div>
@@ -125,14 +177,45 @@
                                 </a>
                             </div>
                             <div class="right">
-                                <a href="#!" onclick="like()">{{ project.likeProjects|length }} <i class="fa fa-heart red-text"></i></a>
+                                {% if app.user.status != 4 %}
+                                    {% if app.user not in user.authorProject.likeProjects and app.user != user.authorProject.author %}
+                                        <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                            <p class="black-text chip">
+                                                <span class="red-text" id="likeProject"><i class="fa fa-heart-o"></i>
+                                                    {{ user.authorProject.likeProjects | length }}
+                                                </span>
+                                            </p>
+                                        </a>
+                                    {% elseif app.user != user.authorProject.author %}
+                                        <a onclick="dislikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                            <p class="black-text chip">
+                                            <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                                {{ user.authorProject.likeProjects | length }}
+                                            </span>
+                                            </p>
+                                        </a>
+
+                                    {% else %}
+                                        <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                            <p class="black-text chip">
+                                            <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                                {{ user.authorProject.likeProjects | length }}
+                                            </span>
+                                            </p>
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i>
+                                            {{ user.authorProject.likeProjects | length }}</span>
+                                    </p>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="card-reveal revealProject">
-                    <span class="card-title grey-text text-darken-4">
-                        {{ project.title }}
-                        <i class="material-icons right">close</i>
-                    </span>
+                            <span class="card-title grey-text text-darken-4">
+                                {{ project.title }}
+                                <i class="material-icons right">close</i>
+                            </span>
                             <div class="row">
                                 <div>
                                     <a href="{{ path('UserProfil', { 'slug': project.author.slug }) }}">

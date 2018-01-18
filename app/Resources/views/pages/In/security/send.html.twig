@@ -20,7 +20,7 @@
                         {% if (form_errors(form.email)) %}
                             {{ form_widget(form.email, {'attr': {'class': 'error'}}) }}
                         {% else %}
-                            {{ form_widget(form.email) }}
+                            {{ form_widget(form.email, {'attr' : {'required': true}}) }}
                         {% endif %}
                         <label for="email"><span class="requireInput">* </span>Email</label>
                         <div class="center error">
@@ -34,7 +34,7 @@
                         <a href="{{ path('login') }}" class="btn-flat waves-effect waves-light">Annuler
                             <i class="material-icons left">reply</i>
                         </a>
-                        <button type="submit" class="btn waves-effect waves-light amber darken-2" onclick="loadingPage()">
+                        <button type="submit" class="btn waves-effect waves-light amber darken-2" onclick="loadingPage('true')">
                             Envoyer
                             <i class="material-icons right">send</i>
                         </button>

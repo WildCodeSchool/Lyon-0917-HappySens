@@ -130,25 +130,6 @@
                         </div>
                       </div>
                 </div>
-
-                <div class="col s6">
-                    <h5 class="titleInscription blue-text text-darken-3">Logo :</h5>
-                    <div class="file-field input-field col s12">
-                        {% if (form_errors(edit_form.logo)) %}
-                            {{ form_widget(edit_form.logo, {'attr': {'class': 'error'}}) }}
-                        {% else %}
-                            <div class="btn blue darken-2">
-                                <span>Votre logo</span>
-                                {{ form_widget(edit_form.logo) }}
-                            </div>
-                        {% endif %}
-                        <div class="file-path-wrapper">
-                            <img class="right" src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="">
-                        </div>
-                        <div class="center error">
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="center">
                 <a class="waves-effect waves-light btn amber darken-3" onclick="goStep2()">suivant</a>
@@ -196,9 +177,27 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col s12">
+                    <h5 class="titleInscription blue-text text-darken-3">Logo :</h5>
+                    <div class="file-field input-field col s12 m">
+                        {% if (form_errors(edit_form.logo)) %}
+                            {{ form_widget(edit_form.logo, {'attr': {'class': 'error'}}) }}
+                        {% else %}
+                            <div class="btn blue darken-2">
+                                <span>Votre logo</span>
+                                {{ form_widget(edit_form.logo) }}
+                            </div>
+                        {% endif %}
+                        <div class="file-path-wrapper">
+                            <img class="right" src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="">
+                        </div>
+                        <div class="center error">
+                        </div>
+                    </div>
+                </div>
                 <div class="center">
                     <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
-
                     <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Editer le profil"/>
                 </div>
             </div>

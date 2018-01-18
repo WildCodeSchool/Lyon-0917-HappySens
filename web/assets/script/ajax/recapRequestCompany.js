@@ -4,7 +4,7 @@ function getUsers(idComp) {
         url: "/ajax/getUserCreated/",
         data : {'idComp' : idComp},
         success: function (response) {
-            let user = JSON.parse(response.data)
+            var user = JSON.parse(response.data)
             for(let i = 0; i < user.length; i++) {
                 if (user[i].isTrait === false) {
                     iconStatus = '<p class="secondary-content black-text"><i class="material-icons orange-text">update</i></p>';
@@ -33,6 +33,35 @@ function getUsers(idComp) {
         error: function () {
             html = '<li class="collection-item error">Erreur lors de la reception des données utilisateurs</li>';
             $('#listWaitUser').append(html);
+        }
+    })
+}
+function newLikeProject(id, nameProject) {
+    var like= $('<span>+1 pour le projet ' + nameProject + '</span>');
+    $.ajax({
+        type: "POST",
+        url: "/project/likeProject/",
+        data : {'id' : id},
+        success: function (response) {
+            var user = JSON.parse(response);
+            Materialize.toast(like, 4000);
+            location.reload();
+        },
+        error: function () {
+            var user = JSON.parse(response.likeFailed);
+        }
+    })
+}
+
+function dislikeProject(id, nameProject) {
+    var like= $("<span>Vous n'aimez plus " + nameProject + "</span>");
+    $.ajax({
+        type: "POST",
+        url: "/project/dislikeProject/",
+        data : {'id' : id},
+        success: function () {
+            Materialize.toast(like, 4000);
+            location.reload();
         }
     })
 }
