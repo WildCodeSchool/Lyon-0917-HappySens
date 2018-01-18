@@ -178,35 +178,35 @@
                             </div>
                             <div class="right">
                                 {% if app.user.status != 4 %}
-                                    {% if app.user not in user.authorProject.likeProjects and app.user != user.authorProject.author %}
-                                        <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                    {% if project.author != null and app.user not in project.likeProjects and app.user != project.author %}
+                                        <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
                                             <p class="black-text chip">
                                                 <span class="red-text" id="likeProject"><i class="fa fa-heart-o"></i>
-                                                    {{ user.authorProject.likeProjects | length }}
+                                                    {{ project.likeProjects | length }}
                                                 </span>
                                             </p>
                                         </a>
-                                    {% elseif app.user != user.authorProject.author %}
-                                        <a onclick="dislikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                    {% elseif app.user != project.author %}
+                                        <a onclick="dislikeProject({{ project.id }}, '{{ project.title }}')">
                                             <p class="black-text chip">
                                             <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
-                                                {{ user.authorProject.likeProjects | length }}
+                                                {{ project.likeProjects | length }}
                                             </span>
                                             </p>
                                         </a>
 
                                     {% else %}
-                                        <a onclick="newLikeProject({{ user.authorProject.id }}, '{{ user.authorProject.title }}')">
+                                        <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
                                             <p class="black-text chip">
                                             <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
-                                                {{ user.authorProject.likeProjects | length }}
+                                                {{ project.likeProjects | length }}
                                             </span>
                                             </p>
                                         </a>
                                     {% endif %}
                                 {% else %}
                                     <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i>
-                                            {{ user.authorProject.likeProjects | length }}</span>
+                                            {{ project.likeProjects | length }}</span>
                                     </p>
                                 {% endif %}
                             </div>
@@ -239,7 +239,38 @@
 
                                 </div>
                                 <div class="right">
-                                    <a href="#!" onclick="like()">{{ project.likeProjects|length }} <i class="fa fa-heart red-text"></i></a>
+                                    {% if app.user.status != 4 %}
+                                        {% if project.author != null and app.user not in project.likeProjects and app.user != project.author %}
+                                            <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
+                                                <p class="black-text chip">
+                                                <span class="red-text" id="likeProject"><i class="fa fa-heart-o"></i>
+                                                    {{ project.likeProjects | length }}
+                                                </span>
+                                                </p>
+                                            </a>
+                                        {% elseif app.user != project.author %}
+                                            <a onclick="dislikeProject({{ project.id }}, '{{ project.title }}')">
+                                                <p class="black-text chip">
+                                            <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                                {{ project.likeProjects | length }}
+                                            </span>
+                                                </p>
+                                            </a>
+
+                                        {% else %}
+                                            <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
+                                                <p class="black-text chip">
+                                            <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                                {{ project.likeProjects | length }}
+                                            </span>
+                                                </p>
+                                            </a>
+                                        {% endif %}
+                                    {% else %}
+                                        <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i>
+                                                {{ project.likeProjects | length }}</span>
+                                        </p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

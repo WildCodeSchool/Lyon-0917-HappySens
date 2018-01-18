@@ -49,6 +49,7 @@ class UserType extends AbstractType
             ->add('photo', FileType::class, [
                 'label' => 'Votre photo',
                 'required' => false,
+                'data_class' => null,
             ])
             ->add('biography', TextType::class, [
                 'required' => false,

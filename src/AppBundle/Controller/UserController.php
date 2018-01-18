@@ -109,8 +109,6 @@ class UserController extends Controller
         if ($user->getStatus() === User::ROLE_COMPANY or $user->getStatus() === User::ROLE_EMPLOYE) {
             $company = $this->getUser()->getCompany();
         }
-
-
         $em = $this->getDoctrine()->getManager();
         $nbHappySalarie = $em->getRepository('AppBundle:Company')->getNumberCollaboratorHasActif($company->getId());
         $skillInCompany = $em->getRepository('AppBundle:Company')->getSkillInCompagny($company->getId());
@@ -119,7 +117,6 @@ class UserController extends Controller
         $collaborators = $em->getRepository('AppBundle:Company')->getAllCollaboratorInCompany($company->getId());
         $rangeNbSalary = $company->getRangeNbSalary();
         shuffle($collaborators);
-
         if (count($projects) > 0) {
             for ($i = 0; $i < count($projects); $i++) {
                 $project = $em->getRepository('AppBundle:Project')->findBy(array('id' => $projects[$i]['id']));
@@ -129,7 +126,6 @@ class UserController extends Controller
                 $projects[$i]['status'] =  $twigStatus;
             }
         }
-
         $trueViewCompany = $this->render('pages/In/company/profilCompany.html.twig', [
             'company' => $company,
             'nbHappySalarie' => $nbHappySalarie,
@@ -139,8 +135,6 @@ class UserController extends Controller
             'collaborators' => $collaborators,
             'rangeNbSalary' => $rangeNbSalary,
             ]);
-
-
         // securité pour HappyCoach
         //TODO refactor with request
         if ($user->getStatus() === User::ROLE_HAPPYCOACH) {
@@ -159,7 +153,6 @@ class UserController extends Controller
 //                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
             }
         }
-
         return $trueViewCompany;
     }
 
@@ -175,8 +168,7 @@ class UserController extends Controller
      * @param SlugService $slugService
      * @return mixed
      */
-    public function editUserAction(Request $request, User $user, SlugService $slugService, FileUploader $fileUploader,
-                                   UserPasswordEncoderInterface $passwordEncoder)
+    public function editUserAction(Request $request, User $user, SlugService $slugService, FileUploader $fileUploader, UserPasswordEncoderInterface $passwordEncoder)
     {
         $errors = [
             'password' => '',
@@ -192,12 +184,7 @@ class UserController extends Controller
         }
 
         $photoTemp = $user->getPhoto();
-        if ($user->getPhoto()) {
-            $user->setPhoto(
-                new File($this->getParameter('upload_directory').'/photoUser/'.$user->getPhoto())
-            );
-            $photoTempEntire = $user->getPhoto();
-        }
+
         $tempPassword = $user->getPassword();
         $editForm = $this->createForm('AppBundle\Form\UserType', $user);
         $editForm->remove('slug');
@@ -230,6 +217,10 @@ class UserController extends Controller
             }
             if ($editForm->getData()->getWorkplace() == null) {
                 $errors['workplace'] = "Merci d'indiquer votre lieu de travail";
+                $countErrors++;
+            }
+            if ($editForm->getData()->getBirthdate() == null) {
+                $errors['birthdate'] = "Merci de renseigner votre age";
                 $countErrors++;
             }
             if ($countErrors > 0) {
@@ -282,6 +273,7 @@ class UserController extends Controller
         return $this->render('pages/In/collaborators/editUser.html.twig', [
             'user' => $user,
             'edit_form' => $editForm->createView(),
+            'photoName' => $photoTemp,
             ]);
     }
 
