@@ -94,6 +94,7 @@ class UserType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'required' => true,
+                'label' => false,
             ])
             ->add('facebook', UrlType::class, [
                 'required' => false,

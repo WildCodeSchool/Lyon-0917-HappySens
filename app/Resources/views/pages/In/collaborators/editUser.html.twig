@@ -127,16 +127,19 @@
                 </div>
                 <div class="col l6 s12">
                     <h5 class="titleInscription blue-text text-darken-3">Photo :</h5>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix blue-text text-darken-3">photo</i>
+                    <div class="file-field input-field col s12">
                         {% if (form_errors(edit_form.photo)) %}
-                            {{ form_widget(edit_form.photo, {'attr': {'class': 'error'}}) }}
+                            <div class="center error">
+                                {{ form_widget(edit_form.photo, {'attr': {'class': 'error'}}) }}
+                            </div>
                         {% else %}
-                            {{ form_widget(edit_form.photo) }}
+                            <div class="btn blue darken-2">
+                                <span>Choisir</span>
+                                {{ form_widget(edit_form.photo) }}
+                            </div>
                         {% endif %}
-                        {#<label for="photo"><span class="requireInput">* </span></label>#}
-                        <div class="center error">
-                            {{ form_errors(edit_form.photo) }}
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
                         </div>
                     </div>
                 </div>
@@ -295,18 +298,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12">
-                <h5 class="titleInscription blue-text text-darken-3">Humeur :</h5>
-                <div class="range-field col s12">
-                    <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="titleInscription blue-text text-darken-3">Humeur :</h5>
+                </div>
+                <div class="range-field col s12 m8 offset-m2">
                     {% if (form_errors(edit_form.mood)) %}
-                        {{ form_widget(edit_form.mood, {'attr': {'class': 'error'}}) }}
+                        <div class="center error">
+                            {{ form_widget(edit_form.mood, {'attr': {'class': 'error'}}) }}
+                        </div>
                     {% else %}
                         {{ form_widget(edit_form.mood) }}
                     {% endif %}
-                    <div class="center error">
-                        {{ form_errors(edit_form.mood) }}
-                    </div>
                 </div>
             </div>
 
@@ -323,9 +326,13 @@
                         <ul class="userskills" data-prototype="{{ form_widget(edit_form.userskills.vars.prototype.level) | e("html_attr") }}
                                         {{ form_widget(edit_form.userskills.vars.prototype.skill) | e("html_attr") }}">
                             {% for skills in edit_form.userskills %}
-                                <li>
-                                    {{ form_row(skills.skill) }}
-                                    {{ form_row(skills.level) }}
+                                <li class="row">
+                                    <div class="range-field col m6 s12">
+                                        {{ form_row(skills.skill) }}
+                                    </div>
+                                    <div class="range-field col m6 s12">
+                                        {{ form_row(skills.level) }}
+                                    </div>
                                 </li>
                             {% endfor %}
                         </ul>
