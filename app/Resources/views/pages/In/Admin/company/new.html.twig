@@ -94,9 +94,9 @@
                     <h5 class="titleInscription blue-text text-darken-3">Date de Création :</h5>
                     <div class="input-field col s12">
                         {% if (form_errors(form.birthdate))  %}
-                            {{ form_row(form.birthdate, {'attr': {'class': 'datepicker error'}}) }}
+                            {{ form_row(form.birthdate, {'attr': {'class': 'datepickerCompany error'}}) }}
                         {% else %}
-                            {{ form_row(form.birthdate, {'attr': {'class': 'datepicker'}}) }}
+                            {{ form_row(form.birthdate, {'attr': {'class': 'datepickerCompany'}}) }}
                         {% endif %}
                         <div class="center error">
                             {{ form_errors(form.birthdate) }}
@@ -113,7 +113,7 @@
         <div id="step2" class="hide">
             <div class="row">
                 <div class="col s12">
-                    <h5 class="titleInscription blue-text text-darken-3">Slogan :</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Le bonheur au travail c'est :</h5>
                     <div class="input-fiel col s12">
                         {% if (form_errors(form.slogan)) %}
                             {{ form_widget(form.slogan, {'attr': {'class': 'error'}}) }}
@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <div class="col s12">
-                    <h5 class="titleInscription blue-text text-darken-3">Qualités :</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Les enjeux collectifs de la qualité de Vie au Travail :</h5></h5>
                     <div class="input-field col s12">
                         {% if (form_errors(form.quality)) %}
                             {{ form_widget(form.quality, {'attr': {'class': 'error'}}) }}
