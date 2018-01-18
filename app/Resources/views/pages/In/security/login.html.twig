@@ -38,8 +38,8 @@
                             <div class="card-panel panel-error red lighten-2">
                           <span class="white-text">
                               {{ error.messageKey|trans(error.messageData, 'security') | replace({
-                                  "Invalid credentials": "Erreur de combinaison email / mdp. Réessayer !",
-                                  "Bad credentials": "Erreur de combinaison email / mdp. Réessayer !"
+                                  "Invalid credentials": "Erreur de combinaison email / mot de passe. Réessayer !",
+                                  "Bad credentials": "Erreur de combinaison email / mot de passe. Réessayer !"
                               }) }}
                           </span>
                             </div>
@@ -49,7 +49,7 @@
                 {% endif %}
                 <div class="row">
                     <div class="input-field center">
-                        Vous avez oublié votre <a href="{{ path('sendChange') }}">mot de passe?</a>
+                        Avez-vous oublié votre <a href="{{ path('sendChange') }}">mot de passe ?</a>
                     </div>
                 </div>
             </div>

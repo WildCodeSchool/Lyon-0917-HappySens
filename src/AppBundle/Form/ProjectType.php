@@ -39,7 +39,7 @@ class ProjectType extends AbstractType
             ->add('teamProject', TextType::class, ['mapped' => false])
             ->add('theme', EntityType::class, [
                 'class' => Skill::class,
-                'placeholder' => 'Choisir votre theme',
+                'placeholder' => 'Choisir votre thème',
                 'required' => false,
                 'empty_data' => null,
             ])

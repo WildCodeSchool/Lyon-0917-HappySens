@@ -62,7 +62,7 @@ class UserType extends AbstractType
                 'options' => array('attr' => array('class' => 'password-field')),
                 'required' => false,
                 'first_options' => array('label' => 'Nouveau mot de passe'),
-                'second_options' => array('label' => 'Confirmez votre mot de passe'),
+                'second_options' => array('label' => 'Confirmer le nouveau mot de passe'),
             ))
             ->add('mood', RangeType::class, array(
                 'attr' => array(
