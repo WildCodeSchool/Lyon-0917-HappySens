@@ -115,7 +115,7 @@
                                             {% if project.happyCoach.photo is null %}
                                                 <img src="{{ asset('assets/images/placeholder.png') }}">
                                             {% else %}
-                                                <img src="{{ project.happyCoach.photo }}"
+                                                <img src="{{ asset('uploads/photoUser/' ~ project.happyCoach.photo) }}"
                                                      alt="photo {{ project.happyCoach }}">
                                             {% endif %}
                                             <span class="black-text">{{ project.happyCoach }}</span>
@@ -138,7 +138,9 @@
                             </div>
                             <div class="row">
                                 {{ project.presentation }}
+                                <ul class="inline-team-list">
                                 {{ include('project/projectTeam.html.twig') }}
+                                </ul>
 
                             </div>
                             <div class="footerReveal">

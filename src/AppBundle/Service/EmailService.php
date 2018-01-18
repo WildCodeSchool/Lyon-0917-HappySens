@@ -236,13 +236,13 @@ class EmailService
             ->setTo([$email_contact, $project->getAuthor()->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
-                $this->template->render('notificationsEmail/categories/project/validateProject.html.twig', [
+                $this->template->render('notificationsEmail/categories/validateProject/validateProject.html.twig', [
                     'logo' => $img,
                     'author' => $project->getAuthor(),
                     'title' => $project->getTitle(),
                 ]), 'text/html'
             )
-            ->addPart($this->template->render('notificationsEmail/categories/project/validateProject.txt.twig', [
+            ->addPart($this->template->render('notificationsEmail/categories/validateProject/validateProject.txt.twig', [
                 'author' => $project->getAuthor(),
                 'title' => $project->getTitle(),
             ]), 'text/plain');
