@@ -43,7 +43,7 @@
                         <a href="{{ path('listingProjects', {'status': 1}) }}">
                             <div class="center valign-wrapper hoverable" id="waitProject">
                                 <ul>
-                                    <li><i class="fa fa-folder-open-o fa-2x"></i></li>
+                                    <li><i class="medium material-icons">timer</i></li>
                                     <li>{{ nbProjectsByStatus[1] }} </li>
                                     <li>Projets à valider</li>
                                 </ul>
@@ -52,7 +52,7 @@
                         <a href="{{ path('listingProjects', {'status': 2}) }}">
                             <div class="center valign-wrapper hoverable" id="validProject">
                                 <ul>
-                                    <li><i class="fa fa-check-square-o fa-2x"></i></li>
+                                    <li><i class="medium material-icons">update</i></li>
                                     <li>{{ nbProjectsByStatus[2] }}</li>
                                     <li>Projets en cours</li>
                                 </ul>
@@ -61,7 +61,7 @@
                         <a href="{{ path('listingProjects', {'status': 3}) }}">
                             <div class="center valign-wrapper hoverable" id="finishProject">
                                 <ul>
-                                    <li><i class="fa fa-folder-o fa-2x"></i></li>
+                                    <li><i class="medium material-icons">timer_off</i></li>
 
                                     <li>{{ nbProjectsByStatus[3] }}</li>
 
@@ -83,11 +83,11 @@
                                 <span>Toutes les entreprises ({{ nbCompany[0][1] }})</span></p>
                         </a>
                         <a href="{{ path('resumeCompany') }}">
-                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i>
+                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-building fa-2x"> </i>
                                 <span>Fiche résumé inscription entreprise</span></p>
                         </a>
                         <a href="{{ path('listingUser') }}">
-                            <p class="center valign-wrapper" id="allCompany"><i class="fa fa-list-alt fa-2x"> </i>
+                            <p class="center valign-wrapper" id="allCompany"><i class="small material-icons">group</i>
                                 <span>Tous les collaborateurs :
                                 ({{ nbUserByStatus['collaborator']['isActif'] }}
                                     / {{ nbUserByStatus['collaborator']['total'] }})
