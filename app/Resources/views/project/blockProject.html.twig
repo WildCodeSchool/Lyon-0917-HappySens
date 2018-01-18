@@ -4,7 +4,7 @@
     </div>
     <!--********************************** Project Author****************************************-->
     <div class="containerListingProject">
-        <h5 class="titleSecond center">Les projets créer :</h5>
+        <h5 class="titleSecond center">Les projets créés :</h5>
         {% if user.authorProject %}
             <div id="AuthorProject">
                 <div class="card medium">
@@ -136,14 +136,14 @@
         {% else %}
             {% if app.user.slug == user.slug %}
                 <div class="withoutProject">
-                    <p>Vous n'avez pas encore créer de projet.</p>
+                    <p>Vous n'avez pas encore créé de projet.</p>
                     <a href="{{ path('project_new') }}">
                         <button class="btn"><i class="material-icons left">note_add</i>Créer un projet</button>
                     </a>
                 </div>
             {% else %}
                 <div class="withoutProject">
-                    <p>{{ user.firstname }} {{ user.lastname }} n'as pas encore créer de projet.</p>
+                    <p>{{ user.firstname }} {{ user.lastname }} n'as pas encore créé de projet.</p>
                 </div>
             {% endif %}
         {% endif %}
@@ -250,7 +250,7 @@
                     <p>
                         <i class="material-icons medium">group</i>
                         <br>
-                        Aucun projet rejoin
+                        Aucun projet rejoint.
                     </p>
                 </div>
             {% endif %}

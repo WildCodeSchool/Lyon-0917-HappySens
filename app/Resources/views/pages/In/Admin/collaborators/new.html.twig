@@ -16,7 +16,7 @@
         <br>
         <div class="row">
             <div class="col s6">
-                <h5 class="titleInscription blue-text text-darken-3">Prenom :</h5>
+                <h5 class="titleInscription blue-text text-darken-3">Prénom :</h5>
                 <div class="input-field col s12">
                     <i class="material-icons prefix blue-text text-darken-3">account_circle</i>
                     {% if (form_errors(form.firstName)) %}
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="col s6">
-                    <h5 class="titleInscription blue-text text-darken-3">Status :</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Statut :</h5>
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text text-darken-3">supervisor_account</i>
                         {% if (form_errors(form.status)) %}
@@ -70,7 +70,7 @@
                         {% else %}
                             {{ form_widget(form.status) }}
                         {% endif %}
-                        <label for="email"><span class="requireInput">* </span>Status</label>
+                        <label for="email"><span class="requireInput">* </span>Statut</label>
                         <div class="center error">
                             {{ form_errors(form.status) }}
                         </div>

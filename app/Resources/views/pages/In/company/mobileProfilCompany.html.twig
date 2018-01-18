@@ -19,7 +19,7 @@
                 <div class="col s12">
                     <div class="row">
                         <div class="card-panel blue darken-2 titleSecond center">
-                            <div class="white-text"> <b>Les 3 critéres à remplir pour un Happy projet validé :</b>
+                            <div class="white-text"> <b>Les trois critères à remplir pour un happy projet validé :</b>
                                 <p>{{ company.threeCriteria | nl2br }}.</p>
                             </div>
                         </div>
@@ -72,14 +72,14 @@
                                 </div>
                             {% endfor %}
                             <div class="row center">
-                                <a class="waves-effect waves-light modal-trigger center btn blue darken-2" href="#modalAllSkill">Voir tous les Talents</a>
+                                <a class="waves-effect waves-light modal-trigger center btn blue darken-2" href="#modal_2">Voir tous les Talents</a>
                             </div>
                         </div>
                     </li>
                 </ul>
             </div>
             <div>
-                <h5 class="titleSecond">Mes Happy Salarié : </h5>
+                <h5 class="titleSecond">Mes Happy Salariés : </h5>
             </div>
             <div class="collection">
                 {% for user in collaborators | slice(0, 3)%}
@@ -98,7 +98,7 @@
                 </div>
                 {% endfor %}
                 <div class="row">
-                    <a class="btn center waves-effect waves-light modal-trigger amber darken-2" href="#modalAllCollaborator">Tous les happySalariés</a>
+                    <a class="btn center waves-effect waves-light modal-trigger amber darken-2" href="#modal_1">Tous les happySalariés</a>
                 </div>
             </div>
         </div>
@@ -144,7 +144,7 @@
             <div id="modal_2" class="modal">
                 <div class="modal-content">
                     <div class="row">
-                        <h4 class="left">Tous les Talents</h4>
+                        <h4 class="left">Tous les talents</h4>
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right"><i
                                     class="material-icons">close</i></a>
                     </div>

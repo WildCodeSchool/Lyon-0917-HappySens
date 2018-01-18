@@ -213,7 +213,7 @@ class UserController extends Controller
                 }
             }
             if ($editForm->getData()->getBiography() == null) {
-                $errors['biography'] = "Ce champs est requis est doit être rempli";
+                $errors['biography'] = "Ce champs est requis et doit être rempli";
                 $countErrors++;
             }
             if ($editForm->getData()->getSlogan() == null) {
@@ -225,7 +225,7 @@ class UserController extends Controller
                 $countErrors++;
             }
             if ($editForm->getData()->getPhone() == null) {
-                $errors['phone'] = "Merci d'indiquer votre n° de téléphone";
+                $errors['phone'] = "Merci d'indiquer votre numéro de téléphone";
                 $countErrors++;
             }
             if ($editForm->getData()->getWorkplace() == null) {
@@ -304,7 +304,7 @@ class UserController extends Controller
         $editForm->handleRequest($request);
         if ($user->getStatus() !== 1) {
             if ($user->getStatus() !== 2) {
-                throw new AccessDeniedException("Fuis pauvre fou !!");
+                throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
             }
         }
         if ($editForm->isSubmitted() && $editForm->isValid()) {
