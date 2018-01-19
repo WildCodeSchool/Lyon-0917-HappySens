@@ -44,7 +44,11 @@
             <ul class="collection">
                 <li class="collection-item avatar" id="userProject">
                     <a href="{{ path('UserProfil', {'slug' : project.author.slug }) }}">
-                        <img src="{{ asset('uploads/photoUser/' ~ project.author.photo) }}" alt="photo du créateur du project" class="circle">
+                        {% if project.author.photo is null %}
+                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="" class="circle">
+                        {% else %}
+                            <img src="{{ asset('uploads/photoUser/' ~ project.author.photo) }}" alt="photo du créateur du projet" class="circle">
+                        {% endif %}
                         <div class="black-text">
                             <span class="titleSecond">Créé par : </span>
                             <p>{{ project.author }}</p>
@@ -115,16 +119,18 @@
                     <div class="row">
                         <p class="col s12 titleSecond">Langues</p>
                         <div class="col s12">
-                            <i class="fa fa-language fa-2x"></i>
-                            <i class="fa fa-language fa-2x"></i>
-                            <i class="fa fa-language fa-2x"></i>
+                            <p class="titleSecond">
+                                {% for language in  project.languagesProject %}
+                                    <b> {{ language }} </b>
+                                {% endfor %}
+                            </p>
                         </div>
                     </div>
                 </li>
                 <li class="collection-item">
                     <div class="row">
                         <p class="col s12 titleSecond">Thème</p>
-                        <p class="col s12 titleSecond">{{ project.theme.nameSkill }}</p>
+                        <p class="col s12 titleSecond"><b>{{ project.theme.nameSkill }}</b></p>
                     </div>
                 </li>
             </ul>

@@ -5,7 +5,11 @@
                 <ul class="collection">
                     <li class="collection-item avatar" id="userProject">
                         <a href="{{ path('UserProfil', {'slug' : project.author.slug }) }}">
-                        <img src="{{ asset('uploads/photoUser/' ~ project.author.photo) }}" alt="photo du créateur du projet" class="circle">
+                        {% if project.author.photo is null %}
+                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="" class="circle">
+                            {% else %}
+                            <img src="{{ asset('uploads/photoUser/' ~ project.author.photo) }}" alt="photo du créateur du projet" class="circle">
+                        {% endif %}
                             <div class="black-text">
                                 <span class="titleSecond">Créé par : </span>
                                 <p>{{ project.author }}</p>
@@ -52,16 +56,18 @@
                         <div class="row">
                             <p class="col s12 titleSecond">Langues</p>
                             <div class="col s12">
-                                <p> {% for language in  project.languagesProject%}
-                                {{ language}}
-                                    {% endfor %} </p>
+                                <p class="titleSecond">
+                                    {% for language in  project.languagesProject %}
+                                        <b>{{ language }}</b>
+                                    {% endfor %}
+                                </p>
                             </div>
                         </div>
                     </li>
                     <li class="collection-item">
                         <div class="row">
                             <p class="col s12 titleSecond">Thème</p>
-                            <p class="col l12 titleSecond">{{ project.theme.nameSkill }}</p>
+                            <p class="col l12 titleSecond"><b>{{ project.theme.nameSkill }}</b></p>
                         </div>
                     </li>
                 </ul>
@@ -75,12 +81,12 @@
                     {% if user != project.author %}
                         {% if app.user.status != 4 %}
                             {% if app.user not in project.teamProject %}
-                                <a href="{{ path('join_team', {"slug": project.slug}) }}" onclick="joinProject()"
+                                <a href="{{ path('join_team', {"slug": project.slug}) }}" onclick="joinProject('{{ project.title }}')"
                                    class="btn waves-effect waves-light personPlus" type="submit" name="action">Rejoindre
                                     <i class="material-icons right">person_add</i>
                                 </a>
                             {% else %}
-                                <a href="{{ path('quit_team', {"slug": project.slug}) }}" onclick="joinProject()"
+                                <a href="{{ path('quit_team', {"slug": project.slug}) }}" onclick="quitProject('{{ project.title }}')"
                                    class="btn waves-effect waves-light personPlus" type="submit" name="action">Quitter
                                     <i class="material-icons right">cancel</i>
                                 </a>

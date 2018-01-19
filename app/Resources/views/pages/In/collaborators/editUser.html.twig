@@ -126,6 +126,9 @@
                     </div>
                     <div class="center error">
                         {{ form_errors(edit_form.birthdate) }}
+                        {% if errors is defined %}
+                            {{ errors.birthdate }}
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col l6 s12">
