@@ -11,6 +11,8 @@ namespace AppBundle\Service;
 
 use Swift_Image;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Component\Finder\Finder;
+
 
 class EmailService
 {
@@ -41,7 +43,8 @@ class EmailService
      * EmailService constructor.
      * @param \Swift_Mailer $mailer
      * @param \Twig_Environment $template
-     * @param $sender string
+     * @param $sender
+     * @param RegistryInterface $db
      */
     public function __construct(\Swift_Mailer $mailer, \Twig_Environment $template, $sender, RegistryInterface $db)
     {
@@ -97,7 +100,7 @@ class EmailService
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
 
-        $message->setSubject('Votre projet à bien était créer')
+        $message->setSubject('Votre projet a bien été créé')
             ->setCharset("utf-8")
             ->setTo([$email_contact, $project->getAuthor()->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
@@ -121,14 +124,17 @@ class EmailService
     }
 
     /**
-     * @param $project
+     * @param $mailUser
      * @param $email_contact
+     * @param $firstName
+     * @param $lastName
+     * @param $token
      */
     public function sendMailNewPwd($mailUser, $email_contact, $firstName, $lastName, $token)
     {
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-        $message->setSubject('Réeinitialisation de votre mot de passe')
+        $message->setSubject('Réinitialisation de votre mot de passe')
             ->setCharset("utf-8")
             ->setTo([$email_contact, $mailUser])
             ->setFrom([$this->sender => self::SENDER])
@@ -159,7 +165,8 @@ class EmailService
     {
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-        $message->setSubject("Votre compte happySens vient d'être créer")
+
+        $message->setSubject("Votre compte happySens vient d'être créé")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $user->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
@@ -186,33 +193,58 @@ class EmailService
      * @param $company
      * @param $email_contact
      * @param $valueMdp
+     * @param $referent
      */
-    public function sendMailNewCompany($company, $email_contact, $valueMdp)
+    public function sendMailNewCompany($company, $email_contact, $valueMdp, $referent)
     {
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-        $em = $this->db;
-        $referent = $em->getManager()->getRepository('AppBundle:Company')->getReferentHappySens($company->getId());
-        dump($referent);
-
-        $message->setSubject("Votre compte entreprise happySens vient d'être créer")
+        $message->setSubject("Votre compte entreprise HappySens vient d'être créé")
             ->setCharset("utf-8")
-            ->setTo([$email_contact, $referent[0]['email']])
+            ->setTo([$email_contact, $referent])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/inscriptions/company/newCompany.html.twig', [
                     'logo' => $img,
                     'name' => $company->getName(),
                     'nbSalary' => $company->getNbSalary(),
-                    'email' => $referent[0]['email'],
+                    'email' => $referent,
                     'password' => $valueMdp,
                 ]), 'text/html'
             )
             ->addPart($this->template->render('notificationsEmail/categories/inscriptions/company/newCompany.txt.twig', [
                 'firstname' => $company->getName(),
                 'lastname' => $company->getNbSalary(),
-                'email' => $referent[0]['email'],
+                'email' => $referent,
                 'password' => $valueMdp,
+            ]), 'text/plain');
+
+        $this->mailer->send($message);
+    }
+
+    /**
+     * @param $project
+     * @param $email_contact
+     */
+    public function sendMailProjectValidate($project, $email_contact)
+    {
+        $message = \Swift_Message::newInstance();
+        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+
+        $message->setSubject('Votre projet a été validé')
+            ->setCharset("utf-8")
+            ->setTo([$email_contact, $project->getAuthor()->getEmail()])
+            ->setFrom([$this->sender => self::SENDER])
+            ->setBody(
+                $this->template->render('notificationsEmail/categories/validateProject/validateProject.html.twig', [
+                    'logo' => $img,
+                    'author' => $project->getAuthor(),
+                    'title' => $project->getTitle(),
+                ]), 'text/html'
+            )
+            ->addPart($this->template->render('notificationsEmail/categories/validateProject/validateProject.txt.twig', [
+                'author' => $project->getAuthor(),
+                'title' => $project->getTitle(),
             ]), 'text/plain');
 
         $this->mailer->send($message);

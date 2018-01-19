@@ -6,20 +6,21 @@
     {{ include('partials/frame/loader.html.twig') }}
     <div class="container generalContainer widthMax">
         <form action="{{ path('sendChange') }}" method="post">
-            <div class="row">
-                <div class="input-field col s12">
+            <div class="col s12">
+                <div class="row center">
                     <h5 class="titleSecond">
-                        Vous avez perdu votre mot de passe ? Pas de panique, saisissez votre adresse e-mail ci-dessous, et vous recevrez
+                        Vous avez perdu votre mot de passe ? Pas de panique, saisissez votre adresse e-mail ci-dessous et vous recevrez
                         un lien vous permettant de choisir un nouveau mot de passe.
                     </h5>
                 </div>
-                {{ form_start(form) }}
+                <div class="row">
+                    {{ form_start(form) }}
                     <div class="input-field col s12 center">
                         <i class="fa fa-envelope-o prefix"></i>
                         {% if (form_errors(form.email)) %}
                             {{ form_widget(form.email, {'attr': {'class': 'error'}}) }}
                         {% else %}
-                            {{ form_widget(form.email) }}
+                            {{ form_widget(form.email, {'attr' : {'required': true}}) }}
                         {% endif %}
                         <label for="email"><span class="requireInput">* </span>Email</label>
                         <div class="center error">
@@ -33,12 +34,13 @@
                         <a href="{{ path('login') }}" class="btn-flat waves-effect waves-light">Annuler
                             <i class="material-icons left">reply</i>
                         </a>
-                        <button type="submit" class="btn waves-effect waves-light amber darken-2" onclick="loadingPage()">
+                        <button type="submit" class="btn waves-effect waves-light amber darken-2" onclick="loadingPage('true')">
                             Envoyer
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
-                {{ form_end(form) }}
+                    {{ form_end(form) }}
+                </div>
             </div>
         </form>
     </div>

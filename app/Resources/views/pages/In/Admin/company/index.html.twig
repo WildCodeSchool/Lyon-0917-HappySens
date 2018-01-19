@@ -2,39 +2,90 @@
 
 {% block content %}
     <div class="container">
-        <h1 class="center">Listing entreprise</h1>
+        <h1 class="center titleSecond">Liste des entreprises</h1>
         <ul>
-            <li class="btn waves-effect waves-lighten">
-                <a href="{{ path('newCompany') }}" class="white-text">Create a new company</a>
+            <li class="btn waves-effect waves-lighten blue darken-2">
+                <a href="{{ path('newCompany') }}" class="white-text">Créer une nouvelle entreprise</a>
             </li>
         </ul>
         <ul class="row">
             {% for company in companies %}
                 <li class="card sticky-action col s12 m6 l4">
                     <div class="logoCompany waves-effect waves-block waves-light center">
-                        <img class="activator circle" src="{{ company.logo }}" height="150px">
+                        {% if company.logo is null %}
+                            <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" height="100px" class="circle">
+                        {% else %}
+                            <img src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="profile image" height="100px" class="circle">
+                        {% endif %}
                     </div>
                     <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">
-                    <a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}" class="black-text">{{ company.name }} | {{ company.nbSalary }} employés</a>
+                    <a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}"
+                       class="black-text truncate">{{ company.name }} | {{ company.nbSalary }} employés</a>
                     <i class="material-icons right">more_vert</i>
                 </span>
                         <div class="row">
-                            <p class="left"><a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}">Profil</a></p>
-                            <p class="right"><a href="{{ path('Company_edit', { 'slug': company.slug }) }}">Supprimer</a></p>
+                            <p class="left"><a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}">Profil</a>
+                            </p>
+                            <p class="right"><a
+                                        href="{{ path('Company_edit', { 'slug': company.slug }) }}">Supprimer</a></p>
                         </div>
+                        <a class="waves-effect waves-light modal-trigger center btn amber darken-2"
+                           href="#modalCollaborator{{ company.id }}">Voir tous les HappySalariés</a>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ company.name }}<i class="material-icons right">close</i></span>
+                        <span class="card-title grey-text text-darken-4">{{ company.name }}<i
+                                    class="material-icons right">close</i></span>
                         <ul>
                             <li><span>Activité :</span> {{ company.activity }}</li>
-                            <li>Date de création : {% if company.birthdate %}{{ company.birthdate|date('Y-m-d H:i:s') }}{% endif %}</li>
+                            <li>Date de création
+                                : {% if company.birthdate %}{{ company.birthdate|date('Y-m-d H:i:s') }}{% endif %}</li>
                             <li>Slogan : {{ company.slogan }}</li>
                             <li>Qualité : {{ company.quality }}</li>
                             <li>Critères : {{ company.threeCriteria }}</li>
                         </ul>
                     </div>
                 </li>
+                <!--ModalAllCollaborator -->
+                <div id="modalCollaborator{{ company.id }}" class="modal">
+                    <div class="modal-content">
+                        <div class="row">
+                            <h4 class="left">Tous les salariés</h4>
+                            <a href="#!" class="modal-action modal-close waves-effect waves btn-flat right"><i
+                                        class="material-icons">close</i></a>
+                        </div>
+                        <div class="row">
+                            {% for user in company.users %}
+
+                                    {% if user.isactive != true %}
+                                        <div class="col l4 card center-align grey lighten-1">
+                                        {% else %}
+                                            <div class="col l4 card center-align">
+                                        {% endif %}
+
+                                        <ul class="">
+                                        <li>
+                                            {% if user.photo is null %}
+                                                <img src="{{ asset('assets/images/placeholder.png') }}"
+                                                     alt="profile image" height="120px" class="circle">
+                                            {% else %}
+                                                <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}"
+                                                     alt="profile image" height="120px" class="circle">
+                                            {% endif %}
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a>
+                                        </li>
+                                        <li> {{ include('user/userMood.html.twig') }}</li>
+                                    </ul>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+                <!-- End ModalAllCollaborator -->
             {% endfor %}
         </ul>
     </div>

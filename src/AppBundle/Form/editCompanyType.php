@@ -2,8 +2,12 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,15 +20,39 @@ class editCompanyType extends AbstractType
     {
         $builder->add('activity')
             ->add('name')
-            ->add('nbSalary')
-            ->add('birthdate')
+            ->add('nbSalary',ChoiceType::class, [
+                'choices' => [
+                    '0-50' => 1,
+                    '51-250' => 2,
+                    '251-500' => 3,
+                    '> 501' => 4,
+                ],
+
+            ])
+            ->add('birthdate', DateType::class, [
+                'label' => 'Date de Création',
+                'widget' => 'single_text',
+                'format' => 'dd-MM-yyyy',
+            ])
             ->add('slogan')
             ->add('quality')
             ->add('threeCriteria')
             ->add('location')
             ->add('quality')
             ->add('fileUsers', FileType::class, array('mapped' => false))
-            ->add('logo', FileType::class, array('mapped' => false, 'required' => false));
+            ->add('logo', FileType::class, array('mapped' => false, 'required' => false))
+            ->add('facebook', UrlType::class, [
+                'required' => false,
+                'label' => 'https://www.facebook.com/',
+                ])
+            ->add('twitter', UrlType::class, [
+                'required' => false,
+                'label' => 'https://twitter.com/',
+            ])
+            ->add('linkedin', UrlType::class, [
+                'required' => false,
+                'label' => 'https://www.linkedin.com/in/',
+            ]);
     }
 
     /**

@@ -5,9 +5,13 @@
                 <ul class="collection">
                     <li class="collection-item avatar" id="userProject">
                         <a href="{{ path('UserProfil', {'slug' : project.author.slug }) }}">
-                        <img src="{{ project.author.photo }}" alt="photo du créateur du projet" class="circle">
+                        {% if project.author.photo is null %}
+                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="" class="circle">
+                            {% else %}
+                            <img src="{{ asset('uploads/photoUser/' ~ project.author.photo) }}" alt="photo du créateur du projet" class="circle">
+                        {% endif %}
                             <div class="black-text">
-                                <span class="titleSecond">Créer par : </span>
+                                <span class="titleSecond">Créé par : </span>
                                 <p>{{ project.author }}</p>
                             </div>
                             <p class="secondary-content"><i class="material-icons amber-text text-darken-2">person</i></p>
@@ -16,7 +20,7 @@
                     {% if  project.happyCoach%}
                         <li class="collection-item avatar">
                             <a href="{{ path('profilHappyCoach', {'slug' : project.happyCoach.slug }) }}">
-                                <img src="{{ project.happyCoach.photo }}" alt="photo de l'HappyCoach référent" class="circle">
+                                <img src="{{ asset('uploads/photoUser/' ~ project.happyCoach.photo) }}" alt="photo de l'HappyCoach référent" class="circle">
                                 <div class="black-text">
                                     <span class="titleSecond">HappyCoach référent :</span>
                                     <p>{{ project.happyCoach }}</p>
@@ -36,7 +40,7 @@
                     {% endif%}
                     <li class="collection-item avatar">
                         <a href="{{ path('CompanyProfil', {'slug' : project.author.company.slug })}}">
-                            <img src="{{ project.author.company.logo }}" alt="logo de l'entreprise" class="circle">
+                            <img src="{{ asset('uploads/photoCompany/' ~ project.author.company.logo) }}" alt="logo de l'entreprise" class="circle">
                             <div class="black-text">
                                 <span class="titleSecond">Entreprise :</span>
                                 <p>{{ project.author.company.name }}</p>
@@ -52,16 +56,18 @@
                         <div class="row">
                             <p class="col s12 titleSecond">Langues</p>
                             <div class="col s12">
-                                <p> {% for language in  project.languagesProject%}
-                                {{ language}}
-                                    {% endfor %} </p>
+                                <p class="titleSecond">
+                                    {% for language in  project.languagesProject %}
+                                        <b>{{ language }}</b>
+                                    {% endfor %}
+                                </p>
                             </div>
                         </div>
                     </li>
                     <li class="collection-item">
                         <div class="row">
                             <p class="col s12 titleSecond">Thème</p>
-                            <p class="col l12 titleSecond">{{ project.theme.nameSkill }}</p>
+                            <p class="col l12 titleSecond"><b>{{ project.theme.nameSkill }}</b></p>
                         </div>
                     </li>
                 </ul>
@@ -72,18 +78,25 @@
         <div class="col s12 l8">
             <div class="row">
                 <div class="right">
-                    {% if app.user.status != 4 %}
-                        {% if app.user not in project.teamProject %}
-                            <a href="{{ path('join_team', {"slug": project.slug}) }}" onclick="joinProject()"
-                               class="btn waves-effect waves-light personPlus" type="submit" name="action">Rejoindre
-                                <i class="material-icons right">person_add</i>
-                            </a>
-                        {% else %}
-                            <a href="{{ path('quit_team', {"slug": project.slug}) }}" onclick="joinProject()"
-                               class="btn waves-effect waves-light personPlus" type="submit" name="action">Quitter
-                                <i class="material-icons right">cancel</i>
-                            </a>
+                    {% if user != project.author %}
+                        {% if app.user.status != 4 %}
+                            {% if app.user not in project.teamProject %}
+                                <a href="{{ path('join_team', {"slug": project.slug}) }}" onclick="joinProject('{{ project.title }}')"
+                                   class="btn waves-effect waves-light personPlus" type="submit" name="action">Rejoindre
+                                    <i class="material-icons right">person_add</i>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('quit_team', {"slug": project.slug}) }}" onclick="quitProject('{{ project.title }}')"
+                                   class="btn waves-effect waves-light personPlus" type="submit" name="action">Quitter
+                                    <i class="material-icons right">cancel</i>
+                                </a>
+                            {% endif %}
                         {% endif %}
+                    {% else %}
+                        <a href="{{ path('project_edit', {"slug": project.slug}) }}" class="btn waves-effect waves-light personPlus"
+                           type="submit" name="action">Modifier
+                            <i class="material-icons right">create</i>
+                        </a>
                     {% endif %}
                 </div>
                 <div class="dateProject left">
@@ -91,47 +104,43 @@
                     <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-calendar-times-o"></i></span> {{ project.endDate|date('Y-m-d') }}</p>
                     <p class="black-text chip"><span class="blue-text text-darken-2"><i class="fa fa-map-marker"></i></span> {{ project.location }}</p>
                     {% if app.user.status != 4 %}
-                        {% if app.user not in project.likeProjects %}
-                            <a href="{{ path('like_project', {'slug': project.slug}) }}" onclick="like()"><p
-                                        class="black-text chip"><span class="red-text"><i
-                                                class="fa fa-heart"></i></span> {{ nbLike }}</p></a>
+                        {% if app.user not in project.likeProjects and app.user != project.author %}
+                            <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
+                                <p class="black-text chip">
+                                <span class="red-text" id="likeProject"><i class="fa fa-heart-o"></i>
+                                    {{ project.likeProjects | length }}
+                                </span>
+                                </p>
+                            </a>
+                        {% elseif app.user != project.author %}
+                            <a onclick="dislikeProject({{ project.id }}, '{{ project.title }}')">
+                                <p class="black-text chip">
+                                <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                    {{ project.likeProjects | length }}
+                                </span>
+                                </p>
+                            </a>
+
                         {% else %}
-                            <a href="{{ path('unlike_project', {'slug': project.slug}) }}"><p class="black-text chip">
-                                    <span class="red-text"><i class="fa fa-heart"></i></span> {{ nbLike }}</p></a>
+                            <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
+                                <p class="black-text chip">
+                                <span class="red-text" id="likeProject"><i class="fa fa-heart"></i>
+                                    {{ project.likeProjects | length }}
+                                </span>
+                                </p>
+                            </a>
                         {% endif %}
                     {% else %}
-                        <p class="black-text chip"><span class="red-text"><i
-                                        class="fa fa-heart"></i></span> {{ nbLike }}</p></a>
+                        <p class="black-text chip"><span class="red-text"><i class="fa fa-heart"></i>
+                                {{ project.likeProjects | length }}</span>
+                        </p>
                     {% endif %}
-
                 </div>
             </div>
             <div class="containList">
                 <h5 class="titleSecond amber-text text-darken-2">Equipe :</h5>
                 <ul class="inline-team-list">
-                    {% if project.teamProject is not empty %}
-                        {% for user in project.teamProject %}
-                            <li>
-                                {% if user.status == 2 or  user.status == 3%}
-                                <a href="{{ path('UserProfil', {'slug' : user.slug })}}">
-                                    <div class="chip amber">
-                                        <img src="{{ user.photo }}" alt="Photo utilisateur"> <!-- notice the "circle" class -->
-                                        <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
-                                    </div>
-                                </a>
-                                {% else %}
-                                <a href="{{ path('profilHappyCoach', {'slug' : user.slug })}}">
-                                    <div class="chip pink">
-                                        <img src="{{ user.photo }}" alt="Photo utilisateur"> <!-- notice the "circle" class -->
-                                        <span class="black-text">{{ user.firstName }} {{ user.lastName }}</span>
-                                    </div>
-                                </a>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    {% else %}
-                        <p>Pas encore de membre dans cette équipe</p>
-                    {% endif %}
+                   {{ include('project/projectTeam.html.twig') }}
                 </ul>
             </div>
             <div class="row">

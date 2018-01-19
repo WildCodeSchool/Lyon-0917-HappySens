@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -17,7 +18,6 @@ class User implements UserInterface, \Serializable
     const ROLE_COMPANY = 2;
     const ROLE_EMPLOYE = 3;
     const ROLE_HAPPYCOACH = 4;
-    const ROLE_HAPPYCOACH_PROJECT = 5;
 
     /**
      * @var int
@@ -32,6 +32,19 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=50)
+     * @Assert\NotBlank()
+     * @Assert\Type("String")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Votre prénom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre prénom doit contenir moins de  {{ limit }} caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre prénom ne doit pas contenir de chiffre"
+     * )
      */
     private $firstName;
 
@@ -39,6 +52,19 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=50)
+     * @Assert\NotBlank()
+     * @Assert\Type("String")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom doit contenir moins de  {{ limit }} caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern="/\d/",
+     *     match=false,
+     *     message="Votre nom ne doit pas contenir de chiffre"
+     * )
      */
     private $lastName;
 
@@ -46,6 +72,18 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=30, nullable=true)
+     * @Assert\Type("String")
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 14,
+     *      minMessage = "Le téléphone doit être sous la forme : 00-00-00-00-00",
+     *      maxMessage = "Le téléphone doit être sous la forme : 00-00-00-00-00"
+     * )
+     * Assert\Regex(
+     *     pattern="#^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$#",
+     *     match=false,
+     *     message="Le téléphone doit être sous la forme : 00-00-00-00-00"
+     * )
      */
     private $phone;
 
@@ -53,6 +91,10 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=150, unique=true)
+     * @Assert\Email(
+     *     message = "Votre email : '{{ value }}' n'est pas valide.",
+     *     checkMX = true
+     * )
      */
     private $email;
 
@@ -65,7 +107,7 @@ class User implements UserInterface, \Serializable
 
     /**
      *
-     * @ORM\Column(name="birthdate", type="datetime", nullable=true)
+     * @ORM\Column(name="birthdate", type="date", nullable=true)
      */
     private $birthdate;
 
@@ -73,6 +115,12 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     * @Assert\File(
+     *     maxSize = "6016k",
+     *     maxSizeMessage = "La taille maximale du fichier est fixée à 5Mo",
+     *     mimeTypes = {"image/png", "image/x-png", "image/jpeg", "image/x-jpeg"},
+     *     mimeTypesMessage = "Merci de mettre une image valide (format jpeg ou png)"
+     * )
      */
     private $photo;
 
@@ -80,6 +128,10 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="biography", type="text", nullable=true)
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "Votre message doit contenir au moins plus de {{ limit }} caractères",
+     * )
      */
     private $biography;
 
@@ -87,13 +139,19 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="slogan", type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 255,
+     *      minMessage = "Votre slogan doit contenir au moins plus de {{ limit }} caractères",
+     *      maxMessage = "Votre slogan ne doit pas contenir plus de {{ limit }} caractères"
+     * )
      */
     private $slogan;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=255 , nullable=false)
      */
     private $password;
 
@@ -114,6 +172,12 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="job", type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 255,
+     *      minMessage = "Votre métier doit contenir au moins plus de {{ limit }} caractères",
+     *      maxMessage = "Votre métier ne doit pas contenir plus de {{ limit }} caractères"
+     * )
      */
     private $job;
 
@@ -121,6 +185,12 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="workplace", type="string", length=100, nullable=true)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 100,
+     *      minMessage = "Le lieu de votre travail doit contenir au moins plus de {{ limit }} caractères",
+     *      maxMessage = "Le lieu de votre travail ne doit pas contenir plus de {{ limit }} caractères"
+     * )
      */
     private $workplace;
 
@@ -198,6 +268,11 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="slug", type="string",  length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity="NotificationSystem", mappedBy="sender")
+     */
+    private $sendNotif;
 
     /**
      * @var int
@@ -404,6 +479,14 @@ class User implements UserInterface, \Serializable
     {
         $this->birthdate = $birthdate;
         return $this;
+    }
+
+    public function getAge()
+    {
+        $today = new \DateTime();
+        $age = $this->birthdate->diff($today);
+
+        return $age;
     }
 
     /**
@@ -940,5 +1023,53 @@ class User implements UserInterface, \Serializable
     public function removeHappyCoachRef(\AppBundle\Entity\Project $happyCoachRef)
     {
         $this->happyCoachRef->removeElement($happyCoachRef);
+    }
+
+    /**
+     * Add sendNotif
+     *
+     * @param \AppBundle\Entity\NotificationSystem $sendNotif
+     *
+     * @return User
+     */
+    public function addSendNotif(\AppBundle\Entity\NotificationSystem $sendNotif)
+    {
+        $this->sendNotif[] = $sendNotif;
+
+        return $this;
+    }
+
+    /**
+     * Remove sendNotif
+     *
+     * @param \AppBundle\Entity\NotificationSystem $sendNotif
+     */
+    public function removeSendNotif(\AppBundle\Entity\NotificationSystem $sendNotif)
+    {
+        $this->sendNotif->removeElement($sendNotif);
+    }
+
+    /**
+     * Get sendNotif
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSendNotif()
+    {
+        return $this->sendNotif;
+    }
+
+    /**
+     * Set sendNotif
+     *
+     * @param \AppBundle\Entity\NotificationSystem $sendNotif
+     *
+     * @return User
+     */
+    public function setSendNotif(\AppBundle\Entity\NotificationSystem $sendNotif = null)
+    {
+        $this->sendNotif = $sendNotif;
+
+        return $this;
     }
 }

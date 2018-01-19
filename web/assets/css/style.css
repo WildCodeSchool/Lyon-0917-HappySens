@@ -203,6 +203,15 @@ main {
     color: white;
     font-size: 0.7em; }
 
+.withoutTeamProject {
+  text-align: center;
+  color: grey;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3em; }
+  .withoutTeamProject a {
+    color: white;
+    font-family: 'Roboto', sans-serif; }
+
 .containerListingProject {
   padding: 20px 0; }
 
@@ -275,7 +284,8 @@ main {
     color: #252F3D; }
 
 .imgMenu {
-  display: flex; }
+  display: flex;
+  width: 125%; }
   .imgMenu span {
     margin-top: 1px;
     margin-left: 5px; }
@@ -478,6 +488,13 @@ nav {
   z-index: 2;
   margin-left: 20px;
   left: 0; }
+
+.chipDate {
+  position: absolute;
+  top: 20px;
+  z-index: 2;
+  margin-right: 20px;
+  right: 0; }
 
 .chip img {
   background-color: #fff; }
@@ -1011,12 +1028,16 @@ ul.switch li.active, ul.switch li.active {
     .headerDetailsProject .background .content {
       position: absolute;
       top: 10px;
-      margin-left: 10px; }
-    .headerDetailsProject .background p {
-      transform: translatex(26vw);
+      padding: 5px 10px; }
+    .headerDetailsProject .background .contentTitleProject {
       text-align: center;
       justify-content: center;
-      display: flex; }
+      display: flex;
+      position: absolute; }
+      .headerDetailsProject .background .contentTitleProject .titleProject {
+        font-family: "Quicksand", sans-serif;
+        font-size: 3.5em;
+        text-align: center; }
 
 .detailsProjectExplain, .dateProject {
   padding-left: 20px; }
@@ -1055,14 +1076,14 @@ ul.switch li.active, ul.switch li.active {
       float: left;
       padding: 0;
       text-align: center;
-      margin: auto;
-      width: 32%; }
+      margin: auto; }
       .wrapper ul li a {
         color: #ccc;
         text-decoration: none;
         padding: 10px 0 10px 55px;
         background: #f1f1f1;
-        position: relative; }
+        position: relative;
+        font-family: 'Quicksand', sans-serif; }
         .wrapper ul li a:after {
           content: " ";
           display: block;
@@ -1215,5 +1236,30 @@ ul.switch li.active, ul.switch li.active {
 
 .logoCompany {
   margin-top: 30px; }
+
+.placeHolderRecap {
+  text-align: center;
+  color: grey;
+  font-size: 1.8em;
+  padding: 30px 20px 20px 20px; }
+
+.listRecap {
+  margin: 15px 0; }
+
+.explainRecap {
+  font-size: 1.4em;
+  font-family: 'Quicksand', sans-serif;
+  margin-top: 20px; }
+  .explainRecap p {
+    padding-top: 20px; }
+
+.recapTitle {
+  margin: 40px auto; }
+
+.containLinksComp {
+  padding: 20px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
 
 /*# sourceMappingURL=style.css.map */

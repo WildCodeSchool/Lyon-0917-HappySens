@@ -27,7 +27,7 @@ class  CompanyRepository extends \Doctrine\ORM\EntityRepository
             ->addOrderBy('level', "desc")
             ->setParameter('idCompany', $companyId)
             ->groupBy('s.nameSkill')
-            ->setMaxResults(5)
+//            ->setMaxResults(5)
              ->where('c.id=:idCompany')
             ->getQuery();
         return $qb->getResult();
@@ -100,6 +100,10 @@ class  CompanyRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
+    /**
+     * @param $companyId
+     * @return array
+     */
     public function getAllCollaboratorInCompany($companyId)
     {
         $qb = $this
@@ -111,9 +115,19 @@ class  CompanyRepository extends \Doctrine\ORM\EntityRepository
             ->andwhere('u.isActive = true')
             ->getQuery();
         return $qb->getResult();
-
-
-
     }
+
+    /**
+     * @return array
+     */
+    public function findAllForRecap() {
+        $qb = $this
+            ->createQueryBuilder('c')
+            ->select('c.id', 'c.name', 'c.logo', 'c.slug')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+
 
 }

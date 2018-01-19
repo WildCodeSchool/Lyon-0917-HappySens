@@ -1,0 +1,26 @@
+.placeHolderRecap {
+  text-align: center;
+  color: grey;
+  font-size: 1.8em;
+  padding: 30px 20px 20px 20px;
+}
+.listRecap {
+  margin: 15px 0;
+}
+.explainRecap {
+  font-size: 1.4em;
+  font-family: 'Quicksand', sans-serif;
+  margin-top: 20px;
+  p {
+    padding-top: 20px;
+  }
+}
+.recapTitle {
+  margin: 40px auto;
+}
+.containLinksComp {
+  padding:  20px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

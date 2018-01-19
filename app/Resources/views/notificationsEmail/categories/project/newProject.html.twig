@@ -3,11 +3,10 @@
 {% block content %}
     <h1 class="title">Bonjour {{ author.firstname }} {{ author.lastname }},</h1>
 
-    <span class="content">Votre projet à bien était créer et vous trouverez ici les informations :</span>
+    <span class="content">Votre projet a bien été créé. Vous trouverez ci-dessous les informations :</span>
     <ul class="text">
         <li class="content">Titre : {{ title }} </li>
-        <li class="content">Status : {{ status }} </li>
         <li class="content">Lieux : {{ location }}</li>
     </ul>
-    <p class="content">Vous allez recevoir un mail lors de la confirmation de votre projet par le comité.</p>
+    <p class="content">Vous recevrez un nouvel email lors de la validation de votre projet par le comité.</p>
 {% endblock %}

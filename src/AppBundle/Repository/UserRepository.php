@@ -10,6 +10,7 @@ namespace AppBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    const ADMIN_COMPANY = 2;
     /**
      * @param $companyId
      * @return mixed
@@ -49,8 +50,9 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
     public function getNumberUserByRole() {
         $qb = $this
             ->createQueryBuilder('u')
-            ->select('COUNT(u)')
+            ->select('COUNT(u) as nbUser', 'u.status', 'u.isActive')
             ->groupBy('u.status')
+            ->addGroupBy('u.isActive')
             ->getQuery();
         return $qb->getResult();
     }
@@ -79,5 +81,31 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->where('u.id=:id')
             ->getQuery();
         return $qb->getResult();
+    }
+
+    /**
+     * @param $idComp
+     * @return array
+     */
+    public function findByIdComp($idComp) {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->setParameter('id', $idComp)
+            ->where('u.company=:id')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function findAdminComp() {
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->setParameter('id', self::ADMIN_COMPANY)
+            ->select('u.email as email')
+            ->where('u.id=:id')
+            ->getQuery();
+        return $qb->getSingleResult();
     }
 }

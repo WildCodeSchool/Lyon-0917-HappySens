@@ -5,6 +5,13 @@
   margin-left: 20px;
   left: 0; }
 
+.chipDate {
+  position: absolute;
+  top: 20px;
+  z-index: 2;
+  margin-right: 20px;
+  right: 0; }
+
 .chip img {
   background-color: #fff; }
 .chip.validate {

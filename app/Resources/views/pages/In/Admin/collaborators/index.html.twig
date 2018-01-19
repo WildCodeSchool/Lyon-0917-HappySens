@@ -3,17 +3,26 @@
 {% block content %}
     <div class="container">
 
-        <h1 class="center">Listing {{ listing }} </h1>
+        <h1 class="center titleSecond">Liste des {{ listing }} </h1>
         <ul>
-            <li class="btn waves-effect waves-lighten">
-                <a href="{{ path('newUser') }}" class="white-text">Ajouter un {{ listing }}</a>
+            <li class="btn waves-effect waves-lighten blue darken-2">
+                <a href="{{ path('newUser', {'status' : status}) }}" class="white-text">Ajouter un {{ listing }}</a>
             </li>
         </ul>
         <ul class="row">
             {% for user in users %}
-            <li class="card sticky-action col s12 m6 l4">
+                {% if user.isactive != true %}
+                    <li class="card sticky-action col s12 m6 l4 grey lighten-1">
+                {% else %}
+                    <li class="card sticky-action col s12 m6 l4">
+                {% endif %}
+
                 <div class="logoCompany waves-effect waves-block waves-light center">
-                    <img class="activator circle" src="{{ user.photo }}" height="150px">
+                    {% if user.photo is null %}
+                        <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" height="100px" class="circle">
+                    {% else %}
+                        <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" height="100px" class="circle">
+                    {% endif %}
                 </div>
                 <div class="card-content">
                 <span class="card-title activator grey-text text-darken-4">
@@ -40,20 +49,20 @@
                         </div>
                     </div>
                     <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ user.firstName }} {{ user.lastName }}<i class="material-icons right">close</i></span>
+                        <span class="card-title grey-text text-darken-4 truncate">{{ user.firstName }} {{ user.lastName }}<i class="material-icons right">close</i></span>
                         <ul>
                             <li><span>Métier :</span> {{ user.job }}</li>
-                            <li><span>Lieux :</span> {{ user.workplace }}</li>
+                            <li><span>Lieu :</span> {{ user.workplace }}</li>
                             <li><span>Langue natale :</span> {{ user.nativeLanguage }}</li>
                             <li><span>Autres langues :</span>
                                 {% for language in user.languagesUser %}
                                     {{ language }}
                                 {% endfor %}
                             </li>
-                            <li><span>Tel :</span> {{ user.phone }}</li>
+                            <li><span>Téléphone :</span> {{ user.phone }}</li>
                             <li><span>Email :</span> {{ user.email }}</li>
                             <li><span>Date :</span> {% if user.birthdate %}{{ user.birthdate|date('Y-m-d H:i:s') }}{% endif %}</li>
-                            <li><span>Biography :</span> {{ user.biography }}</li>
+                            <li><span>Biographie :</span> {{ user.biography }}</li>
                             <li><span>Slogan :</span> {{ user.slogan }}</li>
                         </ul>
                     </div>

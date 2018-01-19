@@ -1,0 +1,34 @@
+{% extends 'baseIn.html.twig' %}
+
+{% block title %}Les résumés d'inscription{% endblock %}
+
+{% block content %}
+    <div class="container generalContainer">
+        <div class="row">
+            <h2 class="header left title">Toutes les fiches d'inscriptions d'entreprise</h2>
+        </div>
+        <ul class="collapsible popout" data-collapsible="accordion">
+        {% for resume in allResume %}
+            {% dump resume %}
+            <li>
+                <div class="collapsible-header">
+                    <div class="row">
+                        {% if resume.logo is defined %}
+                            <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" height="50px" class="circle">
+                        {% else %}
+                            <img src="{{ asset('uploads/photoCompany/' ~ resume.logo) }}" alt="profile image" height="50px" class="circles">
+                        {% endif %}
+                        <h3 class="black-text titleSecond">{{ resume.name }} {{ resume.slug }}</h3>
+                    </div>
+                </div>
+                <div class="collapsible-body">
+                    <a href="{{ path('resume_create_company', {'id': resume.id}) }}">
+                        <button class="btn">Profil</button>
+                    </a>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+

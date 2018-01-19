@@ -6,6 +6,7 @@ use AppBundle\Entity\Project;
 use AppBundle\Service\EmailService;
 use AppBundle\Entity\User;
 use AppBundle\Service\FileUploader;
+use AppBundle\Service\NotificationService;
 use AppBundle\Service\SlugService;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -13,8 +14,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 
 /**
@@ -53,7 +57,6 @@ class ProjectController extends Controller
             $file = $project->getPhoto();
             $fileName = $fileUploader->upload($file, "photoProject");
             $project->setPhoto($fileName);
-            $project->setEndDate(DateTime::createFromFormat ('d/m/Y', $project->getEndDate() ));
             $project->setSlug($slugService->slugify($project->getTitle()));
             $project->setAuthor($user);
 
@@ -66,7 +69,7 @@ class ProjectController extends Controller
             $em->flush();
             $this->addFlash(
                 'notif',
-                'Votre projet à bien était créer !'
+                'Votre projet a bien été créé !'
             );
             return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }
@@ -91,6 +94,7 @@ class ProjectController extends Controller
         $nbLikes = count($project->getLikeProjects());
 
         $viewProject = $this->render('project/show.html.twig', array(
+            'user' => $user,
             'project' => $project,
             'nbLike' => $nbLikes,
             'delete_form' => $deleteForm->createView(),
@@ -100,7 +104,7 @@ class ProjectController extends Controller
             if ($user->getCompany() === $project->getAuthor()->getCompany()) {
                 return $viewProject;
             } else {
-                throw new AccessDeniedException("ce n'est pas un projet de ton entreprise");
+                throw new AccessDeniedException("Vous n'êtes pas autorisé à voir un projet d'une autre entreprise");
             }
         }
 
@@ -116,7 +120,7 @@ class ProjectController extends Controller
                     return $viewProject;
                 }
             }
-            throw new AccessDeniedException("tu ne travailles pas sur ce projet");
+            throw new AccessDeniedException("Vous n'êtes pas autorisé à travailler sur ce projet");
         }
         return $viewProject;
     }
@@ -127,29 +131,43 @@ class ProjectController extends Controller
      * @Route("/{slug}/edit", name="project_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Project $project, SlugService $slugService)
+    public function editAction(Request $request, Project $project, FileUploader $fileUploader, SlugService $slugService)
     {
-        $deleteForm = $this->createDeleteForm($project);
+        if ($project->getPhoto()) {
+            $photoTemp = $project->getPhoto();
+            $project->setPhoto(
+                new File($this->getParameter('upload_directory').'/photoProject/'.$project->getPhoto())
+            );
+        } else {
+            $photoTemp = $project->getPhoto();
+        }
+
         $editForm = $this->createForm('AppBundle\Form\ProjectType', $project);
+        $editForm->remove('startingDate');
         $editForm->remove('author');
         $editForm->remove('status');
-        $editForm->remove('photo');
         $editForm->remove('likeProjects');
         $editForm->remove('teamProject');
         $editForm->remove('slug');
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if ($editForm->getData()->getPhoto() !== NULL) {
+                $file = $project->getPhoto();
+                $fileName = $fileUploader->upload($file, "photoProject");
+                $project->setPhoto($fileName);
+            } else {
+                $project->setPhoto($photoTemp);
+            }
+
             $project->setSlug($slugService->slugify($project->getTitle()));
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('project_edit', array('slug' => $project->getSlug()));
+            return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }
 
         return $this->render('project/edit.html.twig', array(
             'project' => $project,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -226,33 +244,55 @@ class ProjectController extends Controller
 
 
     /**
-     * @Route("/likeProject/{slug}/", name="like_project")
      *
+     * @Route("/likeProject/", name="like_project")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @param NotificationService $notificationService
+     * @return $this|JsonResponse
      */
-    // TODO: AJAX
-    public function likeAction(Request $request, Project $project)
+    public function likeAction(Request $request, NotificationService $notificationService)
     {
-        $idU = $this->getUser();
-        $add = $project->addLikeProject($idU);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($add);
-        $em->flush();
-        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+        if($request->isXmlHttpRequest()) {
+            $user = $this->getUser();
+            $em = $this->getDoctrine()->getManager();
+            $id = $request->request->get('id');
+            $project = $em->getRepository('AppBundle:Project')->find($id);
+            if ($user->getId() !== $project->getAuthor()->getId()) {
+                $add = $project->addLikeProject($user);
+                $em->persist($add);
+                $em->flush();
+                $notificationService->sendNotif($user, $project->getAuthor()->getId());
+                $allLikes = [$project->getLikeProjects()];
+                return new JsonResponse(json_encode(['likeSend' => count($allLikes)]));
+            } else {
+                return new JsonResponse(['badUser' => json_encode('Vous ne pouvez pas aimer votre propre projet')]);
+            }
+        }
+        return new JsonResponse(json_encode(['likeFailed' => "Erreur lors de l'envoi du like"]));
     }
 
     /**
-     * @Route("/unlikeProject/{slug}/", name="unlike_project")
      *
+     * @Route("/dislikeProject/", name="dislike_project")
+     * @Method("POST")
+     *
+     * @param Request $request
+     * @return JsonResponse
      */
-    // TODO: AJAX
-    public function unlikeAction(Request $request, Project $project)
+    public function dislikeAction(Request $request)
     {
-        $idU = $this->getUser();
-        $add = $project->removeLikeProject($idU);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($add);
-        $em->flush();
-        return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
+        if($request->isXmlHttpRequest()) {
+            $user = $this->getUser();
+            $em = $this->getDoctrine()->getManager();
+            $id = $request->request->get('id');
+            $project = $em->getRepository('AppBundle:Project')->find($id);
+            $project->removeLikeProject($user);
+            $em->flush();
+            return new JsonResponse(['data' => json_encode('Vous n\'aimez plus le projet')]);
+        }
+        return new JsonResponse(['data' => json_encode('Failed')]);
     }
 
     /**
@@ -260,11 +300,15 @@ class ProjectController extends Controller
      *
      */
     // TODO: AJAX
-    public function validateProjectAction(Request $request, Project $project)
+    public function validateProjectAction(Request $request, Project $project, EmailService $emailService)
     {
         $statusProject = $project->setStatus('2');
         $em = $this->getDoctrine()->getManager();
         $em->persist($statusProject);
+
+        $email_contact = $this->container->getParameter('email_contact');
+        $emailService->sendMailProjectValidate($project, $email_contact);
+
         $em->flush();
         return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
     }

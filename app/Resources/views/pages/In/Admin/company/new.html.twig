@@ -2,11 +2,9 @@
 
 {% block content %}
     {{ include('partials/frame/loader.html.twig') }}
-    <div class="container">
-
-        <a class="waves-effect waves-light btn pink darken-2" href="{{ path('listingCompany') }}">Toutes les
-            entreprises</a>
-
+    <div class="container generalContainer">
+        <h1 class="center title">Nouvelle entreprise</h1>
+        <a class="waves-effect waves-light btn pink darken-2" href="{{ path('profilAdmin', {'slug' : app.user.slug}) }}">Retour tableau de bord</a>
         <nav class="wrapper row">
             <ul class="center bread">
                 <li class="active userCompany" id="breadOne" onclick="goStep1()"><a href="#">Informations Entreprise</a>
@@ -34,14 +32,19 @@
                 </div>
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Logo :</h5>
-                    <div class="input-field col s12">
+                    <div class="file-field input-field col s12">
                         {% if (form_errors(form.logo)) %}
-                            {{ form_widget(form.logo, {'attr': {'class': 'error'}}) }}
+                            <div class="center error">
+                                {{ form_widget(form.logo, {'attr': {'class': 'error'}}) }}
+                            </div>
                         {% else %}
-                            {{ form_widget(form.logo) }}
+                            <div class="btn blue darken-2">
+                                <span>Choisir</span>
+                                {{ form_widget(form.logo) }}
+                            </div>
                         {% endif %}
-                        <div class="center error">
-                            {{ form_errors(form.logo) }}
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
                         </div>
                     </div>
                 </div>
@@ -62,7 +65,7 @@
                     </div>
                 </div>
                 <div class="col s6">
-                    <h5 class="titleInscription blue-text text-darken-3">lieu :</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Lieu :</h5>
                     <div class="input-field col s12">
                         <i class="material-icons prefix blue-text text-darken-3">location_on</i>
                         {% if (form_errors(form.location)) %}
@@ -94,18 +97,10 @@
                 <div class="col s6">
                     <h5 class="titleInscription blue-text text-darken-3">Date de Création :</h5>
                     <div class="input-field col s12">
-                        {% if (form_errors(form.birthdate)) %}
-                            {{ form_widget(form.birthdate, {'attr': {'class': 'error'}}) }}
+                        {% if (form_errors(form.birthdate))  %}
+                            {{ form_row(form.birthdate, {'attr': {'class': 'datepickerCompany error'}}) }}
                         {% else %}
-                            <div class="col s3">
-                                {{ form_widget(form.birthdate.year) }}
-                            </div>
-                            <div class="col s3">
-                                {{ form_widget(form.birthdate.month) }}
-                            </div>
-                            <div class="col s3">
-                                {{ form_widget(form.birthdate.day) }}
-                            </div>
+                            {{ form_row(form.birthdate, {'attr': {'class': 'datepickerCompany'}}) }}
                         {% endif %}
                         <div class="center error">
                             {{ form_errors(form.birthdate) }}
@@ -122,7 +117,7 @@
         <div id="step2" class="hide">
             <div class="row">
                 <div class="col s12">
-                    <h5 class="titleInscription blue-text text-darken-3">Slogan :</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Le bonheur au travail c'est :</h5>
                     <div class="input-fiel col s12">
                         {% if (form_errors(form.slogan)) %}
                             {{ form_widget(form.slogan, {'attr': {'class': 'error'}}) }}
@@ -135,7 +130,7 @@
                     </div>
                 </div>
                 <div class="col s12">
-                    <h5 class="titleInscription blue-text text-darken-3">Qualités :</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Les enjeux collectifs de la qualité de Vie au Travail :</h5></h5>
                     <div class="input-field col s12">
                         {% if (form_errors(form.quality)) %}
                             {{ form_widget(form.quality, {'attr': {'class': 'error'}}) }}
@@ -148,7 +143,7 @@
                     </div>
                 </div>
                 <div class="col s12">
-                    <h5 class="titleInscription blue-text text-darken-3">Les 3 critères pour valider un projet :</h5>
+                    <h5 class="titleInscription blue-text text-darken-3">Les trois critères pour valider un projet :</h5>
                     <div class="input-field col s12">
                         {% if (form_errors(form.threeCriteria)) %}
                             {{ form_widget(form.threeCriteria, {'attr': {'class': 'error'}}) }}
@@ -161,24 +156,31 @@
                     </div>
                 </div>
                 <div class="col s12">
-                    <h5 class="titleInscription blue-text text-darken-3">Colaborateurs :</h5>
-                    <div class="input-field col s12">
+                    <h5 class="titleInscription blue-text text-darken-3">Collaborateurs :</h5>
+                    <div class="file-field input-field col s12">
                         {% if (form_errors(form.fileUsers)) %}
-                            {{ form_widget(form.fileUsers, {'attr': {'class': 'error'}}) }}
+                            <div class="center error">
+                                {{ form_widget(form.fileUsers, {'attr': {'class': 'error'}}) }}
+                            </div>
                         {% else %}
-                            {{ form_widget(form.fileUsers) }}
+                            <div class="btn blue darken-2">
+                                <span>Choisir</span>
+                                {{ form_widget(form.fileUsers) }}
+                            </div>
                         {% endif %}
-                        <div class="center error">
-                            {{ form_errors(form.fileUsers) }}
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
                         </div>
                     </div>
                 </div>
                 <div class="center">
                     <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
-                    <input class="waves-effect waves-light btn pink darken-2" type="submit" value="Envoyer" onclick="loadingPage()/>
+                    <button class="waves-effect waves-light btn pink darken-2" type="submit" onclick="loadingPage()">Editer le profil</button>
                 </div>
             </div>
-            {{ form_end(form) }}
+            {{ form_widget(form._token) }}
+
+            {{ form_end(form, {'render_rest': false}) }}
         </div>
     </div>
 {% endblock %}

@@ -49,27 +49,23 @@
                     </div>
                 </div>
 
-
-                {#Mettre des row pour les text area présentation projet et text area avantages#}
-
                 <div class="col s12">
                     <h5 class="titleInscription pink-text text-darken-2">Présentation du projet :</h5>
                     <div class="input-field col s12">
                         {{ form_widget(form.description, { 'attr': {'class': 'materialize-textarea'} }) }}
-                        <label for="description"><span class="requireInput">* </span>Ecrire votre présentation du
-                            projet</label>
+                        <label for="description"><span class="requireInput">* </span>Ecrire la présentation de votre projet</label>
                     </div>
                 </div>
                 <div class="col s12">
                     <h5 class="titleInscription pink-text text-darken-2">Les Avantages :</h5>
                     <div class="input-field col s12 m6">
                         {{ form_widget(form.advantagesCompany, { 'attr': {'class': 'materialize-textarea'} }) }}
-                        <label for="advantagesCompany"><span class="requireInput">* </span>3 avantages pour votre
+                        <label for="advantagesCompany"><span class="requireInput">* </span>Trois avantages pour votre
                             employeur</label>
                     </div>
                     <div class="input-field col s12 m6">
                         {{ form_widget(form.advantagesGroup, { 'attr': {'class': 'materialize-textarea'} }) }}
-                        <label for="advantagesGroup"><span class="requireInput">* </span>3 avantages pour le groupe de
+                        <label for="advantagesGroup"><span class="requireInput">* </span>Trois avantages pour le groupe de
                             votre projet</label>
                     </div>
                 </div>

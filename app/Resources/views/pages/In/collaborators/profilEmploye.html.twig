@@ -14,7 +14,7 @@
                     {% if user.photo is null %}
                         <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                     {% else %}
-                        <img src="{{ asset('uploads/photoCompany/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                        <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
                     {% endif %}
                 </div>
                 <a class="btn-floating btn-large halfway-fab activator waves-effect waves-light pink darken-2 right hoverable"><i class="material material-icons">info_outline</i></a>
@@ -54,7 +54,7 @@
                             </tr>
                             <tr>
                                 <th>Age :</th>
-                                <td>{% if user.birthdate %}{{ "now"|date("Y-d-m")  - user.birthdate|date('Y-m-d') }}{% endif %} ans</td>
+                                <td>{% if user.age %}{{ user.age.y }}{% endif %} ans</td>
                             </tr>
                             <tr>
                                 <th>Lieu de travail :</th>
@@ -65,7 +65,7 @@
                                 <td>{{ user.email }}</td>
                             </tr>
                             <tr>
-                                <th>Tel :</th>
+                                <th>Téléphone :</th>
                                 <td>{{ user.phone }}</td>
                             </tr>
                             </tbody>

@@ -91,6 +91,18 @@ main {
     font-size: 0.7em;
   }
 }
+
+.withoutTeamProject {
+  text-align: center;
+  color: grey;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3em;
+  a {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
 .containerListingProject {
   padding: 20px 0;
 }

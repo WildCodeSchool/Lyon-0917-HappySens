@@ -1,11 +1,11 @@
 {% extends 'baseIn.html.twig' %}
 {% block content %}
-    <div class="container">
-        <h2>Récapitulatif de la création de {{ company.name }}</h2>
+    <h1 class="title recapTitle">Récapitulatif de la création de {{ company.name }}</h1>
+    <div class="container generalContainer">
         <div class="row">
-            <h4>L'entreprise</h4>
-            <div class="row">
-                <section class="card sticky-action col s12 m6 l4">
+            <div class="col s12">
+                <h4 class="titleSecond">L'entreprise</h4>
+                <section class="card sticky-action col s12">
                     <div class="logoCompany waves-effect waves-block waves-light center">
                         {% if company.logo is null %}
                             <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="activator circle responsive-img">
@@ -14,42 +14,60 @@
                         {% endif %}
                     </div>
                     <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">
-                        <a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}" class="black-text">
-                            <i class="material-icons right">more_vert</i>
-                            <span class="truncate">{{ company.nbSalary }} | {{ company.activity }}
-                            </span>
-                        </a>
-                    </span>
-                        <div class="row">
-                            <p class="left"><a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}">Profil</a></p>
-                            <p class="right"><a href="{{ path('Company_edit', { 'slug': company.slug }) }}">Modifier</a></p>
+                        <span class="card-title activator grey-text text-darken-4">
+                            <a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}" class="black-text">
+                                <span class="truncate">{{ company.nbSalary }} | {{ company.activity }}
+                                </span>
+                            </a>
+                        </span>
+                    </div>
+                    <div class="card-footer recapComp">
+                        <div class="containLinksComp">
+                           <a href="{{ path('CompanyProfil', { 'slug': company.slug }) }}" class="waves-effect waves-light btn blue darken-2">Profil</a>
+                            <a href="{{ path('Company_edit', { 'slug': company.slug }) }}" class="waves-effect waves-light btn amber darken-2">Modifier</a>
                         </div>
                     </div>
                 </section>
             </div>
         </div>
+        <div class="explainRecap">
+            <div class="row center">
+                <p>
+                    Désormais, tous les utilisateurs que vous avez renseigné sont en file d'attente de création, cela peut prendre quelques heures. Ils recevront un email une fois que leur compte aura été créé.
+                </p>
+                <p>
+                    Cette page de résumé vous reste accessible afin de suivre l'évolution de la création de l'entreprise.
+                </p>
+            </div>
+        </div>
         <div class="row">
-            <h4>Création des {{ countUser }} collaborateurs suivants :</h4>
-            <ul class="collection">
-            {% for user in users %}
-                <li class="collection-item avatar">
-                    <a href="{{ path('UserProfil', { 'slug': user.slug }) }}" class="black-text">
-                        <img src="{{ asset('assets/images/placeholder.png') }}" alt="" class="circle">
-                        <span class="title">{{ user.firstname }} {{ user.lastname }}</span>
-                        <p>{{ user.email }}</p>
-                    </a>
-                    <p class="secondary-content black-text">
-                        Envoi mail :
-                        {#{% if %}#}
-                            {#<i class="material-icons green-text">done</i>#}
-                        {#{% else %}#}
-                            {#<i class="material-icons red-text">close</i>#}
-                        {#{% endif %}#}
-                    </p>
-                </li>
-            {% endfor %}
-            </ul>
+            <div class="col s12 l6 listRecap">
+                <h4 class="titleSecond">Utilisateurs en attente de création :</h4>
+                <ul class="collection col s12" id="listWaitUser">
+                    <li class="placeHolderRecap" id="waitingPlaceholder">
+                        <i class="material-icons large amber-text text-lighten-3">access_time</i>
+                        <p>Aucun utilisateur en attente de création</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col s12 l6 listRecap">
+                <h4 class="titleSecond">Utilisateurs créés :</h4>
+                <ul class="collection col s12" id="listCreatedUser">
+                    <li class="placeHolderRecap hide" id="createdPlaceholder">
+                        <i class="material-icons large green-text text-lighten-3">check</i>
+                        <p>Aucun utilisateur créé pour le moment</p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 {% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/script/ajax/recapRequestCompany.js') }}"></script>
+    <script>
+        $(document).ready(
+            getUsers('{{ company.id }}')
+        );
+    </script>
+{% endblock %}
+

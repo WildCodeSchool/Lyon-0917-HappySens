@@ -3,6 +3,7 @@
 {% block title %}{{ company.name }}{% endblock %}
 
 {% block content %}
+
     <div class="row">
         <div class="col s12 m10 offset-m1">
             <div class="row">
@@ -11,7 +12,7 @@
                         <img class="activator" src="{{ asset('assets/images/happysens-time.jpg') }}" height="300px">
                     </div>
                     <div class="card-profile-image">
-                        {% if company.logo %}
+                        {% if company.logo is null %}
                             <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" class="circle z-depth-3 activator">
                         {% else %}
                             <img src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="profile image" class="circle z-depth-3 activator">
@@ -44,7 +45,7 @@
                                 </tr>
                                 <tr>
                                     <th>Effectif</th>
-                                    <td>{{ company.nbSalary }}</td>
+                                    <td>{{ company.rangeNbSalary }}</td>
                                 </tr>
                                 <tr>
                                     <th>Date de création</th>

@@ -2,7 +2,7 @@
 namespace AppBundle\Controller;
 use AppBundle\Entity\ChangePwd;
 use AppBundle\Form\ChangePwdType;
-use AppBundle\Service\CheckSecurityService;
+use AppBundle\Service\NotificationService;
 use AppBundle\Service\EmailService;
 use Faker\Provider\DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -37,10 +37,10 @@ class SecurityController extends Controller
      *
      * @param Request $request
      * @param EmailService $emailService
-     * @param CheckSecurityService $checkSecurityService
+     * @param NotificationService $checkSecurityService
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function sendChangeAction(Request $request, EmailService $emailService, CheckSecurityService $checkSecurityService)
+    public function sendChangeAction(Request $request, EmailService $emailService, NotificationService $checkSecurityService)
     {
         $changePwd = new Changepwd();
         $form = $this->createForm('AppBundle\Form\ChangePwdType', $changePwd);
@@ -153,7 +153,7 @@ class SecurityController extends Controller
                     }
                 }
             } else {
-                $errors = "La page demandé n'existe plus.";
+                $errors = "La page demandée n'existe plus.";
                 // TODO : Afficher les erreurs
                 dump($errors);
                 return $this->render('pages/In/security/login.html.twig', [

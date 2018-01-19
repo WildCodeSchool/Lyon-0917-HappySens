@@ -9,11 +9,11 @@
             <div class="headerDetailsProject">
                 <div class="background">
                     <img src="{{ asset('uploads/photoProject/' ~ project.photo) }}" alt="">
-                    <div class="content">
+                    <div class="content col s12">
                         {{ include('project/status.html.twig') }}
                         <div class="row">
-                            <div class="title">
-                                <p class="amber-text text-darken-2"><span>{{ project.title }}</span></p>
+                            <div class="contentTitleProject col s12">
+                                <p class="center titleProject amber-text text-darken-2">{{ project.title }}</p>
                             </div>
                         </div>
                     </div>

@@ -5,14 +5,24 @@
             <ul class="right">
                 <li title="Créer un projet"><a href="{{ path('project_new') }}"><span class="linkNavSide"><i class="material-icons">add</i></span></a></li>
                 <li title="Vos notifications">
-                    <a class="dropdown-button linkNavSide"  style="display: flex;" href="#!" data-activates="dropdownNotif">
+                    <a class="dropdown-button linkNavSide  grey-text"  style="display: flex;" href="#!" data-activates="dropdownNotif" title="En cours de maintenance">
                         <i class="material-icons">notifications</i>
                     </a>
+                    {#<ul id="dropdownNotif" class="dropdown-content notifications">#}
+                        {#<li class=""><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>#}
+                        {#<li><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>#}
+                        {#<li class="divider"></li>#}
+                        {#<li><a class="blue-text text-darken-2" href="{{ path('list', { 'slug': app.user.slug }) }}">Voir toutes vos notifications</a></li>#}
+                    {#</ul>#}
                     <ul id="dropdownNotif" class="dropdown-content notifications">
-                        <li class=""><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
-                        <li><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
-                        <li class="divider"></li>
-                        <li><a class="blue-text text-darken-2" href="{{ path('listingNotifications') }}">Voir toutes vos notifications</a></li>
+                        <li class="">
+                            <a class="grey-text text-darken-3">
+                                <p class="center">
+                                    <i class="material-icons">build</i>
+                                    En cours de maintenance
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li title="Vos paramétres">
@@ -30,10 +40,10 @@
                 <li title="Menu accès rapide">
                     <a href="#" data-activates="slide-out" class="button linkNavSide">
                         <div class="imgMenu">
-                            {% if app.user.photo %}
+                            {% if app.user.photo is null %}
                                 <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                             {% else %}
-                                <img src="{{ asset('uploads/photoCompany/' ~ app.user.photo) }}" alt="profile image" class="circle responsive-img">
+                                <img src="{{ asset('uploads/photoUser/' ~ app.user.photo) }}" alt="profile image" class="circle z-depth-3 activator">
                             {% endif %}
                             <span class="hide-on-small-only">{{ app.user.firstname }} {{ app.user.lastname }}</span>
                         </div>
@@ -45,11 +55,14 @@
                     <div class="user-view">
                         <a href="{{ path('UserProfil', { 'slug': app.user.slug  }) }}" title="Voir votre profil">
                             <div class="background  blue darken-2 white-text">
+                                <div class="row">
+                                    <button class="btn-flat right btn white-text hoverable"><i class="material-icons prefix">visibility</i></button>
+                                </div>
                             </div>
-                            {% if app.user.photo %}
+                            {% if app.user.photo is null %}
                                 <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
                             {% else %}
-                                <img src="{{ asset('uploads/photoCompany/' ~ app.user.photo) }}" alt="profile image" class="circle responsive-img">
+                                <img src="{{ asset('uploads/photoUser/' ~ app.user.photo) }}" alt="profile image" class="circle z-depth-3 activator">
                             {% endif %}
                             <div>
                                 <span class="name">{{ app.user.firstname }} {{ app.user.lastname }}</span>
@@ -58,11 +71,8 @@
                         </a>
                     </div>
                 </li>
-                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">tab</i>Tous les projets :</a></li>
+                <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">tab</i>Projet :</a></li>
                 <li><a class="waves-effect" href="{{ path('project_new') }}"><i class="material-icons">create_new_folder</i>Nouveau projet</a></li>
-                <li><a class="waves-effect"><i class="material-icons">folder_shared</i>Vos projets en cours</a></li>
-                <li><a class="waves-effect"><i class="material-icons">folder_special</i>Les projets suivis</a></li>
-                <li><a class="waves-effect"><i class="material-icons">folder</i>Vos projets terminés</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader blue-text text-darken-2"><i class="material-icons blue-text text-darken-2">store</i>Entreprise :</a></li>
                 <li><a class="waves-effect" href="{{ path('CompanyProfil', {'slug' : app.user.company.slug}) }}"><i class="material-icons">domain</i>{{ app.user.company.name }}</a></li>
