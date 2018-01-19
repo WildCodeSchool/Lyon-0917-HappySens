@@ -74,7 +74,7 @@
                     <li class="collection-item">
                         <div class="row">
                             {% for skill in skillInCompany | slice(0, 5)%}
-                            <p class="col l12 titleSecond">{{ skill.nameSkill }} ({{ skill.nbSalary }} Happy Salariés)</p>
+                                <p class="col l12 titleSecond"><b>{{ skill.nameSkill }}</b> ({{ skill.nbSalary }} Happy Salariés)</p>
                             <div class="col l12">
                                 {% set level = skill.level %}
                                 {{ include('skill/skillLevel.html.twig') }}
@@ -104,7 +104,7 @@
                                         <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" height="110px">
                                     {% endif %}
                                 </li>
-                                <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} <br>
+                                <li><a class="blue-text text-darken-2" href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} <br>
                                         {{ user.lastName }}</a></li>
                                 <li>{{ include('user/userMood.html.twig') }} </li>
                             </ul>
@@ -144,7 +144,7 @@
                                             <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" height="120px" class="circle">
                                         {% endif %}
                                     </li>
-                                    <li><a href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a></li>
+                                    <li><a class="blue-text text-darken-2" href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a></li>
                                     <li> {{ include('user/userMood.html.twig') }}</li>
                                 </ul>
                             </div>
@@ -168,7 +168,7 @@
                             <div class="col l4 card  center-align">
                                 <ul class="">
                                     <li>
-                                        <p class="col l12 titleSecond">{{ skill.nameSkill }} <br>
+                                        <p class="col l12 titleSecond"><b>{{ skill.nameSkill }}</b><br>
                                             ({{ skill.nbSalary }} Happy Salariés)</p></li>
                                     <li class="col l12">
                                         {% set level = skill.level %}
