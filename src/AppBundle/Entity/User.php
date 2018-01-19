@@ -483,10 +483,12 @@ class User implements UserInterface, \Serializable
 
     public function getAge()
     {
-        $today = new \DateTime();
-        $age = $this->birthdate->diff($today);
+        if($this->birthdate !== null) {
+            $today = new \DateTime();
+            $age = $this->birthdate->diff($today);
 
-        return $age;
+            return $age;
+        }
     }
 
     /**
