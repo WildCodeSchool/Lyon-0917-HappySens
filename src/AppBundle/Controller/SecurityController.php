@@ -2,7 +2,7 @@
 namespace AppBundle\Controller;
 use AppBundle\Entity\ChangePwd;
 use AppBundle\Form\ChangePwdType;
-use AppBundle\Service\NotificationService;
+use AppBundle\Service\CheckSecurityService;
 use AppBundle\Service\EmailService;
 use Faker\Provider\DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -37,10 +37,10 @@ class SecurityController extends Controller
      *
      * @param Request $request
      * @param EmailService $emailService
-     * @param NotificationService $checkSecurityService
+     * @param CheckSecurityService $checkSecurityService
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function sendChangeAction(Request $request, EmailService $emailService, NotificationService $checkSecurityService)
+    public function sendChangeAction(Request $request, EmailService $emailService, CheckSecurityService $checkSecurityService)
     {
         $changePwd = new Changepwd();
         $form = $this->createForm('AppBundle\Form\ChangePwdType', $changePwd);
