@@ -12,18 +12,23 @@
             {% dump resume %}
             <li>
                 <div class="collapsible-header">
-                    <div class="row">
+                    <div class="row valign-wrapper">
                         {% if resume.logo is defined %}
                             <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" height="50px" class="circle">
                         {% else %}
                             <img src="{{ asset('uploads/photoCompany/' ~ resume.logo) }}" alt="profile image" height="50px" class="circles">
                         {% endif %}
-                        <h3 class="black-text titleSecond">{{ resume.name }} {{ resume.slug }}</h3>
+                        <div class="titleRecapCompany">
+                            <h5 class="black-text titleSecond">{{ resume.name }} {{ resume.slug }}</h5>
+                        </div>
                     </div>
                 </div>
                 <div class="collapsible-body">
                     <a href="{{ path('resume_create_company', {'id': resume.id}) }}">
-                        <button class="btn">Profil</button>
+                        <button class="btn amber darken-2">Voir la fiche</button>
+                    </a>
+                    <a href="{{ path('CompanyProfil', {'slug': resume.slug}) }}">
+                        <button class="btn blue darken-2">Voir le profil</button>
                     </a>
                 </div>
             </li>
