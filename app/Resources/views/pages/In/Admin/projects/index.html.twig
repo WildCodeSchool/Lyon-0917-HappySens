@@ -11,31 +11,25 @@
                             <img class="activator" src="{{ asset('uploads/photoProject/' ~ project.photo) }}"
                                                          alt="photo {{ project.photo }}">
                         </div>
-                        <div class="row">
-                        <div class="col s3">
-                        {% if project.status == 1 %}
-                            <div class="chip inProgress chipStatus">
-                                <span><i class="fa fa-clock-o"></i></span>
-                                <span>Attente</span>
-                            </div>
-                        {% elseif project.status == 2 %}
-                            <div class="chip validate chipStatus">
-                                <span><i class="fa fa-clock-o"></i></span>
-                                <span>En cours</span>
-                            </div>
-                        {% elseif project.status == 3 %}
-                            <div class="chip end chipStatus">
-                                <span><i class="fa fa-clock-o"></i></span>
-                                <span>Terminé</span>
-                            </div>
-                        {% endif %}
-                        </div>
-                            <div class="col s3 offset-s6">
-                        <div class="chip">
-                            <span class="black-text">{{ project.endDate  | date("d/m/Y") }}</span>
-                        </div>
-                            </div>
-                        </div>
+                                {% if project.status == 1 %}
+                                    <div class="chip inProgress chipStatus">
+                                        <span><i class="fa fa-clock-o"></i></span>
+                                        <span>Attente</span>
+                                    </div>
+                                {% elseif project.status == 2 %}
+                                    <div class="chip validate chipStatus">
+                                        <span><i class="fa fa-clock-o"></i></span>
+                                        <span>En cours</span>
+                                    </div>
+                                {% elseif project.status == 3 %}
+                                    <div class="chip end chipStatus">
+                                        <span><i class="fa fa-clock-o"></i></span>
+                                        <span>Terminé</span>
+                                    </div>
+                                {% endif %}
+                                <div class="chip chipDate">
+                                    <span class="black-text">{{ project.endDate  | date("d/m/Y") }}</span>
+                                </div>
                         <div class="card-content">
                             <div class="card-title activator grey-text text-darken-4">
                                 <p class="right blue-text text-darken-2 detailsProject activator"><i class="fa fa-plus-square"></i> details</p>
@@ -115,7 +109,7 @@
                                             {% if project.happyCoach.photo is null %}
                                                 <img src="{{ asset('assets/images/placeholder.png') }}">
                                             {% else %}
-                                                <img src="{{ project.happyCoach.photo }}"
+                                                <img src="{{ asset('uploads/photoUser/' ~ project.happyCoach.photo) }}"
                                                      alt="photo {{ project.happyCoach }}">
                                             {% endif %}
                                             <span class="black-text">{{ project.happyCoach }}</span>
@@ -138,7 +132,9 @@
                             </div>
                             <div class="row">
                                 {{ project.presentation }}
+                                <ul class="inline-team-list">
                                 {{ include('project/projectTeam.html.twig') }}
+                                </ul>
 
                             </div>
                             <div class="footerReveal">
