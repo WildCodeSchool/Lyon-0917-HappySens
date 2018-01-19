@@ -218,6 +218,9 @@ main {
 .paddingCollection {
   padding: 15px 10px; }
 
+.titleRecapCompany {
+  margin-left: 15px; }
+
 /*************    Composant   ****************************/
 .Contact {
   padding: 20px; }
