@@ -4,17 +4,27 @@
             <a href="{{ path('homepage') }}" class="brand-logo center"><img src="{{ asset('assets/images/logo2.png') }}" alt="LOGO" width="90px" title="Acceuil"></a>
             <ul class="right">
                 <li title="Vos notifications">
-                    <a class="dropdown-button linkNavSide"  style="display: flex;" href="#!" data-activates="dropdownNotif">
+                    <a class="dropdown-button linkNavSide  grey-text"  style="display: flex;" href="#!" data-activates="dropdownNotif" title="En cours de maintenance">
                         <i class="material-icons">notifications</i>
                     </a>
+                    {#<ul id="dropdownNotif" class="dropdown-content notifications">#}
+                    {#<li class=""><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>#}
+                    {#<li><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>#}
+                    {#<li class="divider"></li>#}
+                    {#<li><a class="blue-text text-darken-2" href="{{ path('list', { 'slug': app.user.slug }) }}">Voir toutes vos notifications</a></li>#}
+                    {#</ul>#}
                     <ul id="dropdownNotif" class="dropdown-content notifications">
-                        <li class=""><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
-                        <li><a class="grey-text text-darken-3" href="{{ path('listingNotifications') }}">@title.notification</a></li>
-                        <li class="divider"></li>
-                        <li><a class="blue-text text-darken-2" href="{{ path('list', { 'slug': app.user.slug }) }}">Voir toutes vos notifications</a></li>
+                        <li class="">
+                            <a class="grey-text text-darken-3">
+                                <p class="center">
+                                    <i class="material-icons">build</i>
+                                    En cours de maintenance
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
-                <li title="Vos notifications">
+                <li title="Vos parametres">
                     <a class="dropdown-button linkNavSide" style="display: flex;" href="#!" data-activates="dropdownSettings">
                         <i class="material-icons">settings</i>
                     </a>
@@ -44,6 +54,9 @@
                     <div class="user-view">
                         <a href="{{ path('profilAdmin', {'slug': app.user.slug}) }}" title="Voir votre profil">
                             <div class="background  blue darken-2 white-text">
+                                <div class="row">
+                                    <button class="btn-flat right btn white-text hoverable"><i class="material-icons prefix">visibility</i></button>
+                                </div>
                             </div>
                             {% if app.user.photo is null %}
                                 <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">

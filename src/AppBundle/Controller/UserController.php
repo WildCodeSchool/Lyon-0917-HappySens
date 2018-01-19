@@ -445,12 +445,20 @@ class UserController extends Controller
                 'edit_form' => $editForm->createView(),]
         );
     }
+
     /**
+     *
      * Creates a new collaborater entity.
      *
      * @Route("/newCollaborater", name="newCollaborater")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_COMPANY')")
+     *
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param SlugService $slugService
+     * @param EmailService $emailService
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newActionUser(Request $request, UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService, EmailService $emailService)
     {

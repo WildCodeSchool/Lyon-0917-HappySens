@@ -15,6 +15,7 @@
       margin-bottom: -30px !important; }
     .headerTitleHome h5 {
       font-size: 1.5em !important; }
+
   .parallax-container-home {
     min-height: 103vh;
     background-image: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.3)), url("../images/happysens-accueil1.jpg");
@@ -23,55 +24,76 @@
     background-attachment: fixed;
     overflow-y: hidden;
     margin-top: -90px; }
+
   .blocExplainEntreprise h3 {
     font-size: 2.2em !important; }
   .blocExplainEntreprise .containExplainEntreprise .detailsExplainEntreprise {
     font-size: 1.2em !important; }
+
   .generalContainer {
     padding: 50px 20px !important; }
+
   .title {
     font-size: 2em !important; }
+
   .scrollToTop {
     display: none !important; }
+
   .headerTitleOthers {
     top: 35vh !important; }
     .headerTitleOthers h1 {
       font-size: 2em !important; }
     .headerTitleOthers h5 {
       font-size: 1.2em !important; }
+
   .titleSecond {
     font-size: 1.5em !important; }
+
   .blocExplainEntreprise .containExplainEntreprise .titleExplainEntreprise {
     font-size: 1.5em !important; }
+
   .titleDetailsEntreprise {
     font-size: 2em !important; }
+
   .cardTitle {
     font-size: 1.8em !important; }
+
   .detailsInfosEntreprise {
     font-size: 0.8em !important; }
+
   .detailsInfosEmploye {
     font-size: 0.8em !important; }
+
   .detailsInfosHappy {
     font-size: 0.8em !important; }
+
   .containerTalentsEntreprise .containsTalents p {
     font-size: 1em !important; }
+
   .titleEndEntreprise {
     font-size: 1.1em !important; }
+
   .containExplainEmploye .detailsExplainEmploye {
     font-size: 1em !important; }
+
   .titleExplainEmploye {
     font-size: 2em !important; }
+
   .typeExplainEmploye {
     font-size: 1em !important; }
+
   #contentEntreprise, #contentHappy, #contentCGV, #contentInscription, #contentContact {
     background-position: center !important;
     top: 25vh !important; }
+
   .titleShema {
     font-size: 1.3em !important;
     text-align: left !important; }
+
   .textSchema {
     font-size: 1em !important;
     text-align: left !important; }
+
   /* IN */
   .card-profile-image {
     margin-top: -55px !important; }
@@ -81,24 +103,28 @@
       font-family: "Quicksand", sans-serif;
       font-size: 1.5em;
       text-align: left; }
+
   .largeScreen {
     display: none !important; }
+
   .mobile {
     display: block !important; }
+
   .detailsExplainEntreprise {
     padding: 10px !important; }
+
   .brand-logo {
     margin-top: 5px !important; } }
-
 @media all and (max-width: 600px) {
   .imgMenu img {
     margin: 10px 0 !important; }
+
   .headerTitleHome img {
     width: 200px !important;
     margin-bottom: -30px !important; }
+
   .brand-logo {
     margin-top: 1px !important; } }
-
 /*******************    CONFIG   ***************************/
 * {
   box-sizing: border-box; }
@@ -176,6 +202,15 @@ main {
     background-color: #C2185B;
     color: white;
     font-size: 0.7em; }
+
+.withoutTeamProject {
+  text-align: center;
+  color: grey;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3em; }
+  .withoutTeamProject a {
+    color: white;
+    font-family: 'Roboto', sans-serif; }
 
 .containerListingProject {
   padding: 20px 0; }
@@ -581,7 +616,6 @@ ul.switch li.active, ul.switch li.active {
     -webkit-transform: rotate(-45deg) translate(-10px, 10px); }
   40% {
     -webkit-transform: rotate(-45deg) translate(0, 0); } }
-
 /*****************    Vues    ****************************/
 .parallax-container-home {
   min-height: 103vh;
@@ -994,12 +1028,16 @@ ul.switch li.active, ul.switch li.active {
     .headerDetailsProject .background .content {
       position: absolute;
       top: 10px;
-      margin-left: 10px; }
-    .headerDetailsProject .background p {
-      transform: translatex(26vw);
+      padding: 5px 10px; }
+    .headerDetailsProject .background .contentTitleProject {
       text-align: center;
       justify-content: center;
-      display: flex; }
+      display: flex;
+      position: absolute; }
+      .headerDetailsProject .background .contentTitleProject .titleProject {
+        font-family: "Quicksand", sans-serif;
+        font-size: 3.5em;
+        text-align: center; }
 
 .detailsProjectExplain, .dateProject {
   padding-left: 20px; }
@@ -1223,3 +1261,5 @@ ul.switch li.active, ul.switch li.active {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; }
+
+/*# sourceMappingURL=style.css.map */
