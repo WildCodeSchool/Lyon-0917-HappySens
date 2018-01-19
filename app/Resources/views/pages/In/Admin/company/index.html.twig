@@ -2,9 +2,9 @@
 
 {% block content %}
     <div class="container">
-        <h1 class="center">Liste des entreprises</h1>
+        <h1 class="center titleSecond">Liste des entreprises</h1>
         <ul>
-            <li class="btn waves-effect waves-lighten">
+            <li class="btn waves-effect waves-lighten blue darken-2">
                 <a href="{{ path('newCompany') }}" class="white-text">Créer une nouvelle entreprise</a>
             </li>
         </ul>
@@ -30,7 +30,7 @@
                             <p class="right"><a
                                         href="{{ path('Company_edit', { 'slug': company.slug }) }}">Supprimer</a></p>
                         </div>
-                        <a class="waves-effect waves-light modal-trigger center btn"
+                        <a class="waves-effect waves-light modal-trigger center btn amber darken-2"
                            href="#modalCollaborator{{ company.id }}">Voir tous les HappySalariés</a>
                     </div>
                     <div class="card-reveal">

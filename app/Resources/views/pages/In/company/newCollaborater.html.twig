@@ -3,6 +3,9 @@
 {% block content %}
 
     <div class="container">
+        <div class="row">
+            <h1 class="center titleSecond">Ajouter un nouveau collaborateur</h1>
+        </div>
         <a class="waves-effect waves-light btn pink darken-2"
            href="{{ path('UserProfil', {'slug' : app.user.slug}) }}">Retour Profil</a>
         {{ form_start(form) }}
