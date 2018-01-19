@@ -38,6 +38,28 @@
                             {{ project.likeProjects | length }}</span>
                     </p>
                 {% endif %}
+                <div class="right">
+                    {% if user != project.author %}
+                        {% if app.user.status != 4 %}
+                            {% if app.user not in project.teamProject %}
+                                <a href="{{ path('join_team', {"slug": project.slug}) }}" onclick="joinProject('{{ project.title }}')"
+                                   class="btn waves-effect waves-light personPlus" type="submit" name="action">Rejoindre
+                                    <i class="material-icons right">person_add</i>
+                                </a>
+                            {% else %}
+                                <a href="{{ path('quit_team', {"slug": project.slug}) }}" onclick="quitProject('{{ project.title }}')"
+                                   class="btn waves-effect waves-light personPlus" type="submit" name="action">Quitter
+                                    <i class="material-icons right">cancel</i>
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        <a href="{{ path('project_edit', {"slug": project.slug}) }}" class="btn waves-effect waves-light personPlus"
+                           type="submit" name="action">Modifier
+                            <i class="material-icons right">create</i>
+                        </a>
+                    {% endif %}
+                </div>
             </div>
         </div>
         <div class="row">
