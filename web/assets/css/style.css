@@ -242,6 +242,9 @@ main {
     .itemRecap .collapsible-body .btnRecap {
       background-color: rgba(105, 105, 105, 0.9); }
 
+.toast {
+  background-color: dimgrey !important; }
+
 /*************    Composant   ****************************/
 .Contact {
   padding: 20px; }
@@ -1023,7 +1026,6 @@ ul.switch li.active, ul.switch li.active {
   margin-top: 10px; }
 
 .toast {
-  background-color: #0288D1 !important;
   font-size: large !important; }
 
 .replaceSkill {
@@ -1093,6 +1095,8 @@ ul.switch li.active, ul.switch li.active {
 
 #toast-container {
   top: 90%; }
+  #toast-container .toast {
+    background-color: grey; }
 
 .wrapper {
   padding: 1.5em;

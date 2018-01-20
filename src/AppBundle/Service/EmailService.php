@@ -67,11 +67,11 @@ class EmailService
     public function sendMessageContact($contact, $email_contact)
     {
         $message = \Swift_Message::newInstance();
-        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+        $img = $message->embed(Swift_Image::fromPath($this->directory . '/web/assets/images/logo2.png'));
 
         $message->setSubject("Merci d'avoir contacté HappySens")
             ->setCharset("utf-8")
-            ->setTo([$email_contact, $contact->getEmail()])
+            ->setTo([$contact->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/contact/contact.html.twig', [
@@ -104,11 +104,11 @@ class EmailService
     public function sendMailProject($project, $email_contact)
     {
         $message = \Swift_Message::newInstance();
-        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+        $img = $message->embed(Swift_Image::fromPath($this->directory . '/web/assets/images/logo2.png'));
 
         $message->setSubject('Votre projet a bien été créé')
             ->setCharset("utf-8")
-            ->setTo([$email_contact, $project->getAuthor()->getEmail()])
+            ->setTo([$project->getAuthor()->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/project/newProject.html.twig', [
@@ -139,10 +139,10 @@ class EmailService
     public function sendMailNewPwd($mailUser, $email_contact, $firstName, $lastName, $token)
     {
         $message = \Swift_Message::newInstance();
-        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+        $img = $message->embed(Swift_Image::fromPath($this->directory . '/web/assets/images/logo2.png'));
         $message->setSubject('Réinitialisation de votre mot de passe')
             ->setCharset("utf-8")
-            ->setTo([$email_contact, $mailUser])
+            ->setTo([$mailUser])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/resetPassword/resetPassword.html.twig', [
@@ -173,7 +173,7 @@ class EmailService
         $img = $message->embed(Swift_Image::fromPath($this->directory . '/web/assets/images/logo2.png'));
         $message->setSubject("Votre compte happySens vient d'être créé")
             ->setCharset("utf-8")
-            ->setTo([$email_contact, $user->getEmail()])
+            ->setTo([$user->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/inscriptions/employe/newUser.html.twig', [
@@ -203,10 +203,10 @@ class EmailService
     public function sendMailNewCompany($company, $email_contact, $valueMdp, $referent)
     {
         $message = \Swift_Message::newInstance();
-        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+        $img = $message->embed(Swift_Image::fromPath($this->directory . '/web/assets/images/logo2.png'));
         $message->setSubject("Votre compte entreprise HappySens vient d'être créé")
             ->setCharset("utf-8")
-            ->setTo([$email_contact, $referent])
+            ->setTo([$referent])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/inscriptions/company/newCompany.html.twig', [
@@ -234,11 +234,11 @@ class EmailService
     public function sendMailProjectValidate($project, $email_contact)
     {
         $message = \Swift_Message::newInstance();
-        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
+        $img = $message->embed(Swift_Image::fromPath($this->directory . '/web/assets/images/logo2.png'));
 
         $message->setSubject('Votre projet a été validé')
             ->setCharset("utf-8")
-            ->setTo([$email_contact, $project->getAuthor()->getEmail()])
+            ->setTo([$project->getAuthor()->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/validateProject/validateProject.html.twig', [
