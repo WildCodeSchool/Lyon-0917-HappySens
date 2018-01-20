@@ -44,8 +44,8 @@ function newLikeProject(id, nameProject) {
         data : {'id' : id},
         success: function (response) {
             var user = JSON.parse(response);
-            Materialize.toast(like, 4000);
             location.reload();
+            Materialize.toast(like, 4000);
         },
         error: function () {
             var user = JSON.parse(response.likeFailed);
@@ -60,8 +60,8 @@ function dislikeProject(id, nameProject) {
         url: "/project/dislikeProject/",
         data : {'id' : id},
         success: function () {
-            Materialize.toast(like, 4000);
             location.reload();
+            Materialize.toast(like, 4000);
         }
     })
 }

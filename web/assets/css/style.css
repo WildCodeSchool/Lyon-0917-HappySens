@@ -219,7 +219,28 @@ main {
   padding: 15px 10px; }
 
 .titleRecapCompany {
-  margin-left: 15px; }
+  margin-left: 15px;
+  font-family: "Quicksand", sans-serif; }
+  .titleRecapCompany h5 {
+    font-size: 2em;
+    color: #0288D1; }
+
+.headerRecapCompany {
+  padding: 20px 40px; }
+
+.itemRecap {
+  max-width: 900px;
+  margin: 50px auto; }
+  .itemRecap .collapsible-body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: space-between; }
+    .itemRecap .collapsible-body .btn {
+      background-color: rgba(2, 136, 209, 0.9);
+      color: whitesmoke;
+      font-family: 'Roboto', sans-serif; }
+    .itemRecap .collapsible-body .btnRecap {
+      background-color: rgba(105, 105, 105, 0.9); }
 
 /*************    Composant   ****************************/
 .Contact {
