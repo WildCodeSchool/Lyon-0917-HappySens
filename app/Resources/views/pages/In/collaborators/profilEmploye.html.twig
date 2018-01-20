@@ -25,7 +25,11 @@
                             <div class="mini-company">
                                 <a href="{{ path('CompanyProfil', {'slug': user.company.slug}) }}">
                                     <div class="chip  waves-effect waves-light">
-                                        <img src="{{ asset('uploads/photoCompany/' ~ user.company.logo) }}" alt="Logo company"> <!-- notice the "circle" class -->
+                                        {% if user.company.logo is null %}
+                                            <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="Logo company" class="circle responsive-img">
+                                        {% else %}
+                                            <img src="{{ asset('uploads/photoCompany/' ~ user.company.logo) }}" alt="Logo company" class="circle responsive-img">
+                                        {% endif %}
                                         <span>{{ user.company.name }}</span>
                                     </div>
                                 </a>
@@ -44,30 +48,42 @@
                     <div class="col s12 l8 center-align">
                         <table class="infosEmploye">
                             <tbody>
-                            <tr>
-                                <th>Entreprise :</th>
-                                <td>{{ user.company.name }}</td>
-                            </tr>
-                            <tr>
-                                <th>Fonction :</th>
-                                <td>{{ user.job }}</td>
-                            </tr>
-                            <tr>
-                                <th>Age :</th>
-                                <td>{% if user.age %}{{ user.age.y }}{% endif %} ans</td>
-                            </tr>
-                            <tr>
-                                <th>Lieu de travail :</th>
-                                <td>{{ user.workplace }}</td>
-                            </tr>
-                            <tr>
-                                <th>Mail :</th>
-                                <td>{{ user.email }}</td>
-                            </tr>
-                            <tr>
-                                <th>Téléphone :</th>
-                                <td>{{ user.phone }}</td>
-                            </tr>
+                            {% if user.company.name  %}
+                                <tr>
+                                    <th>Entreprise :</th>
+                                    <td>{{ user.company.name }}</td>
+                                </tr>
+                            {% endif %}
+                            {% if user.job  %}
+                                <tr>
+                                    <th>Fonction :</th>
+                                    <td>{{ user.job }}</td>
+                                </tr>
+                            {% endif %}
+                            {% if user.age  %}
+                                <tr>
+                                    <th>Age :</th>
+                                    <td>{% if user.age %}{{ user.age.y }}{% endif %} ans</td>
+                                </tr>
+                            {% endif %}
+                            {% if user.workplace  %}
+                                <tr>
+                                    <th>Lieu de travail :</th>
+                                    <td>{{ user.workplace }}</td>
+                                </tr>
+                            {% endif %}
+                            {% if user.email  %}
+                                <tr>
+                                    <th>Mail :</th>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                            {% endif %}
+                            {% if user.phone  %}
+                                <tr>
+                                    <th>Téléphone :</th>
+                                    <td>{{ user.phone }}</td>
+                                </tr>
+                            {% endif %}
                             </tbody>
                         </table>
                     </div>

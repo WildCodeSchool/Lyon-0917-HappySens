@@ -40,18 +40,24 @@ class EmailService
     private $db;
 
     /**
+     * @var
+     */
+    private $directory;
+
+    /**
      * EmailService constructor.
      * @param \Swift_Mailer $mailer
      * @param \Twig_Environment $template
      * @param $sender
      * @param RegistryInterface $db
      */
-    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $template, $sender, RegistryInterface $db)
+    public function __construct(\Swift_Mailer $mailer, \Twig_Environment $template, $sender, RegistryInterface $db, $directory)
     {
         $this->mailer = $mailer;
         $this->template = $template;
         $this->sender = $sender;
         $this->db = $db;
+        $this->directory = $directory;
     }
 
     /**
@@ -164,15 +170,14 @@ class EmailService
     public function sendMailNewUser($user, $email_contact, $valueMdp)
     {
         $message = \Swift_Message::newInstance();
-//        $img = $message->embed(Swift_Image::fromPath('assets/images/logo2.png'));
-
+        $img = $message->embed(Swift_Image::fromPath($this->directory . '/web/assets/images/logo2.png'));
         $message->setSubject("Votre compte happySens vient d'être créé")
             ->setCharset("utf-8")
             ->setTo([$email_contact, $user->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
                 $this->template->render('notificationsEmail/categories/inscriptions/employe/newUser.html.twig', [
-//                    'logo' => $img,
+                    'logo' => $img,
                     'firstname' => $user->getFirstName(),
                     'lastname' => $user->getLastName(),
                     'email' => $user->getEmail(),

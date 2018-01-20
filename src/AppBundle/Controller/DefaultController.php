@@ -81,14 +81,16 @@ class DefaultController extends Controller
      * @Route("test", name="listingTemplate")
      */
     public function testAction(Request $request, EmailService $mail)
-    {
-        $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Project')->find(1);
-        dump($test);
+        {
+//            $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Project')->find(1);
+        $test = realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR;
 
-        return 'nothing';
+            dump($test);
 
-//        return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', [
-//            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-//        ]);
-    }
+            return 'nothing';
+
+    //        return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', [
+    //            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+    //        ]);
+        }
 }

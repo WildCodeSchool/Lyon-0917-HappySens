@@ -32,7 +32,7 @@
                     </a>
                 </div>
                 <div class="right">
-                    {% if app.user.status != 4 %}
+                    {% if app.user.status != 4 and app.user.id != project.authorProject %}
                         {% if app.user not in project.like and app.user.id != project.authorProject %}
                             <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
                                 <p class="black-text chip">
@@ -94,7 +94,7 @@
                         <a href="{{ path('project_show', { 'slug': project.projectSlug }) }}"><i class="fa fa-file"> </i> Voir la fiche du projet</a>
                     </div>
                     <div class="right">
-                        {% if app.user.status != 4 %}
+                        {% if app.user.status != 4 and app.user.id != project.authorProject %}
                              {% if app.user not in project.like and app.user.id != project.authorProject %}
                                 <a onclick="newLikeProject({{ project.id }}, '{{ project.title }}')">
                                     <p class="black-text chip">
