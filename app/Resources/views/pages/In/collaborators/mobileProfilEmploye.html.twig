@@ -60,17 +60,24 @@
                     <h5 class="titleSecond">Mes passions et talents cachés :</h5>
                 </div>
                 <ul class="collection">
-                    {% for skill in user.userskills %}
                     <li class="collection-item">
-                        <div class="row">
-                                <p class="col s12 titleSecond"> {{ skill.skill }}</p>
-                                <div class="col l12">
-                                    {% set level = skill.level %}
-                                    {{ include('skill/skillLevel.html.twig') }}
+                        {% if user.userskills is empty %}
+                            <div class="replaceSkill center">
+                                <i class="material-icons">update</i>
+                                <p>Aucun talents choisis pour le moment</p>
+                            </div>
+                        {% else %}
+                            {% for skill in user.userskills %}
+                                <div class="row">
+                                    <p class="col l12 titleSecond"> {{ skill.skill }}</p>
+                                    <div class="col l12">
+                                        {% set level = skill.level %}
+                                        {{ include('skill/skillLevel.html.twig') }}
+                                    </div>
                                 </div>
-                        </div>
+                            {% endfor %}
+                        {% endif %}
                     </li>
-                    {% endfor %}
                 </ul>
             </div>
         </div>

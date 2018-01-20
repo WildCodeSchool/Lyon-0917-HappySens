@@ -68,15 +68,22 @@
             </div>
             <ul class="collection">
                 <li class="collection-item">
-                    {% for skill in user.userskills %}
-                        <div class="row">
-                            <p class="col l12 titleSecond"> {{ skill.skill }}</p>
-                            <div class="col l12">
-                                {% set level = skill.level %}
-                                {{ include('skill/skillLevel.html.twig') }}
-                            </div>
+                    {% if user.userskills is empty %}
+                        <div class="replaceSkill center">
+                            <i class="material-icons">update</i>
+                            <p>Aucun talents choisis pour le moment</p>
                         </div>
-                    {% endfor %}
+                    {% else %}
+                        {% for skill in user.userskills %}
+                            <div class="row">
+                                <p class="col l12 titleSecond"> {{ skill.skill }}</p>
+                                <div class="col l12">
+                                    {% set level = skill.level %}
+                                    {{ include('skill/skillLevel.html.twig') }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </li>
             </ul>
         </div>
