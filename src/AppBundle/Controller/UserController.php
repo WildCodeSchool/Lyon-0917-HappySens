@@ -256,7 +256,13 @@ class UserController extends Controller
             $this->getDoctrine()->getManager()->flush();
 
             if ($this->getUser()->getIsActive() == true) {
-                if ($user->getStatus() == User::ROLE_EMPLOYE or $user->getStatus() == User::ROLE_COMPANY) {
+                if ($user->getStatus() == User::ROLE_EMPLOYE) {
+                    return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
+                }
+                if ($user->getStatus() == User::ROLE_COMPANY) {
+                    if (empty($user->getCompany()->getSlogan())) {
+                        return $this->redirectToRoute('Company_edit', array('slug' => $user->getCompany()->getSlug()));
+                    }
                     return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
                 }
                 if ($user->getStatus() == User::ROLE_HAPPYCOACH) {
@@ -301,17 +307,17 @@ class UserController extends Controller
         }
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             if (!empty($editForm['logo']->getData())) {
-                unlink($fileUploader->getDirectory("photoCompany") . '/' . $company->getLogo());
                 $logo = $editForm['logo']->getData();
                 $logoName = $fileUploader->upload($logo, "photoCompany");
+                unlink($fileUploader->getDirectory("photoCompany") . '/' . $company->getLogo());
                 $company->setLogo($logoName);
             }
             $company->setSlug($slugService->slugify($company->getName()));
             $this->getDoctrine()->getManager()->flush();
-            if ($this->getUser()->getIsActive() == false || $this->getUser()->getIsActive() !== 1) {
+            if ($this->getUser()->getIsActive() == false) {
                 return $this->redirectToRoute('User_edit', array('slug' => $this->getUser()->getSlug()));
             } else {
-                return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
+                return $this->redirectToRoute('UserProfil', array('slug' => $this->getUser()->getSlug()));
             }
         } else {
             return $this->render('pages/In/company/editCompany.html.twig', [
