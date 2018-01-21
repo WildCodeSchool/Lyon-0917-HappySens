@@ -45,8 +45,10 @@
   max-width: 150px;
   max-height: 150px;
   img {
-    max-height: 150px;
+    max-height: 130px;
     max-width: 130px;
+    min-height: 120px;
+    min-width: 120px;
     background-color: #fff;
   }
 }

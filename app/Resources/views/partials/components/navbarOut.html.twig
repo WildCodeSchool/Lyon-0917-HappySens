@@ -33,13 +33,13 @@
                 {% if app.request.attributes.get('_route') != 'login' %}
                     {% if app.user is not empty %}
                         {% if app.user.isActive == 0 %}
-                            <li><a href="{{ path('User_edit', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                            <li><a href="{{ path('User_edit', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Mettre à jour mes informations"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
                         {% elseif app.user.status == 1 %}
-                            <li><a href="{{ path('profilAdmin', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                            <li><a href="{{ path('profilAdmin', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Mon tableau de bord"><i class="material-icons left">apps</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
                         {% elseif app.user.status == 4 %}
-                            <li><a href="{{ path('profilHappyCoach', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                            <li><a href="{{ path('profilHappyCoach', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Mon profil"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
                         {% else %}
-                            <li><a href="{{ path('UserProfil', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Déconnexion"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                            <li><a href="{{ path('UserProfil', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNav" title="Mon profil"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
                         {% endif %}
                     {% else %}
                         <li><a href="{{ path('login') }}" class="waves-effect waves-light enterIn hoverable btn" title="Connexion"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
@@ -47,6 +47,7 @@
                 {% endif %}
             </ul>
             <ul class="side-nav" id="mobile-demo">
+                <li class="logoNavMobile brand-logo center"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="150px" class="linkNav"></li>
                 <li><a href="{{ path('homepage') }}"><span class="linkNavSide">Accueil</span></a></li>
                 <li><a href="{{ path('company') }}"><span class="linkNavSide">Entreprise</span></a></li>
                 <li><a href="{{ path('collaborators') }}"><span class="linkNavSide">Employe</span></a></li>
@@ -54,8 +55,25 @@
                 <li><a href="https://happiness-time.fr/" target="_blank"><span class="linkNavSide">Blog</span></a></li>
                 <li><a href="{{ path('contact') }}"><span class="linkNavSide">Contact</span></a></li>
                 <li class="divider"></li>
-                <li><a href="{{ path('login') }}" class="waves-effect waves-light enterIn hoverable btn" title="Connectez vous à votre profil"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
-                <li><a href="./" class="brand-logo center"><img src="{{ asset('assets/images/logo.png') }}" alt="LOGO" width="150px" class="linkNav"></a></li>
+                {% if app.request.attributes.get('_route') != 'login' %}
+                    {% if app.user is not empty %}
+                        {% if app.user.isActive == 0 %}
+                            <li><a href="{{ path('User_edit', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNavSide" title="Mettre à jour mes informations"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                            <li><a href="{{ path('logout') }}" class="waves-effect waves-light linkNavSide" title="Déconnexion"><i class="material-icons left">exit_to_app</i>Déconnexion</a></li>
+                        {% elseif app.user.status == 1 %}
+                            <li><a href="{{ path('profilAdmin', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNavSide" title="Mon tableau de bord"><i class="material-icons left">apps</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                            <li><a href="{{ path('logout') }}" class="waves-effect waves-light linkNavSide" title="Déconnexion"><i class="material-icons left">exit_to_app</i>Déconnexion</a></li>
+                        {% elseif app.user.status == 4 %}
+                            <li><a href="{{ path('profilHappyCoach', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNavSide" title="Mon profil"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                            <li><a href="{{ path('logout') }}" class="waves-effect waves-light linkNavSide" title="Déconnexion"><i class="material-icons left">exit_to_app</i>Déconnexion</a></li>
+                        {% else %}
+                            <li><a href="{{ path('UserProfil', { 'slug': app.user.slug }) }}" class="waves-effect waves-light linkNavSide" title="Mon profil"><i class="material-icons left">person</i>{{ app.user.firstname }} {{ app.user.lastname }}</a></li>
+                            <li><a href="{{ path('logout') }}" class="waves-effect waves-light linkNavSide" title="Déconnexion"><i class="material-icons left">exit_to_app</i>Déconnexion</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a href="{{ path('login') }}" class="waves-effect waves-light enterIn hoverable btn" title="Connexion"><i class="material-icons left">exit_to_app</i>Connexion</a></li>
+                    {% endif %}
+                {% endif %}
             </ul>
         </div>
     </nav>
