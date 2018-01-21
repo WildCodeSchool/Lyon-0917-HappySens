@@ -34,8 +34,8 @@ class UserController extends Controller
     public function showUserAction(User $user, StatusProject $statusProject)
     {
         if (null !== $user->getAuthorProject()) {
-            $contact = $user->getAuthorProject()->getStatus();
-            $statusTwig = $statusProject->getStatusTwig($contact);
+           $project = $user->getAuthorProject();
+            $statusTwig = $statusProject->getProjectWithStatus($project);
         } else {
             $statusTwig = [];
         }
@@ -85,9 +85,10 @@ class UserController extends Controller
                         return $pageTrueShowUser;
                     }
                 }
-                throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
-//                return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
+
             }
+            throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
+//                return $this->redirectToRoute('profilHappyCoach', array('slug' => $this->getUser()->getSlug()));
         }
         return $pageTrueShowUser;
     }
@@ -126,7 +127,7 @@ class UserController extends Controller
                 $projects[$i]['status'] =  $twigStatus;
             }
         }
-        $trueViewCompany = $this->render('pages/In/company/profilCompany.html.twig', [
+         $trueViewCompany = $this->render('pages/In/company/profilCompany.html.twig', [
             'company' => $company,
             'nbHappySalarie' => $nbHappySalarie,
             'skillInCompany' => $skillInCompany,
@@ -137,6 +138,7 @@ class UserController extends Controller
             ]);
         // securité pour HappyCoach
         //TODO refactor with request
+
         if ($user->getStatus() === User::ROLE_HAPPYCOACH) {
             foreach ($user->getHappyCoachRef() as $project) {
                 $idCompanyRef = $project->getAuthor()->getCompany()->getId();
@@ -149,10 +151,11 @@ class UserController extends Controller
                 if ($idCompanyRef === $company->getId()) {
                     return $trueViewCompany;
                 }
-                throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
-//                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
             }
+            throw new AccessDeniedException("Vous n'êtes pas autorisé à vous rendre sur cette page");
+//                return $this->redirectToRoute('profilHappyCoach', array('slug' => $user->getSlug()));
         }
+
         return $trueViewCompany;
     }
 
