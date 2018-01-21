@@ -88,13 +88,12 @@
                             {% endfor %}
                         </div>
                         <div class="row center">
-                            <button class="waves-effect waves-light btn blue darken-2 center">
-                                <a class="modal-trigger white-text" href="#modalAllSkill">Voir tous les Talents</a>
-                            </button>
+                            <a class="modal-trigger white-text" href="#modalAllSkill">
+                                <button class="waves-effect waves-light btn blue darken-2 center">Voir tous les Talents</button>
+                            </a>
                         </div>
                         {% endif %}
                     </li>
-
                 </ul>
             </div>
             <div class="row">
@@ -102,6 +101,12 @@
                     <h5 class="titleSecond">Mes Happy Salariés : </h5>
                 </div>
                 <div class="collection paddingCollection">
+                    {% if collaborators is empty %}
+                    <div class="replaceSkill center">
+                        <i class="material-icons">update</i>
+                        <p>Nos collaborateurs ne sont pas encore actifs</p>
+                    </div>
+                    {% else %}
                     {% for user in collaborators | slice(0, 3) %}
                         <div class="col l4 center-align">
                             <ul class="">
@@ -118,9 +123,12 @@
                             </ul>
                         </div>
                     {% endfor %}
-                    <div class="row center">
-                        <a class="waves-effect waves-light modal-trigger center btn amber darken-2" href="#modalAllCollaborator">Voir tous les Happy Salariés</a>
-                    </div>
+                        <div class="row center">
+                            <a class="modal-trigger white-text" href="#modalAllCollaborator">
+                                <button class="waves-effect waves-light btn amber darken-2 center">Tous les salariés</button>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

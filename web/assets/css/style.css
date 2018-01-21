@@ -245,6 +245,15 @@ main {
 .toast {
   background-color: dimgrey !important; }
 
+.card .card-image img {
+  top: -50px; }
+
+.side-nav li.logoNavMobile {
+  position: relative;
+  margin-bottom: 10px; }
+  .side-nav li.logoNavMobile:hover {
+    background-color: transparent !important; }
+
 /*************    Composant   ****************************/
 .Contact {
   padding: 20px; }
@@ -1001,8 +1010,10 @@ ul.switch li.active, ul.switch li.active {
   max-width: 150px;
   max-height: 150px; }
   .card-profile-image img {
-    max-height: 150px;
+    max-height: 130px;
     max-width: 130px;
+    min-height: 120px;
+    min-width: 120px;
     background-color: #fff; }
 
 .mini-company {
