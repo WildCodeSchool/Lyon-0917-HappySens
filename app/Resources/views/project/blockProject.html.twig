@@ -8,7 +8,7 @@
         {% if user.authorProject %}
             {% set project = user.authorProject %}
             <div id="AuthorProject">
-                {{ include ('project/cardProjectinProfil.html.twig') }}
+                {{ include ('project/cardProjectAllProfilUser.html.twig') }}
             </div>
         {% else %}
             {% if app.user.slug == user.slug %}
@@ -32,7 +32,7 @@
             <h5 class="titleSecond center">Les projets rejoints :</h5>
             {% if projects is not empty %}
                 {% for project in projects %}
-                   {{ include ('project/cardProjectinProfil.html.twig') }}
+                   {{ include ('project/cardProjectAllProfilUser.html.twig') }}
                 {% endfor %}
             {% else %}
                 <div class="withoutProject">
