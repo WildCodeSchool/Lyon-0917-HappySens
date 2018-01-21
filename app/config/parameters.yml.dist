@@ -11,11 +11,13 @@ parameters:
     #database_path: '%kernel.project_dir%/var/data/data.sqlite'
 
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
+    mailer_host: smtp.mailgun.org
     mailer_user: ~
     mailer_password: ~
     mailer_delivery_address: ~
     mailer_sender_address: ~
+    mailer_port: 587
+    mailer_encryption: tls
     email_contact: ~
 
     # A secret key that's used to generate certain security-related tokens

@@ -151,7 +151,7 @@ class User implements UserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255 , nullable=false)
+     * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
 
@@ -478,10 +478,12 @@ class User implements UserInterface, \Serializable
 
     public function getAge()
     {
-        $today = new \DateTime();
-        $age = $this->birthdate->diff($today);
+        if($this->birthdate !== null) {
+            $today = new \DateTime();
+            $age = $this->birthdate->diff($today);
 
-        return $age;
+            return $age;
+        }
     }
 
     /**

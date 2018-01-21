@@ -40,7 +40,7 @@ class editCompanyType extends AbstractType
             ->add('location')
             ->add('quality')
             ->add('fileUsers', FileType::class, array('mapped' => false))
-            ->add('logo', FileType::class, array('mapped' => false, 'required' => false))
+            ->add('logo', FileType::class, array('mapped' => false, 'required' => false, 'data_class' => null))
             ->add('facebook', UrlType::class, [
                 'required' => false,
                 'label' => 'https://www.facebook.com/',

@@ -313,11 +313,12 @@ class UserController extends Controller
             } else {
                 return $this->redirectToRoute('CompanyProfil', array('slug' => $company->getSlug()));
             }
-        }
-        return $this->render('pages/In/company/editCompany.html.twig', [
-            'company' => $company,
-            'edit_form' => $editForm->createView(),
+        } else {
+            return $this->render('pages/In/company/editCompany.html.twig', [
+                'company' => $company,
+                'edit_form' => $editForm->createView(),
             ]);
+        }
     }
 
     /**
