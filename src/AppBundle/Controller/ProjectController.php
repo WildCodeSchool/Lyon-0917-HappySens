@@ -21,8 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 
 
-/**company
- * Admin controller.
+/**
  *
  * @Route("project")
  * @Security("user.getIsActive() === true")
@@ -220,8 +219,8 @@ class ProjectController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('project_delete', array('slug' => $project->getSlug())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
+
     }
 
     /**
