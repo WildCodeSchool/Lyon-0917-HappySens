@@ -129,9 +129,7 @@ $(".previous").click(function(){
         easing: 'easeInOutBack'
     });
 });
-$(".submit").click(function(){
-    return false;
-})
+
 
 
 
@@ -144,7 +142,7 @@ $(".submit").click(function(){
 
 
 // setup an "add a tag" link
-var $addTagLink = $('<button class="btn add_tag_link hoverable blue center"><i class="material-icons">add</i>Ajouter talent</button>');
+var $addTagLink = $('<button class="btn add_tag_link hoverable blue center"><i class="material-icons left">add</i>Ajouter talent</button>');
 var $newLinkLi = $('<div></div>').append($addTagLink);
 
 jQuery(document).ready(function() {
