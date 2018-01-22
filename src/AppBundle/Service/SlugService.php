@@ -9,11 +9,26 @@
 namespace AppBundle\Service;
 
 
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
+
 class SlugService
 {
     public $text;
 
-    public function slugify($text)
+    /** @var ObjectManager */
+    private $em;
+
+    /**
+     * autoCheckService constructor.
+     * @param EntityManagerInterface $em
+     */
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
+    public function slugify($text, $type, $i = 0)
     {
         // replace non letter or digits by -
         $text = preg_replace('#[^\\pL\d]+#u', '-', $text);
@@ -24,12 +39,18 @@ class SlugService
         }
         $text = strtolower($text);
         $text = preg_replace('#[^-\w]+#', '', $text);
-
-        if (empty($text))
-        {
-            return 'n-a';
+        //TODO personalisation du lien
+        if ($type == 'user') {
+            $slugIsUnique = $this->em->getRepository('AppBundle:User')->getSlugIsUnique($text);
+        } else {
+            $slugIsUnique = $this->em->getRepository('AppBundle:Company')->getSlugIsUnique($text);
         }
-
+        dump($slugIsUnique);
+        if ($slugIsUnique > 0) {
+            $text = $text . '-' . $slugIsUnique;
+            /*$i = $i + 1;
+            $this->slugify($text, $type, $i);*/
+        }
         return $text;
     }
 }

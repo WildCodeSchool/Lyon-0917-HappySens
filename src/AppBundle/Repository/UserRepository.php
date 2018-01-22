@@ -108,4 +108,15 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getSingleResult();
     }
+
+    public function getSlugIsUnique($text) {
+        $text = $text . '%';
+        $qb = $this
+            ->createQueryBuilder('u')
+            ->setParameter('slug', $text)
+            ->select('count(u)')
+            ->where('u.slug LIKE :slug')
+            ->getQuery();
+        return $qb->getSingleScalarResult();
+    }
 }
