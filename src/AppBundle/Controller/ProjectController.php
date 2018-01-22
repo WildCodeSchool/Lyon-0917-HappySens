@@ -40,8 +40,16 @@ class ProjectController extends Controller
      */
     public function newAction(Request $request, FileUploader $fileUploader, SlugService $slugService, EmailService $emailService)
     {
-        $project = new Project();
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $nbProjectNotFinish = $em->getRepository('AppBundle:Project')->getProjectStatusNotFinishForOneUser($user->getId());
+        //TODO add a notification
+        if ($nbProjectNotFinish > 0) {
+            return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
+        }
+
+        $project = new Project();
+
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
         $form->remove('author');
         $form->remove('startingDate');

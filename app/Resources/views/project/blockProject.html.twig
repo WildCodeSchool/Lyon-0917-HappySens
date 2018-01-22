@@ -5,11 +5,10 @@
     <!--********************************** Project Author****************************************-->
     <div class="containerListingProject">
         <h5 class="titleSecond center">Les projets créés :</h5>
-        {% if user.authorProject %}
-            {% set project = user.authorProject %}
-            <div id="AuthorProject">
+        {% if projectsAuthor is not empty %}
+            {% for project in projectsAuthor %}
                 {{ include ('project/cardProjectAllProfilUser.html.twig') }}
-            </div>
+            {% endfor %}
         {% else %}
             {% if app.user.slug == user.slug %}
                 <div class="withoutProject">

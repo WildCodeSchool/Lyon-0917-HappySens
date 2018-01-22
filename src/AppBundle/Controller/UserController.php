@@ -33,12 +33,11 @@ class UserController extends Controller
      */
     public function showUserAction(User $user, StatusProject $statusProject)
     {
-        if (null !== $user->getAuthorProject()) {
-           $project = $user->getAuthorProject();
-            $statusTwig = $statusProject->getProjectWithStatus($project);
-        } else {
-            $statusTwig = [];
+        $projectsAuthor = $user->getAuthorProject();
+        if (null !== count($projectsAuthor)) {
+            $projectsAuthor = $statusProject->getProjectsWithStatus($projectsAuthor);
         }
+
         $projects = $user->getTeams();
         if (null !== count($projects)) {
             $projects = $statusProject->getProjectsWithStatus($projects);
@@ -48,8 +47,8 @@ class UserController extends Controller
 
         $pageTrueShowUser = $this->render('pages/In/collaborators/profilEmploye.html.twig', [
             'user' => $user,
-            'statusTwig' => $statusTwig,
             'projects' => $projects,
+            'projectsAuthor' => $projectsAuthor,
         ]);
 
         //TODO à tester => redirection à faire pour éviter le message d'erreur
