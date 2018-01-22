@@ -75,22 +75,4 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
-
-// TODO : Supprimer la route avant de faire la mise en prod
-    /**
-     * @Route("test", name="listingTemplate")
-     */
-    public function testAction(Request $request, EmailService $mail)
-        {
-//            $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Project')->find(1);
-        $test = realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR;
-
-            dump($test);
-
-            return 'nothing';
-
-    //        return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', [
-    //            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-    //        ]);
-        }
 }
