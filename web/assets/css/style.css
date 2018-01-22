@@ -254,6 +254,21 @@ main {
   .side-nav li.logoNavMobile:hover {
     background-color: transparent !important; }
 
+.containerSkill {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .containerSkill .card-title {
+    padding-bottom: 10px; }
+
+.card-skill {
+  max-width: 450px;
+  min-width: 400px;
+  margin: auto; }
+
+.cardShowSkill {
+  padding: 20px 5px; }
+
 /*************    Composant   ****************************/
 .Contact {
   padding: 20px; }
