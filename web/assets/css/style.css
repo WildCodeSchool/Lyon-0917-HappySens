@@ -1324,7 +1324,8 @@ ul.switch li.active, ul.switch li.active {
 
 /*form styles*/
 .formContainer {
-  min-height: 80vh; }
+  min-height: 100vh;
+  padding: 20px 0; }
 
 #msform {
   max-width: 100%;
@@ -1333,6 +1334,7 @@ ul.switch li.active, ul.switch li.active {
   position: relative; }
 
 #msform fieldset {
+  text-align: left;
   background: white;
   border: 0 none;
   border-radius: 3px;

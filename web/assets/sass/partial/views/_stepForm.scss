@@ -6,7 +6,8 @@ $step5: 20%;
 
 /*form styles*/
 .formContainer {
-  min-height: 80vh;
+  min-height: 100vh;
+  padding: 20px 0;
 }
 #msform {
   max-width: 100%;
@@ -15,6 +16,7 @@ $step5: 20%;
   position: relative;
 }
 #msform fieldset {
+  text-align: left;
   background: white;
   border: 0 none;
   border-radius: 3px;
