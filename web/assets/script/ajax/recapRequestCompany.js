@@ -37,15 +37,15 @@ function getUsers(idComp) {
     })
 }
 function newLikeProject(id, nameProject) {
-    var like= $('<span>+1 pour le projet ' + nameProject + '</span>');
+    var like= $('<span><i class="material-icons green-text left">thumb_up</i> ' + nameProject + '</span>');
     $.ajax({
         type: "POST",
         url: "/project/likeProject/",
         data : {'id' : id},
         success: function (response) {
             var user = JSON.parse(response);
-            Materialize.toast(like, 4000);
             location.reload();
+            Materialize.toast(like, 4000);
         },
         error: function () {
             var user = JSON.parse(response.likeFailed);
@@ -54,14 +54,14 @@ function newLikeProject(id, nameProject) {
 }
 
 function dislikeProject(id, nameProject) {
-    var like= $("<span>Vous n'aimez plus " + nameProject + "</span>");
+    var like= $('<span><i class="material-icons red-text left">thumb_down</i>' + nameProject + '</span>');
     $.ajax({
         type: "POST",
         url: "/project/dislikeProject/",
         data : {'id' : id},
         success: function () {
-            Materialize.toast(like, 4000);
             location.reload();
+            Materialize.toast(like, 4000);
         }
     })
 }

@@ -8,9 +8,9 @@
                 <section class="card sticky-action col s12">
                     <div class="logoCompany waves-effect waves-block waves-light center">
                         {% if company.logo is null %}
-                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="activator circle responsive-img">
+                            <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" class="activator circle responsive-img" width="150px">
                         {% else %}
-                            <img class="activator circle responsive-img" src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" width="80px">
+                            <img class="activator circle responsive-img" src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" width="100px">
                         {% endif %}
                     </div>
                     <div class="card-content">

@@ -219,7 +219,55 @@ main {
   padding: 15px 10px; }
 
 .titleRecapCompany {
-  margin-left: 15px; }
+  margin-left: 15px;
+  font-family: "Quicksand", sans-serif; }
+  .titleRecapCompany h5 {
+    font-size: 2em;
+    color: #0288D1; }
+
+.headerRecapCompany {
+  padding: 20px 40px; }
+
+.itemRecap {
+  max-width: 900px;
+  margin: 50px auto; }
+  .itemRecap .collapsible-body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: space-between; }
+    .itemRecap .collapsible-body .btn {
+      background-color: rgba(2, 136, 209, 0.9);
+      color: whitesmoke;
+      font-family: 'Roboto', sans-serif; }
+    .itemRecap .collapsible-body .btnRecap {
+      background-color: rgba(105, 105, 105, 0.9); }
+
+.toast {
+  background-color: dimgrey !important; }
+
+.card .card-image img {
+  top: -50px; }
+
+.side-nav li.logoNavMobile {
+  position: relative;
+  margin-bottom: 10px; }
+  .side-nav li.logoNavMobile:hover {
+    background-color: transparent !important; }
+
+.containerSkill {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  .containerSkill .card-title {
+    padding-bottom: 10px; }
+
+.card-skill {
+  max-width: 450px;
+  min-width: 400px;
+  margin: auto; }
+
+.cardShowSkill {
+  padding: 20px 5px; }
 
 /*************    Composant   ****************************/
 .Contact {
@@ -977,8 +1025,10 @@ ul.switch li.active, ul.switch li.active {
   max-width: 150px;
   max-height: 150px; }
   .card-profile-image img {
-    max-height: 150px;
+    max-height: 130px;
     max-width: 130px;
+    min-height: 120px;
+    min-width: 120px;
     background-color: #fff; }
 
 .mini-company {
@@ -1002,8 +1052,15 @@ ul.switch li.active, ul.switch li.active {
   margin-top: 10px; }
 
 .toast {
-  background-color: #0288D1 !important;
   font-size: large !important; }
+
+.replaceSkill {
+  padding: 10px 0 5px 0;
+  color: gray;
+  font-size: 1.1em;
+  font-family: 'Quicksand', sans-serif; }
+  .replaceSkill i {
+    font-size: 2.5em; }
 
 .PC_blockCompany .card-reveal {
   background: linear-gradient(to top, #0288d1, rgba(2, 136, 209, 0.8));
@@ -1064,6 +1121,8 @@ ul.switch li.active, ul.switch li.active {
 
 #toast-container {
   top: 90%; }
+  #toast-container .toast {
+    background-color: grey; }
 
 .wrapper {
   padding: 1.5em;

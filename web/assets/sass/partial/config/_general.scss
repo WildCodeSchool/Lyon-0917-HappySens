@@ -113,4 +113,64 @@ main {
 
 .titleRecapCompany {
   margin-left: 15px;
+  font-family: $textFont;
+  h5 {
+    font-size: 2em;
+    color: $blueColor;
+  }
+}
+
+.headerRecapCompany {
+  padding: 20px 40px;
+}
+.itemRecap {
+  max-width: 900px;
+  margin: 50px auto;
+  .collapsible-body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    .btn {
+      background-color: rgba($blueColor, 0.9);
+      color: whitesmoke;
+      font-family: 'Roboto', sans-serif;
+    }
+    .btnRecap {
+      background-color: rgba(dimgrey, 0.9);
+    }
+  }
+}
+.toast {
+  background-color: dimgrey !important;
+}
+
+.card .card-image img {
+  top: -50px;
+}
+
+.side-nav {
+  li.logoNavMobile {
+    position: relative;
+    margin-bottom: 10px;
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+}
+.containerSkill {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .card-title {
+    padding-bottom: 10px;
+  }
+}
+.card-skill {
+  max-width: 450px;
+  min-width: 400px;
+  margin: auto;
+}
+
+.cardShowSkill {
+  padding: 20px 5px;
 }

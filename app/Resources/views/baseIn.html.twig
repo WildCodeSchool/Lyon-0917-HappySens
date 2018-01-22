@@ -32,8 +32,16 @@
         {{ include('partials/components/notificationsEmail/notifications.html.twig') }}
 
         <!--  include button scroll to top !!! Don't move this link !!! -->
-        <div class="scrollToTop waves-effect waves-light amber darken-3 z-depth-2" aria-hidden="true" title="Retour haut de page.">
-            <i class="material-icons">keyboard_capslock</i>
+        <div class="fixed-action-btn">
+            {% if app.user.status == 1 %}
+                <a class="btn-floating btn-large waves-effect waves-light hoverable blue darken-2" title="Retour au dashboard administrateur" href="{{ path('profilAdmin', {'slug': app.user.slug}) }}">
+                    <i class="material-icons large">view_quilt</i>
+                </a>
+            {% else %}
+                <a class="btn-floating btn-large waves-effect waves-light hoverable blue darken-2" title="Retour au profil" href="{{ path('UserProfil', {'slug': app.user.slug}) }}">
+                    <i class="material-icons">person</i>
+                </a>
+            {% endif %}
         </div>
         {% block content %}{% endblock %}
     </main>

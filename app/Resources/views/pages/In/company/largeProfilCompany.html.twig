@@ -72,6 +72,12 @@
                 </div>
                 <ul class="collection">
                     <li class="collection-item">
+                        {% if skillInCompany is empty %}
+                        <div class="replaceSkill center">
+                            <i class="material-icons">update</i>
+                            <p>Nos collaborateurs ont pas encore de talents</p>
+                        </div>
+                        {% else %}
                         <div class="row">
                             {% for skill in skillInCompany | slice(0, 5)%}
                                 <p class="col l12 titleSecond"><b>{{ skill.nameSkill }}</b> ({{ skill.nbSalary }} Happy Salariés)</p>
@@ -80,13 +86,14 @@
                                 {{ include('skill/skillLevel.html.twig') }}
                             </div>
                             {% endfor %}
-                            <div class="row center">
-                                <a class="waves-effect waves-light modal-trigger center btn blue darken-2" href="#modalAllSkill">Voir tous les Talents</a>
-
-                            </div>
                         </div>
+                        <div class="row center">
+                            <a class="modal-trigger white-text" href="#modalAllSkill">
+                                <button class="waves-effect waves-light btn blue darken-2 center">Voir tous les Talents</button>
+                            </a>
+                        </div>
+                        {% endif %}
                     </li>
-
                 </ul>
             </div>
             <div class="row">
@@ -94,14 +101,20 @@
                     <h5 class="titleSecond">Mes Happy Salariés : </h5>
                 </div>
                 <div class="collection paddingCollection">
+                    {% if collaborators is empty %}
+                    <div class="replaceSkill center">
+                        <i class="material-icons">update</i>
+                        <p>Nos collaborateurs ne sont pas encore actifs</p>
+                    </div>
+                    {% else %}
                     {% for user in collaborators | slice(0, 3) %}
                         <div class="col l4 center-align">
                             <ul class="">
                                 <li>
                                     {% if user.photo is null %}
-                                        <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle" height="110px">
+                                        <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle" height="100px">
                                     {% else %}
-                                        <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" height="110px">
+                                        <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle" height="100px">
                                     {% endif %}
                                 </li>
                                 <li><a class="blue-text text-darken-2" href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} <br>
@@ -110,9 +123,12 @@
                             </ul>
                         </div>
                     {% endfor %}
-                    <div class="row center">
-                        <a class="waves-effect waves-light modal-trigger center btn amber darken-2" href="#modalAllCollaborator">Voir tous les Happy Salariés</a>
-                    </div>
+                        <div class="row center">
+                            <a class="modal-trigger white-text" href="#modalAllCollaborator">
+                                <button class="waves-effect waves-light btn amber darken-2 center">Tous les salariés</button>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -134,7 +150,7 @@
                         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right"><i class="material-icons">close</i></a>
                     </div>
                     <div class="row">
-                        {% for user in collaborators     %}
+                        {% for user in collaborators %}
                             <div class="col l4 card  center-align">
                                 <ul class="">
                                     <li>
@@ -168,8 +184,11 @@
                             <div class="col l4 card  center-align">
                                 <ul class="">
                                     <li>
-                                        <p class="col l12 titleSecond"><b>{{ skill.nameSkill }}</b><br>
-                                            ({{ skill.nbSalary }} Happy Salariés)</p></li>
+                                        <p class="col l12 titleSecond"><b>{{ skill.nameSkill }}</b>
+                                            <br>
+                                            ({{ skill.nbSalary }} Happy Salariés)
+                                        </p>
+                                    </li>
                                     <li class="col l12">
                                         {% set level = skill.level %}
                                         {{ include('skill/skillLevel.html.twig') }}

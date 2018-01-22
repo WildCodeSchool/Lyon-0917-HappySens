@@ -50,4 +50,5 @@ services:
             arguments:
                 $sender: '%swiftmailer.sender_address%'
                 $db: '@doctrine'
+                $directory: '%kernel.project_dir%'
 

@@ -5,30 +5,30 @@
 {% block content %}
     <div class="container generalContainer">
         <div class="row">
-            <h2 class="header left title">Toutes les fiches d'inscriptions d'entreprise</h2>
+            <h2 class="header title">Toutes les fiches d'inscriptions d'entreprise</h2>
         </div>
-        <ul class="collapsible popout" data-collapsible="accordion">
+        <ul class="collapsible popout itemRecap" data-collapsible="accordion">
         {% for resume in allResume %}
             {% dump resume %}
             <li>
-                <div class="collapsible-header">
+                <div class="collapsible-header headerRecapCompany active">
                     <div class="row valign-wrapper">
                         {% if resume.logo is defined %}
-                            <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" height="50px" class="circle">
+                            <img src="{{ asset('assets/images/placeholderCompany.png') }}" alt="profile image" height="70px" class="circle">
                         {% else %}
-                            <img src="{{ asset('uploads/photoCompany/' ~ resume.logo) }}" alt="profile image" height="50px" class="circles">
+                            <img src="{{ asset('uploads/photoCompany/' ~ resume.logo) }}" alt="profile image" height="70px" class="circles">
                         {% endif %}
                         <div class="titleRecapCompany">
-                            <h5 class="black-text titleSecond">{{ resume.name }} {{ resume.slug }}</h5>
+                            <h5 class="">{{ resume.name }}</h5>
                         </div>
                     </div>
                 </div>
                 <div class="collapsible-body">
                     <a href="{{ path('resume_create_company', {'id': resume.id}) }}">
-                        <button class="btn amber darken-2">Voir la fiche</button>
+                        <button class="btn btnRecap"><i class="material-icons left">description</i>Résumé</button>
                     </a>
                     <a href="{{ path('CompanyProfil', {'slug': resume.slug}) }}">
-                        <button class="btn blue darken-2">Voir le profil</button>
+                        <button class="btn"><i class="material-icons left">domain</i>Profil</button>
                     </a>
                 </div>
             </li>
