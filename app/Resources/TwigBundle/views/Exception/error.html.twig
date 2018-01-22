@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div id="index-banner" class="parallax-container-home">
+        <div class="section no-pad-bot">
+            <div class="col s12">
+                <div class="headerTitleHome center" id="headerTitle">
+                    <h1 class="header center white-text text-darken-2">Oups petit problème :</h1>
+                    <div class="row">
+                        <h5 class="header center white-text">{{ status_code }} {{ status_text }}</h5>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
