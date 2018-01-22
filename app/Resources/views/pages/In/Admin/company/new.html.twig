@@ -109,68 +109,70 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" name="next" class="next action-button btn waves-effect waves-light blue darken-1"><i class="material-icons">skip_next</i></button>
+                    <button type="button" name="next" class="right next action-button btn waves-effect waves-light blue darken-1"><i class="material-icons">skip_next</i></button>
                 </fieldset>
                 <fieldset>
-                    <div class="col s12">
-                        <h5 class="titleInscription blue-text text-darken-3">Le bonheur au travail c'est :</h5>
-                        <div class="input-fiel col s12">
-                            {% if (form_errors(form.slogan)) %}
-                                {{ form_widget(form.slogan, {'attr': {'class': 'error'}}) }}
-                            {% else %}
-                                {{ form_widget(form.slogan, {'attr' : {'class': 'materialize-textarea'}}) }}
-                            {% endif %}
-                            <div class="center error">
-                                {{ form_errors(form.slogan) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12">
-                        <h5 class="titleInscription blue-text text-darken-3">Les enjeux collectifs de la qualité de Vie au Travail :</h5></h5>
-                        <div class="input-field col s12">
-                            {% if (form_errors(form.quality)) %}
-                                {{ form_widget(form.quality, {'attr': {'class': 'error'}}) }}
-                            {% else %}
-                                {{ form_widget(form.quality, {'attr' : {'class': 'materialize-textarea'}}) }}
-                            {% endif %}
-                            <div class="center error">
-                                {{ form_errors(form.quality) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12">
-                        <h5 class="titleInscription blue-text text-darken-3">Les trois critères pour valider un projet :</h5>
-                        <div class="input-field col s12">
-                            {% if (form_errors(form.threeCriteria)) %}
-                                {{ form_widget(form.threeCriteria, {'attr': {'class': 'error'}}) }}
-                            {% else %}
-                                {{ form_widget(form.threeCriteria, {'attr' : {'class': 'materialize-textarea'}}) }}
-                            {% endif %}
-                            <div class="center error">
-                                {{ form_errors(form.threeCriteria) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12">
-                        <h5 class="titleInscription blue-text text-darken-3">Collaborateurs :</h5>
-                        <div class="file-field input-field col s12">
-                            {% if (form_errors(form.fileUsers)) %}
+                    <div class="row">
+                        <div class="col s12">
+                            <h5 class="titleInscription blue-text text-darken-3">Le bonheur au travail c'est :</h5>
+                            <div class="input-fiel col s12">
+                                {% if (form_errors(form.slogan)) %}
+                                    {{ form_widget(form.slogan, {'attr': {'class': 'error'}}) }}
+                                {% else %}
+                                    {{ form_widget(form.slogan, {'attr' : {'class': 'materialize-textarea'}}) }}
+                                {% endif %}
                                 <div class="center error">
-                                    {{ form_widget(form.fileUsers, {'attr': {'class': 'error'}}) }}
+                                    {{ form_errors(form.slogan) }}
                                 </div>
-                            {% else %}
-                                <div class="btn blue darken-2">
-                                    <span>Choisir</span>
-                                    {{ form_widget(form.fileUsers) }}
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <h5 class="titleInscription blue-text text-darken-3">Les enjeux collectifs de la qualité de Vie au Travail :</h5></h5>
+                            <div class="input-field col s12">
+                                {% if (form_errors(form.quality)) %}
+                                    {{ form_widget(form.quality, {'attr': {'class': 'error'}}) }}
+                                {% else %}
+                                    {{ form_widget(form.quality, {'attr' : {'class': 'materialize-textarea'}}) }}
+                                {% endif %}
+                                <div class="center error">
+                                    {{ form_errors(form.quality) }}
                                 </div>
-                            {% endif %}
-                            <div class="file-path-wrapper">
-
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <h5 class="titleInscription blue-text text-darken-3">Les trois critères pour valider un projet :</h5>
+                            <div class="input-field col s12">
+                                {% if (form_errors(form.threeCriteria)) %}
+                                    {{ form_widget(form.threeCriteria, {'attr': {'class': 'error'}}) }}
+                                {% else %}
+                                    {{ form_widget(form.threeCriteria, {'attr' : {'class': 'materialize-textarea'}}) }}
+                                {% endif %}
+                                <div class="center error">
+                                    {{ form_errors(form.threeCriteria) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <h5 class="titleInscription blue-text text-darken-3">Collaborateurs :</h5>
+                            <div class="file-field input-field col s12">
+                                {% if (form_errors(form.fileUsers)) %}
+                                    <div class="center error">
+                                        {{ form_widget(form.fileUsers, {'attr': {'class': 'error'}}) }}
+                                    </div>
+                                {% else %}
+                                    <div class="btn blue darken-2">
+                                        <span>Choisir</span>
+                                        {{ form_widget(form.fileUsers) }}
+                                    </div>
+                                {% endif %}
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button name="previous" type="button" class="previous action-button btn waves-effect waves-light blue darken-1"><i class="material-icons">skip_previous</i></button>
-                    <button type="submit" class="btn waves-effect waves-light amber darken-3"><i class="material-icons right">send</i> Envoyer</button>
+                    <button name="previous" type="button" class="left previous action-button btn waves-effect waves-light blue darken-1"><i class="material-icons">skip_previous</i></button>
+                    <button type="submit" class="right btn waves-effect waves-light amber darken-3"><i class="material-icons right">send</i> Envoyer</button>
                 </fieldset>
             </section>
             {{ form_widget(form._token) }}

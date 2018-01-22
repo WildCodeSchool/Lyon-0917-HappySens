@@ -43,7 +43,7 @@
                                 {% endif %}
                                 <div class="file-path-wrapper">
                                     {% if company.logo is not null %}
-                                        <img class="right" src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="">
+                                        <img class="right circle" src="{{ asset('uploads/photoCompany/' ~ company.logo) }}" alt="" height="50px">
                                     {% else %}
                                         <input class="file-path validate" type="text">
                                     {% endif %}
@@ -154,7 +154,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" name="next" class="next action-button btn waves-effect waves-light blue darken-1"><i class="material-icons">skip_next</i></button>
+                    <button type="button" name="next" class="right next action-button btn waves-effect waves-light blue darken-1"><i class="material-icons">skip_next</i></button>
                 </fieldset>
                 <fieldset>
                     <div class="col s12">
@@ -196,8 +196,8 @@
                             </div>
                         </div>
                     </div>
-                    <button name="previous" type="button" class="previous action-button btn waves-effect waves-light blue darken-1"><i class="material-icons">skip_previous</i></button>
-                    <button type="submit" class="btn waves-effect waves-light amber darken-3"><i class="material-icons right">send</i> Envoyer</button>
+                    <button name="previous" type="button" class="left previous action-button btn waves-effect waves-light blue darken-1"><i class="material-icons">skip_previous</i></button>
+                    <button type="submit" class="right btn waves-effect waves-light amber darken-3"><i class="material-icons right">send</i> Envoyer</button>
                 </fieldset>
             </section>
             {{ form_end(edit_form) }}
