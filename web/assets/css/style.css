@@ -245,9 +245,6 @@ main {
 .toast {
   background-color: dimgrey !important; }
 
-.card .card-image img {
-  top: -50px; }
-
 .side-nav li.logoNavMobile {
   position: relative;
   margin-bottom: 10px; }
