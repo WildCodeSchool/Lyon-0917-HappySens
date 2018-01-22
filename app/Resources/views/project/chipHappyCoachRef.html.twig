@@ -1,0 +1,18 @@
+{% if project.happyCoach is defined and project.happyCoach is not null %}
+    {% set user = project.happyCoach  %}
+    <a href="{{ path('profilHappyCoach', { 'slug': user.slug }) }}">
+        <div class="chip pink">
+            {% if project.happyCoach.photo is null %}
+                <img src="{{ asset('assets/images/placeholder.png') }}">
+            {% else %}
+                <img src="{{ asset('uploads/photoUser/' ~ project.happyCoach.photo) }}"
+                     alt="photo {{ project.happyCoach }}">
+            {% endif %}
+            <span class="black-text">{{ project.happyCoach }}</span>
+        </div>
+    </a>
+{% else %}
+    <div class="chip">
+        <span class="black-text"> Pas d'HappyCoach référent</span>
+    </div>
+{% endif %}

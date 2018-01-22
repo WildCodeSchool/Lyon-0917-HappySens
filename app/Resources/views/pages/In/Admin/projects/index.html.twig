@@ -102,24 +102,7 @@
                                         <span class="black-text">{{ project.author }}</span>
                                     </div>
                                 </a>
-                                {% if project.happyCoach is defined and project.happyCoach is not null %}
-                                    {% set user = project.happyCoach  %}
-                                    <a href="{{ path('profilHappyCoach', { 'slug': user.slug }) }}">
-                                        <div class="chip pink">
-                                            {% if project.happyCoach.photo is null %}
-                                                <img src="{{ asset('assets/images/placeholder.png') }}">
-                                            {% else %}
-                                                <img src="{{ asset('uploads/photoUser/' ~ project.happyCoach.photo) }}"
-                                                     alt="photo {{ project.happyCoach }}">
-                                            {% endif %}
-                                            <span class="black-text">{{ project.happyCoach }}</span>
-                                        </div>
-                                    </a>
-                                {% else %}
-                                    <div class="chip">
-                                        <span class="black-text"> Pas d'HappyCoach référent</span></a>
-                                    </div>
-                                {% endif %}
+                                {{ include('project/chipHappyCoachRef.html.twig') }}
                                 <div class="chip">
                                     {{ project.theme }}
                                 </div>
@@ -138,14 +121,10 @@
 
                             </div>
                             <div class="footerReveal">
-                                <div class="left">
-                                    <a class="btn" href="{{ path('addHappyCoach', {'slug' : project.slug}) }}">HappyCoach Référent</a>
+                                <div class="center">
+                                    <a class="btn" href="{{ path('editHappyCoach', {'slug' : project.slug}) }}">Gérer les HappyCoach</a>
                                 </div>
-                                <div class="right">
-                                    <a class="btn" href="{{ path('addHappyCoach', {'slug' : project.slug}) }}">HappyCoach équipe</a>
-                                </div>
-
-                            </div>
+                              </div>
                         </div>
                     </li>
                 {% endif %}

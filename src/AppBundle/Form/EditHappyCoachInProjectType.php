@@ -12,10 +12,11 @@ use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AddHappyCoachInProjectType extends AbstractType
+class EditHappyCoachInProjectType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -32,7 +33,17 @@ class AddHappyCoachInProjectType extends AbstractType
                 return $er->createQueryBuilder('u')
                     ->where('u.status = 4');
             },
-        ]);
+        ])
+            ->add('teamProject', EntityType::class, [
+                'class' => User::class,
+                'required' => false,
+                'empty_data' => null,
+                'multiple' => true,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->where('u.status = 4');
+                },
+            ]);
     }
 
     /**
@@ -41,7 +52,8 @@ class AddHappyCoachInProjectType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Project'
+            'data_class' => 'AppBundle\Entity\Project',
+            'validation_groups' => false,
         ));
     }
 

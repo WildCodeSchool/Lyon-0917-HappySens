@@ -254,7 +254,7 @@ class User implements UserInterface, \Serializable
     private $isActive;
 
     /**
-     * @ORM\OneToOne(targetEntity="Project", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="author")
      */
     private $authorProject;
 
