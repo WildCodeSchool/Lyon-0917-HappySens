@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 
 
-/**
+/**company
  * Admin controller.
  *
  * @Route("project")
@@ -43,8 +43,12 @@ class ProjectController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         $nbProjectNotFinish = $em->getRepository('AppBundle:Project')->getProjectStatusNotFinishForOneUser($user->getId());
-        //TODO add a notification
+
         if ($nbProjectNotFinish > 0) {
+            $this->addFlash(
+                'errorNotification',
+                'Vous avez déjà un projet en cours !'
+            );
             return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
         }
 

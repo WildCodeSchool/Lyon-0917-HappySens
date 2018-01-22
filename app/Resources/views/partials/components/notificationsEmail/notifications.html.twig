@@ -11,3 +11,15 @@
     </div>
 {% endfor %}
 
+{% for message in app.flashes('errorNotification') %}
+    <div class="row flash-notice notif" id="flashNoticeError">
+        <div class="card">
+            <div class="row right">
+                <a href="#" onclick="hideContactFlash()"><i class="material-icons">close</i></a>
+            </div>
+            <div class="center">
+                <p class="message-content">{{ message }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
