@@ -73,9 +73,9 @@
                             {% endfor %}
                         </div>
                         <div class="row center">
-                            <button class="waves-effect waves-light btn blue darken-2 center">
-                                <a class="modal-trigger white-text" href="#modal_3">Voir tous les Talents</a>
-                            </button>
+                            <a class="modal-trigger white-text" href="#modal_4">
+                                <button class="waves-effect waves-light btn blue darken-2 center">Voir tous les Talents</button>
+                            </a>
                         </div>
                     </li>
                 </ul>
@@ -83,11 +83,11 @@
             <div>
                 <h5 class="titleSecond">Mes Happy Salariés : </h5>
             </div>
-            <div class="collection">
+            <ul class="collection">
                 <li class="collection-item">
                     <div class="col s12 center">
                         {% for user in collaborators | slice(0, 3)%}
-                        <div class="c">
+                        <div class="">
                             <div class="row">
                                 {% if user.photo is null %}
                                     <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle" height="70px">
@@ -103,9 +103,9 @@
                         {% endfor %}
                     </div>
                     <div class="row center">
-                        <button class="waves-effect waves-light btn amber darken-2 center">
-                            <a class="modal-trigger white-text" href="#modal_2">Voir tous les salariés</a>
-                        </button>
+                        <a class="modal-trigger white-text" href="#modal_3">
+                            <button class="waves-effect waves-light btn blue darken-2 center">Voir tous les salariés</button>
+                        </a>
                     </div>
                 </li>
             </ul>
@@ -118,24 +118,33 @@
             </div>
         </div>
     </div>
-    <div class="col s12" id="">
+        <div id="tabProjects" class="col s12 white switch_content">
+            <div class="row">
+                <section class="PC_blockProject">
+                    {{ include('project/blockProjectCompany.html.twig') }}
+                </section>
+            </div>
+        </div>
+        <div class="col s12" id="">
         <div class="row">
             <!-- Modal Structure -->
             <div id="modal_3" class="modal">
                 <div class="modal-content">
                     <div class="row">
                         <h4 class="left">Tous les salariés</h4>
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right"><i class="material-icons">close</i></a>
+                        <a href="" class="modal-action modal-close waves-effect waves-green btn-flat right">
+                            <i class="material-icons">close</i>
+                        </a>
                     </div>
                     <div class="row">
                         {% for user in collaborators %}
-                            <div class="col l4 card  center-align">
-                                <ul class="">
-                                    <li>
+                            <div class="col s12 m6 card center-align">
+                                <ul class="row">
+                                    <li class="col s12">
                                         {% if user.photo is null%}
-                                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle responsive-img">
+                                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle " height="100px">
                                         {% else %}
-                                            <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle responsive-img">
+                                            <img src="{{ asset('uploads/photoUser/' ~ user.photo) }}" alt="profile image" class="circle " height="100px">
                                         {% endif %}
                                     </li>
                                     <li><a class="blue-text text-darken-2" href="{{ path('UserProfil', {'slug' : user.slug }) }}">{{ user.firstName }} {{ user.lastName }}</a></li>
@@ -149,23 +158,27 @@
                 </div>
             </div>
             <!--ModalAllSkill -->
-            <div id="modal_2" class="modal">
+            <div id="modal_4" class="modal">
                 <div class="modal-content">
                     <div class="row">
                         <h4 class="left">Tous les talents</h4>
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right"><i
-                                    class="material-icons">close</i></a>
+                        <a href="" class="modal-action modal-close waves-effect waves-green btn-flat right">
+                            <i class="material-icons">close</i>
+                        </a>
                     </div>
                     <div class="row">
                         {% for skill in skillInCompany %}
-                            <div class="col l4 card  center-align">
-                                <ul class="">
-                                    <li>
-                                        <p class="col l12 titleSecond"><b>{{ skill.nameSkill }}</b> <br>
-                                            ({{ skill.nbSalary }} Happy Salariés)</p></li>
-                                    <li class="col l12">
+                            <div class="col s12 m6 card center">
+                                <ul class="row center">
+                                    <li class="row">
+                                        <p class="titleSecond"><b>{{ skill.nameSkill }}</b> <br>
+                                            ({{ skill.nbSalary }} Happy Salariés)</p>
+                                    </li>
+                                    <li class="row center">
                                         {% set level = skill.level %}
-                                        {{ include('skill/skillLevel.html.twig') }}
+                                        <div class="center">
+                                            {{ include('skill/skillLevel.html.twig') }}
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -178,4 +191,5 @@
             <!-- End ModalAllSkill -->
         </div>
     </div>
+</div>
 </div>
