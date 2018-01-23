@@ -4,12 +4,49 @@
 
 {% block content %}
 
-    <div class="container">
-        <h1 class="center">HappyCoach référent du projet : {{ project.title }}</h1>
-        {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Valider" />
+    <div class="generalContainer">
+    <h1 class="center titleSecond">Gérer les Happy Coach du projet : <br>
+        {{ project.title }}</h1>
+    {{ form_start(edit_form) }}
+    <div class="row paddingCollection">
+        <div class="col s12 m6 offset-m3 paddingCollection">
+            <h5 class="titleInscription blue-text text-darken-3">HappyCoach Référent :</h5>
+           {{ include('project/chipHappyCoachRef.html.twig') }}
+            <div class="input-field col s12 paddingCollection">
+                <i class="material-icons prefix blue-text text-darken-3">person</i>
+                {% if (form_errors(edit_form.happyCoach)) %}
+                    {{ form_widget(edit_form.happyCoach, {'attr': {'class': 'error'}}) }}
+                {% else %}
+                    {{ form_widget(edit_form.happyCoach) }}
+                {% endif %}
+                <label for="firstName"><span class="requireInput"></span>Liste des HappyCoach</label>
+                <div class="center error">
+                    {{ form_errors(edit_form.happyCoach) }}
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 offset-m3 paddingCollection">
+            <h5 class="titleInscription blue-text text-darken-3">Autres HappyCoach : </h5>
+            {{ include('project/chipOtherHappyCoach.html.twig') }}
+            <div class="input-field col s12">
+                <i class="material-icons prefix blue-text text-darken-3">group</i>
+                {% if (form_errors(edit_form.teamProject)) %}
+                    {{ form_widget(edit_form.teamProject, {'attr': {'class': 'error'}}) }}
+                {% else %}
+                    {{ form_widget(edit_form.teamProject) }}
+                {% endif %}
+                <label for="firstName"><span class="requireInput"></span>Liste des HappyCoach</label>
+                <div class="center error">
+                    {{ form_errors(edit_form.teamProject) }}
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 offset-m3 center">
+            {{ form_widget(edit_form) }}
+            <a class="waves-effect waves-light btn blue darken-3"
+               href="{{ path('profilAdmin', {'slug' : app.user.slug}) }}">Retour</a>
+            <button class="waves-effect waves-light btn pink darken-2" type="submit">"Envoyer"</button>
+        </div>
         {{ form_end(edit_form) }}
     </div>
-
 {% endblock %}

@@ -33,6 +33,7 @@ class ProjectType extends AbstractType
             ->add('photo', FileType::class, [
                 'label' => 'photo projet',
                 'required' => false,
+                'data_class' => null,
                 ])
             ->add('beneficeCompany')
             ->add('likeProjects', TextType::class, ['mapped' => false])

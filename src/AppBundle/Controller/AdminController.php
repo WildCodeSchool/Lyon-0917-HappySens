@@ -378,16 +378,16 @@ class AdminController extends Controller
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * Add one HappyCoach Ref
+     * Add or Delete HappyCoach in Project
      *
-     * @Route("/project/{slug}/addHappyCoachRef", name="addHappyCoach")
+     * @Route("/project/{slug}/editHappyCoachRef", name="editHappyCoach")
      * @param Project $project The Project entity
      * @Method({"GET", "POST"})
      */
-   public function addHappyCoachRefAction(Request $request, Project $project)
+   public function editHappyCoachInProjectAction(Request $request, Project $project)
     {
 
-        $editForm = $this->createForm('AppBundle\Form\AddHappyCoachInProjectType', $project);
+        $editForm = $this->createForm('AppBundle\Form\EditHappyCoachInProjectType', $project);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -400,33 +400,4 @@ class AdminController extends Controller
             'edit_form' => $editForm->createView(),
             ]);
     }
-
-    /**
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * Add HappyCoach in team
-     *
-     * @Route("/project/{slug}/addHappyCoachTeam", name="addHappyCoachTeam")
-     * @param Project $project The Project entity
-     * @Method({"GET", "POST"})
-     */
-    public function addHappyCoachTeamAction(Request $request, Project $project)
-    {
-
-        $editForm = $this->createForm('AppBundle\Form\AddHappyCoachInTeamType', $project);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('profilAdmin', [
-                'slug' => $this->getUser()->getSlug(),
-                ]);
-        }
-        return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', [
-            'project' => $project,
-            'edit_form' => $editForm->createView(),
-        ]);
-    }
-
 }

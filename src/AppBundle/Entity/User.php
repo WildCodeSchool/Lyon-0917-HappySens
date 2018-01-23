@@ -254,7 +254,7 @@ class User implements UserInterface, \Serializable
     private $isActive;
 
     /**
-     * @ORM\OneToOne(targetEntity="Project", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="author")
      */
     private $authorProject;
 
@@ -1073,5 +1073,29 @@ class User implements UserInterface, \Serializable
         $this->sendNotif = $sendNotif;
 
         return $this;
+    }
+
+    /**
+     * Add authorProject
+     *
+     * @param \AppBundle\Entity\Project $authorProject
+     *
+     * @return User
+     */
+    public function addAuthorProject(\AppBundle\Entity\Project $authorProject)
+    {
+        $this->authorProject[] = $authorProject;
+
+        return $this;
+    }
+
+    /**
+     * Remove authorProject
+     *
+     * @param \AppBundle\Entity\Project $authorProject
+     */
+    public function removeAuthorProject(\AppBundle\Entity\Project $authorProject)
+    {
+        $this->authorProject->removeElement($authorProject);
     }
 }

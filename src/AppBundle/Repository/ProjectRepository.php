@@ -37,7 +37,6 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
-
     /**
      * return number of project by status $status
      * @return mixed
@@ -70,6 +69,21 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->where('p.theme =:idSkill')
             ->getQuery();
         return $qb->getResult();
+    }
+
+    /**
+     * return all project with status 1 and 2 for one user
+     * @return mixed
+     */
+    public function getProjectStatusNotFinishForOneUser($idUser) {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->select('COUNT(p)')
+            ->setParameter('author', $idUser)
+            ->where('p.status = 2 or p.status = 1')
+            ->andWhere('p.author = :author')
+            ->getQuery();
+        return $qb->getSingleScalarResult();
     }
 
     /**

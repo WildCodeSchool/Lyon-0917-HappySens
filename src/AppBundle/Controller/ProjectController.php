@@ -22,7 +22,6 @@ use Symfony\Component\HttpFoundation\File\File;
 
 
 /**
- * Admin controller.
  *
  * @Route("project")
  * @Security("user.getIsActive() === true")
@@ -40,8 +39,20 @@ class ProjectController extends Controller
      */
     public function newAction(Request $request, FileUploader $fileUploader, SlugService $slugService, EmailService $emailService)
     {
-        $project = new Project();
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $nbProjectNotFinish = $em->getRepository('AppBundle:Project')->getProjectStatusNotFinishForOneUser($user->getId());
+
+        if ($nbProjectNotFinish > 0) {
+            $this->addFlash(
+                'errorNotification',
+                'Vous avez déjà un projet en cours !'
+            );
+            return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
+        }
+
+        $project = new Project();
+
         $form = $this->createForm('AppBundle\Form\ProjectType', $project);
         $form->remove('author');
         $form->remove('startingDate');
@@ -208,8 +219,8 @@ class ProjectController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('project_delete', array('slug' => $project->getSlug())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
+
     }
 
     /**

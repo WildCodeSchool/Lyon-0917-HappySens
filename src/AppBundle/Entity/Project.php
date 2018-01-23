@@ -83,7 +83,7 @@ class Project
     private $beneficeCompany;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", inversedBy="authorProject")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="authorProject")
      */
     private $author;
 
@@ -93,7 +93,6 @@ class Project
      * @ORM\Column(name="status", type="integer")
      */
     private $status;
-
 
     /**
      * @var string
@@ -537,8 +536,6 @@ class Project
         $this->happyCoach = $happyCoach;
         return $this;
     }
-
-
 
 
     /**
