@@ -1,0 +1,99 @@
+$step2: 50%;
+$step3: 33.33%;
+$step4: 25%;
+$step5: 20%;
+
+
+/*form styles*/
+.formContainer {
+  min-height: 100vh;
+  padding: 20px 0;
+}
+#msform {
+  max-width: 100%;
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+}
+#msform fieldset {
+  text-align: left;
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 10px 15px 1px rgba(0, 0, 0, 0.3);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 94%;
+  margin: 0 3%;
+  position: relative;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+
+/*headings*/
+.fs-title {
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+}
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+/*progressbar*/
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  /*CSS counters to number the steps*/
+  counter-reset: step;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+#progressbar li {
+  list-style-type: none;
+  color: black;
+  text-transform: uppercase;
+  font-size: 15px;
+  position: relative;
+  min-width: 25%;
+  max-width: 50%;
+  margin: 0;
+}
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 30px;
+  line-height: 30px;
+  display: block;
+  font-size: 13px;
+  color: #333;
+  background: lightgrey;
+  border-radius: 3px;
+  margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: lightgrey;
+  position: absolute;
+  left: -50%;
+  top: 15px;
+  z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+  background: #c2185b;
+  color: white;
+}

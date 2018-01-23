@@ -1,47 +1,66 @@
-function goStep1() {
-    $("#step2").addClass("hide");
-    $("#step3").addClass("hide");
-    $("#step4").addClass("hide");
-    $("#step1").removeClass("hide");
-    $("#breadOne").addClass("active");
-    $("#breadTwo").removeClass("active");
-    $("#breadThree").removeClass("active");
-    $("#breadFour").removeClass("active");
+// *****************************************
+//      This is for the step form
+// *****************************************
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
 
-}
-function goStep2() {
-    $("#step1").addClass("hide");
-    $("#step3").addClass("hide");
-    $("#step4").addClass("hide");
-    $("#step2").removeClass("hide");
-    $("#breadTwo").addClass("active");
-    $("#breadThree").removeClass("active");
-    $("#breadFour").removeClass("active");
+$(".next").click(function(){
+    if(animating) return false;
+    animating = true;
+    current_fs = $(this).parent();
+    next_fs = $(this).parent().next();
+    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+    next_fs.show();
+    current_fs.animate({opacity: 0}, {
+        step: function(now, mx) {
+            scale = 1 - (1 - now) * 0.2;
+            left = (now * 50)+"%";
+            opacity = 1 - now;
+            current_fs.css({
+                'transform': 'scale('+scale+')',
+                'position': 'absolute'
+            });
+            next_fs.css({'left': left, 'opacity': opacity});
+        },
+        duration: 800,
+        complete: function(){
+            current_fs.hide();
+            animating = false;
+        },
+        easing: 'easeInOutBack'
+    });
+});
 
-}
-function goStep3() {
-    $("#step2").addClass("hide");
-    $("#step1").addClass("hide");
-    $("#step4").addClass("hide");
-    $("#step3").removeClass("hide");
-    $("#breadOne").addClass("active");
-    $("#breadThree").addClass("active");
-    $("#breadTwo").addClass("active");
-    $("#breadFour").removeClass("active");
-}
+$(".previous").click(function(){
+    if(animating) return false;
+    animating = true;
+    current_fs = $(this).parent();
+    previous_fs = $(this).parent().prev();
+    $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+    previous_fs.show();
+    current_fs.animate({opacity: 0}, {
+        step: function(now, mx) {
+            scale = 0.8 + (1 - now) * 0.2;
+            left = ((1-now) * 50)+"%";
+            opacity = 1 - now;
+            current_fs.css({'left': left});
+            previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+        },
+        duration: 800,
+        complete: function(){
+            current_fs.hide();
+            animating = false;
+        },
+        easing: 'easeInOutBack'
+    });
+});
 
-function goStep4() {
-    $("#step2").addClass("hide");
-    $("#step1").addClass("hide");
-    $("#step3").addClass("hide");
-    $("#step4").removeClass("hide");
-    $("#breadThree").addClass("active");
-    $("#breadTwo").addClass("active");
-    $("#breadFour").addClass("active");
-}
-
+// *****************************************
+// This is for add input skill in User forms
 // setup an "add a tag" link
-var $addTagLink = $('<button class="btn add_tag_link hoverable blue center"><i class="material-icons">add</i>Ajouter talent</button>');
+// *****************************************
+var $addTagLink = $('<button class="btn add_tag_link hoverable blue center"><i class="material-icons left">add</i>Ajouter talent</button>');
 var $newLinkLi = $('<div></div>').append($addTagLink);
 
 jQuery(document).ready(function() {
