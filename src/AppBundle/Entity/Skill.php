@@ -27,7 +27,7 @@ class Skill
      * @ORM\Column(name="name_skill", type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(
-     *      min = 10,
+     *      min = 3,
      *      minMessage = "Le nom du talent doit contenir au moins plus de {{ limit }} caractères",
      * )
      */

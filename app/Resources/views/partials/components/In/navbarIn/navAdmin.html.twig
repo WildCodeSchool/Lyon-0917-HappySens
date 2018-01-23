@@ -29,7 +29,7 @@
                         <i class="material-icons">settings</i>
                     </a>
                     <ul id="dropdownSettings" class="dropdown-content notifications">
-                        <li><a class="grey-text text-darken-3" href="{{ path('UserProfil', {'slug' : app.user.slug}) }}"><i class="material-icons">view_quilt</i>Mon tableau de bord</a></li>
+                        <li><a class="grey-text text-darken-3" href="{{ path('profilAdmin', {'slug' : app.user.slug}) }}"><i class="material-icons">view_quilt</i>Mon tableau de bord</a></li>
                         <li><a class="grey-text text-darken-3" href="{{ path('User_edit', {'slug' : app.user.slug}) }}"><i class="material-icons">create</i>Modifier votre profil</a></li>
                         <li class="divider"></li>
                         <li><a class="blue-text text-darken-3" href="{{ path('logout') }}"><i class="material-icons">exit_to_app</i>Déconnexion</a></li>
