@@ -20,7 +20,7 @@ class LoadUserFixtures extends Fixture implements FixtureInterface
  {
      $firstName = 'Laetitia';
      $lastName = 'Ferrer';
-     $password = '$2y$13$A7/nsWsNOh4GaCeD4bAv3uL4uMZBPBWz1x00/MCh4d8/Xcs4SjamO';
+     $password = '$2y$13$kwLdU/kISw/aC/zU2sogA.3dJ9jSNkJubypo9YEGVh0uISG683F4i';
      $user = new User();
      $user->setFirstName($firstName)
          ->setLastName($lastName)

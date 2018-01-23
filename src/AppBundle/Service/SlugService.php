@@ -8,24 +8,25 @@
 
 namespace AppBundle\Service;
 
-
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class SlugService
 {
     public $text;
 
-    /** @var ObjectManager */
-    private $em;
+    /**
+     * @var
+     */
+    private $db;
 
     /**
-     * autoCheckService constructor.
-     * @param EntityManagerInterface $em
+     * SlugService constructor.
+     * @param RegistryInterface $db
      */
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(RegistryInterface $db)
     {
-        $this->em = $em;
+        $this->db = $db;
     }
 
     public function slugify($text, $type, $i = 0)
@@ -40,12 +41,17 @@ class SlugService
         $text = strtolower($text);
         $text = preg_replace('#[^-\w]+#', '', $text);
         //TODO personalisation du lien
-        if ($type == 'user') {
-            $slugIsUnique = $this->em->getRepository('AppBundle:User')->getSlugIsUnique($text);
-        } else {
-            $slugIsUnique = $this->em->getRepository('AppBundle:Company')->getSlugIsUnique($text);
+        switch ($type) {
+            case ('user'):
+                $slugIsUnique = $this->db->getRepository('AppBundle:User')->getSlugIsUnique($text);
+                break;
+            case ('company'):
+                $slugIsUnique = $this->db->getRepository('AppBundle:Company')->getSlugIsUnique($text);
+                break;
+            case('project'):
+                $slugIsUnique = $this->db->getRepository('AppBundle:Project')->getSlugIsUnique($text);
+                break;
         }
-        dump($slugIsUnique);
         if ($slugIsUnique > 0) {
             $text = $text . '-' . $slugIsUnique;
             /*$i = $i + 1;

@@ -72,6 +72,20 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
+    /**
+     * @param $text
+     * @return mixed
+     */
+    public function getSlugIsUnique($text) {
+        $text = $text . '%';
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->setParameter('slug', $text)
+            ->select('count(p)')
+            ->where('p.slug LIKE :slug')
+            ->getQuery();
+        return $qb->getSingleScalarResult();
+    }
 
 }
 
