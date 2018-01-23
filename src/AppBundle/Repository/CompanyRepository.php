@@ -128,6 +128,19 @@ class  CompanyRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getResult();
     }
 
-
+    /**
+     * @param $text
+     * @return mixed
+     */
+    public function getSlugIsUnique($text) {
+        $text = $text . '%';
+        $qb = $this
+            ->createQueryBuilder('c')
+            ->setParameter('slug', $text)
+            ->select('count(c)')
+            ->where('c.slug LIKE :slug')
+            ->getQuery();
+        return $qb->getSingleScalarResult();
+    }
 
 }

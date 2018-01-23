@@ -249,7 +249,7 @@ class UserController extends Controller
             } else {
                 $user->setPassword($tempPassword);
             }
-            $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName()));
+            $user->setSlug($slugService->slugify($user->getFirstName() . $user->getLastName(), 'user'));
             if ($user->getIsActive() == false) {
                 $user->setIsActive(true);
             }
@@ -314,7 +314,7 @@ class UserController extends Controller
                 unlink($fileUploader->getDirectory("photoCompany") . '/' . $company->getLogo());
                 $company->setLogo($logoName);
             }
-            $company->setSlug($slugService->slugify($company->getName()));
+            $company->setSlug($slugService->slugify($company->getName(), 'company'));
             $this->getDoctrine()->getManager()->flush();
             if ($this->getUser()->getIsActive() == false) {
                 return $this->redirectToRoute('User_edit', array('slug' => $this->getUser()->getSlug()));
@@ -457,9 +457,9 @@ class UserController extends Controller
 
     /**
      *
-     * Creates a new collaborater entity.
+     * Creates a new collaborator entity.
      *
-     * @Route("/newCollaborater", name="newCollaborater")
+     * @Route("/newCollaborator", name="newCollaborator")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_COMPANY')")
      *
@@ -481,15 +481,13 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $today = new \DateTime();
-            $temp = $today->getTimestamp() - 1515703308; // 1515703308 = Timestamp date created line so 2018/01/12
             $passwordNotEncoder = bin2hex(random_bytes(5));
             $password = $passwordEncoder->encodePassword($user, $passwordNotEncoder);
             $user->setPassword($password);
             $user->setStatus(User::ROLE_EMPLOYE);
             $user->setIsActive(0);
             $user->setCompany($company);
-            $user->setSlug($slugService->slugify($user->getFirstName() . ' ' . $user->getLastName() . ' ' . $temp));
+            $user->setSlug($slugService->slugify($user->getFirstName() . ' ' . $user->getLastName() . ' ', 'user'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -498,8 +496,7 @@ class UserController extends Controller
             return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
         }
 
-
-        return $this->render('pages/In/company/newCollaborater.html.twig', array(
+        return $this->render('newCollaborator.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
         ));

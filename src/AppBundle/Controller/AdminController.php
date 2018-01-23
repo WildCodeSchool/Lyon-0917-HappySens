@@ -153,7 +153,7 @@ class AdminController extends Controller
             $logoName = $fileUploader->upload($logo, "photoCompany");
             $company->setLogo($logoName)
                     ->setFileUsers($fileName)
-                    ->setSlug($slugService->slugify($company->getName()));
+                    ->setSlug($slugService->slugify($company->getName(), 'company'));
             $em->persist($company);
             $em->flush();
 
@@ -302,8 +302,6 @@ class AdminController extends Controller
         $form->handleRequest($request);
         //TODO Password and slugification
         if ($form->isSubmitted() && $form->isValid()) {
-            $today = new \DateTime();
-            $temp = $today->getTimestamp() - 1515703308; // 1515703308 = Timestamp date created line so 2018/01/12
             $passwordNotEncoder = bin2hex(random_bytes(5));
             $password = $passwordEncoder->encodePassword($user, $passwordNotEncoder);
             if ($status == User::ROLE_HAPPYCOACH) {
@@ -311,7 +309,7 @@ class AdminController extends Controller
             }
             $user->setPassword($password);
             $user->setIsActive(0);
-            $user->setSlug($slugService->slugify($user->getFirstName() . ' ' . $user->getLastName() . ' ' . $temp));
+            $user->setSlug($slugService->slugify($user->getFirstName() . ' ' . $user->getLastName() . ' ', 'user'));
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

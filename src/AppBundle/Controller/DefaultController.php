@@ -82,15 +82,11 @@ class DefaultController extends Controller
      */
     public function testAction(Request $request, EmailService $mail)
         {
-//            $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Project')->find(1);
-        $test = realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR;
+////            $test = $this->getDoctrine()->getManager()->getRepository('AppBundle:Project')->find(1);
+//        $test = realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR;
+//
+//            dump($test);
 
-            dump($test);
-
-            return 'nothing';
-
-    //        return $this->render('pages/In/Admin/company/recapNewCompany.html.twig', [
-    //            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-    //        ]);
+            return $this->render('testStepForm.html.twig');
         }
 }

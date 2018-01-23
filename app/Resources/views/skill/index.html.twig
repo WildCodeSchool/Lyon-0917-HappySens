@@ -1,43 +1,44 @@
 {% extends 'baseIn.html.twig' %}
 
 {% block content %}
-    <h1 class="center titleSecond">Listes des Talents</h1>
-    <div class="row">
+    <h1 class="center title">Listes des Talents</h1>
+    <div class="container generalContainer">
+        <ul class="center">
+            <li>
+                <a class="btn waves-effect waves-lighten amber darken-2" href="{{ path('skills_new') }}"><i class="material-icons left">add</i>Ajouter</a>
+            </li>
+        </ul>
+        <div class="containerSkill">
         {% for skill in skills %}
-            <div class="col s12 m6 l3">
-                <div class="card  grey lighten-2">
+                <div class="card card-skill grey lighten-2">
                     <div class="card-content blue-text text-darken-3">
-                        <span class="card-title black-text">{{ skill.nameSkill | upper }}</span>
-                        <p>Nombre de salarié :
+                        <span class="card-title black-text titleSecond center">{{ skill.nameSkill | upper }}</span>
+                        <p>Salarié :
                             {% if skill.collaborator is empty %}
-                                0
+                                <b>0</b>
                             {% else %}
-                                {{ skill.collaborator.0.nbUser }}
-                                <span class="right">niveau : {{ skill.collaborator.0.level | round(1) }}</span>
+                                <b>{{ skill.collaborator.0.nbUser }}</b>
+                                <span class="right">niveau : <b>{{ skill.collaborator.0.level | round(1) }}</b></span>
                             {% endif %}
-                        <p>Nombre d'HappyCoach :
+                        <p>HappyCoach :
                             {% if skill.happyCoach is null %}
-                            0
+                            <b>0</b>
                             {% else%}
-                             {{ skill.happyCoach.0.nbUser  }}
-                                <span class="right">niveau : {{  skill.happyCoach.0.level | round(1)}}</span>
+                             <b>{{ skill.happyCoach.0.nbUser  }}</b>
+                                <span class="right">niveau : <b>{{  skill.happyCoach.0.level | round(1)}}</b></span>
                         {% endif %}
                         </p>
-                        <p>Nombre de projet :
-                                {{ skill.nbproject }}
+                        <p>Projet :
+                            <b>{{ skill.nbproject }}</b>
                         </p>
                     </div>
-                    <div class="card-action">
-                        <a class="btn waves-effect waves-lighten blue darken-2" href="{{ path('skills_show', { 'id': skill.id }) }}">Voir le talent</a>
-                        <a class="btn waves-effect waves-lighten pink darken-2" href="{{ path('skills_edit', { 'id': skill.id }) }}">Modifier le talent</a>
+                    <div class="card-action center">
+                        <a class="btn waves-effect waves-lighten blue darken-2" href="{{ path('skills_show', { 'id': skill.id }) }}">Détails</a>
+                        <a class="btn waves-effect waves-lighten pink darken-2" href="{{ path('skills_edit', { 'id': skill.id }) }}">Modifier</a>
                     </div>
                 </div>
-            </div>
         {% endfor %}
+        </div>
+
     </div>
-    <ul class="center">
-        <li>
-            <a class="btn waves-effect waves-lighten amber darken-2" href="{{ path('skills_new') }}">Ajouter un talent</a>
-        </li>
-    </ul>
 {% endblock %}

@@ -68,7 +68,7 @@ class ProjectController extends Controller
             $file = $project->getPhoto();
             $fileName = $fileUploader->upload($file, "photoProject");
             $project->setPhoto($fileName);
-            $project->setSlug($slugService->slugify($project->getTitle()));
+            $project->setSlug($slugService->slugify($project->getTitle(), 'project'));
             $project->setAuthor($user);
 
             $em = $this->getDoctrine()->getManager();
@@ -171,7 +171,7 @@ class ProjectController extends Controller
                 $project->setPhoto($photoTemp);
             }
 
-            $project->setSlug($slugService->slugify($project->getTitle()));
+            $project->setSlug($slugService->slugify($project->getTitle(), 'project'));
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('project_show', array('slug' => $project->getSlug()));
         }

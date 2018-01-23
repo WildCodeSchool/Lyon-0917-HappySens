@@ -13,6 +13,7 @@ use AppBundle\Entity\User;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use AppBundle\Service\SlugService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class FileUploader
@@ -46,19 +47,25 @@ class FileUploader
     private $passwordEncoder;
 
     /**
+     * @var SlugService
+     */
+    private $slugService;
+
+    /**
      * FileUploader constructor.
      * @param RegistryInterface $db
      * @param $directory
      * @param EmailService $emailService
      * @param UserPasswordEncoderInterface $passwordEncoder
      */
-    public function __construct(RegistryInterface $db, $directory, EmailService $emailService,  UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(RegistryInterface $db, $directory, EmailService $emailService,  UserPasswordEncoderInterface $passwordEncoder, SlugService $slugService)
     {
 
         $this->directory = $directory;
         $this->db = $db;
         $this->emailService = $emailService;
         $this->passwordEncoder = $passwordEncoder;
+        $this->slugService = $slugService;
     }
 
     /**
@@ -134,7 +141,6 @@ class FileUploader
      */
     public function insertUser($idCompany, $fileUsers, $email_contact)
     {
-        $slugService = new SlugService();
         $newUser = new User();
 
         if (!empty($fileUsers)) {
@@ -143,7 +149,7 @@ class FileUploader
                 ->setEmail($fileUsers['email'])
                 ->setPassword($this->passwordEncoder->encodePassword($newUser, $fileUsers['valuePwd']))
                 ->setMood(0)
-                ->setSlug($slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName()))
+                ->setSlug($this->slugService->slugify($newUser->getFirstName() . ' ' . $newUser->getLastName(), 'user'))
                 ->setCompany($idCompany)
                 ->setIsActive(0);
             $newUser->setStatus(($fileUsers['key'] <= 1) ? User::ROLE_COMPANY : User::ROLE_EMPLOYE);

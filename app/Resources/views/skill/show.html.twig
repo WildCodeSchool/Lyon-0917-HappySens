@@ -1,69 +1,97 @@
 {% extends 'baseIn.html.twig' %}
 
 {% block content %}
-    <h1 class="center"> {{ skill.nameSkill | upper }}</h1>
-    <div class="row ">
-        <h4 class="pink-text text-darken-2 center">{{ happyCoachs | length }} Happy Coach</h4>
-        {% for user in happyCoachs %}
-            {{ include('skill/userHasThisSkill.html.twig') }}
-        {% endfor %}
-    </div>
+    <div class="container generalContainer">
+        <h1 class="center title"> {{ skill.nameSkill | upper }}</h1>
+        <div class="row">
+            <div class="col s6 m4 center">
+                <a href="{{ path('skills_index') }}">
+                    <button class="btn waves-effect grey darken-1" type="submit"><i class="material-icons left">arrow_back</i>Retour</button>
+                </a>
+            </div>
+            <div class="col s6 m4 center">
+                <a href="{{ path('skills_edit', { 'id': skill.id }) }}">
+                    <button class="btn waves-effect amber darken-1" type="submit"><i class="material-icons left">edit</i>Modifier</button>
+                </a>
+            </div>
+            <div class="col s6 m4 center">
+                {{ form_start(delete_form) }}
+                    <button class="btn waves-effect red darken-1" type="submit"><i class="material-icons left">delete</i>Supprimer</button>
+                {{ form_end(delete_form) }}
+            </div>
+        </div>
     <div class="row">
+        <div class="col s12">
+            <h4 class="pink-text text-darken-2 center">{{ happyCoachs | length }} Happy Coach</h4>
+            {% for user in happyCoachs %}
+                {{ include('skill/userHasThisSkill.html.twig') }}
+            {% endfor %}
+        </div>
+        <div class="col s12">
         <h4 class="amber-text text-darken-2 center"> {{ users | length }} Collaborateurs</h4>
         {% for user in users %}
             {{ include('skill/userHasThisSkill.html.twig') }}
         {% endfor %}
     </div>
-    <div class="row">
+        <div class="col s12">
         <h4 class="blue-text text-darken-2 center">{{ projects | length }} projets</h4>
         {% for project in projects %}
-            <div class="card-panel col s12 m6 l4 center">
-                <div class="col s12 center">
-                    <a href="{{ path('project_show', {'slug' : project.slugProject}) }}">{{ project.title }}</a>
-                </div>
-                <div class="col s12">
+            <div class="card cardShowSkill col s12 m6 l4 center">
+                <div class="row">
                     {{ include('project/status.html.twig') }}
-                    <p class="black-text chip"><span class="blue-text text-darken-2"><i
-                                    class="fa fa-calendar-check-o"></i></span> {{ project.startingDate|date('Y-m-d') }}
+                    <p class="black-text chip">
+                        <span class="blue-text text-darken-2">
+                            <i class="fa fa-map-marker"></i>
+                        </span>
+                        {{ project.location }}
                     </p>
-                    <p class="black-text chip"><span class="blue-text text-darken-2"><i
-                                    class="fa fa-calendar-times-o"></i></span> {{ project.endDate|date('Y-m-d') }}</p>
-                    <p class="black-text chip"><span class="blue-text text-darken-2"><i
-                                    class="fa fa-map-marker"></i></span> {{ project.location }}</p>
+                    <p class="black-text chip">
+                        <span class="blue-text text-darken-2">
+                            <i class="fa fa-calendar-check-o"></i>
+                        </span>
+                        {{ project.startingDate|date('Y-m-d') }}
+                    </p>
+                    <p class="black-text chip">
+                        <span class="blue-text text-darken-2">
+                            <i class="fa fa-calendar-times-o"></i>
+                        </span>
+                        {{ project.endDate|date('Y-m-d') }}
+                    </p>
                 </div>
-                <div class="col s4">
+                <div class="row center">
                     <a href="{{ path('UserProfil', { 'slug': project.slugAuthor }) }}">
-                        <img src="{{ project.photoAuthor }}" alt="photo" class="circle" height="50px"><br>
-                        {{ project.firstNameAuthor }} {{ project.lastNameAuthor }}</a>
+                        {% if project.photoAuthor is null %}
+                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle" width="50px">
+                        {% else %}
+                            <img src="{{ asset('uploads/photoUser/' ~ project.photoAuthor) }}" alt="profile image" class="circle" width="50px">
+                        {% endif %}
+                        {{ project.firstNameAuthor }} {{ project.lastNameAuthor }}
+                    </a>
                 </div>
-                <div class="col s4">
+                <div class="row center">
                     {% if  project.firstNameHCRef is not empty %}
-                        <img src="{{ project.photoHCRef }}" alt="photo" class="circle" height="50px"><br>
+                        {% if project.photoHCRef is null %}
+                            <img src="{{ asset('assets/images/placeholder.png') }}" alt="profile image" class="circle" width="50px">
+                        {% else %}
+                            <img src="{{ asset('uploads/photoUser/' ~ project.photoHCRef) }}" alt="profile image" class="circle" width="50px">
+                        {% endif %}
                         <a href="{{ path('profilHappyCoach', { 'slug': project.slugHCRef}) }}">{{ project.firstNameHCRef }} {{ project.lastNameHCRef }}</a>
                     {% else %}
                         Pas encore d'HappyCoach Référent
                     {% endif %}
                 </div>
-                <div class="col s4">
+                <div class="row">
                     Equipe : {{ project.nbUserTeam }} personnes
+                </div>
+                <div class="row center">
+                    <a href="{{ path('project_show', {'slug' : project.slugProject}) }}">
+                        <button class="btn waves-effect blue darken-1" type="submit"><i class="material-icons left">description</i>Découvrir</button>
+                    </a>
                 </div>
             </div>
         {% endfor %}
     </div>
-
-    <div class="row">
-        <div class="col s6 m4 center">
-            <a href="{{ path('skills_index') }}">Retour à la liste des talents</a>
-        </div>
-        <div class="col s6 m4 center">
-            <a href="{{ path('skills_edit', { 'id': skill.id }) }}">Modifier ce talent</a>
-        </div>
-        <div class="col s6 m4 center">
-            {{ form_start(delete_form) }}
-            <input type="submit" value="Supprimer ce Talent">
-            {{ form_end(delete_form) }}
-        </div>
     </div>
-
+    </div>
 {% endblock %}
 

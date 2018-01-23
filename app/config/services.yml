@@ -52,3 +52,6 @@ services:
                 $db: '@doctrine'
                 $directory: '%kernel.project_dir%'
 
+    AppBundle\Service\SlugService:
+            arguments:
+                $db: '@doctrine'

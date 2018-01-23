@@ -3,171 +3,178 @@
 {% block title %}Editer le projet {{ project.title }}{% endblock %}
 
 {% block content %}
-<section class="createProjet generalContainer container">
-<h1 class="center titleSecond">Editer le projet : {{ project.title }}</h1>
-    <nav class="wrapper row">
-        <ul class="center bread">
-            <li class="active userCompany" id="breadOne" onclick="goStep1()"><a href="#">Informations de votre projet</a></li>
-            <li class="userCompany" id="breadTwo" onclick="goStep2()"><a href="#">Détails de votre projet</a></li>
-        </ul>
-    </nav>
-    {{ form_start(edit_form) }}
+<section class="createProjet generalContainer">
     <div class="row">
-        {#step#}
-        <div id="step1">
-            <div class="col s12">
-                <h5 class="titleInscription blue-text text-darken-3">Nom :</h5>
-
-                <div class="input-field col s12">
-                <i class="material-icons prefix blue-text text-darken-3">title</i>
-                    {% if (form_errors(edit_form.title))  %}
-                        {{ form_widget(edit_form.title, {'attr': {'class': 'error'}}) }}
-                    {% else %}
-                        {{ form_widget(edit_form.title) }}
-                    {% endif %}
-                    <label for="project_name"><span class="requireInput">* </span>Nom de votre projet</label>
-                    <div class="center error">
-                        {{ form_errors(edit_form.title) }}
-                    </div>
-                </div>
-            </div>
-            <div class="col s12">
-                <h5 class="titleInscription blue-text text-darken-3">Thème :</h5>
-                <div class="input-field col s12">
-                        <i class="material-icons prefix blue-text text-darken-3">list</i>
-                    {% if (form_errors(edit_form.theme))  %}
-                        {{ form_widget(edit_form.theme, {'attr': {'class': 'error'}}) }}
-                    {% else %}
-                        {{ form_widget(edit_form.theme) }}
-                    {% endif %}
-                    <label for="theme"><span class="requireInput">* </span>Catégorie du projet</label>
-                    <div class="center error">
-                        {{ form_errors(edit_form.theme) }}
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <h5 class="titleInscription blue-text text-darken-3">Date de fin du projet: </h5>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix blue-text text-darken-3">timer_off</i>
-                    {% if (form_errors(edit_form.endDate))  %}
-                        {{ form_widget(edit_form.endDate, {'attr': {'class': 'datepicker error'}}) }}
-                        {% else %}
-                            {{ form_widget(edit_form.endDate, {'attr': {'class': 'datepicker'}}) }}
-                        <label for="end_date"><span class="requireInput">* </span>Fin du projet</label>
-                    {% endif %}
-                    <div class="center error">
-                        {{ form_errors(edit_form.endDate) }}
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <h5 class="titleInscription blue-text text-darken-3">Lieu :</h5>
-                <div class="input-field col s12">
-                <i class="material-icons prefix blue-text text-darken-3">location_on</i>
-                    {% if (form_errors(edit_form.location))  %}
-                        {{ form_widget(edit_form.location, {'attr': {'class': 'error'}}) }}
-                    {% else %}
-                        {{ form_widget(edit_form.location) }}
-                    {% endif %}
-                    <label for="location"><span class="requireInput">* </span>Lieu de votre projet</label>
-                    <div class="center error">
-                        {{ form_errors(edit_form.location) }}
-                    </div>
-                </div>
-            </div>
-            <div class="center">
-                <a class="waves-effect waves-light btn amber darken-3" onclick="goStep2()">suivant</a>
-            </div>
-        </div>
-        {#step#}
-        <div id="step2" class="hide">
-            <div class="col s12">
-                <h5 class="titleInscription blue-text text-darken-3">Présentation du projet :</h5>
-                <div class="input-field col s12">
-                <i class="material-icons prefix blue-text text-darken-3">mode_edit</i>
-                    {% if (form_errors(edit_form.presentation))  %}
-                        {{ form_widget(edit_form.presentation, { 'attr': {'class': 'materialize-textarea error'} }) }}
-                    {% else %}
-                        {{ form_widget(edit_form.presentation, { 'attr': {'class': 'materialize-textarea'} }) }}
-                    {% endif %}
-                    <label for="description"><span class="requireInput">* </span>Ecrire la présentation de votre
-                        projet</label>
-                    <div class="center error">
-                        {{ form_errors(edit_form.presentation) }}
-                    </div>
-                </div>
-            </div>
-            <div class="col s12">
-                <h5 class="titleInscription blue-text text-darken-3">Les Avantages :</h5>
-                <div class="input-field col s12">
-                <i class="material-icons prefix blue-text text-darken-3">format_quote</i>
-                    {% if (form_errors(edit_form.beneficeCompany))  %}
-                        {{ form_widget(edit_form.beneficeCompany, { 'attr': {'class': 'materialize-textarea error'} }) }}
-                    {% else %}
-                        {{ form_widget(edit_form.beneficeCompany, { 'attr': {'class': 'materialize-textarea'} }) }}
-                    {% endif %}
-                    <label for="advantagesCompany"><span class="requireInput">* </span>Trois avantages pour votre
-                        employeur</label>
-                    <div class="center error">
-                        {{ form_errors(edit_form.beneficeCompany) }}
-                    </div>
-                </div>
-                <h5 class="titleInscription blue-text text-darken-3">Le profit pour l'équipe :</h5>
-                <div class="input-field col s12">
-                <i class="material-icons prefix blue-text text-darken-3">format_quote</i>
-                    {% if (form_errors(edit_form.profit))  %}
-                        {{ form_widget(edit_form.profit, { 'attr': {'class': 'materialize-textarea error'} }) }}
-                    {% else %}
-                        {{ form_widget(edit_form.profit, { 'attr': {'class': 'materialize-textarea'} }) }}
-                    {% endif %}
-                    <label for="advantagesGroup"><span class="requireInput">* </span>Trois avantages pour le groupe de
-                        votre projet</label>
-                    <div class="center error">
-                        {{ form_errors(edit_form.profit) }}
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <h5 class="titleInscription blue-text text-darken-3">Langues :</h5>
-                <div class="input-field col s12">
-                    <i class="material-icons material-icons prefix blue-text text-darken-3">language</i>
-                    {{ form_widget(edit_form.languagesProject) }}
-                    <label for="language"><span class="requireInput">* </span>Choisissez une langue</label>
-                </div>
-            </div>
-            <div class="col s12 m6">
-                <h5 class="titleInscription blue-text text-darken-3">Photo :</h5>
-                <div class="file-field input-field col s12">
-                    {% if (form_errors(edit_form.photo))  %}
-                        {{ form_widget(edit_form.photo, { 'attr': {'class': 'materialize-textarea error'} }) }}
-                    {% else %}
-                        <div class="btn blue darken-2">
-                            <span>Votre Photo</span>
-                            {{ form_widget(edit_form.photo) }}
-                        </div>
-                        <div class="file-path-wrapper">
-                            <span class="requireInput">* </span>
-                            <input class="file-path validate" type="text" />
-                        </div>
-                    {% endif %}
-                    <div class="center error">
-                        {{ form_errors(edit_form.photo) }}
-                    </div>
-                    <div class="center error">
-                    </div>
-                </div>
-            </div>
-              <div class="col s12">
-                <div class="center">
-                    <a class="waves-effect waves-light btn blue darken-3" onclick="goStep1()">retour</a>
-                    <a class="waves-effect waves-light btn amber darken-2"><input type="submit" value="Envoyer" /></a>
-                    {#<a href="{{ path('viewProject') }}" type="submit" class="waves-effect waves-light btn amber darken-2">Envoyer</a>#}
-                </div>
-            </div>
-        </div>
+        <h1 class="center titleSecond">Editer le projet : {{ project.title }}</h1>
     </div>
-    {{ form_end(edit_form) }}
+    <div class="container formContainer">
+        {{ form_start(edit_form) }}
+            <section id="msform">
+                <!-- progressbar -->
+                <ul id="progressbar" class="pbProject">
+                    <li class="active">Informations</li>
+                    <li>Détails</li>
+                </ul>
+                <!-- fieldsets -->
+                <fieldset>
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <h5 class="titleInscription blue-text text-darken-3">Titre :</h5>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix blue-text text-darken-3">title</i>
+                                {% if (form_errors(edit_form.title))  %}
+                                    {{ form_widget(edit_form.title, {'attr': {'class': 'error'}}) }}
+                                {% else %}
+                                    {{ form_widget(edit_form.title) }}
+                                {% endif %}
+                                <label for="project_name"><span class="requireInput">* </span>Nom de votre projet</label>
+                                <div class="center error">
+                                    {{ form_errors(edit_form.title) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6">
+                            <h5 class="titleInscription blue-text text-darken-3">Date :</h5>
+                            <div class="input-field col s12">
+                            <i class="material-icons prefix blue-text text-darken-3">timer_off</i>
+                                {% if (form_errors(edit_form.endDate))  %}
+                                    {{ form_widget(edit_form.endDate, {'attr': {'class': 'datepicker error'}}) }}
+                                {% else %}
+                                    {{ form_widget(edit_form.endDate, {'attr': {'class': 'datepicker'}}) }}
+                                {% endif %}
+                                <label for="end_date"><span class="requireInput">* </span>Date de fin</label>
+                                <div class="center error">
+                                    {{ form_errors(edit_form.endDate) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <h5 class="titleInscription blue-text text-darken-3">Lieu :</h5>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix blue-text text-darken-3">location_on</i>
+                                {% if (form_errors(edit_form.location))  %}
+                                    {{ form_widget(edit_form.location, {'attr': {'class': 'error'}}) }}
+                                {% else %}
+                                    {{ form_widget(edit_form.location) }}
+                                {% endif %}
+                                <label for="location"><span class="requireInput">* </span>Lieu de votre projet</label>
+                                <div class="center error">
+                                    {{ form_errors(edit_form.location) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6">
+                            <h5 class="titleInscription blue-text text-darken-3 left">Thème :</h5>
+                            <div class="input-field col s12">
+                                <i class="material-icons material-icons blue-text text-darken-3 prefix">list</i>
+                                {#<i class="material-icons prefix blue-text text-darken-3">list</i>#}
+                                {% if (form_errors(edit_form.theme))  %}
+                                    {{ form_widget(edit_form.theme, {'attr': {'class': 'error'}}) }}
+                                {% else %}
+                                    {{ form_widget(edit_form.theme) }}
+                                {% endif %}
+                                <label for="theme" class="left">
+                                    <span class="requireInput">* </span>
+                                </label>
+                                <div class="center error">
+                                    {{ form_errors(edit_form.theme) }}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button type="button" name="next" class="right next action-button btn waves-effect waves-light blue darken-1"><i class="material-icons">skip_next</i></button>
+                </fieldset>
+                <fieldset>
+                    <div class="col s12">
+                        <h5 class="titleInscription blue-text text-darken-3">Présentation du projet :</h5>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix blue-text text-darken-3">mode_edit</i>
+                            {% if (form_errors(edit_form.presentation))  %}
+                                {{ form_widget(edit_form.presentation, { 'attr': {'class': 'materialize-textarea error'} }) }}
+                            {% else %}
+                                {{ form_widget(edit_form.presentation, { 'attr': {'class': 'materialize-textarea'} }) }}
+                            {% endif %}
+                            <label for="description"><span class="requireInput">* </span>Ecrire la présentation de votre
+                                projet</label>
+                            <div class="center error">
+                                {{ form_errors(edit_form.presentation) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <h5 class="titleInscription blue-text text-darken-3">Les Avantages :</h5>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix blue-text text-darken-3">format_quote</i>
+                            {% if (form_errors(edit_form.beneficeCompany))  %}
+                                {{ form_widget(edit_form.beneficeCompany, { 'attr': {'class': 'materialize-textarea error'} }) }}
+                            {% else %}
+                                {{ form_widget(edit_form.beneficeCompany, { 'attr': {'class': 'materialize-textarea'} }) }}
+                            {% endif %}
+                            <label for="advantagesCompany"><span class="requireInput">* </span>Trois avantages pour votre
+                                employeur</label>
+                            <div class="center error">
+                                {{ form_errors(edit_form.beneficeCompany) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12">
+                        <h5 class="titleInscription blue-text text-darken-3">Le profit pour l'équipe :</h5>
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix blue-text text-darken-3">format_quote</i>
+                            {% if (form_errors(edit_form.profit))  %}
+                                {{ form_widget(edit_form.profit, { 'attr': {'class': 'materialize-textarea error'} }) }}
+                            {% else %}
+                                {{ form_widget(edit_form.profit, { 'attr': {'class': 'materialize-textarea'} }) }}
+                            {% endif %}
+                            <label for="advantagesGroup"><span class="requireInput">* </span>Trois avantages pour le groupe de
+                                votre projet</label>
+                            <div class="center error">
+                                {{ form_errors(edit_form.profit) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <h5 class="titleInscription blue-text text-darken-3">Langues :</h5>
+                            <div class="input-field">
+                                <i class="material-icons material-icons blue-text text-darken-3 prefix">language</i>
+                                {{ form_widget(edit_form.languagesProject) }}
+                                <label for="language">
+                                    <span class="requireInput">* </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col s12 m5">
+                            <h5 class="titleInscription blue-text text-darken-3">Photo :</h5>
+                            <div class="file-field input-field col s12">
+                                {% if (form_errors(edit_form.photo))  %}
+                                    {{ form_widget(edit_form.photo, { 'attr': {'class': 'materialize-textarea error'} }) }}
+                                {% else %}
+                                    <div class="btn blue darken-2">
+                                        <span>Votre Photo</span>
+                                        {{ form_widget(edit_form.photo) }}
+                                    </div>
+                                    <div class="file-path-wrapper hide-on-small-only">
+                                        <span class="requireInput left">* </span>
+                                        <input class="file-path validate" type="text" />
+                                    </div>
+                                {% endif %}
+                                <div class="center error">
+                                    {{ form_errors(edit_form.photo) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button name="previous" type="button" class="left previous action-button btn waves-effect waves-light blue darken-1"><i class="material-icons">skip_previous</i></button>
+                    <button type="submit" class="right btn waves-effect waves-light amber darken-3"><i class="material-icons right">send</i> Envoyer</button>
+                </fieldset>
+            </section>
+        {{ form_end(edit_form) }}
+    </div>
+</section>
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('assets/script/stepForm.js') }}"></script>
