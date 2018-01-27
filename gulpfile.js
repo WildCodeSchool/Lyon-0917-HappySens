@@ -40,7 +40,6 @@ gulp.task('css', function() {
         .pipe(reload({stream:true, once: true})); // je relance mon naviguateur quand ma tache css est accomplie: permet de rafraichir mon naviguateur
 
 });
-
 // crée une tache SASS
 gulp.task('sass', function() {
     return gulp.src(source + '/sass/style.scss') //src = source de fichier(s)
