@@ -37,7 +37,7 @@ class DefaultController extends Controller
         ]);
     }
     /**
-     * @Route("happyCoach", name="happyCoach")
+     * @Route("happycoach-bien-etre-agilite", name="happyCoach")
      */
     public function happyAction(Request $request)
     {
