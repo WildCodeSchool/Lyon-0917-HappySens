@@ -19,7 +19,7 @@ class DefaultController extends Controller
         ]);
     }
     /**
-     * @Route("company", name="company")
+     * @Route("entreprise/le-bonheur-au-travail", name="company")
      */
     public function companyAction(Request $request)
     {
