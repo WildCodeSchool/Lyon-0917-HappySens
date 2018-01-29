@@ -193,7 +193,7 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $allResume = $em->getRepository('AppBundle:Company')->findAllForRecap();
-        return $this->render('pages/In/Admin/company/listingRecapCompany.twig', [
+        return $this->render('pages/In/Admin/company/listingRecapCompany.html.twig', [
             'allResume' => $allResume,
         ]);
     }

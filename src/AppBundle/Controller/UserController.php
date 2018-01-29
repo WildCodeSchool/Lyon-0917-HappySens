@@ -496,7 +496,7 @@ class UserController extends Controller
             return $this->redirectToRoute('UserProfil', array('slug' => $user->getSlug()));
         }
 
-        return $this->render('newCollaborator.html.twig', array(
+        return $this->render('pages/In/company/newCollaborator.html.twig', array(
             'user' => $user,
             'form' => $form->createView(),
         ));
