@@ -28,7 +28,7 @@ class DefaultController extends Controller
         ]);
     }
     /**
-     * @Route("collaborators", name="collaborators")
+     * @Route("collaborateur/chief-happiness-officer", name="collaborators")
      */
     public function employeAction(Request $request)
     {
@@ -37,7 +37,7 @@ class DefaultController extends Controller
         ]);
     }
     /**
-     * @Route("happyCoach", name="happyCoach")
+     * @Route("happycoach-bien-etre-agilite", name="happyCoach")
      */
     public function happyAction(Request $request)
     {
