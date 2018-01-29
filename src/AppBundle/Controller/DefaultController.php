@@ -28,7 +28,7 @@ class DefaultController extends Controller
         ]);
     }
     /**
-     * @Route("collaborators", name="collaborators")
+     * @Route("collaborateur/chief-happiness-officer", name="collaborators")
      */
     public function employeAction(Request $request)
     {
