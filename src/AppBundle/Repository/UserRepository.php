@@ -35,6 +35,7 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->createQueryBuilder('u');
         if ($status == 'salary') {
             $qb = $qb->where('u.status = 2 or u.status = 3')
+                ->orderBy('c.name', 'DESC')
                 ->join('u.company', 'c');
         } else if ($status == 'happyCoach') {
             $qb = $qb->where('u.status = 4');
