@@ -9,6 +9,7 @@
 namespace AppBundle\Service;
 
 
+use AppBundle\Entity\User;
 use Swift_Image;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Component\Finder\Finder;
@@ -169,6 +170,14 @@ class EmailService
      */
     public function sendMailNewUser($user, $email_contact, $valueMdp)
     {
+        if ($user->getStatus() === User::ROLE_HAPPYCOACH) {
+            $renderSetBody =  'notificationsEmail/categories/inscriptions/happyCoach/nHappyCoach.html.twig';
+            $renderAssPart = 'notificationsEmail/categories/inscriptions/employe/newUser.txt.twig';
+        } else {
+            $renderSetBody =  'notificationsEmail/categories/inscriptions/employe/newUser.html.twig';
+            $renderAssPart = 'notificationsEmail/categories/inscriptions/happyCoach/nHappyCoach.txt.twig';
+        }
+
         $message = \Swift_Message::newInstance();
         $img = $message->embed(Swift_Image::fromPath($this->directory . '/web/assets/images/logo2.png'));
         $message->setSubject("Votre compte happySens vient d'être créé")
@@ -176,7 +185,7 @@ class EmailService
             ->setTo([$user->getEmail()])
             ->setFrom([$this->sender => self::SENDER])
             ->setBody(
-                $this->template->render('notificationsEmail/categories/inscriptions/employe/newUser.html.twig', [
+                $this->template->render($renderSetBody, [
                     'logo' => $img,
                     'firstname' => $user->getFirstName(),
                     'lastname' => $user->getLastName(),
@@ -184,7 +193,7 @@ class EmailService
                     'password' => $valueMdp,
                 ]), 'text/html'
             )
-            ->addPart($this->template->render('notificationsEmail/categories/inscriptions/employe/newUser.txt.twig', [
+            ->addPart($this->template->render($renderAssPart, [
                 'firstname' => $user->getFirstName(),
                 'lastname' => $user->getLastName(),
                 'email' => $user->getEmail(),

@@ -19,6 +19,9 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
             ->createQueryBuilder('p')
             ->setParameter('status', $status)
             ->where('p.status =:status')
+            ->join('p.author', 'u')
+            ->join('u.company', 'c')
+            ->orderBy('c.name')
             ->getQuery();
         return $qb->getResult();
     }
