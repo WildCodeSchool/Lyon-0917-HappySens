@@ -141,7 +141,6 @@ class SecurityController extends Controller
                             else {
                                 $errors = 'Les deux saisies ne sont pas identiques.';
                                 // TODO : Afficher les erreurs
-                                dump($errors);
                                 return $this->render('pages/In/security/change.html.twig', [
                                     'token' => $changePwd->getToken(),
                                     'errors' => $errors,
@@ -155,7 +154,6 @@ class SecurityController extends Controller
             } else {
                 $errors = "La page demandée n'existe plus.";
                 // TODO : Afficher les erreurs
-                dump($errors);
                 return $this->render('pages/In/security/login.html.twig', [
                     'errors' => $errors,
                 ]);
@@ -163,7 +161,6 @@ class SecurityController extends Controller
         } else {
             $errors = "Token invalide";
             // TODO : Afficher les erreurs
-            dump($errors);
             return $this->render('pages/In/security/change.html.twig', [
                 'token' => $changePwd->getToken(),
                 'form' => $form->createView(),
