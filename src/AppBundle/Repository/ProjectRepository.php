@@ -30,12 +30,12 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
      * return all project with status 2 and endDate passed
      * @return mixed
      */
-    public function getEndDateProjectStatusTwo($today) {
+    public function getEndDateProjectStatusTwo($yesterday) {
         $qb = $this
             ->createQueryBuilder('p')
-            ->setParameter('today', $today)
+            ->setParameter('yesterday', $yesterday)
             ->where('p.status = 2')
-            ->andWhere('p.endDate < :today')
+            ->andWhere('p.endDate < :yesterday')
             ->getQuery();
         return $qb->getResult();
     }

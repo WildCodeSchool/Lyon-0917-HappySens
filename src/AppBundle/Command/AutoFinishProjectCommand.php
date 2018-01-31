@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use AppBundle\Service\autoCheckService;
+use AppBundle\Service\AutoCheckService;
 
 
 class AutoFinishProjectCommand extends ContainerAwareCommand
@@ -34,7 +34,7 @@ class AutoFinishProjectCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $autoCheck = new autoCheckService($this->em);
+        $autoCheck = new AutoCheckService($this->em);
         $nbProjects = $autoCheck->autoFinishProject();
         $output->writeln($nbProjects . ' projets sont maintenant terminés' . PHP_EOL);
     }

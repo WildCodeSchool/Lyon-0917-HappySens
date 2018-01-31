@@ -9,9 +9,6 @@
 namespace AppBundle\Service;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\DBAL\Connection;
-use Doctrine\ORM\EntityManager;
-use AppBundle\Repository\ProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 
@@ -33,8 +30,9 @@ class AutoCheckService
      * @return int
      */
     public function autoFinishProject() {
-        $today = new \DateTime();
-        $projects = $this->em->getRepository('AppBundle:Project')->getEndDateProjectStatusTwo($today);
+        $yesterday = new \DateTime();
+        $yesterday->sub(new \DateInterval('P1D'));
+        $projects = $this->em->getRepository('AppBundle:Project')->getEndDateProjectStatusTwo($yesterday);
         foreach ($projects as $project) {
             $project->setStatus(3);
             $this->em->persist($project);
