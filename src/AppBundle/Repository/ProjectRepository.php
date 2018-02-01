@@ -104,5 +104,21 @@ class ProjectRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getSingleScalarResult();
     }
 
+    /**
+     * @param $project
+     * @return array
+     */
+    public function getTeamCollaboratorForProject($project)
+    {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->join('p.teamProject', 'u')
+            ->setParameter('project', $project)
+            ->where('p.id = :project')
+            ->andwhere('u.status = 2 or u.status = 3')
+            ->select('u.id')
+            ->getQuery();
+        return $qb->getResult();
+    }
 }
 

@@ -120,4 +120,6 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery();
         return $qb->getSingleScalarResult();
     }
+
+
 }
