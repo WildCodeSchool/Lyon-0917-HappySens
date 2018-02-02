@@ -32,7 +32,8 @@ class EditHappyCoachInProjectType extends AbstractType
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('u')
                     ->setParameter('happyCoach', USER::ROLE_HAPPYCOACH)
-                    ->where('u.status = :happyCoach');
+                    ->where('u.status = :happyCoach')
+                    ->andWhere('u.isActive = true');
             },
         ])
             ->add('teamProject', EntityType::class, [
@@ -43,7 +44,8 @@ class EditHappyCoachInProjectType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->setParameter('happyCoach', USER::ROLE_HAPPYCOACH)
-                        ->where('u.status = :happyCoach');
+                        ->where('u.status = :happyCoach')
+                        ->andWhere('u.isActive = true');
                 },
             ]);
     }

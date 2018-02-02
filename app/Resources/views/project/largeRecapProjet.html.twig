@@ -17,15 +17,21 @@
                             <p class="secondary-content"><i class="material-icons amber-text text-darken-2">person</i></p>
                         </a>
                     </li>
-                    {% if  project.happyCoach%}
+                    {% if  project.happyCoach %}
                         <li class="collection-item avatar">
                             <a href="{{ path('profilHappyCoach', {'slug' : project.happyCoach.slug }) }}">
-                                <img src="{{ asset('uploads/photoUser/' ~ project.happyCoach.photo) }}" alt="photo de l'HappyCoach référent" class="circle">
+                                {% if project.happyCoach.photo is null %}
+                                    <img src="{{ asset('assets/images/placeholder.png') }}" alt="" class="circle">
+                                {% else %}
+                                    <img src="{{ asset('uploads/photoUser/' ~ project.happyCoach.photo) }}"
+                                         alt="photo du créateur du projet" class="circle">
+                                {% endif %}
                                 <div class="black-text">
                                     <span class="titleSecond">HappyCoach référent :</span>
                                     <p>{{ project.happyCoach }}</p>
                                 </div>
-                                <p class="secondary-content"><i class="material-icons pink-text text-darken-2">group</i></p>
+                                <p class="secondary-content"><i class="material-icons pink-text text-darken-2">group</i>
+                                </p>
                             </a>
                         </li>
                     {% else %}
