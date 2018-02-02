@@ -389,10 +389,20 @@ class AdminController extends Controller
 
         $editForm = $this->createForm('AppBundle\Form\EditHappyCoachInProjectType', $project);
         $editForm->handleRequest($request);
-
+        $em = $this->getDoctrine()->getManager();
+        $teamCollaborator = $em->getRepository('AppBundle:Project')->getTeamCollaboratorForProject($project);
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-               $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            if (count($teamCollaborator) > 0) {
+                foreach ($teamCollaborator as $userId) {
+                    $user= $em->getRepository('AppBundle:User')->find($userId);
+                    $add = $project->addTeamProject($user);
+                    $em->persist($add);
 
+                }
+            }
+
+            $em->flush();
             return $this->redirectToRoute('profilAdmin', array('slug' => $this->getUser()->getSlug()));
         }
         return $this->render('pages/In/Admin/projects/addHappyCoach.html.twig', [
